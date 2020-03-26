@@ -42,9 +42,8 @@
     <!-- default pygment style is the 'default' style -->
     <link rel="stylesheet" type="text/css" href="/theme/css/pygment.min.css" />
     <script src="/theme/js/uikit.min.js"></script>
-    <title>All articles | Chris's Blog</title>
-
-
+    <title>My super title中文字体 | Chris's Blog</title>
+  <meta name="tags" content="pelican, publishing" /> <meta name="description" content="Short version for index and feeds" /> <meta name="category" content="Python" /> 
   </head>
   <body>
 <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
@@ -52,18 +51,60 @@
         <a class="uk-navbar-brand uk-hidden-small" href="">Chris's Blog</a>
         <ul class="uk-navbar-nav uk-hidden-small">
       <li><a href="/category/article.html">Article</a></li>
+      <li class="uk-active"><a href="/category/python.html">Python</a></li>
         </ul>
         <a href="#offcanvas" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas=""></a>
         <div class="uk-navbar-brand uk-navbar-center uk-visible-small">Chris's Blog</div>
     </nav>
     <div class="uk-grid" data-uk-grid-margin="">
         <main class="uk-width-medium-3-4">
+<article>
+<div class="uk-article">
+    <header>
+    <h1 class=" uk-article-title">
+        <a href="/my-super-post.html">My super title中文字体</a>
+    </h1>
+    <p class="uk-article-meta">
+    Published on   <time datetime="2010-12-03">周五 03 十二月 2010</time>
+        by         <a class="url fn" href="/author/alexis-metaireau.html">Alexis Metaireau</a>
+        <a class="url fn" href="/author/alexis-metaireau.html">Conan Doyle</a>
+    posted in <a href="/category/python.html">Python</a>
+    <br/>
+    <a href="/tag/pelican.html" class="uk-icon-tag">pelican</a>
+    <a href="/tag/publishing.html" class="uk-icon-tag">publishing</a>
 
-<h1>Archives for chris's blog</h1>
-
+    </p>
+    </header>
+    <p>This is the content of my super blog post.</p>
+<h2>Overview</h2>
 <ul>
-    <li><a class="" href="/00000.html">Pelican - 生成静态博客</a></li>
+<li>在tomcat 5.5之前，Context体现在/conf/server.xml中的Host里的<Context>元素，它由Context接口定义。</li>
+<li>每个Context元素代表了运行在虚拟主机上的单个Web应用。</li>
+<li>在tomcat 5.5之后，不推荐在server.xml中进行配置，而是在/conf/context.xml中进行独立的配置。因为server.xml是不可动态重加载的资源，服务器一旦启动了以后，要修改这个文件，就得重启服务器才能重新加载。而context.xml文件则不然，tomcat服务器会定时去扫描这个文件。一旦发现文件被修改（时间戳改变了），就会自动重新加载这个文件，而不需要重启服务器。</li>
 </ul>
+<h2>Configuration</h2>
+<div class="highlight"><pre><span></span><code>启动告警
+
+<span class="m">07</span>-Mar-2017 <span class="m">11</span>:28:00.620 WARNING <span class="o">[</span>RMI TCP Connection<span class="o">(</span><span class="m">2</span><span class="o">)</span>-127.0.0.1<span class="o">]</span> 
+org.apache.catalina.webresources.Cache.getResource Unable to add the resource at 
+<span class="o">[</span>/WEB-INF/classes/org/hibernate/jpa/orm_2_1.xsd<span class="o">]</span> 
+to the cache because there was insufficient free space available after evicting expired cache entries - 
+consider increasing the maximum size of the cache
+
+
+&lt;!-- 直接关闭缓存 --&gt;
+&lt;Resources <span class="nv">cachingAllowed</span><span class="o">=</span><span class="s2">&quot;false&quot;</span> /&gt;
+&lt;!-- 缓存的配置默认是开启的，大小是10240KB，这里配置成100M（单位是KB） --&gt;
+&lt;Resources <span class="nv">cachingAllowed</span><span class="o">=</span><span class="s2">&quot;true&quot;</span> <span class="nv">cacheMaxSize</span><span class="o">=</span><span class="s2">&quot;102400&quot;</span>/&gt;
+</code></pre></div>
+
+
+<p>cachingAllowed - 是否允许启用静态资源(HTML、图片、声音等)的缓存。默认值为true。
+cacheMaxSize - 设置静态资源缓存的最大值，单位为K。</p>
+<h2>Reference</h2>
+<p>https://tomcat.apache.org/tomcat-9.0-doc/config/resources.html</p>
+</div>
+</article>
         </main>
         <aside class="uk-width-medium-1-4">
 
@@ -86,8 +127,9 @@
     <div class="uk-panel">
     <h3 class="uk-panel-title">Tags</h3>
     <ul class="uk-list uk-list-line">
-          <li><a href="/tag/python.html" class="uk-icon-tag">python</a></li>
+          <li><a href="/tag/c.html" class="uk-icon-tag">C#</a></li>
           <li><a href="/tag/pelican.html" class="uk-icon-tag">pelican</a></li>
+          <li><a href="/tag/publishing.html" class="uk-icon-tag">publishing</a></li>
     </ul>
     </div>
 
@@ -112,6 +154,7 @@
     <div class="uk-offcanvas-bar">
         <ul class="uk-nav uk-nav-offcanvas">
       <li><a href="/category/article.html">Article</a></li>
+      <li class="uk-active"><a href="/category/python.html">Python</a></li>
         </ul>
     </div>
 </div>

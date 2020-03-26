@@ -42,28 +42,87 @@
     <!-- default pygment style is the 'default' style -->
     <link rel="stylesheet" type="text/css" href="/theme/css/pygment.min.css" />
     <script src="/theme/js/uikit.min.js"></script>
-    <title>All articles | Chris's Blog</title>
-
-
+    <title>Pelican - 生成静态博客 | Chris's Blog</title>
+  <meta name="tags" content="python, pelican" /> <meta name="description" content="使用Pelican生成静态博客" /> <meta name="category" content="Article" /> 
   </head>
   <body>
 <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
     <nav class="uk-navbar uk-margin-large-bottom">
         <a class="uk-navbar-brand uk-hidden-small" href="">Chris's Blog</a>
         <ul class="uk-navbar-nav uk-hidden-small">
-      <li><a href="/category/article.html">Article</a></li>
+      <li class="uk-active"><a href="/category/article.html">Article</a></li>
         </ul>
         <a href="#offcanvas" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas=""></a>
         <div class="uk-navbar-brand uk-navbar-center uk-visible-small">Chris's Blog</div>
     </nav>
     <div class="uk-grid" data-uk-grid-margin="">
         <main class="uk-width-medium-3-4">
+<article>
+<div class="uk-article">
+    <header>
+    <h1 class=" uk-article-title">
+        <a href="/00000.html">Pelican - 生成静态博客</a>
+    </h1>
+    <p class="uk-article-meta">
+    Published on   <time datetime="2020-03-26">周四 26 三月 2020</time>
+        by         <a class="url fn" href="/author/chris.html">Chris</a>
+    posted in <a href="/category/article.html">Article</a>
+    <br/>
+    <a href="/tag/python.html" class="uk-icon-tag">python</a>
+    <a href="/tag/pelican.html" class="uk-icon-tag">pelican</a>
 
-<h1>Archives for chris's blog</h1>
+    </p>
+    </header>
+    <h2>Install</h2>
+<p>通过在首选终端中运行以下命令，在Python 2.7.x或Python 3.3+上安装Pelican（以及可选择Markdown，如果您打算使用它），如果权限允许，则使用sudo作为前缀：</p>
+<div class="highlight"><pre><span></span><code>pip install pelican pelican<span class="o">[</span>Markdown<span class="o">]</span> markdown
+pip install --upgrade pelican
+</code></pre></div>
+
+
+<h2>Create Web Project</h2>
+<p>首先，为项目选择一个名称，为站点创建一个适当命名的目录，然后切换到该目录：</p>
+<div class="highlight"><pre><span></span><code>mkdir -p ~/projects/yoursite
+<span class="nb">cd</span> ~/projects/yoursite
+</code></pre></div>
+
+
+<h2>Use quickstart Command</h2>
+<p>通过pelican-quickstart命令创建一个骨架项目，该命令首先询问有关您网站的一些问题，根据提示进行输入即可</p>
+<h2>Create Article</h2>
+<ul>
+<li>在创建一些内容之前，您无法运行Pelican。使用首选文本编辑器创建包含以下内容的第一篇文章.</li>
+<li>如下使用markdown语法创建一篇文章。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">Title</span><span class="o">:</span> <span class="n">My</span> <span class="n">First</span> <span class="n">Review</span>
+<span class="n">Date</span><span class="o">:</span> <span class="mi">2010</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">03</span> <span class="mi">10</span><span class="o">:</span><span class="mi">20</span>
+<span class="n">Category</span><span class="o">:</span> <span class="n">Review</span>
+
+<span class="n">Following</span> <span class="k">is</span> <span class="n">a</span> <span class="n">review</span> <span class="n">of</span> <span class="n">my</span> <span class="n">favorite</span> <span class="n">mechanical</span> <span class="n">keyboard</span><span class="o">.</span>
+</code></pre></div>
+
+
+<h2>Build your website</h2>
+<ul>
+<li>从您的站点目录中，运行pelican命令以生成您的站点：</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pelican content
+pelican -l <span class="c1"># 在本机的8000端口展示 website</span>
+</code></pre></div>
+
 
 <ul>
-    <li><a class="" href="/00000.html">Pelican - 生成静态博客</a></li>
+<li>您的站点现在已在output目录中生成，移动到http的目录即可。</li>
 </ul>
+<h2>About</h2>
+<ul>
+<li>企鹅号码：848408012</li>
+<li>企鹅群号：465073050</li>
+<li>私人邮箱：du.chao.qun@163.com</li>
+<li>备注说明：欢迎联系交流，共同学习进步，转载请注明出处，谢谢。</li>
+</ul>
+</div>
+</article>
         </main>
         <aside class="uk-width-medium-1-4">
 
@@ -111,7 +170,7 @@
 <div id="offcanvas" class="uk-offcanvas">
     <div class="uk-offcanvas-bar">
         <ul class="uk-nav uk-nav-offcanvas">
-      <li><a href="/category/article.html">Article</a></li>
+      <li class="uk-active"><a href="/category/article.html">Article</a></li>
         </ul>
     </div>
 </div>
