@@ -42,35 +42,79 @@
     <!-- default pygment style is the 'default' style -->
     <link rel="stylesheet" type="text/css" href="/theme/css/pygment.min.css" />
     <script src="/theme/js/uikit.min.js"></script>
-    <title>All the categories | Chris's Blog</title>
-
- 
+    <title>Git - 删除文件 | Chris's Blog</title>
+  <meta name="tags" content="git, linux, command" /> <meta name="description" content="在终端上删除 git 项目中的文件" /> <meta name="category" content="Article" /> 
   </head>
   <body>
 <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
     <nav class="uk-navbar uk-margin-large-bottom">
         <a class="uk-navbar-brand uk-hidden-small" href="">Chris's Blog</a>
         <ul class="uk-navbar-nav uk-hidden-small">
-      <li><a href="/category/article.html">Article</a></li>
+      <li class="uk-active"><a href="/category/article.html">Article</a></li>
         </ul>
         <a href="#offcanvas" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas=""></a>
         <div class="uk-navbar-brand uk-navbar-center uk-visible-small">Chris's Blog</div>
     </nav>
     <div class="uk-grid" data-uk-grid-margin="">
         <main class="uk-width-medium-3-4">
+<article>
+<div class="uk-article">
+    <header>
+    <h1 class=" uk-article-title">
+        <a href="/00001.html">Git - 删除文件</a>
+    </h1>
+    <p class="uk-article-meta">
+    Published on   <time datetime="2020-03-27">周五 27 三月 2020</time>
+        by         <a class="url fn" href="/author/chris.html">Chris</a>
+    posted in <a href="/category/article.html">Article</a>
+    <br/>
+    <a href="/tag/git.html" class="uk-icon-tag">git</a>
+    <a href="/tag/linux.html" class="uk-icon-tag">linux</a>
+    <a href="/tag/command.html" class="uk-icon-tag">command</a>
+
+    </p>
+    </header>
+    <h2>Overview</h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># 添加文件的时候我们可以这么做</span>
+touch readme.txt
+git add readme.txt
+git commit -m <span class="s2">&quot;add readme.txt&quot;</span>
+git push
+
+<span class="c1"># 通常，我们会在资源管理器中把文件删除，</span>
+rm readme.txt
+
+<span class="c1"># 这时查看状态你就会发现，git发现了这个丢失的文件。</span>
+git status
+</code></pre></div>
 
 
-<h1>All the categories</h1>
+<h2>Option A</h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># 确认该文件没用了，直接删除</span>
+git rm readme.txt
+git commit -m <span class="s2">&quot;remove readme.txt&quot;</span>
+git push
+</code></pre></div>
 
-    <h2>
-        <span class="entity">Article</span>
-    </h2>
-    <ul>
-        <li><a class="" href="/00003.html">Aliyun - RAM & STS</a></li>
-        <li><a class="" href="/00002.html">top - linux 查看系统资源命令</a></li>
-        <li><a class="" href="/00001.html">Git - 删除文件</a></li>
-        <li><a class="" href="/00000.html">Pelican - 生成静态博客</a></li>
-    </ul>
+
+<h2>Option B</h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># 该文件还有用，我们删错了</span>
+git checkout -- test.txt
+
+<span class="c1"># git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。</span>
+<span class="c1"># 注意：从来没有被添加到版本库就被删除的文件，是无法恢复的！</span>
+</code></pre></div>
+
+
+<h2>About</h2>
+<ul>
+<li>企鹅号码：848408012</li>
+<li>企鹅群号：465073050</li>
+<li>私人邮箱：du.chao.qun@163.com</li>
+<li>备注说明：欢迎联系交流，共同学习进步，转载请注明出处，谢谢。</li>
+</ul>
+</div>
+</article>
         </main>
         <aside class="uk-width-medium-1-4">
 
@@ -125,7 +169,7 @@
 <div id="offcanvas" class="uk-offcanvas">
     <div class="uk-offcanvas-bar">
         <ul class="uk-nav uk-nav-offcanvas">
-      <li><a href="/category/article.html">Article</a></li>
+      <li class="uk-active"><a href="/category/article.html">Article</a></li>
         </ul>
     </div>
 </div>
