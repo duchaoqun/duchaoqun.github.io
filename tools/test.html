@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-1.11.3.js"></script>
+<script>
+    function init() {
+        var str = ""
+        for (var i = 1; i < 300; i++) {
+            if (i % 10 == 0) {
+                str += "<br/>"
+            }
+            str += "H"
+        }
+        alert(str.length)
+        alert(str)
+        document.getElementById("1").innerHTML = str
+    }
+</script>
+</head>
+<body onload="init();">
+      <div id="1"></div>
+</body>
+</html>
