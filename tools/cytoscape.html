@@ -13,6 +13,143 @@
 
 </div>
 <script>
+
+    let data1 = {
+        "status": "success",
+        "type": "new",
+        "list1": [{
+            "name": "投标保函申请",
+            "x": 10,
+            "y": 10,
+            "value": 58249,
+            "userName": "",
+            "comment": "",
+            "itemStyle": {"borderColor": "#24a689"}
+        }],
+        "list2": [{"target": 58249, "source": null, "lineStyle": {"color": "#24a689"}}]
+    };
+
+    let data2 = {
+        "status": "success",
+        "list1": [{"name": "项目业务申请与受理", "x": 300, "y": 100, "value": 76347, "workflow": 76346}, {
+            "name": "项目立项与项目经理分配",
+            "x": 600,
+            "y": 100,
+            "value": 76348,
+            "workflow": 76346
+        }, {"name": "项目尽职调查", "x": 900, "y": 100, "value": 76350, "workflow": 76346}, {
+            "name": "项目尽职调查复核",
+            "x": 1200,
+            "y": 100,
+            "value": 76351,
+            "workflow": 76346
+        }, {"name": "业务部审批", "x": 1500, "y": 100, "value": 76352, "workflow": 76346}, {
+            "name": "预审会审议",
+            "x": 1800,
+            "y": 100,
+            "value": 76353,
+            "workflow": 76346
+        }, {"name": "预审会审批", "x": 1800, "y": 400, "value": 76354, "workflow": 76346}, {
+            "name": "审查岗审查",
+            "x": 1500,
+            "y": 400,
+            "value": 76355,
+            "workflow": 76346
+        }, {"name": "项目经理复核", "x": 1200, "y": 400, "value": 76356, "workflow": 76346}, {
+            "name": "审查岗复查",
+            "x": 900,
+            "y": 400,
+            "value": 76357,
+            "workflow": 76346
+        }, {"name": "风险管理部审批", "x": 600, "y": 400, "value": 76358, "workflow": 76346}, {
+            "name": "审查会审议",
+            "x": 300,
+            "y": 400,
+            "value": 76359,
+            "workflow": 76346
+        }, {"name": "审查岗复核", "x": 300, "y": 700, "value": 76360, "workflow": 76346}, {
+            "name": "项目经理再复核",
+            "x": 600,
+            "y": 700,
+            "value": 76361,
+            "workflow": 76346
+        }, {"name": "审查岗再复查", "x": 900, "y": 700, "value": 76362, "workflow": 76346}, {
+            "name": "审查会审批",
+            "x": 1200,
+            "y": 700,
+            "value": 76363,
+            "workflow": 76346
+        }, {"name": "决策会决议", "x": 1500, "y": 700, "value": 76364, "workflow": 76346}, {
+            "name": "董事会决议",
+            "x": 1800,
+            "y": 700,
+            "value": 76365,
+            "workflow": 76346
+        }, {"name": "项目签约准备", "x": 1800, "y": 1000, "value": 76366, "workflow": 76346}, {
+            "name": "财务保费确认",
+            "x": 1500,
+            "y": 1000,
+            "value": 76367,
+            "workflow": 76346
+        }, {"name": "项目签约落实", "x": 1200, "y": 1000, "value": 76368, "workflow": 76346}, {
+            "name": "出函准备",
+            "x": 900,
+            "y": 1000,
+            "value": 76369,
+            "workflow": 76346
+        }, {"name": "开立保函", "x": 600, "y": 1000, "value": 76370, "workflow": 76346}, {
+            "name": "风险质押金核销",
+            "x": 300,
+            "y": 1000,
+            "value": 76371,
+            "workflow": 76346
+        }, {"name": "风险质押金确认", "x": 300, "y": 1300, "value": 76372, "workflow": 76346}, {
+            "name": "项目完成",
+            "x": 600,
+            "y": 1300,
+            "value": 76373,
+            "workflow": 76346
+        }, {
+            "name": "审查岗分配",
+            "x": 599.9402852506453,
+            "y": 255.79219267224613,
+            "value": 68571,
+            "workflow": 68570,
+            "mainWorkflow": 76346,
+            "subConfigId": 76349,
+            "subflow": true,
+            "source": 76348
+        }],
+        "list2": [{"target": 76347, "source": null}, {"target": 76348, "source": 76347}, {
+            "target": 76350,
+            "source": 76348
+        }, {"target": 76351, "source": 76350}, {"target": 76352, "source": 76351}, {
+            "target": 76353,
+            "source": 76352
+        }, {"target": 76354, "source": 76353}, {"target": 76355, "source": 76354}, {
+            "target": 76356,
+            "source": 76355
+        }, {"target": 76357, "source": 76356}, {"target": 76358, "source": 76357}, {
+            "target": 76359,
+            "source": 76358
+        }, {"target": 76360, "source": 76359}, {"target": 76361, "source": 76360}, {
+            "target": 76362,
+            "source": 76361
+        }, {"target": 76363, "source": 76362}, {"target": 76364, "source": 76363}, {
+            "target": 76365,
+            "source": 76364
+        }, {"target": 76366, "source": 76365}, {"target": 76367, "source": 76366}, {
+            "target": 76368,
+            "source": 76367
+        }, {"target": 76369, "source": 76368}, {"target": 76370, "source": 76369}, {
+            "target": 76371,
+            "source": 76370
+        }, {"target": 76372, "source": 76371}, {"target": 76373, "source": 76372}, {
+            "target": 68571,
+            "source": 76348,
+            "subflow": true
+        }]
+    };
     let cy;
     $(document).ready(function () {
         function isKeyNode(links, value) {
@@ -104,40 +241,16 @@
                 });
             })
 
-            cy.nodes().forEach(function (node) {
-                    node.data('size', 100)
-                    console.log(node.data('size'))
-                }
-            )
-
-            cy.fit()
+            // https://js.cytoscape.org/#cy.container Official Website.
+            // fit 是填充的方式
+            // cy.fit()
+            // 默认的方式，这里我们应该使用这种方式，
             cy.reset()
             return cy
         }
 
-        let data = {
-            "status": "success",
-            "type": "new",
-            "list1": [{
-                "name": "投标保函申请",
-                "x": 300,
-                "y": 100,
-                "value": 58249,
-                "userName": "",
-                "comment": "",
-                "itemStyle": {"borderColor": "#24a689"}
-            }],
-            "list2": [{"target": 58249, "source": null, "lineStyle": {"color": "#24a689"}}]
-        };
-        alert()
-        cy = showView(data)
+        cy = showView(data1)
     });
-    var json1 = {"abc": [{"name": "txt1"}, {"name": "txt2"}]};
-
-    for (var i = 0; i < json1.abc.length; i++) {
-        alert(json1.abc[i].name);
-    }
-
 
 </script>
 </body>
