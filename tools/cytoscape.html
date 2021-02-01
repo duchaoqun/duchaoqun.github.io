@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"/>
+    <title></title>
+    <script type="text/javascript" src="js/cytoscape.min-3.18.0.js"></script>
+    <script type="text/javascript" src="js/JsBarcode.all.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+<div class="ibox-content over-x " id="forceChart" style="height:1000px">
+
+</div>
+<script>
+    let cy;
+    $(document).ready(function () {
+        function isKeyNode(links, value) {
+            const result = links.filter(function (item) {
+                return item.source == value
+            })
+            return result.length > 1
+        }
+
+        function showView(data) {
+
+
+            const node = data.list1
+            const links = data.list2
+            const elements = node.map((item, index) => {
+                return {
+                    data: {id: item.value, label: item.name, source: item}
+                }
+            })
+            const edges = links.filter(item => item.target && item.source).map((item, index) => {
+                return {
+                    data: {id: 'edge-' + index, source: item.source, target: item.target, arrow: 'triangle-backcurve'}
+                }
+            })
+            const cy = cytoscape({
+                container: document.getElementById('forceChart'),
+                style: [
+                    {
+                        selector: 'node',
+                        style: {
+                            'background-color': function (ele) {
+                                const data = ele.data()
+                                return isKeyNode(links, data.id) ? '#fcc' : '#fff'
+                            },
+                            'border-color': function (ele) {
+                                const data = ele.data()
+                                return isKeyNode(links, data.id) ? '#f00' : '#24A689'
+                            },
+                            'border-width': 2
+                        }
+                    },
+                    {
+                        "selector": "edge",
+                        "style": {
+                            "width": 2,
+                            'line-color': '#24A689',
+                            "curve-style": "unbundled-bezier",
+                            'target-arrow-color': '#24A689'
+                        }
+                    },
+                    {
+                        "selector": "node[label]",
+                        "style": {
+                            "label": "data(label)",
+                            'color': '#666'
+                        }
+                    },
+                    {
+                        "selector": "edge[label]",
+                        "style": {
+                            "label": "data(label)",
+                            "width": 3
+                        }
+                    },
+                    {
+                        "selector": ".top-center",
+                        "style": {
+                            "text-valign": "top",
+                            "text-halign": "center"
+                        }
+                    },
+                    {
+                        "selector": "edge[arrow]",
+                        "style": {
+                            "target-arrow-shape": "data(arrow)"
+                        }
+                    }
+                ],
+                elements: [
+                    ...elements,
+                    ...edges
+                ]
+            })
+            cy.nodes().forEach(function (ele, i, eles) {
+                const data = ele.data().source
+                ele.position({
+                    x: data.x,
+                    y: data.y
+                });
+            })
+
+            cy.nodes().forEach(function (node) {
+                    node.data('size', 100)
+                    console.log(node.data('size'))
+                }
+            )
+
+            cy.fit()
+            cy.reset()
+            return cy
+        }
+
+        let data = {
+            "status": "success",
+            "type": "new",
+            "list1": [{
+                "name": "投标保函申请",
+                "x": 300,
+                "y": 100,
+                "value": 58249,
+                "userName": "",
+                "comment": "",
+                "itemStyle": {"borderColor": "#24a689"}
+            }],
+            "list2": [{"target": 58249, "source": null, "lineStyle": {"color": "#24a689"}}]
+        };
+        alert()
+        cy = showView(data)
+    });
+    var json1 = {"abc": [{"name": "txt1"}, {"name": "txt2"}]};
+
+    for (var i = 0; i < json1.abc.length; i++) {
+        alert(json1.abc[i].name);
+    }
+
+
+</script>
+</body>
+</html>
