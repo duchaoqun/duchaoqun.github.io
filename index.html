@@ -42,19 +42,53 @@
                 </div>
                 <nav class="main-nav" role="navigation">
                     <ul class="main-menu">
-                        <li><a href="#section1">游戏人生</a></li>
-                        <li><a href="#section2">联系我</a></li>
+                        <li><a href="#section1">搜索引擎</a></li>
+                        <li><a href="#section2">游戏人生</a></li>
+                        <li><a href="#section3">与我联系</a></li>
                     </ul>
                 </nav>
                 <div class="copyright-text">
                     <img style="width: 140px" src="assets/images/wp.jpg" alt="关注我"/>
-                    <p>Copyright 2025 DuChaoQun Design, Email:admin@duchaoqun.cn</p>
+                    <p>Copyright 2011-2025 DuChaoQun Design, Email:admin@duchaoqun.cn</p>
                 </div>
             </div>
         </div>
     </div>
 
     <section class="section about-me" data-section="section1">
+        <div class="container">
+            <div class="section-heading">
+                <h2>搜索引擎</h2>
+                <div class="line-dec"></div>
+                <span>使用各大搜索引擎快速搜索您需要的内容</span>
+            </div>
+            
+            <div class="search-engine-container">
+                <div class="search-input-wrapper">
+                    <input type="text" id="search-input" placeholder="请输入搜索内容..." />
+                </div>
+                
+                <div class="search-engines">
+                    <button onclick="search('baidu')" class="search-btn">
+                        <i class="fa fa-search"></i> 百度
+                    </button>
+                    <button onclick="search('google')" class="search-btn">
+                        <i class="fa fa-globe"></i> Google
+                    </button>
+                    <button onclick="search('bing')" class="search-btn">
+                        <i class="fa fa-windows"></i> Bing
+                    </button>
+                    <button onclick="search('so')" class="search-btn">
+                        <i class="fa fa-question-circle"></i> 360搜索
+                    </button>
+                    <button onclick="search('sogou')" class="search-btn">
+                        <i class="fa fa-paw"></i> 搜狗搜索
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section about-me" data-section="section2">
         <div class="container">
             <div class="section-heading">
                 <h2>游戏人生</h2>
@@ -103,7 +137,7 @@
             </div>
         </div>
     </section>
-    <section class="section about-me" data-section="section2">
+    <section class="section about-me" data-section="section3">
         <div class="container">
             <div class="section-heading">
                 <h2>联系我</h2>
@@ -133,6 +167,7 @@
             </div>
         </div>
     </section>
+
 
 </div>
 
@@ -194,6 +229,36 @@
     $(window).scroll(function () {
         checkSection();
     });
+    
+    // 搜索引擎功能
+    function search(engine) {
+        const query = document.getElementById('search-input').value.trim();
+        if (!query) {
+            alert('请输入搜索内容');
+            return;
+        }
+        
+        let url = '';
+        switch(engine) {
+            case 'baidu':
+                url = `https://www.baidu.com/s?wd=${encodeURIComponent(query)}`;
+                break;
+            case 'google':
+                url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                break;
+            case 'bing':
+                url = `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
+                break;
+            case 'so':
+                url = `https://www.so.com/s?q=${encodeURIComponent(query)}`;
+                break;
+            case 'sogou':
+                url = `https://www.sogou.com/web?query=${encodeURIComponent(query)}`;
+                break;
+        }
+        
+        window.open(url, '_blank');
+    }
 </script>
 </body>
 </html>
