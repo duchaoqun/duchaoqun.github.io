@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet"/>
 
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/website.ico" media="screen"/>
-    <title>杜超群</title>
+    <title>杜超群 - 个人博客，简简单单，俗人一个。</title>
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 
@@ -37,12 +37,13 @@
                 </div>
                 <div class="author-content">
                     <h4>杜超群</h4>
-                    <span>简简单单&nbsp;&nbsp;&nbsp;俗人一个</span>
+                    <span>Nature is impartial, treating all things as straw dogs.</span>
 
                 </div>
                 <nav class="main-nav" role="navigation">
                     <ul class="main-menu">
                         <li><a href="#section1">搜索引擎</a></li>
+                        <li><a href="#section4">智能工具</a></li>
                         <li><a href="#section2">游戏人生</a></li>
                         <li><a href="#section3">与我联系</a></li>
                     </ul>
@@ -60,7 +61,7 @@
             <div class="section-heading">
                 <h2>搜索引擎</h2>
                 <div class="line-dec"></div>
-                <span>使用各大搜索引擎快速搜索您需要的内容</span>
+                <span>想你所想，做你所做</span>
             </div>
             
             <div class="search-engine-container">
@@ -69,14 +70,17 @@
                 </div>
                 
                 <div class="search-engines">
-                    <button onclick="search('baidu')" class="search-btn">
-                        <i class="fa fa-search"></i> 百度
-                    </button>
                     <button onclick="search('google')" class="search-btn">
                         <i class="fa fa-globe"></i> Google
                     </button>
                     <button onclick="search('bing')" class="search-btn">
                         <i class="fa fa-windows"></i> Bing
+                    </button>
+                    <button onclick="search('yandex')" class="search-btn">
+                        <i class="fa fa-search"></i> Yandex
+                    </button>
+                    <button onclick="search('baidu')" class="search-btn">
+                        <i class="fa fa-search"></i> 百度
                     </button>
                     <button onclick="search('so')" class="search-btn">
                         <i class="fa fa-question-circle"></i> 360搜索
@@ -88,6 +92,80 @@
             </div>
         </div>
     </section>
+    
+    <!-- Website Navigation Section -->
+    <section class="section about-me" data-section="section4">
+        <div class="container">
+            <div class="section-heading">
+                <h2>智能工具</h2>
+                <div class="line-dec"></div>
+                <span>精选实用的智能工具，方便日常使用。</span>
+            </div>
+            
+            <div class="website-nav-container">
+                <!-- AI工具 -->
+                <div class="website-category">
+                    <h4><i class="fa fa-globe"></i> 模型</h4>
+                    <div class="website-grid">
+                        <a href="https://chat.deepseek.com/sign_in" target="_blank" class="website-item">
+                            <span>DeepSeek</span>
+                        </a>
+                        <a href="https://www.doubao.com" target="_blank" class="website-item">
+                            <span>豆包</span>
+                        </a>
+                        <a href="https://tongyi.aliyun.com/qianwen" target="_blank" class="website-item">
+                            <span>通义千问</span>
+                        </a>
+                        <a href="https://yuanbao.tencent.com" target="_blank" class="website-item">
+                            <span>腾讯元宝</span>
+                        </a>
+                        <a href="https://yiyan.baidu.com" target="_blank" class="website-item">
+                            <span>文言一心</span>
+                        </a>
+                        <a href="https://kimi.moonshot.cn" target="_blank" class="website-item">
+                            <span>Moonshot</span>
+                        </a>
+                        <a href="https://copilot.wps.cn" target="_blank" class="website-item">
+                            <span>WPS灵犀</span>
+                        </a>
+                        <a href="https://copilot.microsoft.com" target="_blank" class="website-item">
+                            <span>Microsoft Copilot</span>
+                        </a>
+                    </div>
+                </div>
+                                
+                <!-- 视频网站分类 -->
+                <div class="website-category">
+                    <h4><i class="fa fa-film"></i> 媒体</h4>
+                    <div class="website-grid">
+                        <a href="https://peiyin.xunfei.cn" target="_blank" class="website-item">
+                            <span>讯飞配音</span>
+                        </a>
+                        <a href="https://diffusionbee.com/" target="_blank" class="website-item">
+                            <span>DiffusionBee</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 工具网站分类 -->
+                <div class="website-category">
+                    <h4><i class="fa fa-wrench"></i> 工具</h4>
+                    <div class="website-grid">
+                        <a href="https://imageprompt.org/" target="_blank" class="website-item">
+                            <span>ImagePrompt(图文)</span>
+                        </a>
+                        <a href="https://liner.ai/" target="_blank" class="website-item">
+                            <span>liner.ai(训练)</span>
+                        </a>
+                        <a href="https://woy.ai/" target="_blank" class="website-item">
+                            <span>Woy.ai</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <section class="section about-me" data-section="section2">
         <div class="container">
             <div class="section-heading">
@@ -248,6 +326,9 @@
                 break;
             case 'bing':
                 url = `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
+                break;
+            case 'yandex':
+                url = `https://www.yandex.com/search/?text=${encodeURIComponent(query)}`;
                 break;
             case 'so':
                 url = `https://www.so.com/s?q=${encodeURIComponent(query)}`;
