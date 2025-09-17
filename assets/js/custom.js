@@ -1,28 +1,64 @@
 (function($) {
-  var toggle = document.getElementById("menu-toggle");
-  var menu = document.getElementById("menu");
-  var close = document.getElementById("menu-close");
-
-  toggle.addEventListener("click", function(e) {
-    if (menu.classList.contains("open")) {
-      menu.classList.remove("open");
+  // Outline Menu Functionality
+  var outlineToggle = document.getElementById("outline-toggle");
+  var outlineSidebar = document.getElementById("outline-sidebar");
+  var outlineClose = document.getElementById("outline-close");
+  
+  // Toggle outline sidebar
+  outlineToggle.addEventListener("click", function(e) {
+    e.preventDefault();
+    if (outlineSidebar.classList.contains("open")) {
+      outlineSidebar.classList.remove("open");
+      // Add overlay when sidebar is closed
+      if ($('.outline-overlay').length > 0) {
+        $('.outline-overlay').remove();
+      }
     } else {
-      menu.classList.add("open");
+      outlineSidebar.classList.add("open");
+      // Add overlay when sidebar is open
+      if ($('.outline-overlay').length === 0) {
+        $('body').append('<div class="outline-overlay"></div>');
+        $('.outline-overlay').on('click', function() {
+          outlineSidebar.classList.remove('open');
+          $(this).remove();
+        });
+      }
     }
   });
-
-  close.addEventListener("click", function(e) {
-    menu.classList.remove("open");
-  });
-
-  // Close menu after click on smaller screens
-  $(window).on("resize", function() {
-    if ($(window).width() < 846) {
-      $(".main-menu a").on("click", function() {
-        menu.classList.remove("open");
-      });
+  
+  // Close outline sidebar
+  outlineClose.addEventListener("click", function(e) {
+    e.preventDefault();
+    outlineSidebar.classList.remove("open");
+    // Remove overlay when sidebar is closed
+    if ($('.outline-overlay').length > 0) {
+      $('.outline-overlay').remove();
     }
   });
+  
+  // Close sidebar after clicking on menu items
+  // and smooth scroll to the section
+  $('.outline-menu a').on('click', function(e) {
+    e.preventDefault();
+    
+    // Close the sidebar
+    outlineSidebar.classList.remove('open');
+    if ($('.outline-overlay').length > 0) {
+      $('.outline-overlay').remove();
+    }
+    
+    // Smooth scroll to the target section
+    var targetId = $(this).attr('href').substring(1); // 移除#前缀
+    var targetSection = $('section[data-section="' + targetId + '"]');
+    
+    if (targetSection.length) {
+      $('html, body').animate({
+        scrollTop: targetSection.offset().top - 50
+      }, 800);
+    }
+  });
+  
+  // 样式已移至CSS文件中
 
   $(".owl-carousel").owlCarousel({
     items: 4,

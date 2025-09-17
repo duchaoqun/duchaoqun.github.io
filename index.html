@@ -27,37 +27,34 @@
 
 <body>
 <div id="page-wraper">
-    <!-- Sidebar Menu -->
-    <div class="responsive-nav">
-        <i class="fa fa-bars" id="menu-toggle"></i>
-        <div id="menu" class="menu">
-            <i class="fa fa-times" id="menu-close"></i>
-            <div class="container">
-                <div class="image">
-                    <a href="#"><img src="assets/images/author-image.png" alt=""/></a>
-                </div>
-                <div class="author-content">
-                    <h4>杜超群</h4>
-                    <span>Nature is impartial, treating all things as straw dogs.</span>
-
-                </div>
-                <nav class="main-nav" role="navigation">
-                    <ul class="main-menu">
-                        <li><a href="#section_search">搜索引擎</a></li>
-                        <li><a href="#section_ai">智能工具</a></li>
-                        <li><a href="#section_coding">编码研发</a></li>
-                        <li><a href="#section_design">设计工具</a></li>
-                        <li><a href="#section_tools">得心应手</a></li>
-                        <li><a href="#section_game">游戏人生</a></li>
-                        <li><a href="#section2">资源分享</a></li>
-                        <li><a href="#section3">与我联系</a></li>
-                    </ul>
-                </nav>
-                <div class="copyright-text">
-                    <img style="width: 140px" src="assets/images/wp.jpg" alt="关注我"/>
-                    <p>Copyright 2011-2025 DuChaoQun Design, Email:admin@duchaoqun.cn</p>
-                </div>
+    <!-- Outline Menu -->
+    <div class="outline-container">
+        <!-- Outline Toggle Button -->
+        <button id="outline-toggle" class="outline-toggle">
+            <i class="fa fa-list"></i>
+            <span>Outline</span>
+        </button>
+        
+        <!-- Outline Sidebar -->
+        <div id="outline-sidebar" class="outline-sidebar">
+            <div class="outline-header">
+                <h3>Outline</h3>
+                <button id="outline-close" class="outline-close">
+                    <i class="fa fa-times"></i>
+                </button>
             </div>
+            <nav class="outline-nav" role="navigation">
+                <ul class="outline-menu">
+                    <li><a href="#section_search">搜索引擎</a></li>
+                    <li><a href="#section_ai">智能工具</a></li>
+                    <li><a href="#section_coding">编码研发</a></li>
+                    <li><a href="#section_design">设计工具</a></li>
+                    <li><a href="#section_tools">得心应手</a></li>
+                    <li><a href="#section_game">游戏人生</a></li>
+                    <li><a href="#section2">资源分享</a></li>
+                    <li><a href="#section3">与我联系</a></li>
+                </ul>
+            </nav>
         </div>
     </div>
 
@@ -400,31 +397,24 @@
                 <span>
                     如果你需要什么帮助，请联系我。<br>
                     发邮件给我：du.chao.qun@163.com<br>
-                    留言给我：扫描二维码关注留言<br>
+                    留言给我：扫描二维码关注留言<br><br>
+                    <div class="left-image" style="display: flex; justify-content: center; align-items: center; min-height: 200px;">
+                        <img style="width: 100%; max-width: 200px;" src="assets/images/wp.jpg" alt="关注我"/>
+                    </div>
                 </span>
-            </div>
-            <div class="left-image-post">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="left-image">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="right-text">
-                            <h4></h4>
-                            <p>
-                            </p>
-                            <div class="white-button">
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
 
 </div>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="container">
+        <p>Copyright 2011-2025 DuChaoQun Design, Email:admin@duchaoqun.cn</p>
+    </div>
+</footer>
 
 <!-- Scripts -->
 <!-- Bootstrap core JavaScript -->
