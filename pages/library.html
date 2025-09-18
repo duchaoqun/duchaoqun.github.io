@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="图书馆展示页面"/>
+    <meta name="author" content=""/>
+    <meta name="google-adsense-account" content="ca-pub-2811142380036945">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet"/>
+
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/images/website.ico" media="screen"/>
+    <title>图书馆 - 杜超群的个人博客</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="../vendor/fontawesome/css/all.min.css"/>
+    <script src="../vendor/fontawesome/js/all.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/templatemo-style.css"/>
+    <link rel="stylesheet" href="../assets/css/owl.css"/>
+    <link rel="stylesheet" href="../assets/css/lightbox.css"/>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2811142380036945" crossorigin="anonymous"></script>
+    
+    <style>
+        .book-container {
+            margin-top: 20px;
+        }
+        .book-item {
+            display: flex;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .book-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        .book-link {
+            display: flex;
+            text-decoration: none;
+            color: inherit;
+            width: 100%;
+        }
+        .book-cover {
+            flex: 0 0 100px;
+            margin-right: 20px;
+        }
+        .book-cover img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        .book-info {
+            flex: 1;
+            display: flex;
+            align-items: stretch;
+        }
+        .book-meta {
+            flex: 0 0 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 20px;
+        }
+        .book-description-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .book-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+            color: #333;
+        }
+        .book-title-en {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        .book-author {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 8px;
+        }
+        .book-description {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .back-to-home {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #343a40;
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .back-to-home:hover {
+            background-color: #23272b;
+            color: white;
+            transform: translateY(-1px);
+        }
+        .search-input-wrapper {
+            position: relative;
+        }
+        #book-search {
+            width: 100%;
+            padding: 12px 100px 12px 20px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        #book-search:focus {
+            border-color: #343a40;
+        }
+        .search-btn {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 8px 20px;
+            background-color: #343a40;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            height: 38px;
+            min-width: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            margin: 0;
+        }
+        .search-btn:hover {
+            background-color: #23272b;
+            transform: translateY(-50%);
+        }
+        .no-results {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+
+<body>
+<div id="page-wraper">
+    <!-- 图书馆标题 -->
+    <section class="section about-me" data-section="section_library" style="margin-top: -20px;">
+        <div class="container">
+            
+            <!-- 顶部功能区：返回首页和搜索框 -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <a href="../index.html" class="back-to-home">
+                    <i class="fas fa-home"></i>
+                </a>
+                
+                <div class="search-input-wrapper" style="max-width: 500px; width: 100%; margin: 0;">
+                    <input type="text" id="book-search" placeholder="搜索书籍..." onkeyup="if(event.key === 'Enter') searchBooks()" />
+                    <button class="search-btn" onclick="searchBooks()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 书籍展示区域 -->
+            <div class="book-container" id="book-container">
+                <!-- 书籍将通过JavaScript动态加载 -->
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="container">
+        <p>Copyright 2011-2025 DuChaoQun Design, Email:admin@duchaoqun.cn</p>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/isotope.min.js"></script>
+<script src="../assets/js/owl-carousel.js"></script>
+<script src="../assets/js/lightbox.js"></script>
+<script src="../assets/js/custom.js"></script>
+<script>
+    // 模拟书籍数据
+    const booksData = [
+        {
+            id: 1,
+            title: "红楼梦",
+            titleEn: "Dream of the Red Chamber",
+            author: "曹雪芹",
+            description: "《红楼梦》是中国古典四大名著之首，清代作家曹雪芹创作的章回体长篇小说，被誉为中国封建社会的百科全书。小说以贾、史、王、薛四大家族的兴衰为背景，以贾府的家庭琐事、闺阁闲情为脉络，以贾宝玉、林黛玉、薛宝钗的爱情婚姻故事为主线，刻画了以贾宝玉和金陵十二钗为中心的正邪两赋有情人的人性美和悲剧美。",
+            cover: "../assets/images/book1.jpg"
+        },
+        {
+            id: 2,
+            title: "西游记",
+            titleEn: "Journey to the West",
+            author: "吴承恩",
+            description: "《西游记》是中国古代第一部浪漫主义章回体长篇神魔小说。全书主要描写了孙悟空出世及大闹天宫后，遇见了唐僧、猪八戒、沙僧和白龙马，西行取经，一路上历经艰险、降妖伏魔，经历了九九八十一难，终于到达西天见到如来佛祖，最终五圣成真的故事。",
+            cover: "../assets/images/book2.jpg"
+        },
+        {
+            id: 3,
+            title: "三国演义",
+            titleEn: "Romance of the Three Kingdoms",
+            author: "罗贯中",
+            description: "《三国演义》是中国古典四大名著之一，是中国第一部长篇章回体历史演义小说。描写了从东汉末年到西晋初年之间近百年的历史风云，以描写战争为主，诉说了东汉末年的群雄割据混战和魏、蜀、吴三国之间的政治和军事斗争，最终司马炎一统三国，建立晋朝的故事。",
+            cover: "../assets/images/book3.jpg"
+        },
+        {
+            id: 4,
+            title: "水浒传",
+            titleEn: "Water Margin",
+            author: "施耐庵",
+            description: "《水浒传》是中国四大名著之一，全书描写北宋末年以宋江为首的108位好汉在梁山聚义，以及聚义之后接受招安、四处征战的故事。小说形象地描绘了农民起义从发生、发展直至失败的全过程，深刻揭示了起义的社会根源，满腔热情地歌颂了起义英雄的反抗斗争和他们的社会理想。",
+            cover: "../assets/images/book4.jpg"
+        },
+        {
+            id: 5,
+            title: "论语",
+            titleEn: "The Analects",
+            author: "孔子及其弟子",
+            description: "《论语》是孔子及其弟子的言行录，由孔子的弟子及再传弟子编纂而成，是儒家学派的经典著作之一。全书共20篇492章，以语录体为主，叙事体为辅，较为集中地体现了孔子及儒家学派的政治主张、伦理思想、道德观念及教育原则等。",
+            cover: "../assets/images/book5.jpg"
+        },
+        {
+            id: 6,
+            title: "道德经",
+            titleEn: "Tao Te Ching",
+            author: "老子",
+            description: "《道德经》是春秋时期老子（李耳）的哲学作品，是道家哲学思想的重要来源。文本以哲学意义之'道德'为纲宗，论述修身、治国、用兵、养生之道，而多以政治为旨归，乃所谓'内圣外王'之学，文意深奥，包涵广博，被誉为万经之王。",
+            cover: "../assets/images/book6.jpg"
+        }
+    ];
+    
+    // 初始化页面时加载所有书籍
+    document.addEventListener('DOMContentLoaded', function() {
+        renderBooks(booksData);
+        
+        // 检查是否有书籍封面图片，如果没有则使用默认图片
+        const bookImages = document.querySelectorAll('.book-cover img');
+        bookImages.forEach(img => {
+            img.onerror = function() {
+                this.src = '../assets/images/author-image.png'; // 使用默认图片
+            };
+        });
+    });
+    
+    // 渲染书籍列表
+    function renderBooks(books) {
+        const container = document.getElementById('book-container');
+        container.innerHTML = '';
+        
+        if (books.length === 0) {
+            container.innerHTML = '<div class="no-results">没有找到匹配的书籍</div>';
+            return;
+        }
+        
+        books.forEach(book => {
+            const bookItem = document.createElement('div');
+            bookItem.className = 'book-item';
+            
+            // 将书名转换为URL友好的格式（小写、去除空格、特殊字符）
+            const urlTitle = book.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+            
+            bookItem.innerHTML = `
+                <a href="../books/${urlTitle}/${urlTitle}.html" class="book-link">
+                    <div class="book-cover">
+                        <img src="${book.cover}" alt="${book.title}">
+                    </div>
+                    <div class="book-info">
+                        <div class="book-meta">
+                            <div class="book-title">${book.title}</div>
+                            <div class="book-title-en">${book.titleEn}</div>
+                            <div class="book-author">作者：${book.author}</div>
+                        </div>
+                        <div class="book-description-container">
+                            <div class="book-description">${book.description}</div>
+                        </div>
+                    </div>
+                </a>
+            `;
+            
+            container.appendChild(bookItem);
+        });
+    }
+    
+    // 搜索书籍
+    function searchBooks() {
+        const searchTerm = document.getElementById('book-search').value.toLowerCase().trim();
+        
+        if (searchTerm === '') {
+            renderBooks(booksData);
+            return;
+        }
+        
+        const filteredBooks = booksData.filter(book => 
+            book.title.toLowerCase().includes(searchTerm) ||
+            book.titleEn.toLowerCase().includes(searchTerm) ||
+            book.author.toLowerCase().includes(searchTerm) ||
+            book.description.toLowerCase().includes(searchTerm)
+        );
+        
+        renderBooks(filteredBooks);
+    }
+    
+    // 平滑滚动
+    $(document).ready(function() {
+        $('a[href^="#"]').on('click', function(e) {
+            e.preventDefault();
+            
+            $('html, body').animate({
+                scrollTop: $($(this).attr('href')).offset().top
+            }, 500);
+        });
+    });
+</script>
+</body>
+</html>
