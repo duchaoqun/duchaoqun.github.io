@@ -317,90 +317,48 @@ html {
     border-bottom: 3px solid rgba(250, 250, 250, 0.25);
 }
 
-/* Responsive Styles for Tablet and Mobile Devices */
-/* 当屏幕变窄时，抽屉变成全屏遮罩，显示与宽屏一致的内容 */
+/* 响应式样式 - 手机屏幕上显示全屏遮罩 */
 @media (max-width: 768px) {
     /* 按钮保持水平侧边显示，便于访问 */
     .outline-toggle {
         padding: 10px 8px;
+        position: fixed;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1001;
     }
     
-    .outline-toggle:hover {
-        padding-right: 10px;
-    }
-    
-    /* 窄屏设备上抽屉变为全屏遮罩 */
+    /* 手机屏幕上抽屉默认就是全屏遮罩，直接隐藏/显示 */
     .outline-sidebar {
-        width: 100%;
-        left: -100%;
-        top: 0;
-        bottom: 0;
-        transform: none;
-        max-height: 100vh;
-        border-radius: 0;
-        border-right: none;
-    }
-    
-    /* 窄屏设备上打开时的位置 */
-    .outline-sidebar.open {
-        left: 0;
-        top: 0;
-        bottom: 0;
-    }
-    
-    /* 保持与宽屏一致的内容显示 */
-    .outline-header,
-    .outline-nav,
-    .outline-menu li,
-    .outline-menu li a {
-        all: unset;
-    }
-    
-    /* 重新应用基础样式 */
-    .outline-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    
-    .outline-header h3 {
-        margin: 0;
-        color: white;
-        font-size: 18px;
-    }
-    
-    .outline-nav {
-        flex: 1;
-        padding: 20px;
+        position: fixed !important;
+        width: 100% !important;
+        height: 100vh !important;
+        top: 0 !important;
+        left: 0 !important;
+        background: rgba(45, 45, 45, 0.95) !important;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 0 !important;
+        z-index: 1000 !important;
+        display: none; /* 默认隐藏 */
         overflow-y: auto;
     }
     
-    .outline-menu {
-        list-style: none;
-        margin: 0;
-        padding: 0;
+    /* 打开时显示抽屉 */
+    .outline-sidebar.open {
+        display: flex !important;
+        flex-direction: column;
     }
     
-    .outline-menu li {
-        margin-bottom: 10px;
-        display: block;
+    /* 遮罩层简化，与抽屉同步显示/隐藏 */
+    .outline-overlay {
+        display: none !important;
     }
     
-    .outline-menu li a {
-        display: block;
-        color: white;
-        text-decoration: none;
-        padding: 12px 15px;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-        font-size: 15px;
-    }
-    
-    .outline-menu li a:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: translateX(5px);
+    /* 当抽屉打开时显示遮罩层 */
+    .outline-sidebar.open + .outline-overlay {
+        display: block !important;
     }
 }
 

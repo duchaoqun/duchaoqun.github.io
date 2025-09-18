@@ -9,7 +9,7 @@
     e.preventDefault();
     if (outlineSidebar.classList.contains("open")) {
       outlineSidebar.classList.remove("open");
-      // Add overlay when sidebar is closed
+      // Remove overlay when sidebar is closed
       if ($('.outline-overlay').length > 0) {
         $('.outline-overlay').remove();
       }
