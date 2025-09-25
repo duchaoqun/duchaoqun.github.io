@@ -5,11 +5,7 @@ body {
 }
 
 #page-wraper {
-    background: url(../images/page-bg.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    background-color: #ffffff;
     width: 100%;
 }
 
@@ -34,13 +30,13 @@ a:hover {
 p {
     font-size: 16px;
     line-height: 24px;
-    color: #fff;
+    color: #333;
 }
 
 h4 {
     font-size: 26px;
     font-weight: 700;
-    color: #fff;
+    color: #333;
     letter-spacing: 0.25px;
 }
 
@@ -109,19 +105,19 @@ html {
     display: inline-block;
     font-size: 14px;
     font-weight: 700;
-    color: #fff;
+    color: #333;
     width: 100%;
     transition: all 0.5s;
-    border-top: 1px solid #fff;
+    border-top: 1px solid #e0e0e0;
 }
 
 .main-nav li:last-child a {
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid #e0e0e0;
 }
 
 .main-nav li:hover a,
 .main-nav li.active a {
-    background: #fff;
+    background: #f0f0f0;
     color: #8c363e;
 }
 
@@ -140,14 +136,12 @@ html {
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: #f5f5f5;
+    border: 1px solid #e0e0e0;
     border-left: none;
     border-radius: 0 20px 20px 0;
     padding: 12px 8px 12px 4px;
-    color: white;
+    color: #333;
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -157,7 +151,7 @@ html {
 }
 
 .outline-toggle:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: #e0e0e0;
     padding-right: 12px;
 }
 
@@ -181,10 +175,9 @@ html {
     transform: translateY(-50%);
     width: 300px;
     max-height: 90vh;
-    background: rgba(45, 45, 45, 0.85);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    background: #ffffff;
+    border-right: 1px solid #e0e0e0;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
     border-radius: 0 15px 15px 0; /* 右侧圆角 */
     transition: all 0.3s ease;
     z-index: 1000;
@@ -233,14 +226,14 @@ html {
 
 .outline-header h3 {
     margin: 0;
-    color: white;
+    color: #333;
     font-size: 18px;
 }
 
 .outline-close {
     background: transparent;
     border: none;
-    color: white;
+    color: #666;
     font-size: 20px;
     cursor: pointer;
     padding: 5px;
@@ -271,7 +264,7 @@ html {
 
 .outline-menu li a {
     display: block;
-    color: white;
+    color: #333;
     text-decoration: none;
     padding: 12px 15px;
     border-radius: 8px;
@@ -280,7 +273,7 @@ html {
 }
 
 .outline-menu li a:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: #f0f0f0;
     transform: translateX(5px);
 }
 
@@ -301,20 +294,20 @@ html {
 .outline-footer p {
     margin: 0;
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.8);
+    color: #666;
 }
 
 
 /* Section */
 
 .section {
-    color: #fff;
+    color: #333;
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding-top: 80px; /* 调整为适合新的侧边导航的空间 */
     padding-bottom: 80px;
-    border-bottom: 3px solid rgba(250, 250, 250, 0.25);
+    border-bottom: 3px solid #e0e0e0;
 }
 
 /* 响应式样式 - 手机屏幕上显示全屏遮罩 */
@@ -336,9 +329,7 @@ html {
         height: 100vh !important;
         top: 0 !important;
         left: 0 !important;
-        background: rgba(45, 45, 45, 0.95) !important;
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        background: #ffffff !important;
         border-radius: 0 !important;
         z-index: 1000 !important;
         display: none; /* 默认隐藏 */
@@ -368,17 +359,16 @@ html {
     bottom: 0;
     left: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: #f5f5f5;
     padding: 8px 0;
     text-align: center;
     z-index: 99;
+    border-top: 1px solid #e0e0e0;
 }
 
 .site-footer p {
     margin: 0;
-    color: rgba(255, 255, 255, 0.8);
+    color: #666;
     font-size: 14px;
 }
 
@@ -390,7 +380,7 @@ html {
 .section-heading h2 {
     font-size: 32px;
     font-weight: 700;
-    color: #fff;
+    color: #333;
 }
 
 .section-heading .line-dec {
@@ -403,7 +393,7 @@ html {
 .section-heading span {
     margin-top: 5px;
     font-size: 16px;
-    color: #fff;
+    color: #666;
     letter-spacing: 0.5px;
 }
 
@@ -413,8 +403,8 @@ html {
 .white-button a {
     display: inline-block;
     padding: 12px 20px;
-    background-color: #fff;
-    color: #a43f49;
+    background-color: #333;
+    color: #fff;
     font-size: 13px;
     font-weight: 800;
     letter-spacing: 0.5px;
@@ -430,8 +420,8 @@ html {
 button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #fff;
-    color: #a43f49;
+    background-color: #333;
+    color: #fff;
     font-size: 12px;
     font-weight: 800;
     letter-spacing: 0.5px;
@@ -482,12 +472,12 @@ button:hover {
 .service-item {
     margin-bottom: 10px;
     padding: 50px;
-    background-color: rgba(250, 250, 250, 0.1);
+    background-color: #f5f5f5;
     transition: all 0.5s;
 }
 
-.service-item h4 {
-    transition: all 0.5s;
+.service-item:hover {
+    background-color: #e0e0e0;
 }
 
 .service-item p {
@@ -749,9 +739,9 @@ figure.snip1321.hover:after {
     align-items: center;
     justify-content: center;
     padding: 12px 16px;
-    background-color: rgba(250, 250, 250, 0.1);
+    background-color: #f5f5f5;
     border-radius: 6px;
-    color: #fff;
+    color: #333;
     text-decoration: none;
     transition: all 0.3s ease;
     height: 60px;
@@ -775,7 +765,7 @@ figure.snip1321.hover:after {
     max-width: 800px;
     margin: 0 auto;
     padding: 40px;
-    background-color: rgba(250, 250, 250, 0.1);
+    background-color: #f5f5f5;
     border-radius: 10px;
     text-align: center;
 }
@@ -789,9 +779,9 @@ figure.snip1321.hover:after {
     height: 50px;
     padding: 0 20px;
     font-size: 18px;
-    color: #fff;
-    background-color: rgba(250, 250, 250, 0.1);
-    border: 2px solid #fff;
+    color: #333;
+    background-color: #fff;
+    border: 2px solid #e0e0e0;
     border-radius: 5px;
     transition: all 0.3s ease;
 }
@@ -843,11 +833,11 @@ section.contact-me {
 }
 
 #contact input {
-    background-color: rgba(250,250,250,0.1);
-    border: 1px solid rgba(250,250,250,1);
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
     border-radius: 0px;
     margin-bottom: 30px;
-    color: #fff;
+    color: #333;
     font-size: 14px;
     height: 40px;
     line-height: 40px;
@@ -858,14 +848,15 @@ section.contact-me {
 #contact input:focus {
     outline: none;
     box-shadow: none;
+    border-color: #a43f49;
 }
 
 #contact textarea {
-    background-color: rgba(250,250,250,0.1);
-    border: 1px solid rgba(250,250,250,1);
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
     border-radius: 0px;
     margin-bottom: 30px;
-    color: #fff;
+    color: #333;
     font-size: 14px;
     height: 180px;
     max-height: 220px;
@@ -877,6 +868,7 @@ section.contact-me {
 #contact textarea:focus {
     outline: none;
     box-shadow: none;
+    border-color: #a43f49;
 }
 
 #contact {

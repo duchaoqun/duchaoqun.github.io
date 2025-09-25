@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="《小王子》 - 安托万·德·圣·埃克苏佩里的经典儿童文学作品 - 第21章"/>
+    <meta name="author" content=""/>
+    <meta name="google-adsense-account" content="ca-pub-2811142380036945">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet"/>
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../assets/images/website.ico" media="screen"/>
+    <title>小王子 - 第21章 - 杜超群的个人博客</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="../../vendor/fontawesome/css/all.min.css"/>
+    <script src="../../vendor/fontawesome/js/all.min.js"></script>
+    <link rel="stylesheet" href="../../assets/css/templatemo-style.css"/>
+    <link rel="stylesheet" href="../../assets/css/owl.css"/>
+    <link rel="stylesheet" href="../../assets/css/lightbox.css"/>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2811142380036945" crossorigin="anonymous"></script>
+    
+    <style>
+        .book-detail-container {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .book-detail-header {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .book-cover-large {
+            flex: 0 0 200px;
+            margin-right: 30px;
+            margin-bottom: 20px;
+        }
+        .book-cover-large img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .book-meta-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        .book-title-large {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .book-title-en-large {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .book-meta-item {
+            margin-bottom: 10px;
+            font-size: 1rem;
+            color: #555;
+        }
+        .book-meta-item strong {
+            color: #333;
+            min-width: 80px;
+            display: inline-block;
+        }
+        .section-heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .section-heading h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .line-dec {
+            width: 100px;
+            height: 3px;
+            background-color: #343a40;
+            margin: 0 auto 15px;
+        }
+        .section-heading span {
+            font-size: 1.1rem;
+            color: #666;
+        }
+        .back-to-home {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #343a40;
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-bottom: 20px;
+        }
+        .back-to-home:hover {
+            background-color: #23272b;
+            color: white;
+            transform: translateY(-1px);
+        }
+        .back-to-library {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #6c757d;
+            color: white;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-left: 10px;
+        }
+        .back-to-library:hover {
+            background-color: #5a6268;
+            color: white;
+        }
+        .book-chapters {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        .book-chapters h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .chapter-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .chapter-item {
+            flex: 0 0 auto;
+        }
+        .chapter-link {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: white;
+            color: #000;
+            text-decoration: none;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            transition: all 0.3s ease;
+        }
+        .chapter-link:hover {
+            color: #a43f49;
+            border-color: #a43f49;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        /* 统一中英文字体样式 */
+        .unified-text {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+        }
+        
+        .unified-text.en {
+            font-weight: 500;
+        }
+        
+        .unified-text.cn {
+            margin-bottom: 20px;
+        }
+        
+        /* 章节导航样式 */
+        .chapter-navigation {
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-link {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #343a40;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            min-width: 100px;
+            text-align: center;
+        }
+        
+        .nav-link:hover:not(.nav-disabled) {
+            background-color: #23272b;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .nav-disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+        
+        .nav-divider {
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+<div id="page-wraper">
+    <!-- 书籍详情标题 -->
+    <section class="section about-me" data-section="section_book_detail" style="margin-top: -20px;">
+        <div class="container">
+            <!-- 顶部导航区 -->
+            <div style="margin-bottom: 20px;">
+                <a href="../../index.html" class="back-to-home">
+                    <i class="fas fa-home"></i>
+                </a>
+                <a href="../../pages/library.html" class="back-to-library">
+                    <i class="fas fa-book"></i> 返回图书馆
+                </a>
+                <a href="the-little-prince.html" class="back-to-library" style="margin-left: 10px;">
+                    <i class="fas fa-list"></i> 返回目录
+                </a>
+            </div>
+            
+            <!-- 章节内容 -->
+            <div class="book-detail-container">
+                <div class="book-chapter-content" style="margin-top: 30px;">
+                    <h3 style="font-size: 1.8rem; font-weight: 600; margin-bottom: 20px; color: #333; text-align: center;">第21章 - 水井的秘密</h3>
+                    
+                    <div class="chapter-text">
+                        <p class="unified-text en">&quot;What does that mean -- 'tame'?&quot;</p>
+                        <p class="unified-text cn">&quot;什么是'驯服'？&quot;</p>
+                        
+                        <p class="unified-text en">&quot;Good morning,&quot; the little prince responded politely, although when he turned around he saw nothing.</p>
+                        <p class="unified-text cn">&quot;早上好，&quot;小王子礼貌地回答，尽管他转过身却什么也没看见。</p>
+                        
+                        <p class="unified-text en">&quot;No,&quot; said the little prince. &quot;I am looking for friends. What does that mean -- 'tame'?&quot;</p>
+                        <p class="unified-text cn">&quot;不，&quot;小王子说，&quot;我在寻找朋友。什么是'驯服'？&quot;</p>
+                        
+                        <p class="unified-text en">&quot;I am right here,&quot; the voice said, &quot;under the apple tree.&quot;</p>
+                        <p class="unified-text cn">&quot;我在这儿，&quot;那个声音说，&quot;在苹果树下。&quot;</p>
+                        
+                        <p class="unified-text en">&quot;I am a fox,&quot; said the fox.</p>
+                        <p class="unified-text cn">&quot;我是一只狐狸，&quot;狐狸说。</p>
+                        
+                        <p class="unified-text en">&quot;Come and play with me,&quot; proposed the little prince. &quot;I am so unhappy.&quot;</p>
+                        <p class="unified-text cn">&quot;来和我玩吧，&quot;小王子提议道，&quot;我很不高兴。&quot;</p>
+                        
+                        <p class="unified-text en">&quot;I cannot play with you,&quot; the fox said. &quot;I am not tamed.&quot;</p>
+                        <p class="unified-text cn">&quot;我不能和你玩，&quot;狐狸说，&quot;我还没有被驯服。&quot;</p>
+                        
+                        <p class="unified-text en">&quot;Ah! Please excuse me,&quot; said the little prince.</p>
+                        <p class="unified-text cn">&quot;啊！请原谅我，&quot;小王子说。</p>
+                        
+                        <p class="unified-text en">&quot;Good morning,&quot; said the fox.</p>
+                        <p class="unified-text cn">&quot;早上好，&quot;狐狸说。</p>
+                        
+                        <p class="unified-text en">&quot;You do not live here,&quot; said the fox. &quot;What is it that you are looking for?&quot;</p>
+                        <p class="unified-text cn">&quot;你不住在这里，&quot;狐狸说，&quot;你在寻找什么？&quot;</p>
+                        
+                        <p class="unified-text en">&quot;Who are you?&quot; asked the little prince, and added, &quot;You are very pretty to look at.&quot;</p>
+                        <p class="unified-text cn">&quot;你是谁？&quot;小王子问，接着说，&quot;你看起来很漂亮。&quot;</p>
+                        
+                        <p class="unified-text en">But, after some thought, he added:</p>
+                        <p class="unified-text cn">但是，想了想，他又说：</p>
+                        
+                        <p class="unified-text en">&quot;I am looking for men,&quot; said the little prince. &quot;What does that mean -- 'tame'?&quot;</p>
+                        <p class="unified-text cn">&quot;我在寻找人类，&quot;小王子说，&quot;什么是'驯服'？&quot;</p>
+                        
+                        <p class="unified-text en">It was then that the fox appeared.</p>
+                        <p class="unified-text cn">就在这时，狐狸出现了。</p>
+                        
+                        <p class="unified-text en">&quot;Men,&quot; said the fox. &quot;They have guns, and they hunt. It is very disturbing. They also raise chickens. These are their only interests. Are you looking for chickens?&quot;</p>
+                        <p class="unified-text cn">&quot;人类，&quot;狐狸说，&quot;他们有枪，他们打猎。这很令人不安。他们还养鸡。这些是他们唯一的兴趣。你在找鸡吗？&quot;</p>
+                        
+                        <p class="unified-text en">&quot;'To establish ties'?&quot;</p>
+                        <p class="unified-text cn">&quot;'建立关系'？&quot;</p>
+                        
+                        <p class="unified-text en">&quot;On another planet?&quot;</p>
+                        <p class="unified-text cn">&quot;在另一个星球上？&quot;</p>
+                        
+                        <p class="unified-text en">&quot;I am beginning to understand,&quot; said the little prince. &quot;There is a flower... I think that she has tamed me...&quot;</p>
+                        <p class="unified-text cn">&quot;我开始明白了，&quot;小王子说，&quot;有一朵花...我想她已经驯服了我...&quot;</p>
+                        
+                        <p class="unified-text en">&quot;It is possible,&quot; said the fox. &quot;On the Earth one sees all sorts of things.&quot;</p>
+                        <p class="unified-text cn">&quot;有可能，&quot;狐狸说，&quot;在地球上，人们会看到各种各样的事情。&quot;</p>
+                        
+                        <p class="unified-text en">&quot;Just that,&quot; said the fox. &quot;To me, you are still nothing more than a little boy who is just like a hundred thousand other little boys. And I have no need of you. And you, on your part, have no need of me. To you, I am nothing more than a fox like a hundred thousand other foxes. But if you tame me, then we shall need each other. To me, you will be unique in all the world. To you, I shall be unique in all the world...&quot;</p>
+                        <p class="unified-text cn">&quot;就是这样，&quot;狐狸说，&quot;对我来说，你还只是一个小男孩，就像其他成千上万个小男孩一样。我不需要你。而你，也不需要我。对你来说，我只是一只狐狸，就像其他成千上万只狐狸一样。但是，如果你驯服了我，我们就会彼此需要。对我来说，你就是世界上独一无二的；对你来说，我也是世界上独一无二的...&quot;</p>
+                        
+                        <p class="unified-text en">&quot;Are there hunters on this planet?&quot;</p>
+                        <p class="unified-text cn">&quot;这个星球上有猎人吗？&quot;</p>
+                        
+                        <p class="unified-text en">&quot;Oh, but this is not on the Earth!&quot; said the little prince.</p>
+                        <p class="unified-text cn">&quot;哦，但这不是在地球上！&quot;小王子说。</p>
+                        
+                        <p class="unified-text en">&quot;No.&quot;</p>
+                        <p class="unified-text cn">&quot;没有。&quot;</p>
+                        
+                        <p class="unified-text en">&quot;No.&quot;</p>
+                        <p class="unified-text cn">&quot;没有。&quot;</p>
+                        
+                        <p class="unified-text en">&quot;Nothing is perfect,&quot; sighed the fox.</p>
+                        <p class="unified-text cn">&quot;没有什么是完美的，&quot;狐狸叹了口气。</p>
+                        
+                        <p class="unified-text en">The fox seemed perplexed, and very curious.</p>
+                        <p class="unified-text cn">狐狸显得很困惑，也很好奇。</p>
+                        
+                        <p class="unified-text en">&quot;Ah, that is interesting! Are there chickens?&quot;</p>
+                        <p class="unified-text cn">&quot;啊，那很有趣！有鸡吗？&quot;</p>
+                        
+                        <p class="unified-text en">&quot;Yes.&quot;</p>
+                        <p class="unified-text cn">&quot;有。&quot;</p>
+                        
+                        <p class="unified-text en">&quot;It is an act too often neglected,&quot; said the fox. It means to establish ties.&quot;</p>
+                        <p class="unified-text cn">&quot;这是一种常常被忽视的行为，&quot;狐狸说，&quot;它的意思是建立关系。&quot;</p>
+                        
+                        <p class="unified-text en">&quot;My life is very monotonous,&quot; the fox said. &quot;I hunt chickens; men hunt me. All the chickens are just alike, and all the men are just alike. And, in consequence, I am a little bored. But if you tame me, it will be as if the sun came to shine on my life. I shall know the sound of a step that will be different from all the others. Other steps send me hurrying back underneath the ground. Yours will call me, like music, out of my burrow. And then look: you see the grain-fields down yonder? I do not eat bread. Wheat is of no use to me. The wheat fields have nothing to say to me. And that is sad. But you have hair that is the colour of gold. Think how wonderful that will be when you have tamed me! The grain, which is also golden, will bring me back the thought of you. And I shall love to listen to the wind in the wheat...&quot;</p>
+                        <p class="unified-text cn">&quot;我的生活很单调，&quot;狐狸说，&quot;我捕捉鸡，人捕捉我。所有的鸡都一模一样，所有的人也都一模一样。因此，我有点无聊。但是，如果你驯服了我，我的生活就会充满阳光。我会辨认出一种与众不同的脚步声。其他的脚步声会让我躲到地下去，而你的脚步声就会像音乐一样，把我从洞里唤出来。然后你看：那边的麦田，你看见了吗？我不吃面包。麦子对我来说，一点用也没有。麦田无法让我产生联想。这很让人难过。但是，你有着金黄色的头发。那么，一旦你驯服了我，这就会十分美妙。麦子，是金黄色的，它就会使我想起你。而且我甚至会喜欢那风吹麦浪的声音...&quot;</p>
+                        
+                        <p class="unified-text en">&quot;Please -- tame me!&quot; he said.</p>
+                        <p class="unified-text cn">&quot;请你——驯服我吧！&quot;他说。</p>
+                        
+                        <p class="unified-text en">The fox gazed at the little prince, for a long time.</p>
+                        <p class="unified-text cn">狐狸凝视着小王子，久久不语。</p>
+                        
+                        <p class="unified-text en">But he came back to his idea.</p>
+                        <p class="unified-text cn">但是他又回到了他的想法。</p>
+                        
+                        <p class="unified-text en">&quot;I want to, very much,&quot; the little prince replied. &quot;But I have not much time. I have friends to discover, and a great many things to understand.&quot;</p>
+                        <p class="unified-text cn">&quot;我很想，&quot;小王子回答说，&quot;但是我没有很多时间。我要去寻找朋友，还有很多事情要了解。&quot;</p>
+                        
+                        <p class="unified-text en">&quot;One only understands the things that one tames,&quot; said the fox. &quot;Men have no more time to understand anything. They buy things all ready made at the shops. But there is no shop anywhere where one can buy friendship, and so men have no friends any more. If you want a friend, tame me...&quot;</p>
+                        <p class="unified-text cn">&quot;只有被驯服了的事物，才会被理解，&quot;狐狸说，&quot;人们再也没有时间去理解任何东西了。他们总是到商店里去购买现成的东西。但是，世界上没有可以购买友谊的商店，所以人们也就没有朋友了。如果你想要一个朋友，那就驯服我吧...&quot;</p>
+                        
+                        <p class="unified-text en">&quot;What must I do, to tame you?&quot; asked the little prince.</p>
+                        <p class="unified-text cn">&quot;我该怎么做，才能驯服你呢？&quot;小王子问。</p>
+                        
+                        <p class="unified-text en">&quot;You must be very patient,&quot; replied the fox. &quot;First you will sit down at a little distance from me -- like that -- in the grass. I shall look at you out of the corner of my eye, and you will say nothing. Words are the source of misunderstandings. But you will sit a little closer to me, every day...&quot;</p>
+                        <p class="unified-text cn">&quot;你必须非常有耐心，&quot;狐狸回答说，&quot;首先，你要坐在离我稍微远一点的地方——就像那样——坐在草地上。我用眼角瞅着你，你什么也不要说。话语是误会的根源。但是，你每天都要坐得靠我更近些...&quot;</p>
+                        
+                        <p class="unified-text en">The next day the little prince came back.</p>
+                        <p class="unified-text cn">第二天，小王子又来了。</p>
+                        
+                        <p class="unified-text en">&quot;It would have been better to come back at the same hour,&quot; said the fox. &quot;If, for example, you come at four o'clock in the afternoon, then at three o'clock I shall begin to be happy. I shall feel happier and happier as the hour advances. At four o'clock, I shall already be worrying and jumping about. I shall show you how happy I am! But if you come at just any time, I shall never know at what hour my heart is to be ready to greet you... One must observe the proper rites...&quot;</p>
+                        <p class="unified-text cn">&quot;最好还是在原来的那个时间来，&quot;狐狸说，&quot;比如说，你下午四点钟来，那么从三点钟起，我就开始感到幸福。时间越临近，我就越感到幸福。到了四点钟的时候，我就会坐立不安；我就会发现幸福的代价。但是，如果你随便什么时候来，我就不知道在什么时候该准备好我的心情...应当有一定的仪式。&quot;</p>
+                        
+                        <p class="unified-text en">&quot;Ah,&quot; said the fox, &quot;I shall cry.&quot;</p>
+                        <p class="unified-text cn">&quot;啊，&quot;狐狸说，&quot;我会哭的。&quot;</p>
+                        
+                        <p class="unified-text en">&quot;It is your own fault,&quot; said the little prince. &quot;I never wished you any sort of harm; but you wanted me to tame you...&quot;</p>
+                        <p class="unified-text cn">&quot;这是你的错，&quot;小王子说，&quot;我本来不想给你任何痛苦，可你却要我驯服你...&quot;</p>
+                        
+                        <p class="unified-text en">&quot;It has done me good,&quot; said the fox, &quot;because of the color of the wheat fields." And then he added:</p>
+                        <p class="unified-text cn">&quot;由于麦子颜色的缘故，我还是得到了好处，&quot;狐狸说，然后他又接着说：</p>
+                        
+                        <p class="unified-text en">&quot;Go and look again at the roses.</p>
+                        <p class="unified-text cn">&quot;再去看看那些玫瑰花吧。</p>
+                        
+                        <p class="unified-text en">You will understand now that yours is unique in all the world. Then come back to say goodbye to me, and I will make you a present of a secret.&quot;</p>
+                        <p class="unified-text cn">到时你就会明白你的那朵玫瑰花是世界上独一无二的。然后你再来跟我告别，我再赠送给你一个秘密作为礼物。&quot;</p>
+                        
+                        <p class="unified-text en">&quot;Then it has done you no good at all!&quot;</p>
+                        <p class="unified-text cn">&quot;那你什么好处也没得到！&quot;</p>
+                        
+                        <p class="unified-text en">&quot;Yes, that is so,&quot; said the fox.</p>
+                        <p class="unified-text cn">&quot;是的，是这样，&quot;狐狸说。</p>
+                        
+                        <p class="unified-text en">&quot;Yes, that is so,&quot; said the fox.</p>
+                        <p class="unified-text cn">&quot;是的，是这样，&quot;狐狸说。</p>
+                        
+                        <p class="unified-text en">&quot;But now you are going to cry!&quot; said the little prince.</p>
+                        <p class="unified-text cn">&quot;可是你现在却要哭了！&quot;小王子说。</p>
+                        
+                        <p class="unified-text en">So the little prince tamed the fox. And when the hour of his departure drew near --</p>
+                        <p class="unified-text cn">于是小王子驯服了狐狸。当出发的时刻就要来到时——</p>
+                        
+                        <p class="unified-text en">&quot;What is a rite?&quot; asked the little prince.</p>
+                        <p class="unified-text cn">&quot;什么是仪式？&quot;小王子问。</p>
+                        
+                        <p class="unified-text en">&quot;Those also are actions too often neglected,&quot; said the fox. &quot;They are what make one day different from other days, one hour from other hours. There is a rite, for example, among my hunters. Every Thursday they dance with the village girls. So Thursday is a wonderful day for me! I can take a walk as far as the vineyards. But if the hunters danced at just any time, every day would be like every other day, and I should never have any vacation at all.&quot;</p>
+                        <p class="unified-text cn">&quot;这也是一种常常被忽视的行为，&quot;狐狸说，&quot;它就是使某一天与其他日子不同，使某一时刻与其他时刻不同。比如说，我的那些猎人就有一种仪式。他们每星期四都和村子里的姑娘们跳舞。于是，星期四就是一个美好的日子！我可以一直散步到葡萄园去。如果猎人们什么时候都跳舞，天天又全都一样，那么我也就没有假日了。&quot;</p>
+                        
+                        <p class="unified-text en">The little prince went away, to look again at the roses.</p>
+                        <p class="unified-text cn">小王子走开了，去重新看看那些玫瑰花。</p>
+                        
+                        <p class="unified-text en">And the roses were very much embarrassed.</p>
+                        <p class="unified-text cn">玫瑰花们感到十分难堪。</p>
+                        
+                        <p class="unified-text en">&quot;You are beautiful, but you are empty,&quot; he went on. &quot;One could not die for you. To be sure, an ordinary passerby would think that my rose looked just like you -- the rose that belongs to me. But in herself alone she is more important than all the hundreds of you other roses: because it is she that I have watered; because it is she that I have put under the glass globe; because it is she that I have sheltered behind the screen; because it is for her that I have killed the caterpillars (except the two or three that we saved to become butterflies); because it is she that I have listened to, when she grumbled, or boasted, or even sometimes when she said nothing. Because she is my rose.</p>
+                        <p class="unified-text cn">&quot;你们虽然很美丽，但是却很空虚，&quot;他继续说，&quot;没有人会为你们去死。当然，寻常的路人会认为我的玫瑰花和你们差不多。但她比你们全部加起来还重要，因为我给她浇过水。因为我给她盖过玻璃罩。因为我为她挡过风。因为我为她消灭过毛毛虫（只留了两三条活口，好让它们变成蝴蝶）。因为我倾听过她的抱怨和吹嘘，甚至有时候也倾听她的沉默。因为她是我的玫瑰。</p>
+                        
+                        <p class="unified-text en">&quot;You are not at all like my rose,&quot; he said. &quot;As yet you are nothing. No one has tamed you, and you have tamed no one. You are like my fox when I first knew him. He was only a fox like a hundred thousand other foxes. But I have made him my friend, and now he is unique in all the world.&quot;</p>
+                        <p class="unified-text cn">&quot;你们一点也不像我的那朵玫瑰，&quot;他说，&quot;你们还什么都不是呢！没有人驯服过你们，你们也没有驯服过任何人。你们就像我的狐狸过去那样，它那时只是和千万只别的狐狸一样的一只狐狸。但是，我现在已经把它当成了我的朋友，于是它现在就是世界上独一无二的了。&quot;</p>
+                        
+                        <p class="unified-text en">&quot;Goodbye,&quot; said the fox. &quot;And now here is my secret, a very simple secret: It is only with the heart that one can see rightly; what is essential is invisible to the eye.&quot;</p>
+                        <p class="unified-text cn">&quot;再见了，&quot;狐狸说，&quot;现在我要告诉你一个秘密，其实很简单：只有用心才能看得清。实质性的东西，用眼睛是看不见的。&quot;</p>
+                        
+                        <p class="unified-text en">And he went back to meet the fox.</p>
+                        <p class="unified-text cn">于是他又回到狐狸身边。</p>
+                        
+                        <p class="unified-text en">&quot;Men have forgotten this truth,&quot; said the fox. &quot;But you must not forget it. You become responsible, forever, for what you have tamed. You are responsible for your rose...&quot;</p>
+                        <p class="unified-text cn">&quot;人们早已忘记了这个道理，&quot;狐狸说，&quot;可是，你不应该忘记它。你要对你驯服过的一切永远负责。你要对你的玫瑰负责...&quot;</p>
+                        
+                        <p class="unified-text en">&quot;Goodbye,&quot; he said.</p>
+                        <p class="unified-text cn">&quot;再见，&quot;他说。</p>
+                        
+                        <p class="unified-text en">&quot;It is the time I have wasted for my rose --&quot; said the little prince, so that he would be sure to remember.</p>
+                        <p class="unified-text cn">&quot;正因为你为你的玫瑰花费了时间，&quot;小王子重复着，要使自己记住这些。</p>
+                        
+                        <p class="unified-text en">&quot;What is essential is invisible to the eye,&quot; the little prince repeated, so that he would be sure to remember.</p>
+                        <p class="unified-text cn">&quot;实质性的东西，用眼睛是看不见的，&quot;小王子重复着，要使自己记住这些。</p>
+                        
+                        <p class="unified-text en">&quot;I am responsible for my rose,&quot; the little prince repeated, so that he would be sure to remember.</p>
+                        <p class="unified-text cn">&quot;我要对我的玫瑰负责，&quot;小王子重复着，要使自己记住这些。</p>
+                        
+                        <p class="unified-text en">&quot;It is the time you have wasted for your rose that makes your rose so important.&quot;</p>
+                        <p class="unified-text cn">&quot;正因为你为你的玫瑰花费了时间，这才使你的玫瑰变得如此重要。&quot;</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 章节导航 -->
+            <div class="chapter-navigation">
+                <div class="nav-links">
+                    <a href="chapter20.html" class="nav-link">上一章</a>
+                    <span class="nav-divider">|</span>
+                    <a href="the-little-prince.html" class="nav-link">目录</a>
+                    <span class="nav-divider">|</span>
+                    <a href="chapter22.html" class="nav-link">下一章</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="container">
+        <p>Copyright 2011-2025 DuChaoQun Design, Email:admin@duchaoqun.cn</p>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script src="../../vendor/jquery/jquery.min.js"></script>
+<script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../assets/js/isotope.min.js"></script>
+<script src="../../assets/js/owl-carousel.js"></script>
+<script src="../../assets/js/lightbox.js"></script>
+
+<!-- 平滑滚动 -->
+<script>
+    $(document).ready(function() {
+        $('a[href^="#"]').on('click', function(e) {
+            e.preventDefault();
+            
+            $('html, body').animate({
+                scrollTop: $($(this).attr('href')).offset().top
+            }, 500);
+        });
+    });
+</script>
+</body>
+</html>

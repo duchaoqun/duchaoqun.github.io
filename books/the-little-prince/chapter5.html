@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="《小王子》 - 安托万·德·圣·埃克苏佩里的经典儿童文学作品 - 第5章"/>
+    <meta name="author" content=""/>
+    <meta name="google-adsense-account" content="ca-pub-2811142380036945">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet"/>
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../assets/images/website.ico" media="screen"/>
+    <title>小王子 - 第5章 - 杜超群的个人博客</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="../../vendor/fontawesome/css/all.min.css"/>
+    <script src="../../vendor/fontawesome/js/all.min.js"></script>
+    <link rel="stylesheet" href="../../assets/css/templatemo-style.css"/>
+    <link rel="stylesheet" href="../../assets/css/owl.css"/>
+    <link rel="stylesheet" href="../../assets/css/lightbox.css"/>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2811142380036945" crossorigin="anonymous"></script>
+    
+    <style>
+        .book-detail-container {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .book-detail-header {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .book-cover-large {
+            flex: 0 0 200px;
+            margin-right: 30px;
+            margin-bottom: 20px;
+        }
+        .book-cover-large img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .book-meta-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        .book-title-large {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .book-title-en-large {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .book-meta-item {
+            margin-bottom: 10px;
+            font-size: 1rem;
+            color: #555;
+        }
+        .book-meta-item strong {
+            color: #333;
+            min-width: 80px;
+            display: inline-block;
+        }
+        .section-heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .section-heading h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .line-dec {
+            width: 100px;
+            height: 3px;
+            background-color: #343a40;
+            margin: 0 auto 15px;
+        }
+        .section-heading span {
+            font-size: 1.1rem;
+            color: #666;
+        }
+        .back-to-home {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #343a40;
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-bottom: 20px;
+        }
+        .back-to-home:hover {
+            background-color: #23272b;
+            color: white;
+            transform: translateY(-1px);
+        }
+        .back-to-library {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #6c757d;
+            color: white;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-left: 10px;
+        }
+        .back-to-library:hover {
+            background-color: #5a6268;
+            color: white;
+        }
+        .book-chapters {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        .book-chapters h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .chapter-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .chapter-item {
+            flex: 0 0 auto;
+        }
+        .chapter-link {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: white;
+            color: #000;
+            text-decoration: none;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            transition: all 0.3s ease;
+        }
+        .chapter-link:hover {
+            color: #a43f49;
+            border-color: #a43f49;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        /* 统一中英文字体样式 */
+        .unified-text {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+        }
+        
+        .unified-text.en {
+            font-weight: 500;
+        }
+        
+        .unified-text.cn {
+            margin-bottom: 20px;
+        }
+        
+        /* 章节导航样式 */
+        .chapter-navigation {
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-link {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #343a40;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            min-width: 100px;
+            text-align: center;
+        }
+        
+        .nav-link:hover:not(.nav-disabled) {
+            background-color: #23272b;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .nav-disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+        
+        .nav-divider {
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+<div id="page-wraper">
+    <!-- 书籍详情标题 -->
+    <section class="section about-me" data-section="section_book_detail" style="margin-top: -20px;">
+        <div class="container">
+            <!-- 顶部导航区 -->
+            <div style="margin-bottom: 20px;">
+                <a href="../../index.html" class="back-to-home">
+                    <i class="fas fa-home"></i>
+                </a>
+                <a href="../../pages/library.html" class="back-to-library">
+                    <i class="fas fa-book"></i> 返回图书馆
+                </a>
+                <a href="the-little-prince.html" class="back-to-library" style="margin-left: 10px;">
+                    <i class="fas fa-list"></i> 返回目录
+                </a>
+            </div>
+            
+            <!-- 章节内容 -->
+            <div class="book-detail-container">
+                <div class="book-chapter-content" style="margin-top: 30px;">
+                    <h3 style="font-size: 1.8rem; font-weight: 600; margin-bottom: 20px; color: #333; text-align: center;">第5章 - 面包树的悲剧</h3>
+                    
+                    <div class="chapter-text">
+    <p class="unified-text en">This time, once more, I had the sheep to thank for it. For the little prince asked me abruptly -- as if seized by a grave doubt -- "It is true, isn't it, that sheep eat little bushes?"</p>
+    <p class="unified-text cn">这一次，我又得感谢那只羊了。因为小王子突然问我——仿佛被一个严重的疑虑抓住了——"羊吃小灌木，是真的吗？"</p>
+    
+    <p class="unified-text en">"Yes, that is true."</p>
+    <p class="unified-text cn">"是的，是真的。"</p>
+    
+    <p class="unified-text en">I did not understand why it was so important that sheep should eat little bushes. But the little prince added:</p>
+    <p class="unified-text cn">我不明白为什么羊吃小灌木这件事如此重要。但小王子接着说：</p>
+    
+    <p class="unified-text en">"Then it follows that they also eat baobabs?"</p>
+    <p class="unified-text cn">"那么它们也吃猴面包树吗？"</p>
+    
+    <p class="unified-text en">I pointed out to the little prince that baobabs were not little bushes, but, on the contrary, trees as big as castles; and that even if he took a whole herd of elephants away with him, the herd would not eat up one single baobab.</p>
+    <p class="unified-text cn">我向小王子指出，猴面包树不是小灌木，相反，它们是像城堡一样大的树；即使他带着整整一群大象，这群大象也吃不完一棵猴面包树。</p>
+    
+    <p class="unified-text en">"We would have to put them one on top of the other," he said.</p>
+    <p class="unified-text cn">"我们得把它们一个叠在另一个上面，"他说。</p>
+    
+    <p class="unified-text en">The idea of the herd of elephants made the little prince laugh.</p>
+    <p class="unified-text cn">一群大象的想法让小王子笑了起来。</p>
+    
+    <p class="unified-text en">But he made a wise comment:</p>
+    <p class="unified-text cn">但他做了一个明智的评论：</p>
+    
+    <p class="unified-text en">"Before they grow so big, the baobabs start out by being little."</p>
+    <p class="unified-text cn">"在它们长得这么大之前，猴面包树一开始是很小的。"</p>
+    
+    <p class="unified-text en">Indeed, as I learned, there were on the planet where the little prince lived -- as on all planets -- good plants and bad plants. In consequence, there were good seeds from good plants, and bad seeds from bad plants. But seeds are invisible. They sleep deep in the heart of the earth's darkness, until some one among them is seized with the desire to awaken. Then this little seed will stretch itself and begin -- timidly at first -- to push a charming little sprig inoffensively upward toward the sun. If it is only a sprout of radish or the sprig of a rose-bush, one would let it grow wherever it might wish. But when it is a bad plant, one must destroy it as soon as possible, the very first instant that one recognizes it.</p>
+    <p class="unified-text cn">确实，正如我了解到的，在小王子居住的星球上——就像在所有星球上一样——有好植物和坏植物。因此，有来自好植物的好种子，也有来自坏植物的坏种子。但种子是看不见的。它们沉睡在地球黑暗的中心，直到其中一个被唤醒的欲望所抓住。然后，这颗小种子会伸展自己，开始——起初是胆怯地——向太阳无害地向上推一根迷人的小枝。如果它只是萝卜的芽或玫瑰丛的枝，人们会让它在任何它想去的地方生长。但如果是一株坏植物，一旦认出它，就必须尽快摧毁它，就在第一时间。</p>
+    
+    <p class="unified-text en">"Ah! I am glad!"</p>
+    <p class="unified-text cn">"啊！我很高兴！"</p>
+    
+    <p class="unified-text en">"That is strictly correct," I said. "But why do you want the sheep to eat the little baobabs?"</p>
+    <p class="unified-text cn">"这完全正确，"我说。"但你为什么要让羊吃小的猴面包树呢？"</p>
+    
+    <p class="unified-text en">He answered me at once, "Oh, come, come!", as if he were speaking of something that was self-evident. And I was obliged to make a great mental effort to solve this problem, without any assistance.</p>
+    <p class="unified-text cn">他立刻回答我："哦，得了，得了！"，好像他在说一件不言而喻的事情。我不得不在没有任何帮助的情况下，费了很大的脑力来解决这个问题。</p>
+    
+    <p class="unified-text en">Now there were some terrible seeds on the planet that was the home of the little prince; and these were the seeds of the baobab. The soil of that planet was infested with them. A baobab is something you will never, never be able to get rid of if you attend to it too late. It spreads over the entire planet. It bores clear through it with its roots. And if the planet is too small, and the baobabs are too many, they split it in pieces...</p>
+    <p class="unified-text cn">现在，在小王子的家乡星球上，有一些可怕的种子；这些就是猴面包树的种子。那个星球的土壤里到处都是它们。如果你处理得太晚，猴面包树是你永远、永远无法摆脱的东西。它会蔓延到整个星球。它的根会钻穿整个星球。如果星球太小，而猴面包树太多，它们会把它分裂成碎片...</p>
+    
+    <p class="unified-text en">"It is a question of discipline," the little prince said to me later on. "When you've finished your own toilet in the morning, then it is time to attend to the toilet of your planet, just so, with the greatest care. You must see to it that you pull up regularly all the baobabs, at the very first moment when they can be distinguished from the rosebushes which they resemble so closely in their earliest youth. It is very tedious work," the little prince added, "but very easy."</p>
+    <p class="unified-text cn">"这是一个纪律问题，"小王子后来对我说。"当你早上完成自己的梳洗后，就该以最大的小心来照料你的星球的梳洗了。你必须确保定期拔除所有的猴面包树，就在它们与玫瑰丛最初极为相似的那一刻，当它们能被区分出来的时候。这是一项非常乏味的工作，"小王子补充道，"但非常容易。"</p>
+    
+    <p class="unified-text en">And one day he said to me: "You ought to make a beautiful drawing, so that the children where you live can see exactly how all this is. That would be very useful to them if they were to travel some day. Sometimes," he added, "there is no harm in putting off a piece of work until another day. But when it is a matter of baobabs, that always means a catastrophe. I knew a planet that was inhabited by a lazy man. He neglected three little bushes..."</p>
+    <p class="unified-text cn">有一天，他对我说："你应该画一幅美丽的图画，让你住的地方的孩子们能清楚地看到这一切。如果他们有一天去旅行，这对他们会非常有用。有时候，"他补充道，"把一件工作推迟到另一天并没有什么害处。但当涉及到猴面包树时，那总是意味着一场灾难。我认识一个星球，上面住着一个懒惰的人。他忽视了三棵小灌木..."</p>
+    
+    <p class="unified-text en">So, as the little prince described it to me, I have made a drawing of that planet. I do not much like to take the tone of a moralist. But the danger of the baobabs is so little understood, and such considerable risks would be run by anyone who might get lost on an asteroid, that for once I am breaking through my reserve. "Children," I say plainly, "watch out for the baobabs!"</p>
+    <p class="unified-text cn">所以，按照小王子向我描述的那样，我画了那个星球的图画。我不太喜欢采取说教者的口吻。但猴面包树的危险是如此鲜为人知，任何可能在小行星上迷路的人都会面临相当大的风险，所以这一次我打破了我的矜持。"孩子们，"我直截了当地说，"小心猴面包树！"</p>
+    
+    <p class="unified-text en">My friends, like myself, have been skirting this danger for a long time, without ever knowing it; and so it is for them that I have worked so hard over this drawing. The lesson which I pass on by this means is worth all the trouble it has cost me.</p>
+    <p class="unified-text cn">我的朋友们，和我一样，长期以来一直在不知不觉中绕过这个危险；因此，我为这幅画付出了这么多努力，就是为了他们。我通过这种方式传递的教训值得我所付出的一切麻烦。</p>
+    
+    <p class="unified-text en">Perhaps you will ask me, "Why are there no other drawing in this book as magnificent and impressive as this drawing of the baobabs?"</p>
+    <p class="unified-text cn">也许你会问我："为什么这本书里没有其他像这幅猴面包树图画一样壮丽和令人印象深刻的图画？"</p>
+    
+    <p class="unified-text en">The reply is simple. I have tried. But with the others I have not been successful. When I made the drawing of the baobabs I was carried beyond myself by the inspiring force of urgent necessity.</p>
+    <p class="unified-text cn">回答很简单。我试过了。但对于其他的，我没有成功。当我画猴面包树的时候，我被紧迫的必要性所激发的力量带到了超越自我的境地。</p>
+    
+    <p class="unified-text en">As each day passed I would learn, in our talk, something about the little prince's planet, his departure from it, his journey. The information would come very slowly, as it might chance to fall from his thoughts. It was in this way that I heard, on the third day, about the catastrophe of the baobabs.</p>
+    <p class="unified-text cn">随着每一天的过去，我会在我们的谈话中了解到一些关于小王子的星球、他的离开以及他的旅程的事情。这些信息来得很慢，就像它们可能偶然从他的思绪中掉落一样。正是通过这种方式，在第三天，我听说了猴面包树的灾难。</p>
+</div>
+                </div>
+            </div>
+            
+            <!-- 章节导航 -->
+            <div class="chapter-navigation">
+                <div class="nav-links">
+                    <a href="chapter4.html" class="nav-link">上一章</a>
+                    <span class="nav-divider">|</span>
+                    <a href="the-little-prince.html" class="nav-link">目录</a>
+                    <span class="nav-divider">|</span>
+                    <a href="chapter6.html" class="nav-link">下一章</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="container">
+        <p>Copyright 2011-2025 DuChaoQun Design, Email:admin@duchaoqun.cn</p>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script src="../../vendor/jquery/jquery.min.js"></script>
+<script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../assets/js/isotope.min.js"></script>
+<script src="../../assets/js/owl-carousel.js"></script>
+<script src="../../assets/js/lightbox.js"></script>
+
+<!-- 平滑滚动 -->
+<script>
+    $(document).ready(function() {
+        $('a[href^="#"]').on('click', function(e) {
+            e.preventDefault();
+            
+            $('html, body').animate({
+                scrollTop: $($(this).attr('href')).offset().top
+            }, 500);
+        });
+    });
+</script>
+</body>
+</html>
