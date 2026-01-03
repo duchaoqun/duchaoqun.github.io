@@ -1,64 +1,27 @@
 (function($) {
-  // Outline Menu Functionality
-  var outlineToggle = document.getElementById("outline-toggle");
-  var outlineSidebar = document.getElementById("outline-sidebar");
-  var outlineClose = document.getElementById("outline-close");
-  
-  // Toggle outline sidebar
-  outlineToggle.addEventListener("click", function(e) {
+  $("#menu-close").click(function(e) {
     e.preventDefault();
-    if (outlineSidebar.classList.contains("open")) {
-      outlineSidebar.classList.remove("open");
-      // Remove overlay when sidebar is closed
-      if ($('.outline-overlay').length > 0) {
-        $('.outline-overlay').remove();
-      }
-    } else {
-      outlineSidebar.classList.add("open");
-      // Add overlay when sidebar is open
-      if ($('.outline-overlay').length === 0) {
-        $('body').append('<div class="outline-overlay"></div>');
-        $('.outline-overlay').on('click', function() {
-          outlineSidebar.classList.remove('open');
-          $(this).remove();
-        });
-      }
+    $("#sidebar-wrapper").toggleClass("active");
+  });
+
+  $("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#sidebar-wrapper").toggleClass("active");
+  });
+
+  $(window).resize(function() {
+    if ($(window).width() > 767) {
+      $("#sidebar-wrapper").removeClass("active");
     }
   });
-  
-  // Close outline sidebar
-  outlineClose.addEventListener("click", function(e) {
+
+  $("a.page-scroll").bind("click", function(e) {
+    var $anchor = $(this);
+    $('html, body').stop().animate({
+      scrollTop: $($anchor.attr("href")).offset().top
+    }, 1500, "easeInOutExpo");
     e.preventDefault();
-    outlineSidebar.classList.remove("open");
-    // Remove overlay when sidebar is closed
-    if ($('.outline-overlay').length > 0) {
-      $('.outline-overlay').remove();
-    }
   });
-  
-  // Close sidebar after clicking on menu items
-  // and smooth scroll to the section
-  $('.outline-menu a').on('click', function(e) {
-    e.preventDefault();
-    
-    // Close the sidebar
-    outlineSidebar.classList.remove('open');
-    if ($('.outline-overlay').length > 0) {
-      $('.outline-overlay').remove();
-    }
-    
-    // Smooth scroll to the target section
-    var targetId = $(this).attr('href').substring(1); // 移除#前缀
-    var targetSection = $('section[data-section="' + targetId + '"]');
-    
-    if (targetSection.length) {
-      $('html, body').animate({
-        scrollTop: targetSection.offset().top - 50
-      }, 800);
-    }
-  });
-  
-  // 样式已移至CSS文件中
 
   $(".owl-carousel").owlCarousel({
     items: 4,

@@ -1,548 +1,872 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8"/>
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
-    <meta name="google-adsense-account" content="ca-pub-2811142380036945">
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet"/>
-
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/website.ico" media="screen"/>
-    <title>杜超群 - 个人博客，简简单单，俗人一个。</title>
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css"/>
-    <script src="vendor/fontawesome/js/all.min.js"></script>
-    <link rel="stylesheet" href="assets/css/templatemo-style.css"/>
-    <link rel="stylesheet" href="assets/css/owl.css"/>
-    <link rel="stylesheet" href="assets/css/lightbox.css"/>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2811142380036945" crossorigin="anonymous"></script>
-</head>
-
-<body>
-<div id="page-wraper">
-    <!-- Outline Menu -->
-    <div class="outline-container">
-        <!-- Outline Toggle Button -->
-        <button id="outline-toggle" class="outline-toggle">
-            <i class="fa fa-list"></i>
-            <span>Outline</span>
-        </button>
-        
-        <!-- Outline Sidebar -->
-        <div id="outline-sidebar" class="outline-sidebar">
-            <div class="outline-header">
-                <h3>Outline</h3>
-                <button id="outline-close" class="outline-close">
-                    <i class="fa fa-times"></i>
-                </button>
-            </div>
-            <nav class="outline-nav" role="navigation">
-                <ul class="outline-menu">
-                    <li><a href="#section_search">搜索引擎</a></li>
-                    <li><a href="#section_ai">智能工具</a></li>
-                    <li><a href="#section_coding">编码研发</a></li>
-                    <li><a href="#section_design">设计工具</a></li>
-                    <li><a href="#section_tools">得心应手</a></li>
-                    <li><a href="#section_read">格物致知</a></li>
-                    <li><a href="#section_game">游戏人生</a></li>
-                    <li><a href="#section2">资源分享</a></li>
-                    <li><a href="#section3">与我联系</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-
-    <section class="section about-me" data-section="section_search">
-        <div class="container">
-            <div class="section-heading">
-                <h2>搜索工具</h2>
-                <div class="line-dec"></div>
-                <span>想你所想，做你所做</span>
-            </div>
-            
-            <div class="search-engine-container">
-                <div class="search-input-wrapper">
-                    <input type="text" id="search-input" placeholder="请输入搜索内容..." />
-                </div>
-                
-                <div class="search-engines">
-                    <button onclick="search('google')" class="search-btn">
-                        <i class="fa fa-globe"></i> Google
-                    </button>
-                    <button onclick="search('bing')" class="search-btn">
-                        <i class="fa fa-windows"></i> Bing
-                    </button>
-                    <button onclick="search('yandex')" class="search-btn">
-                        <i class="fa fa-search"></i> Yandex
-                    </button>
-                    <button onclick="search('baidu')" class="search-btn">
-                        <i class="fa fa-search"></i> 百度
-                    </button>
-                    <button onclick="search('so')" class="search-btn">
-                        <i class="fa fa-question-circle"></i> 360搜索
-                    </button>
-                    <button onclick="search('sogou')" class="search-btn">
-                        <i class="fa fa-paw"></i> 搜狗搜索
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Website Navigation Section -->
-    <!-- 智能工具 -->
-    <section class="section about-me" data-section="section_ai">
-        <div class="container">
-            <div class="section-heading">
-                <h2>智能工具</h2>
-                <div class="line-dec"></div>
-                <span>精选实用的智能工具，方便日常使用。</span>
-            </div>
-            
-            <div class="website-nav-container">
-                <!-- AI工具 -->
-                <div class="website-category">
-                    <h4><i class="fa fa-globe"></i> 模型</h4>
-                    <div class="website-grid">
-                        <a href="https://chat.deepseek.com/sign_in" target="_blank" class="website-item">
-                            <span>DeepSeek</span>
-                        </a>
-                        <a href="https://www.doubao.com" target="_blank" class="website-item">
-                            <span>豆包</span>
-                        </a>
-                        <a href="https://tongyi.aliyun.com/qianwen" target="_blank" class="website-item">
-                            <span>通义千问</span>
-                        </a>
-                        <a href="https://yuanbao.tencent.com" target="_blank" class="website-item">
-                            <span>腾讯元宝</span>
-                        </a>
-                        <a href="https://yiyan.baidu.com" target="_blank" class="website-item">
-                            <span>文言一心</span>
-                        </a>
-                        <a href="https://kimi.moonshot.cn" target="_blank" class="website-item">
-                            <span>Moonshot</span>
-                        </a>
-                        <a href="https://copilot.wps.cn" target="_blank" class="website-item">
-                            <span>WPS灵犀</span>
-                        </a>
-                        <a href="https://copilot.microsoft.com" target="_blank" class="website-item">
-                            <span>Microsoft Copilot</span>
-                        </a>
-                    </div>
-                </div>
-                                
-                <!-- 视频网站分类 -->
-                <div class="website-category">
-                    <h4><i class="fa fa-film"></i> 媒体</h4>
-                    <div class="website-grid">
-                        <a href="https://peiyin.xunfei.cn" target="_blank" class="website-item">
-                            <span>讯飞配音</span>
-                        </a>
-                        <a href="https://diffusionbee.com/" target="_blank" class="website-item">
-                            <span>DiffusionBee</span>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- 工具网站分类 -->
-                <div class="website-category">
-                    <h4><i class="fa fa-wrench"></i> 工具</h4>
-                    <div class="website-grid">
-                        <a href="https://imageprompt.org/" target="_blank" class="website-item">
-                            <span>ImagePrompt(图文)</span>
-                        </a>
-                        <a href="https://liner.ai/" target="_blank" class="website-item">
-                            <span>liner.ai(训练)</span>
-                        </a>
-                        <a href="https://woy.ai/" target="_blank" class="website-item">
-                            <span>Woy.ai</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- 编程工具 -->
-    <section class="section about-me" data-section="section_coding">
-        <div class="container">
-            <div class="section-heading">
-                <h2>编码研发</h2>
-                <div class="line-dec"></div>
-                <span>精选实用的编码研发，方便日常使用。</span>
-            </div>
-            
-            <div class="website-nav-container">
-                <!-- 前端工具 -->
-                <div class="website-category">
-                    <h4><i class="fa-brands fa-html5 fa-beat"></i> 前端</h4>
-                    <div class="website-grid">
-                        <a href="https://fontawesome.com" target="_blank" class="website-item">
-                            <span>FontAwesome</span>
-                        </a>
-                        <a href="https://fontawesome.dashgame.com" target="_blank" class="website-item">
-                            <span>FontIcons</span>
-                        </a>
-                        <a href="https://icons8.com" target="_blank" class="website-item">
-                            <span>Icons8</span>
-                        </a>
-                        <a href="https://www.flaticon.com/" target="_blank" class="website-item">
-                            <span>Flaticon</span>
-                        </a>
-                        <a href="https://www.iconfont.cn/" target="_blank" class="website-item">
-                            <span>Iconfont</span>
-                        </a>
-                        <a href="https://www.iconfinder.com/" target="_blank" class="website-item">
-                            <span>Iconfinder</span>
-                        </a>
-                        <a href="https://phosphoricons.com/" target="_blank" class="website-item">
-                            <span>PhosphorIcons</span>
-                        </a>
-                        <a href="https://ui-buttons.web.app/" target="_blank" class="website-item">
-                            <span>UI Buttons</span>
-                        </a>
-                    </div>
-                </div>
-                                
-                <!-- 后端工具 -->
-                <div class="website-category">
-                    <h4><i class="fa-brands fa-java fa-beat"></i> 后端</h4>
-                    <div class="website-grid">
-                        <a href="https://peiyin.xunfei.cn" target="_blank" class="website-item">
-                            <span>讯飞配音</span>
-                        </a>
-                        <a href="https://diffusionbee.com/" target="_blank" class="website-item">
-                            <span>DiffusionBee</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 设计工具 -->
-    <section class="section about-me" data-section="section_design">
-        <div class="container">
-            <div class="section-heading">
-                <h2>设计工具</h2>
-                <div class="line-dec"></div>
-                <span>设计工具，方便日常使用。</span>
-            </div>
-            
-            <div class="website-nav-container">
-                <!-- 图像设计 -->
-                <div class="website-category">
-                    <h4><i class="fa-solid fa-image fa-beat-fade"></i> 图像设计</h4>
-                    <div class="website-grid">
-                        <a href="https://app.svgator.com/" target="_blank" class="website-item">
-                            <span>SVGator</span>
-                        </a>
-                        <a href="https://halftonemaker.com/" target="_blank" class="website-item">
-                            <span>Halftone Maker</span>
-                        </a>
-                        <a href="https://toolonline.net/ico-generator" target="_blank" class="website-item">
-                            <span>制作ICO</span>
-                        </a>
-                        <a href="https://www.aseprite.org/docs/" target="_blank" class="website-item">
-                            <span>Aseprite</span>
-                        </a>
-                    </div>
-                </div>
-                <!-- 图像资源 -->
-                <div class="website-category">
-                    <h4><i class="fa-solid fa-image fa-beat-fade"></i> 图像资源</h4>
-                    <div class="website-grid">
-                        <a href="https://www.91sotu.com/" target="_blank" class="website-item">
-                            <span>91图搜</span>
-                        </a>
-                        <a href="https://www.pixabay.com/" target="_blank" class="website-item">
-                            <span>Pixabay</span>
-                        </a>
-                        <a href="https://wallhaven.cc/" target="_blank" class="website-item">
-                            <span>Wallhaven</span>
-                        </a>
-                        <a href="https://www.pinterest.com/" target="_blank" class="website-item">
-                            <span>Pinterest</span>
-                        </a>
-                        <a href="https://imgur.com/" target="_blank" class="website-item">
-                            <span>Imgur</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 得心应手 -->
-    <section class="section about-me" data-section="section_tools">
-        <div class="container">
-            <div class="section-heading">
-                <h2>得心应手</h2>
-                <div class="line-dec"></div>
-                <span>其他工具，方便日常使用。</span>
-            </div>
-            
-            <div class="website-nav-container">
-                <!-- 办公利器 -->
-                <div class="website-category">
-                    <h4><i class="fa-solid fa-tools fa-beat-fade"></i> 办公利器</h4>
-                    <div class="website-grid">
-                        <a href="https://toolonline.net" target="_blank" class="website-item">
-                            <span>ToolOnline</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="website-nav-container">
-                <!-- 学习工具 -->
-                <div class="website-category">
-                    <h4><i class="fa-solid fa-book fa-beat-fade"></i> 学习工具</h4>
-                    <div class="website-grid">
-                        <a href="https://phet.colorado.edu/" target="_blank" class="website-item">
-                            <span>PhET</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 格物致知 -->
-    <section class="section about-me" data-section="section_read">
-        <div class="container">
-            <div class="section-heading">
-                <h2>格物致知</h2>
-                <div class="line-dec"></div>
-                <span>阅读学习，探索知识。</span>
-            </div>
-            <div class="website-nav-container">
-                <!-- 我的书架 -->
-                <div class="website-category">
-                    <h4><i class="fa-solid fa-bookmark fa-beat-fade"></i> 我的书架</h4>
-                    <div class="website-grid">
-                        <a href="pages/library.html" class="website-item">
-                            <span>经典阅读</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="website-nav-container">
-                <!-- 书籍资源 -->
-                <div class="website-category">
-                    <h4><i class="fa-solid fa-book fa-beat-fade"></i> 书籍资源</h4>
-                    <div class="website-grid">
-                        <a href="https://www.z-lib.org/" target="_blank" class="website-item">
-                            <span>Z-Library</span>
-                        </a>
-                        <a href="https://libgen.is/" target="_blank" class="website-item">
-                            <span>LibGen</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 游戏人生 -->
-    <section class="section about-me" data-section="section_game">
-        <div class="container">
-            <div class="section-heading">
-                <h2>游戏人生</h2>
-                <div class="line-dec"></div>
-                <span>欲买桂花同载酒，终不似，少年游。</span>
-            </div>
-            
-            <div class="website-nav-container">
-                <!-- 经典小游戏 -->
-                <div class="website-category">
-                    <h4><i class="fa-solid fa-gamepad fa-beat-fade"></i> 经典小游戏</h4>
-                    <div class="website-grid">
-                        <a href="pages/Tetris.html" target="_blank" class="website-item">
-                            <span>Tetris</span>
-                        </a>
-                        <a href="pages/2048.html" target="_blank" class="website-item">
-                            <span>2048</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section about-me" data-section="section2">
-        <div class="container">
-            <div class="section-heading">
-                <h2>游戏人生</h2>
-                <div class="line-dec"></div>
-                <span>欲买桂花同载酒，终不似，少年游。</span>
-            </div>
-            <div class="left-image-post">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="left-image">
-                            <img src="assets/images/life.jpg" alt=""/>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="right-text">
-                            <h4>四大皆空</h4>
-                            <p>
-                                文摘，收藏，剪辑，资源...
-                            </p>
-                            <div class="white-button">
-                                <a href="https://www.alipan.com/s/G6miJHo4n85">下载地址</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="right-image-post">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="left-text">
-                            <h4>七情六欲</h4>
-                            <p>
-                                天地不仁，以万物为刍狗。
-                            </p>
-                            <div class="white-button">
-                                <a href="https://www.alipan.com/s/qTaNvhpKYAL">下载地址</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="right-image">
-                            <img src="assets/images/life.jpg" alt=""/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="section about-me" data-section="section3">
-        <div class="container">
-            <div class="section-heading">
-                <h2>联系我</h2>
-                <div class="line-dec"></div>
-                <span>
-                    如果你需要什么帮助，请联系我。<br>
-                    发邮件给我：du.chao.qun@163.com<br>
-                    留言给我：扫描二维码关注留言<br><br>
-                    <div class="left-image" style="display: flex; justify-content: center; align-items: center; min-height: 200px;">
-                        <img style="width: 100%; max-width: 200px;" src="assets/images/wp.jpg" alt="关注我"/>
-                    </div>
-                </span>
-            </div>
-        </div>
-    </section>
-
-
-</div>
-
-<!-- Footer -->
-<footer class="site-footer">
-    <div class="container">
-        <p>Copyright 2011-2025 DuChaoQun Design, Email:admin@duchaoqun.cn</p>
-    </div>
-</footer>
-
-<!-- Scripts -->
-<!-- Bootstrap core JavaScript -->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/isotope.min.js"></script>
-<script src="assets/js/owl-carousel.js"></script>
-<script src="assets/js/lightbox.js"></script>
-<script src="assets/js/custom.js"></script>
-<script>
-    //according to loftblog tut
-    $(".main-menu li:first").addClass("active");
-
-    var showSection = function showSection(section, isAnimate) {
-        var direction = section.replace(/#/, ""),
-            reqSection = $(".section").filter(
-                '[data-section="' + direction + '"]'
-            ),
-            reqSectionPos = reqSection.offset().top - 0;
-
-        if (isAnimate) {
-            $("body, html").animate(
-                {
-                    scrollTop: reqSectionPos
-                },
-                800
-            );
-        } else {
-            $("body, html").scrollTop(reqSectionPos);
-        }
-    };
-
-    var checkSection = function checkSection() {
-        $(".section").each(function () {
-            var $this = $(this),
-                topEdge = $this.offset().top - 80,
-                bottomEdge = topEdge + $this.height(),
-                wScroll = $(window).scrollTop();
-            if (topEdge < wScroll && bottomEdge > wScroll) {
-                var currentId = $this.data("section"),
-                    reqLink = $("a").filter("[href*=\\#" + currentId + "]");
-                reqLink
-                    .closest("li")
-                    .addClass("active")
-                    .siblings()
-                    .removeClass("active");
-            }
-        });
-    };
-
-    $(".main-menu").on("click", "a", function (e) {
-        e.preventDefault();
-        showSection($(this).attr("href"), true);
-    });
-
-    $(window).scroll(function () {
-        checkSection();
-    });
-    
-    // 搜索引擎功能
-    function search(engine) {
-        const query = document.getElementById('search-input').value.trim();
-        if (!query) {
-            alert('请输入搜索内容');
-            return;
-        }
-        
-        let url = '';
-        switch(engine) {
-            case 'baidu':
-                url = `https://www.baidu.com/s?wd=${encodeURIComponent(query)}`;
-                break;
-            case 'google':
-                url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-                break;
-            case 'bing':
-                url = `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
-                break;
-            case 'yandex':
-                url = `https://www.yandex.com/search/?text=${encodeURIComponent(query)}`;
-                break;
-            case 'so':
-                url = `https://www.so.com/s?q=${encodeURIComponent(query)}`;
-                break;
-            case 'sogou':
-                url = `https://www.sogou.com/web?query=${encodeURIComponent(query)}`;
-                break;
-        }
-        
-        window.open(url, '_blank');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>有味的袜子 - 简简单单</title>
+  <link rel="icon" href="assets/images/title.ico" type="image/x-icon">
+  <link rel="shortcut icon" type="image/x-icon" href="assets/images/title.ico" media="screen"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 引入字体图标（导航小图标） -->
+  <script src="https://kit.fontawesome.com/f05afc3185.js" crossorigin="anonymous"></script>
+  <!-- 引入marked.js库，用于解析markdown文本 -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      /* 自定义工具类 */
+      .text-shadow { text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+      .snowflake-animation { animation: snowflake-fall linear infinite; }
+      .nav-hover { @apply relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-pink-300 after:transition-all hover:after:w-full; }
+      .dialog-bubble { @apply absolute -top-16 -left-24 bg-white/90 px-3 py-2 rounded-lg text-sm shadow-md before:content-[''] before:absolute before:bottom-[-6px] before:right-[20px] before:w-3 before:h-3 before:bg-white/90 before:rotate-45; }
     }
-</script>
+
+    /* 雪花飘落动画 */
+    @keyframes snowflake-fall {
+      0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translate(var(--x-offset), 100vh) rotate(var(--rotate-deg)); opacity: 0; }
+    }
+
+    /* 自定义滚动条 */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-thumb { background: #f9a8d4; border-radius: 3px; }
+    ::-webkit-scrollbar-track { background: #f0f8ff; }
+  </style>
+</head>
+<body class="font-anime overflow-hidden bg-bg-base h-screen relative">
+  <!-- 背景层（可替换为动态壁纸/轮播） -->
+  <div class="absolute inset-0 z-0">
+    <img data-src="assets/images/bg.jpg" alt="背景图" class="w-full h-full object-cover">
+    
+    <script>
+      // 延迟加载背景图，确保其他内容优先加载
+      function loadBackgroundImage() {
+        const bgImage = document.querySelector('img[data-src="assets/images/bg.jpg"]');
+        if (bgImage) {
+          bgImage.src = bgImage.dataset.src;
+        }
+      }
+      
+      // 监听load事件，在所有资源加载完成后再加载背景图
+      window.addEventListener('load', loadBackgroundImage);
+      
+      // 备用方案：如果load事件在1.5秒内未触发，则超时加载
+      setTimeout(loadBackgroundImage, 1500);
+    </script>
+    <div class="absolute inset-0 bg-black/20"></div>
+  </div>
+
+  <!-- 雪花特效层 -->
+  <div id="snowflake-container" class="absolute inset-0 pointer-events-none z-10"></div>
+  
+  <!-- 顶部导航 -->
+  <nav class="absolute top-0 left-0 right-0 px-6 py-4 flex items-center justify-center gap-6 text-white text-shadow z-20">
+    <!-- 导航菜单 -->
+    <div class="flex gap-6 relative">
+      <!-- 主页 -->
+      <div class="relative">
+        <a href="https://www.duchaoqun.cn" class="nav-hover flex items-center gap-1">
+          <i class="fa fa-home text-green-300"></i>主页
+        </a>
+      </div>
+
+      <!-- 搜索 -->
+      <div class="relative">
+        <a href="#" class="nav-hover flex items-center gap-1">
+          <i class="fa fa-search text-orange-300"></i>搜索
+        </a>
+      </div>
+
+      <!-- 随笔 -->
+      <div class="relative">
+        <a href="#" class="nav-hover flex items-center gap-1">
+          <i class="fa fa-pencil text-purple-300"></i>随笔
+        </a>
+      </div>
+
+      <!-- 相册 -->
+      <div class="relative">
+        <a href="#" class="nav-hover flex items-center gap-1">
+          <i class="fa fa-camera text-teal-300"></i>相册
+        </a>
+      </div>
+      
+      <!-- 工具 -->
+      <div class="relative">
+        <a href="#" class="nav-hover flex items-center gap-1">
+          <i class="fa fa-gift text-pink-300"></i>工具
+        </a>
+        <!-- 工具菜单 -->
+        <!-- <div class="submenu hidden absolute top-12 left-0 bg-white/20 backdrop-blur-md rounded-lg p-3 shadow-lg z-30 text-white border border-white/30 min-w-[150px] whitespace-nowrap">
+          <div class="flex flex-col gap-2">
+            <a href="#" class="px-3 py-1 hover:bg-pink-100/30 rounded flex items-center gap-2">
+              <i class="fa fa-wrench text-primary"></i>实用工具
+            </a>
+            <a href="#" class="px-3 py-1 hover:bg-pink-100/30 rounded flex items-center gap-2">
+              <i class="fa fa-download text-primary"></i>资源下载
+            </a>
+            <a href="#" class="px-3 py-1 hover:bg-pink-100/30 rounded flex items-center gap-2">
+              <i class="fa fa-link text-primary"></i>推荐链接
+            </a>
+            <a href="#" class="px-3 py-1 hover:bg-pink-100/30 rounded flex items-center gap-2">
+              <i class="fa fa-lightbulb-o text-primary"></i>创意灵感
+            </a>
+          </div>
+        </div> -->
+      </div>
+      
+      <!-- 邮件 -->
+      <div class="relative">
+        <a href="#" class="nav-hover flex items-center gap-1">
+          <i class="fa fa-comment text-indigo-300"></i>邮件
+        </a>
+      </div>
+      
+      <!-- 关于 -->
+      <div class="relative">
+        <a href="#" class="nav-hover flex items-center gap-1">
+          <i class="fa fa-user text-blue-300"></i>关于
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 中间核心区域 -->
+  <div class="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-center z-20">
+    <!-- 搜索框区域 - 默认隐藏 -->
+    <div id="search-container" class="hidden relative w-1/3 transition-transform duration-300">
+      <!-- 搜索表单 - 固定为谷歌搜索引擎 -->
+      <div class="flex items-center w-full bg-white/20 backdrop-blur-md rounded-full border border-white/30 overflow-hidden">
+        <!-- 谷歌搜索图标按钮 - 固定显示 -->
+        <div class="flex items-center justify-center w-10 h-10 border-r border-white/30">
+          <i class="fa fa-google text-white/80"></i>
+        </div>
+        
+        <!-- 搜索输入框 -->
+        <input 
+          type="text" 
+          id="search-input" 
+          placeholder="搜点什么吧" 
+          class="flex-1 py-3 px-4 bg-transparent focus:outline-none text-white placeholder:text-white/70 transition-all text-base"
+        >
+        
+        <!-- 搜索按钮 -->
+        <button id="search-btn" class="text-white/80 hover:text-white flex items-center justify-center w-10 h-10 border-l border-white/30">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- 自我介绍区域 - 默认隐藏 -->
+    <div id="about-container" class="hidden relative w-1/2 bg-white/20 backdrop-blur-md rounded-lg p-8 shadow-lg border border-white/30 text-white">
+      <div class="flex justify-between items-center mb-4">
+        <h1 class="text-3xl font-bold"></h1>
+        <button id="close-about-btn" class="text-white/80 hover:text-white text-xl">
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+      <div class="space-y-3 text-center">
+        <p>我是杜超群，经常用“有味的袜子”网名混迹于互联网，一名热爱技术和生活的“程序员”。</p>
+        <p>这个网站是我个人的主页，记录了我的生活、工作和学习经历。</p>
+        <p>我相信技术的力量可以让生活变得更美好，也希望通过这个平台分享我的知识和经验。</p>
+        <p>如果你有任何想法或建议，欢迎与我交流！</p>
+      </div>
+      <div class="mt-4 flex justify-center">
+        <img src="assets/images/wechat.jpg" alt="微信二维码" class="w-32 h-32 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+      </div>
+      <div class="mt-6 flex justify-center gap-4">
+        <a href="https://github.com/duchaoqun" class="text-white/80 hover:text-white flex items-center gap-1">
+          <i class="fa fa-github"></i>GitHub
+        </a>
+        <a href="#" class="text-white/80 hover:text-white flex items-center gap-1">
+          <i class="fa fa-comments"></i>微信
+        </a>
+        <a href="mailto:admin@duchaoqun.cn" class="text-white/80 hover:text-white flex items-center gap-1">
+          <i class="fa fa-envelope"></i>邮箱
+        </a>
+      </div>
+    </div>
+    
+    <!-- 随笔区域 - 默认隐藏 -->
+    <div id="essay-container" class="hidden fixed top-0 left-0 w-full h-full flex items-center justify-center z-30">
+      <!-- 半透明背景遮罩 -->
+      <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+      
+      <!-- 随笔显示区域 - 正方形，高度为浏览器高度的70% -->
+      <div class="relative w-[80vh] h-[80vh] bg-white/10 rounded-lg overflow-hidden shadow-2xl border border-white/30">
+        <div class="flex justify-between items-center p-4">
+          <h1 class="text-3xl font-bold"></h1>
+          <!-- 关闭按钮 -->
+          <button id="close-essay-btn" class="text-white/80 hover:text-white text-xl">
+            <i class="fa fa-times"></i>
+          </button>
+        </div>
+        
+        <!-- 随笔内容容器 - 用于实现标签云效果 -->
+        <div id="essay-content" class="w-full h-[calc(100%-60px)] overflow-hidden text-white relative">
+          <!-- 随笔内容将通过JavaScript加载 -->
+        </div>
+      </div>
+    </div>
+    
+    <!-- 邮件区域 - 默认隐藏 -->
+    <div id="message-container" class="hidden relative w-1/2 bg-white/20 backdrop-blur-md rounded-lg p-8 shadow-lg border border-white/30 text-white overflow-hidden max-h-[80vh]">
+      <div class="flex justify-between items-center mb-4">
+        <h1 class="text-3xl font-bold">邮件</h1>
+        <button id="close-message-btn" class="text-white/80 hover:text-white text-xl">
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+      <div class="w-full" style="height: calc(100% - 60px);">
+        <!-- 邮件发送表单 -->
+        <form id="contact-form" class="space-y-4">
+          <div>
+            <label for="contact-name" class="block text-sm font-medium mb-1">您的姓名</label>
+            <input 
+              type="text" 
+              id="contact-name" 
+              name="name" 
+              placeholder="请输入您的姓名" 
+              class="w-full px-4 py-2 bg-white/10 border border-white/30 rounded-lg focus:outline-none focus:border-pink-300 text-white placeholder:text-white/70"
+              required
+            >
+          </div>
+          <div>
+            <label for="contact-email" class="block text-sm font-medium mb-1">您的邮箱</label>
+            <input 
+              type="email" 
+              id="contact-email" 
+              name="email" 
+              placeholder="请输入您的邮箱，方便我回复您" 
+              class="w-full px-4 py-2 bg-white/10 border border-white/30 rounded-lg focus:outline-none focus:border-pink-300 text-white placeholder:text-white/70"
+              required
+            >
+          </div>
+          <div>
+            <label for="contact-subject" class="block text-sm font-medium mb-1">留言主题</label>
+            <input 
+              type="text" 
+              id="contact-subject" 
+              name="subject" 
+              placeholder="请输入留言主题" 
+              class="w-full px-4 py-2 bg-white/10 border border-white/30 rounded-lg focus:outline-none focus:border-pink-300 text-white placeholder:text-white/70"
+              required
+            >
+          </div>
+          <div>
+            <label for="contact-message" class="block text-sm font-medium mb-1">留言内容</label>
+            <textarea 
+              id="contact-message" 
+              name="message" 
+              rows="6" 
+              placeholder="请输入您的留言内容" 
+              class="w-full px-4 py-2 bg-white/10 border border-white/30 rounded-lg focus:outline-none focus:border-pink-300 text-white placeholder:text-white/70 resize-none"
+              required
+            ></textarea>
+          </div>
+          <div class="flex justify-center">
+            <button 
+              type="submit" 
+              id="send-message-btn" 
+              class="px-6 py-3 bg-pink-500/50 hover:bg-pink-500/80 rounded-full transition-all flex items-center gap-2"
+            >
+              <i class="fa fa-paper-plane"></i> 发送邮件
+            </button>
+          </div>
+          <!-- 提交状态反馈 -->
+          <div id="form-status" class="text-center hidden"></div>
+        </form>
+      </div>
+    </div>
+    
+    <!-- 照片区域 - 默认隐藏 -->
+    <div id="photo-container" class="hidden fixed top-0 left-0 w-full h-full flex items-center justify-center z-30">
+      <!-- 半透明背景遮罩 -->
+      <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+      
+      <!-- 照片显示区域 - 正方形，高度为浏览器高度的70% -->
+      <div class="relative w-[80vh] h-[80vh] bg-white/10 rounded-lg overflow-hidden shadow-2xl border border-white/30">
+        <div class="flex justify-between items-center p-4">
+          <h1 class="text-3xl font-bold"></h1>
+          <!-- 关闭按钮 -->
+          <button id="close-photo-btn" class="text-white/80 hover:text-white text-xl">
+            <i class="fa fa-times"></i>
+          </button>
+        </div>
+        
+        <!-- 照片容器 - 用于实现渐隐渐显效果 -->
+        <div id="photo-display" class="w-full h-[calc(100%-60px)] relative p-4">
+          <!-- 当前显示的照片 -->
+          <img id="photo-img" src="" alt="加载中..." class="absolute inset-4 w-[calc(100%-2rem)] h-[calc(100%-2rem)] object-contain transition-opacity duration-1000">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-2 left-1/2 -translate-x-1/2 text-white/60 text-xs z-20">
+     Copyright 2011-2026 DuChaoQun Design, Email:admin@duchaoqun.cn
+  </div>
+
+  <script>
+    // 雪花飘落特效
+    function createSnowflake() {
+      const snowflakeContainer = document.getElementById('snowflake-container');
+      const snowflake = document.createElement('div');
+      
+      // 随机样式
+      const size = Math.random() * 6 + 2; // 2-8px 雪花更小
+      const left = Math.random() * 100; // 0-100%
+      const duration = Math.random() * 20 + 15; // 15-35秒 雪花飘落更慢
+      const xOffset = Math.random() * 100 - 50; // -50到50px 更大的左右摆动
+      const rotateDeg = Math.random() * 720; // 0-720度 雪花旋转更多
+      
+      // 设置雪花样式
+      snowflake.style.cssText = `
+        position: absolute;
+        top: -10px;
+        left: ${left}%;
+        width: ${size}px;
+        height: ${size}px;
+        background: ${['#ffffff', '#f0f8ff', '#e6f3ff', '#d9ecff'][Math.floor(Math.random()*4)]};
+        border-radius: 50%; // 雪花为圆形
+        opacity: 0;
+        --x-offset: ${xOffset}px;
+        --rotate-deg: ${rotateDeg}deg;
+        animation: snowflake-fall ${duration}s linear infinite;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.8); // 雪花发光效果
+      `;
+      
+      // 添加到容器
+      snowflakeContainer.appendChild(snowflake);
+      
+      // 移除已落地的雪花
+      setTimeout(() => {
+        snowflake.remove();
+      }, duration * 1000);
+    }
+    // 持续生成雪花
+    setInterval(createSnowflake, 200); // 更频繁地生成雪花
+
+    // 导航子菜单交互 - 每个导航项显示对应的子菜单
+    const navItems = document.querySelectorAll('.nav-hover');
+    
+    // 为每个导航项添加事件监听
+    navItems.forEach(item => {
+      // 获取当前导航项的父元素，即包含子菜单的div
+      const navItemContainer = item.parentElement;
+      // 获取当前导航项对应的子菜单
+      const submenu = navItemContainer.querySelector('.submenu');
+      
+      if (submenu) {
+        // 鼠标进入导航项时显示对应的子菜单
+        item.addEventListener('mouseenter', () => {
+          submenu.classList.remove('hidden');
+        });
+        
+        // 鼠标离开导航项时隐藏对应的子菜单
+        item.addEventListener('mouseleave', () => {
+          // 设置延迟，让鼠标有时间移动到子菜单
+          setTimeout(() => {
+            // 检查鼠标是否在子菜单上
+            if (!submenu.matches(':hover')) {
+              submenu.classList.add('hidden');
+            }
+          }, 300);
+        });
+        
+        // 鼠标离开子菜单时隐藏对应的子菜单
+        submenu.addEventListener('mouseleave', () => {
+          submenu.classList.add('hidden');
+        });
+      }
+    });
+
+    // 搜索功能 - 固定使用谷歌搜索引擎
+    const searchInput = document.getElementById('search-input');
+    const searchBtn = document.getElementById('search-btn');
+    const bgLayer = document.querySelector('.absolute.inset-0.z-0');
+    // 默认搜索引擎设置为谷歌
+    const googleEngine = {
+      name: 'Google',
+      url: 'https://www.google.com/search?q='
+    };
+
+    // 搜索功能 - 使用谷歌搜索引擎
+    function performSearch() {
+      const keyword = searchInput.value.trim();
+      if (keyword) {
+        window.open(googleEngine.url + encodeURIComponent(keyword), '_blank');
+      }
+    }
+
+    // 点击搜索按钮
+    searchBtn.addEventListener('click', performSearch);
+
+    // 回车搜索
+    searchInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        performSearch();
+      }
+    });
+
+    // 背景虚化效果 - 保留虚化，但去掉上移效果
+    const searchContainer = document.getElementById('search-container');
+    
+    // 为背景层添加过渡效果
+    bgLayer.style.transition = 'filter 0.5s ease';
+    
+    searchInput.addEventListener('focus', () => {
+      // 只保留背景虚化，去掉上移效果
+      bgLayer.style.filter = 'blur(8px)';
+    });
+
+    searchInput.addEventListener('blur', () => {
+      // 背景平滑恢复
+      bgLayer.style.filter = 'blur(0px)';
+    });
+    
+    // 页面内容切换功能
+    const aboutContainer = document.getElementById('about-container');
+    const essayContainer = document.getElementById('essay-container');
+    const messageContainer = document.getElementById('message-container');
+    const photoContainer = document.getElementById('photo-container');
+    const essayContent = document.getElementById('essay-content');
+    const closeEssayBtn = document.getElementById('close-essay-btn');
+    const closeAboutBtn = document.getElementById('close-about-btn');
+    const closeMessageBtn = document.getElementById('close-message-btn');
+    const closePhotoBtn = document.getElementById('close-photo-btn');
+    
+    // 照片相关元素
+    const photoImg = document.getElementById('photo-img');
+    const photoTitle = document.getElementById('photo-title');
+    const photoDescription = document.getElementById('photo-description');
+    const prevPhotoBtn = document.getElementById('prev-photo-btn');
+    const nextPhotoBtn = document.getElementById('next-photo-btn');
+    const randomPhotoBtn = document.getElementById('random-photo-btn');
+    
+    // 照片数据和当前索引
+    let photos = [];
+    let currentPhotoIndex = 0;
+    // 自动轮播计时器
+    let slideshowTimer = null;
+    
+    // 找到所有包含"关于"或"个人主页"文本的链接
+    const aboutLinks = Array.from(document.querySelectorAll('a')).filter(link => link.textContent.includes('关于') || link.textContent.includes('个人主页'));
+    
+    // 找到所有包含"随笔"文本的链接
+    const essayLinks = Array.from(document.querySelectorAll('a')).filter(link => link.textContent.includes('随笔'));
+    
+    // 找到所有包含"邮件"文本的链接
+    const messageLinks = Array.from(document.querySelectorAll('a')).filter(link => link.textContent.includes('邮件'));
+    
+    // 找到所有包含"相册"文本的链接
+    const photoLinks = Array.from(document.querySelectorAll('a')).filter(link => link.textContent.includes('相册'));
+    
+    // 找到所有包含"搜索"文本的链接
+    const searchLinks = Array.from(document.querySelectorAll('a')).filter(link => link.textContent.includes('搜索'));
+    
+    // 显示特定容器，隐藏其他容器
+    function showContainer(container) {
+      // 隐藏所有容器
+      searchContainer.classList.add('hidden');
+      aboutContainer.classList.add('hidden');
+      essayContainer.classList.add('hidden');
+      messageContainer.classList.add('hidden');
+      photoContainer.classList.add('hidden');
+      
+      // 显示指定容器
+      container.classList.remove('hidden');
+      
+      // 添加背景虚化
+      bgLayer.style.filter = 'blur(8px)';
+      
+      // 如果是照片容器，加载照片
+      if (container === photoContainer) {
+        loadPhotos();
+      }
+    }
+    
+    // 隐藏所有容器，显示搜索框
+    function showSearch() {
+      // 隐藏所有容器
+      aboutContainer.classList.add('hidden');
+      essayContainer.classList.add('hidden');
+      messageContainer.classList.add('hidden');
+      photoContainer.classList.add('hidden');
+      searchContainer.classList.remove('hidden');
+      
+      // 添加背景虚化，与其他弹出区域保持一致
+      bgLayer.style.filter = 'blur(8px)';
+    }
+    
+    // 从photo.json加载照片数据
+    function loadPhotos() {
+      fetch('assets/photo.json')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          photos = data;
+          // 随机显示一张照片
+          showRandomPhoto();
+          // 启动自动轮播
+          startSlideshow();
+        })
+        .catch(error => {
+          console.error('加载照片数据失败:', error);
+          photoTitle.textContent = '加载失败';
+          photoDescription.textContent = '无法加载照片数据';
+        });
+    }
+    
+    // 启动自动轮播
+    function startSlideshow() {
+      // 清除现有的计时器
+      if (slideshowTimer) {
+        clearInterval(slideshowTimer);
+      }
+      // 设置新的计时器，3秒切换一次
+      slideshowTimer = setInterval(showRandomPhoto, 3000);
+    }
+    
+    // 停止自动轮播
+    function stopSlideshow() {
+      if (slideshowTimer) {
+        clearInterval(slideshowTimer);
+        slideshowTimer = null;
+      }
+    }
+    
+    // 显示指定索引的照片
+    function showPhoto(index) {
+      if (photos.length === 0) return;
+      
+      // 确保索引在有效范围内
+      currentPhotoIndex = index;
+      if (currentPhotoIndex < 0) {
+        currentPhotoIndex = photos.length - 1;
+      } else if (currentPhotoIndex >= photos.length) {
+        currentPhotoIndex = 0;
+      }
+      
+      const photo = photos[currentPhotoIndex];
+      
+      // 获取照片显示容器
+      const photoDisplay = document.getElementById('photo-display');
+      
+      // 创建新的照片元素
+      const newPhoto = document.createElement('img');
+      newPhoto.src = photo.url;
+      newPhoto.alt = photo.title;
+      newPhoto.className = 'absolute inset-4 w-[calc(100%-2rem)] h-[calc(100%-2rem)] object-contain opacity-0 transition-opacity duration-1000';
+      
+      // 添加新照片到容器
+      photoDisplay.appendChild(newPhoto);
+      
+      // 渐显新照片
+      setTimeout(() => {
+        newPhoto.style.opacity = '1';
+      }, 10);
+      
+      // 渐隐并移除旧照片
+      const oldPhoto = photoDisplay.querySelector('img:not(:last-child)');
+      if (oldPhoto) {
+        oldPhoto.style.opacity = '0';
+        setTimeout(() => {
+          oldPhoto.remove();
+        }, 1000);
+      }
+    }
+    
+    // 显示上一张照片
+    function showPrevPhoto() {
+      showPhoto(currentPhotoIndex - 1);
+    }
+    
+    // 显示下一张照片
+    function showNextPhoto() {
+      showPhoto(currentPhotoIndex + 1);
+    }
+    
+    // 随机显示一张照片
+    function showRandomPhoto() {
+      if (photos.length === 0) return;
+      let randomIndex;
+      // 确保不会连续显示同一张照片
+      do {
+        randomIndex = Math.floor(Math.random() * photos.length);
+      } while (randomIndex === currentPhotoIndex && photos.length > 1);
+      showPhoto(randomIndex);
+    }
+    
+    // 为每个关于链接添加点击事件
+    aboutLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault(); // 阻止默认跳转
+        showContainer(aboutContainer);
+      });
+    });
+    
+    // 从note.json加载笔记数据并生成标签云
+    function loadNoteCloud() {
+      fetch('assets/note.json')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(notes => {
+          generateTagCloud(notes);
+        })
+        .catch(error => {
+          console.error('加载笔记数据失败:', error);
+          essayContent.innerHTML = `<p>加载随笔内容失败: ${error.message}</p>`;
+        });
+    }
+    
+    // 生成标签云 - 中间随机切换效果
+    function generateTagCloud(notes) {
+      // 清空现有内容
+      essayContent.innerHTML = '';
+      
+      // 隐藏滚动条
+      essayContent.style.overflow = 'hidden';
+      
+      // 标签云容器 - 居中显示
+      const tagCloud = document.createElement('div');
+      tagCloud.className = 'flex items-center justify-center w-full h-full overflow-hidden';
+      essayContent.appendChild(tagCloud);
+      
+      // 显示第一条消息
+      showRandomNote(notes, tagCloud);
+      
+      // 10秒钟自动切换下一条
+      setInterval(() => {
+        showRandomNote(notes, tagCloud);
+      }, 10000);
+    }
+    
+    // 显示随机笔记
+    function showRandomNote(notes, container) {
+      // 随机选择一条笔记
+      const randomIndex = Math.floor(Math.random() * notes.length);
+      const note = notes[randomIndex];
+      
+      // 创建新消息
+      const message = document.createElement('div');
+      message.className = 'absolute inline-block max-w-[80%] px-6 py-4 bg-white/10 backdrop-blur-sm rounded-lg cursor-pointer transition-all hover:bg-white/20 shadow-lg opacity-0';
+      
+      // 设置样式 - 字体稍微大一点，颜色为纯白色
+      const fontSize = Math.random() * 6 + 16; // 16-22px
+      
+      message.style.fontSize = `${fontSize}px`;
+      message.style.color = '#ffffff'; // 纯白色
+      message.style.boxShadow = `0 0 15px rgba(255, 255, 255, 0.3)`; // 白色阴影
+      message.style.textAlign = 'center';
+      message.style.zIndex = '10';
+      message.style.left = '50%';
+      message.style.top = '50%';
+      message.style.transform = 'translate(-50%, -50%)';
+      
+      // 设置内容
+      message.textContent = note.content;
+      
+      // 添加点击效果
+      message.addEventListener('click', () => {
+        message.style.transform = 'translate(-50%, -50%) scale(1.1)';
+        setTimeout(() => {
+          message.style.transform = 'translate(-50%, -50%) scale(1)';
+        }, 300);
+      });
+      
+      // 获取当前消息（如果存在）
+      const currentMessage = container.querySelector('div');
+      
+      // 添加新消息到容器
+      container.appendChild(message);
+      
+      // 渐隐渐显切换效果
+      if (currentMessage) {
+        // 旧消息渐隐
+        currentMessage.style.opacity = '0';
+        currentMessage.style.zIndex = '5';
+        // 新消息渐显
+        setTimeout(() => {
+          message.style.opacity = '1';
+        }, 300);
+        // 移除旧消息
+        setTimeout(() => {
+          currentMessage.remove();
+        }, 600);
+      } else {
+        // 第一条消息直接渐显
+        message.style.opacity = '1';
+      }
+    }
+    
+    // 生成随机柔和颜色
+    function getRandomColor() {
+      const colors = [
+        '#ffffff', '#f0f8ff', '#e6f3ff', '#d9ecff', '#cfe5ff',
+        '#b3d9ff', '#99ccff', '#80bfff', '#66b2ff', '#4da6ff',
+        '#3399ff', '#1a8cff', '#007fff', '#0072e6', '#0066cc'
+      ];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+    
+    // 为每个随笔链接添加点击事件
+    essayLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault(); // 阻止默认跳转
+        showContainer(essayContainer);
+        
+        // 加载标签云
+        loadNoteCloud();
+      });
+    });
+    
+    // 为每个邮件链接添加点击事件
+    messageLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault(); // 阻止默认跳转
+        showContainer(messageContainer);
+      });
+    });
+    
+    // 关闭随笔按钮点击事件
+    closeEssayBtn.addEventListener('click', () => {
+      // 点击关闭按钮时隐藏所有容器，只显示菜单、背景和雪花特效
+      aboutContainer.classList.add('hidden');
+      essayContainer.classList.add('hidden');
+      messageContainer.classList.add('hidden');
+      photoContainer.classList.add('hidden');
+      searchContainer.classList.add('hidden');
+      // 恢复背景
+      bgLayer.style.filter = 'blur(0px)';
+    });
+    
+    // 关闭关于按钮点击事件
+    closeAboutBtn.addEventListener('click', () => {
+      // 点击关闭按钮时隐藏所有容器，只显示菜单、背景和雪花特效
+      aboutContainer.classList.add('hidden');
+      essayContainer.classList.add('hidden');
+      messageContainer.classList.add('hidden');
+      photoContainer.classList.add('hidden');
+      searchContainer.classList.add('hidden');
+      // 恢复背景
+      bgLayer.style.filter = 'blur(0px)';
+    });
+    
+    // 关闭邮件按钮点击事件
+    closeMessageBtn.addEventListener('click', () => {
+      // 点击关闭按钮时隐藏所有容器，只显示菜单、背景和雪花特效
+      aboutContainer.classList.add('hidden');
+      essayContainer.classList.add('hidden');
+      messageContainer.classList.add('hidden');
+      photoContainer.classList.add('hidden');
+      searchContainer.classList.add('hidden');
+      // 恢复背景
+      bgLayer.style.filter = 'blur(0px)';
+    });
+    
+    // 为每个相册链接添加点击事件
+    photoLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault(); // 阻止默认跳转
+        showContainer(photoContainer);
+      });
+    });
+    
+    // 为每个搜索链接添加点击事件
+    searchLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault(); // 阻止默认跳转
+        showContainer(searchContainer);
+      });
+    });
+    
+    // 关闭照片按钮点击事件
+    closePhotoBtn.addEventListener('click', () => {
+      // 点击关闭按钮时隐藏所有容器，保持背景虚化效果
+      // 或者调用showSearch()显示搜索框
+      // 这里选择隐藏所有容器，只显示菜单、背景和雪花特效
+      aboutContainer.classList.add('hidden');
+      essayContainer.classList.add('hidden');
+      messageContainer.classList.add('hidden');
+      photoContainer.classList.add('hidden');
+      searchContainer.classList.add('hidden');
+      // 恢复背景
+      bgLayer.style.filter = 'blur(0px)';
+      // 停止照片自动轮播
+      stopSlideshow();
+    });
+    
+    // 照片导航按钮点击事件
+    prevPhotoBtn.addEventListener('click', showPrevPhoto);
+    nextPhotoBtn.addEventListener('click', showNextPhoto);
+    randomPhotoBtn.addEventListener('click', showRandomPhoto);
+    
+    // 留言表单功能
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
+    
+    // 表单提交事件处理
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault(); // 阻止默认提交
+      
+      // 获取表单数据
+      const formData = new FormData(contactForm);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const subject = formData.get('subject');
+      const message = formData.get('message');
+      
+      // 表单验证
+      if (!name || !email || !subject || !message) {
+        showFormStatus('请填写所有必填字段', 'error');
+        return;
+      }
+      
+      // 构建邮件内容
+      const emailContent = `
+发件人：${name}
+发件人邮箱：${email}
+主题：${subject}
+内容：
+${message}
+      `.trim();
+      
+      // 构建mailto链接
+      const mailtoLink = `mailto:du.chao.qun@163.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailContent)}`;
+      
+      // 尝试打开邮件客户端
+      try {
+        window.location.href = mailtoLink;
+        showFormStatus('邮件客户端已打开，请检查并发送邮件', 'success');
+        
+        // 重置表单
+        contactForm.reset();
+      } catch (error) {
+        console.error('打开邮件客户端失败:', error);
+        showFormStatus('打开邮件客户端失败，请手动发送邮件到 du.chao.qun@163.com', 'error');
+      }
+    });
+    
+    // 显示表单提交状态
+    function showFormStatus(message, type) {
+      formStatus.textContent = message;
+      formStatus.className = `text-center mt-4 p-2 rounded-lg ${type === 'success' ? 'bg-green-500/30 text-green-200' : 'bg-red-500/30 text-red-200'}`;
+      formStatus.classList.remove('hidden');
+      
+      // 3秒后隐藏状态信息
+      setTimeout(() => {
+        formStatus.classList.add('hidden');
+      }, 3000);
+    }
+  </script>
 </body>
 </html>
