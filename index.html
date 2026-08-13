@@ -198,6 +198,13 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      animation: avatar-rotate 20s linear infinite;
+    }
+
+    /* 头像顺时针旋转，速度适中 */
+    @keyframes avatar-rotate {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
     }
 
     .avatar-fallback {
@@ -387,6 +394,27 @@
       font-size: 12px;
     }
 
+    /* 邮件弹窗（纯文字） */
+    .qr-popup .qr-text {
+      width: 100%;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+      word-break: break-all;
+    }
+
+    .qr-popup .qr-text p {
+      font-size: 13px;
+      color: rgba(220, 240, 255, 0.95);
+      line-height: 1.5;
+    }
+
     /* ========== 右侧主内容区 ========== */
     .main-content {
       flex: 1;
@@ -456,46 +484,179 @@
       letter-spacing: 1px;
     }
 
-    /* ========== 响应式 ========== */
+    /* 点击激活态（移动端无 hover 时使用） */
+    .contact-item.active .qr-popup {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+
+    /* ========== 响应式 - 平板及以下 ========== */
     @media (max-width: 768px) {
       .main-card {
-        width: 95vw;
-        height: 90vh;
+        width: 94vw;
+        height: min(640px, 90vh);
         flex-direction: column;
+      }
+
+      /* 内容区可滚动，保持卡片圆角裁剪 */
+      .card-content {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
       }
 
       .profile-panel {
         width: 100%;
         min-width: unset;
-        padding: 24px 20px;
+        padding: 24px 20px 20px;
         border-right: none;
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        flex-shrink: 0;
       }
 
       .avatar {
         width: 90px;
         height: 90px;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
       }
 
       .profile-name {
         font-size: 22px;
       }
 
+      .motto {
+        margin-bottom: 20px;
+        padding: 12px 16px;
+      }
+
       .main-content {
         padding: 24px 20px;
+        flex: 1;
+        min-height: 0;
       }
 
       .greeting {
-        font-size: 28px;
+        font-size: 26px;
+      }
+
+      .footer {
+        font-size: 10px;
+        bottom: 8px;
+      }
+    }
+
+    /* ========== 响应式 - 手机竖屏 ========== */
+    @media (max-width: 480px) {
+      .main-card {
+        width: 96vw;
+        height: 94vh;
+        border-radius: 16px;
+      }
+
+      .profile-panel {
+        padding: 20px 16px 16px;
+      }
+
+      .avatar {
+        width: 78px;
+        height: 78px;
+        border-width: 2px;
+      }
+
+      .profile-name {
+        font-size: 20px;
+        letter-spacing: 1px;
+      }
+
+      .profile-title {
+        font-size: 12px;
+        margin-bottom: 16px;
       }
 
       .motto {
-        margin-bottom: 20px;
+        padding: 10px 14px;
+        margin-bottom: 16px;
+      }
+
+      .motto-text {
+        font-size: 13px;
+      }
+
+      .contact-label {
+        margin-bottom: 10px;
+      }
+
+      .contact-item {
+        width: 42px;
+        height: 42px;
+        font-size: 16px;
+      }
+
+      .main-content {
+        padding: 20px 16px;
+      }
+
+      .greeting {
+        font-size: 22px;
+        margin-bottom: 12px;
+      }
+
+      .sub-greeting {
+        font-size: 14px;
+        margin-bottom: 18px;
+      }
+
+      .quote {
+        font-size: 13px;
+      }
+
+      .quote-mark {
+        font-size: 32px;
+      }
+
+      /* 二维码弹窗适配小屏 */
+      .qr-popup {
+        width: 130px;
+        padding: 10px;
+      }
+
+      .qr-popup img,
+      .qr-popup .qr-fallback {
+        height: 100px;
+      }
+
+      .footer {
+        font-size: 9px;
+        bottom: 6px;
+        padding: 0 10px;
+        text-align: center;
+      }
+    }
+
+    /* ========== 超小屏 ========== */
+    @media (max-width: 360px) {
+      .avatar {
+        width: 66px;
+        height: 66px;
+      }
+
+      .profile-name {
+        font-size: 18px;
+      }
+
+      .contact-item {
+        width: 38px;
+        height: 38px;
+        font-size: 15px;
       }
 
       .contact-list {
-        gap: 12px;
+        gap: 10px;
+      }
+
+      .greeting {
+        font-size: 20px;
       }
     }
   </style>
@@ -571,6 +732,19 @@
               <p class="qr-label">微信: du_chao_qun</p>
             </div>
           </div>
+
+          <!-- 邮件 -->
+          <div class="contact-item" data-qr="email">
+            <i class="fa fa-envelope" title="邮件"></i>
+            <span class="contact-name">邮件</span>
+            <div class="qr-popup">
+              <div class="qr-text">
+                <i class="fa fa-envelope" style="font-size:24px;color:#7fdfff;margin-bottom:8px;"></i>
+                <p>du.chao.qun@163.com</p>
+                <p class="qr-label">邮箱：网易邮箱</p>
+              </div>
+            </div>
+          </div>
         </div>
       </aside>
 
@@ -632,6 +806,23 @@
       cardBg.classList.remove('loading');
     };
     bgImg.src = 'assets/photo/6.jpg';
+
+    /* 移动端点击显示二维码（移动端无 hover） */
+    const contactItems = document.querySelectorAll('.contact-item');
+    contactItems.forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        // 关闭其他弹窗
+        contactItems.forEach(other => {
+          if (other !== item) other.classList.remove('active');
+        });
+        item.classList.toggle('active');
+      });
+    });
+    // 点击页面其他位置关闭二维码弹窗
+    document.addEventListener('click', () => {
+      contactItems.forEach(item => item.classList.remove('active'));
+    });
   </script>
 </body>
 </html>
