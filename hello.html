@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开放世界 - Hello</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            width: 100%; height: 100%;
+            overflow: hidden;
+            background: #000;
+            font-family: 'Consolas', 'Microsoft YaHei', monospace;
+            user-select: none;
+        }
+
+        #gameCanvas {
+            position: fixed;
+            inset: 0;
+            display: block;
+        }
+
+        /* ========== HUD ========== */
+        #hud {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* 准星 */
+        #crosshair {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 18px; height: 18px;
+            pointer-events: none;
+            opacity: 1;
+            transition: opacity 0.25s;
+        }
+
+        #crosshair.hidden { opacity: 0; }
+
+        #crosshair::before, #crosshair::after {
+            content: '';
+            position: absolute;
+            background: #ffffff;
+            box-shadow: 0 0 8px #88ccff, 0 0 16px #4488ff;
+            border-radius: 1px;
+        }
+
+        #crosshair::before {
+            top: 50%; left: 0;
+            width: 100%; height: 2px;
+            transform: translateY(-50%);
+        }
+
+        #crosshair::after {
+            left: 50%; top: 0;
+            width: 2px; height: 100%;
+            transform: translateX(-50%);
+        }
+
+        #crosshair .center-dot {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 4px; height: 4px;
+            background: #88ccff;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 6px #88ccff, 0 0 12px #4488ff, 0 0 20px #2266ff;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.8); }
+        }
+
+        /* 交互提示 */
+        #interactHint {
+            position: absolute;
+            top: calc(50% + 40px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 6px 14px;
+            font-size: 13px;
+            color: #fff;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.15s;
+        }
+
+        #interactHint.show { opacity: 1; }
+        #interactHint kbd {
+            background: rgba(255,255,255,0.15);
+            border-radius: 4px;
+            padding: 1px 6px;
+            margin-right: 4px;
+            font-family: inherit;
+            font-size: 12px;
+        }
+
+        /* 交互菜单 */
+        #contextMenu {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(10, 10, 20, 0.95);
+            border: 1px solid rgba(100, 150, 255, 0.4);
+            border-radius: 12px;
+            padding: 16px 20px;
+            min-width: 200px;
+            pointer-events: auto;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s, visibility 0.2s;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(100, 150, 255, 0.15);
+        }
+
+        #contextMenu.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #contextMenu .target-title {
+            font-size: 14px;
+            color: #88ccff;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(100, 150, 255, 0.2);
+            text-align: center;
+        }
+
+        #contextMenu .menu-item {
+            display: block;
+            width: 100%;
+            background: none;
+            border: none;
+            color: #ddd;
+            font-family: inherit;
+            font-size: 14px;
+            padding: 10px 14px;
+            margin: 3px 0;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: left;
+            transition: background 0.15s;
+        }
+
+        #contextMenu .menu-item:hover {
+            background: rgba(100, 150, 255, 0.15);
+            color: #fff;
+        }
+
+        #contextMenu .menu-item.danger:hover {
+            background: rgba(255, 100, 100, 0.15);
+            color: #ffaaaa;
+        }
+
+        #contextMenu .close-menu {
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            background: none;
+            border: none;
+            color: #888;
+            font-family: inherit;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        #contextMenu .close-menu:hover { color: #ccc; }
+
+        /* 开始覆盖层 */
+        #startOverlay {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0a0a1a 0%, #050510 100%);
+            color: #fff;
+        }
+
+        #startOverlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s, visibility 0.4s;
+            pointer-events: none;
+        }
+
+        #startOverlay h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #88ccff, #cc88ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        #startOverlay .desc {
+            font-size: 14px;
+            color: #8888aa;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        #startOverlay .controls {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 24px 32px;
+            margin-bottom: 32px;
+        }
+
+        #startOverlay .controls-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            margin: 8px 0;
+            font-size: 13px;
+            color: #aaaacc;
+        }
+
+        #startOverlay .controls-row kbd {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 5px;
+            padding: 2px 8px;
+            font-family: inherit;
+            font-size: 12px;
+            color: #fff;
+            min-width: 28px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        #startBtn {
+            background: linear-gradient(135deg, #4466aa, #6644aa);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 14px 48px;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(80, 100, 200, 0.4);
+        }
+
+        #startBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(80, 100, 200, 0.55);
+        }
+
+        #startBtn:active { transform: translateY(0); }
+
+        /* ESC 提示 */
+        #escHint {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        #escHint.show { opacity: 1; }
+
+        /* 加载提示 */
+        #loading {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            color: #666;
+            font-size: 14px;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        #loading .spinner {
+            width: 40px; height: 40px;
+            border: 3px solid #222;
+            border-top-color: #4466aa;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- 加载 -->
+    <div id="loading">
+        <div class="spinner"></div>
+        <div>正在加载世界...</div>
+    </div>
+
+    <!-- 开始覆盖层 -->
+    <div id="startOverlay">
+        <h1>开放世界</h1>
+        <p class="desc">点击下方按钮进入游戏（需要锁定鼠标）</p>
+        <div class="controls">
+            <div class="controls-row"><span>移动</span><span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span></div>
+            <div class="controls-row"><span>跳跃</span><span><kbd>Space</kbd></span></div>
+            <div class="controls-row"><span>视角</span><span>鼠标</span></div>
+            <div class="controls-row"><span>交互菜单</span><span><kbd>左键</kbd></span></div>
+            <div class="controls-row"><span>隐藏/显示准星</span><span><kbd>右键</kbd></span></div>
+            <div class="controls-row"><span>解锁鼠标</span><span><kbd>Esc</kbd></span></div>
+        </div>
+        <button id="startBtn">▶ 开始游戏</button>
+    </div>
+
+    <!-- HUD -->
+    <div id="hud">
+        <div id="crosshair">
+            <div class="center-dot"></div>
+        </div>
+        <div id="interactHint"></div>
+        <div id="escHint">按 Esc 解锁鼠标</div>
+    </div>
+
+    <!-- 交互菜单 -->
+    <div id="contextMenu">
+        <div class="target-title" id="menuTitle">目标</div>
+        <div id="menuItems"></div>
+        <button class="close-menu" id="closeMenu">关闭 (ESC)</button>
+    </div>
+
+    <script type="module">
+        import * as THREE from './assets/js/three.module.js';
+
+        /* ============================================================
+         * 游戏全局变量
+         * ============================================================ */
+        var canvas = document.getElementById('gameCanvas');
+        var renderer, scene, camera, raycaster;
+        var COLLIDABLE_MESHES = [];  // 可碰撞网格（AABB）
+        var INTERACTIVE_MESHES = []; // 可交互网格（射线拾取）
+
+        // 玩家状态
+        var player = {
+            position: new THREE.Vector3(0, 1.7, 0),
+            velocity: new THREE.Vector3(),
+            height: 1.7,
+            radius: 0.35,
+            speed: 5.5,
+            jumpForce: 8.0,
+            gravity: 22.0,
+            onGround: true,  // 出生时就在地面上
+        };
+
+        // 视角（用欧拉角手动控制，避免依赖 PointerLockControls.js）
+        var yaw = 0, pitch = 0;
+
+        // 输入状态
+        var keys = {};
+        var isPointerLocked = false;
+        var crosshairVisible = true;
+        var gameStarted = false;  // 是否已进入游戏（自由模式或PointerLock模式）
+
+        // 射线拾取
+        var highlightMesh = null;
+        var interactTarget = null;
+
+        // 自由模式视角更新（Q/E 转向，上下方向键俯仰）
+        function updateFreeLook() {
+            if (!gameStarted || isPointerLocked) return;
+            if (keys['KeyQ']) yaw -= 0.03;
+            if (keys['KeyE']) yaw += 0.03;
+            if (keys['ArrowUp']) pitch = Math.max(pitch - 0.02, -Math.PI/2 + 0.05);
+            if (keys['ArrowDown']) pitch = Math.min(pitch + 0.02, Math.PI/2 - 0.05);
+        }
+
+        /* ============================================================
+         * 初始化
+         * ============================================================ */
+        function init() {
+            // 1. 渲染器
+            renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, powerPreference: 'high-performance' });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x050515, 1);
+
+            // 2. 场景
+            scene = new THREE.Scene();
+
+            // 3. 相机（放在玩家"眼睛"位置）
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.05, 300);
+            camera.position.copy(player.position);
+
+            // 4. 射线拾取
+            raycaster = new THREE.Raycaster();
+            raycaster.far = 8;
+
+            // 5. 加载场景
+            // 从 URL 参数读取场景名，默认 scene_default（放在 assets/data/scene_xxx.json）
+            var sceneName = new URLSearchParams(window.location.search).get('scene') || 'default';
+            var sceneUrl = './assets/data/scene_' + sceneName + '.json';
+            console.log('加载场景:', sceneUrl);
+            loadScene(sceneUrl).then(function(success) {
+                document.getElementById('loading').style.display = 'none';
+                if (!success) {
+                    document.getElementById('loading').innerHTML = '<div style="color:#f66">加载场景失败，请检查控制台</div>';
+                }
+            });
+
+            // 6. 绑定事件
+            bindEvents();
+
+            // 7. 渲染循环
+            requestAnimationFrame(loop);
+        }
+
+        /* ============================================================
+         * 场景加载
+         * ============================================================ */
+        async function loadScene(url) {
+            try {
+                var res = await fetch(url);
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                var data = await res.json();
+
+                // 玩家参数
+                if (data.player) {
+                    var p = data.player;
+                    player.position.set(p.position[0], p.position[1], p.position[2]);
+                    if (p.height) player.height = p.height;
+                    if (p.radius) player.radius = p.radius;
+                    if (p.speed) player.speed = p.speed;
+                    if (p.jumpForce) player.jumpForce = p.jumpForce;
+                    if (p.gravity) player.gravity = p.gravity;
+                    camera.position.copy(player.position);
+                }
+
+                // 雾
+                if (data.world) {
+                    scene.fog = new THREE.Fog(data.world.fogColor || '#1a1a2e', data.world.fogNear || 25, data.world.fogFar || 100);
+                }
+
+                // 光照
+                setupLighting(data.lighting);
+
+                // 天空渐变背景（用一个大的球体背面渲染）
+                var skyGeo = new THREE.SphereGeometry(300, 32, 32);
+                var skyMat = new THREE.ShaderMaterial({
+                    side: THREE.BackSide,
+                    uniforms: {
+                        topColor: { value: new THREE.Color(data.world ? data.world.skyTop || '#0a0a1a' : '#0a0a1a') },
+                        bottomColor: { value: new THREE.Color(data.world ? data.world.skyBottom || '#1a1a3e' : '#1a1a3e') },
+                    },
+                    vertexShader: `
+                        varying vec3 vWorldPos;
+                        void main() {
+                            vec4 worldPos = modelMatrix * vec4(position, 1.0);
+                            vWorldPos = worldPos.xyz;
+                            gl_Position = projectionMatrix * viewMatrix * worldPos;
+                        }
+                    `,
+                    fragmentShader: `
+                        uniform vec3 topColor;
+                        uniform vec3 bottomColor;
+                        varying vec3 vWorldPos;
+                        void main() {
+                            float h = normalize(vWorldPos).y;
+                            gl_FragColor = vec4(mix(bottomColor, topColor, max(h, 0.0)), 1.0);
+                        }
+                    `,
+                });
+                var sky = new THREE.Mesh(skyGeo, skyMat);
+                scene.add(sky);
+
+                // 物体
+                if (data.objects) {
+                    data.objects.forEach(function(obj) {
+                        var mesh = createMesh(obj);
+                        if (mesh) scene.add(mesh);
+                    });
+                }
+
+                // 星星粒子（远处点缀）
+                addStars();
+
+                // 构建缓存碰撞盒（整个游戏过程不变）
+                rebuildCollidableBoxes();
+
+                return true;
+            } catch (err) {
+                console.error('加载场景失败:', err);
+                // 失败时用一个空场景兜底
+                scene.fog = new THREE.Fog(0x1a1a2e, 10, 50);
+                var groundGeo = new THREE.BoxGeometry(20, 1, 20);
+                var groundMat = new THREE.MeshStandardMaterial({ color: 0x2d5a3d, roughness: 0.9 });
+                var ground = new THREE.Mesh(groundGeo, groundMat);
+                ground.position.set(0, -0.5, 0);
+                scene.add(ground);
+                COLLIDABLE_MESHES.push(ground);
+                rebuildCollidableBoxes();
+                return false;
+            }
+        }
+
+        function setupLighting(l) {
+            if (!l) return;
+            if (l.ambient) {
+                scene.add(new THREE.AmbientLight(new THREE.Color(l.ambient.color), l.ambient.intensity));
+            }
+            if (l.directional) {
+                var dl = new THREE.DirectionalLight(new THREE.Color(l.directional.color), l.directional.intensity);
+                dl.position.set(l.directional.position[0], l.directional.position[1], l.directional.position[2]);
+                scene.add(dl);
+            }
+            if (l.hemi) {
+                scene.add(new THREE.HemisphereLight(
+                    new THREE.Color(l.hemi.skyColor),
+                    new THREE.Color(l.hemi.groundColor),
+                    l.hemi.intensity
+                ));
+            }
+        }
+
+        function createMesh(obj) {
+            var geo, mesh;
+            var matProps = {
+                color: new THREE.Color(obj.color || '#888888'),
+                roughness: 0.85,
+                metalness: 0.0,
+            };
+            if (obj.emissive) {
+                matProps.emissive = new THREE.Color(obj.emissive);
+                matProps.emissiveIntensity = 0.6;
+            }
+            var material = new THREE.MeshStandardMaterial(matProps);
+
+            switch (obj.type) {
+                case 'box':
+                    geo = new THREE.BoxGeometry(obj.size[0], obj.size[1], obj.size[2]);
+                    mesh = new THREE.Mesh(geo, material);
+                    break;
+                case 'sphere':
+                    geo = new THREE.SphereGeometry(obj.radius, 16, 12);
+                    mesh = new THREE.Mesh(geo, material);
+                    break;
+                case 'cylinder':
+                    geo = new THREE.CylinderGeometry(
+                        obj.radiusTop || 0.5,
+                        obj.radiusBottom || 0.5,
+                        obj.height || 1,
+                        12
+                    );
+                    mesh = new THREE.Mesh(geo, material);
+                    break;
+                case 'cone':
+                    geo = new THREE.ConeGeometry(obj.radius || 0.5, obj.height || 1, 12);
+                    mesh = new THREE.Mesh(geo, material);
+                    break;
+                default:
+                    console.warn('未知类型:', obj.type);
+                    return null;
+            }
+
+            mesh.position.set(obj.position[0], obj.position[1], obj.position[2]);
+            mesh.userData = {
+                id: obj.id,
+                name: obj.name || obj.id || obj.type,
+                collidable: obj.collidable !== false,
+                interactive: obj.interactive === true,
+                actions: obj.actions || [],
+            };
+
+            if (mesh.userData.collidable) COLLIDABLE_MESHES.push(mesh);
+            if (mesh.userData.interactive) INTERACTIVE_MESHES.push(mesh);
+
+            return mesh;
+        }
+
+        function addStars() {
+            var count = 1000;
+            var positions = new Float32Array(count * 3);
+            for (var i = 0; i < count; i++) {
+                var r = 280 + Math.random() * 20;
+                var theta = Math.random() * Math.PI * 2;
+                var phi = Math.acos(2 * Math.random() - 1);
+                positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+                positions[i * 3 + 1] = Math.abs(r * Math.cos(phi)) * 0.5;
+                positions[i * 3 + 2] = r * Math.sin(phi) * Math.sin(theta);
+            }
+            var geo = new THREE.BufferGeometry();
+            geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            var mat = new THREE.PointsMaterial({ color: 0xffffff, size: 0.8, sizeAttenuation: false, transparent: true, opacity: 0.7 });
+            var stars = new THREE.Points(geo, mat);
+            scene.add(stars);
+        }
+
+        /* ============================================================
+         * 事件绑定
+         * ============================================================ */
+        function bindEvents() {
+            // 开始按钮 → Pointer Lock
+            document.getElementById('startBtn').addEventListener('click', function() {
+                canvas.requestPointerLock();
+            });
+
+            document.addEventListener('pointerlockchange', function() {
+                isPointerLocked = document.pointerLockElement === canvas;
+                gameStarted = isPointerLocked;
+                document.getElementById('startOverlay').classList.toggle('hidden', isPointerLocked);
+                document.getElementById('escHint').classList.toggle('show', isPointerLocked);
+                if (!isPointerLocked) closeContextMenu();
+            });
+
+            // 键盘
+            document.addEventListener('keydown', function(e) {
+                keys[e.code] = true;
+                if (e.code === 'Escape') closeContextMenu();
+                // 在开始覆盖层按 V 进入自由模式（无需 PointerLock）
+                if (!gameStarted && document.getElementById('startOverlay').classList.contains('hidden') === false) {
+                    if (e.code === 'KeyV') {
+                        document.getElementById('startOverlay').classList.add('hidden');
+                        gameStarted = true;
+                    }
+                }
+            });
+            document.addEventListener('keyup', function(e) { keys[e.code] = false; });
+
+            // 鼠标视角（Pointer Lock 模式）
+            document.addEventListener('mousemove', function(e) {
+                if (!isPointerLocked) return;
+                yaw -= e.movementX * 0.0022;
+                pitch -= e.movementY * 0.0022;
+                var lim = Math.PI / 2 - 0.01;
+                if (pitch > lim) pitch = lim;
+                if (pitch < -lim) pitch = -lim;
+            });
+
+            // 鼠标按钮
+            canvas.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+            canvas.addEventListener('mousedown', function(e) {
+                if (!isPointerLocked) return;
+                if (e.button === 2) {
+                    crosshairVisible = !crosshairVisible;
+                    document.getElementById('crosshair').classList.toggle('hidden', !crosshairVisible);
+                } else if (e.button === 0) {
+                    handleLeftClick();
+                }
+            });
+
+            // 窗口缩放
+            window.addEventListener('resize', function() {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        }
+
+        /* ============================================================
+         * 左键拾取 + 交互菜单
+         * ============================================================ */
+        function getLookTarget() {
+            raycaster.setFromCamera(new THREE.Vector2(0, 0), camera);
+            var hits = raycaster.intersectObjects(INTERACTIVE_MESHES, false);
+            return hits.length > 0 ? hits[0].object : null;
+        }
+
+        function handleLeftClick() {
+            // 如果菜单已打开，关闭
+            var menu = document.getElementById('contextMenu');
+            if (menu.classList.contains('show')) {
+                closeContextMenu();
+                return;
+            }
+
+            var target = getLookTarget();
+            if (target) openContextMenu(target);
+        }
+
+        function openContextMenu(mesh) {
+            var ud = mesh.userData;
+            document.getElementById('menuTitle').textContent = ud.name + (ud.id ? ' (' + ud.id + ')' : '');
+
+            var itemsDiv = document.getElementById('menuItems');
+            itemsDiv.innerHTML = '';
+
+            if (ud.actions && ud.actions.length > 0) {
+                ud.actions.forEach(function(action) {
+                    var btn = document.createElement('button');
+                    btn.className = 'menu-item';
+                    if (action === '破坏' || action === '关闭') btn.classList.add('danger');
+                    btn.textContent = action;
+                    btn.addEventListener('click', function() {
+                        console.log('[' + ud.name + '] 执行动作:', action);
+                        if (action === '破坏' || action === '关闭') {
+                            scene.remove(mesh);
+                            var ci = COLLIDABLE_MESHES.indexOf(mesh);
+                            if (ci >= 0) COLLIDABLE_MESHES.splice(ci, 1);
+                            var ii = INTERACTIVE_MESHES.indexOf(mesh);
+                            if (ii >= 0) INTERACTIVE_MESHES.splice(ii, 1);
+                        }
+                        closeContextMenu();
+                    });
+                    itemsDiv.appendChild(btn);
+                });
+            } else {
+                var noAction = document.createElement('div');
+                noAction.style.cssText = 'color:#888;font-size:13px;text-align:center;padding:8px;';
+                noAction.textContent = '没有可交互的动作';
+                itemsDiv.appendChild(noAction);
+            }
+
+            // 取消 Pointer Lock 以便点击菜单
+            document.exitPointerLock();
+            document.getElementById('contextMenu').classList.add('show');
+            isPointerLocked = false;
+        }
+
+        function closeContextMenu() {
+            document.getElementById('contextMenu').classList.remove('show');
+        }
+
+        document.getElementById('closeMenu').addEventListener('click', closeContextMenu);
+
+        /* ============================================================
+         * 物理 - 简化 AABB 碰撞
+         * 核心思路：先算候选新位置，再检测每个轴是否碰撞，贴到面上
+         * ============================================================ */
+
+        // 缓存网格的世界 AABB（避免每帧 applyMatrix4）
+        var COLLIDABLE_BOXES = [];
+
+        function rebuildCollidableBoxes() {
+            // 强制让 three.js 更新所有 mesh 的 matrixWorld（因为 mesh 创建后未 render 过）
+            scene.updateMatrixWorld(true);
+            COLLIDABLE_BOXES = [];
+            for (var i = 0; i < COLLIDABLE_MESHES.length; i++) {
+                var m = COLLIDABLE_MESHES[i];
+                if (!m.geometry.boundingBox) m.geometry.computeBoundingBox();
+                var b = m.geometry.boundingBox.clone();
+                b.applyMatrix4(m.matrixWorld);
+                COLLIDABLE_BOXES.push(b);
+            }
+            // 调试输出
+            console.log('碰撞盒重建完成，共 ' + COLLIDABLE_BOXES.length + ' 个');
+        }
+
+        function aabbIntersect(a, b) {
+            return a.min.x <= b.max.x && a.max.x >= b.min.x &&
+                   a.min.y <= b.max.y && a.max.y >= b.min.y &&
+                   a.min.z <= b.max.z && a.max.z >= b.min.z;
+        }
+
+        // 玩家 AABB（脚在 pos.y - player.height，头在 pos.y，中心在 pos.x, pos.z）
+        function playerBox(pos) {
+            return {
+                minX: pos.x - player.radius, maxX: pos.x + player.radius,
+                minY: pos.y - player.height, maxY: pos.y,
+                minZ: pos.z - player.radius, maxZ: pos.z + player.radius,
+            };
+        }
+
+        function boxIntersectPlayer(mBox, pBox) {
+            return pBox.minX <= mBox.max.x && pBox.maxX >= mBox.min.x &&
+                   pBox.minY <= mBox.max.y && pBox.maxY >= mBox.min.y &&
+                   pBox.minZ <= mBox.max.z && pBox.maxZ >= mBox.min.z;
+        }
+
+        /* ============================================================
+         * 更新逻辑 - 完全重写，保证方向+物理正确
+         * ============================================================ */
+        function update(dt) {
+            if (!gameStarted) return;
+
+            // --- 视角 ---
+            camera.rotation.order = 'YXZ';
+            camera.rotation.set(pitch, yaw, 0);
+
+            // --- 方向向量（严格匹配 three.js 相机 rotation.set(pitch, yaw, 0)）---
+            // three.js 相机默认朝 -Z。绕 Y 轴旋转 yaw 时，forward 用绕 Y 旋转矩阵：
+            //   cos(yaw)*0 + sin(yaw)*(-1) = -sin(yaw)
+            // 所以 forward = (-sin(yaw), 0, -cos(yaw))
+            var sinY = Math.sin(yaw), cosY = Math.cos(yaw);
+            var forwardX = -sinY, forwardZ = -cosY;
+            // right = forward × up = (cos(yaw), 0, -sin(yaw))
+            var rightX = cosY, rightZ = -sinY;
+
+            // --- 输入 → 移动方向 ---
+            var mx = 0, mz = 0;
+            if (keys['KeyW'] || keys['ArrowUp'])    { mx += forwardX; mz += forwardZ; }
+            if (keys['KeyS'] || keys['ArrowDown'])  { mx -= forwardX; mz -= forwardZ; }
+            if (keys['KeyD'] || keys['ArrowRight']) { mx += rightX;   mz += rightZ; }
+            if (keys['KeyA'] || keys['ArrowLeft'])  { mx -= rightX;   mz -= rightZ; }
+
+            var len = Math.sqrt(mx * mx + mz * mz);
+            if (len > 1e-6) { mx /= len; mz /= len; }
+
+            // --- 速度 ---
+            var desiredVX = mx * player.speed;
+            var desiredVZ = mz * player.speed;
+
+            // 重力 / 跳跃
+            if (player.onGround) {
+                // 在地面上：清除上一帧残留的垂直速度
+                player.velocity.y = 0;
+                if (keys['Space']) {
+                    player.velocity.y = player.jumpForce;
+                    player.onGround = false;
+                }
+            } else {
+                // 在空中：持续施加重力
+                player.velocity.y -= player.gravity * dt;
+            }
+
+            // --- 碰撞解算 ---
+            var nx = player.position.x + desiredVX * dt;
+            var nz = player.position.z + desiredVZ * dt;
+            var ny = player.position.y + player.velocity.y * dt;
+
+            // === 先做"站地探测"：用当前位置（未移动）检查脚下是否有地面 ===
+            player.onGround = false;
+            var FOOT_OFFSET = 0.05;  // 脚离地容差
+            var currentFootY = player.position.y - player.height;
+            for (var f = 0; f < COLLIDABLE_BOXES.length; f++) {
+                var fb = COLLIDABLE_BOXES[f];
+                // 检查玩家水平范围是否覆盖这个碰撞盒
+                if (player.position.x + player.radius >= fb.min.x && player.position.x - player.radius <= fb.max.x &&
+                    player.position.z + player.radius >= fb.min.z && player.position.z - player.radius <= fb.max.z) {
+                    // 脚下方很近有地面顶面
+                    if (currentFootY >= fb.max.y - FOOT_OFFSET && currentFootY <= fb.max.y + FOOT_OFFSET) {
+                        player.onGround = true;
+                        break;
+                    }
+                }
+            }
+
+            // X 轴
+            var pBoxX = playerBox(new THREE.Vector3(nx, player.position.y, player.position.z));
+            var footY = player.position.y - player.height;
+            for (var i = 0; i < COLLIDABLE_BOXES.length; i++) {
+                var mb = COLLIDABLE_BOXES[i];
+                // 跳过地板：如果这个盒子的顶面就在玩家脚附近，它是地板，不应阻挡水平移动
+                var isFloor = (mb.max.y <= footY + 0.1 && mb.max.y >= footY - 0.2);
+                if (isFloor) continue;
+                if (boxIntersectPlayer(mb, pBoxX)) {
+                    if (desiredVX > 0) {
+                        nx = mb.min.x - player.radius - 0.001;
+                    } else if (desiredVX < 0) {
+                        nx = mb.max.x + player.radius + 0.001;
+                    }
+                    desiredVX = 0;
+                    break;
+                }
+            }
+
+            // Z 轴
+            var pBoxZ = playerBox(new THREE.Vector3(nx, player.position.y, nz));
+            for (var j = 0; j < COLLIDABLE_BOXES.length; j++) {
+                var mb2 = COLLIDABLE_BOXES[j];
+                var isFloor2 = (mb2.max.y <= footY + 0.1 && mb2.max.y >= footY - 0.2);
+                if (isFloor2) continue;
+                if (boxIntersectPlayer(mb2, pBoxZ)) {
+                    if (desiredVZ > 0) {
+                        nz = mb2.min.z - player.radius - 0.001;
+                    } else if (desiredVZ < 0) {
+                        nz = mb2.max.z + player.radius + 0.001;
+                    }
+                    desiredVZ = 0;
+                    break;
+                }
+            }
+
+            // Y 轴（跳/落）- 只处理"方向合理"的盒子
+            // 下落 → 只处理玩家**下方**的盒子（地面）
+            // 上升 → 只处理玩家**上方**的盒子（天花板）
+            var pBoxY = playerBox(new THREE.Vector3(nx, ny, nz));
+            player.onGround = false;
+            var feetTargetY = ny - player.height;
+            var headTargetY = ny;
+            for (var k = 0; k < COLLIDABLE_BOXES.length; k++) {
+                var mb3 = COLLIDABLE_BOXES[k];
+                if (!boxIntersectPlayer(mb3, pBoxY)) continue;
+
+                if (player.velocity.y <= 0) {
+                    // 下落：盒子必须在脚下附近（顶面在脚下方 0.5m 内）
+                    if (mb3.max.y > feetTargetY + 0.5) continue; // 太高了，不是地面
+                    ny = mb3.max.y + player.height + 0.001;
+                    player.velocity.y = 0;
+                    player.onGround = true;
+                    break;
+                } else {
+                    // 上升：盒子必须在头顶附近（底面在头上 0.5m 内）
+                    if (mb3.min.y < headTargetY - 0.5) continue; // 太低了，不是天花板
+                    ny = mb3.min.y - 0.001;
+                    player.velocity.y = 0;
+                    break;
+                }
+            }
+
+            // 边界保护：掉出世界就重置
+            if (ny < -30) {
+                nx = 0; ny = 1.7; nz = 0;
+                player.velocity.set(0, 0, 0);
+            }
+
+            // 最终写入
+            player.position.set(nx, ny, nz);
+            player.velocity.x = desiredVX;
+            player.velocity.z = desiredVZ;
+
+            // 相机跟随
+            camera.position.copy(player.position);
+
+            // 射线拾取高亮
+            updateHighlight();
+        }
+
+        function updateHighlight() {
+            var target = crosshairVisible ? getLookTarget() : null;
+
+            if (highlightMesh && highlightMesh !== target) {
+                highlightMesh.material.emissive.setHex(0x000000);
+                highlightMesh.material.emissiveIntensity = 0;
+                highlightMesh = null;
+            }
+
+            if (target && target !== highlightMesh) {
+                highlightMesh = target;
+                target.material.emissive.setHex(0x4466aa);
+                target.material.emissiveIntensity = 0.5;
+            }
+
+            // 交互提示
+            var hint = document.getElementById('interactHint');
+            if (target) {
+                hint.innerHTML = '<kbd>左键</kbd> ' + target.userData.name;
+                hint.classList.add('show');
+            } else {
+                hint.classList.remove('show');
+            }
+        }
+
+        /* ============================================================
+         * 渲染循环
+         * ============================================================ */
+        var lastTime = performance.now();
+        function loop(now) {
+            var dt = Math.min((now - lastTime) / 1000, 0.05);
+            lastTime = now;
+
+            update(dt);
+            renderer.render(scene, camera);
+
+            requestAnimationFrame(loop);
+        }
+
+        // 启动
+        try {
+            init();
+        } catch (err) {
+            console.error('游戏初始化失败:', err);
+            document.getElementById('loading').innerHTML =
+                '<div style="color:#f66">初始化失败: ' + err.message + '</div>';
+        }
+    </script>
+</body>
+</html>

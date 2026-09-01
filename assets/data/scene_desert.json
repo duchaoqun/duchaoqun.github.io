@@ -1,0 +1,49 @@
+{
+  "player": {
+    "position": [0, 1.7, 0],
+    "height": 1.7,
+    "radius": 0.35,
+    "speed": 7.0,
+    "jumpForce": 10.0,
+    "gravity": 22.0
+  },
+  "world": {
+    "fogColor": "#d4a574",
+    "fogNear": 30,
+    "fogFar": 150,
+    "skyTop": "#e8c89a",
+    "skyBottom": "#f4d4a0"
+  },
+  "lighting": {
+    "ambient": { "color": "#ffd68a", "intensity": 0.7 },
+    "directional": { "color": "#ffe8cc", "intensity": 1.2, "position": [40, 60, 30] },
+    "hemi": { "skyColor": "#ffd68a", "groundColor": "#c89860", "intensity": 0.6 }
+  },
+  "objects": [
+    { "id": "ground", "type": "box", "position": [0, -0.5, 0], "size": [120, 1, 120], "color": "#d4a574", "collidable": true },
+    { "id": "dune_1", "type": "box", "position": [-20, 1.5, -15], "size": [20, 4, 15], "color": "#c49860", "collidable": true },
+    { "id": "dune_2", "type": "box", "position": [22, 2, -10], "size": [18, 5, 14], "color": "#c49860", "collidable": true },
+    { "id": "dune_3", "type": "box", "position": [0, 1, 28], "size": [30, 3, 16], "color": "#c49860", "collidable": true },
+    { "id": "pyramid_base", "type": "box", "position": [-10, 2, -30], "size": [16, 1, 16], "color": "#b08050", "collidable": true },
+    { "id": "pyramid_l1", "type": "box", "position": [-10, 3.5, -30], "size": [12, 2, 12], "color": "#a07040", "collidable": true },
+    { "id": "pyramid_l2", "type": "box", "position": [-10, 5.5, -30], "size": [8, 2, 8], "color": "#a07040", "collidable": true },
+    { "id": "pyramid_l3", "type": "box", "position": [-10, 7.5, -30], "size": [4, 2, 4], "color": "#a07040", "collidable": true },
+    { "id": "pyramid_top", "type": "cone", "position": [-10, 10, -30], "radius": 2.5, "height": 5, "color": "#886030", "collidable": false },
+    { "id": "cactus_1", "type": "cylinder", "position": [8, 2, 5], "radiusTop": 0.4, "radiusBottom": 0.5, "height": 4, "color": "#558855", "collidable": true, "interactive": true, "name": "仙人掌", "actions": ["浇水", "查看"] },
+    { "id": "cactus_2", "type": "cylinder", "position": [-15, 1.5, 12], "radiusTop": 0.35, "radiusBottom": 0.45, "height": 3, "color": "#558855", "collidable": true },
+    { "id": "cactus_3", "type": "cylinder", "position": [25, 2.2, 18], "radiusTop": 0.45, "radiusBottom": 0.55, "height": 4.5, "color": "#558855", "collidable": true, "interactive": true, "name": "大仙人掌", "actions": ["浇水"] },
+    { "id": "rock_a", "type": "box", "position": [5, 0.5, 12], "size": [2, 1, 2], "color": "#886655", "collidable": true },
+    { "id": "rock_b", "type": "box", "position": [-3, 0.5, -5], "size": [1.5, 1, 1.5], "color": "#886655", "collidable": true },
+    { "id": "rock_c", "type": "box", "position": [12, 0.5, -8], "size": [1.8, 1, 1.8], "color": "#997766", "collidable": true },
+    { "id": "oasis_water", "type": "box", "position": [18, 0.05, 25], "size": [6, 0.1, 6], "color": "#4488cc", "collidable": false, "interactive": true, "name": "绿洲", "actions": ["喝水", "游泳"] },
+    { "id": "oasis_palm_1", "type": "cylinder", "position": [15, 2, 22], "radiusTop": 0.2, "radiusBottom": 0.35, "height": 4, "color": "#6B4423", "collidable": true },
+    { "id": "oasis_palm_leaves", "type": "cone", "position": [15, 5, 22], "radius": 1.5, "height": 2.5, "color": "#3a8a3a", "collidable": false },
+    { "id": "market_box_1", "type": "box", "position": [0, 1, 5], "size": [1.6, 1.6, 1.6], "color": "#b88a4a", "collidable": true, "interactive": true, "name": "货物箱", "actions": ["打开", "拾取"] },
+    { "id": "market_box_2", "type": "box", "position": [-2, 1, 5], "size": [1.6, 1.6, 1.6], "color": "#a87a3a", "collidable": true },
+    { "id": "flag", "type": "cylinder", "position": [30, 2, 30], "radiusTop": 0.05, "radiusBottom": 0.08, "height": 4, "color": "#666666", "collidable": false },
+    { "id": "flag_cloth", "type": "box", "position": [30.6, 3.2, 30], "size": [1.2, 0.7, 0.02], "color": "#ffcc00", "collidable": false, "interactive": true, "name": "沙漠旗帜", "actions": ["查看", "收起"] },
+    { "id": "ruin_pillar_1", "type": "cylinder", "position": [-25, 3, 20], "radiusTop": 0.5, "radiusBottom": 0.5, "height": 6, "color": "#bbaa99", "collidable": true },
+    { "id": "ruin_pillar_2", "type": "cylinder", "position": [-25, 2.5, 25], "radiusTop": 0.5, "radiusBottom": 0.5, "height": 5, "color": "#bbaa99", "collidable": true },
+    { "id": "ruin_pillar_3", "type": "cylinder", "position": [-25, 1.5, 30], "radiusTop": 0.5, "radiusBottom": 0.5, "height": 3, "color": "#bbaa99", "collidable": true }
+  ]
+}

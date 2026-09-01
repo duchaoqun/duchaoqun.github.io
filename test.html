@@ -1,15 +1,910 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <script type="module" src="assets/js/index.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宇宙标签</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --glass-bg: rgba(12, 12, 22, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text: rgba(255, 255, 255, 0.9);
+            --text-dim: rgba(255, 255, 255, 0.45);
+            --accent: #8b9fe8;
+        }
+
+        body {
+            font-family: 'Quicksand', 'Microsoft YaHei', 'Segoe UI', sans-serif;
+            background: #050508;
+            overflow: hidden;
+            height: 100vh;
+            color: var(--text);
+        }
+
+        /* ========== Three.js 画布 ========== */
+        #threeCanvas {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+        }
+
+        /* ========== 密码页面 ========== */
+        #passwordGate {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a0a2e 0%, #0f0f23 50%, #050508 100%);
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        #passwordGate.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .gate-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 28px;
+            padding: 48px 56px;
+            text-align: center;
+            max-width: 420px;
+            width: 90%;
+            animation: bounce-in 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes bounce-in {
+            0% { transform: scale(0.5) translateY(40px); opacity: 0; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        .gate-emoji {
+            font-size: 64px;
+            display: inline-block;
+            animation: float-emoji 3s ease-in-out infinite;
+        }
+
+        @keyframes float-emoji {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-12px) rotate(5deg); }
+        }
+
+        .gate-title {
+            font-size: 26px;
+            font-weight: 700;
+            margin: 16px 0 8px;
+            color: var(--text);
+        }
+
+        .gate-subtitle {
+            font-size: 14px;
+            color: var(--text-dim);
+            margin-bottom: 28px;
+        }
+
+        .password-input-group {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 14px 20px 14px 48px;
+            border: 2px solid rgba(139, 159, 232, 0.4);
+            border-radius: 16px;
+            font-size: 16px;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .password-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(139, 159, 232, 0.15);
+        }
+
+        .password-input::placeholder { color: rgba(255, 255, 255, 0.25); }
+
+        .password-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+        }
+
+        .gate-button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 16px;
+            font-size: 16px;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            background: linear-gradient(135deg, #6b7cf7, #9b6bef);
+            color: white;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 16px rgba(107, 124, 247, 0.35);
+        }
+
+        .gate-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(107, 124, 247, 0.45);
+        }
+
+        .gate-button:active { transform: translateY(0); }
+
+        .gate-error {
+            color: #e57373;
+            font-size: 13px;
+            margin-top: 12px;
+            min-height: 18px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gate-error.show { opacity: 1; }
+
+        /* ========== 主内容 ========== */
+        #mainContent {
+            position: fixed;
+            inset: 0;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.8s ease 0.3s;
+            pointer-events: none;
+        }
+
+        #mainContent.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* 标签面板（左侧半透明） */
+        #tagPanel {
+            position: fixed;
+            left: 24px;
+            top: 24px;
+            bottom: 24px;
+            width: 280px;
+            z-index: 5;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s;
+        }
+
+        #tagPanel.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .tag-header {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-dim);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .tag-input {
+            flex: 1;
+            width: 100%;
+            border: none;
+            outline: none;
+            resize: none;
+            font-family: inherit;
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--text);
+            background: transparent;
+        }
+
+        .tag-input::placeholder { color: rgba(255, 255, 255, 0.2); }
+
+        .tag-footer {
+            padding-top: 12px;
+            border-top: 1px solid var(--glass-border);
+            font-size: 11px;
+            color: var(--text-dim);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tag-count {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3px 10px;
+            border-radius: 10px;
+        }
+
+        /* 搜索面板（浮动，按左键弹出） */
+        #searchPanel {
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            z-index: 10;
+            width: 420px;
+            max-width: 90vw;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 16px 20px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-50%) translateY(-20px) scale(0.9);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        #searchPanel.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0) scale(1);
+        }
+
+        .search-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            font-size: 16px;
+            opacity: 0.6;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 16px 12px 40px;
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            font-size: 15px;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            outline: none;
+            transition: border-color 0.3s, background 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .search-input::placeholder { color: rgba(255, 255, 255, 0.3); }
+
+        .search-hint {
+            margin-top: 10px;
+            font-size: 11px;
+            color: var(--text-dim);
+            text-align: center;
+        }
+
+        .search-result-count {
+            position: absolute;
+            bottom: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: var(--text-dim);
+            white-space: nowrap;
+        }
+
+        /* 键盘提示 */
+        #keyHint {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            color: var(--text-dim);
+            font-size: 13px;
+            opacity: 0;
+            transition: opacity 0.8s ease 1s;
+            pointer-events: none;
+            text-align: center;
+        }
+
+        #keyHint.show { opacity: 1; }
+
+        #keyHint kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            margin: 0 2px;
+            border: 1px solid var(--glass-border);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.06);
+            font-family: inherit;
+            font-size: 12px;
+        }
+
+        /* 退出按钮 */
+        .logout-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 8px 16px;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-dim);
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .logout-btn.show { opacity: 1; pointer-events: auto; }
+        .logout-btn:hover { color: var(--text); border-color: var(--accent); }
+
+        @media (max-width: 700px) {
+            #tagPanel { width: calc(100% - 48px); bottom: auto; height: 160px; }
+        }
+    </style>
 </head>
 <body>
-<div id="demo">
-    <button onclick="test()">
 
-    </button>
-</div>
+    <!-- 密码页面 -->
+    <div id="passwordGate">
+        <div class="gate-card">
+            <div class="gate-emoji">🌌</div>
+            <h1 class="gate-title">进入宇宙</h1>
+            <p class="gate-subtitle">输入密码来开启你的星际之旅</p>
+            <div class="password-input-group">
+                <span class="password-icon">🔐</span>
+                <input type="password" class="password-input" id="passwordInput" placeholder="输入密码..." autocomplete="off">
+            </div>
+            <button class="gate-button" id="passwordSubmit">进入宇宙 ✨</button>
+            <div class="gate-error" id="passwordError">密码不对哦，再试试吧～</div>
+        </div>
+    </div>
+
+    <!-- Three.js 画布 -->
+    <canvas id="threeCanvas"></canvas>
+
+    <!-- 主内容 -->
+    <div id="mainContent">
+        <!-- 标签面板 -->
+        <div id="tagPanel">
+            <div class="tag-header">🏷️ 标签</div>
+            <textarea class="tag-input" id="tagInput" placeholder="在这里记录你的标签和想法..."></textarea>
+            <div class="tag-footer">
+                <span class="tag-count" id="tagCount">0 字</span>
+                <span>按 ← 搜索贴片</span>
+            </div>
+        </div>
+
+        <!-- 搜索面板 -->
+        <div id="searchPanel">
+            <div class="search-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="search" class="search-input" id="searchInput" placeholder="搜索贴片..." autocomplete="off">
+                <div class="search-result-count" id="searchCount"></div>
+            </div>
+            <div class="search-hint">按 Esc 关闭搜索</div>
+        </div>
+
+        <!-- 键盘提示 -->
+        <div id="keyHint">按 <kbd>←</kbd> 键搜索贴片</div>
+    </div>
+
+    <!-- 退出按钮 -->
+    <button class="logout-btn" id="logoutBtn">🔒 退出</button>
+
+    <script>
+        /* ========== 密码验证 ========== */
+        var PASSWORD = '123456';
+        var gate = document.getElementById('passwordGate');
+        var mainContent = document.getElementById('mainContent');
+        var passwordInput = document.getElementById('passwordInput');
+        var passwordSubmit = document.getElementById('passwordSubmit');
+        var passwordError = document.getElementById('passwordError');
+        var logoutBtn = document.getElementById('logoutBtn');
+        var tagPanel = document.getElementById('tagPanel');
+        var keyHint = document.getElementById('keyHint');
+
+        function tryLogin() {
+            if (passwordInput.value === PASSWORD) {
+                gate.classList.add('hidden');
+                mainContent.classList.add('visible');
+                logoutBtn.classList.add('show');
+                tagPanel.classList.add('show');
+                keyHint.classList.add('show');
+                if (typeof window.initThree === 'function') window.initThree(allTiles);
+            } else {
+                passwordError.classList.add('show');
+                passwordInput.value = '';
+                passwordInput.focus();
+                var card = gate.querySelector('.gate-card');
+                card.style.animation = 'none';
+                setTimeout(function() { card.style.animation = ''; }, 10);
+            }
+        }
+
+        passwordSubmit.addEventListener('click', tryLogin);
+        passwordInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') tryLogin();
+        });
+        passwordInput.addEventListener('input', function() {
+            passwordError.classList.remove('show');
+        });
+
+        logoutBtn.addEventListener('click', function() {
+            mainContent.classList.remove('visible');
+            logoutBtn.classList.remove('show');
+            tagPanel.classList.remove('show');
+            keyHint.classList.remove('show');
+            hideSearch();
+            setTimeout(function() {
+                gate.classList.remove('hidden');
+                passwordInput.value = '';
+                passwordInput.focus();
+            }, 400);
+        });
+
+        passwordInput.focus();
+
+        /* ========== 贴片数据（内嵌兜底） ========== */
+        var allTiles = [
+            {"id":1,"title":"星星","description":"夜空中最亮的星","color":"#FFD93D","emoji":"⭐","category":"天空"},
+            {"id":2,"title":"月亮","description":"弯弯的月牙","color":"#A8C5E0","emoji":"🌙","category":"天空"},
+            {"id":3,"title":"云朵","description":"软绵绵的白云","color":"#E8E8E8","emoji":"☁️","category":"天空"},
+            {"id":4,"title":"彩虹","description":"雨后的七彩桥","color":"#FFB6C1","emoji":"🌈","category":"自然"},
+            {"id":5,"title":"花朵","description":"盛开的小花","color":"#FF9AA2","emoji":"🌸","category":"植物"},
+            {"id":6,"title":"树木","description":"绿油油的大树","color":"#87CEEB","emoji":"🌳","category":"植物"},
+            {"id":7,"title":"冰淇淋","description":"甜甜的草莓味","color":"#FFC0CB","emoji":"🍦","category":"美食"},
+            {"id":8,"title":"蛋糕","description":"生日小蛋糕","color":"#FFFACD","emoji":"🍰","category":"美食"},
+            {"id":9,"title":"小猫","description":"毛茸茸的猫咪","color":"#FFD4A3","emoji":"🐱","category":"动物"},
+            {"id":10,"title":"小狗","description":"忠诚的小狗","color":"#E0C097","emoji":"🐶","category":"动物"},
+            {"id":11,"title":"兔子","description":"蹦蹦跳跳的兔子","color":"#FFF0F5","emoji":"🐰","category":"动物"},
+            {"id":12,"title":"蝴蝶","description":"翩翩起舞的蝴蝶","color":"#DDA0DD","emoji":"🦋","category":"动物"},
+            {"id":13,"title":"糖果","description":"五颜六色的糖果","color":"#FF69B4","emoji":"🍬","category":"美食"},
+            {"id":14,"title":"气球","description":"飘在空中的气球","color":"#FFB347","emoji":"🎈","category":"玩具"},
+            {"id":15,"title":"爱心","description":"满满的爱意","color":"#FF6B9D","emoji":"💕","category":"情感"},
+            {"id":16,"title":"音乐","description":"动听的旋律","color":"#9370DB","emoji":"🎵","category":"艺术"}
+        ];
+
+        /* ========== 搜索框（按左键弹出） ========== */
+        var searchPanel = document.getElementById('searchPanel');
+        var searchInput = document.getElementById('searchInput');
+        var searchCount = document.getElementById('searchCount');
+
+        function showSearch() {
+            searchPanel.classList.add('show');
+            setTimeout(function() { searchInput.focus(); }, 100);
+        }
+
+        function hideSearch() {
+            searchPanel.classList.remove('show');
+            searchInput.value = '';
+            if (typeof window.filterTiles === 'function') window.filterTiles('');
+            searchCount.textContent = '';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                if (!searchPanel.classList.contains('show') &&
+                    e.target !== passwordInput && e.target !== document.getElementById('tagInput')) {
+                    e.preventDefault();
+                    showSearch();
+                }
+            }
+            if (e.key === 'Escape' && searchPanel.classList.contains('show')) {
+                hideSearch();
+            }
+        });
+
+        searchInput.addEventListener('input', function() {
+            var query = searchInput.value.trim().toLowerCase();
+            if (typeof window.filterTiles === 'function') window.filterTiles(query);
+            var count = window.getMatchCount ? window.getMatchCount(query) : allTiles.length;
+            if (query === '') {
+                searchCount.textContent = '';
+            } else {
+                searchCount.textContent = '匹配 ' + count + ' 个贴片';
+            }
+        });
+
+        /* ========== 标签字数统计 ========== */
+        var tagInput = document.getElementById('tagInput');
+        var tagCount = document.getElementById('tagCount');
+        tagInput.addEventListener('input', function() {
+            tagCount.textContent = tagInput.value.length + ' 字';
+        });
+    </script>
+
+    <script type="module">
+        import * as THREE from './assets/js/three.module.js';
+
+        var scene, camera, renderer, raycaster, mouse;
+        var stars, starMat, nebulae = [];
+        var tileMeshes = [];
+        var tileData = [];
+        var threeInited = false;
+        var mouseX = 0, mouseY = 0;
+        var targetX = 0, targetY = 0;
+        var hoveredTile = null;
+
+        function createTileTexture(item) {
+            var size = 256;
+            var canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            var ctx = canvas.getContext('2d');
+
+            // 深色半透明背景
+            ctx.fillStyle = 'rgba(8, 8, 18, 0.85)';
+            ctx.fillRect(0, 0, size, size);
+
+            // 颜色叠加
+            ctx.fillStyle = item.color + '22';
+            ctx.fillRect(0, 0, size, size);
+
+            // 边框
+            ctx.strokeStyle = item.color;
+            ctx.lineWidth = 3;
+            ctx.strokeRect(8, 8, size - 16, size - 16);
+
+            // 内边框光晕
+            ctx.strokeStyle = item.color + '44';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(14, 14, size - 28, size - 28);
+
+            // 分类标签
+            ctx.font = '500 14px "Quicksand", sans-serif';
+            ctx.fillStyle = item.color + 'aa';
+            ctx.textAlign = 'right';
+            ctx.textBaseline = 'top';
+            ctx.fillText(item.category, size - 20, 22);
+
+            // Emoji
+            ctx.font = '60px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(item.emoji, size / 2, size / 2 - 25);
+
+            // 标题
+            ctx.font = 'bold 22px "Quicksand", sans-serif';
+            ctx.fillStyle = '#ffffff';
+            ctx.fillText(item.title, size / 2, size / 2 + 28);
+
+            // 描述
+            ctx.font = '13px "Quicksand", sans-serif';
+            ctx.fillStyle = 'rgba(255,255,255,0.5)';
+            ctx.fillText(item.description, size / 2, size / 2 + 52);
+
+            var texture = new THREE.CanvasTexture(canvas);
+            texture.needsUpdate = true;
+            return texture;
+        }
+
+        function createGlowTexture(color) {
+            var canvas = document.createElement('canvas');
+            canvas.width = 128;
+            canvas.height = 128;
+            var ctx = canvas.getContext('2d');
+            var grad = ctx.createRadialGradient(64, 64, 0, 64, 64, 64);
+            grad.addColorStop(0, color);
+            grad.addColorStop(0.3, color.replace('1)', '0.4)'));
+            grad.addColorStop(1, color.replace('1)', '0)'));
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, 128, 128);
+            return new THREE.CanvasTexture(canvas);
+        }
+
+        function initStars() {
+            // 星空粒子
+            var starCount = 3000;
+            var positions = new Float32Array(starCount * 3);
+            var colors = new Float32Array(starCount * 3);
+
+            for (var i = 0; i < starCount; i++) {
+                var r = 60 + Math.random() * 140;
+                var theta = Math.random() * Math.PI * 2;
+                var phi = Math.acos(2 * Math.random() - 1);
+                positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+                positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+                positions[i * 3 + 2] = r * Math.cos(phi);
+
+                var c = Math.random();
+                if (c < 0.7) {
+                    colors[i * 3] = 1; colors[i * 3 + 1] = 1; colors[i * 3 + 2] = 1;
+                } else if (c < 0.85) {
+                    colors[i * 3] = 0.6; colors[i * 3 + 1] = 0.8; colors[i * 3 + 2] = 1;
+                } else {
+                    colors[i * 3] = 1; colors[i * 3 + 1] = 0.9; colors[i * 3 + 2] = 0.6;
+                }
+            }
+
+            var starGeo = new THREE.BufferGeometry();
+            starGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            starGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+            starMat = new THREE.PointsMaterial({
+                size: 0.35,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                sizeAttenuation: true,
+                blending: THREE.AdditiveBlending,
+            });
+
+            stars = new THREE.Points(starGeo, starMat);
+            scene.add(stars);
+
+            // 近处亮星（带光晕）
+            var brightStarCount = 60;
+            var glowTex = createGlowTexture('rgba(255,255,255,1)');
+            for (var b = 0; b < brightStarCount; b++) {
+                var glowMat = new THREE.SpriteMaterial({
+                    map: glowTex,
+                    transparent: true,
+                    opacity: 0.4 + Math.random() * 0.3,
+                    blending: THREE.AdditiveBlending,
+                });
+                var glow = new THREE.Sprite(glowMat);
+                var br = 20 + Math.random() * 40;
+                var btheta = Math.random() * Math.PI * 2;
+                var bphi = Math.acos(2 * Math.random() - 1);
+                glow.position.set(
+                    br * Math.sin(bphi) * Math.cos(btheta),
+                    br * Math.sin(bphi) * Math.sin(btheta),
+                    br * Math.cos(bphi)
+                );
+                var s = 1 + Math.random() * 2;
+                glow.scale.set(s, s, 1);
+                glow.userData = { baseOpacity: glowMat.opacity, twinkleSpeed: 0.5 + Math.random() * 1.5, offset: Math.random() * Math.PI * 2 };
+                scene.add(glow);
+                nebulae.push(glow);
+            }
+
+            // 远处星云
+            var nebulaColors = [
+                'rgba(70, 50, 120, 0.3)',
+                'rgba(120, 50, 80, 0.2)',
+                'rgba(40, 80, 120, 0.25)',
+            ];
+            for (var n = 0; n < nebulaColors.length; n++) {
+                var nebCanvas = document.createElement('canvas');
+                nebCanvas.width = 512;
+                nebCanvas.height = 512;
+                var nctx = nebCanvas.getContext('2d');
+                var ngrad = nctx.createRadialGradient(256, 256, 0, 256, 256, 256);
+                ngrad.addColorStop(0, nebulaColors[n]);
+                ngrad.addColorStop(0.5, nebulaColors[n].replace(/0\.\d+\)/, '0.1)'));
+                ngrad.addColorStop(1, nebulaColors[n].replace(/0\.\d+\)/, '0)'));
+                nctx.fillStyle = ngrad;
+                nctx.fillRect(0, 0, 512, 512);
+                var nebTex = new THREE.CanvasTexture(nebCanvas);
+                var nebMat = new THREE.SpriteMaterial({
+                    map: nebTex,
+                    transparent: true,
+                    opacity: 0.5,
+                    blending: THREE.AdditiveBlending,
+                });
+                var nebula = new THREE.Sprite(nebMat);
+                nebula.position.set(
+                    (Math.random() - 0.5) * 120,
+                    (Math.random() - 0.5) * 80,
+                    -100 - Math.random() * 80
+                );
+                var ns = 80 + Math.random() * 60;
+                nebula.scale.set(ns, ns, 1);
+                scene.add(nebula);
+            }
+        }
+
+        function initTiles(data) {
+            tileData = data;
+            var cols = 4;
+            var rows = 4;
+            var spacingX = 3.8;
+            var spacingY = 3.2;
+
+            for (var i = 0; i < data.length; i++) {
+                var item = data[i];
+                var col = i % cols;
+                var row = Math.floor(i / cols);
+
+                var tex = createTileTexture(item);
+                var mat = new THREE.MeshBasicMaterial({
+                    map: tex,
+                    transparent: true,
+                    opacity: 0,
+                    side: THREE.DoubleSide,
+                });
+                var geo = new THREE.PlaneGeometry(2.2, 2.2);
+                var mesh = new THREE.Mesh(geo, mat);
+
+                mesh.position.set(
+                    (col - (cols - 1) / 2) * spacingX + (Math.random() - 0.5) * 1.2,
+                    ((rows - 1) / 2 - row) * spacingY + (Math.random() - 0.5) * 1.2,
+                    -12 - Math.random() * 12
+                );
+
+                mesh.rotation.set(
+                    (Math.random() - 0.5) * 0.15,
+                    (Math.random() - 0.5) * 0.15,
+                    (Math.random() - 0.5) * 0.1
+                );
+
+                mesh.userData = {
+                    item: item,
+                    basePos: mesh.position.clone(),
+                    floatSpeed: 0.15 + Math.random() * 0.25,
+                    floatOffset: Math.random() * Math.PI * 2,
+                    rotSpeed: (Math.random() - 0.5) * 0.002,
+                    targetOpacity: 1.0,
+                    currentOpacity: 0,
+                    targetScale: 1.0,
+                    currentScale: 0.5,
+                    matched: true,
+                };
+
+                scene.add(mesh);
+                tileMeshes.push(mesh);
+            }
+        }
+
+        window.initThree = function(data) {
+            if (threeInited) return;
+            threeInited = true;
+
+            var canvas = document.getElementById('threeCanvas');
+            renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x050508, 1);
+
+            scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x050508, 0.012);
+
+            camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 500);
+            camera.position.set(0, 0, 8);
+
+            raycaster = new THREE.Raycaster();
+            mouse = new THREE.Vector2();
+
+            initStars();
+            initTiles(data);
+
+            document.addEventListener('mousemove', function(e) {
+                mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+                mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+            });
+
+            window.addEventListener('resize', function() {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            var startTime = performance.now();
+            function animate() {
+                requestAnimationFrame(animate);
+                var elapsed = (performance.now() - startTime) / 1000;
+
+                // 星空缓慢旋转
+                stars.rotation.y = elapsed * 0.008;
+                stars.rotation.x = elapsed * 0.003;
+                starMat.opacity = 0.65 + Math.sin(elapsed * 0.5) * 0.15;
+
+                // 亮星闪烁
+                nebulae.forEach(function(g) {
+                    var ud = g.userData;
+                    g.material.opacity = ud.baseOpacity * (0.5 + Math.sin(elapsed * ud.twinkleSpeed + ud.offset) * 0.5);
+                });
+
+                // 贴片动画
+                tileMeshes.forEach(function(tile) {
+                    var ud = tile.userData;
+                    tile.position.y = ud.basePos.y + Math.sin(elapsed * ud.floatSpeed + ud.floatOffset) * 0.4;
+                    tile.position.x = ud.basePos.x + Math.cos(elapsed * ud.floatSpeed * 0.7 + ud.floatOffset) * 0.25;
+                    tile.rotation.z = Math.sin(elapsed * 0.2 + ud.floatOffset) * 0.06;
+                    tile.rotation.y += ud.rotSpeed;
+
+                    // 平滑过渡不透明度
+                    ud.currentOpacity += (ud.targetOpacity - ud.currentOpacity) * 0.08;
+                    tile.material.opacity = ud.currentOpacity;
+
+                    // 平滑缩放
+                    ud.currentScale += (ud.targetScale - ud.currentScale) * 0.1;
+                    tile.scale.setScalar(ud.currentScale);
+                });
+
+                // 射线检测悬停
+                mouse.x = mouseX;
+                mouse.y = -mouseY;
+                raycaster.setFromCamera(mouse, camera);
+                var intersects = raycaster.intersectObjects(tileMeshes);
+                var newHovered = intersects.length > 0 ? intersects[0].object : null;
+
+                if (newHovered !== hoveredTile) {
+                    if (hoveredTile && hoveredTile.userData.matched) {
+                        hoveredTile.userData.targetScale = 1.0;
+                    }
+                    hoveredTile = newHovered;
+                    if (hoveredTile && hoveredTile.userData.matched) {
+                        hoveredTile.userData.targetScale = 1.25;
+                    }
+                    canvas.style.cursor = hoveredTile ? 'pointer' : 'default';
+                }
+
+                // 相机视差
+                targetX += (mouseX * 0.8 - targetX) * 0.04;
+                targetY += (mouseY * 0.5 - targetY) * 0.04;
+                camera.position.x = targetX;
+                camera.position.y = -targetY;
+                camera.lookAt(0, 0, -10);
+
+                renderer.render(scene, camera);
+            }
+            animate();
+        };
+
+        window.filterTiles = function(query) {
+            var count = 0;
+            tileMeshes.forEach(function(tile) {
+                var item = tile.userData.item;
+                var match = !query ||
+                    item.title.toLowerCase().indexOf(query) >= 0 ||
+                    item.description.toLowerCase().indexOf(query) >= 0 ||
+                    item.category.toLowerCase().indexOf(query) >= 0;
+                tile.userData.matched = match;
+                if (match) {
+                    tile.userData.targetOpacity = 1.0;
+                    count++;
+                } else {
+                    tile.userData.targetOpacity = 0.05;
+                    if (tile === hoveredTile) tile.userData.targetScale = 1.0;
+                }
+            });
+            return count;
+        };
+
+        window.getMatchCount = function(query) {
+            if (!query) return tileData.length;
+            var q = query.toLowerCase();
+            return tileData.filter(function(item) {
+                return item.title.toLowerCase().indexOf(q) >= 0 ||
+                       item.description.toLowerCase().indexOf(q) >= 0 ||
+                       item.category.toLowerCase().indexOf(q) >= 0;
+            }).length;
+        };
+    </script>
 </body>
 </html>

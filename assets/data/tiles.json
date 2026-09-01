@@ -1,0 +1,132 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "title": "星星",
+      "description": "夜空中最亮的星",
+      "color": "#FFD93D",
+      "emoji": "⭐",
+      "category": "天空"
+    },
+    {
+      "id": 2,
+      "title": "月亮",
+      "description": "弯弯的月牙",
+      "color": "#A8C5E0",
+      "emoji": "🌙",
+      "category": "天空"
+    },
+    {
+      "id": 3,
+      "title": "云朵",
+      "description": "软绵绵的白云",
+      "color": "#E8E8E8",
+      "emoji": "☁️",
+      "category": "天空"
+    },
+    {
+      "id": 4,
+      "title": "彩虹",
+      "description": "雨后的七彩桥",
+      "color": "#FFB6C1",
+      "emoji": "🌈",
+      "category": "自然"
+    },
+    {
+      "id": 5,
+      "title": "花朵",
+      "description": "盛开的小花",
+      "color": "#FF9AA2",
+      "emoji": "🌸",
+      "category": "植物"
+    },
+    {
+      "id": 6,
+      "title": "树木",
+      "description": "绿油油的大树",
+      "color": "#87CEEB",
+      "emoji": "🌳",
+      "category": "植物"
+    },
+    {
+      "id": 7,
+      "title": "冰淇淋",
+      "description": "甜甜的草莓味",
+      "color": "#FFC0CB",
+      "emoji": "🍦",
+      "category": "美食"
+    },
+    {
+      "id": 8,
+      "title": "蛋糕",
+      "description": "生日小蛋糕",
+      "color": "#FFFACD",
+      "emoji": "🍰",
+      "category": "美食"
+    },
+    {
+      "id": 9,
+      "title": "小猫",
+      "description": "毛茸茸的猫咪",
+      "color": "#FFD4A3",
+      "emoji": "🐱",
+      "category": "动物"
+    },
+    {
+      "id": 10,
+      "title": "小狗",
+      "description": "忠诚的小狗",
+      "color": "#E0C097",
+      "emoji": "🐶",
+      "category": "动物"
+    },
+    {
+      "id": 11,
+      "title": "兔子",
+      "description": "蹦蹦跳跳的兔子",
+      "color": "#FFF0F5",
+      "emoji": "🐰",
+      "category": "动物"
+    },
+    {
+      "id": 12,
+      "title": "蝴蝶",
+      "description": "翩翩起舞的蝴蝶",
+      "color": "#DDA0DD",
+      "emoji": "🦋",
+      "category": "动物"
+    },
+    {
+      "id": 13,
+      "title": "糖果",
+      "description": "五颜六色的糖果",
+      "color": "#FF69B4",
+      "emoji": "🍬",
+      "category": "美食"
+    },
+    {
+      "id": 14,
+      "title": "气球",
+      "description": "飘在空中的气球",
+      "color": "#FFB347",
+      "emoji": "🎈",
+      "category": "玩具"
+    },
+    {
+      "id": 15,
+      "title": "爱心",
+      "description": "满满的爱意",
+      "color": "#FF6B9D",
+      "emoji": "💕",
+      "category": "情感"
+    },
+    {
+      "id": 16,
+      "title": "音乐",
+      "description": "动听的旋律",
+      "color": "#9370DB",
+      "emoji": "🎵",
+      "category": "艺术"
+    }
+  ]
+}

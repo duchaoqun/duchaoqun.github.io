@@ -1,0 +1,15 @@
+[
+    {
+        "zh": "船袜",
+        "en": "Sock",
+        "description": "船袜的颜色",
+        "property": {
+            "color": "color",
+            "material": "material",
+            "size": "size",
+            "style": "style",
+            "pattern": "pattern",
+            "brand": "brand"
+        }
+    }
+]

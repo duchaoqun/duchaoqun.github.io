@@ -1,0 +1,58 @@
+{
+  "player": {
+    "position": [0, 1.7, 0],
+    "height": 1.7,
+    "radius": 0.35,
+    "speed": 5.5,
+    "jumpForce": 8.0,
+    "gravity": 22.0
+  },
+  "world": {
+    "fogColor": "#1a1a2e",
+    "fogNear": 25,
+    "fogFar": 120,
+    "skyTop": "#0a0a1a",
+    "skyBottom": "#1a1a3e"
+  },
+  "lighting": {
+    "ambient": { "color": "#4466aa", "intensity": 0.6 },
+    "directional": { "color": "#ffffff", "intensity": 1.0, "position": [30, 50, 20] },
+    "hemi": { "skyColor": "#2244aa", "groundColor": "#112233", "intensity": 0.4 }
+  },
+  "objects": [
+    { "id": "ground", "type": "box", "position": [0, -0.5, 0], "size": [100, 1, 100], "color": "#2d5a3d", "collidable": true },
+    { "id": "hill_1", "type": "box", "position": [-15, 1, -10], "size": [10, 3, 10], "color": "#3a6a4d", "collidable": true },
+    { "id": "hill_2", "type": "box", "position": [18, 2, -8], "size": [12, 5, 8], "color": "#3a6a4d", "collidable": true },
+    { "id": "wall_s", "type": "box", "position": [0, 2, -25], "size": [40, 5, 1], "color": "#5a4a3a", "collidable": true },
+    { "id": "wall_n", "type": "box", "position": [0, 2, 25], "size": [40, 5, 1], "color": "#5a4a3a", "collidable": true },
+    { "id": "wall_e", "type": "box", "position": [25, 2, 0], "size": [1, 5, 40], "color": "#5a4a3a", "collidable": true },
+    { "id": "wall_w", "type": "box", "position": [-25, 2, 0], "size": [1, 5, 40], "color": "#5a4a3a", "collidable": true },
+    { "id": "crate_1", "type": "box", "position": [3, 1, -2], "size": [1.2, 1.2, 1.2], "color": "#8B5A2B", "collidable": true, "interactive": true, "name": "木箱", "actions": ["打开", "移动", "破坏"] },
+    { "id": "crate_2", "type": "box", "position": [5, 1, 1], "size": [1.2, 1.2, 1.2], "color": "#8B5A2B", "collidable": true, "interactive": true, "name": "木箱", "actions": ["打开", "移动", "破坏"] },
+    { "id": "crate_stack_1", "type": "box", "position": [6.5, 1, -2], "size": [1.2, 1.2, 1.2], "color": "#A0693A", "collidable": true },
+    { "id": "crate_stack_2", "type": "box", "position": [6.5, 2.2, -2], "size": [1.2, 1.2, 1.2], "color": "#A0693A", "collidable": true, "interactive": true, "name": "木箱 (堆顶)", "actions": ["拿下", "查看"] },
+    { "id": "rock_1", "type": "box", "position": [-8, 0.5, 3], "size": [2, 2, 2], "color": "#666677", "collidable": true },
+    { "id": "rock_2", "type": "box", "position": [-10, 0.4, 6], "size": [1.5, 1.5, 1.5], "color": "#666677", "collidable": true },
+    { "id": "rock_3", "type": "box", "position": [-7, 0.4, 8], "size": [1.8, 1.4, 1.6], "color": "#777788", "collidable": true },
+    { "id": "tree_1", "type": "cylinder", "position": [8, 1.5, 10], "radiusTop": 0.3, "radiusBottom": 0.4, "height": 3, "color": "#6B4423", "collidable": true },
+    { "id": "tree_1_leaves", "type": "cone", "position": [8, 4, 10], "radius": 1.8, "height": 3, "color": "#2d7a3d", "collidable": false },
+    { "id": "tree_2", "type": "cylinder", "position": [-12, 1.5, -5], "radiusTop": 0.25, "radiusBottom": 0.35, "height": 3, "color": "#6B4423", "collidable": true },
+    { "id": "tree_2_leaves", "type": "cone", "position": [-12, 4, -5], "radius": 1.6, "height": 2.8, "color": "#2d7a3d", "collidable": false },
+    { "id": "tree_3", "type": "cylinder", "position": [15, 1.8, 15], "radiusTop": 0.35, "radiusBottom": 0.5, "height": 3.6, "color": "#6B4423", "collidable": true },
+    { "id": "tree_3_leaves", "type": "cone", "position": [15, 4.8, 15], "radius": 2, "height": 3.2, "color": "#2d7a3d", "collidable": false },
+    { "id": "crystal_1", "type": "sphere", "position": [-5, 1.5, 5], "radius": 0.8, "color": "#88ccff", "collidable": true, "interactive": true, "name": "水晶球", "actions": ["拾取", "旋转", "查看详情"] },
+    { "id": "crystal_2", "type": "sphere", "position": [10, 1.2, -12], "radius": 0.6, "color": "#ff88cc", "collidable": true, "interactive": true, "name": "粉色水晶", "actions": ["拾取", "旋转"] },
+    { "id": "platform_1", "type": "box", "position": [-3, 2.5, -8], "size": [4, 0.3, 4], "color": "#4a4a6a", "collidable": true },
+    { "id": "stairs_1", "type": "box", "position": [-3, 1.2, -5], "size": [4, 0.3, 2], "color": "#5a5a7a", "collidable": true },
+    { "id": "stairs_2", "type": "box", "position": [-3, 1.7, -6.5], "size": [4, 0.3, 2], "color": "#5a5a7a", "collidable": true },
+    { "id": "fence_1", "type": "box", "position": [12, 0.75, -3], "size": [0.1, 1.5, 0.1], "color": "#887766", "collidable": true },
+    { "id": "fence_2", "type": "box", "position": [13, 0.75, -3], "size": [0.1, 1.5, 0.1], "color": "#887766", "collidable": true },
+    { "id": "fence_3", "type": "box", "position": [14, 0.75, -3], "size": [0.1, 1.5, 0.1], "color": "#887766", "collidable": true },
+    { "id": "fence_4", "type": "box", "position": [15, 0.75, -3], "size": [0.1, 1.5, 0.1], "color": "#887766", "collidable": true },
+    { "id": "flag", "type": "cylinder", "position": [17, 1.5, -3], "radiusTop": 0.05, "radiusBottom": 0.08, "height": 3, "color": "#666666", "collidable": false },
+    { "id": "flag_cloth", "type": "box", "position": [17.6, 2.5, -3], "size": [1, 0.6, 0.02], "color": "#ff4444", "collidable": false, "interactive": true, "name": "红旗", "actions": ["查看", "收起"] },
+    { "id": "bench_1", "type": "box", "position": [-18, 0.5, 8], "size": [3, 0.3, 0.5], "color": "#887766", "collidable": true },
+    { "id": "lamp_1", "type": "cylinder", "position": [20, 2, -20], "radiusTop": 0.05, "radiusBottom": 0.1, "height": 4, "color": "#333333", "collidable": true },
+    { "id": "lamp_1_bulb", "type": "sphere", "position": [20, 4.3, -20], "radius": 0.2, "color": "#ffee88", "collidable": false, "emissive": "#ffcc44", "interactive": true, "name": "路灯", "actions": ["开关", "查看"] }
+  ]
+}

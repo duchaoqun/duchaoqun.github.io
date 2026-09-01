@@ -1,0 +1,72 @@
+[
+  {
+    "zh": "红色",
+    "en": "Red",
+    "description": "红色的颜色",
+    "color": "#FF0000",
+    "emoji": "🔴"
+  },
+  {
+    "zh": "橙色",
+    "en": "Orange",
+    "description": "橙色的颜色",
+    "color": "#FFA500",
+    "emoji": "🍊"
+  },
+  {
+    "zh": "黄色",
+    "en": "Yellow",
+    "description": "黄色的颜色",
+    "color": "#FFFF00",
+    "emoji": "🟡"
+  },
+  {
+    "zh": "绿色",
+    "en": "Green",
+    "description": "绿色的颜色",
+    "color": "#00FF00",
+    "emoji": "🟢"
+  },
+  {
+    "zh": "蓝色",
+    "en": "Blue",
+    "description": "蓝色的颜色",
+    "color": "#0000FF",
+    "emoji": "🔵"
+  },
+  {
+    "zh": "紫色",
+    "en": "Purple",
+    "description": "紫色的颜色",
+    "color": "#800080",
+    "emoji": "🔵"
+  },
+  {
+    "zh": "青色",
+    "en": "Cyan",
+    "description": "青色的颜色",
+    "color": "#00FFFF",
+    "emoji": "🔵"
+  },
+  {
+    "zh": "白色",
+    "en": "White",
+    "description": "白色的的颜色",
+    "color": "#FFFFFF",
+    "emoji": "⚪"
+  },
+  {
+    "zh": "黑色",
+    "en": "Black",
+    "description": "黑色的颜色",
+    "color": "#000000",
+    "emoji": "⚫"
+  },
+  {
+    "zh": "灰色",
+    "en": "Gray",
+    "description": "灰色的颜色",
+    "color": "#808080",
+    "emoji": "⚫"
+  }
+]
