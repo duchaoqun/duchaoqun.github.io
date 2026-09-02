@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IMGPrompt · 像挑颜料一样，挑提示词</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #faf9f4;
+  --cardBg: #ffffff;
+  --textPrimary: rgba(22,23,28,0.88);
+  --textSecondary: rgba(22,23,28,0.55);
+  --accent: #ffd83d;
+  --accentHover: #ffe066;
+  --border: rgba(22,23,28,0.08);
+  --tagBg: #ffffff;
+  --tagActiveBg: #ffd83d;
+  --tagRadius: 10px;
+  --fontFamily: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Microsoft YaHei', sans-serif;
+  --fontSize: 16px;
+  --titleSize: 30px;
+  --maxWidth: 1280px;
+}
+html, body {
+  background: var(--bg);
+  color: var(--textPrimary);
+  font-family: var(--fontFamily);
+  font-size: var(--fontSize);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+/* 顶部导航 */
+.pp-topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,249,244,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.pp-topbar-inner {
+  max-width: var(--maxWidth); margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 24px;
+}
+.pp-logo {
+  font-size: 20px; font-weight: 700;
+  letter-spacing: -0.02em;
+  display: flex; align-items: center; gap: 8px;
+}
+.pp-logo-dot {
+  width: 28px; height: 28px; border-radius: 8px;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+.pp-nav { display: flex; gap: 4px; align-items: center; }
+.pp-nav a {
+  padding: 8px 14px; border-radius: 8px;
+  font-size: 14px; color: var(--textSecondary);
+  transition: all 0.15s;
+}
+.pp-nav a:hover { color: var(--textPrimary); background: rgba(22,23,28,0.04); }
+
+/* 主内容 */
+.pp-main { max-width: var(--maxWidth); margin: 0 auto; padding: 40px 24px 80px; }
+
+/* 标题区 */
+.pp-header { text-align: center; margin-bottom: 40px; }
+.pp-header h1 {
+  font-size: var(--titleSize); font-weight: 700;
+  letter-spacing: -0.03em; margin-bottom: 8px;
+}
+.pp-header p { color: var(--textSecondary); font-size: 15px; }
+
+/* 三栏选择区 */
+.pp-trays { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+.pp-tray {
+  background: var(--cardBg);
+  border-radius: 16px;
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+}
+.pp-tray-label {
+  font-size: 13px; font-weight: 600;
+  color: var(--textSecondary);
+  margin-bottom: 12px;
+  display: flex; align-items: center; gap: 6px;
+}
+.pp-tray-label .num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; border-radius: 6px;
+  background: var(--accent); color: #333; font-size: 12px; font-weight: 700;
+}
+
+/* 主体/类别 按钮组 */
+.pp-radio-group { display: flex; flex-wrap: wrap; gap: 8px; }
+.pp-radio-btn {
+  padding: 7px 16px; border-radius: 10px;
+  font-size: 14px; color: var(--textPrimary);
+  background: rgba(22,23,28,0.03);
+  border: 1px solid transparent;
+  transition: all 0.15s;
+}
+.pp-radio-btn:hover { background: rgba(22,23,28,0.06); }
+.pp-radio-btn.active {
+  background: var(--accent);
+  font-weight: 600;
+}
+
+/* 标签按钮组 */
+.pp-tags { display: flex; flex-wrap: wrap; gap: 8px; min-height: 40px; }
+.pp-tag {
+  padding: 7px 14px; border-radius: var(--tagRadius);
+  font-size: 13px; line-height: 1.4;
+  background: var(--tagBg);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; gap: 6px;
+  transition: all 0.15s;
+}
+.pp-tag:hover { border-color: rgba(22,23,28,0.18); box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.pp-tag.active {
+  background: var(--tagActiveBg);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+.pp-tag .zh { color: var(--textPrimary); }
+.pp-tag .en { color: var(--textSecondary); font-size: 12px; }
+.pp-tag.active .en { color: rgba(22,23,28,0.6); }
+
+/* 提示词区域 */
+.pp-mixer {
+  background: var(--cardBg);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  margin-bottom: 32px;
+}
+.pp-mixer-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 12px;
+}
+.pp-mixer-title { font-size: 14px; font-weight: 600; }
+.pp-mixer-counter { font-size: 13px; color: var(--textSecondary); }
+.pp-mixer-counter.over { color: #e74c3c; }
+.pp-textarea {
+  width: 100%; min-height: 100px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-family: inherit; font-size: 15px;
+  resize: vertical; outline: none;
+  background: rgba(22,23,28,0.02);
+  color: var(--textPrimary);
+  transition: border-color 0.15s;
+}
+.pp-textarea:focus { border-color: var(--accent); }
+.pp-textarea::placeholder { color: var(--textSecondary); }
+.pp-mixer-tools {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-top: 14px;
+}
+.pp-tool-btn {
+  padding: 8px 16px; border-radius: 10px;
+  font-size: 13px; font-weight: 500;
+  background: rgba(22,23,28,0.04);
+  color: var(--textPrimary);
+  transition: all 0.15s;
+}
+.pp-tool-btn:hover { background: rgba(22,23,28,0.08); }
+.pp-tool-btn.primary {
+  background: var(--accent); font-weight: 600;
+}
+.pp-tool-btn.primary:hover { background: var(--accentHover); }
+
+/* 翻译区域 */
+.pp-translate-area {
+  margin-top: 14px; display: none;
+}
+.pp-translate-area.show { display: block; }
+.pp-translate-input {
+  width: 100%; padding: 10px 14px;
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  font-family: inherit; font-size: 14px;
+  outline: none; background: rgba(22,23,28,0.01);
+}
+.pp-translate-input:focus { border-color: var(--accent); }
+.pp-translate-input::placeholder { color: var(--textSecondary); }
+
+/* FAQ */
+.pp-faq { margin-bottom: 32px; }
+.pp-faq-title { font-size: 22px; font-weight: 700; margin-bottom: 20px; }
+.pp-faq-list { display: flex; flex-direction: column; gap: 12px; }
+.pp-faq-item {
+  background: var(--cardBg);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.pp-faq-q {
+  padding: 16px 20px;
+  font-size: 15px; font-weight: 600;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: background 0.15s;
+}
+.pp-faq-q:hover { background: rgba(22,23,28,0.02); }
+.pp-faq-q .arrow { font-size: 18px; transition: transform 0.2s; color: var(--textSecondary); }
+.pp-faq-item.open .pp-faq-q .arrow { transform: rotate(180deg); }
+.pp-faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 20px;
+  font-size: 14px; color: var(--textSecondary); line-height: 1.7;
+}
+.pp-faq-item.open .pp-faq-a { max-height: 400px; padding: 0 20px 16px; }
+
+/* 底部 */
+.pp-footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 24px;
+  text-align: center;
+}
+.pp-footer-links {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+  margin-bottom: 16px;
+}
+.pp-footer-links a {
+  padding: 6px 12px; border-radius: 8px;
+  font-size: 13px; color: var(--textSecondary);
+  transition: all 0.15s;
+}
+.pp-footer-links a:hover { color: var(--textPrimary); background: rgba(22,23,28,0.04); }
+.pp-footer-copy { font-size: 12px; color: var(--textSecondary); }
+
+/* Toast */
+.pp-toast {
+  position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(100px);
+  background: #333; color: #fff;
+  padding: 12px 24px; border-radius: 12px;
+  font-size: 14px; z-index: 1000;
+  opacity: 0; transition: all 0.3s;
+  pointer-events: none;
+}
+.pp-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .pp-main { padding: 24px 16px 60px; }
+  .pp-header h1 { font-size: 24px; }
+  .pp-nav a { padding: 6px 10px; font-size: 13px; }
+  .pp-tray { padding: 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="pp-topbar">
+  <div class="pp-topbar-inner">
+    <div class="pp-logo">
+      <span class="pp-logo-dot">🎨</span>
+      IMGPrompt
+    </div>
+    <nav class="pp-nav" id="nav"></nav>
+  </div>
+</div>
+
+<div class="pp-main">
+  <div class="pp-header">
+    <h1>像挑颜料一样，挑提示词</h1>
+    <p id="description"></p>
+  </div>
+
+  <div class="pp-trays">
+    <div class="pp-tray">
+      <div class="pp-tray-label"><span class="num">1</span>主体 Subject</div>
+      <div class="pp-radio-group" id="subject-group"></div>
+    </div>
+    <div class="pp-tray">
+      <div class="pp-tray-label"><span class="num">2</span>类别 Category</div>
+      <div class="pp-radio-group" id="category-group"></div>
+    </div>
+    <div class="pp-tray">
+      <div class="pp-tray-label"><span class="num">3</span>标签 Pick your pigments</div>
+      <div class="pp-tags" id="tag-group"></div>
+    </div>
+  </div>
+
+  <div class="pp-mixer">
+    <div class="pp-mixer-header">
+      <span class="pp-mixer-title">提示词</span>
+      <span class="pp-mixer-counter" id="counter">0 / 380</span>
+    </div>
+    <textarea class="pp-textarea" id="prompt-area" placeholder="点标签自动拼好，也可以直接在这里写"></textarea>
+    <div class="pp-mixer-tools" id="tools"></div>
+    <div class="pp-translate-area" id="translate-area">
+      <input type="text" class="pp-translate-input" id="translate-input" placeholder="输入中文，翻译后自动填入提示词，例：夕阳下的猫">
+    </div>
+  </div>
+
+  <div class="pp-faq">
+    <div class="pp-faq-title">常见问题</div>
+    <div class="pp-faq-list" id="faq-list"></div>
+  </div>
+</div>
+
+<div class="pp-footer">
+  <div class="pp-footer-links" id="footer-links"></div>
+  <div class="pp-footer-copy">IMGPrompt · 数据本地处理，不上传服务器</div>
+</div>
+
+<div class="pp-toast" id="toast"></div>
+
+<script>
+var DATA = null;
+var selectedTags = new Set();
+var currentSubject = 0;
+var currentCategory = 0;
+var maxChars = 380;
+
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 2000);
+}
+
+function updatePrompt() {
+  var tags = Array.from(selectedTags);
+  var text = tags.join(', ');
+  var area = document.getElementById('prompt-area');
+  area.value = text;
+  updateCounter();
+}
+
+function updateCounter() {
+  var area = document.getElementById('prompt-area');
+  var counter = document.getElementById('counter');
+  var len = area.value.length;
+  counter.textContent = len + ' / ' + maxChars;
+  counter.classList.toggle('over', len > maxChars);
+}
+
+function renderNav() {
+  var nav = document.getElementById('nav');
+  nav.innerHTML = DATA.meta.nav.map(function(item) {
+    var ext = item.external ? ' ↗' : '';
+    return '<a href="' + item.url + '" target="_blank" rel="noopener">' + item.label + ext + '</a>';
+  }).join('');
+}
+
+function renderFooter() {
+  var el = document.getElementById('footer-links');
+  el.innerHTML = DATA.meta.footer.map(function(item) {
+    var ext = item.external ? ' ↗' : '';
+    return '<a href="' + item.url + '" target="_blank" rel="noopener">' + item.label + ext + '</a>';
+  }).join('');
+}
+
+function renderSubjects() {
+  var el = document.getElementById('subject-group');
+  el.innerHTML = DATA.subjects.map(function(s, i) {
+    return '<button class="pp-radio-btn' + (i === currentSubject ? ' active' : '') + '" data-idx="' + i + '">' + s.name + '</button>';
+  }).join('');
+  el.querySelectorAll('.pp-radio-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      currentSubject = parseInt(this.dataset.idx);
+      currentCategory = 0;
+      renderSubjects();
+      renderCategories();
+      renderTags();
+    });
+  });
+}
+
+function renderCategories() {
+  var subject = DATA.subjects[currentSubject];
+  var el = document.getElementById('category-group');
+  el.innerHTML = subject.categories.map(function(c, i) {
+    return '<button class="pp-radio-btn' + (i === currentCategory ? ' active' : '') + '" data-idx="' + i + '">' + c.name + '</button>';
+  }).join('');
+  el.querySelectorAll('.pp-radio-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      currentCategory = parseInt(this.dataset.idx);
+      renderCategories();
+      renderTags();
+    });
+  });
+}
+
+function renderTags() {
+  var subject = DATA.subjects[currentSubject];
+  var category = subject.categories[currentCategory];
+  var el = document.getElementById('tag-group');
+  el.innerHTML = category.tags.map(function(tag) {
+    var key = tag.en;
+    var active = selectedTags.has(key) ? ' active' : '';
+    return '<button class="pp-tag' + active + '" data-en="' + tag.en + '" data-zh="' + tag.zh + '">' +
+      '<span class="zh">' + tag.zh + '</span>' +
+      '<span class="en">' + tag.en + '</span>' +
+    '</button>';
+  }).join('');
+  el.querySelectorAll('.pp-tag').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var en = this.dataset.en;
+      if (selectedTags.has(en)) {
+        selectedTags.delete(en);
+        this.classList.remove('active');
+      } else {
+        selectedTags.add(en);
+        this.classList.add('active');
+      }
+      updatePrompt();
+    });
+  });
+}
+
+function renderTools() {
+  var el = document.getElementById('tools');
+  el.innerHTML = DATA.tools.map(function(t) {
+    var cls = (t.id === 'copy') ? 'pp-tool-btn primary' : 'pp-tool-btn';
+    return '<button class="' + cls + '" data-id="' + t.id + '">' + t.label + '</button>';
+  }).join('');
+  el.querySelectorAll('.pp-tool-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      handleTool(this.dataset.id);
+    });
+  });
+}
+
+function handleTool(id) {
+  var area = document.getElementById('prompt-area');
+  var tool = DATA.tools.find(function(t) { return t.id === id; });
+
+  if (id === 'clear') {
+    selectedTags.clear();
+    area.value = '';
+    updateCounter();
+    renderTags();
+    showToast('已清空');
+  } else if (id === 'copy') {
+    if (!area.value.trim()) { showToast('提示词为空'); return; }
+    navigator.clipboard.writeText(area.value).then(function() {
+      showToast('已复制到剪贴板');
+    }).catch(function() {
+      area.select();
+      document.execCommand('copy');
+      showToast('已复制');
+    });
+  } else if (id === 'translate') {
+    var ta = document.getElementById('translate-area');
+    ta.classList.toggle('show');
+    if (ta.classList.contains('show')) {
+      document.getElementById('translate-input').focus();
+    }
+  } else if (id === 'negative') {
+    if (tool && tool.prompt) {
+      area.value = tool.prompt;
+      selectedTags.clear();
+      renderTags();
+      updateCounter();
+      showToast('已填入负面词');
+    }
+  } else if (id === 'lighting' || id === 'quality') {
+    if (tool && tool.prompt) {
+      var current = area.value.trim();
+      area.value = current ? current + ', ' + tool.prompt : tool.prompt;
+      updateCounter();
+      showToast('已添加「' + tool.label + '」');
+    }
+  } else if (id === 'random_color') {
+    var colors = ['red', 'blue', 'green', 'purple', 'pink', 'orange', 'cyan', 'gold', 'silver', 'teal'];
+    var pick = colors[Math.floor(Math.random() * colors.length)];
+    var current2 = area.value.trim();
+    area.value = current2 ? current2 + ', ' + pick : pick;
+    updateCounter();
+    showToast('已随机添加颜色: ' + pick);
+  }
+}
+
+function renderFAQ() {
+  var el = document.getElementById('faq-list');
+  el.innerHTML = DATA.faq.map(function(item, i) {
+    return '<div class="pp-faq-item" data-idx="' + i + '">' +
+      '<div class="pp-faq-q">' + item.question + '<span class="arrow">⌄</span></div>' +
+      '<div class="pp-faq-a">' + item.answer + '</div>' +
+    '</div>';
+  }).join('');
+  el.querySelectorAll('.pp-faq-item').forEach(function(item) {
+    item.querySelector('.pp-faq-q').addEventListener('click', function() {
+      item.classList.toggle('open');
+    });
+  });
+}
+
+function init() {
+  document.getElementById('description').textContent = DATA.meta.description;
+  maxChars = DATA.meta.maxChars || 380;
+  renderNav();
+  renderFooter();
+  renderSubjects();
+  renderCategories();
+  renderTags();
+  renderTools();
+  renderFAQ();
+
+  document.getElementById('prompt-area').addEventListener('input', function() {
+    updateCounter();
+    // 同步标签选中状态
+    var parts = this.value.split(',').map(function(s) { return s.trim(); }).filter(Boolean);
+    selectedTags.clear();
+    parts.forEach(function(p) { selectedTags.add(p); });
+    renderTags();
+  });
+
+  document.getElementById('translate-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      var text = this.value.trim();
+      if (!text) return;
+      // 模拟翻译：直接追加到提示词
+      var area = document.getElementById('prompt-area');
+      var current = area.value.trim();
+      area.value = current ? current + ', ' + text : text;
+      updateCounter();
+      showToast('已插入（实际翻译需接入翻译API）');
+      this.value = '';
+    }
+  });
+}
+
+// 加载数据
+fetch('./assets/data/prompt-zh.json')
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    DATA = data;
+    init();
+  })
+  .catch(function(err) {
+    console.error('加载失败:', err);
+    document.querySelector('.pp-main').innerHTML = '<p style="text-align:center;padding:60px;">数据加载失败，请通过 HTTP 协议访问本页面。</p>';
+  });
+</script>
+
+</body>
+</html>
