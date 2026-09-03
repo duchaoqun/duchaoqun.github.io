@@ -29,6 +29,122 @@
         {
           "zh": "倒立",
           "en": "upside-down"
+        },
+        {
+          "zh": "仰躺",
+          "en": "on_back"
+        },
+        {
+          "zh": "侧卧",
+          "en": "on_side"
+        },
+        {
+          "zh": "趴着",
+          "en": "on_stomach"
+        },
+        {
+          "zh": "斜倒斜躺姿势",
+          "en": "reclining"
+        },
+        {
+          "zh": "正坐",
+          "en": "seiza"
+        },
+        {
+          "zh": "鸭子坐",
+          "en": "wariza"
+        },
+        {
+          "zh": "侧身坐",
+          "en": "yokozuwari"
+        },
+        {
+          "zh": "坐在桌子上",
+          "en": "lotus_position"
+        },
+        {
+          "zh": "蝴蝶坐",
+          "en": "butterfly_sitting"
+        },
+        {
+          "zh": "身体往后靠",
+          "en": "leaning_back"
+        },
+        {
+          "zh": "身体前倾",
+          "en": "leaning_forward"
+        },
+        {
+          "zh": "靠在一边",
+          "en": "leaning_to_the_side"
+        },
+        {
+          "zh": "靠在物体上",
+          "en": "leaning_on_object"
+        },
+        {
+          "zh": "弓身体",
+          "en": "arched_back"
+        },
+        {
+          "zh": "翘臀姿势",
+          "en": "bent_over"
+        },
+        {
+          "zh": "趴在地上并翘起脚",
+          "en": "the_pose"
+        },
+        {
+          "zh": "时尚姿势",
+          "en": "stylish_pose"
+        },
+        {
+          "zh": "跨坐",
+          "en": "straddling"
+        },
+        {
+          "zh": "胎儿姿势(躺)",
+          "en": "fetal_position"
+        },
+        {
+          "zh": "倚靠玻璃",
+          "en": "against_glass"
+        },
+        {
+          "zh": "浮在水上",
+          "en": "afloat"
+        },
+        {
+          "zh": "展示（后接部位）",
+          "en": "presenting"
+        },
+        {
+          "zh": "坐在床上",
+          "en": "sitting_on_bed"
+        },
+        {
+          "zh": "坐在课桌上",
+          "en": "sitting_on_desk"
+        },
+        {
+          "zh": "坐在大腿上",
+          "en": "sitting_on_lap"
+        },
+        {
+          "zh": "坐在人身上",
+          "en": "sitting_on_person"
+        },
+        {
+          "zh": "趴着翘臀",
+          "en": "top-down_bottom-up"
+        },
+        {
+          "zh": "俯卧后入",
+          "en": "prone_bone"
+        },
+        {
+          "zh": "靠墙",
+          "en": "against wall"
         }
       ]
     },
@@ -51,6 +167,174 @@
         {
           "zh": "伸手",
           "en": "reaching_out"
+        },
+        {
+          "zh": "抬手",
+          "en": "arms_up"
+        },
+        {
+          "zh": "交叉双臂",
+          "en": "crossed_arms"
+        },
+        {
+          "zh": "双手垂放",
+          "en": "arms_at_sides"
+        },
+        {
+          "zh": "单手垂放",
+          "en": "arm_at_side"
+        },
+        {
+          "zh": "手放在身后",
+          "en": "arms_behind_back"
+        },
+        {
+          "zh": "双手抱头",
+          "en": "arms_behind_head"
+        },
+        {
+          "zh": "手放头后",
+          "en": "arm_behind_head"
+        },
+        {
+          "zh": "单手背到身后",
+          "en": "arm_behind_back"
+        },
+        {
+          "zh": "双手手指交叉|双手紧握",
+          "en": "hands_clasped"
+        },
+        {
+          "zh": "双手紧握",
+          "en": "interlocked_fingers"
+        },
+        {
+          "zh": "用手支撑住",
+          "en": "arm_support"
+        },
+        {
+          "zh": "手在头上",
+          "en": "arm_above_head"
+        },
+        {
+          "zh": "伸出双臂",
+          "en": "outstretched_arms"
+        },
+        {
+          "zh": "双手交叉伸进袖子里",
+          "en": "hands_in_opposite_sleeves"
+        },
+        {
+          "zh": "双臂摆出V",
+          "en": "v_arms"
+        },
+        {
+          "zh": "双臂摆出W",
+          "en": "w_arms"
+        },
+        {
+          "zh": "锐利的手指甲",
+          "en": "sharp_fingernails"
+        },
+        {
+          "zh": "张开手指",
+          "en": "spread_fingers"
+        },
+        {
+          "zh": "手指没放在扳机上",
+          "en": "trigger_discipline"
+        },
+        {
+          "zh": "手指比W",
+          "en": "w"
+        },
+        {
+          "zh": "手臂被束缚",
+          "en": "bound_arms"
+        },
+        {
+          "zh": "多只手臂",
+          "en": "extra_arms"
+        },
+        {
+          "zh": "互挽手臂",
+          "en": "locked_arms"
+        },
+        {
+          "zh": "遮住关键部位的手臂",
+          "en": "convenient_arm"
+        },
+        {
+          "zh": "手炮",
+          "en": "arm_cannon"
+        },
+        {
+          "zh": "手臂丝带",
+          "en": "arm_ribbon"
+        },
+        {
+          "zh": "手臂往后拉",
+          "en": "arm_held_back"
+        },
+        {
+          "zh": "抱自己的双腿",
+          "en": "hugging_own_legs"
+        },
+        {
+          "zh": "颤抖",
+          "en": "trembling"
+        },
+        {
+          "zh": "翻白眼",
+          "en": "rolleyes"
+        },
+        {
+          "zh": "攥拳",
+          "en": "clenched hand"
+        },
+        {
+          "zh": "遮盖xx",
+          "en": "covering_xx"
+        },
+        {
+          "zh": "双手 V 手势",
+          "en": "double piece pose"
+        },
+        {
+          "zh": "双手拨头发",
+          "en": "hands in hair"
+        },
+        {
+          "zh": "将手藏起来",
+          "en": "hidden hands"
+        },
+        {
+          "zh": "张开双手",
+          "en": "open hands"
+        },
+        {
+          "zh": "双手相扣",
+          "en": "own hands clasped"
+        },
+        {
+          "zh": "双手相合",
+          "en": "own hands together"
+        },
+        {
+          "zh": "剪刀手",
+          "en": "peace sign"
+        },
+        {
+          "zh": "展示腋窝",
+          "en": "presenting armpit"
+        },
+        {
+          "zh": "张开双臂",
+          "en": "spread arms"
+        },
+        {
+          "zh": "扎头发",
+          "en": "tying hair"
         }
       ]
     },
@@ -73,6 +357,222 @@
         {
           "zh": "踢腿",
           "en": "kicking"
+        },
+        {
+          "zh": "单腿站立",
+          "en": "standing_on_one_leg"
+        },
+        {
+          "zh": "抬一只腿",
+          "en": "legs_up"
+        },
+        {
+          "zh": "单腿抬高",
+          "en": "leg_lift"
+        },
+        {
+          "zh": "抬起腿",
+          "en": "leg_up"
+        },
+        {
+          "zh": "两腿并拢",
+          "en": "legs_together"
+        },
+        {
+          "zh": "二郎腿",
+          "en": "crossed_legs"
+        },
+        {
+          "zh": "两腿分开",
+          "en": "legs_apart"
+        },
+        {
+          "zh": "膝盖顶到胸部",
+          "en": "knees_to_chest"
+        },
+        {
+          "zh": "膝盖合并，两脚分开",
+          "en": "knees_together_feet_apart"
+        },
+        {
+          "zh": "M字摆腿",
+          "en": "m_legs"
+        },
+        {
+          "zh": "稍息",
+          "en": "open_stance"
+        },
+        {
+          "zh": "站立劈叉|站立高抬腿",
+          "en": "standing_split"
+        },
+        {
+          "zh": "屈膝礼（女仆行礼）",
+          "en": "curtsy"
+        },
+        {
+          "zh": "踮起脚尖",
+          "en": "tiptoes"
+        },
+        {
+          "zh": "翘起脚",
+          "en": "feet_up"
+        },
+        {
+          "zh": "交叉脚踝",
+          "en": "crossed_ankles"
+        },
+        {
+          "zh": "单脚不在图内",
+          "en": "foot_out_of_frame"
+        },
+        {
+          "zh": "四肢着地",
+          "en": "all_fours"
+        },
+        {
+          "zh": "膝盖上有动物",
+          "en": "animal_on_lap"
+        },
+        {
+          "zh": "脚踝丝环",
+          "en": "ankle_strap"
+        },
+        {
+          "zh": "脚踝套",
+          "en": "ankle_wrap"
+        },
+        {
+          "zh": "骆驼趾",
+          "en": "cameltoe"
+        },
+        {
+          "zh": "挡住关键部位的腿",
+          "en": "convenient_leg"
+        },
+        {
+          "zh": "只画了一部分腿",
+          "en": "cropped_legs"
+        },
+        {
+          "zh": "双脚不在图内",
+          "en": "feet_out_of_frame"
+        },
+        {
+          "zh": "抬腿露阴",
+          "en": "folded"
+        },
+        {
+          "zh": "脚印",
+          "en": "footprints"
+        },
+        {
+          "zh": "凹版姿势",
+          "en": "gravure_pose"
+        },
+        {
+          "zh": "手放在自己的膝盖上",
+          "en": "hand_on_own_knee"
+        },
+        {
+          "zh": "手放在腿下",
+          "en": "hands under legs"
+        },
+        {
+          "zh": "抱住腿",
+          "en": "holding legs"
+        },
+        {
+          "zh": "KDA组合(英雄联盟)",
+          "en": "k/da_(league_of_legends)"
+        },
+        {
+          "zh": "顶起膝盖",
+          "en": "knee_up"
+        },
+        {
+          "zh": "下跪",
+          "en": "kneeling"
+        },
+        {
+          "zh": "膝盖",
+          "en": "knees"
+        },
+        {
+          "zh": "抱腿",
+          "en": "leg hug"
+        },
+        {
+          "zh": "腿部系着带子",
+          "en": "leg_belt"
+        },
+        {
+          "zh": "腿毛",
+          "en": "leg_hair"
+        },
+        {
+          "zh": "用双腿夹住",
+          "en": "leg_lock"
+        },
+        {
+          "zh": "双腿",
+          "en": "legs"
+        },
+        {
+          "zh": "双腿抬过头",
+          "en": "legs_over_head"
+        },
+        {
+          "zh": "M字摆腿",
+          "en": "lowleg"
+        },
+        {
+          "zh": "机械义足",
+          "en": "mechanical_legs"
+        },
+        {
+          "zh": "多足角色",
+          "en": "multiple_legs"
+        },
+        {
+          "zh": "没画出腿",
+          "en": "no_legs"
+        },
+        {
+          "zh": "裆胯以下裸着",
+          "en": "no_legwear"
+        },
+        {
+          "zh": "在膝盖上",
+          "en": "on_lap"
+        },
+        {
+          "zh": "一只膝盖",
+          "en": "one_knee"
+        },
+        {
+          "zh": "萌向的内八腿",
+          "en": "pigeon-toed"
+        },
+        {
+          "zh": "泡脚",
+          "en": "soaking_feet"
+        },
+        {
+          "zh": "张开双腿",
+          "en": "spread legs"
+        },
+        {
+          "zh": "蹲下分开双腿",
+          "en": "squatting,_open_legs"
+        },
+        {
+          "zh": "站立一字马",
+          "en": "standing split,leg up"
+        },
+        {
+          "zh": "尾巴蜷到两腿之间",
+          "en": "tail_between_legs"
         }
       ]
     },
@@ -99,6 +599,86 @@
         {
           "zh": "瑜伽",
           "en": "yoga"
+        },
+        {
+          "zh": "走路",
+          "en": "walking"
+        },
+        {
+          "zh": "跳舞",
+          "en": "dancing"
+        },
+        {
+          "zh": "做运动",
+          "en": "exercise"
+        },
+        {
+          "zh": "秀肌肉",
+          "en": "flexing"
+        },
+        {
+          "zh": "潜水",
+          "en": "diving"
+        },
+        {
+          "zh": "蹚水",
+          "en": "wading"
+        },
+        {
+          "zh": "飞溅",
+          "en": "splashing"
+        },
+        {
+          "zh": "站在水上或液体上",
+          "en": "standing_on_liquid"
+        },
+        {
+          "zh": "在液体上行走",
+          "en": "walking_on_liquid"
+        },
+        {
+          "zh": "攀爬",
+          "en": "climbing"
+        },
+        {
+          "zh": "飞行",
+          "en": "flying"
+        },
+        {
+          "zh": "骑",
+          "en": "riding"
+        },
+        {
+          "zh": "驾驶",
+          "en": "driving"
+        },
+        {
+          "zh": "足球运动",
+          "en": "soccer"
+        },
+        {
+          "zh": "摔角(运动)",
+          "en": "wrestling"
+        },
+        {
+          "zh": "钢管舞",
+          "en": "pole_dancing"
+        },
+        {
+          "zh": "旋转",
+          "en": "spinning"
+        },
+        {
+          "zh": "摆动",
+          "en": "swing"
+        },
+        {
+          "zh": "骑扫帚",
+          "en": "broom_riding"
+        },
+        {
+          "zh": "拍打动作",
+          "en": "flapping"
         }
       ]
     },
@@ -111,16 +691,1920 @@
           "en": "casting_spell"
         },
         {
-          "zh": "飞行",
-          "en": "flying"
-        },
-        {
           "zh": "召唤",
           "en": "summoning"
         },
         {
           "zh": "传送",
           "en": "teleportation"
+        },
+        {
+          "zh": "水魔法",
+          "en": "((water drops)),wet clothes,((beautiful detailed water)),((floating)),dynamic angle"
+        },
+        {
+          "zh": "冰魔法",
+          "en": "beautiful detailed glow,(detailed ice),beautiful detailed water"
+        },
+        {
+          "zh": "冰系改",
+          "en": "beautiful detailed glow,detailed ice,beautiful detailed water,(floating palaces:1.2),(ice crystal texture wings),（Iridescence and rainbow hair:2.5）"
+        },
+        {
+          "zh": "星冰乐",
+          "en": "beautiful detailed glow,detailed ice,beautiful detailed water,(floating palaces:1.3),(((ice crystal texture wings)))"
+        },
+        {
+          "zh": "森林冰",
+          "en": "((detailed beautiful snow forest with trees)),((snowflakes)),floating"
+        },
+        {
+          "zh": "结晶法",
+          "en": "(((crystals texture Hair))),((beautiful detailed glass hair)),((glass shaped texture hand)),((crystallize texture body)),gem body,hands as clear as jewels,crystallization of clothes,((crystals texture skin)),sparkle,lens flare,light leaks,broken glass,detailed glass shaped clothes,beautiful detailed gemstone sky,gemstone sea,crystals texture flowers,((detailed crystallized clothing))"
+        },
+        {
+          "zh": "核爆法",
+          "en": "beautiful detailed glow,((flames of war)),(((nuclear explosion behide)))"
+        },
+        {
+          "zh": "风魔法",
+          "en": "((breeze)),flying splashes,flying petals,wind"
+        },
+        {
+          "zh": "流沙法",
+          "en": "((surrounded by heavy floating sand flow and floating sharp stones)),((((ink)))),((illustration)),((watercolor))"
+        },
+        {
+          "zh": "雷电法",
+          "en": "(detailed light),((lightning in hand)),lightning surrounds,(((lightning chain)))"
+        },
+        {
+          "zh": "圣光法",
+          "en": "(sunlight),(angel),dynamic angle,floating,wing,halo,floating white silk,(Holy Light),silver stars"
+        },
+        {
+          "zh": "苇名法",
+          "en": "beautiful detailed pampas grass field,open hakama,surrounded by floating sakura,yellow full moon,beautiful detailed dark midnight sky,messy white long hair"
+        },
+        {
+          "zh": "自然法",
+          "en": "beautiful and delicate water,the finest grass,very delicate light,nature,painting,water spray,breeze,flowers and grass meadow,near the water edge,(sunset,starry sky in a circle),randomly distributed clouds,river,splashing water,falling petals"
+        },
+        {
+          "zh": "森林法",
+          "en": "(detailed light),feather,leaves,nature,(sunlight),river,(forest),(bloom)"
+        },
+        {
+          "zh": "虹彩法",
+          "en": "floating and rainbow long hair,Iridescence and rainbow,beautiful detailed starry sky"
+        },
+        {
+          "zh": "暗锁法",
+          "en": "chain ring,chain storm,dark chain,((wholeblack bloomer)),darkside,night,deep dark,darkness,((dark clouds)),((ruins)),shadow,death garden"
+        },
+        {
+          "zh": "火烧云",
+          "en": "beautiful detailed glow,floating ashes,beautiful and detailed explosion,red moon,fire,fire cloud,wings on fire,a cloudy sky,smoke of gunpowder,burning,black dress,dove of peace,(floating cloud:1.2)"
+        },
+        {
+          "zh": "城堡法",
+          "en": "beautiful detailed glow,detailed ice,beautiful detailed water,(magic circle:1.2),(floating palaces:1.3)"
+        },
+        {
+          "zh": "黄昏法",
+          "en": "(water bloom),(delicate glow),(breeze),long Flowers meadow,(((sunset)),(less stars form a circle),randomly distributed clouds,(rivers),(willows with branches falling into the water)"
+        },
+        {
+          "zh": "泡泡法",
+          "en": "((colorful bubble)),(floating),detailed light"
+        },
+        {
+          "zh": "蔷薇法",
+          "en": "((rose)),(vine),cage,bandage,red rope,(detail light),falling rose petals"
+        },
+        {
+          "zh": "星空法",
+          "en": "(starry tornado:1.4),starry Nebula,beautiful detailed sky"
+        },
+        {
+          "zh": "月亮法",
+          "en": "((moon)),starry sky,(lighting particle),fog,snow,(bloom)"
+        },
+        {
+          "zh": "雪月法",
+          "en": "beautiful detailed glow,detailed ice,beautiful detailed water,(cold full moon),snowflake,(floating cloud:1.2)"
+        },
+        {
+          "zh": "森火法",
+          "en": "((burning forest)),spark,light leaks,burning sky,flame,flames burning around,(flying sparks)"
+        },
+        {
+          "zh": "废土法",
+          "en": "((destroyed)),explosion,buildings in disarray,The residual eaves DuanBi,cumulus,mouldy,floating,wind,Dead end machine,(broken robot),(Mechanical robot girl),in the rubble of a devastated city"
+        },
+        {
+          "zh": "战甲法",
+          "en": "mecha clothes,robot girl,sliver bodysuit,((sliver)) and (broken) body"
+        },
+        {
+          "zh": "黄金法",
+          "en": "Extremely gorgeous metal style,Metal crown with ornate stripes,Various metals background,Sputtered molten iron,floating hair,Hair like melted metal,Clothes made of silver,Clothes with gold lace,flowing gold and silver,everything flowing and melt,flowing iron,flowing silver,lace flowing and melt"
+        },
+        {
+          "zh": "机娘法",
+          "en": "mecha clothes,robot girl"
+        },
+        {
+          "zh": "死灵法",
+          "en": "ink,(((bone))),(((ribs))),rose,black hair,blue eyes,greyscale,no shadow,simple background,bright skin"
+        },
+        {
+          "zh": "水晶法",
+          "en": "(((gorgeous crystal armor))),(((crystal wings))),((altocumulus)),(clear_sky),(snow mountain),((flowery flowers)),(flowery bubbles),cloud map plane,crystal,crystal poppies,Brilliant light,thick_coating,glass tint,(watercolor)"
+        },
+        {
+          "zh": "水森法",
+          "en": "((an extremely delicate and beautiful)),floating,(detailed wet clothes),(detailed light),feather,nature,(sunlight),river,floating palace,beautiful and delicate water,(bloom),(shine)"
+        },
+        {
+          "zh": "冰火法",
+          "en": "(blue spark),(red and blue hair),blue eyes,burning sky,flame,Rainbow in the sky,((Flames burning ice)),(((fire butterflies))),(((ice crystal texture wings))),(Flying sparks),(detailed ice),((a lot of luminous ice crystals)),((burning feathers)),(feathers made of ice),(frozen feathers),(((ice and fire together)))"
+        },
+        {
+          "zh": "龙骑士",
+          "en": "(anger),dragon horns,(silver armor),metal,complex pattern,cape,indifference"
+        },
+        {
+          "zh": "坠落法",
+          "en": "((full body)),(helpless),tear,crying,(((((falling from the sky))))),((Weathering With You)),((falling)),((face towards the sky)),(hair flows upwards),((disheveled hair)),(1 girl),floating,beautiful detailed sky"
+        },
+        {
+          "zh": "水下法",
+          "en": "((underwater)),(beautiful detailed water),((coral)),dynamic angle,floating,(detailed light),floating hair,(splash),((fishes)),leaves dress,feather,nature,(sunlight),(underwater forest),(bloom),(detailed glow),drenched,seaweed,fish,(((Tyndall effect)))"
+        },
+        {
+          "zh": "秘境法",
+          "en": "(extremely detailed CG unity 8k wallpaper),(((masterpiece))),(((best quality))),((ultra-detailed)),(best illustration),(best shadow),((an extremely delicate and beautiful)),dynamic angle,floating,fairyland,dynamic angle,sea of flowers,beautiful detailed garden,wind,classic,spring,(detailed light),feather,nature,(sunlight),river,forest,(((floating palace))),((the best building)),beautiful and delicate water,(painting),(sketch),(bloom),(shine)"
+        },
+        {
+          "zh": "摄影法",
+          "en": "(((masterpiece))),((the best quality,super fine illustrations,beautiful and delicate water)),((very delicate light)),((nature,painting)),((fine lighting,more transparent stars,high-quality snowflakes,high-quality mountains,very fine 8KCG wallpapers)),(plateau),(((snow mountain))),sunrise,randomly distributed clouds,(snow field),cliff,((rotating star sky)),((lake in mountain stream)),luminous particles"
+        },
+        {
+          "zh": "摩登法",
+          "en": "1980s (style),simple background,retro artstyle"
+        },
+        {
+          "zh": "血魔法",
+          "en": "(white hair),red long hair,red eyes,(full body),(((with sword))),angry face,(beautiful detailed eyes),Blood drop,Blood fog,floating hair,disheveled hair,Splashing blood,(Bloodstain)"
+        },
+        {
+          "zh": "唤龙术",
+          "en": "((dragon)),((dragon background))"
+        },
+        {
+          "zh": "战姬法",
+          "en": "hair fluttering in the wind,((mechanical arm armor)),((mechanical body armor)),riding motor,bodysuit,((ruins of city in war,fire,burning cars,burning buildings)),air force fleet in the sky"
+        },
+        {
+          "zh": "龙机法",
+          "en": "mecha clothes,robot girl,sliver bodysuit,dragon wings,((a dragon stands behind the girl)),beautiful detailed sliver dragon armor"
+        },
+        {
+          "zh": "星蝶术",
+          "en": "((Beautiful butterflies in detail)),((Beautiful stars in detail)),(((halter dress ))),particle,(Starry sky in beautiful detail),(Hazy fog),(Ruins of beautiful details),(((Standing on the surface of the sea)))"
+        },
+        {
+          "zh": "学院法",
+          "en": "blonde wavy hair,(shiny long hair),((Gothic Lolita)),blue white skirt,((short skirt)),black Headdress,bowknot,(((hair ornament))),(hair flower),Lace,cross-laced footwear,ribbon-trimmed sleeves,building architecture,((gothic architecture)),starry sky,outdoors,church,(castle)"
+        },
+        {
+          "zh": "星霞海",
+          "en": "walking,waves,wind,(((glistening light of waves))),(detailed sunset glow),(floating flow),((coral)),(Luminous),coast,(floating colorful bubbles),beautiful detailed sky,(fluorescence),detailed shadow,(conch),beautiful detailed water,starfish,meteor,rainbow,(seabirds),(glinting stars),(glowworm),(splash),detailed cloud,shell,(fireworks)"
+        },
+        {
+          "zh": "冬雪法",
+          "en": "beautiful detailed sky,night,stars,(red plum blossom),((winter)),(((snowflakes))),((red and white flowers)),(starry sky),(sitting),((colorful)),scenery,lantern,(starfall)"
+        },
+        {
+          "zh": "万物熔炉",
+          "en": "((((melt)))),(((((black and white melt))))),(((wear Black and white Taoist robes))),((((gold and silver lace)))),(((gold and silver lace lace))),(((flowing ((black)) and white background))),extremely detailed gorgeous tiara"
+        },
+        {
+          "zh": "暗鸦法",
+          "en": "Floating black ashes,Beautiful and detailed black,red moon,((The black clouds)),(black Wings),a black cloudy sky,burning,black dress,((Black fog)),Red eyes,(black smoke),((Black feathers floating in the air)),bat,(floating black cloud:1.5),"
+        },
+        {
+          "zh": "花火基础",
+          "en": "dynamic angle,finely detail,(bloom),(shine),glinting stars,((((best detailed fireworks)))),((((depth of field)))),(((hanabi))),(((backlight))),"
+        },
+        {
+          "zh": "星之彩",
+          "en": "stars in the eyes,messy floating hair,colored inner hair,Starry sky adorns hair,(lots of big colorful Bubble),(pearl),(Galaxy),depth of field"
+        },
+        {
+          "zh": "沉入星海",
+          "en": "stars in the eyes,messy floating hair,colored inner hair,Starry sky adorns hair,depth of field"
+        },
+        {
+          "zh": "百溺法",
+          "en": "dynamic angle,detailed wet clothes,blank stare,overexplosure,floating,black long straight,red eyes,aqua eyes,gradient eyes,((blood)),white dress,frills,((expressionless)),extremely beautiful detailed water,((lying on the lake)),(bloodred water:1.5),(red background:1.3)"
+        },
+        {
+          "zh": "辉煌阳光法",
+          "en": "((messy hair)),(grassland),(yellow eyes),incredibly absurdres,(gold hair),floating hair,Large number of environments,the medieval,grace,prospect,water eyes,wind,breeze,god ray,lawn,Mountains and lakes in the distance,The sun shines through the trees,A vast expanse of grassland"
+        },
+        {
+          "zh": "星鬓法",
+          "en": "Starry sky adorns hair,sparkling anime eyes,beautiful detailed stars,blighting stars,emerging dark purple across with white hair,multicolored hair,beautiful detailed sky,beautiful detailed water,cinematic lighting,dramatic angle,"
+        },
+        {
+          "zh": "森罗法",
+          "en": "There are many scattered luminous petals,Hidden in the light yellow flowers,Depth of field,Many flying drops of water,Many scattered leaves,branch,angle,contour deepening,cinematic angle"
+        },
+        {
+          "zh": "星天使",
+          "en": "sunlight,extremely light,extremely clothes,Holy Light,dynamic angle,Light particle,very long hair,white hair,yellow eyes,glowing eyes,expressionless,((light smile)),((((white Tulle skirt)))),white silk,looking at viewer,angel wings,large wings,multiple wings,angel halo,(((starry sky))),dusk sky,Floating light spot,Lots of feathers"
+        },
+        {
+          "zh": "黄金律",
+          "en": "blonde hair,yellow eyes,white skin,mature female,sunrise,golden sky,magnificent architecture,beautiful detailed sky,overexposure,delicate gold metal decorations"
+        },
+        {
+          "zh": "机械姬",
+          "en": "mechanical prosthesis,mecha coverage,emerging dark purple across with white hair,fluorescent purple,cool movement,rose red eyes,beatiful detailed cyberpunk city,hd semirealistic anime cg concept art digital painting"
+        },
+        {
+          "zh": "人鱼法",
+          "en": "(incredibly absurdres),(highly detailed beautiful fishtail:1.6),(((human hands))),(the lower body is a fish:1.9)AND(no human thigh:1.2),seaweed,(full body),(white seashell),(curved and slender fish tail),(the lower body is bare:1.1),{beautiful tailfin},((underwater)),(illustration),detailed water,((fishes)),(floating),watercolor (medium),(small whirlpool),((The sensation of water flowing)),(detailed scales on a mermaid)"
+        },
+        {
+          "zh": "末日",
+          "en": "Blood Mist,background Urban rooftop,despair,Blood Cherry Blossom,torn clothes,crying with eyes open,solo,Blood Rain,bandages,Gunpowder smoke,beautiful deatailed shadow,Splashing blood,dust,tyndall effect"
+        },
+        {
+          "zh": "碎梦",
+          "en": "Space opera,Space port,robot arm,elbow gloves,night,glisten,stare,cyberpunk,((((citylight)))),science fiction,bodysuit,Mechanical armor headdress,(bare shoulders)"
+        },
+        {
+          "zh": "幻碎梦",
+          "en": "dynamic angle,rainbow hair,detailed cute anime face,((loli)),flower,cry,water,corrugated,flowers tire,broken glass,(broken screen),atlantis,transparent glass"
+        },
+        {
+          "zh": "血改法",
+          "en": "(white hair),(((red streaked hair))),red eyes,(((full body))),(red hair),(((((Hold a red sword))))),(angry face),((Blood drop)),((Blood fog)),light shafts,soft focus,((Splashing blood))),Long hair,((Bloodstain)),Fighting stance,{{{{{watercolor (medium)}}}},(((masterpiece))),((white clock)),((ultradetailed)),((Covered in blood)),flowing hair,Exquisite Flame,dynamic angle,floating,(shine),extremely delicate and beautiful girls,bright skin,lying red petals,Holy lighting"
+        },
+        {
+          "zh": "留影术",
+          "en": "dramatic shadows,black and white,monochrome,{{comic}},cross necklace,Cassock"
+        },
+        {
+          "zh": "飘花法",
+          "en": "((ink)),(water color),bloom effect,detailed beautiful grassland with petal,flower,butterfly,necklace,smile,petal,(((surrounded by heavy floating petal flow)))"
+        }
+      ]
+    },
+    {
+      "id": "cat_1",
+      "name": "眼神表情",
+      "tags": [
+        {
+          "zh": "看向观众",
+          "en": "looking_at_viewer"
+        },
+        {
+          "zh": "眼神接触（对视）",
+          "en": "eye_contact"
+        },
+        {
+          "zh": "回眸",
+          "en": "looking_back"
+        },
+        {
+          "zh": "人物视角向下看↘",
+          "en": "looking_down"
+        },
+        {
+          "zh": "人物视角抬头看↗",
+          "en": "looking_up"
+        },
+        {
+          "zh": "凝视",
+          "en": "stare"
+        },
+        {
+          "zh": "盯着看",
+          "en": "eyeball"
+        },
+        {
+          "zh": "看向侧面",
+          "en": "looking_to_the_side"
+        },
+        {
+          "zh": "看着别处",
+          "en": "looking_away"
+        },
+        {
+          "zh": "面向别处",
+          "en": "facing_away"
+        },
+        {
+          "zh": "展望未来",
+          "en": "looking_ahead"
+        },
+        {
+          "zh": "轻轻向侧面瞥",
+          "en": "sideways_glance"
+        },
+        {
+          "zh": "歪头",
+          "en": "head_tilt"
+        },
+        {
+          "zh": "低头",
+          "en": "head_down"
+        },
+        {
+          "zh": "看着另一个",
+          "en": "looking_at_another"
+        },
+        {
+          "zh": "看手机",
+          "en": "looking_at_phone"
+        },
+        {
+          "zh": "照镜子",
+          "en": "looking_at_mirror"
+        },
+        {
+          "zh": "看着手",
+          "en": "looking_at_hand"
+        },
+        {
+          "zh": "看食物",
+          "en": "looking_at_food"
+        },
+        {
+          "zh": "看着屏幕",
+          "en": "looking_at_screen"
+        },
+        {
+          "zh": "看着动物",
+          "en": "looking_at_animal"
+        },
+        {
+          "zh": "遥望",
+          "en": "looking_afar"
+        },
+        {
+          "zh": "向外看",
+          "en": "looking_outside"
+        },
+        {
+          "zh": "瞄准",
+          "en": "aiming"
+        },
+        {
+          "zh": "瞄准了读者(的视角)",
+          "en": "aiming_at_viewer"
+        },
+        {
+          "zh": "从衬衫下方瞥",
+          "en": "upshirt"
+        },
+        {
+          "zh": "从裙底瞥",
+          "en": "upshorts"
+        },
+        {
+          "zh": "人物倾斜",
+          "en": "gradient"
+        },
+        {
+          "zh": "盯着你",
+          "en": "stare at me"
+        }
+      ]
+    },
+    {
+      "id": "cat_2",
+      "name": "手势表达",
+      "tags": [
+        {
+          "zh": "挥手(打招呼/告别)",
+          "en": "waving"
+        },
+        {
+          "zh": "指向看图的人",
+          "en": "pointing_at_viewer"
+        },
+        {
+          "zh": "指着自己",
+          "en": "pointing_at_self"
+        },
+        {
+          "zh": "翘大拇指",
+          "en": "thumbs_up"
+        },
+        {
+          "zh": "胜利手势",
+          "en": "v"
+        },
+        {
+          "zh": "双v",
+          "en": "double_v"
+        },
+        {
+          "zh": "OK手势",
+          "en": "ok_sign"
+        },
+        {
+          "zh": "向上指",
+          "en": "pointing_up"
+        },
+        {
+          "zh": "招手示意",
+          "en": "beckoning"
+        },
+        {
+          "zh": "敬礼",
+          "en": "salute"
+        },
+        {
+          "zh": "助威",
+          "en": "cheering"
+        },
+        {
+          "zh": "(有目的地)伸手",
+          "en": "reaching"
+        },
+        {
+          "zh": "伸懒腰",
+          "en": "stretch"
+        },
+        {
+          "zh": "嘘手势",
+          "en": "shushing"
+        },
+        {
+          "zh": "手抵在嘴唇边",
+          "en": "finger_to_mouth"
+        },
+        {
+          "zh": "比出中指",
+          "en": "middle_finger"
+        },
+        {
+          "zh": "抬起食指",
+          "en": "index_finger_raised"
+        },
+        {
+          "zh": "猫爪手势",
+          "en": "cat_pose"
+        },
+        {
+          "zh": "爪手势",
+          "en": "claw_pose"
+        },
+        {
+          "zh": "招财猫手势(下弯手腕)",
+          "en": "paw_pose"
+        },
+        {
+          "zh": "手指枪手势",
+          "en": "finger_gun"
+        },
+        {
+          "zh": "指尖抵着指间",
+          "en": "steepled_fingers"
+        },
+        {
+          "zh": "戳",
+          "en": "poking"
+        },
+        {
+          "zh": "准备扣扳机的手势",
+          "en": "finger_on_trigger"
+        },
+        {
+          "zh": "用手指做出笑脸",
+          "en": "fingersmile"
+        },
+        {
+          "zh": "做手势",
+          "en": "hand_gesture"
+        },
+        {
+          "zh": "狐狸影偶",
+          "en": "fox_shadow_puppet"
+        },
+        {
+          "zh": "双狐影偶",
+          "en": "double_fox_shadow_puppet"
+        },
+        {
+          "zh": "咬手指",
+          "en": "finger_biting"
+        },
+        {
+          "zh": "吮吸手指",
+          "en": "finger_in_mouth"
+        }
+      ]
+    },
+    {
+      "id": "cat_3",
+      "name": "持物动作",
+      "tags": [
+        {
+          "zh": "拿着某物",
+          "en": "holding"
+        },
+        {
+          "zh": "牵手",
+          "en": "holding_hands"
+        },
+        {
+          "zh": "拿着手机",
+          "en": "holding_phone"
+        },
+        {
+          "zh": "手持杯子",
+          "en": "holding_cup"
+        },
+        {
+          "zh": "捧着书",
+          "en": "holding_book"
+        },
+        {
+          "zh": "提着包",
+          "en": "holding_bag"
+        },
+        {
+          "zh": "握笔",
+          "en": "holding_pen"
+        },
+        {
+          "zh": "手持摄像机",
+          "en": "holding_camera"
+        },
+        {
+          "zh": "拿着麦克风",
+          "en": "holding_microphone"
+        },
+        {
+          "zh": "拿着食物",
+          "en": "holding_food"
+        },
+        {
+          "zh": "拿着瓶子",
+          "en": "holding_bottle"
+        },
+        {
+          "zh": "拿着餐叉",
+          "en": "holding_fork"
+        },
+        {
+          "zh": "拿着汤勺",
+          "en": "holding_spoon"
+        },
+        {
+          "zh": "拿着筷子",
+          "en": "holding_chopsticks"
+        },
+        {
+          "zh": "撑伞",
+          "en": "holding_umbrella"
+        },
+        {
+          "zh": "拿着毛巾",
+          "en": "holding_towel"
+        },
+        {
+          "zh": "手里捧着头",
+          "en": "holding_head"
+        },
+        {
+          "zh": "手放在嘴边",
+          "en": "hand_to_mouth"
+        },
+        {
+          "zh": "拿着花",
+          "en": "holding_flower"
+        },
+        {
+          "zh": "拿着礼物",
+          "en": "holding_gift"
+        },
+        {
+          "zh": "手持卡片",
+          "en": "holding_card"
+        },
+        {
+          "zh": "抱着球",
+          "en": "holding_ball"
+        },
+        {
+          "zh": "抱着枕头",
+          "en": "holding_pillow"
+        },
+        {
+          "zh": "抱着毛绒玩具",
+          "en": "holding_stuffed_animal"
+        },
+        {
+          "zh": "抱着玩偶",
+          "en": "holding_doll"
+        },
+        {
+          "zh": "抱着宝可梦",
+          "en": "holding_pokemon"
+        },
+        {
+          "zh": "端着箱子",
+          "en": "holding_box"
+        },
+        {
+          "zh": "托着盘子",
+          "en": "holding_tray"
+        },
+        {
+          "zh": "端着碟子",
+          "en": "holding_plate"
+        },
+        {
+          "zh": "端着碗",
+          "en": "holding_bowl"
+        },
+        {
+          "zh": "提着篮子",
+          "en": "holding_basket"
+        },
+        {
+          "zh": "手持扫帚",
+          "en": "holding_broom"
+        },
+        {
+          "zh": "拿着易拉罐",
+          "en": "holding_can"
+        },
+        {
+          "zh": "手持糖果",
+          "en": "holding_candy"
+        },
+        {
+          "zh": "手叼香烟",
+          "en": "holding_cigarette"
+        },
+        {
+          "zh": "拿着眼镜|正在摘眼镜",
+          "en": "holding_eyewear"
+        },
+        {
+          "zh": "拿着帽子",
+          "en": "holding_hat"
+        },
+        {
+          "zh": "拿着头盔",
+          "en": "holding_helmet"
+        },
+        {
+          "zh": "拿着面具",
+          "en": "holding_mask"
+        },
+        {
+          "zh": "拿着缝衣针",
+          "en": "holding_needle"
+        },
+        {
+          "zh": "手握画笔",
+          "en": "holding_paintbrush"
+        },
+        {
+          "zh": "握着头发|手指绕着头发",
+          "en": "holding_hair"
+        },
+        {
+          "zh": "握着自己的脚",
+          "en": "holding_own_foot"
+        },
+        {
+          "zh": "单手托在脑后",
+          "en": "shou"
+        },
+        {
+          "zh": "拿着衣服",
+          "en": "holding_clothes"
+        },
+        {
+          "zh": "拿着扇子",
+          "en": "holding_fan"
+        },
+        {
+          "zh": "手持旗帜",
+          "en": "holding_flag"
+        },
+        {
+          "zh": "拿着纸",
+          "en": "holding_paper"
+        },
+        {
+          "zh": "拿着泳圈",
+          "en": "holding_innertube"
+        },
+        {
+          "zh": "拿着乐器",
+          "en": "holding_instrument"
+        },
+        {
+          "zh": "拿着叶子",
+          "en": "holding_leaf"
+        },
+        {
+          "zh": "手捧花束",
+          "en": "holding_bouquet"
+        },
+        {
+          "zh": "拿着水果",
+          "en": "holding_fruit"
+        },
+        {
+          "zh": "抱着猫",
+          "en": "holding_cat"
+        },
+        {
+          "zh": "抱着动物",
+          "en": "holding_animal"
+        },
+        {
+          "zh": "手持铅笔",
+          "en": "holding_pencil"
+        },
+        {
+          "zh": "拿着烟斗",
+          "en": "holding_pipe"
+        },
+        {
+          "zh": "拿着披萨",
+          "en": "holding_pizza"
+        },
+        {
+          "zh": "拿着棒棒糖",
+          "en": "holding_lollipop"
+        },
+        {
+          "zh": "手持长柄武器",
+          "en": "holding_polearm"
+        },
+        {
+          "zh": "握着鞭子",
+          "en": "holding_whip"
+        },
+        {
+          "zh": "拿着精灵球",
+          "en": "holding_poke_ball"
+        },
+        {
+          "zh": "拎着包袱",
+          "en": "holding_sack"
+        },
+        {
+          "zh": "手持镰刀",
+          "en": "holding_scythe"
+        },
+        {
+          "zh": "拿着避孕套",
+          "en": "holding_condom"
+        },
+        {
+          "zh": "对坐体位",
+          "en": "upright_straddle"
+        },
+        {
+          "zh": "单手搂着脖子",
+          "en": "arm_around_neck"
+        },
+        {
+          "zh": "双手搂着脖子",
+          "en": "arms_around_neck"
+        },
+        {
+          "zh": "握着刀鞘",
+          "en": "holding_sheath"
+        },
+        {
+          "zh": "手持盾牌",
+          "en": "holding_shield"
+        },
+        {
+          "zh": "拿着鞋子",
+          "en": "holding_shoes"
+        },
+        {
+          "zh": "手持招牌",
+          "en": "holding_sign"
+        },
+        {
+          "zh": "手持长矛",
+          "en": "holding_spear"
+        },
+        {
+          "zh": "手拉着吊带",
+          "en": "holding_strap"
+        },
+        {
+          "zh": "手持手写笔",
+          "en": "holding_stylus"
+        },
+        {
+          "zh": "手持注射器",
+          "en": "holding_syringe"
+        }
+      ]
+    },
+    {
+      "id": "cat_4",
+      "name": "拥抱抓握",
+      "tags": [
+        {
+          "zh": "抓住|抓着",
+          "en": "grabbing"
+        },
+        {
+          "zh": "抓住手臂",
+          "en": "arm_grab"
+        },
+        {
+          "zh": "抓着头发",
+          "en": "hair_grab"
+        },
+        {
+          "zh": "抓着腿",
+          "en": "leg_grab"
+        },
+        {
+          "zh": "抓着手腕",
+          "en": "wrist_grab"
+        },
+        {
+          "zh": "双手放在别人的脸上",
+          "en": "hands_on_another's"
+        },
+        {
+          "zh": "双手放在对方的脸颊上",
+          "en": "hands_on_another's_cheeks"
+        },
+        {
+          "zh": "双手放在别人的肩膀上",
+          "en": "hands_on_another's_shoulders"
+        },
+        {
+          "zh": "双手放在自己的胸口",
+          "en": "hands_on_own_chest"
+        },
+        {
+          "zh": "双手放在自己的脸上",
+          "en": "hands_on_own_face"
+        },
+        {
+          "zh": "双手放在自己的脸颊上",
+          "en": "hands_on_own_cheeks"
+        },
+        {
+          "zh": "双手放在自己的头上",
+          "en": "hands_on_own_head"
+        },
+        {
+          "zh": "双手放在自己的膝盖上",
+          "en": "hands_on_own_knees"
+        },
+        {
+          "zh": "双手放在自己的肚子上",
+          "en": "hands_on_own_stomach"
+        },
+        {
+          "zh": "双手放在自己的大腿上",
+          "en": "hands_on_own_thighs"
+        },
+        {
+          "zh": "双手放在两腿之间",
+          "en": "hands_on_lap"
+        },
+        {
+          "zh": "抓着屁股",
+          "en": "ass_grab"
+        },
+        {
+          "zh": "抓着贫乳",
+          "en": "flat_chest_grab"
+        },
+        {
+          "zh": "抓着对方屁股",
+          "en": "grabbing_another's_ass"
+        },
+        {
+          "zh": "抓着对方的头发",
+          "en": "grabbing_another's_hair"
+        },
+        {
+          "zh": "从背后揉胸|从背后抓住胸部",
+          "en": "grabbing_from_behind"
+        },
+        {
+          "zh": "抓着自己的屁股",
+          "en": "grabbing_own_ass"
+        },
+        {
+          "zh": "抓着大腿",
+          "en": "thigh_grab"
+        },
+        {
+          "zh": "抓着躯干",
+          "en": "torso_grab"
+        },
+        {
+          "zh": "双手放在屁股上",
+          "en": "hands_on_ass"
+        },
+        {
+          "zh": "双手放在脚上",
+          "en": "hands_on_feet"
+        },
+        {
+          "zh": "双手碰到头上的饰物",
+          "en": "hands_on_headwear"
+        },
+        {
+          "zh": "双手搭在刀柄上",
+          "en": "hands_on_hilt"
+        },
+        {
+          "zh": "抓着领带",
+          "en": "necktie_grab"
+        },
+        {
+          "zh": "抓着颈部的衣服",
+          "en": "neckwear_grab"
+        },
+        {
+          "zh": "抓着枕头",
+          "en": "pillow_grab"
+        },
+        {
+          "zh": "抓着床单",
+          "en": "sheet_grab"
+        },
+        {
+          "zh": "抓着尾巴",
+          "en": "tail_grab"
+        },
+        {
+          "zh": "手托乳房",
+          "en": "breast lift"
+        },
+        {
+          "zh": "手夹腿间",
+          "en": "hand between legs"
+        },
+        {
+          "zh": "手放在对方的头发上",
+          "en": "hand_in_another's_hair"
+        },
+        {
+          "zh": "手埋在头发里",
+          "en": "hand_in_hair"
+        },
+        {
+          "zh": "手插在口袋里",
+          "en": "hand_in_pocket"
+        },
+        {
+          "zh": "手接触到对方的脸",
+          "en": "hand_on_another's"
+        },
+        {
+          "zh": "手摸着对方的脸颊",
+          "en": "hand_on_another's_cheek"
+        },
+        {
+          "zh": "手放在对方的胸前",
+          "en": "hand_on_another's_chest"
+        },
+        {
+          "zh": "手托着对方的下巴",
+          "en": "hand_on_another's_chin"
+        },
+        {
+          "zh": "手放在对方的头上",
+          "en": "hand_on_another's_head"
+        },
+        {
+          "zh": "手放在对方的肩上",
+          "en": "hand_on_another's_shoulder"
+        },
+        {
+          "zh": "手放在对方的肚子上",
+          "en": "hand_on_another's_stomach"
+        },
+        {
+          "zh": "手放在屁股上",
+          "en": "hand_on_ass"
+        },
+        {
+          "zh": "手放在头上",
+          "en": "hand_on_head"
+        },
+        {
+          "zh": "手触碰帽子",
+          "en": "hand_on_headwear"
+        },
+        {
+          "zh": "手搁在刀柄上",
+          "en": "hand_on_hilt"
+        },
+        {
+          "zh": "手叉着腰|手搁在腰上",
+          "en": "hand_on_hip"
+        },
+        {
+          "zh": "把手放在自己脸上",
+          "en": "hand_on_own"
+        },
+        {
+          "zh": "把手放在自己的脸颊上",
+          "en": "hand_on_own_cheek"
+        },
+        {
+          "zh": "把手放在自己的胸口",
+          "en": "hand_on_own_chest"
+        },
+        {
+          "zh": "手碰着自己的下巴",
+          "en": "hand_on_own_chin"
+        },
+        {
+          "zh": "把手放在自己的肚子上",
+          "en": "hand_on_own_stomach"
+        },
+        {
+          "zh": "手放在肩上",
+          "en": "hand_on_shoulder"
+        },
+        {
+          "zh": "手把腿抓着",
+          "en": "leg hold"
+        }
+      ]
+    },
+    {
+      "id": "cat_5",
+      "name": "身体触碰",
+      "tags": [
+        {
+          "zh": "遮盖的动作",
+          "en": "covering"
+        },
+        {
+          "zh": "挡住脸",
+          "en": "covering_face"
+        },
+        {
+          "zh": "遮住眼睛",
+          "en": "covering_eyes"
+        },
+        {
+          "zh": "挡住嘴巴",
+          "en": "covering_mouth"
+        },
+        {
+          "zh": "用手遮住胸部",
+          "en": "covering_chest_by_hand"
+        },
+        {
+          "zh": "挡住乳头",
+          "en": "covering_nipples"
+        },
+        {
+          "zh": "遮着臀部",
+          "en": "covering_ass"
+        },
+        {
+          "zh": "遮着裆部",
+          "en": "covering_crotch"
+        },
+        {
+          "zh": "整理头发",
+          "en": "adjusting_hair"
+        },
+        {
+          "zh": "将刘海别在脑后",
+          "en": "bangs_pinned_back"
+        },
+        {
+          "zh": "拉头发",
+          "en": "hair_pull"
+        },
+        {
+          "zh": "头发往后扎",
+          "en": "hair_pulled_back"
+        },
+        {
+          "zh": "手指卷着头发",
+          "en": "hair_twirling"
+        },
+        {
+          "zh": "捏脸颊",
+          "en": "cheek_pinching"
+        },
+        {
+          "zh": "戳脸颊",
+          "en": "cheek_poking"
+        },
+        {
+          "zh": "托脸颊",
+          "en": "chin_rest"
+        },
+        {
+          "zh": "摸下巴",
+          "en": "chin_stroking"
+        },
+        {
+          "zh": "自我抚摸",
+          "en": "self_fondle"
+        },
+        {
+          "zh": "手圧在乳房上",
+          "en": "breast_suppress"
+        },
+        {
+          "zh": "摸索",
+          "en": "groping"
+        },
+        {
+          "zh": "手抓裆部",
+          "en": "crotch_grab"
+        },
+        {
+          "zh": "拨弄衣服",
+          "en": "adjusting_clothes"
+        },
+        {
+          "zh": "整理帽子",
+          "en": "adjusting_hat"
+        },
+        {
+          "zh": "拨弄手套",
+          "en": "adjusting_gloves"
+        },
+        {
+          "zh": "拨弄泳衣",
+          "en": "adjusting_swimsuit"
+        },
+        {
+          "zh": "调整过膝袜",
+          "en": "adjusting_thighhigh"
+        },
+        {
+          "zh": "扶正眼镜",
+          "en": "adjusting_eyewear"
+        }
+      ]
+    },
+    {
+      "id": "cat_6",
+      "name": "身体反应",
+      "tags": [
+        {
+          "zh": "打喷嚏",
+          "en": "sneezing"
+        },
+        {
+          "zh": "打哈欠",
+          "en": "yawning"
+        },
+        {
+          "zh": "吹",
+          "en": "blowing"
+        },
+        {
+          "zh": "从嘴里吐出液体的动作",
+          "en": "spitting"
+        },
+        {
+          "zh": "从容器中倒出液体的动作",
+          "en": "spilling"
+        },
+        {
+          "zh": "咬",
+          "en": "biting"
+        },
+        {
+          "zh": "舔",
+          "en": "licking"
+        },
+        {
+          "zh": "舔嘴唇",
+          "en": "licking_lips"
+        },
+        {
+          "zh": "咬嘴唇",
+          "en": "lip_biting"
+        },
+        {
+          "zh": "出血",
+          "en": "bleeding"
+        },
+        {
+          "zh": "喷火",
+          "en": "breathing_fire"
+        },
+        {
+          "zh": "吹泡泡",
+          "en": "bubble_blowing"
+        },
+        {
+          "zh": "燃烧",
+          "en": "burning"
+        },
+        {
+          "zh": "眨眼",
+          "en": "eyelid_pull"
+        },
+        {
+          "zh": "拉",
+          "en": "pulling"
+        },
+        {
+          "zh": "(意外)掉落",
+          "en": "dropping"
+        },
+        {
+          "zh": "投掷",
+          "en": "tossing"
+        },
+        {
+          "zh": "吊起来的",
+          "en": "hanging"
+        },
+        {
+          "zh": "露出",
+          "en": "flashing"
+        },
+        {
+          "zh": "做梦",
+          "en": "dreaming"
+        },
+        {
+          "zh": "起风效果|上升气流",
+          "en": "wind_lift"
+        },
+        {
+          "zh": "掀起自己的衣物",
+          "en": "lifted_by_self"
+        },
+        {
+          "zh": "被对方掀起衣物",
+          "en": "lifted_by_another"
+        },
+        {
+          "zh": "手臂上贴着创可贴",
+          "en": "bandaid_on_arm"
+        }
+      ]
+    },
+    {
+      "id": "cat_7",
+      "name": "生活起居",
+      "tags": [
+        {
+          "zh": "睡觉",
+          "en": "sleeping"
+        },
+        {
+          "zh": "醒来",
+          "en": "waking_up"
+        },
+        {
+          "zh": "喝",
+          "en": "drinking"
+        },
+        {
+          "zh": "烹饪",
+          "en": "cooking"
+        },
+        {
+          "zh": "刷牙",
+          "en": "brushing_teeth"
+        },
+        {
+          "zh": "淋浴",
+          "en": "showering"
+        },
+        {
+          "zh": "弄干(浴后)",
+          "en": "drying"
+        },
+        {
+          "zh": "洗涤",
+          "en": "washing"
+        },
+        {
+          "zh": "清理|打扫",
+          "en": "cleaning"
+        },
+        {
+          "zh": "清扫|扫除（家务）",
+          "en": "sweeping"
+        },
+        {
+          "zh": "化妆",
+          "en": "applying_makeup"
+        },
+        {
+          "zh": "梳头",
+          "en": "hair_brushing"
+        },
+        {
+          "zh": "撩头发",
+          "en": "hair_tucking"
+        },
+        {
+          "zh": "阅读",
+          "en": "reading"
+        },
+        {
+          "zh": "写作",
+          "en": "writing"
+        },
+        {
+          "zh": "拍照|自拍",
+          "en": "taking_picture"
+        },
+        {
+          "zh": "打电话",
+          "en": "talking_on_phone"
+        },
+        {
+          "zh": "唱歌",
+          "en": "singing"
+        },
+        {
+          "zh": "谈论",
+          "en": "talking"
+        },
+        {
+          "zh": "喂食",
+          "en": "feeding"
+        },
+        {
+          "zh": "缝纫",
+          "en": "sewing"
+        },
+        {
+          "zh": "购物",
+          "en": "shopping"
+        },
+        {
+          "zh": "冥想",
+          "en": "meditation"
+        },
+        {
+          "zh": "祈祷",
+          "en": "praying"
+        },
+        {
+          "zh": "打游戏",
+          "en": "playing_games"
+        },
+        {
+          "zh": "钓鱼",
+          "en": "fishing"
+        },
+        {
+          "zh": "画画",
+          "en": "Painting_(Action)"
+        },
+        {
+          "zh": "(不躺着)睡觉|直立睡觉",
+          "en": "sleeping_upright"
+        },
+        {
+          "zh": "抽烟",
+          "en": "smoking"
+        },
+        {
+          "zh": "上厕所",
+          "en": "toilet_use"
+        },
+        {
+          "zh": "憋气",
+          "en": "holding_breath"
+        }
+      ]
+    },
+    {
+      "id": "cat_8",
+      "name": "情感互动",
+      "tags": [
+        {
+          "zh": "拥抱",
+          "en": "hug"
+        },
+        {
+          "zh": "拥抱",
+          "en": "cuddling"
+        },
+        {
+          "zh": "即将接吻",
+          "en": "imminent_kiss"
+        },
+        {
+          "zh": "面对另一个",
+          "en": "facing_another"
+        },
+        {
+          "zh": "背对背",
+          "en": "back-to-back"
+        },
+        {
+          "zh": "安慰",
+          "en": "comforting"
+        },
+        {
+          "zh": "膝枕",
+          "en": "lap_pillow"
+        },
+        {
+          "zh": "公主抱",
+          "en": "princess_carry"
+        },
+        {
+          "zh": "抱起",
+          "en": "carrying"
+        },
+        {
+          "zh": "将人抱起",
+          "en": "lifting_person"
+        },
+        {
+          "zh": "夹在腋下",
+          "en": "carrying_under_arm"
+        },
+        {
+          "zh": "肩扛",
+          "en": "carrying_over_shoulder"
+        },
+        {
+          "zh": "戏弄",
+          "en": "teasing"
+        },
+        {
+          "zh": "挠痒痒",
+          "en": "tickling"
+        },
+        {
+          "zh": "讲悄悄话",
+          "en": "whispering"
+        },
+        {
+          "zh": "递|赠送",
+          "en": "giving"
+        },
+        {
+          "zh": "递食物",
+          "en": "incoming_food"
+        },
+        {
+          "zh": "递礼物",
+          "en": "incoming_gift"
+        },
+        {
+          "zh": "共享食物|用嘴递食物",
+          "en": "shared_food"
+        },
+        {
+          "zh": "共浴|鸳鸯浴",
+          "en": "shared_bathing"
+        },
+        {
+          "zh": "坐在头上",
+          "en": "sitting_on_head"
+        },
+        {
+          "zh": "坐在肩膀上",
+          "en": "sitting_on_shoulder"
+        },
+        {
+          "zh": "掌掴",
+          "en": "slapping"
+        },
+        {
+          "zh": "打屁股",
+          "en": "spanking"
+        },
+        {
+          "zh": "胸挤胸",
+          "en": "symmetrical_docking"
+        },
+        {
+          "zh": "胸部互碰|胸顶着胸",
+          "en": "asymmetrical_docking"
+        },
+        {
+          "zh": "雪中打伞的恋人梗",
+          "en": "special_feeling_(meme)"
+        },
+        {
+          "zh": "模仿",
+          "en": "parody"
+        },
+        {
+          "zh": "恶搞行为",
+          "en": "trolling"
+        }
+      ]
+    },
+    {
+      "id": "cat_9",
+      "name": "打斗战斗",
+      "tags": [
+        {
+          "zh": "战斗姿态",
+          "en": "fighting_stance"
+        },
+        {
+          "zh": "战斗中的",
+          "en": "fighting"
+        },
+        {
+          "zh": "挥拳",
+          "en": "punching"
+        },
+        {
+          "zh": "击打",
+          "en": "hitting"
+        },
+        {
+          "zh": "高踢",
+          "en": "high_kick"
+        },
+        {
+          "zh": "飞踢",
+          "en": "flying_kick"
+        },
+        {
+          "zh": "砍",
+          "en": "slashing"
+        },
+        {
+          "zh": "推搡",
+          "en": "pushing"
+        },
+        {
+          "zh": "拖某物",
+          "en": "dragging"
+        },
+        {
+          "zh": "绞首",
+          "en": "strangling"
+        },
+        {
+          "zh": "欺负",
+          "en": "bullying"
+        },
+        {
+          "zh": "投掷",
+          "en": "cast"
+        },
+        {
+          "zh": "射击",
+          "en": "firing"
+        },
+        {
+          "zh": "追逐",
+          "en": "chasing"
+        },
+        {
+          "zh": "在逃跑的",
+          "en": "fleeing"
+        },
+        {
+          "zh": "被绊倒",
+          "en": "tripping"
+        }
+      ]
+    },
+    {
+      "id": "cat_10",
+      "name": "服装整理",
+      "tags": [
+        {
+          "zh": "掀起衣物",
+          "en": "clothes_lift"
+        },
+        {
+          "zh": "拉扯衣物",
+          "en": "clothes_pull"
+        },
+        {
+          "zh": "拉起掀起卷起衬衫",
+          "en": "shirt_lift"
+        },
+        {
+          "zh": "拉开衬衫",
+          "en": "shirt_pull"
+        },
+        {
+          "zh": "掀起裙子",
+          "en": "dress_lift"
+        },
+        {
+          "zh": "拉连衣裙",
+          "en": "dress_pull"
+        },
+        {
+          "zh": "掀裙子",
+          "en": "skirt_lift"
+        },
+        {
+          "zh": "被掀起裙子(含突发情况意义)",
+          "en": "skirt_flip"
+        },
+        {
+          "zh": "拉开裙子",
+          "en": "skirt_pull"
+        },
+        {
+          "zh": "褪下短裤",
+          "en": "shorts_pull"
+        },
+        {
+          "zh": "拉着裤子",
+          "en": "pants_pull"
+        },
+        {
+          "zh": "剥开连衣裤",
+          "en": "leotard_pull"
+        },
+        {
+          "zh": "扯下泳衣",
+          "en": "swimsuit_pull"
+        },
+        {
+          "zh": "掀起和服",
+          "en": "kimono_lift"
+        },
+        {
+          "zh": "拉和服",
+          "en": "kimono_pull"
+        },
+        {
+          "zh": "抬起肩带",
+          "en": "strap_lift"
+        },
+        {
+          "zh": "往上剥开的比基尼",
+          "en": "bikini_lift"
+        },
+        {
+          "zh": "扯着比基尼",
+          "en": "bikini_pull"
+        },
+        {
+          "zh": "打结(动作)",
+          "en": "tying"
+        },
+        {
+          "zh": "解开的",
+          "en": "untying"
+        },
+        {
+          "zh": "拉开拉链",
+          "en": "unzipping"
+        },
+        {
+          "zh": "拉链的拉片",
+          "en": "zipper_pull_tab"
+        },
+        {
+          "zh": "拉下自己的衣物",
+          "en": "pulled_by_self"
+        },
+        {
+          "zh": "被另一个人拉(或拉衣物)",
+          "en": "pulled_by_another"
+        },
+        {
+          "zh": "指掀起裙子时形成的篮子形状",
+          "en": "skirt_basket"
+        },
+        {
+          "zh": "扯脸颊",
+          "en": "cheek_pull"
+        },
+        {
+          "zh": "手持辫子",
+          "en": "bunching_hair"
+        },
+        {
+          "zh": "拉着口罩",
+          "en": "mask_pull"
+        }
+      ]
+    },
+    {
+      "id": "cat_11",
+      "name": "武器装备",
+      "tags": [
+        {
+          "zh": "手持剑",
+          "en": "holding_sword"
+        },
+        {
+          "zh": "拿着刀",
+          "en": "holding_knife"
+        },
+        {
+          "zh": "手持匕首",
+          "en": "holding_dagger"
+        },
+        {
+          "zh": "拿着枪",
+          "en": "holding_gun"
+        },
+        {
+          "zh": "拿着弓(武器)",
+          "en": "holding_bow_(weapon)"
+        },
+        {
+          "zh": "拉着弓",
+          "en": "holding_arrow"
+        },
+        {
+          "zh": "握着斧头",
+          "en": "holding_axe"
+        },
+        {
+          "zh": "手持法杖",
+          "en": "holding_staff"
+        },
+        {
+          "zh": "握着棒子",
+          "en": "holding_wand"
+        },
+        {
+          "zh": "拉弓",
+          "en": "drawing_bow"
+        },
+        {
+          "zh": "出鞘",
+          "en": "unsheathing"
+        },
+        {
+          "zh": "双持",
+          "en": "dual_wielding"
+        },
+        {
+          "zh": "准备拔刀的姿势",
+          "en": "ready_to_draw"
+        }
+      ]
+    },
+    {
+      "id": "cat_12",
+      "name": "特殊动作",
+      "tags": [
+        {
+          "zh": "躲藏",
+          "en": "hiding"
+        },
+        {
+          "zh": "僵尸姿势",
+          "en": "zombie_pose"
+        },
+        {
+          "zh": "某著名伸手扭腰动作",
+          "en": "caramelldansen"
+        },
+        {
+          "zh": "挥舞着手臂",
+          "en": "waving_arms"
+        },
+        {
+          "zh": "壁咚",
+          "en": "Kabedon"
+        },
+        {
+          "zh": "向后坐",
+          "en": "sitting_backwards"
+        },
+        {
+          "zh": "坐在树上",
+          "en": "sitting_in_tree"
+        },
+        {
+          "zh": "坐在物体上",
+          "en": "sitting_on_xx"
+        },
+        {
+          "zh": "坐在栏杆上",
+          "en": "sitting_on_railing"
+        },
+        {
+          "zh": "坐在石头",
+          "en": "sitting_on_rock"
+        },
+        {
+          "zh": "坐在楼梯上",
+          "en": "sitting_on_stairs"
+        },
+        {
+          "zh": "坐在桌子上",
+          "en": "sitting_on_table"
+        },
+        {
+          "zh": "坐在水上",
+          "en": "sitting_on_water"
+        },
+        {
+          "zh": "坐在椅子上",
+          "en": "sitting_on_chair"
+        },
+        {
+          "zh": "侧坐在鞍上",
+          "en": "sidesaddle"
+        },
+        {
+          "zh": "躺在人身上",
+          "en": "lying_on_person"
+        },
+        {
+          "zh": "躺在湖面上",
+          "en": "lying_on_the_lake"
+        },
+        {
+          "zh": "躺在水中",
+          "en": "lying_on_water"
+        },
+        {
+          "zh": "举着手",
+          "en": "arm_up"
+        },
+        {
+          "zh": "单手搂腰",
+          "en": "arm_around_waist"
+        },
+        {
+          "zh": "挽手",
+          "en": "arm_hug"
+        },
+        {
+          "zh": "手臂刀刃",
+          "en": "arm_blade"
+        },
+        {
+          "zh": "手指",
+          "en": "fingering_through_clothes"
+        },
+        {
+          "zh": "手指并拢",
+          "en": "fingers_together"
+        },
+        {
+          "zh": "咬耳朵",
+          "en": "ear_biting"
+        },
+        {
+          "zh": "混浴",
+          "en": "mixed_bathing"
+        },
+        {
+          "zh": "自拍",
+          "en": "selfie"
+        },
+        {
+          "zh": "摇尾巴",
+          "en": "tail_wagging"
+        },
+        {
+          "zh": "下雪",
+          "en": "snowing"
+        },
+        {
+          "zh": "拉伸",
+          "en": "Stretching"
+        },
+        {
+          "zh": "脸贴脸",
+          "en": "cheek-to-cheek"
+        },
+        {
+          "zh": "摸头",
+          "en": "headpat"
+        },
+        {
+          "zh": "浸在水中",
+          "en": "partially submerged"
         }
       ]
     }

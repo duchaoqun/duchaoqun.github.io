@@ -25,6 +25,90 @@
         {
           "zh": "白色",
           "en": "white"
+        },
+        {
+          "zh": "亮石板灰",
+          "en": "lightslategray"
+        },
+        {
+          "zh": "灰石色",
+          "en": "slategray"
+        },
+        {
+          "zh": "深绿色",
+          "en": "darkslategray"
+        },
+        {
+          "zh": "庚氏灰色",
+          "en": "gainsboro"
+        },
+        {
+          "zh": "白烟色",
+          "en": "whitesmoke"
+        },
+        {
+          "zh": "雪白色",
+          "en": "snow"
+        },
+        {
+          "zh": "幽灵白",
+          "en": "ghostwhite"
+        },
+        {
+          "zh": "花白色",
+          "en": "floralwhite"
+        },
+        {
+          "zh": "亚麻色",
+          "en": "linen"
+        },
+        {
+          "zh": "古董白",
+          "en": "antiquewhite"
+        },
+        {
+          "zh": "老花色",
+          "en": "oldlace"
+        },
+        {
+          "zh": "象牙色",
+          "en": "ivory"
+        },
+        {
+          "zh": "贝壳白",
+          "en": "seashell"
+        },
+        {
+          "zh": "薄荷奶油色",
+          "en": "mintcream"
+        },
+        {
+          "zh": "蜜色",
+          "en": "honeydew"
+        },
+        {
+          "zh": "饼干色",
+          "en": "bisque"
+        },
+        {
+          "zh": "鹿皮鞋色",
+          "en": "moccasin"
+        },
+        {
+          "zh": "浅棕色",
+          "en": "light_brown"
+        },
+        {
+          "zh": "金黄色的",
+          "en": "blonde"
+        },
+        {
+          "zh": "银色",
+          "en": "silver"
+        },
+        {
+          "zh": "暗灰蓝色",
+          "en": "darkslateblue"
         }
       ]
     },
@@ -73,10 +157,6 @@
         {
           "zh": "紫色",
           "en": "purple"
-        },
-        {
-          "zh": "银色",
-          "en": "silver"
         }
       ]
     },
@@ -107,6 +187,832 @@
         {
           "zh": "宁静",
           "en": "serene"
+        },
+        {
+          "zh": "清新",
+          "en": "Refreshing"
+        },
+        {
+          "zh": "静音",
+          "en": "Muted"
+        },
+        {
+          "zh": "神圣的",
+          "en": "divine"
+        }
+      ]
+    },
+    {
+      "id": "cat_1",
+      "name": "浅色调",
+      "tags": [
+        {
+          "zh": "蔚蓝色",
+          "en": "azure"
+        },
+        {
+          "zh": "艾莉丝蓝",
+          "en": "aliceblue"
+        },
+        {
+          "zh": "薰衣草色",
+          "en": "lavender"
+        },
+        {
+          "zh": "淡钢蓝色",
+          "en": "lightsteelblue"
+        },
+        {
+          "zh": "淡蓝色",
+          "en": "lightblue"
+        },
+        {
+          "zh": "粉蓝色",
+          "en": "powderblue"
+        },
+        {
+          "zh": "深天蓝",
+          "en": "skyblue"
+        },
+        {
+          "zh": "淡青色",
+          "en": "paleturquoise"
+        },
+        {
+          "zh": "绿松石色",
+          "en": "darkseagreen"
+        },
+        {
+          "zh": "军服蓝色",
+          "en": "lightseagreen"
+        },
+        {
+          "zh": "草绿色",
+          "en": "lightgreen"
+        },
+        {
+          "zh": "淡绿色",
+          "en": "palegreen"
+        },
+        {
+          "zh": "草坪绿",
+          "en": "lawngreen"
+        },
+        {
+          "zh": "黄绿色",
+          "en": "chartreuse"
+        },
+        {
+          "zh": "酸橙色",
+          "en": "greenyellow"
+        },
+        {
+          "zh": "橄榄绿色",
+          "en": "yellowgreen"
+        },
+        {
+          "zh": "浅黄色",
+          "en": "lightyellow"
+        },
+        {
+          "zh": "亮金黄色",
+          "en": "lightgoldenrodyellow"
+        },
+        {
+          "zh": "柠檬绸色",
+          "en": "lemonchiffon"
+        },
+        {
+          "zh": "米色",
+          "en": "beige"
+        },
+        {
+          "zh": "玉米色",
+          "en": "cornsilk"
+        },
+        {
+          "zh": "小麦色",
+          "en": "wheat"
+        },
+        {
+          "zh": "桃肉色",
+          "en": "peachpuff"
+        },
+        {
+          "zh": "番木瓜色",
+          "en": "papayawhip"
+        },
+        {
+          "zh": "漂白杏仁色",
+          "en": "blanchedalmond"
+        },
+        {
+          "zh": "纳瓦霍白",
+          "en": "navajowhite"
+        },
+        {
+          "zh": "浅粉色",
+          "en": "lightpink"
+        },
+        {
+          "zh": "粉色",
+          "en": "pink"
+        },
+        {
+          "zh": "淡紫罗兰红色",
+          "en": "palevioletred"
+        },
+        {
+          "zh": "淡紫红色",
+          "en": "lavenderblush"
+        },
+        {
+          "zh": "洋李色",
+          "en": "plum"
+        },
+        {
+          "zh": "薄雾玫瑰",
+          "en": "mistyrose"
+        },
+        {
+          "zh": "蓟色",
+          "en": "thistle"
+        }
+      ]
+    },
+    {
+      "id": "cat_2",
+      "name": "深色调",
+      "tags": [
+        {
+          "zh": "石蓝色",
+          "en": "slateblue"
+        },
+        {
+          "zh": "中石板蓝色",
+          "en": "mediumslateblue"
+        },
+        {
+          "zh": "暗灰蓝色",
+          "en": "teal"
+        },
+        {
+          "zh": "深青色",
+          "en": "cadetblue"
+        },
+        {
+          "zh": "中海绿色",
+          "en": "seagreen"
+        },
+        {
+          "zh": "中绿宝石色",
+          "en": "mediumseagreen"
+        },
+        {
+          "zh": "橄榄色",
+          "en": "darkolivegreen"
+        },
+        {
+          "zh": "橄榄褐色",
+          "en": "olivedrab"
+        },
+        {
+          "zh": "橄榄色",
+          "en": "olive"
+        },
+        {
+          "zh": "暗卡其色",
+          "en": "darkkhaki"
+        },
+        {
+          "zh": "卡其色",
+          "en": "khaki"
+        },
+        {
+          "zh": "琥珀色",
+          "en": "burlywood"
+        },
+        {
+          "zh": "橙褐色",
+          "en": "sandybrown"
+        },
+        {
+          "zh": "秘鲁色",
+          "en": "peru"
+        },
+        {
+          "zh": "巧克力色",
+          "en": "chocolate"
+        },
+        {
+          "zh": "马鞍棕色",
+          "en": "saddlebrown"
+        },
+        {
+          "zh": "黄土赭色",
+          "en": "sienna"
+        },
+        {
+          "zh": "玫瑰棕色",
+          "en": "rosybrown"
+        },
+        {
+          "zh": "热粉红色",
+          "en": "hotpink"
+        },
+        {
+          "zh": "深粉色",
+          "en": "deeppink"
+        },
+        {
+          "zh": "中紫罗兰红色",
+          "en": "mediumvioletred"
+        },
+        {
+          "zh": "深粉色",
+          "en": "dark_pink"
+        },
+        {
+          "zh": "变幻色彩的",
+          "en": "Iridescent"
+        },
+        {
+          "zh": "多彩的",
+          "en": "Chromatic"
+        },
+        {
+          "zh": "色散（不同颜色的光被分离的现象）",
+          "en": "Dispersion"
+        },
+        {
+          "zh": "有棱镜效果的",
+          "en": "Prismatic"
+        }
+      ]
+    },
+    {
+      "id": "cat_3",
+      "name": "光谱色系",
+      "tags": [
+        {
+          "zh": "矢车菊蓝",
+          "en": "cornflowerblue"
+        },
+        {
+          "zh": "皇家蓝",
+          "en": "royalblue"
+        },
+        {
+          "zh": "中蓝色",
+          "en": "mediumblue"
+        },
+        {
+          "zh": "深蓝色",
+          "en": "darkblue"
+        },
+        {
+          "zh": "海军蓝",
+          "en": "navy"
+        },
+        {
+          "zh": "午夜蓝",
+          "en": "midnightblue"
+        },
+        {
+          "zh": "水鸭色",
+          "en": "darkcyan"
+        },
+        {
+          "zh": "深绿松石色",
+          "en": "mediumturquoise"
+        },
+        {
+          "zh": "浅海绿色",
+          "en": "darkturquoise"
+        },
+        {
+          "zh": "中绿松石色",
+          "en": "turquoise"
+        },
+        {
+          "zh": "绿松石色",
+          "en": "aquamarine"
+        },
+        {
+          "zh": "青色",
+          "en": "lightcyan"
+        },
+        {
+          "zh": "道奇蓝",
+          "en": "dodgerblue"
+        },
+        {
+          "zh": "绿色",
+          "en": "darkgreen"
+        },
+        {
+          "zh": "海绿色",
+          "en": "forestgreen"
+        },
+        {
+          "zh": "暗海绿色",
+          "en": "mediumaquamarine"
+        },
+        {
+          "zh": "中春绿色",
+          "en": "springgreen"
+        },
+        {
+          "zh": "草坪绿",
+          "en": "mediumspringgreen"
+        },
+        {
+          "zh": "酸橙绿",
+          "en": "lime"
+        },
+        {
+          "zh": "橄榄褐色",
+          "en": "limegreen"
+        },
+        {
+          "zh": "淡金菊色",
+          "en": "palegoldenrod"
+        },
+        {
+          "zh": "暗橙色",
+          "en": "darkorange"
+        },
+        {
+          "zh": "暗金菊色",
+          "en": "darkgoldenrod"
+        },
+        {
+          "zh": "金菊色",
+          "en": "goldenrod"
+        },
+        {
+          "zh": "深鲑鱼肉色",
+          "en": "darksalmon"
+        },
+        {
+          "zh": "鲑鱼肉色",
+          "en": "salmon"
+        },
+        {
+          "zh": "亮鲑鱼肉色",
+          "en": "lightsalmon"
+        },
+        {
+          "zh": "印第安红色",
+          "en": "indianred"
+        },
+        {
+          "zh": "耐火砖色",
+          "en": "firebrick"
+        },
+        {
+          "zh": "栗色",
+          "en": "maroon"
+        },
+        {
+          "zh": "暗红色",
+          "en": "darkred"
+        },
+        {
+          "zh": "橙红色",
+          "en": "orangered"
+        },
+        {
+          "zh": "番茄红",
+          "en": "tomato"
+        },
+        {
+          "zh": "深粉红色",
+          "en": "crimson"
+        },
+        {
+          "zh": "珊瑚色",
+          "en": "coral"
+        },
+        {
+          "zh": "浅珊瑚色",
+          "en": "lightcoral"
+        },
+        {
+          "zh": "中兰花紫色",
+          "en": "mediumorchid"
+        },
+        {
+          "zh": "紫色",
+          "en": "violet"
+        },
+        {
+          "zh": "洋红色",
+          "en": "magenta"
+        },
+        {
+          "zh": "紫红色",
+          "en": "fuchsia"
+        },
+        {
+          "zh": "暗洋红色",
+          "en": "darkmagenta"
+        },
+        {
+          "zh": "暗兰花紫色",
+          "en": "darkorchid"
+        },
+        {
+          "zh": "暗紫罗兰色",
+          "en": "darkviolet"
+        },
+        {
+          "zh": "蓝紫色",
+          "en": "blueviolet"
+        },
+        {
+          "zh": "中紫色",
+          "en": "mediumpurple"
+        },
+        {
+          "zh": "靛蓝色",
+          "en": "indigo"
+        },
+        {
+          "zh": "钢蓝色",
+          "en": "steelblue"
+        }
+      ]
+    },
+    {
+      "id": "cat_4",
+      "name": "彩色调色板",
+      "tags": [
+        {
+          "zh": "黄色主色调",
+          "en": "yellow color scheme"
+        },
+        {
+          "zh": "暖色调",
+          "en": "Warm Color Palette"
+        },
+        {
+          "zh": "冷色调",
+          "en": "Cool Color Palette"
+        },
+        {
+          "zh": "丰富多彩的",
+          "en": "Colorful"
+        },
+        {
+          "zh": "光谱颜色",
+          "en": "Spectral Color"
+        },
+        {
+          "zh": "反色",
+          "en": "Inverted Colors"
+        },
+        {
+          "zh": "色度",
+          "en": "Chroma"
+        },
+        {
+          "zh": "双色性",
+          "en": "Dichromatism"
+        },
+        {
+          "zh": "四色视觉",
+          "en": "Tetrachromacy"
+        },
+        {
+          "zh": "饱和",
+          "en": "Saturated"
+        },
+        {
+          "zh": "霓虹",
+          "en": "Neon"
+        },
+        {
+          "zh": "电子色",
+          "en": "Electric Colors"
+        },
+        {
+          "zh": "色调颜色",
+          "en": "Tonal Colors"
+        },
+        {
+          "zh": "鲜艳的颜色",
+          "en": "Vivid Colors"
+        },
+        {
+          "zh": "互补色",
+          "en": "Complimentary-Colors"
+        },
+        {
+          "zh": "分裂互补色",
+          "en": "Split-Complementary-Colors"
+        },
+        {
+          "zh": "补充色",
+          "en": "Supplementary-Colors"
+        },
+        {
+          "zh": "相似色",
+          "en": "Analogous-Colors"
+        },
+        {
+          "zh": "三元色",
+          "en": "Triadic-Colors"
+        },
+        {
+          "zh": "四色（矩形配色）",
+          "en": "Tetradic-Colors"
+        },
+        {
+          "zh": "多色彩",
+          "en": "Polychromatic-Colors"
+        },
+        {
+          "zh": "明亮",
+          "en": "Light"
+        },
+        {
+          "zh": "黑暗",
+          "en": "Dark"
+        },
+        {
+          "zh": "浅色模式",
+          "en": "Light Mode"
+        },
+        {
+          "zh": "深色模式",
+          "en": "Dark Mode"
+        },
+        {
+          "zh": "黑色调",
+          "en": "Tones of Black"
+        },
+        {
+          "zh": "背景黑色调",
+          "en": "Tones of Black in Background"
+        },
+        {
+          "zh": "浅蓝色背景",
+          "en": "Light Blue Background"
+        },
+        {
+          "zh": "浅蓝色前景",
+          "en": "Light Blue Foreground"
+        },
+        {
+          "zh": "浅蓝色",
+          "en": "Light Blue"
+        },
+        {
+          "zh": "怀旧的",
+          "en": "nostalgia"
+        },
+        {
+          "zh": "高饱和",
+          "en": "High saturation"
+        }
+      ]
+    },
+    {
+      "id": "cat_5",
+      "name": "单色调色板",
+      "tags": [
+        {
+          "zh": "单色",
+          "en": "monochrome"
+        },
+        {
+          "zh": "黑白",
+          "en": "Black and White"
+        },
+        {
+          "zh": "去饱和",
+          "en": "Desaturated"
+        },
+        {
+          "zh": "褐色调",
+          "en": "Sepia"
+        },
+        {
+          "zh": "平面色",
+          "en": "flat_color"
+        },
+        {
+          "zh": "纯色",
+          "en": "spot_color"
+        },
+        {
+          "zh": "半色调",
+          "en": "halftone"
+        },
+        {
+          "zh": "灰度",
+          "en": "greyscale"
+        },
+        {
+          "zh": "部分着色",
+          "en": "partially_colored"
+        },
+        {
+          "zh": "轮廓加深",
+          "en": "contour_deepening"
+        },
+        {
+          "zh": "线条变粗",
+          "en": "(lineart)"
+        },
+        {
+          "zh": "轮廓线",
+          "en": "outline"
+        }
+      ]
+    },
+    {
+      "id": "cat_6",
+      "name": "对比度",
+      "tags": [
+        {
+          "zh": "高对比度",
+          "en": "high_contrast"
+        },
+        {
+          "zh": "低对比度",
+          "en": "low_contrast"
+        }
+      ]
+    },
+    {
+      "id": "cat_7",
+      "name": "显示器调色板",
+      "tags": [
+        {
+          "zh": "红绿蓝",
+          "en": "RGB"
+        },
+        {
+          "zh": "CMYK",
+          "en": "CMYK"
+        },
+        {
+          "zh": "VGA",
+          "en": "VGA"
+        },
+        {
+          "zh": "EGA",
+          "en": "EGA"
+        },
+        {
+          "zh": "CGA",
+          "en": "CGA"
+        },
+        {
+          "zh": "HDR",
+          "en": "HDR"
+        },
+        {
+          "zh": "雅达利图形",
+          "en": "Atari Graphics"
+        },
+        {
+          "zh": "IIGS 图形",
+          "en": "IIGS Graphics"
+        },
+        {
+          "zh": "Amiga OCS 图形",
+          "en": "Amiga OCS Graphics"
+        },
+        {
+          "zh": "sRGB",
+          "en": "sRGB"
+        },
+        {
+          "zh": "Adobe RGB",
+          "en": "Adobe RGB"
+        },
+        {
+          "zh": "DCI-P3",
+          "en": "DCI-P3"
+        },
+        {
+          "zh": "色相、饱和度、明度",
+          "en": "HSV"
+        },
+        {
+          "zh": "色相、饱和度、亮度",
+          "en": "HSL"
+        },
+        {
+          "zh": "色相、色度、照度",
+          "en": "HCL"
+        },
+        {
+          "zh": "YCbCr",
+          "en": "YCbCr"
+        },
+        {
+          "zh": "YPbPr",
+          "en": "YPbPr"
+        },
+        {
+          "zh": "单色 RGB",
+          "en": "scRGB"
+        },
+        {
+          "zh": "Coloroid",
+          "en": "Coloroid"
+        },
+        {
+          "zh": "潘通",
+          "en": "Pantone"
+        },
+        {
+          "zh": "ProPhoto RGB",
+          "en": "ProPhoto RGB"
+        }
+      ]
+    },
+    {
+      "id": "cat_8",
+      "name": "Bit",
+      "tags": [
+        {
+          "zh": "1 位",
+          "en": "1-bit"
+        },
+        {
+          "zh": "2 位",
+          "en": "2-bit"
+        },
+        {
+          "zh": "3 位",
+          "en": "3-bit"
+        },
+        {
+          "zh": "4 位",
+          "en": "4-bit"
+        },
+        {
+          "zh": "6 位",
+          "en": "6-bit"
+        },
+        {
+          "zh": "8 位",
+          "en": "8-bit"
+        },
+        {
+          "zh": "12 位",
+          "en": "12-bit"
+        },
+        {
+          "zh": "16 位",
+          "en": "16-bit"
+        },
+        {
+          "zh": "4 位 RGB",
+          "en": "4-bit RGB"
+        },
+        {
+          "zh": "8 位 RGB",
+          "en": "8-bit RGB"
+        },
+        {
+          "zh": "12 位 RGB",
+          "en": "12-bit RGB"
+        },
+        {
+          "zh": "16 位 RGB",
+          "en": "16-bit RGB"
+        }
+      ]
+    },
+    {
+      "id": "cat_9",
+      "name": "电影制作",
+      "tags": [
+        {
+          "zh": "技术色彩",
+          "en": "Technicolor"
+        },
+        {
+          "zh": "电影色彩",
+          "en": "Kinemacolor"
+        },
+        {
+          "zh": "柯达彩",
+          "en": "Kodachrome"
+        },
+        {
+          "zh": "电影色",
+          "en": "Cinecolor"
+        },
+        {
+          "zh": "爱克发彩",
+          "en": "Agfacolor"
         }
       ]
     }

@@ -25,6 +25,186 @@
         {
           "zh": "赛博朋克风",
           "en": "cyberpunk fashion"
+        },
+        {
+          "zh": "传统服装|民族服装",
+          "en": "traditional_clothes"
+        },
+        {
+          "zh": "唐装",
+          "en": "chinese_clothes"
+        },
+        {
+          "zh": "旗袍",
+          "en": "china_dress"
+        },
+        {
+          "zh": "汉服",
+          "en": "hanfu"
+        },
+        {
+          "zh": "道袍",
+          "en": "Taoist robe"
+        },
+        {
+          "zh": "和服",
+          "en": "japanese_clothes"
+        },
+        {
+          "zh": "穿着和服的女性",
+          "en": "enmaided"
+        },
+        {
+          "zh": "袢缠(日式)",
+          "en": "hanten_clothes"
+        },
+        {
+          "zh": "和服",
+          "en": "kimono"
+        },
+        {
+          "zh": "振袖(和服的一部份)",
+          "en": "furisode"
+        },
+        {
+          "zh": "无袖和服",
+          "en": "sleeveless_kimono"
+        },
+        {
+          "zh": "短和服",
+          "en": "short_kimono"
+        },
+        {
+          "zh": "印花和服",
+          "en": "print_kimono"
+        },
+        {
+          "zh": "白无垢(日式嫁衣)",
+          "en": "uchikake"
+        },
+        {
+          "zh": "和服腰带",
+          "en": "obi"
+        },
+        {
+          "zh": "旗袍",
+          "en": "cheongsam"
+        },
+        {
+          "zh": "印花旗袍",
+          "en": "print_cheongsam"
+        },
+        {
+          "zh": "旗袍类衣物的前摆",
+          "en": "pelvic_curtain"
+        },
+        {
+          "zh": "阿伊努人的服饰",
+          "en": "ainu_clothes"
+        },
+        {
+          "zh": "朝鲜服饰",
+          "en": "korean_clothes"
+        },
+        {
+          "zh": "韩服",
+          "en": "hanbok"
+        },
+        {
+          "zh": "越南服饰（奥黛）",
+          "en": "Ao_Dai"
+        },
+        {
+          "zh": "西部风格",
+          "en": "western"
+        },
+        {
+          "zh": "德国服饰",
+          "en": "german_clothes"
+        },
+        {
+          "zh": "印度风格",
+          "en": "indian_style"
+        },
+        {
+          "zh": "阿拉伯服饰",
+          "en": "arabian_clothes"
+        },
+        {
+          "zh": "埃及服饰",
+          "en": "egyptian_clothes"
+        },
+        {
+          "zh": "拜占庭风格",
+          "en": "byzantine_fashion"
+        },
+        {
+          "zh": "洛丽塔风格",
+          "en": "lolita"
+        },
+        {
+          "zh": "哥特洛丽塔风格",
+          "en": "gothic_lolita"
+        },
+        {
+          "zh": "热带特征的",
+          "en": "Tropical"
+        },
+        {
+          "zh": "套装",
+          "en": "costume"
+        },
+        {
+          "zh": "改良服饰",
+          "en": "adapted_costume"
+        },
+        {
+          "zh": "动物造型套装",
+          "en": "animal_costume"
+        },
+        {
+          "zh": "兔子造型套装",
+          "en": "bunny_costume"
+        },
+        {
+          "zh": "猫造型套装",
+          "en": "cat_costume"
+        },
+        {
+          "zh": "狗造型套装",
+          "en": "dog_costume"
+        },
+        {
+          "zh": "熊造型套装",
+          "en": "bear_costume"
+        },
+        {
+          "zh": "圣诞老人服装",
+          "en": "santa_costume"
+        },
+        {
+          "zh": "万圣节服装",
+          "en": "halloween_costume"
+        },
+        {
+          "zh": "装饰华丽的服装",
+          "en": "embellished_costume"
+        },
+        {
+          "zh": "不同于角色原本造型的替代服装",
+          "en": "alternate_costume"
+        },
+        {
+          "zh": "换衣play",
+          "en": "costume_switch"
+        },
+        {
+          "zh": "模仿网络迷因的服装",
+          "en": "meme_attire"
+        },
+        {
+          "zh": "香霖堂天狗装束",
+          "en": "kourindou_tengu_costume"
         }
       ]
     },
@@ -51,6 +231,346 @@
         {
           "zh": "吊带",
           "en": "camisole"
+        },
+        {
+          "zh": "正装衬衫",
+          "en": "dress_shirt"
+        },
+        {
+          "zh": "翻领衬衫",
+          "en": "collared_shirt"
+        },
+        {
+          "zh": "白衬衫",
+          "en": "white_shirt"
+        },
+        {
+          "zh": "女式衬衫",
+          "en": "blouse"
+        },
+        {
+          "zh": "荷叶边衬衫",
+          "en": "frilled_shirt"
+        },
+        {
+          "zh": "水手衫",
+          "en": "sailor_shirt"
+        },
+        {
+          "zh": "格子衬衫",
+          "en": "plaid_shirt"
+        },
+        {
+          "zh": "条纹衬衫",
+          "en": "striped_shirt"
+        },
+        {
+          "zh": "印花衬衫",
+          "en": "print_shirt"
+        },
+        {
+          "zh": "贴合程度不合逻辑的衬衫",
+          "en": "impossible shirt"
+        },
+        {
+          "zh": "马球衫",
+          "en": "polo_shirt"
+        },
+        {
+          "zh": "夏威夷衬衫",
+          "en": "hawaiian_shirt"
+        },
+        {
+          "zh": "休闲T恤",
+          "en": "casual T-shirts"
+        },
+        {
+          "zh": "短袖T恤(搭肩衫)",
+          "en": "short sleeve T-shirts"
+        },
+        {
+          "zh": "短款衬衫",
+          "en": "cropped_shirt"
+        },
+        {
+          "zh": "露肩衬衫",
+          "en": "off-shoulder_shirt"
+        },
+        {
+          "zh": "交叉吊带衫",
+          "en": "criss-cross_halter"
+        },
+        {
+          "zh": "无袖衬衫",
+          "en": "sleeveless_shirt"
+        },
+        {
+          "zh": "无袖连帽衫",
+          "en": "sleeveless_hoodie"
+        },
+        {
+          "zh": "背心(居家)",
+          "en": "tank_top"
+        },
+        {
+          "zh": "露脐上衣",
+          "en": "crop_top"
+        },
+        {
+          "zh": "汗衫",
+          "en": "undershirt"
+        },
+        {
+          "zh": "背心(正式)",
+          "en": "vest"
+        },
+        {
+          "zh": "棕色背心",
+          "en": "brown_vest"
+        },
+        {
+          "zh": "马甲(正式)",
+          "en": "waistcoat"
+        },
+        {
+          "zh": "卫衣",
+          "en": "sweatshirt"
+        },
+        {
+          "zh": "运动衫/球衣",
+          "en": "jersey"
+        },
+        {
+          "zh": "开襟毛衣",
+          "en": "cardigan"
+        },
+        {
+          "zh": "披肩",
+          "en": "shrug_(clothing)"
+        },
+        {
+          "zh": "夹克",
+          "en": "jacket"
+        },
+        {
+          "zh": "连帽夹克",
+          "en": "hooded jacket"
+        },
+        {
+          "zh": "外套",
+          "en": "coat"
+        },
+        {
+          "zh": "西装外套",
+          "en": "suit jacket"
+        },
+        {
+          "zh": "燕尾服",
+          "en": "tailcoat"
+        },
+        {
+          "zh": "短披风",
+          "en": "capelet"
+        },
+        {
+          "zh": "袈裟",
+          "en": "kesa"
+        },
+        {
+          "zh": "(烹饪时穿的)罩衫",
+          "en": "kappougi"
+        },
+        {
+          "zh": "袖肩分离袖",
+          "en": "detached sleeves"
+        },
+        {
+          "zh": "短款背心",
+          "en": "cropped vest"
+        },
+        {
+          "zh": "细肩带",
+          "en": "spaghetti strap"
+        },
+        {
+          "zh": "束腰短上衣",
+          "en": "tube_top"
+        },
+        {
+          "zh": "肚兜",
+          "en": "dudou"
+        },
+        {
+          "zh": "高开衩上衣",
+          "en": "highleg"
+        },
+        {
+          "zh": "衬衫扎进裤子",
+          "en": "shirt_tucked_in"
+        },
+        {
+          "zh": "未扎进裤子的衬衫",
+          "en": "untucked_shirt"
+        },
+        {
+          "zh": "系带衬衫(把衣角和下擺打结)",
+          "en": "tied_shirt"
+        },
+        {
+          "zh": "部分解扣",
+          "en": "partially_unbuttoned"
+        },
+        {
+          "zh": "部分拉开的拉链",
+          "en": "partially_unzipped"
+        },
+        {
+          "zh": "解开纽扣的衬衫",
+          "en": "unbuttoned shirt"
+        },
+        {
+          "zh": "敞开的衣服",
+          "en": "open_clothes"
+        },
+        {
+          "zh": "褪下衣物",
+          "en": "clothes_down"
+        },
+        {
+          "zh": "拉扯衬衫",
+          "en": "shirt_tug"
+        },
+        {
+          "zh": "拉扯衣服",
+          "en": "clothes_tug"
+        },
+        {
+          "zh": "脱下的衣服",
+          "en": "clothes_removed"
+        },
+        {
+          "zh": "脱下的衬衫",
+          "en": "shirt_removed"
+        },
+        {
+          "zh": "脱衣服",
+          "en": "undressing"
+        },
+        {
+          "zh": "未系衣服",
+          "en": "untied"
+        },
+        {
+          "zh": "纽扣之间的缝隙(没解开)",
+          "en": "button_gap"
+        },
+        {
+          "zh": "紧绷的衬衫",
+          "en": "taut_shirt"
+        },
+        {
+          "zh": "紧绷的衣服",
+          "en": "taut_clothes"
+        },
+        {
+          "zh": "紧身衣物",
+          "en": "tight"
+        },
+        {
+          "zh": "勒出下胸围",
+          "en": "underbust"
+        },
+        {
+          "zh": "大号衬衫",
+          "en": "oversized_shirt"
+        },
+        {
+          "zh": "大号衣服",
+          "en": "oversized_clothes"
+        },
+        {
+          "zh": "男友的衣服",
+          "en": "borrowed_garments"
+        },
+        {
+          "zh": "小号衣服",
+          "en": "undersized_clothes"
+        },
+        {
+          "zh": "镂空衣服",
+          "en": "clothing_cutout"
+        },
+        {
+          "zh": "露背上衣",
+          "en": "back_cutout"
+        },
+        {
+          "zh": "乳沟开洞衬衫",
+          "en": "cleavage_cutout"
+        },
+        {
+          "zh": "肚脐开洞衬衫",
+          "en": "navel_cutout"
+        },
+        {
+          "zh": "露腰上衣",
+          "en": "midriff"
+        },
+        {
+          "zh": "心形开口上衣",
+          "en": "heart_cutout"
+        },
+        {
+          "zh": "撕裂的衣服",
+          "en": "torn_clothes"
+        },
+        {
+          "zh": "撕裂的衬衫",
+          "en": "torn_shirt"
+        },
+        {
+          "zh": "湿衬衫",
+          "en": "wet_shirt"
+        },
+        {
+          "zh": "衣物被盗",
+          "en": "clothes_theft"
+        },
+        {
+          "zh": "肩带滑落(导致走光)",
+          "en": "strap_slip"
+        },
+        {
+          "zh": "嵌入(拉裆部衣物所致)",
+          "en": "wedgie"
+        },
+        {
+          "zh": "衣服出了意外(如崩开)",
+          "en": "wardrobe_malfunction"
+        },
+        {
+          "zh": "衣服滑落",
+          "en": "wardrobe_error"
+        },
+        {
+          "zh": "短袖",
+          "en": "short sleeves"
+        },
+        {
+          "zh": "长袖",
+          "en": "long sleeves"
+        },
+        {
+          "zh": "无袖",
+          "en": "sleeveless"
+        },
+        {
+          "zh": "内衣",
+          "en": "underwear"
+        },
+        {
+          "zh": "文胸",
+          "en": "bra"
         }
       ]
     },
@@ -99,6 +619,158 @@
         {
           "zh": "凉鞋",
           "en": "sandals"
+        },
+        {
+          "zh": "赤脚",
+          "en": "barefoot"
+        },
+        {
+          "zh": "没有鞋子",
+          "en": "no_shoes"
+        },
+        {
+          "zh": "脱下的鞋子",
+          "en": "shoes_removed"
+        },
+        {
+          "zh": "单鞋",
+          "en": "single_shoe"
+        },
+        {
+          "zh": "单鞋",
+          "en": "the_only_shoe"
+        },
+        {
+          "zh": "乐福鞋(小皮鞋)",
+          "en": "black_loafers"
+        },
+        {
+          "zh": "鞋",
+          "en": "shoes"
+        },
+        {
+          "zh": "室内鞋",
+          "en": "uwabaki"
+        },
+        {
+          "zh": "厚底鞋",
+          "en": "platform_footwear"
+        },
+        {
+          "zh": "细跟高跟鞋",
+          "en": "stiletto_heels"
+        },
+        {
+          "zh": "带束带的高跟鞋",
+          "en": "strappy_heels"
+        },
+        {
+          "zh": "厚底高跟鞋",
+          "en": "platform_heels"
+        },
+        {
+          "zh": "舰C舰娘专用鞋",
+          "en": "rudder_footwear"
+        },
+        {
+          "zh": "裸足凉鞋",
+          "en": "barefoot_sandals"
+        },
+        {
+          "zh": "木屐凉鞋",
+          "en": "clog_sandals"
+        },
+        {
+          "zh": "木屐",
+          "en": "geta"
+        },
+        {
+          "zh": "拖鞋",
+          "en": "slippers"
+        },
+        {
+          "zh": "溜冰鞋",
+          "en": "skates"
+        },
+        {
+          "zh": "旱冰鞋",
+          "en": "roller_skates"
+        },
+        {
+          "zh": "动物脚",
+          "en": "animal_feet"
+        },
+        {
+          "zh": "动物拖鞋",
+          "en": "animal_slippers"
+        },
+        {
+          "zh": "棕色鞋类",
+          "en": "brown_footwear"
+        },
+        {
+          "zh": "交叉系带鞋",
+          "en": "cross-laced_footwear"
+        },
+        {
+          "zh": "乐福鞋",
+          "en": "loafers"
+        },
+        {
+          "zh": "珍妮鞋",
+          "en": "mary_janes"
+        },
+        {
+          "zh": "双色鞋子",
+          "en": "mismatched_footwear"
+        },
+        {
+          "zh": "尖头鞋",
+          "en": "pointy_footwear"
+        },
+        {
+          "zh": "浅口高跟鞋",
+          "en": "pumps"
+        },
+        {
+          "zh": "脱下凉鞋",
+          "en": "sandals_removed"
+        },
+        {
+          "zh": "鞋底",
+          "en": "shoe_soles"
+        },
+        {
+          "zh": "鞋带",
+          "en": "shoelaces"
+        },
+        {
+          "zh": "带翅膀的鞋子",
+          "en": "winged_footwear"
+        },
+        {
+          "zh": "日式草鞋",
+          "en": "zouri"
+        },
+        {
+          "zh": "芭蕾舞鞋",
+          "en": "ballet slippers"
+        },
+        {
+          "zh": "拱形鞋底",
+          "en": "arched_soles"
+        },
+        {
+          "zh": "爪印鞋底",
+          "en": "paw_print_soles"
+        },
+        {
+          "zh": "马蹄铁",
+          "en": "horseshoe"
+        },
+        {
+          "zh": "平底鞋",
+          "en": "flat shoes"
         }
       ]
     },
@@ -139,6 +811,230 @@
         {
           "zh": "死库水",
           "en": "school_swimsuit"
+        },
+        {
+          "zh": "泳衣",
+          "en": "swimwear"
+        },
+        {
+          "zh": "湿泳衣",
+          "en": "wet_swimsuit"
+        },
+        {
+          "zh": "新式死库水",
+          "en": "new_school_swimsuit"
+        },
+        {
+          "zh": "旧式死库水",
+          "en": "old_school_swimsuit"
+        },
+        {
+          "zh": "竞泳死库水",
+          "en": "competition_school_swimsuit"
+        },
+        {
+          "zh": "赛用泳衣",
+          "en": "competition_swimsuit"
+        },
+        {
+          "zh": "休闲连体泳衣",
+          "en": "casual_one-piece_swimsuit"
+        },
+        {
+          "zh": "拉链在正面的泳衣",
+          "en": "front_zipper_swimsuit"
+        },
+        {
+          "zh": "高开衩的泳衣",
+          "en": "highleg_swimsuit"
+        },
+        {
+          "zh": "连体泳衣",
+          "en": "one-piece_swimsuit"
+        },
+        {
+          "zh": "常夏的泳衣(fgo学妹灵衣)",
+          "en": "swimsuit_of_perpetual_summer"
+        },
+        {
+          "zh": "高腰比基尼",
+          "en": "highleg_bikini"
+        },
+        {
+          "zh": "低腰比基尼",
+          "en": "lowleg_bikini"
+        },
+        {
+          "zh": "V字泳衣",
+          "en": "slingshot_swimsuit"
+        },
+        {
+          "zh": "水手服款比基尼",
+          "en": "sailor_bikini"
+        },
+        {
+          "zh": "贝壳比基尼",
+          "en": "shell_bikini"
+        },
+        {
+          "zh": "运动比基尼",
+          "en": "sports_bikini"
+        },
+        {
+          "zh": "系绳比基尼",
+          "en": "string_bikini"
+        },
+        {
+          "zh": "无肩带比基尼",
+          "en": "strapless_bikini"
+        },
+        {
+          "zh": "细带款比基尼",
+          "en": "side-tie_bikini"
+        },
+        {
+          "zh": "前系带比基尼上衣",
+          "en": "front-tie_bikini_top"
+        },
+        {
+          "zh": "多绑带比基尼",
+          "en": "multi-strapped_bikini"
+        },
+        {
+          "zh": "丁字裤比基尼",
+          "en": "thong_bikini"
+        },
+        {
+          "zh": "从正面打结的比基尼",
+          "en": "front-tie_bikini"
+        },
+        {
+          "zh": "花边比基尼",
+          "en": "frilled_bikini"
+        },
+        {
+          "zh": "带O型环的比基尼",
+          "en": "o-ring_bikini"
+        },
+        {
+          "zh": "眼罩比基尼",
+          "en": "eyepatch_bikini"
+        },
+        {
+          "zh": "分层比基尼",
+          "en": "layered_bikini"
+        },
+        {
+          "zh": "带蝴蝶结的比基尼",
+          "en": "bow_bikini"
+        },
+        {
+          "zh": "双色比基尼",
+          "en": "mismatched_bikini"
+        },
+        {
+          "zh": "多色款比基尼",
+          "en": "multicolored_bikini"
+        },
+        {
+          "zh": "花边泳衣",
+          "en": "frilled_swimsuit"
+        },
+        {
+          "zh": "圆斑泳衣",
+          "en": "polka_dot_swimsuit"
+        },
+        {
+          "zh": "条纹泳衣",
+          "en": "striped_swimsuit"
+        },
+        {
+          "zh": "条纹比基尼",
+          "en": "striped_bikini"
+        },
+        {
+          "zh": "格子比基尼",
+          "en": "plaid_bikini"
+        },
+        {
+          "zh": "圆斑比基尼",
+          "en": "polka_dot_bikini"
+        },
+        {
+          "zh": "印花比基尼",
+          "en": "print_bikini"
+        },
+        {
+          "zh": "美国国旗比基尼",
+          "en": "american_flag_bikini"
+        },
+        {
+          "zh": "德国国旗比基尼",
+          "en": "german_flag_bikini"
+        },
+        {
+          "zh": "人体彩绘般的泳衣",
+          "en": "impossible_swimsuit"
+        },
+        {
+          "zh": "比基尼上衣",
+          "en": "bikini_top"
+        },
+        {
+          "zh": "仅比基尼上衣",
+          "en": "bikini_top_only"
+        },
+        {
+          "zh": "脱下了比基尼上衣",
+          "en": "bikini_top_removed"
+        },
+        {
+          "zh": "仅比基尼下装",
+          "en": "bikini_bottom_only"
+        },
+        {
+          "zh": "比基尼泳裤",
+          "en": "bikini_bottom"
+        },
+        {
+          "zh": "解开的比基尼",
+          "en": "untied_bikini"
+        },
+        {
+          "zh": "从三点剥开的比基尼",
+          "en": "bikini_aside"
+        },
+        {
+          "zh": "把泳衣的裆部挪到一边",
+          "en": "swimsuit_aside"
+        },
+        {
+          "zh": "衣服里面穿着泳衣",
+          "en": "swimsuit_under_clothes"
+        },
+        {
+          "zh": "破损的泳衣",
+          "en": "torn_swimsuit"
+        },
+        {
+          "zh": "比基尼裙",
+          "en": "bikini_skirt"
+        },
+        {
+          "zh": "泳裤",
+          "en": "swim_briefs"
+        },
+        {
+          "zh": "泳帽",
+          "en": "swim_cap"
+        },
+        {
+          "zh": "泳裤",
+          "en": "swim_trunks"
+        },
+        {
+          "zh": "男用泳裤",
+          "en": "male_swimwear"
         }
       ]
     },
@@ -453,6 +1349,2814 @@
         {
           "zh": "拉起袜子(长袜)",
           "en": "thighhighs_pull"
+        }
+      ]
+    },
+    {
+      "id": "cat_1",
+      "name": "时尚穿搭",
+      "tags": [
+        {
+          "zh": "时尚配饰",
+          "en": "fashionable accessories"
+        },
+        {
+          "zh": "紧身牛仔裤",
+          "en": "fitted jeans"
+        },
+        {
+          "zh": "大码夹克",
+          "en": "oversized jacket"
+        },
+        {
+          "zh": "宽松的衣服",
+          "en": "baggy clothes"
+        }
+      ]
+    },
+    {
+      "id": "cat_2",
+      "name": "古风",
+      "tags": [
+        {
+          "zh": "唐风",
+          "en": "hanfu,tang style outfits,<lora:hanfuTang_v32:0.7>"
+        },
+        {
+          "zh": "宋风",
+          "en": "hanfu,song style outfits,<lora:hanfuSong_v31:0.7>"
+        },
+        {
+          "zh": "明风",
+          "en": "hanfu,ming style outfits,<lora:hanfuMing_v31:0.7>"
+        },
+        {
+          "zh": "橙色上杉",
+          "en": "orange upper shan"
+        },
+        {
+          "zh": "粉色长上杉",
+          "en": "pink long upper shan"
+        },
+        {
+          "zh": "齐胸破裙",
+          "en": "white chest po skirt"
+        },
+        {
+          "zh": "齐胸褶裙",
+          "en": "red chest pleated skirt"
+        },
+        {
+          "zh": "绿色系带",
+          "en": "green waistband"
+        },
+        {
+          "zh": "白色披帛",
+          "en": "white pibo"
+        },
+        {
+          "zh": "紫色短杉",
+          "en": "purple short shan"
+        },
+        {
+          "zh": "浅绿长杉",
+          "en": "light green long shan"
+        },
+        {
+          "zh": "半透白百褶裙",
+          "en": "translucent white pleated skirt"
+        },
+        {
+          "zh": "绿碎花宋抹",
+          "en": "green floral songmo"
+        },
+        {
+          "zh": "短袄",
+          "en": "short coat"
+        },
+        {
+          "zh": "马面裙",
+          "en": "mamian skirt"
+        },
+        {
+          "zh": "圆领",
+          "en": "round collar"
+        },
+        {
+          "zh": "立领",
+          "en": "standing collar"
+        },
+        {
+          "zh": "方领",
+          "en": "square collar"
+        },
+        {
+          "zh": "云肩",
+          "en": "overlapping collar"
+        },
+        {
+          "zh": "刺绣",
+          "en": "embroidery"
+        },
+        {
+          "zh": "织金",
+          "en": "woven gold"
+        },
+        {
+          "zh": "妆花",
+          "en": "makeup flower"
+        },
+        {
+          "zh": "补服",
+          "en": "bufu"
+        }
+      ]
+    },
+    {
+      "id": "cat_3",
+      "name": "正装",
+      "tags": [
+        {
+          "zh": "商务装",
+          "en": "business_suit"
+        },
+        {
+          "zh": "燕尾服",
+          "en": "tuxedo"
+        },
+        {
+          "zh": "长礼服（长至脚踝的女性礼服）",
+          "en": "evening_gown"
+        },
+        {
+          "zh": "晚礼服",
+          "en": "evening dress"
+        },
+        {
+          "zh": "婚纱",
+          "en": "wedding_dress"
+        },
+        {
+          "zh": "女长服",
+          "en": "gown"
+        },
+        {
+          "zh": "鸡尾酒连衣裙",
+          "en": "cocktail_dress"
+        },
+        {
+          "zh": "水手服（校服）",
+          "en": "serafuku"
+        },
+        {
+          "zh": "夏季制服",
+          "en": "summer_uniform"
+        },
+        {
+          "zh": "幼儿园制服",
+          "en": "kindergarten_uniform"
+        },
+        {
+          "zh": "海员制服",
+          "en": "sailor"
+        },
+        {
+          "zh": "警服",
+          "en": "police_uniform"
+        },
+        {
+          "zh": "陆军制服",
+          "en": "military_uniform"
+        },
+        {
+          "zh": "海军制服",
+          "en": "naval_uniform"
+        },
+        {
+          "zh": "迷彩服",
+          "en": "camouflage uniform"
+        },
+        {
+          "zh": "纳粹制服",
+          "en": "nazi_uniform"
+        },
+        {
+          "zh": "党卫军制服",
+          "en": "ss_uniform"
+        },
+        {
+          "zh": "女侍从的制服",
+          "en": "stile_uniform"
+        },
+        {
+          "zh": "乐队制服",
+          "en": "band_uniform"
+        },
+        {
+          "zh": "厨师工装",
+          "en": "chef_uniform"
+        },
+        {
+          "zh": "白大褂",
+          "en": "labcoat"
+        },
+        {
+          "zh": "宇航服",
+          "en": "space_suit"
+        },
+        {
+          "zh": "紧身连衣裤",
+          "en": "leotard"
+        },
+        {
+          "zh": "神职长袍",
+          "en": "canonicals"
+        },
+        {
+          "zh": "修女服",
+          "en": "domineering"
+        }
+      ]
+    },
+    {
+      "id": "cat_4",
+      "name": "休闲装",
+      "tags": [
+        {
+          "zh": "休闲",
+          "en": "casual"
+        },
+        {
+          "zh": "休闲服",
+          "en": "loungewear"
+        },
+        {
+          "zh": "居家服",
+          "en": "homewear"
+        },
+        {
+          "zh": "睡衣",
+          "en": "pajamas"
+        },
+        {
+          "zh": "睡衣",
+          "en": "nightgown"
+        },
+        {
+          "zh": "睡衣",
+          "en": "sleepwear"
+        },
+        {
+          "zh": "情趣睡衣",
+          "en": "babydoll"
+        },
+        {
+          "zh": "印花睡衣",
+          "en": "print_pajamas"
+        },
+        {
+          "zh": "波点睡衣",
+          "en": "polka_dot_pajamas"
+        },
+        {
+          "zh": "浴衣",
+          "en": "yukata"
+        },
+        {
+          "zh": "长袍",
+          "en": "robe"
+        },
+        {
+          "zh": "混合长袍",
+          "en": "robe_of_blending"
+        },
+        {
+          "zh": "斗篷",
+          "en": "cloak"
+        },
+        {
+          "zh": "连帽斗篷",
+          "en": "hooded_cloak"
+        },
+        {
+          "zh": "舞娘服",
+          "en": "harem_outfit"
+        }
+      ]
+    },
+    {
+      "id": "cat_5",
+      "name": "运动服",
+      "tags": [
+        {
+          "zh": "运动服",
+          "en": "sportswear"
+        },
+        {
+          "zh": "运动服",
+          "en": "gym_uniform"
+        },
+        {
+          "zh": "体操服",
+          "en": "athletic_leotard"
+        },
+        {
+          "zh": "网球衫",
+          "en": "tennis_uniform"
+        },
+        {
+          "zh": "棒球服",
+          "en": "baseball_uniform"
+        },
+        {
+          "zh": "棒球夹克",
+          "en": "letterman_jacket"
+        },
+        {
+          "zh": "排球服",
+          "en": "volleyball_uniform"
+        },
+        {
+          "zh": "自行车运动服",
+          "en": "biker_clothes"
+        },
+        {
+          "zh": "骑行套装",
+          "en": "bikesuit"
+        },
+        {
+          "zh": "摔角服",
+          "en": "wrestling_outfit"
+        },
+        {
+          "zh": "武道服",
+          "en": "dougi"
+        }
+      ]
+    },
+    {
+      "id": "cat_6",
+      "name": "校服",
+      "tags": [
+        {
+          "zh": "美少女战士制服",
+          "en": "sailor_senshi_uniform"
+        },
+        {
+          "zh": "改良制服",
+          "en": "adapted_uniform"
+        },
+        {
+          "zh": "安齐奥军服",
+          "en": "anzio_military_uniform"
+        },
+        {
+          "zh": "安齐奥校服",
+          "en": "anzio_school_uniform"
+        },
+        {
+          "zh": "亚利亚公司制服",
+          "en": "aria_company_uniform"
+        },
+        {
+          "zh": "阿什福特学院制服",
+          "en": "ashford_academy_uniform"
+        },
+        {
+          "zh": "BC自由学园制服",
+          "en": "bc_freedom_military_uniform"
+        },
+        {
+          "zh": "迦勒底制服",
+          "en": "chaldea_uniform"
+        },
+        {
+          "zh": "知波单学院制服",
+          "en": "chi-hatan_military_uniform"
+        },
+        {
+          "zh": "点兔女仆装",
+          "en": "fleur_de_lapin_uniform"
+        },
+        {
+          "zh": "加尔格·马可大修道院制服",
+          "en": "garreg_mach_monastery_uniform"
+        },
+        {
+          "zh": "宝石之国的制服",
+          "en": "gem_uniform_(houseki_no_kuni)"
+        },
+        {
+          "zh": "花咲川女子学园",
+          "en": "hanasakigawa_school_uniform"
+        },
+        {
+          "zh": "私立光坂高等学校校服",
+          "en": "hikarizaka_private_high_school_uniform"
+        },
+        {
+          "zh": "穗群原学园制服",
+          "en": "homurahara_academy_uniform"
+        },
+        {
+          "zh": "神山高中校服",
+          "en": "kamiyama_high_school_uniform"
+        },
+        {
+          "zh": "继续高中军服",
+          "en": "keizoku_military_uniform"
+        },
+        {
+          "zh": "北高中制服",
+          "en": "kita_high_school_uniform"
+        },
+        {
+          "zh": "清澄高中校服",
+          "en": "kiyosumi_school_uniform"
+        },
+        {
+          "zh": "鲁纳诺娃魔法学校校服",
+          "en": "luna_nova_school_uniform"
+        },
+        {
+          "zh": "明治女学生制服",
+          "en": "meiji_schoolgirl_uniform"
+        },
+        {
+          "zh": "见泷原中学校制服",
+          "en": "mitakihara_school_uniform"
+        },
+        {
+          "zh": "波路中学校服",
+          "en": "nami_junior_high_school_uniform"
+        },
+        {
+          "zh": "七色丘中学校服",
+          "en": "nanairogaoka_middle_school_uniform"
+        },
+        {
+          "zh": "七森中学校服",
+          "en": "nanamori_school_uniform"
+        },
+        {
+          "zh": "私立直江津高校制服",
+          "en": "naoetsu_high_school_uniform"
+        },
+        {
+          "zh": "新大岛学园校服",
+          "en": "national_shin_ooshima_school_uniform"
+        },
+        {
+          "zh": "大洗联队军装",
+          "en": "ooarai_military_uniform"
+        },
+        {
+          "zh": "大洗联队校服",
+          "en": "ooarai_school_uniform"
+        },
+        {
+          "zh": "国立音乃木坂学院女子制服",
+          "en": "otonokizaka_school_uniform"
+        },
+        {
+          "zh": "帕拉迪岛军装",
+          "en": "paradis_military_uniform"
+        },
+        {
+          "zh": "极地迦勒底制服",
+          "en": "polar_chaldea_uniform"
+        },
+        {
+          "zh": "真理学院军装",
+          "en": "pravda_military_uniform"
+        },
+        {
+          "zh": "真理学院校服",
+          "en": "pravda_school_uniform"
+        },
+        {
+          "zh": "点兔兔之家制服",
+          "en": "rabbit_house_uniform"
+        },
+        {
+          "zh": "雷门足球队服",
+          "en": "raimon_soccer_uniform"
+        },
+        {
+          "zh": "陵樱学园制服",
+          "en": "ryouou_school_uniform"
+        },
+        {
+          "zh": "栅川中学校服",
+          "en": "sakugawa_school_uniform"
+        },
+        {
+          "zh": "樱丘女子高等学校校服",
+          "en": "sakuragaoka_high_school_uniform"
+        },
+        {
+          "zh": "桑德斯军装",
+          "en": "saunders_military_uniform"
+        },
+        {
+          "zh": "桑德斯附高校服",
+          "en": "saunders_school_uniform"
+        },
+        {
+          "zh": "圣祥大附小学校校服",
+          "en": "seishou_elementary_school_uniform"
+        },
+        {
+          "zh": "死后世界战线制服",
+          "en": "shinda_sekai_sensen_uniform"
+        },
+        {
+          "zh": "秀知院学园制服",
+          "en": "shuuchiin_academy_uniform"
+        },
+        {
+          "zh": "秀尽学院制服",
+          "en": "shuujin_academy_uniform"
+        },
+        {
+          "zh": "圣葛罗莉安娜军装",
+          "en": "st._gloriana's_military_uniform"
+        },
+        {
+          "zh": "圣葛罗莉安娜女学园校服",
+          "en": "st._gloriana's_school_uniform"
+        },
+        {
+          "zh": "星光学园制服",
+          "en": "starlight_academy_uniform"
+        },
+        {
+          "zh": "时定高校校服",
+          "en": "tokisadame_school_uniform"
+        },
+        {
+          "zh": "常盘台中学校服",
+          "en": "tokiwadai_school_uniform"
+        },
+        {
+          "zh": "友枝小学校服",
+          "en": "tomoeda_elementary_school_uniform"
+        },
+        {
+          "zh": "时空管理局军服",
+          "en": "tsab_ground_military_uniform"
+        },
+        {
+          "zh": "雄英高中校服",
+          "en": "u.a._school_uniform"
+        },
+        {
+          "zh": "浦之星女学院校服",
+          "en": "uranohoshi_school_uniform"
+        },
+        {
+          "zh": "八十神高中校服",
+          "en": "yasogami_school_uniform"
+        }
+      ]
+    },
+    {
+      "id": "cat_7",
+      "name": "外套",
+      "tags": [
+        {
+          "zh": "裸体的",
+          "en": "nude"
+        },
+        {
+          "zh": "正装",
+          "en": "formal"
+        },
+        {
+          "zh": "宽松连衣裙",
+          "en": "chemise"
+        },
+        {
+          "zh": "圣诞装",
+          "en": "santa"
+        },
+        {
+          "zh": "西装外套",
+          "en": "blazer"
+        },
+        {
+          "zh": "大衣",
+          "en": "overcoat"
+        },
+        {
+          "zh": "双排纽扣(双排扣",
+          "en": "double-breasted"
+        },
+        {
+          "zh": "长外套",
+          "en": "long_coat"
+        },
+        {
+          "zh": "和式外套",
+          "en": "haori"
+        },
+        {
+          "zh": "冬季大衣",
+          "en": "winter_coat"
+        },
+        {
+          "zh": "连帽大衣",
+          "en": "hooded_coat"
+        },
+        {
+          "zh": "皮草大衣",
+          "en": "fur_coat"
+        },
+        {
+          "zh": "镶边皮草大衣",
+          "en": "fur-trimmed_coat"
+        },
+        {
+          "zh": "粗呢大衣",
+          "en": "duffel_coat"
+        },
+        {
+          "zh": "渔网上衣",
+          "en": "fishnet_top"
+        },
+        {
+          "zh": "派克大衣",
+          "en": "parka"
+        },
+        {
+          "zh": "夹克已被部分脱下",
+          "en": "jacket_partially_removed"
+        },
+        {
+          "zh": "已脱下夹克",
+          "en": "jacket_removed"
+        },
+        {
+          "zh": "开襟夹克（配合张开腿）",
+          "en": "open_jacket"
+        },
+        {
+          "zh": "短款夹克",
+          "en": "cropped_jacket"
+        },
+        {
+          "zh": "运动夹克",
+          "en": "track_jacket"
+        },
+        {
+          "zh": "连帽运动夹克",
+          "en": "hooded_track_jacket"
+        },
+        {
+          "zh": "军装夹克",
+          "en": "military_jacket"
+        },
+        {
+          "zh": "迷彩夹克",
+          "en": "camouflage_jacket"
+        },
+        {
+          "zh": "皮夹克",
+          "en": "leather_jacket"
+        },
+        {
+          "zh": "飞行员夹克",
+          "en": "bomber_jacket"
+        },
+        {
+          "zh": "牛仔夹克",
+          "en": "denim_jacket"
+        },
+        {
+          "zh": "毛皮边饰夹克",
+          "en": "fur-trimmed_jacket"
+        },
+        {
+          "zh": "两色夹克",
+          "en": "two-tone_jacket"
+        },
+        {
+          "zh": "风衣",
+          "en": "trench_coat"
+        },
+        {
+          "zh": "冲锋衣",
+          "en": "windbreaker"
+        },
+        {
+          "zh": "雨衣",
+          "en": "raincoat"
+        },
+        {
+          "zh": "神羽衣",
+          "en": "hagoromo"
+        },
+        {
+          "zh": "束腰长袍",
+          "en": "tunic"
+        },
+        {
+          "zh": "披肩",
+          "en": "cape"
+        },
+        {
+          "zh": "冬装",
+          "en": "winter_clothes"
+        },
+        {
+          "zh": "套頭毛衣",
+          "en": "pullover_sweaters"
+        },
+        {
+          "zh": "休闲夹克",
+          "en": "loating_jacket"
+        },
+        {
+          "zh": "罗纹毛衣",
+          "en": "ribbed_sweater"
+        },
+        {
+          "zh": "毛衣背心",
+          "en": "sweater_vest"
+        },
+        {
+          "zh": "露背毛衣",
+          "en": "backless_sweater"
+        },
+        {
+          "zh": "爱尔兰毛衣",
+          "en": "aran_sweater"
+        },
+        {
+          "zh": "米色毛衣",
+          "en": "beige_sweater"
+        },
+        {
+          "zh": "棕色毛衣",
+          "en": "brown_sweater"
+        },
+        {
+          "zh": "连帽毛衣",
+          "en": "hooded_sweater"
+        },
+        {
+          "zh": "露肩毛衣",
+          "en": "off-shoulder_sweater"
+        },
+        {
+          "zh": "条纹毛衣",
+          "en": "striped_sweater"
+        },
+        {
+          "zh": "处男杀手毛衣",
+          "en": "virgin_killer_sweater"
+        },
+        {
+          "zh": "羽绒服",
+          "en": "down_jacket"
+        },
+        {
+          "zh": "羽绒服",
+          "en": "puffer_jacket"
+        },
+        {
+          "zh": "开襟连衣裙",
+          "en": "open dress"
+        },
+        {
+          "zh": "西装夹克",
+          "en": "Piece Suit"
+        },
+        {
+          "zh": "浴巾",
+          "en": "naked towel"
+        },
+        {
+          "zh": "赛车服",
+          "en": "racing suit"
+        },
+        {
+          "zh": "女仆装",
+          "en": "maid dress"
+        },
+        {
+          "zh": "逆兔女郎",
+          "en": "reverse bunnysuit"
+        },
+        {
+          "zh": "露背装",
+          "en": "backless outfit"
+        },
+        {
+          "zh": "华丽繁琐的服装",
+          "en": "Gorgeous and fussy clothes"
+        },
+        {
+          "zh": "高开衩的连身衣",
+          "en": "highleg leotard"
+        },
+        {
+          "zh": "情趣内衣",
+          "en": "Sex underwear"
+        },
+        {
+          "zh": "潜水服",
+          "en": "diving suit"
+        },
+        {
+          "zh": "休闲服",
+          "en": "casual wear"
+        },
+        {
+          "zh": "女巫服",
+          "en": "miko clothing"
+        },
+        {
+          "zh": "护士服",
+          "en": "nurse gown"
+        }
+      ]
+    },
+    {
+      "id": "cat_8",
+      "name": "领口",
+      "tags": [
+        {
+          "zh": "水手领",
+          "en": "sailor_collar"
+        },
+        {
+          "zh": "毛皮衣领",
+          "en": "fur_collar"
+        },
+        {
+          "zh": "花边衣领",
+          "en": "frilled_collar"
+        },
+        {
+          "zh": "竖起来的衣领",
+          "en": "popped_collar"
+        },
+        {
+          "zh": "黑色颈圈",
+          "en": "black_choker"
+        },
+        {
+          "zh": "皮带颈环",
+          "en": "belt_collar"
+        },
+        {
+          "zh": "褶边项链",
+          "en": "frilled_choker"
+        },
+        {
+          "zh": "领巾",
+          "en": "neckerchief"
+        },
+        {
+          "zh": "红领巾",
+          "en": "red_neckerchief"
+        },
+        {
+          "zh": "领带",
+          "en": "necktie"
+        },
+        {
+          "zh": "短领带",
+          "en": "short_necktie"
+        },
+        {
+          "zh": "白色领带",
+          "en": "white_necktie"
+        },
+        {
+          "zh": "蝴蝶结领带",
+          "en": "bowtie"
+        },
+        {
+          "zh": "挂在脖子上的耳机",
+          "en": "headphones_around_neck"
+        },
+        {
+          "zh": "脖子上护目镜",
+          "en": "goggles_around_neck"
+        },
+        {
+          "zh": "颈铃",
+          "en": "neck_bell"
+        },
+        {
+          "zh": "领口",
+          "en": "neck_ruff"
+        },
+        {
+          "zh": "V领",
+          "en": "v-neck"
+        },
+        {
+          "zh": "脖子上的毛巾",
+          "en": "towel_around_neck"
+        },
+        {
+          "zh": "宽松领带",
+          "en": "loose_necktie"
+        },
+        {
+          "zh": "颈部纹身",
+          "en": "neck_tattoo"
+        },
+        {
+          "zh": "领巾状宽领带",
+          "en": "ascot"
+        },
+        {
+          "zh": "颈丝带",
+          "en": "ribbon_choker"
+        },
+        {
+          "zh": "阴贴/乳贴",
+          "en": "maebari/pasties"
+        },
+        {
+          "zh": "中国结",
+          "en": "chinese_knot"
+        },
+        {
+          "zh": "十字架项链",
+          "en": "cross_necklace"
+        },
+        {
+          "zh": "珠子项链",
+          "en": "bead_necklace"
+        },
+        {
+          "zh": "珍珠项链",
+          "en": "pearl_necklace"
+        },
+        {
+          "zh": "心形项链",
+          "en": "heart_necklace"
+        },
+        {
+          "zh": "胡萝卜项链",
+          "en": "carrot_necklace"
+        },
+        {
+          "zh": "锁链项链",
+          "en": "chain_necklace"
+        },
+        {
+          "zh": "珠玉项链",
+          "en": "magatama_necklace"
+        },
+        {
+          "zh": "牙项链",
+          "en": "tooth_necklace"
+        },
+        {
+          "zh": "钥匙项链",
+          "en": "key_necklace"
+        },
+        {
+          "zh": "锚项链",
+          "en": "anchor_necklace"
+        },
+        {
+          "zh": "骷髅项链",
+          "en": "skull_necklace"
+        },
+        {
+          "zh": "贝壳项链",
+          "en": "shell_necklace"
+        },
+        {
+          "zh": "金项链",
+          "en": "gold_necklace"
+        },
+        {
+          "zh": "新月项链",
+          "en": "crescent_necklace"
+        },
+        {
+          "zh": "戒指项链",
+          "en": "ring_necklace"
+        },
+        {
+          "zh": "羽毛项链",
+          "en": "feather_necklace"
+        },
+        {
+          "zh": "骨项链",
+          "en": "bone_necklace"
+        },
+        {
+          "zh": "十字项链",
+          "en": "ankh_necklace"
+        },
+        {
+          "zh": "多条项链",
+          "en": "multiple_necklaces"
+        },
+        {
+          "zh": "子弹项链",
+          "en": "bullet_necklace"
+        },
+        {
+          "zh": "拿着项链",
+          "en": "holding_necklace"
+        },
+        {
+          "zh": "项链被移除",
+          "en": "necklace_removed"
+        },
+        {
+          "zh": "棕色领饰",
+          "en": "brown_neckwear"
+        },
+        {
+          "zh": "格子领口",
+          "en": "checkered_neckwear"
+        },
+        {
+          "zh": "斜纹领结",
+          "en": "diagonal-striped_neckwear"
+        },
+        {
+          "zh": "绕颈系带",
+          "en": "halterneck"
+        },
+        {
+          "zh": "脖子上有痣",
+          "en": "mole_on_neck"
+        },
+        {
+          "zh": "脖子",
+          "en": "neck"
+        },
+        {
+          "zh": "格子呢领子",
+          "en": "plaid_neckwear"
+        },
+        {
+          "zh": "深领",
+          "en": "plunging_neckline"
+        },
+        {
+          "zh": "印花领带",
+          "en": "print_neckwear"
+        },
+        {
+          "zh": "无袖高领毛衣",
+          "en": "sleeveless_turtleneck"
+        },
+        {
+          "zh": "星形项链",
+          "en": "star_necklace"
+        },
+        {
+          "zh": "条纹领子",
+          "en": "striped_neckwear"
+        },
+        {
+          "zh": "高领毛衣",
+          "en": "turtleneck_sweater"
+        },
+        {
+          "zh": "解开领带",
+          "en": "undone_necktie"
+        },
+        {
+          "zh": "脖子上挂着口哨",
+          "en": "whistle_around_neck"
+        }
+      ]
+    },
+    {
+      "id": "cat_9",
+      "name": "围巾",
+      "tags": [
+        {
+          "zh": "格子围巾",
+          "en": "plaid_scarf"
+        },
+        {
+          "zh": "条纹围巾",
+          "en": "striped_scarf"
+        },
+        {
+          "zh": "印花围巾",
+          "en": "print_scarf"
+        },
+        {
+          "zh": "竖条纹围巾",
+          "en": "vertical-striped_scarf"
+        },
+        {
+          "zh": "波点围巾",
+          "en": "polka_dot_scarf"
+        },
+        {
+          "zh": "菱形围巾",
+          "en": "argyle_scarf"
+        },
+        {
+          "zh": "米色围巾",
+          "en": "beige_scarf"
+        },
+        {
+          "zh": "围巾蝴蝶结",
+          "en": "scarf_bow"
+        },
+        {
+          "zh": "皮草围巾",
+          "en": "fur_scarf"
+        },
+        {
+          "zh": "裸围巾",
+          "en": "naked_scarf"
+        },
+        {
+          "zh": "五彩围巾",
+          "en": "multicolored_scarf"
+        },
+        {
+          "zh": "漂浮围巾",
+          "en": "floating_scarf"
+        },
+        {
+          "zh": "长围巾",
+          "en": "long_scarf"
+        },
+        {
+          "zh": "手臂围巾",
+          "en": "arm_scarf"
+        },
+        {
+          "zh": "头上的围巾",
+          "en": "scarf_on_head"
+        },
+        {
+          "zh": "围巾在嘴上",
+          "en": "scarf_over_mouth"
+        },
+        {
+          "zh": "围巾被取下",
+          "en": "scarf_removed"
+        },
+        {
+          "zh": "调整围巾",
+          "en": "adjusting_scarf"
+        },
+        {
+          "zh": "拿着围巾",
+          "en": "holding_scarf"
+        },
+        {
+          "zh": "扯围巾",
+          "en": "scarf_pull"
+        },
+        {
+          "zh": "棕色围巾",
+          "en": "brown_scarf"
+        },
+        {
+          "zh": "围巾",
+          "en": "scarf"
+        }
+      ]
+    },
+    {
+      "id": "cat_10",
+      "name": "腰部",
+      "tags": [
+        {
+          "zh": "围裙",
+          "en": "apron"
+        },
+        {
+          "zh": "腰围裙",
+          "en": "waist_apron"
+        },
+        {
+          "zh": "女仆围裙",
+          "en": "maid_apron"
+        },
+        {
+          "zh": "系在前腰的蝴蝶结",
+          "en": "bow tied at the waist"
+        },
+        {
+          "zh": "穿在腰部的小披风",
+          "en": "waist_cape"
+        },
+        {
+          "zh": "腰间衣服",
+          "en": "clothes_around_waist"
+        },
+        {
+          "zh": "腰围夹克",
+          "en": "jacket_around_waist"
+        },
+        {
+          "zh": "围腰毛衣",
+          "en": "sweater_around_waist"
+        },
+        {
+          "zh": "缠腰布",
+          "en": "loincloth"
+        },
+        {
+          "zh": "胸衣",
+          "en": "bustier"
+        },
+        {
+          "zh": "束腰(马甲)",
+          "en": "corset"
+        },
+        {
+          "zh": "紧身褡",
+          "en": "girdle"
+        }
+      ]
+    },
+    {
+      "id": "cat_11",
+      "name": "盔甲",
+      "tags": [
+        {
+          "zh": "比基尼盔甲",
+          "en": "bikini_armor"
+        },
+        {
+          "zh": "盔甲",
+          "en": "armor"
+        },
+        {
+          "zh": "穿着全套盔甲的",
+          "en": "full_armor"
+        },
+        {
+          "zh": "板甲",
+          "en": "plate_armor"
+        },
+        {
+          "zh": "日本铠甲",
+          "en": "japanese_armor"
+        },
+        {
+          "zh": "腹当|草摺(日式下半盔甲",
+          "en": "kusazuri"
+        },
+        {
+          "zh": "动力装甲",
+          "en": "power_armor"
+        },
+        {
+          "zh": "头盔",
+          "en": "helmet"
+        },
+        {
+          "zh": "头盔(日式)",
+          "en": "kabuto"
+        },
+        {
+          "zh": "無肩甲盔甲",
+          "en": "off-shoulder_armor"
+        },
+        {
+          "zh": "肩甲",
+          "en": "shoulder_armor"
+        },
+        {
+          "zh": "日本弓道護胸甲",
+          "en": "muneate"
+        },
+        {
+          "zh": "胸甲",
+          "en": "breastplate"
+        },
+        {
+          "zh": "腹甲",
+          "en": "faulds"
+        },
+        {
+          "zh": "胫甲",
+          "en": "greaves"
+        },
+        {
+          "zh": "胫甲",
+          "en": "shin_guards"
+        },
+        {
+          "zh": "装甲靴",
+          "en": "armored_boots"
+        }
+      ]
+    },
+    {
+      "id": "cat_12",
+      "name": "裙子",
+      "tags": [
+        {
+          "zh": "连衣裙",
+          "en": "dress"
+        },
+        {
+          "zh": "微型连衣裙",
+          "en": "microdress"
+        },
+        {
+          "zh": "长连衣裙",
+          "en": "long_dress"
+        },
+        {
+          "zh": "鱼尾裙",
+          "en": "mermaid dress"
+        },
+        {
+          "zh": "露肩连衣裙",
+          "en": "off-shoulder_dress"
+        },
+        {
+          "zh": "无肩带连衣裙",
+          "en": "strapless_dress"
+        },
+        {
+          "zh": "露背连衣裙",
+          "en": "backless_dress"
+        },
+        {
+          "zh": "绕颈露背吊带裙",
+          "en": "halter_dress"
+        },
+        {
+          "zh": "吊帶連衣裙（大熱天穿的無袖連衣裙）",
+          "en": "sundress"
+        },
+        {
+          "zh": "无袖连衣裙",
+          "en": "sleeveless_dress"
+        },
+        {
+          "zh": "水手服款裙子",
+          "en": "sailor_dress"
+        },
+        {
+          "zh": "夏日长裙",
+          "en": "summer_dress"
+        },
+        {
+          "zh": "围裙连衣裙",
+          "en": "pinafore_dress"
+        },
+        {
+          "zh": "毛衣连衣裙",
+          "en": "sweater_dress"
+        },
+        {
+          "zh": "战甲裙",
+          "en": "armored_dress"
+        },
+        {
+          "zh": "花边连衣裙",
+          "en": "frilled_dress"
+        },
+        {
+          "zh": "蕾丝边连衣裙",
+          "en": "lace-trimmed_dress"
+        },
+        {
+          "zh": "有领连衣裙",
+          "en": "collared_dress"
+        },
+        {
+          "zh": "毛皮镶边连衣裙",
+          "en": "fur-trimmed_dress"
+        },
+        {
+          "zh": "分层连衣裙",
+          "en": "layered_dress"
+        },
+        {
+          "zh": "百褶连衣裙",
+          "en": "pleated_dress"
+        },
+        {
+          "zh": "紧身连衣裙",
+          "en": "taut_dress"
+        },
+        {
+          "zh": "铅笔裙",
+          "en": "pencil_dress"
+        },
+        {
+          "zh": "过分紧身的衣服",
+          "en": "impossible_dress"
+        },
+        {
+          "zh": "多色款连衣裙",
+          "en": "multicolored_dress"
+        },
+        {
+          "zh": "条纹连衣裙",
+          "en": "striped_dress"
+        },
+        {
+          "zh": "罗纹连衣裙",
+          "en": "ribbed_dress"
+        },
+        {
+          "zh": "波点连衣裙",
+          "en": "polka_dot_dress"
+        },
+        {
+          "zh": "印花连衣裙",
+          "en": "print_dress"
+        },
+        {
+          "zh": "竖条纹连衣裙",
+          "en": "vertical-striped_dress"
+        },
+        {
+          "zh": "透视连衣裙",
+          "en": "see-through_dress"
+        },
+        {
+          "zh": "超短裙",
+          "en": "microskirt"
+        },
+        {
+          "zh": "迷你裙",
+          "en": "miniskirt"
+        },
+        {
+          "zh": "正装短裙",
+          "en": "skirt_suit"
+        },
+        {
+          "zh": "短铅笔裙",
+          "en": "pencil_skirt"
+        },
+        {
+          "zh": "蓬蓬裙",
+          "en": "bubble_skirt"
+        },
+        {
+          "zh": "芭蕾舞裙",
+          "en": "tutu"
+        },
+        {
+          "zh": "蓬蓬裙(禮服)",
+          "en": "ballgown"
+        },
+        {
+          "zh": "蓬蓬裙(兒童)",
+          "en": "pettiskirt"
+        },
+        {
+          "zh": "展会女郎装束",
+          "en": "showgirl_skirt"
+        },
+        {
+          "zh": "皮带裙",
+          "en": "beltskirt"
+        },
+        {
+          "zh": "牛仔裙",
+          "en": "denim_skirt"
+        },
+        {
+          "zh": "吊带裙",
+          "en": "suspender_skirt"
+        },
+        {
+          "zh": "与上衣搭配的短裙",
+          "en": "skirt_set"
+        },
+        {
+          "zh": "长裙",
+          "en": "long_skirt"
+        },
+        {
+          "zh": "夏日长裙",
+          "en": "summer_long_skirt"
+        },
+        {
+          "zh": "外裙",
+          "en": "overskirt"
+        },
+        {
+          "zh": "袴裙",
+          "en": "hakama_skirt"
+        },
+        {
+          "zh": "高腰裙",
+          "en": "high-waist_skirt"
+        },
+        {
+          "zh": "和服裙",
+          "en": "kimono_skirt"
+        },
+        {
+          "zh": "背带裙;吊带裙",
+          "en": "suspender_long_skirt"
+        },
+        {
+          "zh": "雪紡裙",
+          "en": "chiffon_skirt"
+        },
+        {
+          "zh": "花边裙子",
+          "en": "frilled_skirt"
+        },
+        {
+          "zh": "毛皮镶边短裙",
+          "en": "fur-trimmed_skirt"
+        },
+        {
+          "zh": "蕾絲短裙",
+          "en": "lace_skirt"
+        },
+        {
+          "zh": "蕾丝边短裙",
+          "en": "lace-trimmed_skirt"
+        },
+        {
+          "zh": "缎带饰边短裙",
+          "en": "ribbon-trimmed_skirt"
+        },
+        {
+          "zh": "分层的半裙",
+          "en": "layered_skirt"
+        },
+        {
+          "zh": "印花短裙",
+          "en": "print_skirt"
+        },
+        {
+          "zh": "多色款裙子",
+          "en": "multicolored_skirt"
+        },
+        {
+          "zh": "条纹裙",
+          "en": "striped_skirt"
+        },
+        {
+          "zh": "竖条纹裙子",
+          "en": "vertical-striped_skirt"
+        },
+        {
+          "zh": "格子呢短裙",
+          "en": "plaid_skirt"
+        },
+        {
+          "zh": "伞裙",
+          "en": "flared_skirt"
+        },
+        {
+          "zh": "碎花裙",
+          "en": "floral_skirt"
+        },
+        {
+          "zh": "优雅地提着裙子",
+          "en": "skirt_hold"
+        },
+        {
+          "zh": "扯住裙摆|按住裙摆",
+          "en": "skirt_tug"
+        },
+        {
+          "zh": "压住裙摆",
+          "en": "dress_tug"
+        },
+        {
+          "zh": "一条腿上挂着短裙",
+          "en": "skirt_around_one_leg"
+        },
+        {
+          "zh": "脱下的短裙",
+          "en": "skirt_removed"
+        },
+        {
+          "zh": "脱下裙子",
+          "en": "dress_removed"
+        },
+        {
+          "zh": "敞开的裙子",
+          "en": "open_skirt"
+        },
+        {
+          "zh": "格子裙",
+          "en": "checkered_skirt"
+        },
+        {
+          "zh": "格子连衣裙",
+          "en": "plaid_dress"
+        },
+        {
+          "zh": "中等长裙子",
+          "en": "Medium length skirt"
+        }
+      ]
+    },
+    {
+      "id": "cat_13",
+      "name": "裤子",
+      "tags": [
+        {
+          "zh": "连衣裙上的蝴蝶结",
+          "en": "dress_bow"
+        },
+        {
+          "zh": "着装",
+          "en": "dressing_another"
+        },
+        {
+          "zh": "短裙里穿着短裤",
+          "en": "shorts_under_skirt"
+        },
+        {
+          "zh": "侧开衩",
+          "en": "side_slit"
+        },
+        {
+          "zh": "小尺寸短裤",
+          "en": "micro_shorts"
+        },
+        {
+          "zh": "热裤",
+          "en": "short_shorts"
+        },
+        {
+          "zh": "热裤",
+          "en": "hot_pants"
+        },
+        {
+          "zh": "热裤",
+          "en": "cutoffs"
+        },
+        {
+          "zh": "条纹短裤",
+          "en": "striped_shorts"
+        },
+        {
+          "zh": "吊带短裤",
+          "en": "suspender_shorts"
+        },
+        {
+          "zh": "牛仔短裤",
+          "en": "denim_shorts"
+        },
+        {
+          "zh": "蓬蓬的短裤",
+          "en": "puffy_shorts"
+        },
+        {
+          "zh": "海豚短褲(真理褲)",
+          "en": "dolphin_shorts"
+        },
+        {
+          "zh": "海豚短褲(真理褲)",
+          "en": "dolfin_shorts"
+        },
+        {
+          "zh": "紧身裤/运动裤",
+          "en": "tight_pants"
+        },
+        {
+          "zh": "无裆裤（紧身）",
+          "en": "crotchless_pants"
+        },
+        {
+          "zh": "运动裤",
+          "en": "track_pants"
+        },
+        {
+          "zh": "瑜伽裤",
+          "en": "yoga_pants"
+        },
+        {
+          "zh": "自行车短裤",
+          "en": "bike_shorts"
+        },
+        {
+          "zh": "长裤",
+          "en": "pants"
+        },
+        {
+          "zh": "蓬松裤/宽松裤",
+          "en": "puffy_pants"
+        },
+        {
+          "zh": "南瓜裤",
+          "en": "pumpkin_pants"
+        },
+        {
+          "zh": "袴裤",
+          "en": "hakama_pants"
+        },
+        {
+          "zh": "哈伦裤",
+          "en": "harem_pants"
+        },
+        {
+          "zh": "灯笼裤",
+          "en": "bloomers"
+        },
+        {
+          "zh": "女式灯笼裤",
+          "en": "buruma"
+        },
+        {
+          "zh": "工装裤",
+          "en": "cargo_pants"
+        },
+        {
+          "zh": "迷彩裤",
+          "en": "camouflage_pants"
+        },
+        {
+          "zh": "七分裤",
+          "en": "capri_pants"
+        },
+        {
+          "zh": "皮套裤(上宽下窄",
+          "en": "chaps"
+        },
+        {
+          "zh": "(尤指女式)连衫裤",
+          "en": "jumpsuit"
+        },
+        {
+          "zh": "低腰裤子",
+          "en": "lowleg_pants"
+        },
+        {
+          "zh": "格子呢裤子",
+          "en": "plaid_pants"
+        },
+        {
+          "zh": "单边长裤",
+          "en": "single_pantsleg"
+        },
+        {
+          "zh": "条纹裤",
+          "en": "striped_pants"
+        },
+        {
+          "zh": "把连衣裤裆部剥到一边",
+          "en": "leotard_aside"
+        },
+        {
+          "zh": "解开的裤子拉链",
+          "en": "open_fly"
+        },
+        {
+          "zh": "褪下裤子",
+          "en": "pants_down"
+        },
+        {
+          "zh": "裤子卷起来",
+          "en": "pants_rolled_up"
+        },
+        {
+          "zh": "裤子塞进去",
+          "en": "pants_tucked_in"
+        },
+        {
+          "zh": "破牛仔裤",
+          "en": "torn_jeans"
+        },
+        {
+          "zh": "破裤子",
+          "en": "torn_pants"
+        },
+        {
+          "zh": "破短裤",
+          "en": "torn_shorts"
+        },
+        {
+          "zh": "体操短裤",
+          "en": "gym_shorts"
+        }
+      ]
+    },
+    {
+      "id": "cat_14",
+      "name": "下装",
+      "tags": [
+        {
+          "zh": "紧身裤",
+          "en": "leggings"
+        },
+        {
+          "zh": "背带裤",
+          "en": "overalls"
+        },
+        {
+          "zh": "尿布",
+          "en": "diaper"
+        },
+        {
+          "zh": "内裤",
+          "en": "panties"
+        },
+        {
+          "zh": "三角裤",
+          "en": "briefs"
+        },
+        {
+          "zh": "丁字裤",
+          "en": "thong"
+        },
+        {
+          "zh": "日式丁字裤",
+          "en": "fundoshi"
+        },
+        {
+          "zh": "短裙",
+          "en": "short dress"
+        },
+        {
+          "zh": "包臀裙",
+          "en": "sheath dress"
+        },
+        {
+          "zh": "没内裤",
+          "en": "no panties"
+        },
+        {
+          "zh": "条纹内裤",
+          "en": "striped panties"
+        },
+        {
+          "zh": "低腰式内裤",
+          "en": "lowleg panties"
+        },
+        {
+          "zh": "系带式内裤",
+          "en": "side-tie panties"
+        }
+      ]
+    },
+    {
+      "id": "cat_15",
+      "name": "装饰",
+      "tags": [
+        {
+          "zh": "褶边",
+          "en": "frilled"
+        },
+        {
+          "zh": "中心褶花边",
+          "en": "center_frills"
+        },
+        {
+          "zh": "起皱的(有褶的)",
+          "en": "crease"
+        },
+        {
+          "zh": "分层的",
+          "en": "layered"
+        },
+        {
+          "zh": "蕾丝",
+          "en": "lace"
+        },
+        {
+          "zh": "皮草饰边",
+          "en": "fur_trim"
+        },
+        {
+          "zh": "毛边的",
+          "en": "fur-trimmed"
+        },
+        {
+          "zh": "材质增强",
+          "en": "fine_fabric_emphasis"
+        },
+        {
+          "zh": "乳胶材质的长筒袜",
+          "en": "latex_thighhighs"
+        },
+        {
+          "zh": "透明的长筒袜",
+          "en": "see-through_thighhighs"
+        },
+        {
+          "zh": "露出屁股的服饰",
+          "en": "ass_cutout"
+        },
+        {
+          "zh": "不对称的服饰",
+          "en": "asymmetrical_clothes"
+        },
+        {
+          "zh": "(服饰)打在背后的结",
+          "en": "back_bow"
+        },
+        {
+          "zh": "交叉花边服饰",
+          "en": "cross-laced_clothes"
+        },
+        {
+          "zh": "服饰上有两条平行条纹",
+          "en": "double_vertical_stripe"
+        },
+        {
+          "zh": "吊带式的上身的服饰",
+          "en": "halter_top"
+        },
+        {
+          "zh": "多色款腿部服饰",
+          "en": "multicolored_legwear"
+        },
+        {
+          "zh": "海军蓝腿部服饰",
+          "en": "navy_blue_legwear"
+        },
+        {
+          "zh": "改款过的日本服饰",
+          "en": "nontraditional_miko"
+        },
+        {
+          "zh": "侧边开口的服饰",
+          "en": "side_cutout"
+        },
+        {
+          "zh": "侧面没有布料的服饰",
+          "en": "sideless_outfit"
+        },
+        {
+          "zh": "单边穿着过膝服饰",
+          "en": "single_kneehigh"
+        },
+        {
+          "zh": "露出单边服饰上的垂直条纹",
+          "en": "single_vertical_stripe"
+        },
+        {
+          "zh": "高领服饰",
+          "en": "turtleneck"
+        },
+        {
+          "zh": "双层样式的服饰画法",
+          "en": "two-sided_fabric"
+        },
+        {
+          "zh": "带O型环的衣物",
+          "en": "o-ring"
+        },
+        {
+          "zh": "带O型环的上衣",
+          "en": "o-ring_top"
+        },
+        {
+          "zh": "须边(围巾末端",
+          "en": "fringe_trim"
+        },
+        {
+          "zh": "松散的带子(衣物)",
+          "en": "loose_belt"
+        },
+        {
+          "zh": "小绒球(衣物挂件)",
+          "en": "pom_pom_(clothes)"
+        },
+        {
+          "zh": "衣服的抽绳",
+          "en": "drawstring"
+        },
+        {
+          "zh": "有整件衣物长的拉链",
+          "en": "full-length_zipper"
+        },
+        {
+          "zh": "褶裥(衣物)",
+          "en": "gathers"
+        },
+        {
+          "zh": "缝在衣服上衬料",
+          "en": "gusset"
+        },
+        {
+          "zh": "胸口的袋子",
+          "en": "breast_pocket"
+        }
+      ]
+    },
+    {
+      "id": "cat_16",
+      "name": "花纹",
+      "tags": [
+        {
+          "zh": "阿盖尔菱形花纹",
+          "en": "argyle"
+        },
+        {
+          "zh": "格子花纹",
+          "en": "checkered"
+        },
+        {
+          "zh": "多彩条纹",
+          "en": "colored_stripes"
+        },
+        {
+          "zh": "斜条纹",
+          "en": "diagonal_stripes"
+        },
+        {
+          "zh": "水平条纹",
+          "en": "horizontal_stripes"
+        },
+        {
+          "zh": "多彩条纹",
+          "en": "multicolored_stripes"
+        },
+        {
+          "zh": "点装纹",
+          "en": "polka_dot"
+        },
+        {
+          "zh": "棱纹",
+          "en": "ribbed"
+        },
+        {
+          "zh": "横条纹",
+          "en": "striped"
+        },
+        {
+          "zh": "连续重复花纹",
+          "en": "unmoving_pattern"
+        },
+        {
+          "zh": "竖条纹",
+          "en": "vertical_stripes"
+        },
+        {
+          "zh": "格子呢图案",
+          "en": "plaid"
+        },
+        {
+          "zh": "动物印花",
+          "en": "animal_print"
+        },
+        {
+          "zh": "猫咪印花",
+          "en": "cat_print"
+        },
+        {
+          "zh": "熊印花",
+          "en": "bear_print"
+        },
+        {
+          "zh": "鸟印花",
+          "en": "bird_print"
+        },
+        {
+          "zh": "兔子印花",
+          "en": "bunny_print"
+        },
+        {
+          "zh": "奶牛印花",
+          "en": "cow_print"
+        },
+        {
+          "zh": "龙印花",
+          "en": "dragon_print"
+        },
+        {
+          "zh": "鱼印花",
+          "en": "fish_print"
+        },
+        {
+          "zh": "青蛙印花",
+          "en": "frog_print"
+        },
+        {
+          "zh": "鲨鱼印花",
+          "en": "shark_print"
+        },
+        {
+          "zh": "蛇纹",
+          "en": "snake_print"
+        },
+        {
+          "zh": "斑马印花",
+          "en": "zebra_print"
+        },
+        {
+          "zh": "虎纹",
+          "en": "tiger_print"
+        },
+        {
+          "zh": "豹纹",
+          "en": "leopard_print"
+        },
+        {
+          "zh": "美洲豹印花",
+          "en": "jaguar_print"
+        },
+        {
+          "zh": "蝙蝠印花",
+          "en": "bat_print"
+        },
+        {
+          "zh": "土狼印花",
+          "en": "aardwolf_print"
+        },
+        {
+          "zh": "非洲野狗印花",
+          "en": "african_wild_dog_print"
+        },
+        {
+          "zh": "猎豹印花",
+          "en": "cheetah_print"
+        },
+        {
+          "zh": "狗印花",
+          "en": "dog_print"
+        },
+        {
+          "zh": "狐狸印花",
+          "en": "fox_print"
+        },
+        {
+          "zh": "长颈鹿印花",
+          "en": "giraffe_print"
+        },
+        {
+          "zh": "熊猫印花",
+          "en": "panda_print"
+        },
+        {
+          "zh": "沙猫印花",
+          "en": "sand_cat_print"
+        },
+        {
+          "zh": "鲸鱼印花",
+          "en": "whale_print"
+        },
+        {
+          "zh": "白虎纹",
+          "en": "white_tiger_print"
+        },
+        {
+          "zh": "金鱼印花",
+          "en": "goldfish_print"
+        },
+        {
+          "zh": "翼印",
+          "en": "wing_print"
+        },
+        {
+          "zh": "蛛网纹",
+          "en": "spider_web_print"
+        },
+        {
+          "zh": "蝴蝶印花",
+          "en": "butterfly_print"
+        },
+        {
+          "zh": "碎花",
+          "en": "floral_print"
+        },
+        {
+          "zh": "叶印花",
+          "en": "leaf_print"
+        },
+        {
+          "zh": "三叶草印花",
+          "en": "clover_print"
+        },
+        {
+          "zh": "枫叶印花",
+          "en": "maple_leaf_print"
+        },
+        {
+          "zh": "玫瑰印花",
+          "en": "rose_print"
+        },
+        {
+          "zh": "草莓印花",
+          "en": "strawberry_print"
+        },
+        {
+          "zh": "樱桃印花",
+          "en": "cherry_print"
+        },
+        {
+          "zh": "竹印花",
+          "en": "bamboo_print"
+        },
+        {
+          "zh": "胡萝卜印花",
+          "en": "carrot_print"
+        },
+        {
+          "zh": "芙蓉印花",
+          "en": "hibiscus_print"
+        },
+        {
+          "zh": "南瓜灯印花",
+          "en": "jack-o'-lantern_print"
+        },
+        {
+          "zh": "花瓣印花",
+          "en": "petal_print"
+        },
+        {
+          "zh": "向日葵印花",
+          "en": "sunflower_print"
+        },
+        {
+          "zh": "西瓜印花",
+          "en": "watermelon_print"
+        },
+        {
+          "zh": "天空印花",
+          "en": "sky_print"
+        },
+        {
+          "zh": "云印花",
+          "en": "cloud_print"
+        },
+        {
+          "zh": "闪电印花",
+          "en": "lightning_bolt_print"
+        },
+        {
+          "zh": "彩虹印花",
+          "en": "rainbow_print"
+        },
+        {
+          "zh": "雪花印花",
+          "en": "snowflake_print"
+        },
+        {
+          "zh": "星空印花",
+          "en": "starry_sky_print"
+        },
+        {
+          "zh": "新月印花",
+          "en": "crescent_print"
+        },
+        {
+          "zh": "星形印花",
+          "en": "star_print"
+        },
+        {
+          "zh": "星形符号",
+          "en": "star_(symbol)"
+        },
+        {
+          "zh": "月亮印花",
+          "en": "moon_print"
+        },
+        {
+          "zh": "太阳印花",
+          "en": "sun_print"
+        },
+        {
+          "zh": "字符印花",
+          "en": "character_print"
+        },
+        {
+          "zh": "衣服上的字",
+          "en": "clothes_writing"
+        },
+        {
+          "zh": "锚印花",
+          "en": "anchor_print"
+        },
+        {
+          "zh": "樱花印花",
+          "en": "cherry_blossom_print"
+        },
+        {
+          "zh": "音符印花",
+          "en": "musical_note_print"
+        },
+        {
+          "zh": "三角印花",
+          "en": "triangle_print"
+        },
+        {
+          "zh": "箭头打印",
+          "en": "arrow_print"
+        },
+        {
+          "zh": "波浪纹",
+          "en": "wave_print"
+        },
+        {
+          "zh": "☮(东方仗助衣服上有)",
+          "en": "peace_symbol"
+        },
+        {
+          "zh": "心形图案|心形印花",
+          "en": "heart_print"
+        },
+        {
+          "zh": "火焰印花",
+          "en": "flame_print"
+        },
+        {
+          "zh": "鬼火印花",
+          "en": "hitodama_print"
+        },
+        {
+          "zh": "爪印花",
+          "en": "paw_print"
+        },
+        {
+          "zh": "骨架印花",
+          "en": "skeleton_print"
+        },
+        {
+          "zh": "骷髅头印花",
+          "en": "skull_print"
+        },
+        {
+          "zh": "闪闪发光的印花",
+          "en": "sparkle_print"
+        },
+        {
+          "zh": "阴阳印花",
+          "en": "yin_yang_print"
+        },
+        {
+          "zh": "十字架元素图案",
+          "en": "cross_print"
+        },
+        {
+          "zh": "迷彩",
+          "en": "camoflage"
+        },
+        {
+          "zh": "旗帜印花",
+          "en": "flag_print"
+        },
+        {
+          "zh": "骨印花",
+          "en": "bone_print"
+        },
+        {
+          "zh": "幽灵印画",
+          "en": "ghost_print"
+        },
+        {
+          "zh": "蘑菇印花",
+          "en": "mushroom_print"
+        },
+        {
+          "zh": "饭团打印",
+          "en": "onigiri_print"
+        },
+        {
+          "zh": "猫耳造型的镂空设计",
+          "en": "cat_ear_cutout"
+        }
+      ]
+    },
+    {
+      "id": "cat_17",
+      "name": "靴子",
+      "tags": [
+        {
+          "zh": "脱下的靴子",
+          "en": "boots_removed"
+        },
+        {
+          "zh": "高跟长靴",
+          "en": "high_heel_boots"
+        },
+        {
+          "zh": "及膝靴(马靴)",
+          "en": "knee_boots"
+        },
+        {
+          "zh": "高帮靴",
+          "en": "thigh_boots"
+        },
+        {
+          "zh": "马丁靴",
+          "en": "martin_boots"
+        },
+        {
+          "zh": "踝靴",
+          "en": "ankle_boots"
+        },
+        {
+          "zh": "露趾靴",
+          "en": "toeless_boots"
+        },
+        {
+          "zh": "系带靴",
+          "en": "lace-up_boots"
+        },
+        {
+          "zh": "毛边靴子",
+          "en": "fur-trimmed_boots"
+        },
+        {
+          "zh": "雪地靴",
+          "en": "snow_boots"
+        },
+        {
+          "zh": "脚链",
+          "en": "anklet"
+        },
+        {
+          "zh": "胶靴",
+          "en": "rubber_boots"
+        },
+        {
+          "zh": "圣诞靴",
+          "en": "santa_boots"
+        },
+        {
+          "zh": "皮靴",
+          "en": "leather_boots"
+        },
+        {
+          "zh": "靴子下的长筒袜",
+          "en": "thighhighs_under_boots"
+        },
+        {
+          "zh": "作战靴",
+          "en": "combat_boots"
+        },
+        {
+          "zh": "马丁靴",
+          "en": "doc_martens"
+        },
+        {
+          "zh": "雨靴",
+          "en": "rain_boots"
+        },
+        {
+          "zh": "皮带靴",
+          "en": "belt_boots"
+        },
+        {
+          "zh": "矮跟休闲皮草靴",
+          "en": "fur_boots"
+        },
+        {
+          "zh": "一只脚没穿靴子",
+          "en": "single_boot"
+        }
+      ]
+    },
+    {
+      "id": "cat_18",
+      "name": "袖子",
+      "tags": [
+        {
+          "zh": "宽袖",
+          "en": "wide_sleeves"
+        },
+        {
+          "zh": "单袖",
+          "en": "single_sleeve"
+        },
+        {
+          "zh": "不对称袖子",
+          "en": "asymmetrical_sleeves"
+        },
+        {
+          "zh": "蓬松的袖子",
+          "en": "puffy_sleeves"
+        },
+        {
+          "zh": "蓬蓬长袖",
+          "en": "puffy_long_sleeves"
+        },
+        {
+          "zh": "蓬蓬短袖",
+          "en": "puffy_short_sleeves"
+        },
+        {
+          "zh": "褶袖边",
+          "en": "frilled_sleeves"
+        },
+        {
+          "zh": "朱丽叶袖",
+          "en": "juliet_sleeves"
+        },
+        {
+          "zh": "手臂缠着绷带",
+          "en": "bandaged_arm"
+        },
+        {
+          "zh": "插肩袖",
+          "en": "raglan_sleeves"
+        },
+        {
+          "zh": "下臂护甲",
+          "en": "vambraces"
+        },
+        {
+          "zh": "分层袖子",
+          "en": "layered_sleeves"
+        },
+        {
+          "zh": "毛边袖子",
+          "en": "fur-trimmed_sleeves"
+        },
+        {
+          "zh": "透明袖子",
+          "en": "see-through_sleeves"
+        },
+        {
+          "zh": "撕裂的袖子",
+          "en": "torn_sleeves"
+        },
+        {
+          "zh": "袖子长过手指",
+          "en": "sleeves_past_fingers"
+        },
+        {
+          "zh": "袖子过腕",
+          "en": "sleeves_past_wrists"
+        },
+        {
+          "zh": "袖子过肘",
+          "en": "sleeves_past_elbows"
+        },
+        {
+          "zh": "袖子上推",
+          "en": "sleeves_pushed_up"
+        },
+        {
+          "zh": "袖子里的手臂",
+          "en": "arm_out_of_sleeve"
+        },
+        {
+          "zh": "不均匀的袖子",
+          "en": "uneven_sleeves"
+        },
+        {
+          "zh": "不匹配的袖子",
+          "en": "mismatched_sleeves"
+        },
+        {
+          "zh": "袖子卷起",
+          "en": "sleeve_rolled_up"
+        },
+        {
+          "zh": "单只袖子卷起",
+          "en": "sleeves_rolled_up"
+        },
+        {
+          "zh": "羽毛装饰的袖子",
+          "en": "feather-trimmed_sleeves"
+        },
+        {
+          "zh": "蕾丝边袖子",
+          "en": "lace-trimmed_sleeves"
+        },
+        {
+          "zh": "掐袖子",
+          "en": "pinching_sleeves"
+        },
+        {
+          "zh": "蓬蓬的袖子",
+          "en": "puffy_detached_sleeves"
+        },
+        {
+          "zh": "棱纹袖子",
+          "en": "ribbed_sleeves"
+        },
+        {
+          "zh": "单边没脱掉的袖子",
+          "en": "single_detached_sleeve"
+        },
+        {
+          "zh": "叠起来的袖子",
+          "en": "sleeves_folded_up"
+        },
+        {
+          "zh": "条纹袖子",
+          "en": "striped_sleeves"
+        },
+        {
+          "zh": "袖章(臂带)",
+          "en": "armband"
+        },
+        {
+          "zh": "臂镯",
+          "en": "armlet"
+        }
+      ]
+    },
+    {
+      "id": "cat_19",
+      "name": "服饰材质",
+      "tags": [
+        {
+          "zh": "装甲的",
+          "en": "armored"
+        },
+        {
+          "zh": "毛茸茸",
+          "en": "fluffy"
+        },
+        {
+          "zh": "毛皮",
+          "en": "fur"
+        },
+        {
+          "zh": "乳胶",
+          "en": "latex"
+        },
+        {
+          "zh": "透明",
+          "en": "see-through"
+        }
+      ]
+    },
+    {
+      "id": "cat_20",
+      "name": "布料",
+      "tags": [
+        {
+          "zh": "布料",
+          "en": "Cloth"
+        },
+        {
+          "zh": "棉布",
+          "en": "Cotton"
+        },
+        {
+          "zh": "聚酯纤维",
+          "en": "Polyester"
+        },
+        {
+          "zh": "麻线",
+          "en": "Twine"
+        },
+        {
+          "zh": "丝绸",
+          "en": "Silk"
+        },
+        {
+          "zh": "牛仔布",
+          "en": "Denim"
+        },
+        {
+          "zh": "皮革",
+          "en": "Leather"
+        },
+        {
+          "zh": "毛毡",
+          "en": "Felt"
+        },
+        {
+          "zh": "毛毡布",
+          "en": "Felt Cloth"
+        },
+        {
+          "zh": "羊绒",
+          "en": "Cashmere"
+        },
+        {
+          "zh": "天鹅绒",
+          "en": "Velvet"
+        },
+        {
+          "zh": "灯心绒",
+          "en": "Corduroy"
+        },
+        {
+          "zh": "尼龙",
+          "en": "Nylon"
+        },
+        {
+          "zh": "聚酰胺",
+          "en": "Polyamide"
+        },
+        {
+          "zh": "芳纶",
+          "en": "Kevlar"
+        },
+        {
+          "zh": "氨纶",
+          "en": "Spandex"
+        },
+        {
+          "zh": "人造丝",
+          "en": "Rayon"
+        },
+        {
+          "zh": "超细纤维",
+          "en": "Microfiber"
+        },
+        {
+          "zh": "纤维",
+          "en": "Fibers"
+        },
+        {
+          "zh": "莱赛尔",
+          "en": "Lyocell"
+        },
+        {
+          "zh": "考杜拉",
+          "en": "Cordura"
+        },
+        {
+          "zh": "金银丝",
+          "en": "Lurex"
+        },
+        {
+          "zh": "诺梅克斯",
+          "en": "Nomex"
+        },
+        {
+          "zh": "被子",
+          "en": "Quilt"
+        },
+        {
+          "zh": "记忆泡沫",
+          "en": "Memory Foam"
+        },
+        {
+          "zh": "皮棉",
+          "en": "Lint"
+        },
+        {
+          "zh": "毯子",
+          "en": "Blanket"
+        },
+        {
+          "zh": "针垫",
+          "en": "Pin Cushion"
+        },
+        {
+          "zh": "纱线",
+          "en": "Yarn"
+        },
+        {
+          "zh": "针织的",
+          "en": "Knitted"
+        },
+        {
+          "zh": "小地毯",
+          "en": "Rug"
+        },
+        {
+          "zh": "钩针",
+          "en": "Crochet"
+        },
+        {
+          "zh": "十字绣",
+          "en": "Cross Stich"
+        },
+        {
+          "zh": "针织",
+          "en": "Needle Point"
+        },
+        {
+          "zh": "补丁",
+          "en": "Patch"
+        },
+        {
+          "zh": "缝制",
+          "en": "Sewen"
+        },
+        {
+          "zh": "贴花",
+          "en": "Applique"
+        },
+        {
+          "zh": "花边",
+          "en": "Macrame"
+        },
+        {
+          "zh": "编织",
+          "en": "Weave"
+        },
+        {
+          "zh": "网",
+          "en": "Net"
+        },
+        {
+          "zh": "网布",
+          "en": "Netting"
+        },
+        {
+          "zh": "纱布",
+          "en": "Gauze"
+        },
+        {
+          "zh": "蜘蛛网",
+          "en": "Spider Web"
         }
       ]
     }

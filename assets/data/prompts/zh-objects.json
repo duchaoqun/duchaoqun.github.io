@@ -29,6 +29,38 @@
         {
           "zh": "键盘",
           "en": "keyboard"
+        },
+        {
+          "zh": "手机",
+          "en": "cell phone"
+        },
+        {
+          "zh": "任天堂switch",
+          "en": "nintendo_switch"
+        },
+        {
+          "zh": "掌上游戏机",
+          "en": "handheld_game_console"
+        },
+        {
+          "zh": "任天堂3ds",
+          "en": "nintendo_3ds"
+        },
+        {
+          "zh": "任天堂ds",
+          "en": "nintendo_ds"
+        },
+        {
+          "zh": "电缆",
+          "en": "cable"
+        },
+        {
+          "zh": "电源线",
+          "en": "power_lines"
+        },
+        {
+          "zh": "按钮",
+          "en": "buttons"
         }
       ]
     },
@@ -55,6 +87,182 @@
         {
           "zh": "盾牌",
           "en": "shield"
+        },
+        {
+          "zh": "武器",
+          "en": "weapon"
+        },
+        {
+          "zh": "大尺寸武器",
+          "en": "huge_weapon"
+        },
+        {
+          "zh": "往地上插的武器",
+          "en": "planted_weapon"
+        },
+        {
+          "zh": "破碎的武器",
+          "en": "broken_weapon"
+        },
+        {
+          "zh": "背上的武器",
+          "en": "weapon_on_back"
+        },
+        {
+          "zh": "肩上的武器",
+          "en": "weapon_over_shoulder"
+        },
+        {
+          "zh": "立剑",
+          "en": "planted_sword"
+        },
+        {
+          "zh": "刀鞘",
+          "en": "scabbard"
+        },
+        {
+          "zh": "武士刀",
+          "en": "katana"
+        },
+        {
+          "zh": "军刀(武器)",
+          "en": "saber_(weapon)"
+        },
+        {
+          "zh": "匕首",
+          "en": "dagger"
+        },
+        {
+          "zh": "斧头",
+          "en": "axe"
+        },
+        {
+          "zh": "短斧",
+          "en": "hatchet"
+        },
+        {
+          "zh": "棍子",
+          "en": "stake"
+        },
+        {
+          "zh": "长矛",
+          "en": "lance"
+        },
+        {
+          "zh": "三叉戟",
+          "en": "trident"
+        },
+        {
+          "zh": "弓",
+          "en": "bow_(weapon)"
+        },
+        {
+          "zh": "箭",
+          "en": "arrow"
+        },
+        {
+          "zh": "镰刀",
+          "en": "scythe"
+        },
+        {
+          "zh": "爪(武器)",
+          "en": "claw_(weapon)"
+        },
+        {
+          "zh": "柴刀",
+          "en": "nose_hatchet"
+        },
+        {
+          "zh": "手枪",
+          "en": "handgun"
+        },
+        {
+          "zh": "汤普森冲锋枪",
+          "en": "thompson_submachine_gun"
+        },
+        {
+          "zh": "弹匣(武器)",
+          "en": "magazine_(weapon)"
+        },
+        {
+          "zh": "甘油炸药",
+          "en": "dynamite"
+        },
+        {
+          "zh": "炸弹",
+          "en": "bomb"
+        },
+        {
+          "zh": "跟踪导弹",
+          "en": "track missiles"
+        },
+        {
+          "zh": "大炮",
+          "en": "cannon"
+        },
+        {
+          "zh": "坦克",
+          "en": "tank"
+        },
+        {
+          "zh": "军用载具",
+          "en": "military_vehicle"
+        },
+        {
+          "zh": "摩托车",
+          "en": "motorcycle"
+        },
+        {
+          "zh": "汽车",
+          "en": "car"
+        },
+        {
+          "zh": "船舶",
+          "en": "watercraft"
+        },
+        {
+          "zh": "船舶",
+          "en": "ship"
+        },
+        {
+          "zh": "机械",
+          "en": "machine"
+        },
+        {
+          "zh": "机械武装",
+          "en": "machinery"
+        },
+        {
+          "zh": "机械臂",
+          "en": "mechanical_arms"
+        },
+        {
+          "zh": "机械化",
+          "en": "mechanization"
+        },
+        {
+          "zh": "机械关节",
+          "en": "robot_joints"
+        },
+        {
+          "zh": "超时空要塞机体",
+          "en": "variable_fighter"
+        },
+        {
+          "zh": "魔人经卷",
+          "en": "sorcerer's_sutra_scroll"
+        },
+        {
+          "zh": "剪刀",
+          "en": "scissors"
+        },
+        {
+          "zh": "步枪",
+          "en": "rifle,"
+        },
+        {
+          "zh": "轨迹拖尾",
+          "en": "complex Trajectory"
         }
       ]
     },
@@ -89,6 +297,118 @@
         {
           "zh": "凤凰",
           "en": "phoenix"
+        },
+        {
+          "zh": "哺乳动物",
+          "en": "mammal"
+        },
+        {
+          "zh": "爬行动物",
+          "en": "reptile"
+        },
+        {
+          "zh": "鸟",
+          "en": "bird"
+        },
+        {
+          "zh": "乌鸦",
+          "en": "crow"
+        },
+        {
+          "zh": "企鹅",
+          "en": "penguin"
+        },
+        {
+          "zh": "小鸡",
+          "en": "chick"
+        },
+        {
+          "zh": "蜻蜓",
+          "en": "dragonfly"
+        },
+        {
+          "zh": "鲸",
+          "en": "whale"
+        },
+        {
+          "zh": "兔子",
+          "en": "bunny"
+        },
+        {
+          "zh": "雪兔",
+          "en": "snow_bunny"
+        },
+        {
+          "zh": "马",
+          "en": "horse"
+        },
+        {
+          "zh": "牛",
+          "en": "cow"
+        },
+        {
+          "zh": "老虎",
+          "en": "tiger"
+        },
+        {
+          "zh": "熊",
+          "en": "bear"
+        },
+        {
+          "zh": "熊猫",
+          "en": "panda"
+        },
+        {
+          "zh": "泰迪熊",
+          "en": "teddy_bear"
+        },
+        {
+          "zh": "仓鼠",
+          "en": "hamster"
+        },
+        {
+          "zh": "松鼠",
+          "en": "squirrel"
+        },
+        {
+          "zh": "蛇",
+          "en": "snake"
+        },
+        {
+          "zh": "东方龙",
+          "en": "eastern_dragon"
+        },
+        {
+          "zh": "中国龙",
+          "en": "loong"
+        },
+        {
+          "zh": "史莱姆",
+          "en": "slime"
+        },
+        {
+          "zh": "蝙蝠",
+          "en": "bat"
+        },
+        {
+          "zh": "贝壳",
+          "en": "shell"
+        },
+        {
+          "zh": "逗猫",
+          "en": "cat_teaser"
+        },
+        {
+          "zh": "狗牌",
+          "en": "dog_tags"
+        },
+        {
+          "zh": "蠕动夜虫",
+          "en": "wriggle_nightbug"
+        },
+        {
+          "zh": "蛮啾",
+          "en": "manjuu_(azur_lane)"
         }
       ]
     },
@@ -115,6 +435,950 @@
         {
           "zh": "大树",
           "en": "big_tree"
+        },
+        {
+          "zh": "植物",
+          "en": "plant"
+        },
+        {
+          "zh": "花",
+          "en": "flower"
+        },
+        {
+          "zh": "花盛开",
+          "en": "flower_bloom"
+        },
+        {
+          "zh": "花束",
+          "en": "bouquet"
+        },
+        {
+          "zh": "花瓶",
+          "en": "vase"
+        },
+        {
+          "zh": "兰花",
+          "en": "orchid"
+        },
+        {
+          "zh": "百合花",
+          "en": "lily"
+        },
+        {
+          "zh": "彼岸花",
+          "en": "spider_lily"
+        },
+        {
+          "zh": "芙蓉花",
+          "en": "hibiscus"
+        },
+        {
+          "zh": "绣球花",
+          "en": "hydrangea"
+        },
+        {
+          "zh": "樱花",
+          "en": "cherry_blossoms"
+        },
+        {
+          "zh": "梅花",
+          "en": "plum_blossom"
+        },
+        {
+          "zh": "紫藤",
+          "en": "wisteria"
+        },
+        {
+          "zh": "水仙",
+          "en": "narcissu"
+        },
+        {
+          "zh": "菊花",
+          "en": "chrysanthemum"
+        },
+        {
+          "zh": "缠结型植物",
+          "en": "entangled_plants"
+        },
+        {
+          "zh": "树",
+          "en": "tree"
+        },
+        {
+          "zh": "松树",
+          "en": "pine_tree"
+        },
+        {
+          "zh": "棕榈树",
+          "en": "palm_tree"
+        },
+        {
+          "zh": "枫树",
+          "en": "maple_tree"
+        },
+        {
+          "zh": "树枝",
+          "en": "branch"
+        },
+        {
+          "zh": "枫叶",
+          "en": "maple_leaf"
+        },
+        {
+          "zh": "圣诞树",
+          "en": "christmas_tree"
+        },
+        {
+          "zh": "南瓜",
+          "en": "pumpkin"
+        },
+        {
+          "zh": "南瓜灯",
+          "en": "jack-o'-lantern"
+        },
+        {
+          "zh": "大葱",
+          "en": "spring_onion"
+        },
+        {
+          "zh": "竹子",
+          "en": "bamboo"
+        },
+        {
+          "zh": "灌木",
+          "en": "bush"
+        },
+        {
+          "zh": "草",
+          "en": "Grass"
+        },
+        {
+          "zh": "草地",
+          "en": "Grassy"
+        },
+        {
+          "zh": "花卉",
+          "en": "Floral"
+        },
+        {
+          "zh": "藤蔓",
+          "en": "Vines"
+        },
+        {
+          "zh": "树皮",
+          "en": "Tree Bark"
+        },
+        {
+          "zh": "树枝",
+          "en": "Branches"
+        },
+        {
+          "zh": "灌木",
+          "en": "shrub"
+        },
+        {
+          "zh": "树叶",
+          "en": "Leaves"
+        },
+        {
+          "zh": "松果",
+          "en": "Pinecone"
+        },
+        {
+          "zh": "橡子",
+          "en": "Acorn"
+        },
+        {
+          "zh": "苔藓",
+          "en": "Moss"
+        },
+        {
+          "zh": "仙人掌",
+          "en": "Cactus"
+        },
+        {
+          "zh": "稻草",
+          "en": "Straw"
+        },
+        {
+          "zh": "稻草捆",
+          "en": "Straw-Bale"
+        },
+        {
+          "zh": "干草",
+          "en": "Hay"
+        },
+        {
+          "zh": "干草捆",
+          "en": "Hay-Bale"
+        },
+        {
+          "zh": "麻",
+          "en": "Hemp"
+        }
+      ]
+    },
+    {
+      "id": "cat_1",
+      "name": "餐具",
+      "tags": [
+        {
+          "zh": "叉子",
+          "en": "fork"
+        },
+        {
+          "zh": "勺子",
+          "en": "spoon"
+        },
+        {
+          "zh": "筷子",
+          "en": "chopsticks"
+        },
+        {
+          "zh": "长柄勺",
+          "en": "ladle"
+        },
+        {
+          "zh": "盘子",
+          "en": "plate"
+        },
+        {
+          "zh": "碗",
+          "en": "bowl"
+        },
+        {
+          "zh": "杯子",
+          "en": "cup"
+        },
+        {
+          "zh": "茶杯",
+          "en": "teacup"
+        },
+        {
+          "zh": "水杯",
+          "en": "drinking_glass"
+        },
+        {
+          "zh": "普通玻璃杯",
+          "en": "tumbler"
+        },
+        {
+          "zh": "啤酒杯",
+          "en": "beer_mug"
+        },
+        {
+          "zh": "锅",
+          "en": "pot"
+        },
+        {
+          "zh": "茶壶",
+          "en": "teapot"
+        },
+        {
+          "zh": "托盘",
+          "en": "tray"
+        },
+        {
+          "zh": "罐装饮料",
+          "en": "soda_can"
+        },
+        {
+          "zh": "罐子",
+          "en": "can"
+        },
+        {
+          "zh": "蜡烛",
+          "en": "candle"
+        },
+        {
+          "zh": "奶酪刨丝器",
+          "en": "Cheese Grater"
+        },
+        {
+          "zh": "礼物盒",
+          "en": "gift_box"
+        },
+        {
+          "zh": "心形状的礼盒",
+          "en": "heart-shaped_box"
+        }
+      ]
+    },
+    {
+      "id": "cat_2",
+      "name": "乐器",
+      "tags": [
+        {
+          "zh": "音乐",
+          "en": "music"
+        },
+        {
+          "zh": "吉他",
+          "en": "guitar"
+        },
+        {
+          "zh": "钢琴",
+          "en": "piano"
+        },
+        {
+          "zh": "大提琴",
+          "en": "cello"
+        },
+        {
+          "zh": "演奏乐器",
+          "en": "playing_instrument"
+        },
+        {
+          "zh": "风铃",
+          "en": "wind_chime"
+        },
+        {
+          "zh": "手风琴",
+          "en": "Accordion"
+        },
+        {
+          "zh": "萨克斯管",
+          "en": "Saxophone"
+        }
+      ]
+    },
+    {
+      "id": "cat_3",
+      "name": "玩具",
+      "tags": [
+        {
+          "zh": "玩具",
+          "en": "Toy"
+        },
+        {
+          "zh": "扑克牌",
+          "en": "playing_card"
+        },
+        {
+          "zh": "棋子",
+          "en": "chess_piece"
+        },
+        {
+          "zh": "拼图玩具",
+          "en": "Puzzle"
+        },
+        {
+          "zh": "弹簧玩具",
+          "en": "Slinky"
+        }
+      ]
+    },
+    {
+      "id": "cat_4",
+      "name": "学习用品",
+      "tags": [
+        {
+          "zh": "笔记本",
+          "en": "notebook"
+        },
+        {
+          "zh": "铅笔",
+          "en": "pencil"
+        },
+        {
+          "zh": "画笔",
+          "en": "paintbrush"
+        },
+        {
+          "zh": "书",
+          "en": "book"
+        },
+        {
+          "zh": "翻开的书",
+          "en": "open_book"
+        },
+        {
+          "zh": "书摞",
+          "en": "book_stack"
+        },
+        {
+          "zh": "书架",
+          "en": "bookshelf"
+        },
+        {
+          "zh": "上学包(手提包)",
+          "en": "school_bag"
+        },
+        {
+          "zh": "背包",
+          "en": "backpack"
+        }
+      ]
+    },
+    {
+      "id": "cat_5",
+      "name": "其它物品",
+      "tags": [
+        {
+          "zh": "香烟",
+          "en": "cigarette"
+        },
+        {
+          "zh": "雨伞",
+          "en": "umbrella"
+        },
+        {
+          "zh": "透明雨伞",
+          "en": "transparent_umbrella"
+        },
+        {
+          "zh": "封闭伞",
+          "en": "closed_umbrella"
+        },
+        {
+          "zh": "油纸伞",
+          "en": "oil-paper_umbrella"
+        },
+        {
+          "zh": "遮阳伞",
+          "en": "Parasol"
+        },
+        {
+          "zh": "折扇",
+          "en": "folding_fan"
+        },
+        {
+          "zh": "纸扇",
+          "en": "paper_fan"
+        },
+        {
+          "zh": "团扇",
+          "en": "uchiwa"
+        },
+        {
+          "zh": "笼子",
+          "en": "Cage"
+        },
+        {
+          "zh": "灯笼",
+          "en": "lantern/lamp"
+        },
+        {
+          "zh": "篮子",
+          "en": "basket"
+        },
+        {
+          "zh": "桶",
+          "en": "bucket"
+        },
+        {
+          "zh": "桶",
+          "en": "pail"
+        },
+        {
+          "zh": "水瓶",
+          "en": "water_bottle"
+        },
+        {
+          "zh": "防晒霜|身体乳",
+          "en": "lotion"
+        },
+        {
+          "zh": "乳液瓶子",
+          "en": "lotion_bottle"
+        },
+        {
+          "zh": "钥匙",
+          "en": "key"
+        },
+        {
+          "zh": "硬币",
+          "en": "coin"
+        },
+        {
+          "zh": "钱",
+          "en": "money"
+        },
+        {
+          "zh": "交易卡",
+          "en": "trading_card"
+        },
+        {
+          "zh": "札符",
+          "en": "ofuda"
+        },
+        {
+          "zh": "魔杖",
+          "en": "wand"
+        },
+        {
+          "zh": "魔术",
+          "en": "magic"
+        },
+        {
+          "zh": "马鞭",
+          "en": "riding_crop"
+        },
+        {
+          "zh": "鞭",
+          "en": "whip"
+        },
+        {
+          "zh": "麦克风",
+          "en": "microphone"
+        },
+        {
+          "zh": "麻袋",
+          "en": "sack"
+        },
+        {
+          "zh": "秤",
+          "en": "scales"
+        },
+        {
+          "zh": "奖杯",
+          "en": "trophy"
+        },
+        {
+          "zh": "分子",
+          "en": "molecule"
+        },
+        {
+          "zh": "钻石（形状）",
+          "en": "diamond_(shape)"
+        },
+        {
+          "zh": "赤壁插图",
+          "en": "chibi_inset"
+        },
+        {
+          "zh": "损坏",
+          "en": "damaged"
+        },
+        {
+          "zh": "葫芦",
+          "en": "gourd"
+        },
+        {
+          "zh": "掏耳勺",
+          "en": "mimikaki"
+        },
+        {
+          "zh": "锤子",
+          "en": "hammer"
+        },
+        {
+          "zh": "入口",
+          "en": "inlet"
+        },
+        {
+          "zh": "茬",
+          "en": "stubble"
+        },
+        {
+          "zh": "磁带盒",
+          "en": "Cassette"
+        },
+        {
+          "zh": "杠杆,操作杆",
+          "en": "Lever"
+        }
+      ]
+    },
+    {
+      "id": "cat_6",
+      "name": "主食面食",
+      "tags": [
+        {
+          "zh": "食物",
+          "en": "food"
+        },
+        {
+          "zh": "海苔卷寿司",
+          "en": "makizushi"
+        },
+        {
+          "zh": "饭团",
+          "en": "onigiri"
+        },
+        {
+          "zh": "便当",
+          "en": "obento"
+        },
+        {
+          "zh": "拉面",
+          "en": "ramen"
+        },
+        {
+          "zh": "面条",
+          "en": "noodles"
+        },
+        {
+          "zh": "天妇罗",
+          "en": "tempura"
+        },
+        {
+          "zh": "馅饼",
+          "en": "pasties"
+        },
+        {
+          "zh": "汉堡",
+          "en": "burger"
+        },
+        {
+          "zh": "寿司卷",
+          "en": "A_sushi_roll"
+        },
+        {
+          "zh": "通心粉",
+          "en": "Macaroni"
+        },
+        {
+          "zh": "马克龙奶酪",
+          "en": "Marconi and Cheese"
+        },
+        {
+          "zh": "椒盐脆饼",
+          "en": "Pretzel"
+        },
+        {
+          "zh": "油条",
+          "en": "Churros"
+        },
+        {
+          "zh": "面包",
+          "en": "Bread"
+        },
+        {
+          "zh": "面包做的",
+          "en": "Made of Bread"
+        },
+        {
+          "zh": "酥皮",
+          "en": "Shortcrust-Pastry"
+        },
+        {
+          "zh": "千层酥皮",
+          "en": "Flaky-Pastry"
+        },
+        {
+          "zh": "泡芙糕点",
+          "en": "Puff-Pastry"
+        }
+      ]
+    },
+    {
+      "id": "cat_7",
+      "name": "甜品糖果",
+      "tags": [
+        {
+          "zh": "和果子",
+          "en": "wagashi"
+        },
+        {
+          "zh": "团子",
+          "en": "dango"
+        },
+        {
+          "zh": "鲷鱼烧",
+          "en": "taiyaki"
+        },
+        {
+          "zh": "蛋糕",
+          "en": "cake"
+        },
+        {
+          "zh": "鬆餅",
+          "en": "pancake"
+        },
+        {
+          "zh": "糖果",
+          "en": "sweets"
+        },
+        {
+          "zh": "糖果",
+          "en": "candy"
+        },
+        {
+          "zh": "苹果糖",
+          "en": "candy_apple"
+        },
+        {
+          "zh": "棒棒糖",
+          "en": "candy_cane"
+        },
+        {
+          "zh": "饼干",
+          "en": "cookie"
+        },
+        {
+          "zh": "冰激凌",
+          "en": "ice_cream"
+        },
+        {
+          "zh": "甜甜圈",
+          "en": "doughnut"
+        },
+        {
+          "zh": "圣代",
+          "en": "sundae"
+        },
+        {
+          "zh": "棉花糖",
+          "en": "cotton_candy_"
+        },
+        {
+          "zh": "明胶、布丁",
+          "en": "Gelatin"
+        },
+        {
+          "zh": "果冻",
+          "en": "Jelly"
+        },
+        {
+          "zh": "棒棒糖",
+          "en": "Lollipop"
+        },
+        {
+          "zh": "焦糖",
+          "en": "Caramel"
+        },
+        {
+          "zh": "太妃糖",
+          "en": "Taffy"
+        },
+        {
+          "zh": "蜂巢糖",
+          "en": "Honeycomb"
+        },
+        {
+          "zh": "糖果碎片",
+          "en": "Sprinkles"
+        },
+        {
+          "zh": "翻糖糖衣",
+          "en": "Fondant Icing"
+        },
+        {
+          "zh": "蛋白糖霜",
+          "en": "Royal Icing"
+        },
+        {
+          "zh": "婚礼蛋糕",
+          "en": "Wedding Cake"
+        },
+        {
+          "zh": "蛋糕装饰",
+          "en": "Cake Decorating"
+        },
+        {
+          "zh": "泡芙",
+          "en": "Eclair"
+        },
+        {
+          "zh": "甜甜圈卷",
+          "en": "Cannoli"
+        },
+        {
+          "zh": "水果挞",
+          "en": "Fruit-Tart"
+        },
+        {
+          "zh": "焦糖布丁",
+          "en": "Creme Brule"
+        }
+      ]
+    },
+    {
+      "id": "cat_8",
+      "name": "食材配料",
+      "tags": [
+        {
+          "zh": "甘薯",
+          "en": "sweet_potato"
+        },
+        {
+          "zh": "鸡蛋",
+          "en": "egg"
+        },
+        {
+          "zh": "肉",
+          "en": "meat"
+        },
+        {
+          "zh": "水果",
+          "en": "fruit"
+        },
+        {
+          "zh": "苹果",
+          "en": "apple"
+        },
+        {
+          "zh": "桃子",
+          "en": "peach"
+        },
+        {
+          "zh": "茄子",
+          "en": "aubergine"
+        },
+        {
+          "zh": "胡萝卜",
+          "en": "carrot"
+        },
+        {
+          "zh": "果酱",
+          "en": "jam"
+        },
+        {
+          "zh": "琼脂",
+          "en": "Agar"
+        },
+        {
+          "zh": "和牛",
+          "en": "Wagyu"
+        },
+        {
+          "zh": "动物脂",
+          "en": "Tallow"
+        },
+        {
+          "zh": "黄油",
+          "en": "Butter"
+        },
+        {
+          "zh": "人造黄油",
+          "en": "Margarine"
+        },
+        {
+          "zh": "奶酪",
+          "en": "Cheese"
+        },
+        {
+          "zh": "蛋黄",
+          "en": "Egg Yolk"
+        },
+        {
+          "zh": "豆子",
+          "en": "Beans"
+        },
+        {
+          "zh": "酱汁",
+          "en": "Sauce"
+        },
+        {
+          "zh": "意大利面酱",
+          "en": "Pasta Sauce"
+        },
+        {
+          "zh": "番茄酱",
+          "en": "Ketchup"
+        },
+        {
+          "zh": "芥末",
+          "en": "Mustard"
+        },
+        {
+          "zh": "蛋黄酱",
+          "en": "Mayonnaise"
+        },
+        {
+          "zh": "糖浆",
+          "en": "Syrup"
+        },
+        {
+          "zh": "枫糖浆",
+          "en": "Maple Syrup"
+        },
+        {
+          "zh": "奶油",
+          "en": "cream"
+        },
+        {
+          "zh": "酸奶油",
+          "en": "Sour Cream"
+        },
+        {
+          "zh": "鲜奶油",
+          "en": "Whipped Cream"
+        },
+        {
+          "zh": "肉桂",
+          "en": "Cinnamon"
+        },
+        {
+          "zh": "植物油",
+          "en": "Vegetable Oil"
+        },
+        {
+          "zh": "橄榄油",
+          "en": "Olive Oil"
+        },
+        {
+          "zh": "食物印花",
+          "en": "food_print"
+        },
+        {
+          "zh": "食用墨水",
+          "en": "Edible Ink"
+        },
+        {
+          "zh": "食用色素",
+          "en": "Food Coloring"
+        }
+      ]
+    },
+    {
+      "id": "cat_9",
+      "name": "零食休闲",
+      "tags": [
+        {
+          "zh": "薯片",
+          "en": "chips"
+        },
+        {
+          "zh": "薯片",
+          "en": "potato_chips"
+        },
+        {
+          "zh": "百奇",
+          "en": "pocky"
+        },
+        {
+          "zh": "口香糖",
+          "en": "Gum"
+        }
+      ]
+    },
+    {
+      "id": "cat_10",
+      "name": "饮品饮料",
+      "tags": [
+        {
+          "zh": "咖啡",
+          "en": "coffee"
+        },
+        {
+          "zh": "卡夫奇诺",
+          "en": "kafuu_chino"
+        },
+        {
+          "zh": "茶",
+          "en": "tea"
+        },
+        {
+          "zh": "饮料",
+          "en": "drink"
+        },
+        {
+          "zh": "瓶裝水",
+          "en": "bottled_water"
+        },
+        {
+          "zh": "苏打水",
+          "en": "Soda"
+        },
+        {
+          "zh": "日本清酒",
+          "en": "sake"
+        },
+        {
+          "zh": "葡萄酒",
+          "en": "wine"
         }
       ]
     }

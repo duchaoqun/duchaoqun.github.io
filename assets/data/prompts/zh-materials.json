@@ -1,0 +1,1424 @@
+{
+  "id": "materials",
+  "name": "素材",
+  "categories": [
+    {
+      "id": "cat_1",
+      "name": "贴图",
+      "tags": [
+        {
+          "zh": "凹凸贴图",
+          "en": "Bump Map"
+        },
+        {
+          "zh": "带凹凸贴图",
+          "en": "Bump Mapped"
+        },
+        {
+          "zh": "凹凸映射",
+          "en": "Bump Mapping"
+        },
+        {
+          "zh": "法线贴图",
+          "en": "Normal Map"
+        },
+        {
+          "zh": "深度图",
+          "en": "Depth Map"
+        }
+      ]
+    },
+    {
+      "id": "cat_2",
+      "name": "特性",
+      "tags": [
+        {
+          "zh": "软体",
+          "en": "Soft Body"
+        },
+        {
+          "zh": "松软的",
+          "en": "Squishy"
+        },
+        {
+          "zh": "各向异性",
+          "en": "Anisotropy"
+        },
+        {
+          "zh": "碳酸的",
+          "en": "Carbonated"
+        },
+        {
+          "zh": "起泡",
+          "en": "Effervescent"
+        },
+        {
+          "zh": "冰冷的",
+          "en": "Icy"
+        },
+        {
+          "zh": "炭化",
+          "en": "Charred"
+        },
+        {
+          "zh": "起皱的",
+          "en": "Corrugated"
+        },
+        {
+          "zh": "穿孔",
+          "en": "Perforated"
+        }
+      ]
+    },
+    {
+      "id": "cat_3",
+      "name": "木材和纸张",
+      "tags": [
+        {
+          "zh": "木质",
+          "en": "Wooden"
+        },
+        {
+          "zh": "木材",
+          "en": "Lumber"
+        },
+        {
+          "zh": "胶合板",
+          "en": "Plywood"
+        },
+        {
+          "zh": "刨花板",
+          "en": "Particle-Board"
+        },
+        {
+          "zh": "锯末",
+          "en": "Sawdust"
+        },
+        {
+          "zh": "软木",
+          "en": "Cork"
+        },
+        {
+          "zh": "樱桃木",
+          "en": "Cherry-Wood"
+        },
+        {
+          "zh": "枫木",
+          "en": "Maple-Wood"
+        },
+        {
+          "zh": "松林",
+          "en": "Pine-Wood"
+        },
+        {
+          "zh": "橡木",
+          "en": "Oak-Wood"
+        },
+        {
+          "zh": "桦木",
+          "en": "Birch-Wood"
+        },
+        {
+          "zh": "相思木",
+          "en": "Acacia-Wood"
+        },
+        {
+          "zh": "雪松木",
+          "en": "Cedar-Wood"
+        },
+        {
+          "zh": "木材染色",
+          "en": "Wood-Stain"
+        },
+        {
+          "zh": "木板",
+          "en": "Planks"
+        },
+        {
+          "zh": "木质板",
+          "en": "Wooden Planks"
+        },
+        {
+          "zh": "钉木",
+          "en": "Nailed-Wood"
+        },
+        {
+          "zh": "木栅栏",
+          "en": "Wooden Fence"
+        },
+        {
+          "zh": "硬纸板",
+          "en": "Cardboard"
+        },
+        {
+          "zh": "瓦楞纸板",
+          "en": "Corrugated Fiberboard"
+        },
+        {
+          "zh": "纸板",
+          "en": "Paperboard"
+        },
+        {
+          "zh": "卡纸",
+          "en": "Cardstock"
+        },
+        {
+          "zh": "纸",
+          "en": "Paper"
+        },
+        {
+          "zh": "施工图纸",
+          "en": "Construction Paper"
+        },
+        {
+          "zh": "卫生纸",
+          "en": "Tissue Paper"
+        },
+        {
+          "zh": "方格纸",
+          "en": "Graph Paper"
+        },
+        {
+          "zh": "牛皮纸",
+          "en": "Kraft Paper"
+        },
+        {
+          "zh": "和纸",
+          "en": "Washi"
+        },
+        {
+          "zh": "瓦斯里纸",
+          "en": "Wasli"
+        },
+        {
+          "zh": "莎草纸",
+          "en": "Papyrus"
+        },
+        {
+          "zh": "手稿纸",
+          "en": "Manuscript Paper"
+        },
+        {
+          "zh": "包装纸",
+          "en": "Wrapping Paper"
+        },
+        {
+          "zh": "羊皮纸",
+          "en": "Parchment"
+        },
+        {
+          "zh": "烤肉纸",
+          "en": "Parchment Paper"
+        },
+        {
+          "zh": "中世纪的羊皮纸",
+          "en": "Medieval Parchment"
+        },
+        {
+          "zh": "卫生纸",
+          "en": "Toilet Paper"
+        },
+        {
+          "zh": "纸巾",
+          "en": "Paper Towel"
+        },
+        {
+          "zh": "马尼拉纸",
+          "en": "Manila Paper"
+        },
+        {
+          "zh": "马尼拉文件夹",
+          "en": "Manila Folder"
+        },
+        {
+          "zh": "信封",
+          "en": "Envelope"
+        },
+        {
+          "zh": "防伪纸",
+          "en": "Security Paper"
+        },
+        {
+          "zh": "卷烟纸",
+          "en": "Rolling Paper"
+        },
+        {
+          "zh": "棉纸",
+          "en": "Cotton Paper"
+        },
+        {
+          "zh": "麻纤维",
+          "en": "Hemp Fiber"
+        },
+        {
+          "zh": "麻纸",
+          "en": "Hemp Paper"
+        },
+        {
+          "zh": "纤维素",
+          "en": "Cellulose"
+        },
+        {
+          "zh": "塑料涂层纸",
+          "en": "Plastic-Coated Paper"
+        },
+        {
+          "zh": "沥青纸",
+          "en": "Tar Paper"
+        }
+      ]
+    },
+    {
+      "id": "cat_4",
+      "name": "土壤",
+      "tags": [
+        {
+          "zh": "土壤",
+          "en": "Soil"
+        },
+        {
+          "zh": "尘土",
+          "en": "Dirt"
+        },
+        {
+          "zh": "泥浆",
+          "en": "Mud"
+        },
+        {
+          "zh": "泥砖",
+          "en": "Mud Brick"
+        },
+        {
+          "zh": "黏土",
+          "en": "Clay"
+        },
+        {
+          "zh": "沙子",
+          "en": "Sand"
+        },
+        {
+          "zh": "碎石",
+          "en": "Gravel"
+        },
+        {
+          "zh": "淤泥",
+          "en": "Silt"
+        },
+        {
+          "zh": "灰尘",
+          "en": "Dust"
+        },
+        {
+          "zh": "针叶林土",
+          "en": "Spodosol"
+        },
+        {
+          "zh": "针叶林土壤",
+          "en": "Podzol"
+        },
+        {
+          "zh": "砂纸",
+          "en": "Sandpaper"
+        }
+      ]
+    },
+    {
+      "id": "cat_5",
+      "name": "石头和矿物",
+      "tags": [
+        {
+          "zh": "石头",
+          "en": "Stone"
+        },
+        {
+          "zh": "鹅卵石",
+          "en": "Cobblestone"
+        },
+        {
+          "zh": "卵石",
+          "en": "Pebbles"
+        },
+        {
+          "zh": "岩石",
+          "en": "Rock"
+        },
+        {
+          "zh": "多岩",
+          "en": "Rocky"
+        },
+        {
+          "zh": "基岩",
+          "en": "Bedrock"
+        },
+        {
+          "zh": "燧石",
+          "en": "Flint"
+        },
+        {
+          "zh": "砂岩",
+          "en": "Sandstone"
+        },
+        {
+          "zh": "玄武岩",
+          "en": "Basalt"
+        },
+        {
+          "zh": "大理石",
+          "en": "Marble"
+        },
+        {
+          "zh": "花岗岩",
+          "en": "Granite"
+        },
+        {
+          "zh": "闪长岩",
+          "en": "Diorite"
+        },
+        {
+          "zh": "安山岩",
+          "en": "Andesite"
+        },
+        {
+          "zh": "石膏",
+          "en": "Gypsum"
+        },
+        {
+          "zh": "煤炭",
+          "en": "Coal"
+        },
+        {
+          "zh": "硫黄",
+          "en": "Sulfur"
+        },
+        {
+          "zh": "石墨烯",
+          "en": "Graphene"
+        },
+        {
+          "zh": "碳纳米管",
+          "en": "Carbon Nanotubes"
+        },
+        {
+          "zh": "碳纤维",
+          "en": "Carbon Fiber"
+        },
+        {
+          "zh": "混凝土",
+          "en": "Concrete"
+        },
+        {
+          "zh": "人行道",
+          "en": "Sidewalk"
+        },
+        {
+          "zh": "沥青",
+          "en": "Asphalt"
+        },
+        {
+          "zh": "麻絮混凝土",
+          "en": "Hempcrete"
+        },
+        {
+          "zh": "砖",
+          "en": "Brick"
+        },
+        {
+          "zh": "红陶土",
+          "en": "Terracotta"
+        },
+        {
+          "zh": "陶器",
+          "en": "Pottery"
+        },
+        {
+          "zh": "陶瓷制品",
+          "en": "Ceramic"
+        },
+        {
+          "zh": "搪瓷",
+          "en": "Enamel"
+        },
+        {
+          "zh": "石膏板",
+          "en": "Sheetrock"
+        },
+        {
+          "zh": "灰泥",
+          "en": "Plaster"
+        },
+        {
+          "zh": "石棉",
+          "en": "Asbestos"
+        },
+        {
+          "zh": "矿渣",
+          "en": "Slag"
+        },
+        {
+          "zh": "蛭石",
+          "en": "Vermiculite"
+        },
+        {
+          "zh": "珍珠岩",
+          "en": "Perlite"
+        },
+        {
+          "zh": "硼砂",
+          "en": "Borax"
+        }
+      ]
+    },
+    {
+      "id": "cat_6",
+      "name": "金属",
+      "tags": [
+        {
+          "zh": "金属质的",
+          "en": "Metallic"
+        },
+        {
+          "zh": "金属",
+          "en": "Metal"
+        },
+        {
+          "zh": "液态金属",
+          "en": "Liquid Metal"
+        },
+        {
+          "zh": "箔",
+          "en": "Foil"
+        },
+        {
+          "zh": "生锈的",
+          "en": "Rusty"
+        },
+        {
+          "zh": "白镴",
+          "en": "Pewter"
+        },
+        {
+          "zh": "铜",
+          "en": "Copper"
+        },
+        {
+          "zh": "锡",
+          "en": "Tin"
+        },
+        {
+          "zh": "铝",
+          "en": "Aluminum"
+        },
+        {
+          "zh": "拉丝铝",
+          "en": "Brushed Aluminum"
+        },
+        {
+          "zh": "青铜",
+          "en": "Bronze"
+        },
+        {
+          "zh": "黄铜",
+          "en": "Brass"
+        },
+        {
+          "zh": "铁",
+          "en": "Iron"
+        },
+        {
+          "zh": "锻铁",
+          "en": "Wrought Iron"
+        },
+        {
+          "zh": "钢",
+          "en": "Steel"
+        },
+        {
+          "zh": "不锈钢",
+          "en": "Stainless Steel"
+        },
+        {
+          "zh": "大马士革钢",
+          "en": "Damascus Steel"
+        },
+        {
+          "zh": "钛",
+          "en": "Titanium"
+        },
+        {
+          "zh": "阳极氧化钛",
+          "en": "Anodized Titanium"
+        },
+        {
+          "zh": "大马士革钛",
+          "en": "Damascus Titanium"
+        },
+        {
+          "zh": "纯银",
+          "en": "Sterling Silver"
+        },
+        {
+          "zh": "标准银",
+          "en": "Sterling"
+        },
+        {
+          "zh": "玫瑰金",
+          "en": "Rose-Gold"
+        },
+        {
+          "zh": "铂",
+          "en": "Platinum"
+        },
+        {
+          "zh": "铬",
+          "en": "Chromium"
+        },
+        {
+          "zh": "镀铬",
+          "en": "Chrome"
+        },
+        {
+          "zh": "汞",
+          "en": "Mercury"
+        },
+        {
+          "zh": "汞金属",
+          "en": "Mercury Metal"
+        },
+        {
+          "zh": "熔融水银",
+          "en": "Molten Mercury"
+        },
+        {
+          "zh": "熔融汞金属",
+          "en": "Molten Mercury Metal"
+        },
+        {
+          "zh": "镓",
+          "en": "Gallium"
+        },
+        {
+          "zh": "镁",
+          "en": "Magnesium"
+        },
+        {
+          "zh": "锌",
+          "en": "Zinc"
+        },
+        {
+          "zh": "铅",
+          "en": "Lead"
+        },
+        {
+          "zh": "钨",
+          "en": "Tungsten"
+        },
+        {
+          "zh": "锆",
+          "en": "Zirconium"
+        },
+        {
+          "zh": "立方锆石",
+          "en": "Cubic Zirconium"
+        },
+        {
+          "zh": "钴",
+          "en": "Cobalt"
+        },
+        {
+          "zh": "铀",
+          "en": "Uranium"
+        },
+        {
+          "zh": "钠",
+          "en": "Sodium"
+        },
+        {
+          "zh": "钾",
+          "en": "Potassium"
+        },
+        {
+          "zh": "康铜",
+          "en": "Constantan"
+        },
+        {
+          "zh": "赫帕铜",
+          "en": "Hepatizon"
+        },
+        {
+          "zh": "镍铬合金",
+          "en": "Nichrome"
+        },
+        {
+          "zh": "大马士革",
+          "en": "Damascus"
+        },
+        {
+          "zh": "铁屑",
+          "en": "Iron Filings"
+        },
+        {
+          "zh": "硫酸铜",
+          "en": "Copper-Sulfate"
+        },
+        {
+          "zh": "焊锡",
+          "en": "Solder"
+        },
+        {
+          "zh": "金属纤维",
+          "en": "Metallic Fiber"
+        },
+        {
+          "zh": "铠装线",
+          "en": "Armature Wire"
+        },
+        {
+          "zh": "金属泡沫",
+          "en": "Metal Foam"
+        },
+        {
+          "zh": "针",
+          "en": "Needle"
+        },
+        {
+          "zh": "螺丝",
+          "en": "Screw"
+        },
+        {
+          "zh": "回形针",
+          "en": "Paper Clips"
+        },
+        {
+          "zh": "链条",
+          "en": "Chain-link"
+        },
+        {
+          "zh": "铁丝网",
+          "en": "Chicken Wire"
+        },
+        {
+          "zh": "链式围栏",
+          "en": "Chain-link Fence"
+        }
+      ]
+    },
+    {
+      "id": "cat_7",
+      "name": "玻璃和水晶",
+      "tags": [
+        {
+          "zh": "玻璃质",
+          "en": "Glassy"
+        },
+        {
+          "zh": "彩绘玻璃",
+          "en": "Stained Glass"
+        },
+        {
+          "zh": "彩色玻璃窗",
+          "en": "Stained Glass Windows"
+        },
+        {
+          "zh": "海玻璃",
+          "en": "Seaglass"
+        },
+        {
+          "zh": "镜子",
+          "en": "Mirror"
+        },
+        {
+          "zh": "玻璃纤维",
+          "en": "Fiberglass"
+        },
+        {
+          "zh": "玻璃纤维",
+          "en": "Glass Fiber"
+        },
+        {
+          "zh": "玻璃和水晶",
+          "en": "Glass and Crystals"
+        },
+        {
+          "zh": "晶体",
+          "en": "Crystalline"
+        },
+        {
+          "zh": "钻石",
+          "en": "Diamond"
+        },
+        {
+          "zh": "紫晶",
+          "en": "Amethyst"
+        },
+        {
+          "zh": "石英",
+          "en": "Quartz"
+        },
+        {
+          "zh": "烟熏石英",
+          "en": "Smoky Quartz"
+        },
+        {
+          "zh": "玫瑰石英",
+          "en": "Rose Quartz"
+        },
+        {
+          "zh": "乳白石英",
+          "en": "Milky Quartz"
+        },
+        {
+          "zh": "钛晶石英",
+          "en": "Rutilated Quartz"
+        },
+        {
+          "zh": "节晶石英",
+          "en": "Sceptred Quartz"
+        },
+        {
+          "zh": "赫基默钻石",
+          "en": "Herkimer Diamond"
+        },
+        {
+          "zh": "红宝石",
+          "en": "Ruby"
+        },
+        {
+          "zh": "蓝宝石",
+          "en": "Sapphire"
+        },
+        {
+          "zh": "祖母绿",
+          "en": "Emerald"
+        },
+        {
+          "zh": "珍珠",
+          "en": "Pearl"
+        },
+        {
+          "zh": "黄水晶",
+          "en": "Citrine"
+        },
+        {
+          "zh": "萤石",
+          "en": "Fluorite"
+        },
+        {
+          "zh": "玛瑙",
+          "en": "Onyx"
+        },
+        {
+          "zh": "青金石",
+          "en": "Lapis Lazuli"
+        },
+        {
+          "zh": "黑曜石",
+          "en": "Obsidian"
+        },
+        {
+          "zh": "透明石膏",
+          "en": "Selenite"
+        },
+        {
+          "zh": "红玉髓",
+          "en": "Jasper"
+        },
+        {
+          "zh": "蛋白石",
+          "en": "Opal"
+        },
+        {
+          "zh": "蛋白石玛瑙",
+          "en": "Opalite"
+        },
+        {
+          "zh": "黄玉",
+          "en": "Topaz"
+        },
+        {
+          "zh": "玛瑙",
+          "en": "Agate"
+        },
+        {
+          "zh": "红玛瑙",
+          "en": "Carnelian"
+        },
+        {
+          "zh": "紫黄晶",
+          "en": "Ametrine"
+        },
+        {
+          "zh": "绿碧玺",
+          "en": "Aventurine"
+        },
+        {
+          "zh": "硼砂晶体",
+          "en": "Borax Crystals"
+        },
+        {
+          "zh": "胶体晶体",
+          "en": "Colloidal Crystal"
+        }
+      ]
+    },
+    {
+      "id": "cat_8",
+      "name": "塑料/泡沫膜",
+      "tags": [
+        {
+          "zh": "塑料",
+          "en": "Plastic"
+        },
+        {
+          "zh": "收缩膜",
+          "en": "Shrink Wrap"
+        },
+        {
+          "zh": "保鲜膜",
+          "en": "Plastic Wrap"
+        },
+        {
+          "zh": "粘包装膜",
+          "en": "Cling Wrap"
+        },
+        {
+          "zh": "铁氟龙",
+          "en": "Teflon"
+        },
+        {
+          "zh": "乐高",
+          "en": "Lego"
+        },
+        {
+          "zh": "聚氨酯",
+          "en": "Polyurethane"
+        },
+        {
+          "zh": "聚乙烯",
+          "en": "Polyethylene"
+        },
+        {
+          "zh": "聚乙烯",
+          "en": "Polyvinyl"
+        },
+        {
+          "zh": "聚丙烯",
+          "en": "Polypropylene"
+        },
+        {
+          "zh": "聚酰亚胺",
+          "en": "Polyimide"
+        },
+        {
+          "zh": "保丽龙",
+          "en": "Styrofoam"
+        },
+        {
+          "zh": "泡沫",
+          "en": "Foam"
+        }
+      ]
+    },
+    {
+      "id": "cat_9",
+      "name": "橡胶",
+      "tags": [
+        {
+          "zh": "橡胶",
+          "en": "Rubber"
+        },
+        {
+          "zh": "橡皮筋",
+          "en": "Rubber Band"
+        },
+        {
+          "zh": "橡皮筋球",
+          "en": "Rubber Band Ball"
+        },
+        {
+          "zh": "气球",
+          "en": "Balloon"
+        },
+        {
+          "zh": "丁腈橡胶",
+          "en": "Nitrile"
+        },
+        {
+          "zh": "硅胶",
+          "en": "Silicone"
+        },
+        {
+          "zh": "乙烯基塑料",
+          "en": "Vinyl"
+        },
+        {
+          "zh": "油毡",
+          "en": "Linoleum"
+        },
+        {
+          "zh": "橡皮筋",
+          "en": "Silly Band"
+        }
+      ]
+    },
+    {
+      "id": "cat_10",
+      "name": "蜡",
+      "tags": [
+        {
+          "zh": "蜡",
+          "en": "Wax"
+        },
+        {
+          "zh": "蜡纸",
+          "en": "Wax Paper"
+        },
+        {
+          "zh": "巴西棕榈蜡",
+          "en": "Carnauba Wax"
+        },
+        {
+          "zh": "小烛树蜡",
+          "en": "Candelilla Wax"
+        },
+        {
+          "zh": "石蜡",
+          "en": "Paraffin Wax"
+        },
+        {
+          "zh": "虫胶",
+          "en": "Shellac"
+        }
+      ]
+    },
+    {
+      "id": "cat_11",
+      "name": "冰雪",
+      "tags": [
+        {
+          "zh": "冰",
+          "en": "Ice"
+        },
+        {
+          "zh": "蓝冰",
+          "en": "Blue-Ice"
+        },
+        {
+          "zh": "干冰",
+          "en": "Dry Ice"
+        }
+      ]
+    },
+    {
+      "id": "cat_12",
+      "name": "头发/毛皮",
+      "tags": [
+        {
+          "zh": "毛茸茸的",
+          "en": "Hairy"
+        },
+        {
+          "zh": "绒毛",
+          "en": "Fuzz"
+        },
+        {
+          "zh": "胡须",
+          "en": "Beard"
+        },
+        {
+          "zh": "羽毛",
+          "en": "Feathers"
+        },
+        {
+          "zh": "斑马",
+          "en": "Zebra"
+        },
+        {
+          "zh": "灰兔子",
+          "en": "Dust-Bunny"
+        }
+      ]
+    },
+    {
+      "id": "cat_13",
+      "name": "液体",
+      "tags": [
+        {
+          "zh": "液体",
+          "en": "Liquid"
+        },
+        {
+          "zh": "水",
+          "en": "Water"
+        },
+        {
+          "zh": "岩浆",
+          "en": "Lava"
+        },
+        {
+          "zh": "熔岩",
+          "en": "Magma"
+        },
+        {
+          "zh": "熔化岩石",
+          "en": "Molten Rock"
+        },
+        {
+          "zh": "铁磁流体",
+          "en": "Ferro Fluid"
+        },
+        {
+          "zh": "液晶",
+          "en": "Liquid Crystal"
+        },
+        {
+          "zh": "汽油",
+          "en": "Gasoline"
+        },
+        {
+          "zh": "松节油",
+          "en": "Turpentine"
+        },
+        {
+          "zh": "矿物油",
+          "en": "Mineral Oil"
+        },
+        {
+          "zh": "机油",
+          "en": "Motor Oil"
+        },
+        {
+          "zh": "海沫",
+          "en": "Sea Foam"
+        },
+        {
+          "zh": "乳化",
+          "en": "Emulsion"
+        },
+        {
+          "zh": "脂质",
+          "en": "Lipid"
+        }
+      ]
+    },
+    {
+      "id": "cat_14",
+      "name": "黏液",
+      "tags": [
+        {
+          "zh": "弹力布",
+          "en": "Flubber"
+        },
+        {
+          "zh": "密封和填充空隙的黏合剂",
+          "en": "Putty"
+        },
+        {
+          "zh": "海报胶",
+          "en": "Poster Tack"
+        }
+      ]
+    },
+    {
+      "id": "cat_15",
+      "name": "黏稠度",
+      "tags": [
+        {
+          "zh": "凝胶",
+          "en": "Gel"
+        },
+        {
+          "zh": "气凝胶",
+          "en": "Aerogel"
+        },
+        {
+          "zh": "软胶囊",
+          "en": "Softgel"
+        },
+        {
+          "zh": "硅胶",
+          "en": "Silica Gel"
+        },
+        {
+          "zh": "弹道凝胶",
+          "en": "Ballistic Gel"
+        },
+        {
+          "zh": "海蜇",
+          "en": "Jellyfish"
+        },
+        {
+          "zh": "弹道泡沫",
+          "en": "Ballistic Foam"
+        },
+        {
+          "zh": "海绵",
+          "en": "Sponge"
+        },
+        {
+          "zh": "海绵状",
+          "en": "Spongy"
+        }
+      ]
+    },
+    {
+      "id": "cat_16",
+      "name": "粘合剂",
+      "tags": [
+        {
+          "zh": "胶带",
+          "en": "Tape"
+        },
+        {
+          "zh": "胶布",
+          "en": "Duct Tape"
+        },
+        {
+          "zh": "透明胶",
+          "en": "Scotch Tape"
+        },
+        {
+          "zh": "透明胶带",
+          "en": "Clear Tape"
+        },
+        {
+          "zh": "封箱胶带",
+          "en": "Packing Tape"
+        },
+        {
+          "zh": "美纹纸胶带",
+          "en": "Masking Tape"
+        },
+        {
+          "zh": "卡普顿",
+          "en": "Kapton"
+        },
+        {
+          "zh": "卡普顿胶带",
+          "en": "Kapton Tape"
+        },
+        {
+          "zh": "粘合剂",
+          "en": "Adhesive"
+        },
+        {
+          "zh": "胶水",
+          "en": "Glue"
+        },
+        {
+          "zh": "环氧树脂",
+          "en": "Epoxy"
+        }
+      ]
+    },
+    {
+      "id": "cat_17",
+      "name": "聚合物",
+      "tags": [
+        {
+          "zh": "聚合物",
+          "en": "Polymer"
+        },
+        {
+          "zh": "水珠",
+          "en": "Orbeez"
+        },
+        {
+          "zh": "混合淀粉溶液",
+          "en": "Oobleck"
+        }
+      ]
+    },
+    {
+      "id": "cat_18",
+      "name": "气体/粉末",
+      "tags": [
+        {
+          "zh": "蒸汽",
+          "en": "Vapor"
+        },
+        {
+          "zh": "云",
+          "en": "Clouds"
+        },
+        {
+          "zh": "雾",
+          "en": "Fog"
+        },
+        {
+          "zh": "薄雾",
+          "en": "Mist"
+        },
+        {
+          "zh": "气体",
+          "en": "Gas"
+        },
+        {
+          "zh": "气溶胶",
+          "en": "Aerosol"
+        },
+        {
+          "zh": "粉末",
+          "en": "Powder"
+        },
+        {
+          "zh": "烟",
+          "en": "Smoke"
+        }
+      ]
+    },
+    {
+      "id": "cat_19",
+      "name": "等离子与能源",
+      "tags": [
+        {
+          "zh": "等离子",
+          "en": "Plasma"
+        },
+        {
+          "zh": "电",
+          "en": "Electric"
+        },
+        {
+          "zh": "电力",
+          "en": "Electricity"
+        },
+        {
+          "zh": "火",
+          "en": "Fire"
+        },
+        {
+          "zh": "燃烧",
+          "en": "Burn"
+        },
+        {
+          "zh": "地狱火",
+          "en": "Inferno"
+        }
+      ]
+    },
+    {
+      "id": "cat_20",
+      "name": "菌类",
+      "tags": [
+        {
+          "zh": "菌类",
+          "en": "Fungi"
+        },
+        {
+          "zh": "蘑菇",
+          "en": "Mushrooms"
+        },
+        {
+          "zh": "菌丝",
+          "en": "Mycelium"
+        },
+        {
+          "zh": "发霉的",
+          "en": "Moldy"
+        },
+        {
+          "zh": "靛青乳菇",
+          "en": "Lactarius-Indigo"
+        },
+        {
+          "zh": "格子柄灯盏菌",
+          "en": "Latticed-Stinkhorn"
+        },
+        {
+          "zh": "红笼菌",
+          "en": "Clathrus-Ruber"
+        },
+        {
+          "zh": "紫蘑",
+          "en": "Laccaria-Amethystina"
+        },
+        {
+          "zh": "霍氏粉褶菌",
+          "en": "Entoloma-Hochstetteri"
+        },
+        {
+          "zh": "紫红珊瑚菌",
+          "en": "Clavaria-Zollingeri"
+        },
+        {
+          "zh": "青绿木耳",
+          "en": "Chlorociboria"
+        },
+        {
+          "zh": "金丝乌鸦脚蘑菇",
+          "en": "Golden-Scruffy-Collybia"
+        },
+        {
+          "zh": "隐色锯脚蘑",
+          "en": "Cyptotrama-Asprata"
+        },
+        {
+          "zh": "尖锐鬼笔菌",
+          "en": "Mycena Acicula"
+        },
+        {
+          "zh": "黄褐红脚灯蘑",
+          "en": "Hygrocybe-Cantharellus"
+        },
+        {
+          "zh": "红白鹅膏菌",
+          "en": "Amanita-Muscaria"
+        },
+        {
+          "zh": "红猩猩手指菌",
+          "en": "Favolaschia-Calocera"
+        },
+        {
+          "zh": "红头发菌",
+          "en": "Marasmius-Haematocephalus"
+        },
+        {
+          "zh": "三硫囊菇",
+          "en": "Cystoagaricus-Trisulphuratus"
+        },
+        {
+          "zh": "黄脑菌",
+          "en": "Tremella-Mesenterica"
+        },
+        {
+          "zh": "银耳",
+          "en": "Tremella-Fuciformis"
+        }
+      ]
+    },
+    {
+      "id": "cat_21",
+      "name": "其他素材",
+      "tags": [
+        {
+          "zh": "琥珀",
+          "en": "Amber"
+        },
+        {
+          "zh": "镶嵌",
+          "en": "Inlay"
+        },
+        {
+          "zh": "细胞",
+          "en": "Cells"
+        },
+        {
+          "zh": "网状的",
+          "en": "Cellular"
+        },
+        {
+          "zh": "电线",
+          "en": "Wires"
+        },
+        {
+          "zh": "晶体管",
+          "en": "Transistor"
+        },
+        {
+          "zh": "二极管",
+          "en": "Diode"
+        }
+      ]
+    }
+  ]
+}

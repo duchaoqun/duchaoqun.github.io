@@ -3,72 +3,492 @@
   "name": "后期处理",
   "categories": [
     {
-      "id": "portrait",
-      "name": "肖像",
+      "id": "cat_1",
+      "name": "景别尺寸",
       "tags": [
         {
-          "zh": "便利店霓虹肖像",
-          "en": "convenience store neon portrait"
+          "zh": "大规模",
+          "en": "Massive Scale"
         },
         {
-          "zh": "电影感极简肖像",
-          "en": "cinematic minimalist portrait"
+          "zh": "大量的",
+          "en": "Massive"
         },
         {
-          "zh": "35mm 闪光灯杂志肖像",
-          "en": "35mm flash magazine portrait"
+          "zh": "巨大的",
+          "en": "Huge"
         },
         {
-          "zh": "柔和轻盈 35mm 肖像",
-          "en": "soft light 35mm portrait"
+          "zh": "大",
+          "en": "Large"
         },
         {
-          "zh": "奢华魅力美妆肖像",
-          "en": "luxury glamour beauty portrait"
+          "zh": "大的",
+          "en": "Big"
+        },
+        {
+          "zh": "迷你",
+          "en": "Mini"
+        },
+        {
+          "zh": "微小",
+          "en": "Tiny"
+        },
+        {
+          "zh": "微观",
+          "en": "Micro"
+        },
+        {
+          "zh": "纳米",
+          "en": "Nano"
+        },
+        {
+          "zh": "超高清",
+          "en": "ultra-high definition"
+        },
+        {
+          "zh": "4k",
+          "en": "4k"
+        },
+        {
+          "zh": "8K",
+          "en": "8K"
+        },
+        {
+          "zh": "16k",
+          "en": "16k"
+        },
+        {
+          "zh": "32k",
+          "en": "32k"
+        },
+        {
+          "zh": "全高清",
+          "en": "Full-HD"
+        },
+        {
+          "zh": "高清",
+          "en": "HD"
+        },
+        {
+          "zh": "超高清",
+          "en": "Ultra-HD"
+        },
+        {
+          "zh": "超分辨率",
+          "en": "Super-Resolution"
+        },
+        {
+          "zh": "百万像素",
+          "en": "Megapixel"
+        },
+        {
+          "zh": "超高分辨率",
+          "en": "absurdres"
+        },
+        {
+          "zh": "极高分辨率",
+          "en": "incredibly absurdres"
+        },
+        {
+          "zh": "超级高分辨率/大文件",
+          "en": "huge filesize"
         }
       ]
     },
     {
-      "id": "character",
-      "name": "角色",
+      "id": "cat_2",
+      "name": "立体视觉",
       "tags": [
         {
-          "zh": "9:16 Cosplay 人物截图",
-          "en": "9:16 cosplay character screenshot"
+          "zh": "立体画",
+          "en": "Anaglyph"
         },
         {
-          "zh": "都市回头街拍肖像",
-          "en": "urban street look back portrait"
+          "zh": "多视镜",
+          "en": "Multiscopy"
         },
         {
-          "zh": "韩国偶像 3x3 格子肖像",
-          "en": "Korean idol 3x3 grid portrait"
+          "zh": "自动立体",
+          "en": "Autostereoscopy"
         },
         {
-          "zh": "CCD 相机闪光灯韩国偶像",
-          "en": "CCD camera flash Korean idol"
+          "zh": "立体摄影",
+          "en": "Stereoscopy"
+        },
+        {
+          "zh": "视差",
+          "en": "Parallax"
         }
       ]
     },
     {
-      "id": "example",
-      "name": "成品范例",
+      "id": "cat_3",
+      "name": "抗锯齿",
       "tags": [
         {
-          "zh": "Sam Altman 滑板公园快照",
-          "en": "Sam Altman skate park snapshot"
+          "zh": "抗锯齿",
+          "en": "Anti-Aliasing"
         },
         {
-          "zh": "Sam Altman 熊熊自拍",
-          "en": "Sam Altman bear selfie"
+          "zh": "FXAA",
+          "en": "FXAA"
         },
         {
-          "zh": "GPT-Image-2 细节展示",
-          "en": "GPT-Image-2 detail showcase"
+          "zh": "TXAA",
+          "en": "TXAA"
         },
         {
-          "zh": "AI 自我感知肖像",
-          "en": "AI self-awareness portrait"
+          "zh": "实时传输",
+          "en": "RTX"
+        },
+        {
+          "zh": "SSAO",
+          "en": "SSAO"
+        },
+        {
+          "zh": "降噪",
+          "en": "De-Noise"
+        }
+      ]
+    },
+    {
+      "id": "cat_4",
+      "name": "着色器",
+      "tags": [
+        {
+          "zh": "着色器",
+          "en": "Shaders"
+        },
+        {
+          "zh": "OpenGL 着色器",
+          "en": "OpenGL-Shaders"
+        },
+        {
+          "zh": "GLSL 着色器",
+          "en": "GLSL-Shaders"
+        },
+        {
+          "zh": "后期处理",
+          "en": "Post Processing"
+        },
+        {
+          "zh": "后期制作",
+          "en": "Post-Production"
+        },
+        {
+          "zh": "元着色",
+          "en": "Cel Shading"
+        },
+        {
+          "zh": "色调映射",
+          "en": "Tone Mapping"
+        },
+        {
+          "zh": "电脑影像",
+          "en": "CGI"
+        },
+        {
+          "zh": "视觉特效",
+          "en": "VFX"
+        },
+        {
+          "zh": "音效",
+          "en": "SFX"
+        },
+        {
+          "zh": "虚幻引擎",
+          "en": "Unreal Engine"
+        }
+      ]
+    },
+    {
+      "id": "cat_5",
+      "name": "图像处理",
+      "tags": [
+        {
+          "zh": "扫描线",
+          "en": "Scan Lines"
+        },
+        {
+          "zh": "色调分割",
+          "en": "Posterization"
+        },
+        {
+          "zh": "量化",
+          "en": "Quantization"
+        },
+        {
+          "zh": "Sobel 算子",
+          "en": "Sobel Operator"
+        },
+        {
+          "zh": "边缘检测",
+          "en": "Edge Detection"
+        },
+        {
+          "zh": "隔行扫描",
+          "en": "Interlaced"
+        },
+        {
+          "zh": "云纹图案",
+          "en": "Moire Patterns"
+        },
+        {
+          "zh": "圆形",
+          "en": "Rounded"
+        },
+        {
+          "zh": "波浪状的",
+          "en": "Wavy"
+        },
+        {
+          "zh": "旋涡",
+          "en": "Whirl"
+        },
+        {
+          "zh": "波纹",
+          "en": "Squiggly"
+        },
+        {
+          "zh": "变形",
+          "en": "Morph"
+        },
+        {
+          "zh": "螺旋",
+          "en": "Spiraling"
+        },
+        {
+          "zh": "扭曲的光线",
+          "en": "Twisted Rays"
+        },
+        {
+          "zh": "星芒",
+          "en": "Starburst"
+        },
+        {
+          "zh": "浮雕",
+          "en": "Emboss"
+        },
+        {
+          "zh": "镶嵌",
+          "en": "Tessellated"
+        },
+        {
+          "zh": "斑点",
+          "en": "Blobby"
+        },
+        {
+          "zh": "斑点",
+          "en": "Blobs"
+        },
+        {
+          "zh": "裂缝",
+          "en": "Cracks"
+        },
+        {
+          "zh": "纹理",
+          "en": "Textured"
+        },
+        {
+          "zh": "卷积矩阵",
+          "en": "Convolution Matrix"
+        },
+        {
+          "zh": "膨胀",
+          "en": "Dilate"
+        },
+        {
+          "zh": "侵蚀",
+          "en": "Erode"
+        },
+        {
+          "zh": "肮脏的",
+          "en": "Dirty"
+        },
+        {
+          "zh": "有瑕疵",
+          "en": "With Imperfections"
+        },
+        {
+          "zh": "畸变失真",
+          "en": "Distortion"
+        },
+        {
+          "zh": "透镜状",
+          "en": "Lenticular"
+        },
+        {
+          "zh": "裁剪",
+          "en": "Cropped"
+        },
+        {
+          "zh": "量子波追踪",
+          "en": "Quantum-Wavetracing"
+        },
+        {
+          "zh": "龙卷风",
+          "en": "Tornadic"
+        },
+        {
+          "zh": "呈现出柔和、模糊的边缘和色彩晕染",
+          "en": "Sabattier Effect"
+        },
+        {
+          "zh": "模糊",
+          "en": "Smudged"
+        },
+        {
+          "zh": "锐化",
+          "en": "Sharpened"
+        },
+        {
+          "zh": "发光的边缘",
+          "en": "Glowing Edges"
+        },
+        {
+          "zh": "球化",
+          "en": "Spherize"
+        },
+        {
+          "zh": "哈里斯快门（动态/低光）",
+          "en": "Harris Shutter"
+        },
+        {
+          "zh": "蚀刻摄影",
+          "en": "Mordancage"
+        },
+        {
+          "zh": "光线追踪",
+          "en": "Ray Traced"
+        },
+        {
+          "zh": "光线追踪环境遮挡",
+          "en": "Ray Tracing Ambient Occlusion"
+        }
+      ]
+    },
+    {
+      "id": "cat_6",
+      "name": "画面品质",
+      "tags": [
+        {
+          "zh": "获奖作品",
+          "en": "award winning"
+        },
+        {
+          "zh": "专业",
+          "en": "professional"
+        },
+        {
+          "zh": "惊艳",
+          "en": "breathtaking"
+        },
+        {
+          "zh": "开创性的",
+          "en": "groundbreaking"
+        },
+        {
+          "zh": "一流的",
+          "en": "superb"
+        },
+        {
+          "zh": "杰出的",
+          "en": "outstanding"
+        },
+        {
+          "zh": "最佳质量",
+          "en": "best quality"
+        },
+        {
+          "zh": "最佳审美",
+          "en": "best aesthetic"
+        },
+        {
+          "zh": "杰作",
+          "en": "masterpiece"
+        },
+        {
+          "zh": "极致的细节",
+          "en": "extreme detail"
+        },
+        {
+          "zh": "惊人的",
+          "en": "amazing"
+        },
+        {
+          "zh": "华丽",
+          "en": "Gorgeous"
+        },
+        {
+          "zh": "惊人的",
+          "en": "stunning"
+        },
+        {
+          "zh": "复杂的",
+          "en": "intricate"
+        },
+        {
+          "zh": "充满细节",
+          "en": "detailed"
+        },
+        {
+          "zh": "豪华",
+          "en": "luxurious"
+        },
+        {
+          "zh": "细腻的",
+          "en": "subtle"
+        },
+        {
+          "zh": "精致的",
+          "en": "delicate"
+        },
+        {
+          "zh": "有力的",
+          "en": "Powerful"
+        },
+        {
+          "zh": "原创",
+          "en": "original"
+        },
+        {
+          "zh": "象征性且有意义的风格",
+          "en": "in a symbolic and meaningful style"
+        },
+        {
+          "zh": "极其细致而复杂",
+          "en": "insanely detailed and intricate"
+        },
+        {
+          "zh": "连贯且对称的结构",
+          "en": "very coherent symmetrical artwork"
+        }
+      ]
+    },
+    {
+      "id": "cat_7",
+      "name": "平台|趋势",
+      "tags": [
+        {
+          "zh": "ArtStation",
+          "en": "Trending on ArtStation"
+        },
+        {
+          "zh": "Facebook",
+          "en": "Trending on Facebook"
+        },
+        {
+          "zh": "Pixiv",
+          "en": "Trending on Pixiv"
+        },
+        {
+          "zh": "Pixbay",
+          "en": "Trending on Pixbay"
+        },
+        {
+          "zh": "reddit 论坛",
+          "en": "reddit"
         }
       ]
     }

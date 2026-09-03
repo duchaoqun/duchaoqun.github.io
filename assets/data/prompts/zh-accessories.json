@@ -25,6 +25,274 @@
         {
           "zh": "头巾",
           "en": "bandana"
+        },
+        {
+          "zh": "机械光环",
+          "en": "mechanical_halo"
+        },
+        {
+          "zh": "头饰",
+          "en": "headwear"
+        },
+        {
+          "zh": "头饰",
+          "en": "headpiece"
+        },
+        {
+          "zh": "头饰已移除",
+          "en": "headwear_removed"
+        },
+        {
+          "zh": "迷你皇冠",
+          "en": "mini_crown"
+        },
+        {
+          "zh": "头冠",
+          "en": "tiara"
+        },
+        {
+          "zh": "王冠",
+          "en": "diadem"
+        },
+        {
+          "zh": "倾斜的头饰",
+          "en": "tilted_headwear"
+        },
+        {
+          "zh": "头鳍",
+          "en": "head_fins"
+        },
+        {
+          "zh": "女仆头饰",
+          "en": "maid_headdress"
+        },
+        {
+          "zh": "新娘头纱",
+          "en": "bridal_veil"
+        },
+        {
+          "zh": "与原设不同的头饰",
+          "en": "alternate_headwear"
+        },
+        {
+          "zh": "毛边头饰",
+          "en": "fur-trimmed_headwear"
+        },
+        {
+          "zh": "帽子上的护目镜",
+          "en": "goggles_on_headwear"
+        },
+        {
+          "zh": "耳机",
+          "en": "earphones"
+        },
+        {
+          "zh": "耳罩",
+          "en": "earmuffs"
+        },
+        {
+          "zh": "xx在头上",
+          "en": "xx_on_head"
+        },
+        {
+          "zh": "头上的叶子",
+          "en": "leaf_on_head"
+        },
+        {
+          "zh": "三角头饰",
+          "en": "triangular_headpiece"
+        },
+        {
+          "zh": "护额",
+          "en": "forehead_protector"
+        },
+        {
+          "zh": "天线",
+          "en": "radio_antenna"
+        },
+        {
+          "zh": "兽耳头罩",
+          "en": "animal_hood"
+        },
+        {
+          "zh": "秃头",
+          "en": "bald"
+        },
+        {
+          "zh": "头冠",
+          "en": "circlet"
+        },
+        {
+          "zh": "扎头巾(名词)",
+          "en": "hachimaki"
+        },
+        {
+          "zh": "戴着头盔的",
+          "en": "helm"
+        },
+        {
+          "zh": "摘下头盔|被摘下的头盔",
+          "en": "helmet_removed"
+        },
+        {
+          "zh": "带角头盔",
+          "en": "horned_helmet"
+        },
+        {
+          "zh": "加帕里馒头",
+          "en": "japari_bun"
+        },
+        {
+          "zh": "方头巾",
+          "en": "kerchief"
+        },
+        {
+          "zh": "麻美断头梗",
+          "en": "mami_mogu_mogu"
+        },
+        {
+          "zh": "头骨和交叉的骨头（海盗、危险、警告）",
+          "en": "skull_and_crossbones"
+        },
+        {
+          "zh": "穆斯林头巾",
+          "en": "turban"
+        },
+        {
+          "zh": "头部穿戴物(偏笼统)",
+          "en": "headdress"
+        },
+        {
+          "zh": "熊印花头饰",
+          "en": "bear_hair_ornament"
+        },
+        {
+          "zh": "棕色头饰",
+          "en": "brown_headwear"
+        },
+        {
+          "zh": "角状头饰",
+          "en": "horned_headwear"
+        },
+        {
+          "zh": "为角留了洞的头饰",
+          "en": "horns_through_headwear"
+        },
+        {
+          "zh": "去掉了(原设有的)头饰",
+          "en": "no_headwear"
+        },
+        {
+          "zh": "头上有非头饰类的物体",
+          "en": "object_on_head"
+        },
+        {
+          "zh": "印花头饰",
+          "en": "print_headwear"
+        },
+        {
+          "zh": "骨头状饰品",
+          "en": "bone_hair_ornament"
+        },
+        {
+          "zh": "兔子饰品",
+          "en": "bunny_hair_ornament"
+        },
+        {
+          "zh": "角上有饰物",
+          "en": "horn_ornament"
+        },
+        {
+          "zh": "头上有动物",
+          "en": "animal_on_head"
+        },
+        {
+          "zh": "从后脑戴上的耳机",
+          "en": "behind-the-head_headphones"
+        },
+        {
+          "zh": "头上的鸟",
+          "en": "bird_on_head"
+        },
+        {
+          "zh": "猫耳式耳机",
+          "en": "cat_ear_headphones"
+        },
+        {
+          "zh": "头上趴着猫",
+          "en": "cat_on_head"
+        },
+        {
+          "zh": "眼镜别在头上",
+          "en": "eyewear_on_head"
+        },
+        {
+          "zh": "亲吻额头",
+          "en": "forehead_kiss"
+        },
+        {
+          "zh": "额头贴额头",
+          "en": "forehead-to-forehead"
+        },
+        {
+          "zh": "头上别着护目镜",
+          "en": "goggles_on_head"
+        },
+        {
+          "zh": "头上起包",
+          "en": "head_bump"
+        },
+        {
+          "zh": "戴着头戴显示设备",
+          "en": "head_mounted_display"
+        },
+        {
+          "zh": "一部分头部没画进框里",
+          "en": "head_out_of_frame"
+        },
+        {
+          "zh": "枕着头|托着头",
+          "en": "head_rest"
+        },
+        {
+          "zh": "头上有翅膀",
+          "en": "head_wings"
+        },
+        {
+          "zh": "头部饰品(含一定科幻元素)",
+          "en": "headgear"
+        },
+        {
+          "zh": "耳机",
+          "en": "headphones"
+        },
+        {
+          "zh": "状态条(游戏和科幻风格)",
+          "en": "heads-up_display"
+        },
+        {
+          "zh": "头戴式耳机",
+          "en": "headset"
+        },
+        {
+          "zh": "EVA神经连接器",
+          "en": "inter_headset"
+        },
+        {
+          "zh": "在头上",
+          "en": "on_head"
+        },
+        {
+          "zh": "小人儿在头上",
+          "en": "person_on_head"
+        },
+        {
+          "zh": "单侧头上有翅膀",
+          "en": "single_head_wing"
+        },
+        {
+          "zh": "整理头饰",
+          "en": "adjusting_headwear"
         }
       ]
     },
@@ -43,6 +311,102 @@
         {
           "zh": "单片眼镜",
           "en": "monocle"
+        },
+        {
+          "zh": "眼睛",
+          "en": "eyewear"
+        },
+        {
+          "zh": "带框眼镜",
+          "en": "under-rim_eyewear"
+        },
+        {
+          "zh": "无框眼镜",
+          "en": "rimless_eyewear"
+        },
+        {
+          "zh": "半无框眼镜",
+          "en": "semi-rimless_eyewear"
+        },
+        {
+          "zh": "红框眼镜",
+          "en": "red-framed_eyewear"
+        },
+        {
+          "zh": "圆框眼镜",
+          "en": "round_eyewear"
+        },
+        {
+          "zh": "黑框眼镜",
+          "en": "black-framed_eyewear"
+        },
+        {
+          "zh": "有色眼镜",
+          "en": "tinted_eyewear"
+        },
+        {
+          "zh": "医用眼罩",
+          "en": "medical_eyepatch"
+        },
+        {
+          "zh": "用绷带包扎一只眼睛",
+          "en": "bandage_over_one_eye"
+        },
+        {
+          "zh": "歪斜的眼镜",
+          "en": "crooked_eyewear"
+        },
+        {
+          "zh": "取下眼镜",
+          "en": "eyewear_removed"
+        },
+        {
+          "zh": "太阳镜（能看到眼睛）",
+          "en": "reflection glasses"
+        },
+        {
+          "zh": "护目镜",
+          "en": "goggles"
+        },
+        {
+          "zh": "眼罩",
+          "en": "Blindfold"
+        },
+        {
+          "zh": "眼罩(独眼)",
+          "en": "eyepatch"
+        },
+        {
+          "zh": "戴眼镜的",
+          "en": "bespectacled"
+        },
+        {
+          "zh": "蓝框眼镜",
+          "en": "blue-framed_eyewear"
+        },
+        {
+          "zh": "棕色镜框眼镜",
+          "en": "brown-framed_eyewear"
+        },
+        {
+          "zh": "厚如玻璃瓶底的圆眼镜",
+          "en": "coke-bottle_glasses"
+        },
+        {
+          "zh": "去掉了(原设有的)眼镜",
+          "en": "no_eyewear"
+        },
+        {
+          "zh": "没透出眼睛的眼镜",
+          "en": "opaque_glasses"
+        },
+        {
+          "zh": "下半无框眼镜",
+          "en": "over-rim_eyewear"
+        },
+        {
+          "zh": "夹鼻眼镜|无脚眼镜",
+          "en": "pince-nez"
         }
       ]
     },
@@ -65,6 +429,1032 @@
         {
           "zh": "手镯",
           "en": "bracelet"
+        },
+        {
+          "zh": "项圈",
+          "en": "choker"
+        },
+        {
+          "zh": "金属项圈",
+          "en": "metal collar"
+        },
+        {
+          "zh": "吊坠",
+          "en": "pendant"
+        },
+        {
+          "zh": "胸针",
+          "en": "brooch"
+        },
+        {
+          "zh": "手镯",
+          "en": "bangle"
+        },
+        {
+          "zh": "旭日形首饰",
+          "en": "sunburst"
+        },
+        {
+          "zh": "珍珠手链",
+          "en": "pearl bracelet"
+        },
+        {
+          "zh": "耳坠",
+          "en": "drop earrings"
+        },
+        {
+          "zh": "木偶戒指",
+          "en": "puppet rings"
+        },
+        {
+          "zh": "胸花",
+          "en": "corsage"
+        },
+        {
+          "zh": "蓝宝石胸针",
+          "en": "sapphire brooch"
+        },
+        {
+          "zh": "珠宝首饰",
+          "en": "jewelry"
+        },
+        {
+          "zh": "耳钉",
+          "en": "stud_earrings"
+        }
+      ]
+    },
+    {
+      "id": "cat_1",
+      "name": "发饰",
+      "tags": [
+        {
+          "zh": "发带",
+          "en": "hair_ribbon"
+        },
+        {
+          "zh": "发卡",
+          "en": "hairband"
+        },
+        {
+          "zh": "发带",
+          "en": "hair_tie"
+        },
+        {
+          "zh": "洛丽塔发带",
+          "en": "lolita_hairband"
+        },
+        {
+          "zh": "褶边发带",
+          "en": "frilled_hairband"
+        },
+        {
+          "zh": "蕾丝边发带",
+          "en": "lace-trimmed_hairband"
+        },
+        {
+          "zh": "头绳",
+          "en": "hair_bobbles"
+        },
+        {
+          "zh": "发饰",
+          "en": "hair_ornament"
+        },
+        {
+          "zh": "发花",
+          "en": "hair_flower"
+        },
+        {
+          "zh": "发饰",
+          "en": "x_hair_ornament"
+        },
+        {
+          "zh": "蝴蝶结发饰",
+          "en": "hair_bow"
+        },
+        {
+          "zh": "青蛙发饰",
+          "en": "frog_hair_ornament"
+        },
+        {
+          "zh": "心形发饰",
+          "en": "heart_hair_ornament"
+        },
+        {
+          "zh": "蝴蝶发饰",
+          "en": "butterfly_hair_ornament"
+        },
+        {
+          "zh": "星星发饰",
+          "en": "star_hair_ornament"
+        },
+        {
+          "zh": "食物主题发饰",
+          "en": "food-themed_hair_ornament"
+        },
+        {
+          "zh": "锚形发饰",
+          "en": "anchor_hair_ornament"
+        },
+        {
+          "zh": "蝙蝠发饰",
+          "en": "bat_hair_ornament"
+        },
+        {
+          "zh": "胡萝卜发饰",
+          "en": "carrot_hair_ornament"
+        },
+        {
+          "zh": "猫系发饰",
+          "en": "cat_hair_ornament"
+        },
+        {
+          "zh": "三叶草发饰",
+          "en": "clover_hair_ornament"
+        },
+        {
+          "zh": "头发上的粉色花朵",
+          "en": "hair pink flowers"
+        },
+        {
+          "zh": "月牙发饰",
+          "en": "crescent_hair_ornament"
+        },
+        {
+          "zh": "十字发饰",
+          "en": "cross_hair_ornament"
+        },
+        {
+          "zh": "方向键发饰",
+          "en": "d-pad_hair_ornament"
+        },
+        {
+          "zh": "鱼形发饰",
+          "en": "fish_hair_ornament"
+        },
+        {
+          "zh": "头发上成对的像无线蓝牙的发饰",
+          "en": "hairpods"
+        },
+        {
+          "zh": "叶子发饰",
+          "en": "leaf_hair_ornament"
+        },
+        {
+          "zh": "音符发饰",
+          "en": "musical_note_hair_ornament"
+        },
+        {
+          "zh": "南瓜发饰",
+          "en": "pumpkin_hair_ornament"
+        },
+        {
+          "zh": "骷髅发饰",
+          "en": "skull_hair_ornament"
+        },
+        {
+          "zh": "蛇形发饰|蛙头发饰",
+          "en": "snake_hair_ornament"
+        },
+        {
+          "zh": "雪花发饰",
+          "en": "snowflake_hair_ornament"
+        },
+        {
+          "zh": "草莓发饰",
+          "en": "strawberry_hair_ornament"
+        },
+        {
+          "zh": "向日葵发饰",
+          "en": "sunflower_hair_ornament"
+        },
+        {
+          "zh": "发夹",
+          "en": "hairpin"
+        },
+        {
+          "zh": "发夹",
+          "en": "hairclip"
+        },
+        {
+          "zh": "发管",
+          "en": "hair_tubes"
+        },
+        {
+          "zh": "发棒",
+          "en": "hair_stick"
+        },
+        {
+          "zh": "发铃",
+          "en": "hair_bell"
+        },
+        {
+          "zh": "发圈",
+          "en": "hair_rings"
+        },
+        {
+          "zh": "簪子",
+          "en": "kanzashi"
+        }
+      ]
+    },
+    {
+      "id": "cat_2",
+      "name": "帽子",
+      "tags": [
+        {
+          "zh": "兜帽",
+          "en": "hood"
+        },
+        {
+          "zh": "帽子",
+          "en": "hat"
+        },
+        {
+          "zh": "没有帽子",
+          "en": "no_hat"
+        },
+        {
+          "zh": "贝雷帽",
+          "en": "beret"
+        },
+        {
+          "zh": "迷你礼帽",
+          "en": "mini_top_hat"
+        },
+        {
+          "zh": "派对帽",
+          "en": "party_hat"
+        },
+        {
+          "zh": "水手帽",
+          "en": "sailor_hat"
+        },
+        {
+          "zh": "圣诞帽",
+          "en": "santa_hat"
+        },
+        {
+          "zh": "软呢帽",
+          "en": "fedora"
+        },
+        {
+          "zh": "女巫帽",
+          "en": "witch_hat"
+        },
+        {
+          "zh": "迷你魔女帽",
+          "en": "mini_witch_hat"
+        },
+        {
+          "zh": "巫师帽子",
+          "en": "wizard_hat"
+        },
+        {
+          "zh": "太阳帽",
+          "en": "sun_hat"
+        },
+        {
+          "zh": "草帽",
+          "en": "straw_hat"
+        },
+        {
+          "zh": "高顶礼帽",
+          "en": "top_hat"
+        },
+        {
+          "zh": "渔夫帽",
+          "en": "bucket_hat"
+        },
+        {
+          "zh": "绒线帽",
+          "en": "beanie"
+        },
+        {
+          "zh": "大帽子",
+          "en": "large_hat"
+        },
+        {
+          "zh": "大礼帽",
+          "en": "tokin_hat"
+        },
+        {
+          "zh": "迷你帽",
+          "en": "mini_hat"
+        },
+        {
+          "zh": "圆顶礼帽",
+          "en": "bowler_hat"
+        },
+        {
+          "zh": "药盒帽",
+          "en": "pillbox_hat"
+        },
+        {
+          "zh": "钟形女帽",
+          "en": "cloche_hat"
+        },
+        {
+          "zh": "军帽",
+          "en": "military_hat"
+        },
+        {
+          "zh": "警察帽",
+          "en": "police_hat"
+        },
+        {
+          "zh": "厨师帽",
+          "en": "chef_hat"
+        },
+        {
+          "zh": "牛仔帽",
+          "en": "cowboy_hat"
+        },
+        {
+          "zh": "校帽",
+          "en": "school_hat"
+        },
+        {
+          "zh": "海盗帽",
+          "en": "pirate_hat"
+        },
+        {
+          "zh": "出租车司机帽",
+          "en": "cabbie_hat"
+        },
+        {
+          "zh": "安全帽",
+          "en": "hardhat"
+        },
+        {
+          "zh": "斗笠",
+          "en": "rice_hat"
+        },
+        {
+          "zh": "动物帽",
+          "en": "animal_hat"
+        },
+        {
+          "zh": "皮帽",
+          "en": "fur_hat"
+        },
+        {
+          "zh": "带耳朵的帽子",
+          "en": "hat_with_ears"
+        },
+        {
+          "zh": "泡泡帽",
+          "en": "bobblehat"
+        },
+        {
+          "zh": "枕帽",
+          "en": "pillow_hat"
+        },
+        {
+          "zh": "南瓜帽",
+          "en": "pumpkin_hat"
+        },
+        {
+          "zh": "撕裂的帽子",
+          "en": "torn_hat"
+        },
+        {
+          "zh": "反扣的帽子",
+          "en": "backwards_hat"
+        },
+        {
+          "zh": "碗状帽子",
+          "en": "bowl_hat"
+        },
+        {
+          "zh": "猫耳帽子",
+          "en": "cat_hat"
+        },
+        {
+          "zh": "鸭舌帽",
+          "en": "cap"
+        },
+        {
+          "zh": "护士帽",
+          "en": "nurse_cap"
+        },
+        {
+          "zh": "棒球帽",
+          "en": "baseball_cap"
+        },
+        {
+          "zh": "小丑帽",
+          "en": "jester_cap"
+        },
+        {
+          "zh": "侧边帽",
+          "en": "side_cap"
+        },
+        {
+          "zh": "驻军帽",
+          "en": "garrison_cap"
+        },
+        {
+          "zh": "鸭舌帽",
+          "en": "flat_cap"
+        },
+        {
+          "zh": "暴民帽",
+          "en": "mob_cap"
+        },
+        {
+          "zh": "报童帽",
+          "en": "newsboy_cap"
+        },
+        {
+          "zh": "白色贝雷帽上的蝴蝶结",
+          "en": "bowknot_over_white_beret"
+        },
+        {
+          "zh": "狗盆帽",
+          "en": "dixie_cup_hat"
+        },
+        {
+          "zh": "带有蝴蝶结的帽子",
+          "en": "hat_bow"
+        },
+        {
+          "zh": "带有羽毛的帽子",
+          "en": "hat_feather"
+        },
+        {
+          "zh": "带着花的帽子",
+          "en": "hat_flower"
+        },
+        {
+          "zh": "带有饰物的帽子",
+          "en": "hat_ornament"
+        },
+        {
+          "zh": "帽子遮住了一只眼",
+          "en": "hat_over_one_eye"
+        },
+        {
+          "zh": "帽子被摘下|摘下帽子",
+          "en": "hat_removed"
+        },
+        {
+          "zh": "带有缎带的帽子",
+          "en": "hat_ribbon"
+        },
+        {
+          "zh": "捏着帽檐",
+          "en": "hat_tip"
+        },
+        {
+          "zh": "线影法(纹理)",
+          "en": "hatching_(texture)"
+        },
+        {
+          "zh": "cos成初音未来",
+          "en": "hatsune_miku_(cosplay)"
+        },
+        {
+          "zh": "道士帽",
+          "en": "porkpie_hat"
+        },
+        {
+          "zh": "帽舌划到侧面",
+          "en": "sideways_hat"
+        }
+      ]
+    },
+    {
+      "id": "cat_3",
+      "name": "面具",
+      "tags": [
+        {
+          "zh": "面具",
+          "en": "mask"
+        },
+        {
+          "zh": "半面罩",
+          "en": "half_mask"
+        },
+        {
+          "zh": "蒙面",
+          "en": "masked"
+        },
+        {
+          "zh": "抬起面罩",
+          "en": "mask_lift"
+        },
+        {
+          "zh": "掀到头上的面具",
+          "en": "mask_on_head"
+        },
+        {
+          "zh": "摘下的面具",
+          "en": "mask_removed"
+        },
+        {
+          "zh": "口罩",
+          "en": "mouth_mask"
+        },
+        {
+          "zh": "医用口罩",
+          "en": "surgical_mask"
+        },
+        {
+          "zh": "瘟疫医生口罩",
+          "en": "plague_doctor_mask"
+        },
+        {
+          "zh": "防毒面具",
+          "en": "gas_mask"
+        },
+        {
+          "zh": "面罩|遮阳帽舌|遮阳板",
+          "en": "visor"
+        },
+        {
+          "zh": "狐狸面具",
+          "en": "fox_mask"
+        },
+        {
+          "zh": "潜水面罩",
+          "en": "diving_mask"
+        },
+        {
+          "zh": "头戴式潜水面罩",
+          "en": "diving_mask_on_head"
+        },
+        {
+          "zh": "鬼面具",
+          "en": "oni_mask"
+        },
+        {
+          "zh": "天狗面具",
+          "en": "tengu_mask"
+        },
+        {
+          "zh": "忍者面具",
+          "en": "ninja_mask"
+        },
+        {
+          "zh": "骷髅面具",
+          "en": "skull_mask"
+        },
+        {
+          "zh": "曲棍球面具",
+          "en": "hockey_mask"
+        },
+        {
+          "zh": "鸟面具",
+          "en": "bird_mask"
+        },
+        {
+          "zh": "石鬼面",
+          "en": "stone_mask"
+        },
+        {
+          "zh": "马面具",
+          "en": "horse_mask"
+        },
+        {
+          "zh": "化妆舞会面具",
+          "en": "masquerade_mask"
+        },
+        {
+          "zh": "SM面具",
+          "en": "domino_mask"
+        }
+      ]
+    },
+    {
+      "id": "cat_4",
+      "name": "耳饰",
+      "tags": [
+        {
+          "zh": "十字耳环",
+          "en": "cross_earrings"
+        },
+        {
+          "zh": "水晶耳环",
+          "en": "crystal_earrings"
+        },
+        {
+          "zh": "花耳环",
+          "en": "flower_earrings"
+        },
+        {
+          "zh": "心形耳环",
+          "en": "heart_earrings"
+        },
+        {
+          "zh": "环状耳环",
+          "en": "hoop_earrings"
+        },
+        {
+          "zh": "多个耳环",
+          "en": "multiple_earrings"
+        },
+        {
+          "zh": "药丸样式的耳环",
+          "en": "pill_earrings"
+        },
+        {
+          "zh": "只一边戴着耳环",
+          "en": "single_earring"
+        },
+        {
+          "zh": "骷髅耳环",
+          "en": "skull_earrings"
+        },
+        {
+          "zh": "星形耳环",
+          "en": "star_earrings"
+        },
+        {
+          "zh": "月牙耳环",
+          "en": "crescent earrings"
+        }
+      ]
+    },
+    {
+      "id": "cat_5",
+      "name": "手饰",
+      "tags": [
+        {
+          "zh": "手表",
+          "en": "wristwatch"
+        },
+        {
+          "zh": "手杖",
+          "en": "cane"
+        },
+        {
+          "zh": "魔杖",
+          "en": "staff"
+        },
+        {
+          "zh": "金权杖",
+          "en": "holding a golden staff"
+        },
+        {
+          "zh": "手枷",
+          "en": "cuffs"
+        },
+        {
+          "zh": "警用手铐",
+          "en": "handcuffs"
+        },
+        {
+          "zh": "左轮手枪",
+          "en": "revolver"
+        },
+        {
+          "zh": "绷带",
+          "en": "bandage"
+        },
+        {
+          "zh": "皮带",
+          "en": "leash"
+        },
+        {
+          "zh": "手臂纹身",
+          "en": "arm_tattoo"
+        },
+        {
+          "zh": "数字文身",
+          "en": "number_tattoo"
+        },
+        {
+          "zh": "珠子手链",
+          "en": "bead_bracelet"
+        },
+        {
+          "zh": "花手镯",
+          "en": "flower_bracelet"
+        },
+        {
+          "zh": "带钉手镯",
+          "en": "spiked_bracelet"
+        },
+        {
+          "zh": "和袖子分开的手腕的袖口",
+          "en": "wrist_cuffs"
+        },
+        {
+          "zh": "腕带",
+          "en": "wristband"
+        },
+        {
+          "zh": "护腕",
+          "en": "bracer"
+        },
+        {
+          "zh": "绑定手腕",
+          "en": "bound_wrists"
+        },
+        {
+          "zh": "手腕发圈",
+          "en": "wrist_scrunchie"
+        },
+        {
+          "zh": "手铐",
+          "en": "shackles"
+        },
+        {
+          "zh": "锁链",
+          "en": "chains"
+        },
+        {
+          "zh": "锁链带牵绳",
+          "en": "chain_leash"
+        }
+      ]
+    },
+    {
+      "id": "cat_6",
+      "name": "手套",
+      "tags": [
+        {
+          "zh": "手套",
+          "en": "gloves"
+        },
+        {
+          "zh": "脱下手套",
+          "en": "gloves_removed"
+        },
+        {
+          "zh": "去掉了(原设有的)手套",
+          "en": "no_gloves"
+        },
+        {
+          "zh": "单只手套",
+          "en": "single_glove"
+        },
+        {
+          "zh": "单手戴着过肘的手套",
+          "en": "single_elbow_glove"
+        },
+        {
+          "zh": "长手套",
+          "en": "long_gloves"
+        },
+        {
+          "zh": "长袖手套（肘部手套）",
+          "en": "elbow_gloves"
+        },
+        {
+          "zh": "新娘手套",
+          "en": "bridal_gauntlets"
+        },
+        {
+          "zh": "很短的手套|半截手套",
+          "en": "half_gloves"
+        },
+        {
+          "zh": "露指手套",
+          "en": "fingerless_gloves"
+        },
+        {
+          "zh": "部分露指手套",
+          "en": "partially_fingerless_gloves"
+        },
+        {
+          "zh": "爪子手套(分指手套)",
+          "en": "paw_gloves"
+        },
+        {
+          "zh": "连指手套(两指手套)",
+          "en": "mittens"
+        },
+        {
+          "zh": "棒球手套",
+          "en": "baseball_mitt"
+        },
+        {
+          "zh": "毛边手套",
+          "en": "fur-trimmed_gloves"
+        },
+        {
+          "zh": "乳胶手套",
+          "en": "latex_gloves"
+        },
+        {
+          "zh": "蕾丝边手套",
+          "en": "lace-trimmed_gloves"
+        },
+        {
+          "zh": "白蕾丝手套",
+          "en": "wears a pair of white lace gloves"
+        },
+        {
+          "zh": "皮手套",
+          "en": "leather_gloves"
+        },
+        {
+          "zh": "花边手套",
+          "en": "frilled_gloves"
+        },
+        {
+          "zh": "双色手套",
+          "en": "mismatched_gloves"
+        },
+        {
+          "zh": "多色款手套",
+          "en": "multicolored_gloves"
+        },
+        {
+          "zh": "不对称的手套",
+          "en": "asymmetrical_gloves"
+        },
+        {
+          "zh": "棕色手套",
+          "en": "brown_gloves"
+        },
+        {
+          "zh": "隔热手套",
+          "en": "oven_mitts"
+        },
+        {
+          "zh": "印花手套",
+          "en": "print_gloves"
+        },
+        {
+          "zh": "条纹手套",
+          "en": "striped_gloves"
+        },
+        {
+          "zh": "破损的手套",
+          "en": "torn_gloves"
+        }
+      ]
+    },
+    {
+      "id": "cat_7",
+      "name": "小装饰",
+      "tags": [
+        {
+          "zh": "婚戒",
+          "en": "wedding_band"
+        },
+        {
+          "zh": "水晶",
+          "en": "crystal"
+        },
+        {
+          "zh": "宝石",
+          "en": "gem"
+        },
+        {
+          "zh": "胸前宝石",
+          "en": "chest_jewel"
+        },
+        {
+          "zh": "额头宝石",
+          "en": "forehead_jewel"
+        },
+        {
+          "zh": "流苏",
+          "en": "tassel"
+        },
+        {
+          "zh": "肚链",
+          "en": "belly_chain"
+        },
+        {
+          "zh": "丝带",
+          "en": "ribbon"
+        },
+        {
+          "zh": "缝饰",
+          "en": "stitches"
+        },
+        {
+          "zh": "创可贴",
+          "en": "bandaid"
+        },
+        {
+          "zh": "项圈",
+          "en": "collar"
+        },
+        {
+          "zh": "蒸汽",
+          "en": "steam"
+        },
+        {
+          "zh": "铃铛",
+          "en": "bell"
+        },
+        {
+          "zh": "护身符",
+          "en": "amulet"
+        },
+        {
+          "zh": "徽章",
+          "en": "emblem"
+        },
+        {
+          "zh": "锚符号",
+          "en": "anchor_symbol"
+        },
+        {
+          "zh": "十字",
+          "en": "cross"
+        },
+        {
+          "zh": "衍射十字星",
+          "en": "diffraction_spikes"
+        },
+        {
+          "zh": "铁十字架勋章",
+          "en": "iron_cross"
+        },
+        {
+          "zh": "拉丁式十字架",
+          "en": "latin_cross"
+        },
+        {
+          "zh": "圣葛罗莉安娜女学园校徽",
+          "en": "st._gloriana's_(emblem)"
+        },
+        {
+          "zh": "舰娘锁(舰C)",
+          "en": "heart_lock_(kantai_collection)"
+        },
+        {
+          "zh": "关节",
+          "en": "joints"
+        },
+        {
+          "zh": "膝盖",
+          "en": "kneepits"
+        },
+        {
+          "zh": "护膝",
+          "en": "knee_pads"
+        }
+      ]
+    },
+    {
+      "id": "cat_8",
+      "name": "配饰",
+      "tags": [
+        {
+          "zh": "腰带",
+          "en": "belt"
+        },
+        {
+          "zh": "腰包",
+          "en": "fanny pack"
+        },
+        {
+          "zh": "束腰",
+          "en": "girdling"
+        },
+        {
+          "zh": "手提包",
+          "en": "handbag"
+        },
+        {
+          "zh": "斜挎包",
+          "en": "cross-body bag"
+        },
+        {
+          "zh": "单肩包",
+          "en": "One shoulder bag"
+        },
+        {
+          "zh": "帆布包",
+          "en": "Canvas bag"
+        },
+        {
+          "zh": "面纱",
+          "en": "veils"
+        },
+        {
+          "zh": "口罩",
+          "en": "antiseptic mask"
+        }
+      ]
+    },
+    {
+      "id": "cat_9",
+      "name": "符号",
+      "tags": [
+        {
+          "zh": "阴阳",
+          "en": "Yin Yang"
+        },
+        {
+          "zh": "太极",
+          "en": "Taiji"
+        },
+        {
+          "zh": "八卦",
+          "en": "Bagua"
+        },
+        {
+          "zh": "五行(金木水火土)",
+          "en": "Wu Xing"
         }
       ]
     }

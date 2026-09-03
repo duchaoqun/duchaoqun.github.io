@@ -75,6 +75,606 @@
           "en": "highres"
         }
       ]
+    },
+    {
+      "id": "cat_1",
+      "name": "历史艺术风格",
+      "tags": [
+        {
+          "zh": "新艺术主义",
+          "en": "((art nouveau))"
+        },
+        {
+          "zh": "古典主义",
+          "en": "((classicism))"
+        },
+        {
+          "zh": "新古典主义",
+          "en": "((neoclassicism))"
+        },
+        {
+          "zh": "浪漫主义",
+          "en": "((romanticism))"
+        },
+        {
+          "zh": "哥特式艺术",
+          "en": "Gothic art"
+        },
+        {
+          "zh": "巴洛克",
+          "en": "Baroque"
+        },
+        {
+          "zh": "先拉斐尔派",
+          "en": "Pre-Raphaelite Brotherhood"
+        },
+        {
+          "zh": "文艺复兴风格",
+          "en": "renaissance art"
+        },
+        {
+          "zh": "学院派",
+          "en": "academic art"
+        },
+        {
+          "zh": "学院主义",
+          "en": "academicism"
+        },
+        {
+          "zh": "古希腊艺术",
+          "en": "ancient greek art"
+        },
+        {
+          "zh": "古埃及",
+          "en": "ancient egypt"
+        }
+      ]
+    },
+    {
+      "id": "cat_2",
+      "name": "现代艺术",
+      "tags": [
+        {
+          "zh": "极简主义",
+          "en": "Minimalism"
+        },
+        {
+          "zh": "现代艺术",
+          "en": "Modern Art"
+        },
+        {
+          "zh": "当代艺术",
+          "en": "contemporary art"
+        },
+        {
+          "zh": "概念艺术",
+          "en": "Concept Art"
+        },
+        {
+          "zh": "数字艺术",
+          "en": "Digital Art"
+        },
+        {
+          "zh": "视觉艺术",
+          "en": "visionary art"
+        },
+        {
+          "zh": "超写实",
+          "en": "Hyperrealistic"
+        },
+        {
+          "zh": "写实主义",
+          "en": "hyperrealism"
+        },
+        {
+          "zh": "抽象表现主义",
+          "en": "abstract expressionism"
+        },
+        {
+          "zh": "立体主义",
+          "en": "cubism"
+        },
+        {
+          "zh": "印象派",
+          "en": "impressionism"
+        },
+        {
+          "zh": "后印象派",
+          "en": "Neo-impressionism"
+        },
+        {
+          "zh": "野兽派",
+          "en": "fauvism"
+        },
+        {
+          "zh": "表现主义",
+          "en": "expressionism"
+        },
+        {
+          "zh": "波普艺术",
+          "en": "Pop art"
+        },
+        {
+          "zh": "抽象艺术",
+          "en": "((abstract art))"
+        },
+        {
+          "zh": "达达主义",
+          "en": "((Dadaism))"
+        },
+        {
+          "zh": "未来主义",
+          "en": "((futurism))"
+        },
+        {
+          "zh": "安迪·沃霍尔风格",
+          "en": "Warhol"
+        },
+        {
+          "zh": "街头艺术",
+          "en": "street art"
+        },
+        {
+          "zh": "民间艺术",
+          "en": "folk art"
+        },
+        {
+          "zh": "包豪斯风格",
+          "en": "Bauhaus Style"
+        },
+        {
+          "zh": "光色主义",
+          "en": "Luminsm"
+        },
+        {
+          "zh": "建构主义",
+          "en": "Constructivism"
+        },
+        {
+          "zh": "柴油朋克",
+          "en": "((dieselpunk))"
+        },
+        {
+          "zh": "蒸汽朋克",
+          "en": "streampunk"
+        },
+        {
+          "zh": "迪士尼风格",
+          "en": "Disney style"
+        },
+        {
+          "zh": "皮克斯风格",
+          "en": "Picos style"
+        }
+      ]
+    },
+    {
+      "id": "cat_3",
+      "name": "虚构与现实",
+      "tags": [
+        {
+          "zh": "现实主义",
+          "en": "realism"
+        },
+        {
+          "zh": "超现实主义",
+          "en": "Surrealistic"
+        },
+        {
+          "zh": "社会现实主义",
+          "en": "Social realism"
+        },
+        {
+          "zh": "魔幻现实主义",
+          "en": "Magic Realism"
+        },
+        {
+          "zh": "魔幻现实主义",
+          "en": "Fantastic Realism"
+        },
+        {
+          "zh": "批判现实主义",
+          "en": "Classical Realism"
+        },
+        {
+          "zh": "愁苦主义（批评社会的贫困不公）",
+          "en": "miserablism"
+        },
+        {
+          "zh": "当代写实主义",
+          "en": "Contemporary Realism"
+        },
+        {
+          "zh": "纪实的",
+          "en": "Non-Fiction"
+        }
+      ]
+    },
+    {
+      "id": "cat_4",
+      "name": "抽象概念",
+      "tags": [
+        {
+          "zh": "风水",
+          "en": "Feng Shui"
+        },
+        {
+          "zh": "精华",
+          "en": "Essence"
+        },
+        {
+          "zh": "无法言喻",
+          "en": "Ineffable"
+        },
+        {
+          "zh": "悖论",
+          "en": "Paradox"
+        },
+        {
+          "zh": "完美主义",
+          "en": "Perfectionism"
+        },
+        {
+          "zh": "强迫症",
+          "en": "OCD"
+        },
+        {
+          "zh": "视觉感知",
+          "en": "Visual Perception"
+        },
+        {
+          "zh": "视觉失认症",
+          "en": "Visual Agnosia"
+        },
+        {
+          "zh": "融入",
+          "en": "Infused"
+        }
+      ]
+    },
+    {
+      "id": "cat_5",
+      "name": "亚洲艺术",
+      "tags": [
+        {
+          "zh": "日本浮世绘",
+          "en": "ukiyoe"
+        },
+        {
+          "zh": "浮世绘(组)",
+          "en": "illustration,(((ukiyoe))),((sketch)),((japanese_art))"
+        },
+        {
+          "zh": "中国国画",
+          "en": "traditional chinese painting"
+        },
+        {
+          "zh": "日式风格",
+          "en": "Japonism"
+        },
+        {
+          "zh": "日本漫画风格",
+          "en": "Japanese manga style"
+        },
+        {
+          "zh": "动画风格",
+          "en": "anime style"
+        }
+      ]
+    },
+    {
+      "id": "cat_6",
+      "name": "摄影/绘画风格",
+      "tags": [
+        {
+          "zh": "唯美主义绘画",
+          "en": "Aestheticism Painting"
+        },
+        {
+          "zh": "速涂风格",
+          "en": "pastel color,sketch"
+        },
+        {
+          "zh": "墨水涂鸦",
+          "en": "ink doodle"
+        },
+        {
+          "zh": "炭笔素描",
+          "en": "charcoal sketch"
+        },
+        {
+          "zh": "素描艺术",
+          "en": "sketch art"
+        },
+        {
+          "zh": "素描纸",
+          "en": "sketch paper"
+        },
+        {
+          "zh": "手稿",
+          "en": "manuscript"
+        },
+        {
+          "zh": "褪色的边界",
+          "en": "fading border"
+        },
+        {
+          "zh": "浓重的对比 (强调颜色)",
+          "en": "heavy contrast"
+        },
+        {
+          "zh": "透明水彩绘",
+          "en": "watercolor (medium)"
+        },
+        {
+          "zh": "宝丽来艺术",
+          "en": "Polaroid art"
+        },
+        {
+          "zh": "欧泊渲染",
+          "en": "opal render"
+        },
+        {
+          "zh": "色谱图",
+          "en": "chemigram"
+        },
+        {
+          "zh": "穆夏风格",
+          "en": "((alphonse mucha))"
+        },
+        {
+          "zh": "莫奈风格",
+          "en": "((Monet style))"
+        },
+        {
+          "zh": "威廉森风格",
+          "en": "style of Al Williamson"
+        },
+        {
+          "zh": "明暗对比",
+          "en": "chiaroscuro"
+        },
+        {
+          "zh": "黑色电影（罪恶、欲望、复仇）",
+          "en": "film noir"
+        },
+        {
+          "zh": "暗黑主题艺术",
+          "en": "dark theme"
+        }
+      ]
+    },
+    {
+      "id": "cat_7",
+      "name": "科幻",
+      "tags": [
+        {
+          "zh": "适合科幻场景",
+          "en": "fantasy"
+        },
+        {
+          "zh": "科幻的",
+          "en": "fiction"
+        },
+        {
+          "zh": "科幻",
+          "en": "science fiction"
+        },
+        {
+          "zh": "科幻风格",
+          "en": "sci-fi"
+        },
+        {
+          "zh": "赛博朋克",
+          "en": "cyber punk"
+        },
+        {
+          "zh": "黑暗奇幻",
+          "en": "Dark Fantasy"
+        },
+        {
+          "zh": "飘渺奇幻",
+          "en": "Ethereal Fantasy"
+        },
+        {
+          "zh": "黑暗幻想风格",
+          "en": "dark fantasy style"
+        },
+        {
+          "zh": "ww3 风格",
+          "en": "ww3 style"
+        },
+        {
+          "zh": "魔法旋涡",
+          "en": "Magic Vortex"
+        }
+      ]
+    },
+    {
+      "id": "cat_8",
+      "name": "次文化",
+      "tags": [
+        {
+          "zh": "80动画",
+          "en": "1980s anime"
+        },
+        {
+          "zh": "80电影",
+          "en": "80s movie"
+        },
+        {
+          "zh": "80 年代风格",
+          "en": "80s (style)"
+        },
+        {
+          "zh": "90 年代风格",
+          "en": "90s (style)"
+        },
+        {
+          "zh": "迪士尼电影",
+          "en": "disney movie"
+        },
+        {
+          "zh": "哥特摇滚",
+          "en": "goth"
+        },
+        {
+          "zh": "泡泡龙",
+          "en": "bubble bobble"
+        },
+        {
+          "zh": "皮克斯动画",
+          "en": "style of Pixar"
+        },
+        {
+          "zh": "吉卜力风格",
+          "en": "Studio Ghibli"
+        },
+        {
+          "zh": "吉卜力色彩",
+          "en": "Ghibli-like colours"
+        },
+        {
+          "zh": "原神冲击",
+          "en": "genshin impact"
+        },
+        {
+          "zh": "碧蓝航线",
+          "en": "azur lane"
+        },
+        {
+          "zh": "舰队收藏",
+          "en": "kantai collection"
+        },
+        {
+          "zh": "边缘行者",
+          "en": "rebecca (cyberpunk)"
+        },
+        {
+          "zh": "电锯人",
+          "en": "chainsaw man"
+        },
+        {
+          "zh": "蒸汽波",
+          "en": "synthwave"
+        },
+        {
+          "zh": "动画截图",
+          "en": "anime screeshot"
+        },
+        {
+          "zh": "抱枕",
+          "en": "dakimakura"
+        },
+        {
+          "zh": "角色扮演",
+          "en": "cosplay"
+        },
+        {
+          "zh": "猎奇",
+          "en": "guro"
+        },
+        {
+          "zh": "拟人",
+          "en": "personification"
+        },
+        {
+          "zh": "四格",
+          "en": "4koma"
+        },
+        {
+          "zh": "8bit游戏",
+          "en": "8 Bit Game"
+        },
+        {
+          "zh": "能生成美漫封面的漫画画面",
+          "en": "DC Comics"
+        },
+        {
+          "zh": "卡通",
+          "en": "cartoon"
+        }
+      ]
+    },
+    {
+      "id": "cat_9",
+      "name": "出版物",
+      "tags": [
+        {
+          "zh": "专辑",
+          "en": "album"
+        },
+        {
+          "zh": "专辑封面",
+          "en": "album cover"
+        },
+        {
+          "zh": "杂志内页",
+          "en": "magazine scan"
+        },
+        {
+          "zh": "杂志封面",
+          "en": "magazine cover"
+        },
+        {
+          "zh": "封面",
+          "en": "cover"
+        },
+        {
+          "zh": "原画",
+          "en": "artbook"
+        },
+        {
+          "zh": "一列列小图组成大图",
+          "en": "column lineup"
+        },
+        {
+          "zh": "背景是前景的放大版",
+          "en": "zoom layer"
+        }
+      ]
+    },
+    {
+      "id": "cat_10",
+      "name": "数字艺术",
+      "tags": [
+        {
+          "zh": "三维渲染",
+          "en": "3D Item Render"
+        },
+        {
+          "zh": "GIF格式图片",
+          "en": "animated gif"
+        },
+        {
+          "zh": "名画模仿",
+          "en": "fine art parody"
+        },
+        {
+          "zh": "视觉错误",
+          "en": "optical illusion"
+        },
+        {
+          "zh": "ASCII艺术",
+          "en": "((ASCII art))"
+        },
+        {
+          "zh": "时间协调性",
+          "en": "Synchronism"
+        },
+        {
+          "zh": "图上有字样",
+          "en": "sample"
+        },
+        {
+          "zh": "梦幻",
+          "en": "dreamlike"
+        },
+        {
+          "zh": "纯二次元风格人像",
+          "en": "pixiv"
+        }
+      ]
     }
   ]
 }

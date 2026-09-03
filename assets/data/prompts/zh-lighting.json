@@ -29,6 +29,102 @@
         {
           "zh": "摄影棚灯光",
           "en": "Studio Lighting"
+        },
+        {
+          "zh": "实用光",
+          "en": "Practical Light"
+        },
+        {
+          "zh": "荧光",
+          "en": "Fluorescence"
+        },
+        {
+          "zh": "磷光",
+          "en": "Phosphorescence"
+        },
+        {
+          "zh": "阴天光",
+          "en": "Overcast Light"
+        },
+        {
+          "zh": "混合光",
+          "en": "Mixed Lighting"
+        },
+        {
+          "zh": "晴天光",
+          "en": "Direct Sunlight"
+        },
+        {
+          "zh": "体积光",
+          "en": "Volumetric Lighting"
+        },
+        {
+          "zh": "泛光灯",
+          "en": "Floodlight"
+        },
+        {
+          "zh": "LED 灯",
+          "en": "LED light"
+        },
+        {
+          "zh": "聚光灯",
+          "en": "Spotlight"
+        },
+        {
+          "zh": "跑马灯",
+          "en": "Marquee"
+        },
+        {
+          "zh": "闪光灯",
+          "en": "Strobe"
+        },
+        {
+          "zh": "闪光灯光",
+          "en": "Strobe Light"
+        },
+        {
+          "zh": "频闪灯",
+          "en": "Stroboscope"
+        },
+        {
+          "zh": "明亮的",
+          "en": "bright"
+        },
+        {
+          "zh": "超亮",
+          "en": "Ultrabright"
+        },
+        {
+          "zh": "电磁频谱",
+          "en": "Electromagnetic Spectrum"
+        },
+        {
+          "zh": "红外线的",
+          "en": "Infrared"
+        },
+        {
+          "zh": "紫外线",
+          "en": "Ultraviolet"
+        },
+        {
+          "zh": "UV",
+          "en": "UV"
+        },
+        {
+          "zh": "X 射线",
+          "en": "X-Ray"
+        },
+        {
+          "zh": "正面光",
+          "en": "Frontlight"
+        },
+        {
+          "zh": "半侧背光",
+          "en": "Halfrear Lighting"
+        },
+        {
+          "zh": "背光",
+          "en": "Backlight"
         }
       ]
     },
@@ -36,14 +132,6 @@
       "id": "light_type",
       "name": "光线类型",
       "tags": [
-        {
-          "zh": "正面光",
-          "en": "Frontlight"
-        },
-        {
-          "zh": "背光",
-          "en": "Backlight"
-        },
         {
           "zh": "侧光",
           "en": "Sidelight"
@@ -53,8 +141,32 @@
           "en": "Toplight"
         },
         {
-          "zh": "体积光",
-          "en": "Volumetric Lighting"
+          "zh": "柔光",
+          "en": "Soft Lighting"
+        },
+        {
+          "zh": "硬光/强光",
+          "en": "Hard Lighting"
+        },
+        {
+          "zh": "顶光",
+          "en": "Top Lighting"
+        },
+        {
+          "zh": "侧光",
+          "en": "Side Lighting"
+        },
+        {
+          "zh": "底光",
+          "en": "Bottom Lighting"
+        },
+        {
+          "zh": "边缘光/轮廓光",
+          "en": "Rim Light"
+        },
+        {
+          "zh": "剪影",
+          "en": "silhouette"
         }
       ]
     },
@@ -63,24 +175,456 @@
       "name": "光照效果",
       "tags": [
         {
-          "zh": "聚光灯",
-          "en": "Spotlight"
+          "zh": "电影级光照",
+          "en": "Cinematic Lighting"
         },
         {
-          "zh": "泛光灯",
-          "en": "Floodlight"
+          "zh": "氛围光照",
+          "en": "Moody lighting"
         },
         {
-          "zh": "LED灯",
-          "en": "LED light"
+          "zh": "丁达尔效应",
+          "en": "Tyndall effect"
         },
         {
-          "zh": "频闪灯",
-          "en": "Strobe"
+          "zh": "漏光光效",
+          "en": "light leaks"
         },
         {
-          "zh": "明亮的",
-          "en": "bright"
+          "zh": "霓虹灯",
+          "en": "glowing neon lights"
+        },
+        {
+          "zh": "闪烁光线",
+          "en": "Rays of Shimmering Light"
+        },
+        {
+          "zh": "昏暗光线",
+          "en": "Crepuscular Rays"
+        },
+        {
+          "zh": "火花管",
+          "en": "Crackle Tube"
+        },
+        {
+          "zh": "特斯拉线圈",
+          "en": "Tesla Coil"
+        },
+        {
+          "zh": "等离子球",
+          "en": "Plasma Globe"
+        },
+        {
+          "zh": "荧光棒",
+          "en": "Glow Stick"
+        },
+        {
+          "zh": "霓虹灯",
+          "en": "Neon Lamp"
+        },
+        {
+          "zh": "透镜光晕（逆光）",
+          "en": "lens flare"
+        },
+        {
+          "zh": "反白日",
+          "en": "Contre-Jour"
+        },
+        {
+          "zh": "伦勃朗灯光",
+          "en": "Rembrandt Lighting"
+        },
+        {
+          "zh": "分体照明",
+          "en": "Split Lighting"
+        },
+        {
+          "zh": "美丽的灯光",
+          "en": "Beautiful Lighting"
+        },
+        {
+          "zh": "重点照明",
+          "en": "Accent Lighting"
+        },
+        {
+          "zh": "全局光照",
+          "en": "Global Illumination"
+        },
+        {
+          "zh": "流明全局照明",
+          "en": "Lumen Global Illumination"
+        },
+        {
+          "zh": "屏幕空间全局光照",
+          "en": "Screen Space Global Illumination"
+        },
+        {
+          "zh": "光线追踪全局光照",
+          "en": "Ray Tracing Global Illumination"
+        }
+      ]
+    },
+    {
+      "id": "cat_1",
+      "name": "灯光",
+      "tags": [
+        {
+          "zh": "白炽灯",
+          "en": "Incandescent"
+        },
+        {
+          "zh": "荧光的",
+          "en": "Fluorescent"
+        },
+        {
+          "zh": "日光灯管",
+          "en": "Fluorescent Lamp"
+        },
+        {
+          "zh": "卤素",
+          "en": "Halogen"
+        },
+        {
+          "zh": "卤素灯",
+          "en": "Halogen Lamp"
+        },
+        {
+          "zh": "氙气灯",
+          "en": "Xenon Lamp"
+        },
+        {
+          "zh": "氪气灯",
+          "en": "Krypton Lamp"
+        },
+        {
+          "zh": "氩气灯",
+          "en": "Argon Lamp"
+        },
+        {
+          "zh": "氦气灯",
+          "en": "Helium Lamp"
+        },
+        {
+          "zh": "爱迪生灯泡",
+          "en": "Edison Bulb"
+        },
+        {
+          "zh": "真空管灯",
+          "en": "Vacuum Tube Lamp"
+        },
+        {
+          "zh": "辉光管",
+          "en": "Nixie Tube"
+        },
+        {
+          "zh": "碳化钙灯",
+          "en": "Carbide Lamp"
+        },
+        {
+          "zh": "阿尔干灯",
+          "en": "Argand Lamp"
+        },
+        {
+          "zh": "酥油灯",
+          "en": "Diya Lamp"
+        },
+        {
+          "zh": "灯笼",
+          "en": "Lantern"
+        },
+        {
+          "zh": "黑兰特灯笼",
+          "en": "Schwarz Lantern"
+        },
+        {
+          "zh": "小夜灯",
+          "en": "Nightlight"
+        },
+        {
+          "zh": "圣诞彩灯",
+          "en": "Christmas Lights"
+        },
+        {
+          "zh": "光纤",
+          "en": "Optical Fiber"
+        },
+        {
+          "zh": "发光导线",
+          "en": "Electroluminescent Wire"
+        },
+        {
+          "zh": "激光",
+          "en": "Laser"
+        },
+        {
+          "zh": "耀斑",
+          "en": "Flare"
+        },
+        {
+          "zh": "金属光泽",
+          "en": "metallic luster"
+        },
+        {
+          "zh": "背景光",
+          "en": "background light"
+        },
+        {
+          "zh": "自然光",
+          "en": "available light"
+        },
+        {
+          "zh": "电弧",
+          "en": "Electric Arc"
+        }
+      ]
+    },
+    {
+      "id": "cat_2",
+      "name": "显示技术",
+      "tags": [
+        {
+          "zh": "阴极射线管",
+          "en": "CRT"
+        },
+        {
+          "zh": "液晶显示器",
+          "en": "LCD"
+        },
+        {
+          "zh": "LED 显示器",
+          "en": "LED"
+        },
+        {
+          "zh": "OLED 显示器",
+          "en": "OLED"
+        },
+        {
+          "zh": "AMOLED 显示器",
+          "en": "AMOLED"
+        },
+        {
+          "zh": "七段显示器",
+          "en": "7 Segment Display"
+        },
+        {
+          "zh": "点阵显示器",
+          "en": "Dot Matrix Display"
+        },
+        {
+          "zh": "电致发光显示器",
+          "en": "Electroluminescent Display"
+        },
+        {
+          "zh": "真空荧光显示器",
+          "en": "Vacuum Fluorescent Display"
+        },
+        {
+          "zh": "荧光显示器",
+          "en": "Phosphor Display"
+        },
+        {
+          "zh": "等离子显示器",
+          "en": "Plasma Display"
+        },
+        {
+          "zh": "量子点",
+          "en": "Quantum Dot"
+        },
+        {
+          "zh": "量子点显示器",
+          "en": "Quantum Dot Display"
+        },
+        {
+          "zh": "光学",
+          "en": "Optics"
+        }
+      ]
+    },
+    {
+      "id": "cat_3",
+      "name": "材质属性",
+      "tags": [
+        {
+          "zh": "透明",
+          "en": "Transparent"
+        },
+        {
+          "zh": "半透明",
+          "en": "Translucent"
+        },
+        {
+          "zh": "不透明",
+          "en": "Opaque"
+        },
+        {
+          "zh": "粗糙的",
+          "en": "Rough"
+        },
+        {
+          "zh": "哑光的",
+          "en": "Matte"
+        },
+        {
+          "zh": "光泽",
+          "en": "Glossy"
+        },
+        {
+          "zh": "光滑的",
+          "en": "smooth"
+        },
+        {
+          "zh": "闪亮的",
+          "en": "Shiny"
+        },
+        {
+          "zh": "反光",
+          "en": "Reflective"
+        },
+        {
+          "zh": "抛光",
+          "en": "Polished"
+        },
+        {
+          "zh": "阴影",
+          "en": "Shadows"
+        },
+        {
+          "zh": "微光",
+          "en": "Shimmer"
+        },
+        {
+          "zh": "闪闪发光",
+          "en": "Shimmering"
+        },
+        {
+          "zh": "焦散",
+          "en": "Caustics"
+        },
+        {
+          "zh": "折射",
+          "en": "Refractive"
+        },
+        {
+          "zh": "光线反射",
+          "en": "reflection light"
+        },
+        {
+          "zh": "光线追踪反射",
+          "en": "Ray Tracing Reflections"
+        },
+        {
+          "zh": "流明反射",
+          "en": "Lumen Reflections"
+        },
+        {
+          "zh": "屏幕空间反射",
+          "en": "Screen Space Reflections"
+        },
+        {
+          "zh": "光线追踪",
+          "en": "ray tracing"
+        },
+        {
+          "zh": "环境光遮蔽",
+          "en": "Ambient Occlusion"
+        },
+        {
+          "zh": "散射",
+          "en": "Scattering"
+        },
+        {
+          "zh": "衍射光栅",
+          "en": "Diffraction Grading"
+        },
+        {
+          "zh": "RGB 位移",
+          "en": "RGB Displacement"
+        }
+      ]
+    },
+    {
+      "id": "cat_4",
+      "name": "发光",
+      "tags": [
+        {
+          "zh": "发光",
+          "en": "Glowing"
+        },
+        {
+          "zh": "夜光",
+          "en": "Glow-In-The-Dark"
+        },
+        {
+          "zh": "生物发光",
+          "en": "Bioluminescence"
+        },
+        {
+          "zh": "光致发光",
+          "en": "Photoluminescence"
+        },
+        {
+          "zh": "化学发光",
+          "en": "Chemiluminescence"
+        },
+        {
+          "zh": "阴极发光",
+          "en": "Cathodoluminescence"
+        },
+        {
+          "zh": "电致发光",
+          "en": "Electroluminescence"
+        },
+        {
+          "zh": "放射发光",
+          "en": "Radioluminescence"
+        },
+        {
+          "zh": "热发光",
+          "en": "Thermoluminescence"
+        },
+        {
+          "zh": "电化学发光",
+          "en": "Electrochemiluminescence"
+        },
+        {
+          "zh": "晶体发光",
+          "en": "Crystalloluminescence"
+        },
+        {
+          "zh": "压电发光",
+          "en": "Piezoluminescence"
+        },
+        {
+          "zh": "摩擦发光",
+          "en": "Triboluminescence"
+        },
+        {
+          "zh": "机械发光",
+          "en": "Mechanoluminescence"
+        },
+        {
+          "zh": "光致发光",
+          "en": "Lyoluminescence"
+        },
+        {
+          "zh": "烛光",
+          "en": "Candoluminescence"
+        },
+        {
+          "zh": "碎片发光",
+          "en": "Fractoluminescence"
+        },
+        {
+          "zh": "声致发光",
+          "en": "Sonoluminescence"
+        },
+        {
+          "zh": "半透明发光",
+          "en": "Translucidluminescence"
+        },
+        {
+          "zh": "材质性",
+          "en": "Materiality"
         }
       ]
     }

@@ -53,6 +53,130 @@
         {
           "zh": "城市灯光",
           "en": "city_lights"
+        },
+        {
+          "zh": "棕褐色背景",
+          "en": "tan_background"
+        },
+        {
+          "zh": "米色背景",
+          "en": "beige_background"
+        },
+        {
+          "zh": "棕色背景",
+          "en": "brown_background"
+        },
+        {
+          "zh": "双色调背景",
+          "en": "two-tone_background"
+        },
+        {
+          "zh": "多彩的背景",
+          "en": "multicolored_background"
+        },
+        {
+          "zh": "前景模糊",
+          "en": "blurry_foreground"
+        },
+        {
+          "zh": "菱形背景",
+          "en": "argyle_background"
+        },
+        {
+          "zh": "方格背景",
+          "en": "checkered_background"
+        },
+        {
+          "zh": "花朵点缀的背景",
+          "en": "floral_background"
+        },
+        {
+          "zh": "花卉图案装饰的背景",
+          "en": "foral_background"
+        },
+        {
+          "zh": "圆斑背景",
+          "en": "striped_background"
+        },
+        {
+          "zh": "风景",
+          "en": "scenery"
+        },
+        {
+          "zh": "闪着星光的背景",
+          "en": "sparkle_background"
+        },
+        {
+          "zh": "气泡背景",
+          "en": "bubble_background"
+        },
+        {
+          "zh": "时钟背景",
+          "en": "clock_background"
+        },
+        {
+          "zh": "网点图背景",
+          "en": "halftone_background"
+        },
+        {
+          "zh": "桃色背景",
+          "en": "heart_background"
+        },
+        {
+          "zh": "蜂窝风格背景",
+          "en": "honeycomb_background"
+        },
+        {
+          "zh": "格子呢背景",
+          "en": "plaid_background"
+        },
+        {
+          "zh": "科技幻想",
+          "en": "ban"
+        },
+        {
+          "zh": "露脐上衣下摆外露",
+          "en": "crop_top_overhang"
+        },
+        {
+          "zh": "相机取景框",
+          "en": "viewfinder"
+        },
+        {
+          "zh": "背景或画框是圆角",
+          "en": "rounded_corners"
+        },
+        {
+          "zh": "边框",
+          "en": "border"
+        },
+        {
+          "zh": "一部分画到了背景框外",
+          "en": "outside_border"
+        },
+        {
+          "zh": "柱状画布背景",
+          "en": "pillarboxed"
+        },
+        {
+          "zh": "套着画框(背景)",
+          "en": "windowboxed"
+        },
+        {
+          "zh": "回忆场景",
+          "en": "flashback"
+        },
+        {
+          "zh": "背景文字",
+          "en": "background_text"
+        },
+        {
+          "zh": "文字背景",
+          "en": "wall_of_text"
+        },
+        {
+          "zh": "模糊背景",
+          "en": "blurred background"
         }
       ]
     },
@@ -75,6 +199,26 @@
         {
           "zh": "冬天",
           "en": "winter"
+        },
+        {
+          "zh": "春",
+          "en": "in spring"
+        },
+        {
+          "zh": "夏",
+          "en": "in summer"
+        },
+        {
+          "zh": "秋",
+          "en": "in autumn"
+        },
+        {
+          "zh": "冬",
+          "en": "in winter"
+        },
+        {
+          "zh": "秋景",
+          "en": "(autumn maple forest:1.3),(very few fallen leaves),(path)"
         }
       ]
     },
@@ -105,6 +249,78 @@
         {
           "zh": "雷电",
           "en": "lightning"
+        },
+        {
+          "zh": "白天",
+          "en": "day"
+        },
+        {
+          "zh": "黄昏",
+          "en": "dusk"
+        },
+        {
+          "zh": "夜晚",
+          "en": "night"
+        },
+        {
+          "zh": "下雨",
+          "en": "rain"
+        },
+        {
+          "zh": "冰雪",
+          "en": "snow,ice"
+        },
+        {
+          "zh": "雪花",
+          "en": "snowflakes"
+        },
+        {
+          "zh": "闪电",
+          "en": "lighting"
+        },
+        {
+          "zh": "彩虹",
+          "en": "rainbow"
+        },
+        {
+          "zh": "流星雨",
+          "en": "meteor shower"
+        },
+        {
+          "zh": "多云",
+          "en": "cloudy"
+        },
+        {
+          "zh": "雨天",
+          "en": "rainy days"
+        },
+        {
+          "zh": "雨中",
+          "en": "in the rain"
+        },
+        {
+          "zh": "流星",
+          "en": "shooting star"
+        },
+        {
+          "zh": "柔和的雾",
+          "en": "smooth fog"
+        },
+        {
+          "zh": "暴风雨",
+          "en": "thunderstorms"
+        },
+        {
+          "zh": "暴风雨的海面",
+          "en": "stormy ocean"
+        },
+        {
+          "zh": "龙卷风",
+          "en": "Tornado"
+        },
+        {
+          "zh": "海洋背景",
+          "en": "ocean backdrop"
         }
       ]
     },
@@ -143,6 +359,178 @@
         {
           "zh": "花田",
           "en": "flower_field"
+        },
+        {
+          "zh": "好天好水",
+          "en": "beautiful detailed sky,beautiful detailed water"
+        },
+        {
+          "zh": "海边日落",
+          "en": "beautiful purple sunset at beach"
+        },
+        {
+          "zh": "山脉",
+          "en": "mountain"
+        },
+        {
+          "zh": "山丘",
+          "en": "hills"
+        },
+        {
+          "zh": "山上",
+          "en": "on a hill"
+        },
+        {
+          "zh": "山顶",
+          "en": "the top of the hill"
+        },
+        {
+          "zh": "树林",
+          "en": "grove"
+        },
+        {
+          "zh": "竹林",
+          "en": "bamboo forest"
+        },
+        {
+          "zh": "梦幻之森(虚幻感.光粒子幽静)",
+          "en": "Dreamy forest"
+        },
+        {
+          "zh": "大草原",
+          "en": "savanna"
+        },
+        {
+          "zh": "高原",
+          "en": "plateau"
+        },
+        {
+          "zh": "山谷",
+          "en": "valley"
+        },
+        {
+          "zh": "峡谷",
+          "en": "canyon"
+        },
+        {
+          "zh": "悬崖",
+          "en": "cliff"
+        },
+        {
+          "zh": "绿洲",
+          "en": "oasis"
+        },
+        {
+          "zh": "荒地",
+          "en": "wasteland"
+        },
+        {
+          "zh": "冰川",
+          "en": "glacier"
+        },
+        {
+          "zh": "火山",
+          "en": "volcano"
+        },
+        {
+          "zh": "溪流",
+          "en": "stream"
+        },
+        {
+          "zh": "河流",
+          "en": "river"
+        },
+        {
+          "zh": "海洋",
+          "en": "ocean"
+        },
+        {
+          "zh": "大海",
+          "en": "sea"
+        },
+        {
+          "zh": "海滩",
+          "en": "on the beach"
+        },
+        {
+          "zh": "海边",
+          "en": "over the sea"
+        },
+        {
+          "zh": "波浪",
+          "en": "waves"
+        },
+        {
+          "zh": "海藻",
+          "en": "seaweed"
+        },
+        {
+          "zh": "水中",
+          "en": "underwater"
+        },
+        {
+          "zh": "浮岛",
+          "en": "floating island"
+        },
+        {
+          "zh": "繁花草甸",
+          "en": "flowers meadows"
+        },
+        {
+          "zh": "花田",
+          "en": "flower field"
+        },
+        {
+          "zh": "花海",
+          "en": "flower sea"
+        },
+        {
+          "zh": "玫瑰花瓣",
+          "en": "rose petals"
+        },
+        {
+          "zh": "落花",
+          "en": "falling petals"
+        },
+        {
+          "zh": "草地",
+          "en": "in a meadow"
+        },
+        {
+          "zh": "田园",
+          "en": "field"
+        },
+        {
+          "zh": "麦田",
+          "en": "wheat field"
+        },
+        {
+          "zh": "稻田",
+          "en": "rice paddy"
+        },
+        {
+          "zh": "温泉",
+          "en": "onsen"
+        },
+        {
+          "zh": "滴水",
+          "en": "dripping"
+        },
+        {
+          "zh": "漩涡",
+          "en": "swirl"
+        },
+        {
+          "zh": "涟漪",
+          "en": "ripples"
+        },
+        {
+          "zh": "阿尔卑斯山脉",
+          "en": "Alps"
+        },
+        {
+          "zh": "沙漠",
+          "en": "on a desert"
         }
       ]
     },
@@ -171,8 +559,68 @@
           "en": "aurora"
         },
         {
-          "zh": "彩虹",
-          "en": "rainbow"
+          "zh": "天空",
+          "en": "sky"
+        },
+        {
+          "zh": "倾斜的天空",
+          "en": "gradient_sky"
+        },
+        {
+          "zh": "星星(天空中的)",
+          "en": "star_(sky)"
+        },
+        {
+          "zh": "星星轨迹",
+          "en": "star_trail"
+        },
+        {
+          "zh": "月亮",
+          "en": "moon"
+        },
+        {
+          "zh": "月牙",
+          "en": "crescent"
+        },
+        {
+          "zh": "新月",
+          "en": "crescent_moon"
+        },
+        {
+          "zh": "满月",
+          "en": "full_moon"
+        },
+        {
+          "zh": "猩红月亮",
+          "en": "scarlet_moon"
+        },
+        {
+          "zh": "超级银河",
+          "en": "hyper_galaxy"
+        },
+        {
+          "zh": "宇宙",
+          "en": "universe"
+        },
+        {
+          "zh": "太空",
+          "en": "space"
+        },
+        {
+          "zh": "星球",
+          "en": "planet"
+        },
+        {
+          "zh": "空间站",
+          "en": "from_space_station"
+        },
+        {
+          "zh": "卫星",
+          "en": "satellite"
+        },
+        {
+          "zh": "月的",
+          "en": "lunar"
         }
       ]
     },
@@ -203,6 +651,398 @@
         {
           "zh": "海边",
           "en": "seaside"
+        },
+        {
+          "zh": "室外",
+          "en": "outdoors"
+        },
+        {
+          "zh": "城堡",
+          "en": "castle"
+        },
+        {
+          "zh": "赛博朋克城市",
+          "en": "cyberpunk city"
+        },
+        {
+          "zh": "繁华都市",
+          "en": "Bustling city"
+        },
+        {
+          "zh": "霓虹灯",
+          "en": "neon lights"
+        },
+        {
+          "zh": "路灯",
+          "en": "street lamp"
+        },
+        {
+          "zh": "摩天楼",
+          "en": "skyscraper"
+        },
+        {
+          "zh": "建筑",
+          "en": "building"
+        },
+        {
+          "zh": "哥特式建筑",
+          "en": "gothic architecture"
+        },
+        {
+          "zh": "古风建筑",
+          "en": "chinese style architecture"
+        },
+        {
+          "zh": "工业化古建筑",
+          "en": "Industrial wind,Chinese architecture"
+        },
+        {
+          "zh": "教堂",
+          "en": "church"
+        },
+        {
+          "zh": "大教堂",
+          "en": "cathedral"
+        },
+        {
+          "zh": "清真寺",
+          "en": "mosque"
+        },
+        {
+          "zh": "鸟居",
+          "en": "torii"
+        },
+        {
+          "zh": "神社",
+          "en": "gohei"
+        },
+        {
+          "zh": "寺庙",
+          "en": "temple"
+        },
+        {
+          "zh": "遗迹",
+          "en": "ruins"
+        },
+        {
+          "zh": "残骸",
+          "en": "remains"
+        },
+        {
+          "zh": "喷泉",
+          "en": "fountain"
+        },
+        {
+          "zh": "树屋",
+          "en": "treehouse"
+        },
+        {
+          "zh": "植物园",
+          "en": "botanical garden"
+        },
+        {
+          "zh": "坟墓",
+          "en": "grave"
+        },
+        {
+          "zh": "墓地",
+          "en": "graveyard"
+        },
+        {
+          "zh": "墓碑",
+          "en": "tombstone"
+        },
+        {
+          "zh": "巨大的石头物体",
+          "en": "monolith"
+        },
+        {
+          "zh": "拉平（悬挂）",
+          "en": "rappelling"
+        },
+        {
+          "zh": "港口",
+          "en": "harbor"
+        },
+        {
+          "zh": "桥",
+          "en": "bridge"
+        },
+        {
+          "zh": "铁轨",
+          "en": "railroad tracks"
+        },
+        {
+          "zh": "铁路",
+          "en": "railroad"
+        },
+        {
+          "zh": "铁路",
+          "en": "railway"
+        },
+        {
+          "zh": "火车站",
+          "en": "train station"
+        },
+        {
+          "zh": "巴士车站",
+          "en": "bus stop"
+        },
+        {
+          "zh": "电话亭",
+          "en": "phone booth"
+        },
+        {
+          "zh": "隧道",
+          "en": "tunnel"
+        },
+        {
+          "zh": "机场",
+          "en": "airport"
+        },
+        {
+          "zh": "摩天轮",
+          "en": "ferris wheel"
+        },
+        {
+          "zh": "旋转木马",
+          "en": "carousel"
+        },
+        {
+          "zh": "水上乐园",
+          "en": "waterpark"
+        },
+        {
+          "zh": "体育场",
+          "en": "stadium"
+        },
+        {
+          "zh": "竞技场",
+          "en": "arena"
+        },
+        {
+          "zh": "礼堂",
+          "en": "Auditorium"
+        },
+        {
+          "zh": "音乐会",
+          "en": "concert"
+        },
+        {
+          "zh": "市场摊位",
+          "en": "market stall"
+        },
+        {
+          "zh": "商店",
+          "en": "shop"
+        },
+        {
+          "zh": "饭店",
+          "en": "restaurant"
+        },
+        {
+          "zh": "面包店",
+          "en": "bakery"
+        },
+        {
+          "zh": "便利店",
+          "en": "convenience store"
+        },
+        {
+          "zh": "超市",
+          "en": "supermarket"
+        },
+        {
+          "zh": "药店",
+          "en": "pharmacy"
+        },
+        {
+          "zh": "酒吧",
+          "en": "bar"
+        },
+        {
+          "zh": "居酒屋",
+          "en": "izakaya"
+        },
+        {
+          "zh": "咖啡馆",
+          "en": "cafe"
+        },
+        {
+          "zh": "咖啡馆",
+          "en": "coffee house"
+        },
+        {
+          "zh": "吊架；秋千",
+          "en": "Trapeze"
+        },
+        {
+          "zh": "保龄球馆",
+          "en": "bowling alley"
+        },
+        {
+          "zh": "健身房",
+          "en": "gym"
+        },
+        {
+          "zh": "图书馆",
+          "en": "library"
+        },
+        {
+          "zh": "美术馆",
+          "en": "art gallery"
+        },
+        {
+          "zh": "博物馆",
+          "en": "museum"
+        },
+        {
+          "zh": "天文馆",
+          "en": "planetarium"
+        },
+        {
+          "zh": "游泳池",
+          "en": "swimming pool"
+        },
+        {
+          "zh": "动物园",
+          "en": "zoo"
+        },
+        {
+          "zh": "水族馆",
+          "en": "aquarium"
+        },
+        {
+          "zh": "实验室",
+          "en": "laboratory"
+        },
+        {
+          "zh": "监狱",
+          "en": "prison"
+        },
+        {
+          "zh": "轮机舱",
+          "en": "engine room"
+        },
+        {
+          "zh": "仓库",
+          "en": "warehouse"
+        },
+        {
+          "zh": "工作坊",
+          "en": "workshop"
+        },
+        {
+          "zh": "法庭",
+          "en": "courtroom"
+        },
+        {
+          "zh": "剧院",
+          "en": "theater"
+        },
+        {
+          "zh": "电影院",
+          "en": "movie theater"
+        },
+        {
+          "zh": "台球桌",
+          "en": "billiard"
+        },
+        {
+          "zh": "赌场",
+          "en": "casino"
+        },
+        {
+          "zh": "游乐场",
+          "en": "playground"
+        },
+        {
+          "zh": "西罗马建筑",
+          "en": "greco-roman architectur"
+        },
+        {
+          "zh": "罗马街道",
+          "en": "in the romanesque architecture streets"
+        },
+        {
+          "zh": "栏杆",
+          "en": "handrail"
+        },
+        {
+          "zh": "贫民窟",
+          "en": "shanty town/slum"
+        },
+        {
+          "zh": "现代欧式建筑",
+          "en": "modern,Europe"
+        },
+        {
+          "zh": "建筑废墟",
+          "en": "building_ruins"
+        },
+        {
+          "zh": "迪士尼乐园",
+          "en": "Disney_land"
+        },
+        {
+          "zh": "摔角场",
+          "en": "wrestling_ring"
+        },
+        {
+          "zh": "日本旅馆",
+          "en": "Japanese_hotel"
+        },
+        {
+          "zh": "监狱酒吧",
+          "en": "jail_bars"
+        },
+        {
+          "zh": "在电影院里",
+          "en": "in_the_movie_theatre"
+        },
+        {
+          "zh": "建筑",
+          "en": "architecture"
+        },
+        {
+          "zh": "建筑",
+          "en": "magnificent_architecture"
+        },
+        {
+          "zh": "东亚建筑",
+          "en": "east_asian_architecture"
+        },
+        {
+          "zh": "中式阁楼",
+          "en": "chinese_style_loft"
+        },
+        {
+          "zh": "传统中式客房",
+          "en": "traditional_chinese_room"
+        },
+        {
+          "zh": "塔楼",
+          "en": "turret"
+        },
+        {
+          "zh": "塔",
+          "en": "tower"
+        },
+        {
+          "zh": "灯塔",
+          "en": "at the lighthouse"
+        },
+        {
+          "zh": "水库",
+          "en": "reservoir"
+        },
+        {
+          "zh": "桥下",
+          "en": "under_bridge"
+        },
+        {
+          "zh": "瓦砾|废墟",
+          "en": "rubble_ruins"
         }
       ]
     },
@@ -210,10 +1050,6 @@
       "id": "city",
       "name": "城市",
       "tags": [
-        {
-          "zh": "摩天大楼",
-          "en": "skyscraper"
-        },
         {
           "zh": "小巷",
           "en": "alley"
@@ -229,6 +1065,86 @@
         {
           "zh": "便利店",
           "en": "convenience_store"
+        },
+        {
+          "zh": "城市",
+          "en": "city"
+        },
+        {
+          "zh": "市中心",
+          "en": "downtown"
+        },
+        {
+          "zh": "城市风景",
+          "en": "cityscape"
+        },
+        {
+          "zh": "大道",
+          "en": "in_main_street"
+        },
+        {
+          "zh": "路口",
+          "en": "Intersection"
+        },
+        {
+          "zh": "大街",
+          "en": "avenue"
+        },
+        {
+          "zh": "人群",
+          "en": "crowd"
+        },
+        {
+          "zh": "路",
+          "en": "road"
+        },
+        {
+          "zh": "路径",
+          "en": "path"
+        },
+        {
+          "zh": "路面",
+          "en": "pavement"
+        },
+        {
+          "zh": "路标",
+          "en": "road_sign"
+        },
+        {
+          "zh": "路障",
+          "en": "traffic_cone"
+        },
+        {
+          "zh": "路灯",
+          "en": "lamppost"
+        },
+        {
+          "zh": "栅栏",
+          "en": "fence"
+        },
+        {
+          "zh": "栏杆",
+          "en": "railing"
+        },
+        {
+          "zh": "长凳",
+          "en": "bench"
+        },
+        {
+          "zh": "草坪",
+          "en": "lawn"
+        },
+        {
+          "zh": "自动贩卖机",
+          "en": "vending_machine"
+        },
+        {
+          "zh": "食品摊",
+          "en": "food_stand"
+        },
+        {
+          "zh": "城市高楼夜景背景",
+          "en": "cityscape backdrop,rooftop or high-rise balcony,shallow depth of field,bokeh from city lights"
         }
       ]
     },
@@ -253,16 +1169,586 @@
           "en": "classroom"
         },
         {
-          "zh": "咖啡馆",
-          "en": "cafe"
+          "zh": "浴室",
+          "en": "bathroom"
         },
         {
-          "zh": "图书馆",
-          "en": "library"
+          "zh": "室内",
+          "en": "indoor"
+        },
+        {
+          "zh": "俱乐部",
+          "en": "clubroom"
+        },
+        {
+          "zh": "昏暗的夜总会背景",
+          "en": "dark nightclub background"
+        },
+        {
+          "zh": "宿舍",
+          "en": "dormitory"
+        },
+        {
+          "zh": "自助餐厅",
+          "en": "cafeteria"
+        },
+        {
+          "zh": "厕所隔间",
+          "en": "toilet stall"
+        },
+        {
+          "zh": "医务室",
+          "en": "infirmary"
+        },
+        {
+          "zh": "美术室",
+          "en": "art room"
+        },
+        {
+          "zh": "温室",
+          "en": "greenhouse"
+        },
+        {
+          "zh": "地下室",
+          "en": "basement"
+        },
+        {
+          "zh": "服务器机房",
+          "en": "server room"
+        },
+        {
+          "zh": "配电房",
+          "en": "electrical room"
+        },
+        {
+          "zh": "地库",
+          "en": "dungeon"
+        },
+        {
+          "zh": "宅男房间",
+          "en": "otaku room"
+        },
+        {
+          "zh": "舞台",
+          "en": "stage"
         },
         {
           "zh": "浴室",
-          "en": "bathroom"
+          "en": "bathing"
+        },
+        {
+          "zh": "楼梯",
+          "en": "stairs"
+        },
+        {
+          "zh": "宫廷",
+          "en": "palace"
+        }
+      ]
+    },
+    {
+      "id": "cat_1",
+      "name": "云",
+      "tags": [
+        {
+          "zh": "卷云",
+          "en": "cirrus"
+        },
+        {
+          "zh": "卷积云类",
+          "en": "cirrocumulus"
+        },
+        {
+          "zh": "卷层云类",
+          "en": "cirrostratus"
+        },
+        {
+          "zh": "高积云类",
+          "en": "altocumulus"
+        },
+        {
+          "zh": "高层云类",
+          "en": "altostratus"
+        },
+        {
+          "zh": "层云",
+          "en": "stratus"
+        },
+        {
+          "zh": "层积云类",
+          "en": "stratocumulus"
+        },
+        {
+          "zh": "积云",
+          "en": "cumulus"
+        },
+        {
+          "zh": "积雨云类",
+          "en": "cumulonimbus"
+        },
+        {
+          "zh": "雨层云",
+          "en": "Nimbostratus"
+        },
+        {
+          "zh": "毛卷云",
+          "en": "cirrus_fibratus"
+        },
+        {
+          "zh": "钩卷云",
+          "en": "cirrus_uncinus"
+        },
+        {
+          "zh": "密卷云",
+          "en": "cirrus_spissatus"
+        },
+        {
+          "zh": "絮卷云",
+          "en": "cirrus_floccus"
+        },
+        {
+          "zh": "堡卷云",
+          "en": "cirrus_castellanus"
+        },
+        {
+          "zh": "乱卷云",
+          "en": "cirrus_intortus"
+        },
+        {
+          "zh": "层状卷积云",
+          "en": "cirrocumulus_stratiformis"
+        },
+        {
+          "zh": "絮状卷积云",
+          "en": "cirrocumulus_floccus"
+        },
+        {
+          "zh": "堡状卷积云",
+          "en": "cirrocumulus_castellanus"
+        },
+        {
+          "zh": "网状卷积云",
+          "en": "cirrocumulus_lacunosus"
+        },
+        {
+          "zh": "毛卷层云",
+          "en": "cirrostratus_fibratus"
+        },
+        {
+          "zh": "雾卷层云",
+          "en": "cirrostratus_nebulosus"
+        },
+        {
+          "zh": "层状高积云",
+          "en": "altocumulus_strataformis"
+        },
+        {
+          "zh": "荚状高积云",
+          "en": "altocumulus_lenticularis"
+        },
+        {
+          "zh": "堡状高积云",
+          "en": "altocumulus_castellanus"
+        },
+        {
+          "zh": "絮状高积云",
+          "en": "altocumulus_floccus"
+        },
+        {
+          "zh": "网状高积云",
+          "en": "altocumulus_lacunosus"
+        },
+        {
+          "zh": "波状高层云",
+          "en": "altostratus_undulatus"
+        },
+        {
+          "zh": "复合高层云",
+          "en": "altostratus_duplicates"
+        },
+        {
+          "zh": "破片高层云",
+          "en": "altostratus_pannus"
+        },
+        {
+          "zh": "透光高层云",
+          "en": "altostratus_translucidus"
+        },
+        {
+          "zh": "蔽光高层云",
+          "en": "altostratus_opacus"
+        },
+        {
+          "zh": "辐状高层云",
+          "en": "altostratus_radiatus"
+        },
+        {
+          "zh": "乳状高层云",
+          "en": "altostratus_mammatus"
+        },
+        {
+          "zh": "碎层云",
+          "en": "stratus_fractus"
+        },
+        {
+          "zh": "雾层云",
+          "en": "stratus_nebulosus"
+        },
+        {
+          "zh": "波层云",
+          "en": "stratus_undulatus"
+        },
+        {
+          "zh": "层状层积云",
+          "en": "stratocumulus_stratiformis"
+        },
+        {
+          "zh": "积雨性层积云",
+          "en": "stratocumulus_cumulogentis"
+        },
+        {
+          "zh": "堡状层积云",
+          "en": "stratocumulus_castellanus"
+        },
+        {
+          "zh": "荚状层积云",
+          "en": "stratocumulus_lenticularis"
+        },
+        {
+          "zh": "絮状层积云",
+          "en": "stratocumulus_lacunosus"
+        },
+        {
+          "zh": "淡积云",
+          "en": "cumulus_humilis"
+        },
+        {
+          "zh": "中积云",
+          "en": "cumulus_mediocris"
+        },
+        {
+          "zh": "浓积云",
+          "en": "cumulus_congestus"
+        },
+        {
+          "zh": "碎积云",
+          "en": "cumulus_fractus"
+        },
+        {
+          "zh": "秃积雨云",
+          "en": "cumulonimbus_calvus"
+        },
+        {
+          "zh": "鬃积雨云",
+          "en": "cumulonimbus_capillatus"
+        },
+        {
+          "zh": "砧积雨云",
+          "en": "cumulonimbus_incus"
+        }
+      ]
+    },
+    {
+      "id": "cat_2",
+      "name": "家具",
+      "tags": [
+        {
+          "zh": "床",
+          "en": "bed"
+        },
+        {
+          "zh": "衣柜",
+          "en": "wardrobe"
+        },
+        {
+          "zh": "台灯",
+          "en": "desk lamp"
+        },
+        {
+          "zh": "沙发",
+          "en": "couch"
+        },
+        {
+          "zh": "榻榻米",
+          "en": "tatami"
+        },
+        {
+          "zh": "被炉",
+          "en": "kotatsu"
+        },
+        {
+          "zh": "壁炉",
+          "en": "fireplace"
+        },
+        {
+          "zh": "桌子",
+          "en": "table"
+        },
+        {
+          "zh": "课桌",
+          "en": "school_desk"
+        },
+        {
+          "zh": "椅子",
+          "en": "chair"
+        },
+        {
+          "zh": "扶手椅",
+          "en": "armchair"
+        },
+        {
+          "zh": "躺椅",
+          "en": "lounge_chair"
+        },
+        {
+          "zh": "沙滩椅",
+          "en": "beach_chair"
+        },
+        {
+          "zh": "折叠椅",
+          "en": "folding_chair"
+        },
+        {
+          "zh": "办公椅",
+          "en": "office_chair"
+        },
+        {
+          "zh": "轮椅",
+          "en": "wheelchair"
+        },
+        {
+          "zh": "隐形椅子",
+          "en": "invisible_chair"
+        },
+        {
+          "zh": "窗",
+          "en": "window_"
+        },
+        {
+          "zh": "窗扇",
+          "en": "sash"
+        },
+        {
+          "zh": "窗帘",
+          "en": "curtains"
+        },
+        {
+          "zh": "推拉门",
+          "en": "sliding_doors"
+        },
+        {
+          "zh": "门",
+          "en": "door"
+        },
+        {
+          "zh": "衣架",
+          "en": "clothes_rack"
+        },
+        {
+          "zh": "空调",
+          "en": "air_conditioner"
+        }
+      ]
+    },
+    {
+      "id": "cat_3",
+      "name": "床上用品",
+      "tags": [
+        {
+          "zh": "床垫；褥子",
+          "en": "mattress"
+        },
+        {
+          "zh": "床单",
+          "en": "bed_sheet"
+        },
+        {
+          "zh": "日本床垫",
+          "en": "futon"
+        },
+        {
+          "zh": "枕头",
+          "en": "pillow"
+        },
+        {
+          "zh": "坐垫",
+          "en": "cushion"
+        },
+        {
+          "zh": "团子抱枕",
+          "en": "dumpling_Hug_Pillow"
+        },
+        {
+          "zh": "抱枕",
+          "en": "pillow_hug"
+        },
+        {
+          "zh": "Yes/No枕头",
+          "en": "yes-no_pillow"
+        },
+        {
+          "zh": "毛绒玩偶",
+          "en": "stuffed_animal"
+        },
+        {
+          "zh": "毛绒兔子",
+          "en": "stuffed_bunny"
+        },
+        {
+          "zh": "地毯",
+          "en": "carpet"
+        }
+      ]
+    },
+    {
+      "id": "cat_4",
+      "name": "浴室",
+      "tags": [
+        {
+          "zh": "淋浴喷头",
+          "en": "shower_head"
+        },
+        {
+          "zh": "马桶",
+          "en": "toilet"
+        },
+        {
+          "zh": "蹲便器",
+          "en": "squat_toilet"
+        },
+        {
+          "zh": "瓷砖",
+          "en": "tiles"
+        },
+        {
+          "zh": "浴缸",
+          "en": "bathtub"
+        },
+        {
+          "zh": "牙膏",
+          "en": "Toothpaste"
+        },
+        {
+          "zh": "肥皂",
+          "en": "soap"
+        },
+        {
+          "zh": "橡皮鸭",
+          "en": "rubber_duck"
+        }
+      ]
+    },
+    {
+      "id": "cat_5",
+      "name": "氛围",
+      "tags": [
+        {
+          "zh": "新年",
+          "en": "new year"
+        },
+        {
+          "zh": "兔年",
+          "en": "year of the rabbit"
+        },
+        {
+          "zh": "情人节",
+          "en": "valentine"
+        },
+        {
+          "zh": "元宵节",
+          "en": "lantern festival"
+        },
+        {
+          "zh": "夏日祭",
+          "en": "summer festival"
+        },
+        {
+          "zh": "七夕节",
+          "en": "tanabata"
+        },
+        {
+          "zh": "中秋节",
+          "en": "mid-autumn festival"
+        },
+        {
+          "zh": "万圣节",
+          "en": "halloween"
+        },
+        {
+          "zh": "圣诞节",
+          "en": "christmas"
+        },
+        {
+          "zh": "焰火",
+          "en": "fireworks"
+        },
+        {
+          "zh": "爆炸",
+          "en": "explosion"
+        },
+        {
+          "zh": "蒸汽",
+          "en": "water vapor"
+        },
+        {
+          "zh": "液体背景",
+          "en": "liquid background,Sputtered water"
+        },
+        {
+          "zh": "海边日落",
+          "en": "in the ocean"
+        },
+        {
+          "zh": "魔法环",
+          "en": "magic circles"
+        },
+        {
+          "zh": "荧光蘑菇森林",
+          "en": "fluorescent mushroom forests background"
+        },
+        {
+          "zh": "彩色泡泡",
+          "en": "(((colorful bubble)))"
+        },
+        {
+          "zh": "黄金时段照明",
+          "en": "golden hour lighting"
+        },
+        {
+          "zh": "强边缘光",
+          "en": "strong rim light"
+        },
+        {
+          "zh": "傍晚背对阳光",
+          "en": "against backlight at dusk"
+        },
+        {
+          "zh": "强阴影",
+          "en": "intense shadows"
+        },
+        {
+          "zh": "落地窗",
+          "en": "ceiling window"
+        },
+        {
+          "zh": "彩色玻璃",
+          "en": "colourful glass"
+        },
+        {
+          "zh": "染色玻璃",
+          "en": "stain glass"
+        },
+        {
+          "zh": "涂鸦墙",
+          "en": "Graffiti wall"
+        },
+        {
+          "zh": "马赛克背景",
+          "en": "mosaic background"
+        },
+        {
+          "zh": "夜色公园背景",
+          "en": "night park,tranquil atmosphere,soft streetlight glow,light and shadow on pathway,bright full moon,moonlight blending with street lamps,romantic mood,dreamy night scene,delicate lighting,premium aesthetic,cinematic,bokeh,shallow depth of field"
         }
       ]
     }

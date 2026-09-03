@@ -377,7 +377,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     <div class="pp-mixer-grid">
       <div>
         <div class="pp-side-label"><span class="dot zh-dot"></span>中文</div>
-        <div class="pp-mirror" id="prompt-zh"></div>
+        <div class="pp-mirror" id="prompt"></div>
       </div>
       <div>
         <div class="pp-side-label"><span class="dot en-dot"></span>English</div>
@@ -416,6 +416,11 @@ function escapeHtml(s) {
   return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
+// 属性值转义（额外处理双引号）
+function escapeAttr(s) {
+  return escapeHtml(s).replace(/"/g, '&quot;');
+}
+
 // 读取提示词框中所有片段
 function getPromptParts() {
   return document.getElementById('prompt-area').value
@@ -430,7 +435,7 @@ function syncSelected() {
 // 左侧中文栏：已知标签显示中文，手动输入/工具追加片段灰色原样显示
 function updateMirror() {
   var parts = getPromptParts();
-  var el = document.getElementById('prompt-zh');
+  var el = document.getElementById('prompt');
   el.innerHTML = parts.map(function(p) {
     var zh = tagZhMap[p];
     if (zh) return escapeHtml(zh);
@@ -550,8 +555,8 @@ function renderTags() {
   var el = document.getElementById('tag-group');
   el.innerHTML = category.tags.map(function(tag) {
     var active = selectedTags.has(tag.en) ? ' active' : '';
-    return '<button class="pp-tag' + active + '" data-en="' + tag.en + '" data-zh="' + tag.zh + '" title="">' +
-      '<span class="zh">' + tag.zh + '</span>' +
+    return '<button class="pp-tag' + active + '" data-en="' + escapeAttr(tag.en) + '" data-zh="' + escapeAttr(tag.zh) + '" title="">' +
+      '<span class="zh">' + escapeHtml(tag.zh) + '</span>' +
     '</button>';
   }).join('');
   el.querySelectorAll('.pp-tag').forEach(function(btn) {
@@ -703,7 +708,7 @@ function init() {
 }
 
 // 加载数据
-fetch('./assets/data/prompt-zh.json')
+fetch('./assets/data/prompt.json')
   .then(function(r) { return r.json(); })
   .then(function(data) {
     DATA = data;

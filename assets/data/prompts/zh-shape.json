@@ -1,0 +1,588 @@
+{
+  "id": "shape",
+  "name": "形状|空间",
+  "categories": [
+    {
+      "id": "cat_1",
+      "name": "形状",
+      "tags": [
+        {
+          "zh": "基点",
+          "en": "Point"
+        },
+        {
+          "zh": "圆点",
+          "en": "Dot"
+        },
+        {
+          "zh": "线",
+          "en": "Line"
+        },
+        {
+          "zh": "曲线",
+          "en": "Curve"
+        },
+        {
+          "zh": "贝塞尔曲线",
+          "en": "Bezier Curve"
+        },
+        {
+          "zh": "三角形",
+          "en": "Triangle"
+        },
+        {
+          "zh": "正方形",
+          "en": "Square"
+        },
+        {
+          "zh": "五边形",
+          "en": "Pentagon"
+        },
+        {
+          "zh": "六边形",
+          "en": "Hexagon"
+        },
+        {
+          "zh": "六角形",
+          "en": "Hexagonal"
+        },
+        {
+          "zh": "七边形",
+          "en": "Heptagon"
+        },
+        {
+          "zh": "八角形",
+          "en": "Octagon"
+        },
+        {
+          "zh": "九边形",
+          "en": "Nonagon"
+        },
+        {
+          "zh": "十边形",
+          "en": "Decagon"
+        },
+        {
+          "zh": "长方形",
+          "en": "Rectangle"
+        },
+        {
+          "zh": "矩形的",
+          "en": "Rectangular"
+        },
+        {
+          "zh": "平行四边形",
+          "en": "Parallelogram"
+        },
+        {
+          "zh": "菱形",
+          "en": "Rhombus"
+        },
+        {
+          "zh": "心",
+          "en": "Heart"
+        },
+        {
+          "zh": "螺旋形",
+          "en": "Spirangle"
+        }
+      ]
+    },
+    {
+      "id": "cat_2",
+      "name": "物体",
+      "tags": [
+        {
+          "zh": "立方体",
+          "en": "Cube"
+        },
+        {
+          "zh": "长方体",
+          "en": "Cuboid"
+        },
+        {
+          "zh": "球体",
+          "en": "Sphere"
+        },
+        {
+          "zh": "圆锥",
+          "en": "Cone"
+        },
+        {
+          "zh": "圆柱",
+          "en": "Cylinder"
+        },
+        {
+          "zh": "金字塔",
+          "en": "Pyramid"
+        },
+        {
+          "zh": "圆环体",
+          "en": "Torus"
+        },
+        {
+          "zh": "直角棱镜",
+          "en": "Rectangular Prism"
+        },
+        {
+          "zh": "星棱镜",
+          "en": "Star Prism"
+        },
+        {
+          "zh": "楔形",
+          "en": "Wedge"
+        },
+        {
+          "zh": "多面棱体",
+          "en": "Zonohedron"
+        },
+        {
+          "zh": "四面体",
+          "en": "Tetrahedron"
+        },
+        {
+          "zh": "八面体",
+          "en": "Octahedron"
+        },
+        {
+          "zh": "十二面体",
+          "en": "Dodecahedron"
+        },
+        {
+          "zh": "二十面体",
+          "en": "Icosahedron"
+        },
+        {
+          "zh": "开普勒点多面体",
+          "en": "Kepler-Poinsot Polyhedra"
+        },
+        {
+          "zh": "立方八面体",
+          "en": "Cuboctahedron"
+        },
+        {
+          "zh": "菱形立方八面体",
+          "en": "Rhombicuboctahedron"
+        },
+        {
+          "zh": "二十面体",
+          "en": "Icosidodecahedron"
+        },
+        {
+          "zh": "菱形二十面体",
+          "en": "Rhombicosidodecahedron"
+        },
+        {
+          "zh": "梯形体",
+          "en": "Trapezohedron"
+        },
+        {
+          "zh": "圆顶",
+          "en": "Cupola"
+        },
+        {
+          "zh": "反圆顶",
+          "en": "Anticupola"
+        },
+        {
+          "zh": "超圆顶",
+          "en": "Hypercupolae"
+        },
+        {
+          "zh": "双圆顶",
+          "en": "Bicupola"
+        },
+        {
+          "zh": "截锥体",
+          "en": "Frustum"
+        },
+        {
+          "zh": "双截头台",
+          "en": "Bifrustum"
+        },
+        {
+          "zh": "圆形大厅",
+          "en": "Rotunda"
+        },
+        {
+          "zh": "双圆形大厅",
+          "en": "Birotunda"
+        },
+        {
+          "zh": "棱柱体",
+          "en": "Prismatoid"
+        },
+        {
+          "zh": "鳞片状多面体",
+          "en": "Scutoid"
+        },
+        {
+          "zh": "双锥体",
+          "en": "Bipyramid"
+        },
+        {
+          "zh": "星形双锥",
+          "en": "Star Bipyramid"
+        },
+        {
+          "zh": "反棱柱体",
+          "en": "Anti-Prism"
+        },
+        {
+          "zh": "梯形锥体",
+          "en": "Trapezohedra"
+        },
+        {
+          "zh": "星形梯形锥体",
+          "en": "Star Trapezohedron"
+        },
+        {
+          "zh": "球形多面体",
+          "en": "Spherical polyhedron"
+        },
+        {
+          "zh": "莫比乌斯环",
+          "en": "Mobius strip"
+        },
+        {
+          "zh": "六边形纸盒",
+          "en": "Hexaflexagon"
+        },
+        {
+          "zh": "三浦折叠",
+          "en": "Miura fold"
+        }
+      ]
+    },
+    {
+      "id": "cat_3",
+      "name": "超形状",
+      "tags": [
+        {
+          "zh": "超立方体",
+          "en": "Hypercube"
+        },
+        {
+          "zh": "超棱镜",
+          "en": "Hyperprism"
+        },
+        {
+          "zh": "超金字塔",
+          "en": "Hyperpyramid"
+        },
+        {
+          "zh": "超圆环体",
+          "en": "Hypertorus"
+        },
+        {
+          "zh": "超球体",
+          "en": "Hypersphere"
+        },
+        {
+          "zh": "超圆锥",
+          "en": "Hypercone"
+        },
+        {
+          "zh": "超圆柱体",
+          "en": "Hypercylinder"
+        },
+        {
+          "zh": "超多面棱体",
+          "en": "Hyperzonohedron"
+        },
+        {
+          "zh": "超四面体",
+          "en": "Hypertetrahedron"
+        },
+        {
+          "zh": "超八面体",
+          "en": "Hyperoctahedron"
+        },
+        {
+          "zh": "超十二面体",
+          "en": "Hyperdodecahedron"
+        },
+        {
+          "zh": "超二十面体",
+          "en": "Hypericosahedron"
+        },
+        {
+          "zh": "弹性多面体",
+          "en": "Flexible Polyhedron"
+        },
+        {
+          "zh": "克莱因瓶",
+          "en": "Klein bottle"
+        },
+        {
+          "zh": "一面体",
+          "en": "Monogon"
+        },
+        {
+          "zh": "二面体",
+          "en": "Digon"
+        }
+      ]
+    },
+    {
+      "id": "cat_4",
+      "name": "多元宇宙",
+      "tags": [
+        {
+          "zh": "增强现实",
+          "en": "AR"
+        },
+        {
+          "zh": "虚拟现实",
+          "en": "VR"
+        },
+        {
+          "zh": "二维",
+          "en": "2-Dimensional"
+        },
+        {
+          "zh": "2D",
+          "en": "2D"
+        },
+        {
+          "zh": "2.5 维",
+          "en": "2.5-Dimensional"
+        },
+        {
+          "zh": "2.5D",
+          "en": "2.5D"
+        },
+        {
+          "zh": "三维",
+          "en": "3-Dimensional"
+        },
+        {
+          "zh": "3D",
+          "en": "3D"
+        },
+        {
+          "zh": "四维",
+          "en": "4-Dimensional"
+        },
+        {
+          "zh": "4D",
+          "en": "4D"
+        },
+        {
+          "zh": "五维",
+          "en": "5-Dimensional"
+        },
+        {
+          "zh": "5D",
+          "en": "5D"
+        },
+        {
+          "zh": "超维",
+          "en": "Overdimensional"
+        },
+        {
+          "zh": "次维",
+          "en": "Underdimensional"
+        },
+        {
+          "zh": "超维度",
+          "en": "Hyperdimensional"
+        },
+        {
+          "zh": "次维度",
+          "en": "Subdimensional"
+        },
+        {
+          "zh": "全维度",
+          "en": "Omnidimensional"
+        },
+        {
+          "zh": "永维度",
+          "en": "Everdimensional"
+        },
+        {
+          "zh": "异次元",
+          "en": "Extradimensional"
+        },
+        {
+          "zh": "超越维度",
+          "en": "Beyond-Dimensional"
+        },
+        {
+          "zh": "过分维数",
+          "en": "Excessively-dimensional"
+        },
+        {
+          "zh": "全维度",
+          "en": "Alldimensional"
+        },
+        {
+          "zh": "多元宇宙",
+          "en": "Multiverse"
+        }
+      ]
+    },
+    {
+      "id": "cat_5",
+      "name": "样式",
+      "tags": [
+        {
+          "zh": "低面建模",
+          "en": "Low Poly"
+        },
+        {
+          "zh": "几何",
+          "en": "Geometric"
+        },
+        {
+          "zh": "非欧几里得",
+          "en": "Non-Euclidian"
+        },
+        {
+          "zh": "Poly",
+          "en": "Poly"
+        },
+        {
+          "zh": "多边形",
+          "en": "Polygon"
+        },
+        {
+          "zh": "多边",
+          "en": "Polygonal"
+        },
+        {
+          "zh": "多面体",
+          "en": "Polyhedron"
+        },
+        {
+          "zh": "多面",
+          "en": "Polyhedral"
+        },
+        {
+          "zh": "柏拉图立体",
+          "en": "Platonic Solids"
+        },
+        {
+          "zh": "阿基米德立体",
+          "en": "Archimedean Solids"
+        },
+        {
+          "zh": "加泰罗尼亚立体",
+          "en": "Catalan solids"
+        }
+      ]
+    },
+    {
+      "id": "cat_6",
+      "name": "结构属性",
+      "tags": [
+        {
+          "zh": "一系列",
+          "en": "Array"
+        },
+        {
+          "zh": "厚",
+          "en": "Thick"
+        },
+        {
+          "zh": "柔韧",
+          "en": "Flexible"
+        }
+      ]
+    },
+    {
+      "id": "cat_7",
+      "name": "特性",
+      "tags": [
+        {
+          "zh": "顶点",
+          "en": "Vertex"
+        },
+        {
+          "zh": "边缘",
+          "en": "Edge"
+        },
+        {
+          "zh": "表面",
+          "en": "Surface"
+        },
+        {
+          "zh": "内部的",
+          "en": "Interior"
+        },
+        {
+          "zh": "外部的",
+          "en": "Exterior"
+        },
+        {
+          "zh": "凸的",
+          "en": "Convex"
+        },
+        {
+          "zh": "凹",
+          "en": "Concave"
+        },
+        {
+          "zh": "等角",
+          "en": "Equiangular"
+        },
+        {
+          "zh": "等边的",
+          "en": "Equilateral"
+        },
+        {
+          "zh": "循环的",
+          "en": "Cyclic"
+        },
+        {
+          "zh": "切线",
+          "en": "Tangential"
+        },
+        {
+          "zh": "直线",
+          "en": "Rectilinear"
+        },
+        {
+          "zh": "横跨",
+          "en": "Traverse"
+        },
+        {
+          "zh": "拟",
+          "en": "Quasi"
+        },
+        {
+          "zh": "拟规则",
+          "en": "Quasi-Regular"
+        },
+        {
+          "zh": "等角",
+          "en": "Isogonal"
+        },
+        {
+          "zh": "等毒",
+          "en": "Isotoxal"
+        },
+        {
+          "zh": "等面",
+          "en": "Isohedral"
+        },
+        {
+          "zh": "星状",
+          "en": "Stellation"
+        },
+        {
+          "zh": "Ehrhart 多项式",
+          "en": "Ehrhart Polynomial"
+        },
+        {
+          "zh": "理想多面体",
+          "en": "Ideal polyhedron"
+        },
+        {
+          "zh": "多胞体",
+          "en": "Polytope"
+        }
+      ]
+    }
+  ]
+}

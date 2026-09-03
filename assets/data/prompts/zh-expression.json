@@ -33,6 +33,38 @@
         {
           "zh": "坏笑",
           "en": "evil_smile"
+        },
+        {
+          "zh": "开心的笑",
+          "en": ":d"
+        },
+        {
+          "zh": "眨眼笑",
+          "en": ";d"
+        },
+        {
+          "zh": "被逗笑，咧嘴傻笑",
+          "en": "teasing_smile"
+        },
+        {
+          "zh": "洋洋得意",
+          "en": "smug"
+        },
+        {
+          "zh": "调皮的脸",
+          "en": "naughty_face"
+        },
+        {
+          "zh": "疯狂的笑",
+          "en": "crazy_smile"
+        },
+        {
+          "zh": "温柔的微笑",
+          "en": "kind_smile"
+        },
+        {
+          "zh": "开心的眼泪",
+          "en": "happy_tears"
         }
       ]
     },
@@ -49,8 +81,48 @@
           "en": "tears"
         },
         {
-          "zh": "开心的眼泪",
-          "en": "happy_tears"
+          "zh": "伤心",
+          "en": "sad"
+        },
+        {
+          "zh": "啜泣",
+          "en": "sobs"
+        },
+        {
+          "zh": "睁着眼睛哭",
+          "en": "crying_with_eyes_open"
+        },
+        {
+          "zh": "流泪",
+          "en": "streaming_tears"
+        },
+        {
+          "zh": "流泪",
+          "en": "lacrimation"
+        },
+        {
+          "zh": "泪痕",
+          "en": "tear stains"
+        },
+        {
+          "zh": "泪珠",
+          "en": "teardrop"
+        },
+        {
+          "zh": "要哭的表情",
+          "en": "tearing_up"
+        },
+        {
+          "zh": "擦眼泪",
+          "en": "wiping_tears"
+        },
+        {
+          "zh": "心情不好",
+          "en": "badmood"
+        },
+        {
+          "zh": "撕破衣服",
+          "en": "tearing_clothes"
         }
       ]
     },
@@ -63,16 +135,32 @@
           "en": "angry"
         },
         {
-          "zh": "悲伤",
-          "en": "sad"
-        },
-        {
           "zh": "恐惧",
           "en": "scared"
         },
         {
           "zh": "厌恶",
           "en": "disgust"
+        },
+        {
+          "zh": "忧郁",
+          "en": "melancholic"
+        },
+        {
+          "zh": "怪异",
+          "en": "eerie"
+        },
+        {
+          "zh": "不祥",
+          "en": "ominous"
+        },
+        {
+          "zh": "令人不安",
+          "en": "unsettling"
+        },
+        {
+          "zh": "孤独",
+          "en": "lonely"
         }
       ]
     },
@@ -97,8 +185,374 @@
           "en": "blush"
         },
         {
-          "zh": "得意",
-          "en": "smug"
+          "zh": "喜悦的",
+          "en": "joyful"
+        },
+        {
+          "zh": "开朗的",
+          "en": "cheerful"
+        },
+        {
+          "zh": "迷人的",
+          "en": "enchanting"
+        },
+        {
+          "zh": "意外之喜",
+          "en": "happy accidents"
+        },
+        {
+          "zh": "充满活力的",
+          "en": "vibrant"
+        },
+        {
+          "zh": "有活力",
+          "en": "dynamic"
+        },
+        {
+          "zh": "充满活力",
+          "en": "energetic"
+        },
+        {
+          "zh": "忙碌",
+          "en": "bustling"
+        },
+        {
+          "zh": "活泼",
+          "en": "lively"
+        },
+        {
+          "zh": "平和的",
+          "en": "peaceful"
+        },
+        {
+          "zh": "宁静",
+          "en": "serene"
+        },
+        {
+          "zh": "舒缓",
+          "en": "soothing"
+        },
+        {
+          "zh": "平静",
+          "en": "calming"
+        }
+      ]
+    },
+    {
+      "id": "cat_1",
+      "name": "不开心",
+      "tags": [
+        {
+          "zh": "沮丧",
+          "en": "frustrated"
+        },
+        {
+          "zh": "沮丧的眉头",
+          "en": "frustrated_brow"
+        },
+        {
+          "zh": "苦恼的",
+          "en": "annoyed"
+        },
+        {
+          "zh": "苦闷",
+          "en": "anguish"
+        },
+        {
+          "zh": "叹气",
+          "en": "sigh"
+        },
+        {
+          "zh": "忧郁的",
+          "en": "gloom"
+        },
+        {
+          "zh": "失望的",
+          "en": "disappointed"
+        },
+        {
+          "zh": "绝望",
+          "en": "despair"
+        },
+        {
+          "zh": "一脸不悦",
+          "en": "unamused"
+        }
+      ]
+    },
+    {
+      "id": "cat_2",
+      "name": "蔑视",
+      "tags": [
+        {
+          "zh": "轻蔑",
+          "en": "disdain"
+        },
+        {
+          "zh": "蔑视",
+          "en": "contempt"
+        },
+        {
+          "zh": "脸上有阴影，配合蔑视",
+          "en": "shaded_face"
+        },
+        {
+          "zh": "鄙夷的眼神",
+          "en": "jitome"
+        },
+        {
+          "zh": "皱眉/蹙额",
+          "en": "frown"
+        },
+        {
+          "zh": "皱眉蹙额(性交前)",
+          "en": "wince"
+        },
+        {
+          "zh": "眉头紧锁",
+          "en": "furrowed_brow"
+        },
+        {
+          "zh": "害怕侧目",
+          "en": "fear_kubrick"
+        }
+      ]
+    },
+    {
+      "id": "cat_3",
+      "name": "生气",
+      "tags": [
+        {
+          "zh": "怒目而视",
+          "en": "glaring"
+        },
+        {
+          "zh": "严肃的（和angry有点像）",
+          "en": "serious"
+        },
+        {
+          "zh": "侧头瞪着你",
+          "en": "kubrick_stare"
+        },
+        {
+          "zh": "生闷气",
+          "en": "sulking"
+        },
+        {
+          "zh": "尖叫|大声喊",
+          "en": "screaming"
+        },
+        {
+          "zh": "喊叫",
+          "en": "shouting"
+        }
+      ]
+    },
+    {
+      "id": "cat_4",
+      "name": "其他表情",
+      "tags": [
+        {
+          "zh": "面无表情",
+          "en": "expressionless"
+        },
+        {
+          "zh": "挑眉",
+          "en": "raised eyebrow"
+        },
+        {
+          "zh": "轻微脸红",
+          "en": "light_blush"
+        },
+        {
+          "zh": "满脸腮红",
+          "en": "full-face-blush"
+        },
+        {
+          "zh": "害羞的",
+          "en": "shy"
+        },
+        {
+          "zh": "尴尬害羞",
+          "en": "embarrassed"
+        },
+        {
+          "zh": "害羞的(尴尬的)",
+          "en": "embarrass"
+        },
+        {
+          "zh": "慌张的",
+          "en": "flustered"
+        },
+        {
+          "zh": "可爱的脸",
+          "en": "cute face"
+        },
+        {
+          "zh": "思考",
+          "en": "thinking"
+        },
+        {
+          "zh": "无聊的",
+          "en": "bored"
+        },
+        {
+          "zh": "困乏的",
+          "en": "sleepy"
+        },
+        {
+          "zh": "使困惑",
+          "en": "confused"
+        },
+        {
+          "zh": "捂脸",
+          "en": "facepalm"
+        },
+        {
+          "zh": "挤眉弄眼",
+          "en": "grimace"
+        },
+        {
+          "zh": "嫌弃的眼神",
+          "en": "scowl"
+        },
+        {
+          "zh": "凝视",
+          "en": "staring"
+        },
+        {
+          "zh": "嫉妒",
+          "en": "envy"
+        },
+        {
+          "zh": "抽搐",
+          "en": "twitching"
+        },
+        {
+          "zh": "痉挛",
+          "en": "spasm"
+        },
+        {
+          "zh": "疼痛",
+          "en": "pain"
+        },
+        {
+          "zh": "忍耐的表情",
+          "en": "endured_face"
+        },
+        {
+          "zh": "忍耐",
+          "en": "restrained"
+        },
+        {
+          "zh": "脸色苍白",
+          "en": "turn pale"
+        },
+        {
+          "zh": "流汗",
+          "en": "sweat"
+        },
+        {
+          "zh": "淘气",
+          "en": "naughty"
+        },
+        {
+          "zh": "黑化的",
+          "en": "dark_persona"
+        },
+        {
+          "zh": "疯狂的",
+          "en": "crazy"
+        },
+        {
+          "zh": "病娇",
+          "en": "yandere"
+        },
+        {
+          "zh": "傲娇",
+          "en": "Tsundere"
+        },
+        {
+          "zh": "多重人格",
+          "en": "multiple_persona"
+        },
+        {
+          "zh": "多重人格",
+          "en": "Jekyll_and_Hyde"
+        },
+        {
+          "zh": "筋疲力尽的",
+          "en": "exhausted"
+        },
+        {
+          "zh": "呻吟",
+          "en": "moaning"
+        },
+        {
+          "zh": "翻白眼",
+          "en": "rolling_eyes"
+        },
+        {
+          "zh": "眼神迷离、瞳孔微微放大",
+          "en": "torogao"
+        },
+        {
+          "zh": "翻白眼陶醉脸",
+          "en": "ahegao"
+        },
+        {
+          "zh": "喝醉的",
+          "en": "drunk"
+        }
+      ]
+    },
+    {
+      "id": "cat_5",
+      "name": "气质",
+      "tags": [
+        {
+          "zh": "美丽",
+          "en": "beautiful"
+        },
+        {
+          "zh": "优雅的",
+          "en": "elegant"
+        },
+        {
+          "zh": "可爱",
+          "en": "kawaii"
+        },
+        {
+          "zh": "天使般的",
+          "en": "angelic"
+        },
+        {
+          "zh": "迷人的",
+          "en": "captivating"
+        },
+        {
+          "zh": "美好的",
+          "en": "Good"
+        },
+        {
+          "zh": "神秘的",
+          "en": "mysterious"
+        },
+        {
+          "zh": "谜一般的",
+          "en": "enigmatic"
+        },
+        {
+          "zh": "秘密的",
+          "en": "cryptic"
+        },
+        {
+          "zh": "邪恶的",
+          "en": "evil"
+        },
+        {
+          "zh": "虚弱",
+          "en": "Weak"
         }
       ]
     }

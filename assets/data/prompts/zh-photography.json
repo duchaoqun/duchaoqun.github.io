@@ -33,6 +33,50 @@
         {
           "zh": "侧视图",
           "en": "side_view"
+        },
+        {
+          "zh": "动态姿势（有活力）",
+          "en": "dynamic pose"
+        },
+        {
+          "zh": "倾斜角度",
+          "en": "dutch angle"
+        },
+        {
+          "zh": "透视法",
+          "en": "foreshortening"
+        },
+        {
+          "zh": "远景透视画法",
+          "en": "fisheye"
+        },
+        {
+          "zh": "相机平行",
+          "en": "camera level/Parallel angles"
+        },
+        {
+          "zh": "水平视角",
+          "en": "horizontal view angle"
+        },
+        {
+          "zh": "等距视图",
+          "en": "isometric view"
+        },
+        {
+          "zh": "俯视图",
+          "en": "Aerial View"
+        },
+        {
+          "zh": "顶视图",
+          "en": "Top-View"
+        },
+        {
+          "zh": "侧视图",
+          "en": "Side-View"
+        },
+        {
+          "zh": "卫星视图",
+          "en": "Satellite-View"
         }
       ]
     },
@@ -59,6 +103,78 @@
         {
           "zh": "广角",
           "en": "wide_angle"
+        },
+        {
+          "zh": "手机屏幕",
+          "en": "phone_screen"
+        },
+        {
+          "zh": "多视角分解",
+          "en": "multiple_views"
+        },
+        {
+          "zh": "对镜自拍",
+          "en": "mirror selfie"
+        },
+        {
+          "zh": "3/4视角",
+          "en": "three-quarter view"
+        },
+        {
+          "zh": "正面视角",
+          "en": "front_view"
+        },
+        {
+          "zh": "侧面视角",
+          "en": "from_side"
+        },
+        {
+          "zh": "由室外向室内",
+          "en": "from_outside"
+        },
+        {
+          "zh": "后背视角",
+          "en": "from_back"
+        },
+        {
+          "zh": "后背视角",
+          "en": "from behind"
+        },
+        {
+          "zh": "微观视图",
+          "en": "Macro View"
+        },
+        {
+          "zh": "产品视图",
+          "en": "Product-View"
+        },
+        {
+          "zh": "特写视图",
+          "en": "Closeup-View"
+        },
+        {
+          "zh": "第一人称",
+          "en": "First-Person"
+        },
+        {
+          "zh": "第一人称视角",
+          "en": "First-Person view"
+        },
+        {
+          "zh": "第三人称",
+          "en": "Third-Person"
+        },
+        {
+          "zh": "第三人称视角",
+          "en": "Third-Person View"
+        },
+        {
+          "zh": "透视图",
+          "en": "Perspective"
+        },
+        {
+          "zh": "视场",
+          "en": "Field of View"
         }
       ]
     },
@@ -73,10 +189,6 @@
         {
           "zh": "散景",
           "en": "bokeh"
-        },
-        {
-          "zh": "鱼眼",
-          "en": "fisheye"
         },
         {
           "zh": "微距",
@@ -111,6 +223,778 @@
         {
           "zh": "宝丽来",
           "en": "polaroid"
+        },
+        {
+          "zh": "肖像照",
+          "en": "Portrait Photogram"
+        },
+        {
+          "zh": "相片拟真",
+          "en": "Photorealistic"
+        },
+        {
+          "zh": "电影感",
+          "en": "Cinematic"
+        },
+        {
+          "zh": "色彩分级",
+          "en": "Color Grading"
+        },
+        {
+          "zh": "戏剧性",
+          "en": "Dramatic"
+        },
+        {
+          "zh": "社论摄影",
+          "en": "Editorial Photography"
+        },
+        {
+          "zh": "电影质感",
+          "en": "filmic"
+        },
+        {
+          "zh": "胶片静止图像",
+          "en": "film still"
+        },
+        {
+          "zh": "胶片颗粒",
+          "en": "film grain"
+        },
+        {
+          "zh": "迷人镜头",
+          "en": "Glamor Shot"
+        },
+        {
+          "zh": "黄金时段",
+          "en": "Golden Hour"
+        },
+        {
+          "zh": "高速摄影",
+          "en": "High-Speed Photograph"
+        },
+        {
+          "zh": "故意的相机移动",
+          "en": "Intentional camera movement"
+        },
+        {
+          "zh": "狗仔摄影",
+          "en": "Paparazzi Photography"
+        },
+        {
+          "zh": "摄影",
+          "en": "Photography"
+        },
+        {
+          "zh": "照片拍摄",
+          "en": "Photoshoot"
+        },
+        {
+          "zh": "照片",
+          "en": "photo"
+        },
+        {
+          "zh": "海报/主题聚焦",
+          "en": "poster,caustics"
+        },
+        {
+          "zh": "万花筒摄影",
+          "en": "Kaleidoscope Photography"
+        },
+        {
+          "zh": "新闻摄影",
+          "en": "Photojournalism"
+        },
+        {
+          "zh": "卫星图像",
+          "en": "Satellite Imagery"
+        },
+        {
+          "zh": "战争摄影",
+          "en": "War Photography"
+        },
+        {
+          "zh": "野生动物摄影",
+          "en": "Wildlife Photography"
+        },
+        {
+          "zh": "复古胶片质感",
+          "en": "Fujifilm XT3,film still,film grain,sharp focus on subject,cinematic"
+        }
+      ]
+    },
+    {
+      "id": "cat_1",
+      "name": "取景高度",
+      "tags": [
+        {
+          "zh": "下巴以上",
+          "en": "Extreme Close-up"
+        },
+        {
+          "zh": "颈部以上",
+          "en": "Medium Close-up"
+        },
+        {
+          "zh": "锁骨以上",
+          "en": "Full Close-up"
+        },
+        {
+          "zh": "肩膀以上",
+          "en": "Wide Close-up"
+        },
+        {
+          "zh": "胸部以上",
+          "en": "Close Shot"
+        },
+        {
+          "zh": "肚脐以上",
+          "en": "Medium Close Shot"
+        },
+        {
+          "zh": "肚脐以上",
+          "en": "Medium Shot"
+        },
+        {
+          "zh": "膝盖以上",
+          "en": "Medium Full Shot"
+        },
+        {
+          "zh": "全身像",
+          "en": "Full Shot"
+        },
+        {
+          "zh": "中景镜头",
+          "en": "mid_shot"
+        },
+        {
+          "zh": "半身像",
+          "en": "bust"
+        },
+        {
+          "zh": "下半身",
+          "en": "lower_body"
+        },
+        {
+          "zh": "上半身+上半大腿(牛仔镜头)",
+          "en": "cowboy_shot"
+        },
+        {
+          "zh": "肖像画(脸+肩+偶尔再加胸)",
+          "en": "portrait"
+        },
+        {
+          "zh": "接近肖像画（镜头更近）",
+          "en": "very close portrait"
+        },
+        {
+          "zh": "侧面肖像画(portrait的侧脸版)",
+          "en": "profile"
+        }
+      ]
+    },
+    {
+      "id": "cat_2",
+      "name": "镜头聚焦",
+      "tags": [
+        {
+          "zh": "专注于脸",
+          "en": "focus on face"
+        },
+        {
+          "zh": "全身拍摄",
+          "en": "full-body shot"
+        },
+        {
+          "zh": "前置焦点",
+          "en": "foreground focus"
+        },
+        {
+          "zh": "全景镜头(广角镜头)",
+          "en": "wide_shot"
+        },
+        {
+          "zh": "微距镜头",
+          "en": "macro_shot"
+        },
+        {
+          "zh": "插入其他镜头或图片",
+          "en": "inset"
+        },
+        {
+          "zh": "剖面图",
+          "en": "cross-section"
+        },
+        {
+          "zh": "男性焦点(女性焦点)",
+          "en": "male focus"
+        },
+        {
+          "zh": "聚焦在单个人物(适合复杂场景)",
+          "en": "solo_focus"
+        },
+        {
+          "zh": "聚焦在xx上",
+          "en": "xx_focus"
+        },
+        {
+          "zh": "聚焦在面部",
+          "en": "face_focus"
+        },
+        {
+          "zh": "聚焦在眼睛",
+          "en": "eyes_focus"
+        },
+        {
+          "zh": "聚焦在脚上",
+          "en": "foot_focus"
+        },
+        {
+          "zh": "聚焦在臀部",
+          "en": "hip_focus"
+        },
+        {
+          "zh": "聚焦在屁股上",
+          "en": "ass_focus"
+        },
+        {
+          "zh": "聚焦在载具(车)上",
+          "en": "vehicle_focus"
+        },
+        {
+          "zh": "背对镜头",
+          "en": "turn_one's_back"
+        },
+        {
+          "zh": "(强调)两腿之间",
+          "en": "between_legs"
+        },
+        {
+          "zh": "(突出)胸部",
+          "en": "between_breasts"
+        },
+        {
+          "zh": "(突出)指间",
+          "en": "between_fingers"
+        },
+        {
+          "zh": "偷窥",
+          "en": "peeking"
+        },
+        {
+          "zh": "偷窥(的姿态)",
+          "en": "peeking_out"
+        },
+        {
+          "zh": "偷窥(强调视角)",
+          "en": "peeping"
+        },
+        {
+          "zh": "肚脐偷看",
+          "en": "midriff_peek"
+        },
+        {
+          "zh": "腋窝偷看",
+          "en": "armpit_peek"
+        },
+        {
+          "zh": "浦西偷看",
+          "en": "pussy_peek"
+        },
+        {
+          "zh": "内裤偷看",
+          "en": "panty_peek"
+        },
+        {
+          "zh": "内裤走光",
+          "en": "pantyshot"
+        },
+        {
+          "zh": "被抓现行",
+          "en": "caught"
+        },
+        {
+          "zh": "裙底视角",
+          "en": "upskirt"
+        }
+      ]
+    },
+    {
+      "id": "cat_3",
+      "name": "镜头/光学效果",
+      "tags": [
+        {
+          "zh": "微距",
+          "en": "Macro"
+        },
+        {
+          "zh": "长焦",
+          "en": "Telephoto"
+        },
+        {
+          "zh": "放大",
+          "en": "Magnification"
+        },
+        {
+          "zh": "微观的",
+          "en": "Microscopic"
+        },
+        {
+          "zh": "电子显微镜",
+          "en": "Electron Microscope"
+        },
+        {
+          "zh": "超分辨率显微镜",
+          "en": "Super-Resolution Microscopy"
+        },
+        {
+          "zh": "广角",
+          "en": "Wide Angle"
+        },
+        {
+          "zh": "超广角",
+          "en": "Ultra-Wide Angle"
+        },
+        {
+          "zh": "全景",
+          "en": "panorama"
+        },
+        {
+          "zh": "360 全景",
+          "en": "360 Panorama"
+        },
+        {
+          "zh": "360 度视角",
+          "en": "360 Angle"
+        },
+        {
+          "zh": "鱼眼镜头",
+          "en": "Fisheye Lens"
+        },
+        {
+          "zh": "鱼眼镜头效果",
+          "en": "Fisheye Lens Effect"
+        },
+        {
+          "zh": "微缩模型效果",
+          "en": "Miniature Faking"
+        },
+        {
+          "zh": "螺旋拍摄",
+          "en": "Brenizer Method"
+        },
+        {
+          "zh": "帕尼尼投影",
+          "en": "Panini Projection"
+        },
+        {
+          "zh": "正投影",
+          "en": "Orthographic"
+        },
+        {
+          "zh": "等角投影",
+          "en": "Isometric"
+        },
+        {
+          "zh": "景深",
+          "en": "DOF"
+        },
+        {
+          "zh": "风景镜头(远景)",
+          "en": "landscape"
+        },
+        {
+          "zh": "锐聚焦",
+          "en": "Sharp Focus"
+        },
+        {
+          "zh": "变焦",
+          "en": "Zoom"
+        },
+        {
+          "zh": "多莉变焦",
+          "en": "Dolly Zoom"
+        }
+      ]
+    },
+    {
+      "id": "cat_4",
+      "name": "模糊/失真",
+      "tags": [
+        {
+          "zh": "模糊",
+          "en": "Blurry"
+        },
+        {
+          "zh": "模糊效果",
+          "en": "Blur Effect"
+        },
+        {
+          "zh": "倾斜模糊",
+          "en": "Tilt Blur"
+        },
+        {
+          "zh": "镜头畸变",
+          "en": "Lens Distortion"
+        }
+      ]
+    },
+    {
+      "id": "cat_5",
+      "name": "相机设置",
+      "tags": [
+        {
+          "zh": "闪光灯拍摄",
+          "en": "flash photography"
+        },
+        {
+          "zh": "曝光",
+          "en": "Exposure"
+        },
+        {
+          "zh": "短曝光",
+          "en": "Short Exposure"
+        },
+        {
+          "zh": "长曝光",
+          "en": "Long Exposure"
+        },
+        {
+          "zh": "双重曝光",
+          "en": "Double-Exposure"
+        },
+        {
+          "zh": "快门速度 1/1000",
+          "en": "Shutter Speed 1/1000"
+        },
+        {
+          "zh": "快门速度 1/2",
+          "en": "Shutter Speed 1/2"
+        },
+        {
+          "zh": "光圈/2.8",
+          "en": "F/2.8"
+        },
+        {
+          "zh": "F/22",
+          "en": "F/22"
+        },
+        {
+          "zh": "伽马",
+          "en": "Gamma"
+        },
+        {
+          "zh": "白平衡",
+          "en": "White Balance"
+        }
+      ]
+    },
+    {
+      "id": "cat_6",
+      "name": "摄影机",
+      "tags": [
+        {
+          "zh": "光波干涉",
+          "en": "Schlieren"
+        },
+        {
+          "zh": "微光摄像",
+          "en": "Night Vision"
+        },
+        {
+          "zh": "高光谱成像",
+          "en": "Hyperspectral Imaging"
+        },
+        {
+          "zh": "多光谱成像",
+          "en": "Multispectral Imaging"
+        },
+        {
+          "zh": "摄像机效果",
+          "en": "Camcorder Effect"
+        },
+        {
+          "zh": "单反",
+          "en": "DSLR"
+        },
+        {
+          "zh": "35mm",
+          "en": "35mm"
+        },
+        {
+          "zh": "Tri-X 400 TX",
+          "en": "Tri-X 400 TX"
+        },
+        {
+          "zh": "拍立得",
+          "en": "Instax"
+        },
+        {
+          "zh": "柯达 Ektachrome",
+          "en": "Ektachrome"
+        },
+        {
+          "zh": "富士胶片",
+          "en": "Fujifilm Superia"
+        },
+        {
+          "zh": "富士相机 XT3",
+          "en": "Fujifilm XT3"
+        },
+        {
+          "zh": "拍立得",
+          "en": "Polaroid SX-70"
+        },
+        {
+          "zh": "伊尔福 HP5",
+          "en": "Ilford HP5"
+        },
+        {
+          "zh": "柯达 Ektar",
+          "en": "Kodak Ektar"
+        },
+        {
+          "zh": "柯达金 200",
+          "en": "Kodak Gold 200"
+        },
+        {
+          "zh": "柯达 Portra",
+          "en": "Kodak Portra"
+        },
+        {
+          "zh": "Lomo",
+          "en": "Lomo"
+        },
+        {
+          "zh": "尼康 D750",
+          "en": "Nikon D750"
+        },
+        {
+          "zh": "富士 Provia",
+          "en": "Provia"
+        },
+        {
+          "zh": "70 毫米胶片拍摄",
+          "en": "Shot on 70mm"
+        },
+        {
+          "zh": "富士 Velvia",
+          "en": "Velvia"
+        },
+        {
+          "zh": "复古拍摄",
+          "en": "Vintage"
+        },
+        {
+          "zh": "针孔摄影",
+          "en": "Pinhole Photography"
+        },
+        {
+          "zh": "相片",
+          "en": "Photogram"
+        },
+        {
+          "zh": "达盖尔银版",
+          "en": "Daguerrotype"
+        },
+        {
+          "zh": "旧式照相",
+          "en": "Ambrotype"
+        },
+        {
+          "zh": "光力摄影法",
+          "en": "Calotype"
+        },
+        {
+          "zh": "锡版摄影",
+          "en": "Tintype"
+        },
+        {
+          "zh": "行车记录仪录像",
+          "en": "Dashcam-Footage"
+        }
+      ]
+    },
+    {
+      "id": "cat_7",
+      "name": "数字系统",
+      "tags": [
+        {
+          "zh": "一元",
+          "en": "Unary"
+        },
+        {
+          "zh": "二进制",
+          "en": "Binary"
+        },
+        {
+          "zh": "三进制",
+          "en": "Ternary"
+        },
+        {
+          "zh": "四进制",
+          "en": "Quaternary"
+        },
+        {
+          "zh": "五进制",
+          "en": "Quinary"
+        },
+        {
+          "zh": "六进制",
+          "en": "Senary"
+        },
+        {
+          "zh": "七进制",
+          "en": "Septenary"
+        },
+        {
+          "zh": "八进制",
+          "en": "Octal"
+        },
+        {
+          "zh": "九进制",
+          "en": "Nonary"
+        },
+        {
+          "zh": "十进制",
+          "en": "Decimal"
+        },
+        {
+          "zh": "十六进制",
+          "en": "Hexadecimal"
+        }
+      ]
+    },
+    {
+      "id": "cat_8",
+      "name": "效果",
+      "tags": [
+        {
+          "zh": "景深（协调人景）",
+          "en": "depth of field"
+        },
+        {
+          "zh": "运动导致的模糊",
+          "en": "motion_blur"
+        },
+        {
+          "zh": "体现运动的线",
+          "en": "motion_lines"
+        },
+        {
+          "zh": "速度线",
+          "en": "speed_lines"
+        },
+        {
+          "zh": "色差、色失焦",
+          "en": "chromatic_aberration"
+        },
+        {
+          "zh": "过曝",
+          "en": "overexposure"
+        },
+        {
+          "zh": "晕影",
+          "en": "Vignette"
+        },
+        {
+          "zh": "分离调色",
+          "en": "Split Toning"
+        },
+        {
+          "zh": "重摄影",
+          "en": "Rephotography"
+        },
+        {
+          "zh": "微缩模型电影",
+          "en": "miniature model film"
+        },
+        {
+          "zh": "扫描摄影",
+          "en": "Scanography"
+        },
+        {
+          "zh": "狭缝扫描摄影",
+          "en": "Slit-Scan Photography"
+        },
+        {
+          "zh": "逼真，仿真",
+          "en": "photorealistic,realistic"
+        },
+        {
+          "zh": "写实",
+          "en": "realistic"
+        },
+        {
+          "zh": "半写实",
+          "en": "semi-realistic"
+        },
+        {
+          "zh": "现实的阴影",
+          "en": "realistic shadows"
+        },
+        {
+          "zh": "手部细节",
+          "en": "detailed hands and detailed 5 fingers and detailed 5 finger nails"
+        },
+        {
+          "zh": "脚部细节",
+          "en": "detailed feet and detailed 5 toes and detailed 5 toenails"
+        },
+        {
+          "zh": "移轴摄影",
+          "en": "Tilt‑Shift Photography"
+        },
+        {
+          "zh": "延时拍摄",
+          "en": "Time-Lapse"
+        }
+      ]
+    },
+    {
+      "id": "cat_9",
+      "name": "基础运镜",
+      "tags": [
+        {
+          "zh": "镜头推进",
+          "en": "Camera Push‑In"
+        },
+        {
+          "zh": "镜头拉远",
+          "en": "Camera Pull‑Out"
+        },
+        {
+          "zh": "镜头向右移动",
+          "en": "Camera Dolly Right"
+        },
+        {
+          "zh": "镜头向左移动",
+          "en": "Camera Dolly Left"
+        },
+        {
+          "zh": "镜头上摇",
+          "en": "Camera Tilt‑Up"
+        }
+      ]
+    },
+    {
+      "id": "cat_10",
+      "name": "高级运镜",
+      "tags": [
+        {
+          "zh": "手持镜头",
+          "en": "Handheld Shot"
+        },
+        {
+          "zh": "复合运镜",
+          "en": "Complex Camera Movement"
+        },
+        {
+          "zh": "跟随镜头",
+          "en": "Follow Shot"
+        },
+        {
+          "zh": "环绕运镜",
+          "en": "Orbit Shot"
         }
       ]
     }

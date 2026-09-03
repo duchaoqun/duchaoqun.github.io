@@ -1,0 +1,912 @@
+{
+  "id": "image_type",
+  "name": "图像种类",
+  "categories": [
+    {
+      "id": "cat_1",
+      "name": "绘画",
+      "tags": [
+        {
+          "zh": "写实画",
+          "en": "Realistic Painting"
+        },
+        {
+          "zh": "美术绘画",
+          "en": "Fine Art"
+        },
+        {
+          "zh": "静物画",
+          "en": "Still-Life"
+        },
+        {
+          "zh": "油画",
+          "en": "Oil Paint"
+        },
+        {
+          "zh": "油画(组合)",
+          "en": "((dyeing)),((oil painting)),((impasto))"
+        },
+        {
+          "zh": "湿画化",
+          "en": "Wet Paint"
+        },
+        {
+          "zh": "滴漆",
+          "en": "Dripping Paint"
+        },
+        {
+          "zh": "泼漆",
+          "en": "Splatter Paint"
+        },
+        {
+          "zh": "喷漆",
+          "en": "Spray Paint"
+        },
+        {
+          "zh": "立体颜料",
+          "en": "Puffy Paint"
+        },
+        {
+          "zh": "玻璃漆",
+          "en": "Glass Paint"
+        },
+        {
+          "zh": "蛋彩画",
+          "en": "Tempera Paint"
+        },
+        {
+          "zh": "水粉颜料",
+          "en": "Gouache Paint"
+        },
+        {
+          "zh": "中国画",
+          "en": "Chinese Painting"
+        },
+        {
+          "zh": "西藏绘画",
+          "en": "Tibetan Painting"
+        },
+        {
+          "zh": "卷轴画",
+          "en": "Scroll Painting"
+        },
+        {
+          "zh": "帆布画",
+          "en": "Canvas"
+        },
+        {
+          "zh": "色域绘画",
+          "en": "Color Field Painting"
+        },
+        {
+          "zh": "硬边绘画",
+          "en": "Hard Edge Painting"
+        },
+        {
+          "zh": "水粉画",
+          "en": "Paper-Marbling"
+        },
+        {
+          "zh": "水贴画",
+          "en": "Hydrodipped"
+        },
+        {
+          "zh": "绘画",
+          "en": "Painting"
+        },
+        {
+          "zh": "水墨画",
+          "en": "Ink wash painting"
+        },
+        {
+          "zh": "水彩画",
+          "en": "watercolor"
+        },
+        {
+          "zh": "水彩画",
+          "en": "(((ink))),((watercolor))"
+        },
+        {
+          "zh": "油漆",
+          "en": "Paint"
+        },
+        {
+          "zh": "丙烯漆料画",
+          "en": "acrylic_paint"
+        },
+        {
+          "zh": "喷笔",
+          "en": "Airbrush"
+        },
+        {
+          "zh": "咖啡漆",
+          "en": "Coffee Paint"
+        }
+      ]
+    },
+    {
+      "id": "cat_2",
+      "name": "插画",
+      "tags": [
+        {
+          "zh": "插图",
+          "en": "Illustration"
+        },
+        {
+          "zh": "故事书插图",
+          "en": "Storybook Illustration"
+        },
+        {
+          "zh": "儿童画",
+          "en": "Children's Drawing"
+        },
+        {
+          "zh": "绘本小说",
+          "en": "Graphic Novel"
+        },
+        {
+          "zh": "视觉小说",
+          "en": "Visual Novel"
+        },
+        {
+          "zh": "插图小册子",
+          "en": "Illustrated-Booklet"
+        },
+        {
+          "zh": "彩绘手稿",
+          "en": "Illuminated Manuscript"
+        },
+        {
+          "zh": "装配图",
+          "en": "Assembly Drawing"
+        },
+        {
+          "zh": "壁纸",
+          "en": "wallpaper"
+        },
+        {
+          "zh": "非常详细的壁纸",
+          "en": "extremely detailed wallpaper"
+        },
+        {
+          "zh": "数字插画",
+          "en": "digital illustration"
+        },
+        {
+          "zh": "多个相关图案的图像集合",
+          "en": "multiple item spritedsheet"
+        },
+        {
+          "zh": "游戏CG",
+          "en": "game cg"
+        },
+        {
+          "zh": "非常详细的 cg",
+          "en": "extremely detailed cg"
+        }
+      ]
+    },
+    {
+      "id": "cat_3",
+      "name": "手绘",
+      "tags": [
+        {
+          "zh": "绘画",
+          "en": "Drawing"
+        },
+        {
+          "zh": "手绘",
+          "en": "Hand-Drawn"
+        },
+        {
+          "zh": "涂鸦",
+          "en": "Doodle"
+        },
+        {
+          "zh": "素描",
+          "en": "sketch"
+        },
+        {
+          "zh": "草图",
+          "en": "posing sketch"
+        },
+        {
+          "zh": "线描画",
+          "en": "Line Art"
+        },
+        {
+          "zh": "交叉影线",
+          "en": "Crosshatch"
+        },
+        {
+          "zh": "点画法",
+          "en": "Stipple"
+        },
+        {
+          "zh": "点彩画",
+          "en": "Dot Art"
+        },
+        {
+          "zh": "解剖图",
+          "en": "Anatomical Drawing"
+        },
+        {
+          "zh": "黑白草图",
+          "en": "(posing sketch),(monochrome)"
+        }
+      ]
+    },
+    {
+      "id": "cat_4",
+      "name": "铅笔",
+      "tags": [
+        {
+          "zh": "铅笔画",
+          "en": "Pencil Art"
+        },
+        {
+          "zh": "石墨铅笔",
+          "en": "graphite"
+        },
+        {
+          "zh": "彩色铅笔",
+          "en": "colored_pencil"
+        },
+        {
+          "zh": "水彩铅笔",
+          "en": "watercolor_pencil"
+        },
+        {
+          "zh": "炭笔画",
+          "en": "charcoal art"
+        },
+        {
+          "zh": "绘图笔",
+          "en": "millipen_(medium)"
+        },
+        {
+          "zh": "绘图笔",
+          "en": "nib_pen_(medium)"
+        },
+        {
+          "zh": "铅笔速写",
+          "en": "(monochrome),(gray scale),(pencil sketch lines)"
+        },
+        {
+          "zh": "签绘风格",
+          "en": "faux_traditional_media"
+        }
+      ]
+    },
+    {
+      "id": "cat_5",
+      "name": "墨水",
+      "tags": [
+        {
+          "zh": "墨水",
+          "en": "Ink"
+        },
+        {
+          "zh": "钢笔",
+          "en": "Fountain Pen"
+        },
+        {
+          "zh": "钢笔画",
+          "en": "Fountain Pen Art"
+        },
+        {
+          "zh": "圆珠笔",
+          "en": "Ballpoint Pen"
+        },
+        {
+          "zh": "中性笔",
+          "en": "Gel Pen"
+        },
+        {
+          "zh": "圆珠笔",
+          "en": "ballpoint_pen_(medium)"
+        },
+        {
+          "zh": "书法",
+          "en": "Calligraphy"
+        },
+        {
+          "zh": "马克笔",
+          "en": "marker_(medium)"
+        },
+        {
+          "zh": "马克笔（中性灰色）",
+          "en": "copics"
+        },
+        {
+          "zh": "白板笔",
+          "en": "Dry-Erase Marker"
+        },
+        {
+          "zh": "可擦记号笔",
+          "en": "Wet-Erase Marker"
+        },
+        {
+          "zh": "白板",
+          "en": "Whiteboard"
+        },
+        {
+          "zh": "柔和的色彩",
+          "en": "pastel_color"
+        }
+      ]
+    },
+    {
+      "id": "cat_6",
+      "name": "粉笔",
+      "tags": [
+        {
+          "zh": "蜡笔",
+          "en": "Crayon"
+        },
+        {
+          "zh": "康熙笔",
+          "en": "Conte"
+        },
+        {
+          "zh": "粉笔",
+          "en": "Chalk"
+        },
+        {
+          "zh": "粉彩画",
+          "en": "Pastel Art"
+        },
+        {
+          "zh": "黑板",
+          "en": "Blackboard"
+        },
+        {
+          "zh": "黑板",
+          "en": "Chalkboard"
+        }
+      ]
+    },
+    {
+      "id": "cat_7",
+      "name": "文本",
+      "tags": [
+        {
+          "zh": "文本",
+          "en": "Text"
+        },
+        {
+          "zh": "字体",
+          "en": "Typeface"
+        },
+        {
+          "zh": "字体",
+          "en": "Font"
+        },
+        {
+          "zh": "说",
+          "en": "Says"
+        },
+        {
+          "zh": "字母",
+          "en": "Letters"
+        },
+        {
+          "zh": "字素",
+          "en": "Graphemes"
+        },
+        {
+          "zh": "书写字母",
+          "en": "Written Letters"
+        },
+        {
+          "zh": "单词",
+          "en": "Words"
+        },
+        {
+          "zh": "词素",
+          "en": "Lexemes"
+        },
+        {
+          "zh": "书面单词",
+          "en": "Written Words"
+        },
+        {
+          "zh": "标题",
+          "en": "Caption"
+        }
+      ]
+    },
+    {
+      "id": "cat_8",
+      "name": "打印",
+      "tags": [
+        {
+          "zh": "商标",
+          "en": "Logo"
+        },
+        {
+          "zh": "邮票",
+          "en": "Stamp"
+        },
+        {
+          "zh": "邮票",
+          "en": "Postage Stamp"
+        },
+        {
+          "zh": "名片",
+          "en": "Business Card"
+        },
+        {
+          "zh": "拼贴画",
+          "en": "Collage"
+        },
+        {
+          "zh": "照片拼贴画",
+          "en": "Photocollage"
+        },
+        {
+          "zh": "照片拼贴画",
+          "en": "Fotocollage"
+        },
+        {
+          "zh": "平版印刷术",
+          "en": "Lithography"
+        },
+        {
+          "zh": "印版画",
+          "en": "Block Printing"
+        },
+        {
+          "zh": "杂志",
+          "en": "Magazine"
+        },
+        {
+          "zh": "报纸",
+          "en": "Newspaper"
+        },
+        {
+          "zh": "新闻纸",
+          "en": "Newsprint"
+        },
+        {
+          "zh": "制图",
+          "en": "Cartographic"
+        },
+        {
+          "zh": "蓝图",
+          "en": "Blueprint"
+        },
+        {
+          "zh": "漫画",
+          "en": "comic"
+        },
+        {
+          "zh": "漫画书",
+          "en": "Comic Book"
+        },
+        {
+          "zh": "小册子",
+          "en": "Booklet"
+        },
+        {
+          "zh": "海报",
+          "en": "Poster"
+        },
+        {
+          "zh": "贴纸",
+          "en": "Sticker"
+        },
+        {
+          "zh": "条形码",
+          "en": "Barcode"
+        },
+        {
+          "zh": "二维码",
+          "en": "QR Code"
+        },
+        {
+          "zh": "宝可梦卡片(口袋妖怪)",
+          "en": "Pokemon Card"
+        }
+      ]
+    },
+    {
+      "id": "cat_9",
+      "name": "折纸",
+      "tags": [
+        {
+          "zh": "折纸",
+          "en": "Origami"
+        },
+        {
+          "zh": "模块化折纸",
+          "en": "Modular Origami"
+        },
+        {
+          "zh": "刚性折纸",
+          "en": "Rigid Origami"
+        },
+        {
+          "zh": "折纸花球",
+          "en": "Sonobe"
+        },
+        {
+          "zh": "剪纸",
+          "en": "Kirigami"
+        },
+        {
+          "zh": "钞票折纸",
+          "en": "Moneygami"
+        },
+        {
+          "zh": "湿折",
+          "en": "Wet-Folding"
+        }
+      ]
+    },
+    {
+      "id": "cat_10",
+      "name": "马赛克",
+      "tags": [
+        {
+          "zh": "像素画",
+          "en": "pixel art"
+        },
+        {
+          "zh": "马赛克",
+          "en": "Mosaic"
+        },
+        {
+          "zh": "微缩马赛克",
+          "en": "Micromosaic"
+        },
+        {
+          "zh": "玻璃马赛克",
+          "en": "Glass Mosaic"
+        },
+        {
+          "zh": "照片马赛克",
+          "en": "Photographic Mosaic"
+        },
+        {
+          "zh": "印象派马赛克",
+          "en": "Impressionist Mosaic"
+        }
+      ]
+    },
+    {
+      "id": "cat_11",
+      "name": "框架",
+      "tags": [
+        {
+          "zh": "相框",
+          "en": "Frame"
+        },
+        {
+          "zh": "装裱的",
+          "en": "Framed"
+        },
+        {
+          "zh": "木质相框",
+          "en": "Wooden Frame"
+        },
+        {
+          "zh": "木制相框",
+          "en": "Wooden Framed"
+        }
+      ]
+    },
+    {
+      "id": "cat_12",
+      "name": "雕刻、蚀刻和建模",
+      "tags": [
+        {
+          "zh": "雕刻",
+          "en": "Carving"
+        },
+        {
+          "zh": "蚀刻",
+          "en": "Etching"
+        },
+        {
+          "zh": "雕塑",
+          "en": "Sculpture"
+        },
+        {
+          "zh": "剪纸",
+          "en": "Papercutting"
+        },
+        {
+          "zh": "刻刀雕刻",
+          "en": "Whittling"
+        },
+        {
+          "zh": "木雕",
+          "en": "Wood-Carving"
+        },
+        {
+          "zh": "花刻",
+          "en": "Chip-Carving"
+        },
+        {
+          "zh": "浮雕",
+          "en": "Relief-Carving"
+        },
+        {
+          "zh": "冰雕",
+          "en": "Ice-Carving"
+        },
+        {
+          "zh": "漆艺",
+          "en": "Lacquer"
+        },
+        {
+          "zh": "弦乐艺术",
+          "en": "String-Art"
+        },
+        {
+          "zh": "纸浆塑形",
+          "en": "Paper-Mache"
+        },
+        {
+          "zh": "纸模型",
+          "en": "Paper Model"
+        },
+        {
+          "zh": "卡片",
+          "en": "Card"
+        },
+        {
+          "zh": "雕漆",
+          "en": "Carved Lacquer"
+        },
+        {
+          "zh": "镂空工艺",
+          "en": "Fretwork"
+        },
+        {
+          "zh": "凹版印刷",
+          "en": "Intaglio"
+        },
+        {
+          "zh": "铜版漆",
+          "en": "Mezzotint"
+        },
+        {
+          "zh": "凹印",
+          "en": "Aquatint"
+        },
+        {
+          "zh": "丝网印刷",
+          "en": "Linocut"
+        },
+        {
+          "zh": "焊点画",
+          "en": "Pyrography"
+        },
+        {
+          "zh": "木偶",
+          "en": "Puppet"
+        },
+        {
+          "zh": "气球模型",
+          "en": "Balloon Modelling"
+        },
+        {
+          "zh": "扎各种形状的气球",
+          "en": "Balloon Twisting"
+        },
+        {
+          "zh": "线路图",
+          "en": "Circuit"
+        },
+        {
+          "zh": "电路",
+          "en": "Circuitry"
+        }
+      ]
+    },
+    {
+      "id": "cat_13",
+      "name": "陶器和玻璃",
+      "tags": [
+        {
+          "zh": "彩色玻璃",
+          "en": "Dalle de verre"
+        },
+        {
+          "zh": "瓷画",
+          "en": "Encaustic painting"
+        },
+        {
+          "zh": "釉料",
+          "en": "Glaze"
+        },
+        {
+          "zh": "上釉",
+          "en": "Overglaze"
+        },
+        {
+          "zh": "下釉",
+          "en": "Inglaze"
+        },
+        {
+          "zh": "Azulejo",
+          "en": "Azulejo"
+        },
+        {
+          "zh": "旧石器时代的陶器",
+          "en": "Paleolithic Pottery"
+        },
+        {
+          "zh": "新石器时代的陶器",
+          "en": "Neolithic Pottery"
+        },
+        {
+          "zh": "骨瓷",
+          "en": "Bone China"
+        },
+        {
+          "zh": "装饰品",
+          "en": "Ornament"
+        }
+      ]
+    },
+    {
+      "id": "cat_14",
+      "name": "其他媒介",
+      "tags": [
+        {
+          "zh": "灯光艺术",
+          "en": "Light Art"
+        },
+        {
+          "zh": "光绘",
+          "en": "Light Painting"
+        },
+        {
+          "zh": "传统画布（如纸等）",
+          "en": "traditional_media"
+        },
+        {
+          "zh": "墙贴",
+          "en": "Wall Decal"
+        },
+        {
+          "zh": "横幅",
+          "en": "Banner"
+        },
+        {
+          "zh": "指示牌",
+          "en": "Signage"
+        },
+        {
+          "zh": "工艺美术",
+          "en": "Arts and Crafts"
+        },
+        {
+          "zh": "环氧树脂",
+          "en": "Resin"
+        },
+        {
+          "zh": "珐琅别针",
+          "en": "Enamel Pin"
+        },
+        {
+          "zh": "镶嵌宝石",
+          "en": "Bejeweled"
+        },
+        {
+          "zh": "拿铁拉花",
+          "en": "Latte Art"
+        },
+        {
+          "zh": "咖啡渍",
+          "en": "Coffee Stain"
+        },
+        {
+          "zh": "烟雾艺术",
+          "en": "Smoke Art"
+        },
+        {
+          "zh": "贴纸炸弹",
+          "en": "Sticker Bomb"
+        },
+        {
+          "zh": "拼图",
+          "en": "Jigsaw"
+        },
+        {
+          "zh": "迷宫",
+          "en": "Maze"
+        },
+        {
+          "zh": "特定地点的艺术",
+          "en": "Site-Specific art"
+        },
+        {
+          "zh": "公共艺术",
+          "en": "Public Art"
+        },
+        {
+          "zh": "西洋镜",
+          "en": "Diorama"
+        },
+        {
+          "zh": "绿篱修剪",
+          "en": "Hedge Trimming"
+        },
+        {
+          "zh": "制帽",
+          "en": "Hatmaking"
+        },
+        {
+          "zh": "模版",
+          "en": "Stencil"
+        },
+        {
+          "zh": "负空间",
+          "en": "Negative Space"
+        },
+        {
+          "zh": "剪贴簿",
+          "en": "Scrapbooking"
+        },
+        {
+          "zh": "混合媒介",
+          "en": "Mixed Media"
+        },
+        {
+          "zh": "踩印画",
+          "en": "Frottage"
+        },
+        {
+          "zh": "轮廓",
+          "en": "Outlined"
+        },
+        {
+          "zh": "闪粉",
+          "en": "Glitter"
+        },
+        {
+          "zh": "闪亮的",
+          "en": "Sparkly"
+        },
+        {
+          "zh": "印度艺术",
+          "en": "Indian Art"
+        },
+        {
+          "zh": "苏联艺术",
+          "en": "Soviet Art"
+        }
+      ]
+    },
+    {
+      "id": "cat_15",
+      "name": "传统艺术",
+      "tags": [
+        {
+          "zh": "岩画",
+          "en": "Rock Art"
+        },
+        {
+          "zh": "洞窟艺术",
+          "en": "Cave Art"
+        },
+        {
+          "zh": "壁画",
+          "en": "Mural"
+        },
+        {
+          "zh": "复活节彩蛋",
+          "en": "Easter Egg"
+        },
+        {
+          "zh": "彩绘蛋",
+          "en": "Egg Decorating"
+        }
+      ]
+    }
+  ]
+}

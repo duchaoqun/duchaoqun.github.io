@@ -139,6 +139,234 @@
         {
           "zh": "战士",
           "en": "warrior"
+        },
+        {
+          "zh": "救生员",
+          "en": "lifeguard"
+        },
+        {
+          "zh": "守门员",
+          "en": "goalkeeper"
+        },
+        {
+          "zh": "赛车手",
+          "en": "racer"
+        },
+        {
+          "zh": "摩托车手",
+          "en": "motorcyclist"
+        },
+        {
+          "zh": "拳击手",
+          "en": "boxer"
+        },
+        {
+          "zh": "杂技演员",
+          "en": "acrobat"
+        },
+        {
+          "zh": "运动员",
+          "en": "athletes"
+        },
+        {
+          "zh": "啦啦队",
+          "en": "cheerleader"
+        },
+        {
+          "zh": "空姐",
+          "en": "stewardess"
+        },
+        {
+          "zh": "女服务员",
+          "en": "waitress"
+        },
+        {
+          "zh": "男服务员",
+          "en": "waiter"
+        },
+        {
+          "zh": "厨师",
+          "en": "chef"
+        },
+        {
+          "zh": "咖啡师",
+          "en": "barista"
+        },
+        {
+          "zh": "收银员",
+          "en": "cashier"
+        },
+        {
+          "zh": "邮递员",
+          "en": "mailman"
+        },
+        {
+          "zh": "职场女性",
+          "en": "office_lady"
+        },
+        {
+          "zh": "女管家",
+          "en": "housemaid"
+        },
+        {
+          "zh": "科学家",
+          "en": "scientist"
+        },
+        {
+          "zh": "侦探",
+          "en": "detective"
+        },
+        {
+          "zh": "士兵",
+          "en": "soldier"
+        },
+        {
+          "zh": "消防员",
+          "en": "firefighter"
+        },
+        {
+          "zh": "黑客",
+          "en": "hacker"
+        },
+        {
+          "zh": "间谍",
+          "en": "spy"
+        },
+        {
+          "zh": "特工",
+          "en": "agent"
+        },
+        {
+          "zh": "刺客",
+          "en": "assassin"
+        },
+        {
+          "zh": "魔术师",
+          "en": "magician"
+        },
+        {
+          "zh": "飞行员",
+          "en": "pilot"
+        },
+        {
+          "zh": "宇航员",
+          "en": "astronaut"
+        },
+        {
+          "zh": "潜水员",
+          "en": "diver"
+        },
+        {
+          "zh": "传教士",
+          "en": "missionary"
+        },
+        {
+          "zh": "诗人",
+          "en": "poet"
+        },
+        {
+          "zh": "男演员",
+          "en": "actor"
+        },
+        {
+          "zh": "女演员",
+          "en": "actress"
+        },
+        {
+          "zh": "女王",
+          "en": "queen"
+        },
+        {
+          "zh": "赛车女郎",
+          "en": "race_queen"
+        },
+        {
+          "zh": "舞者",
+          "en": "dancer"
+        },
+        {
+          "zh": "芭蕾舞演员",
+          "en": "ballerina"
+        },
+        {
+          "zh": "舞女",
+          "en": "dancing girl"
+        },
+        {
+          "zh": "体操教练",
+          "en": "gym_leader"
+        },
+        {
+          "zh": "牧师",
+          "en": "priest"
+        },
+        {
+          "zh": "神职人员(基督教)",
+          "en": "cleric"
+        },
+        {
+          "zh": "和尚",
+          "en": "monk"
+        },
+        {
+          "zh": "牧羊人",
+          "en": "makihitsuji"
+        },
+        {
+          "zh": "隐士",
+          "en": "the hermit"
+        },
+        {
+          "zh": "同学",
+          "en": "classmate"
+        },
+        {
+          "zh": "后宫",
+          "en": "harem"
+        },
+        {
+          "zh": "幽灵",
+          "en": "ghost"
+        },
+        {
+          "zh": "人偶",
+          "en": "doll"
+        },
+        {
+          "zh": "白化病患者",
+          "en": "albino"
+        },
+        {
+          "zh": "截肢者",
+          "en": "amputee"
+        },
+        {
+          "zh": "伪娘",
+          "en": "trap"
+        },
+        {
+          "zh": "伪娘（穿着与自己性别身份不相符的服装）",
+          "en": "crossdressing"
+        },
+        {
+          "zh": "伪娘（外观上表现出女性特征的男性）",
+          "en": "otoko_no_ko"
+        },
+        {
+          "zh": "辣妹(日本太妹)",
+          "en": "gyaru"
+        },
+        {
+          "zh": "和风女仆",
+          "en": "wa_maid"
+        },
+        {
+          "zh": "搞基",
+          "en": "yaoi"
+        },
+        {
+          "zh": "百合",
+          "en": "yuri"
         }
       ]
     },
@@ -181,6 +409,258 @@
         {
           "zh": "兔娘",
           "en": "bunny_girl"
+        },
+        {
+          "zh": "皮卡丘",
+          "en": "pikachu"
+        },
+        {
+          "zh": "宝可梦",
+          "en": "pokemon"
+        },
+        {
+          "zh": "哆啦A梦",
+          "en": "doraemon"
+        },
+        {
+          "zh": "蜡笔小新",
+          "en": "crayon shin-chan"
+        },
+        {
+          "zh": "灌篮高手",
+          "en": "slam dunk"
+        },
+        {
+          "zh": "哈利波特",
+          "en": "harry potter"
+        },
+        {
+          "zh": "复仇者联盟",
+          "en": "avengers"
+        },
+        {
+          "zh": "美国队长",
+          "en": "captain america"
+        },
+        {
+          "zh": "五条悟",
+          "en": "gojou satoru"
+        },
+        {
+          "zh": "新世纪福音战士",
+          "en": "neon genesis evangelion"
+        },
+        {
+          "zh": "魔神Z",
+          "en": "mazinger"
+        },
+        {
+          "zh": "圣斗士星矢",
+          "en": "saint seiya"
+        },
+        {
+          "zh": "假面骑士",
+          "en": "kamen rider"
+        },
+        {
+          "zh": "马里奥",
+          "en": "mario"
+        },
+        {
+          "zh": "孙悟空",
+          "en": "sun wukong"
+        },
+        {
+          "zh": "初音未来",
+          "en": "hatsune miku"
+        },
+        {
+          "zh": "美少女战士",
+          "en": "sailor_senshi"
+        },
+        {
+          "zh": "女巫",
+          "en": "witch"
+        },
+        {
+          "zh": "巫师",
+          "en": "mage"
+        },
+        {
+          "zh": "魔导师",
+          "en": "magister"
+        },
+        {
+          "zh": "忍者",
+          "en": "ninja"
+        },
+        {
+          "zh": "日本武士",
+          "en": "samurai"
+        },
+        {
+          "zh": "吸血鬼",
+          "en": "vampire"
+        },
+        {
+          "zh": "半兽人",
+          "en": "orc"
+        },
+        {
+          "zh": "德鲁伊",
+          "en": "druid"
+        },
+        {
+          "zh": "妖精",
+          "en": "elf"
+        },
+        {
+          "zh": "暗精灵",
+          "en": "dark_elf"
+        },
+        {
+          "zh": "小精灵",
+          "en": "fairy"
+        },
+        {
+          "zh": "魅魔",
+          "en": "succubus"
+        },
+        {
+          "zh": "小恶魔",
+          "en": "imp"
+        },
+        {
+          "zh": "魔鬼",
+          "en": "devil"
+        },
+        {
+          "zh": "天使",
+          "en": "angel"
+        },
+        {
+          "zh": "怪物",
+          "en": "monster"
+        },
+        {
+          "zh": "人外娘",
+          "en": "monster_girl"
+        },
+        {
+          "zh": "女王(SM中)",
+          "en": "dominatrix"
+        },
+        {
+          "zh": "机甲",
+          "en": "mecha"
+        },
+        {
+          "zh": "机甲娘",
+          "en": "mecha_musume"
+        },
+        {
+          "zh": "类人机器人",
+          "en": "humanoid_robot"
+        },
+        {
+          "zh": "半机械人",
+          "en": "cyborg"
+        },
+        {
+          "zh": "龙娘",
+          "en": "dragon_girl"
+        },
+        {
+          "zh": "半人马",
+          "en": "centaur"
+        },
+        {
+          "zh": "史莱姆娘",
+          "en": "slime_musume"
+        },
+        {
+          "zh": "蜘蛛娘",
+          "en": "spider_girl"
+        },
+        {
+          "zh": "美人鱼",
+          "en": "mermaid"
+        },
+        {
+          "zh": "猫娘",
+          "en": "cat_girl"
+        },
+        {
+          "zh": "犬娘",
+          "en": "dog_girl"
+        },
+        {
+          "zh": "狼女孩",
+          "en": "wolf_girl"
+        },
+        {
+          "zh": "狐娘",
+          "en": "fox_girl"
+        },
+        {
+          "zh": "狐妖",
+          "en": "kitsune"
+        },
+        {
+          "zh": "九尾|九尾狐",
+          "en": "kyuubi"
+        },
+        {
+          "zh": "浣熊娘",
+          "en": "raccoon_girl"
+        },
+        {
+          "zh": "牛娘",
+          "en": "cow_girl"
+        },
+        {
+          "zh": "马娘",
+          "en": "horse_girl"
+        },
+        {
+          "zh": "兽人",
+          "en": "furry"
+        },
+        {
+          "zh": "兽人/半兽人",
+          "en": "furry/orc"
+        },
+        {
+          "zh": "兽耳萝莉模式",
+          "en": "kemonomimi_mode"
+        },
+        {
+          "zh": "女巨人",
+          "en": "giantess"
+        },
+        {
+          "zh": "迷你女孩",
+          "en": "minigirl"
+        },
+        {
+          "zh": "雌小鬼",
+          "en": "mesugaki"
+        },
+        {
+          "zh": "圣诞老人",
+          "en": "santa alter"
+        },
+        {
+          "zh": "蜘蛛侠",
+          "en": "spider-man"
+        },
+        {
+          "zh": "恶魔",
+          "en": "demon"
+        },
+        {
+          "zh": "非人",
+          "en": "no humans"
         }
       ]
     },
@@ -215,6 +695,26 @@
         {
           "zh": "老年",
           "en": "old"
+        },
+        {
+          "zh": "幼儿园",
+          "en": "kindergartener"
+        },
+        {
+          "zh": "未成年",
+          "en": "underage"
+        },
+        {
+          "zh": "青少年早期（11-15）",
+          "en": "early teen"
+        },
+        {
+          "zh": "大人",
+          "en": "adult"
+        },
+        {
+          "zh": "老人",
+          "en": "elder"
         }
       ]
     },
@@ -245,6 +745,50 @@
         {
           "zh": "雀斑",
           "en": "freckles"
+        },
+        {
+          "zh": "白皮肤",
+          "en": "white_skin"
+        },
+        {
+          "zh": "橄榄色皮肤",
+          "en": "olive_skin"
+        },
+        {
+          "zh": "棕色皮肤",
+          "en": "brown_skin"
+        },
+        {
+          "zh": "深色皮肤",
+          "en": "deep_skin"
+        },
+        {
+          "zh": "黑皮肤",
+          "en": "black_skin"
+        },
+        {
+          "zh": "白色大理石发光皮肤",
+          "en": "white_marble_glowing_skin"
+        },
+        {
+          "zh": "日晒",
+          "en": "tan"
+        },
+        {
+          "zh": "日晒痕迹",
+          "en": "tanlines"
+        },
+        {
+          "zh": "有光泽的皮肤",
+          "en": "shiny_skin"
+        },
+        {
+          "zh": "油性皮肤",
+          "en": "oil_skin"
+        },
+        {
+          "zh": "纹身",
+          "en": "tattoo"
         }
       ]
     },
@@ -275,6 +819,62 @@
         {
           "zh": "曲线美",
           "en": "curvy"
+        },
+        {
+          "zh": "骨感",
+          "en": "skinny"
+        },
+        {
+          "zh": "蜂腰翘臀",
+          "en": "(navel,wide hip,curvy)"
+        },
+        {
+          "zh": "怀孕",
+          "en": "pregnant"
+        },
+        {
+          "zh": "肥胖",
+          "en": "fat"
+        },
+        {
+          "zh": "瘦",
+          "en": "thin"
+        },
+        {
+          "zh": "魅力",
+          "en": "glamor"
+        },
+        {
+          "zh": "Q 版画风/2头身",
+          "en": "chibi"
+        },
+        {
+          "zh": "巨乳",
+          "en": "big tits"
+        },
+        {
+          "zh": "巨乳（有乳沟）",
+          "en": "(cleavage visible,large breasts)"
+        },
+        {
+          "zh": "小蛮腰",
+          "en": "Small waist"
+        },
+        {
+          "zh": "细腰",
+          "en": "narrow_waist"
+        },
+        {
+          "zh": "纤细的腰",
+          "en": "slender_waist"
+        },
+        {
+          "zh": "强壮",
+          "en": "strong"
+        },
+        {
+          "zh": "苗条",
+          "en": "slim"
         }
       ]
     },
@@ -301,6 +901,54 @@
         {
           "zh": "V字脸",
           "en": "v_shaped_face"
+        },
+        {
+          "zh": "瘦脸",
+          "en": "slender face"
+        },
+        {
+          "zh": "圆脸",
+          "en": "round face"
+        },
+        {
+          "zh": "鹅蛋脸",
+          "en": "oval face"
+        },
+        {
+          "zh": "娃娃脸",
+          "en": "baby face"
+        },
+        {
+          "zh": "倒三角脸",
+          "en": "inverted triangle face"
+        },
+        {
+          "zh": "心形脸",
+          "en": "heart shaped face"
+        },
+        {
+          "zh": "菱形脸",
+          "en": "diamond face"
+        },
+        {
+          "zh": "方脸",
+          "en": "square face"
+        },
+        {
+          "zh": "长脸",
+          "en": "long face"
+        },
+        {
+          "zh": "三角脸",
+          "en": "triangular face"
+        },
+        {
+          "zh": "精细的面容",
+          "en": "detailed gorgeous face"
+        },
+        {
+          "zh": "精致五官",
+          "en": "delicate features"
         }
       ]
     },
@@ -347,6 +995,106 @@
         {
           "zh": "丸子头",
           "en": "hair_bun"
+        },
+        {
+          "zh": "黑色头发",
+          "en": "black hair"
+        },
+        {
+          "zh": "白色头发",
+          "en": "white hair"
+        },
+        {
+          "zh": "灰色头发",
+          "en": "grey hair"
+        },
+        {
+          "zh": "银色头发",
+          "en": "silver hair"
+        },
+        {
+          "zh": "金色头发",
+          "en": "blonde hair"
+        },
+        {
+          "zh": "浅棕色头发",
+          "en": "light brown hair"
+        },
+        {
+          "zh": "棕色头发",
+          "en": "brown hair"
+        },
+        {
+          "zh": "红色头发",
+          "en": "red hair"
+        },
+        {
+          "zh": "粉色头发",
+          "en": "pink hair"
+        },
+        {
+          "zh": "紫色头发",
+          "en": "purple hair"
+        },
+        {
+          "zh": "蓝色头发",
+          "en": "blue hair"
+        },
+        {
+          "zh": "浅蓝发",
+          "en": "light blue hair"
+        },
+        {
+          "zh": "深蓝发",
+          "en": "dark blue hair"
+        },
+        {
+          "zh": "绿色头发",
+          "en": "green hair"
+        },
+        {
+          "zh": "黄色头发",
+          "en": "yellow hair"
+        },
+        {
+          "zh": "双色头发",
+          "en": "two-tone hair"
+        },
+        {
+          "zh": "混色发",
+          "en": "multicolored hair"
+        },
+        {
+          "zh": "灰渐变发",
+          "en": "grey gradient hair"
+        },
+        {
+          "zh": "渐变色头发",
+          "en": "Gradation of hair"
+        },
+        {
+          "zh": "挑染的头发",
+          "en": "streaked hair"
+        },
+        {
+          "zh": "披下来的头发",
+          "en": "hair_down"
+        },
+        {
+          "zh": "散开的头发",
+          "en": "hair_spread_out"
+        },
+        {
+          "zh": "拨头发",
+          "en": "hair_flip"
+        },
+        {
+          "zh": "盘起来的头发",
+          "en": "hair_up"
+        },
+        {
+          "zh": "耳后有头发",
+          "en": "hair_behind_ear"
         }
       ]
     },
@@ -397,6 +1145,270 @@
         {
           "zh": "挑染",
           "en": "streaked_hair"
+        },
+        {
+          "zh": "卷发",
+          "en": "curly hair"
+        },
+        {
+          "zh": "自然卷",
+          "en": "wavy hair"
+        },
+        {
+          "zh": "短发",
+          "en": "short hair"
+        },
+        {
+          "zh": "中发",
+          "en": "medium hair"
+        },
+        {
+          "zh": "长发",
+          "en": "long hair"
+        },
+        {
+          "zh": "超长发",
+          "en": "very long hair"
+        },
+        {
+          "zh": "短马尾",
+          "en": "short ponytail"
+        },
+        {
+          "zh": "高马尾",
+          "en": "high ponytail"
+        },
+        {
+          "zh": "低马尾",
+          "en": "low ponytail"
+        },
+        {
+          "zh": "前马尾",
+          "en": "front ponytail"
+        },
+        {
+          "zh": "侧马尾",
+          "en": "Side ponytail"
+        },
+        {
+          "zh": "折迭马尾辫",
+          "en": "folded ponytail"
+        },
+        {
+          "zh": "马尾编发",
+          "en": "braided ponytail"
+        },
+        {
+          "zh": "四马尾",
+          "en": "quad tails"
+        },
+        {
+          "zh": "双辫子",
+          "en": "twin braids"
+        },
+        {
+          "zh": "低双辫",
+          "en": "low twin braids"
+        },
+        {
+          "zh": "侧织辫",
+          "en": "side braid"
+        },
+        {
+          "zh": "单辫",
+          "en": "single braid"
+        },
+        {
+          "zh": "冠型织辫",
+          "en": "crown braid"
+        },
+        {
+          "zh": "法式辫子",
+          "en": "french braid"
+        },
+        {
+          "zh": "钻头卷公主卷",
+          "en": "drill hair"
+        },
+        {
+          "zh": "双钻头发型",
+          "en": "twin_drills"
+        },
+        {
+          "zh": "双马尾",
+          "en": "bunches"
+        },
+        {
+          "zh": "发髻|团子头",
+          "en": "hair bun"
+        },
+        {
+          "zh": "单发髻",
+          "en": "single_hair_bun"
+        },
+        {
+          "zh": "俩包子头",
+          "en": "double_bun"
+        },
+        {
+          "zh": "辫子刘海",
+          "en": "braided bangs"
+        },
+        {
+          "zh": "辫子髻",
+          "en": "braided bun"
+        },
+        {
+          "zh": "锥形发髻",
+          "en": "cone hair bun"
+        },
+        {
+          "zh": "圆环发髻",
+          "en": "doughnut hair bun"
+        },
+        {
+          "zh": "心型发髻",
+          "en": "heart hair bun"
+        },
+        {
+          "zh": "波波头",
+          "en": "bob cut"
+        },
+        {
+          "zh": "波波头",
+          "en": "bob haircut"
+        },
+        {
+          "zh": "公主切",
+          "en": "hime cut"
+        },
+        {
+          "zh": "盘发",
+          "en": "updo"
+        },
+        {
+          "zh": "丸子头",
+          "en": "topknot"
+        },
+        {
+          "zh": "一侧绑发",
+          "en": "one side up"
+        },
+        {
+          "zh": "双侧绑发",
+          "en": "two side up"
+        },
+        {
+          "zh": "多绑头发",
+          "en": "multi-tied hair"
+        },
+        {
+          "zh": "长鬓角",
+          "en": "payot"
+        },
+        {
+          "zh": "动态头发",
+          "en": "dynamic hair"
+        },
+        {
+          "zh": "侧扫刘海",
+          "en": "swept bangs"
+        },
+        {
+          "zh": "交叉刘海",
+          "en": "crossed bangs"
+        },
+        {
+          "zh": "刘海",
+          "en": "bangs"
+        },
+        {
+          "zh": "齐刘海",
+          "en": "blunt bangs"
+        },
+        {
+          "zh": "斜刘海",
+          "en": "Slanted bangs"
+        },
+        {
+          "zh": "长刘海",
+          "en": "long bangs"
+        },
+        {
+          "zh": "空气刘海",
+          "en": "air bangs"
+        },
+        {
+          "zh": "不对称刘海",
+          "en": "asymmetric bangs"
+        },
+        {
+          "zh": "不对称刘海",
+          "en": "asymmetrical bangs"
+        },
+        {
+          "zh": "分刘海",
+          "en": "parted bangs"
+        },
+        {
+          "zh": "侧面空气刘海",
+          "en": "side_blunt_bangs"
+        },
+        {
+          "zh": "中分刘海",
+          "en": "centre parting bangs"
+        },
+        {
+          "zh": "中分刘海",
+          "en": "middle Fringe"
+        },
+        {
+          "zh": "蘑菇头|锅盖头",
+          "en": "bowl_cut"
+        },
+        {
+          "zh": "发翼",
+          "en": "hair_flaps"
+        },
+        {
+          "zh": "翼状头发",
+          "en": "hair wings"
+        },
+        {
+          "zh": "收拢",
+          "en": "hair in takes"
+        },
+        {
+          "zh": "翘发",
+          "en": "flipped hair"
+        },
+        {
+          "zh": "凌乱发型",
+          "en": "messy hair"
+        },
+        {
+          "zh": "蓬发",
+          "en": "disheveled hair"
+        },
+        {
+          "zh": "多根呆毛",
+          "en": "antenna hair"
+        },
+        {
+          "zh": "呆毛",
+          "en": "ahoge"
+        },
+        {
+          "zh": "露额头",
+          "en": "forehead"
+        },
+        {
+          "zh": "脏辫",
+          "en": "dreadlocks"
+        },
+        {
+          "zh": "湿发",
+          "en": "wet hair"
         }
       ]
     },
@@ -435,6 +1447,282 @@
         {
           "zh": "异色瞳",
           "en": "heterochromia"
+        },
+        {
+          "zh": "美丽的眼睛",
+          "en": "beautiful_detailed_eyes"
+        },
+        {
+          "zh": "水汪汪的眼睛",
+          "en": "glistening_eyes"
+        },
+        {
+          "zh": "星星眼",
+          "en": "sparkling_eyes"
+        },
+        {
+          "zh": "闪光动画眼",
+          "en": "sparkling_anime_eyes"
+        },
+        {
+          "zh": "渐变眼睛",
+          "en": "gradient_eyes"
+        },
+        {
+          "zh": "含泪的眼睛",
+          "en": "water_eyes"
+        },
+        {
+          "zh": "眼球反射（瞳孔对光线的反应）",
+          "en": "eye_relfection"
+        },
+        {
+          "zh": "反光的眼睛",
+          "en": "reflective_eyes"
+        },
+        {
+          "zh": "多彩多姿的眼睛",
+          "en": "multicolored_eyes"
+        },
+        {
+          "zh": "红色眼睛",
+          "en": "red eyes"
+        },
+        {
+          "zh": "绿色眼睛",
+          "en": "green eyes"
+        },
+        {
+          "zh": "紫色眼睛",
+          "en": "purple eyes"
+        },
+        {
+          "zh": "粉色眼睛",
+          "en": "pink eyes"
+        },
+        {
+          "zh": "黄色眼睛",
+          "en": "yellow eyes"
+        },
+        {
+          "zh": "橙色眼睛",
+          "en": "orange eyes"
+        },
+        {
+          "zh": "棕色的眼睛",
+          "en": "brown_eyes"
+        },
+        {
+          "zh": "浅棕色眼睛",
+          "en": "light_brown_eyes"
+        },
+        {
+          "zh": "银色的眼睛",
+          "en": "silver_eyes"
+        },
+        {
+          "zh": "灰色眼睛",
+          "en": "grey eyes"
+        },
+        {
+          "zh": "黑色眼睛",
+          "en": "black eyes"
+        },
+        {
+          "zh": "白色眼睛",
+          "en": "white eyes"
+        },
+        {
+          "zh": "水蓝色眼睛",
+          "en": "aqua_eyes"
+        },
+        {
+          "zh": "隐藏眼睛",
+          "en": "hidden eyes"
+        },
+        {
+          "zh": "心形眼睛",
+          "en": "heart-shaped eyes"
+        },
+        {
+          "zh": "心形眼",
+          "en": "heart_in_eye"
+        },
+        {
+          "zh": "无神的眼睛",
+          "en": "hollow_eyes"
+        },
+        {
+          "zh": "机械眼",
+          "en": "mechanical_eye"
+        },
+        {
+          "zh": "圈状眼睛",
+          "en": "ringed_eyes"
+        },
+        {
+          "zh": "钟眼",
+          "en": "clock_eyes"
+        },
+        {
+          "zh": "复眼",
+          "en": "compound_eyes"
+        },
+        {
+          "zh": "恶魔之眼",
+          "en": "devil_eyes"
+        },
+        {
+          "zh": "头足类眼睛",
+          "en": "cephalopod_eyes"
+        },
+        {
+          "zh": "不匹配巩膜",
+          "en": "mismatched_sclera"
+        },
+        {
+          "zh": "实心圆眼",
+          "en": "solid circle eyes"
+        },
+        {
+          "zh": "Q版实心椭圆眼睛",
+          "en": "solid_oval_eyes"
+        },
+        {
+          "zh": "动漫风格的眼睛",
+          "en": "anime_style_eyes"
+        },
+        {
+          "zh": "Q版腮红贴纸",
+          "en": "blush_stickers"
+        },
+        {
+          "zh": "纽扣眼睛",
+          "en": "button eyes"
+        },
+        {
+          "zh": "斗鸡眼",
+          "en": "cross eyed"
+        },
+        {
+          "zh": "空白的眼睛",
+          "en": "blank eyes"
+        },
+        {
+          "zh": "漩涡眼",
+          "en": "spiral_eyes"
+        },
+        {
+          "zh": "三白症(瞳孔偏移)",
+          "en": "sanpaku"
+        },
+        {
+          "zh": "焰目",
+          "en": "flaming_eye"
+        },
+        {
+          "zh": "布满血丝的眼睛",
+          "en": "bloodshot_eyes"
+        },
+        {
+          "zh": "血从眼里流出",
+          "en": "blood_from_eyes"
+        },
+        {
+          "zh": "多只眼睛",
+          "en": "extra_eyes"
+        },
+        {
+          "zh": "独眼",
+          "en": "one-eyed"
+        },
+        {
+          "zh": "第三只眼",
+          "en": "third_eye"
+        },
+        {
+          "zh": "荷鲁斯之眼",
+          "en": "eye_of_horus"
+        },
+        {
+          "zh": "闭上的眼睛",
+          "en": "closed_eyes"
+        },
+        {
+          "zh": "半闭的眼睛(单眼)",
+          "en": "half_closed_eye"
+        },
+        {
+          "zh": "半闭的双眼",
+          "en": "half_closed_eyes"
+        },
+        {
+          "zh": "眯起眼睛",
+          "en": "narrowed_eyes"
+        },
+        {
+          "zh": "眯起眼睛看",
+          "en": "squinting"
+        },
+        {
+          "zh": "眼泪",
+          "en": "tears"
+        },
+        {
+          "zh": "上翘的眼睛",
+          "en": "upturned_eyes"
+        },
+        {
+          "zh": "闭眼",
+          "en": "eyes_closed"
+        },
+        {
+          "zh": "一只眼被遮住",
+          "en": "one_eye_covered"
+        },
+        {
+          "zh": "蒙住的眼睛",
+          "en": "covered_eyes"
+        },
+        {
+          "zh": "头发遮着双眼",
+          "en": "hair_over_eyes"
+        },
+        {
+          "zh": "头发遮住了一只眼睛",
+          "en": "hair_over_one_eye"
+        },
+        {
+          "zh": "透过头发可以看到的眼睛",
+          "en": "eyes_visible_through_hair"
+        },
+        {
+          "zh": "涂眼影的眼睛",
+          "en": "shading eyes"
+        },
+        {
+          "zh": "一只眼睛闭着",
+          "en": "one eye closed"
+        },
+        {
+          "zh": "去掉了(原设有的)蒙眼要素",
+          "en": "no_blindfold"
+        },
+        {
+          "zh": "去掉了(原设有的)眼罩",
+          "en": "no_eyepatch"
+        },
+        {
+          "zh": "眼线",
+          "en": "eyeliner"
+        },
+        {
+          "zh": "没眼睛",
+          "en": "no_eyes"
+        },
+        {
+          "zh": "大小眼",
+          "en": "uneven_eyes"
         }
       ]
     },
@@ -465,6 +1753,134 @@
         {
           "zh": "惊讶",
           "en": "surprised"
+        },
+        {
+          "zh": "化妆",
+          "en": "makeup"
+        },
+        {
+          "zh": "眼影",
+          "en": "eyeshadow"
+        },
+        {
+          "zh": "红色眼影",
+          "en": "red eyeshadow"
+        },
+        {
+          "zh": "蓝色眼影",
+          "en": "blue eyeshadow"
+        },
+        {
+          "zh": "紫色眼影",
+          "en": "purple eyeshadow"
+        },
+        {
+          "zh": "粉色眼影",
+          "en": "pink eyeshadow"
+        },
+        {
+          "zh": "绿色眼影",
+          "en": "green eyeshadow"
+        },
+        {
+          "zh": "睫毛膏",
+          "en": "mascara"
+        },
+        {
+          "zh": "长睫毛",
+          "en": "long_eyelashes"
+        },
+        {
+          "zh": "彩色睫毛",
+          "en": "colored_eyelashes"
+        },
+        {
+          "zh": "唇彩",
+          "en": "lipgloss"
+        },
+        {
+          "zh": "红唇",
+          "en": "red_lips"
+        },
+        {
+          "zh": "动画式脸红",
+          "en": "anime_style_blush"
+        },
+        {
+          "zh": "鼻腮红",
+          "en": "nose_blush"
+        },
+        {
+          "zh": "痣",
+          "en": "mole"
+        },
+        {
+          "zh": "眼睛下方的痣",
+          "en": "mole_under_eye"
+        },
+        {
+          "zh": "疤痕",
+          "en": "scar"
+        },
+        {
+          "zh": "眼睛上的疤痕",
+          "en": "scar_across_eye"
+        },
+        {
+          "zh": "面部有图案",
+          "en": "facial_mark"
+        },
+        {
+          "zh": "额头有图案",
+          "en": "forehead_mark"
+        },
+        {
+          "zh": "头部愤怒符号",
+          "en": "anger_vein"
+        },
+        {
+          "zh": "眼袋",
+          "en": "bags_under_eyes"
+        },
+        {
+          "zh": "脸上有瘀伤",
+          "en": "bruise_on_face"
+        },
+        {
+          "zh": "胡须斑纹",
+          "en": "whisker_markings"
+        },
+        {
+          "zh": "面部涂装",
+          "en": "facepaint"
+        },
+        {
+          "zh": "眸间发",
+          "en": "hair between eyes"
+        },
+        {
+          "zh": "烟斗",
+          "en": "smoking_pipe"
+        },
+        {
+          "zh": "小胡子",
+          "en": "mustache"
+        },
+        {
+          "zh": "山羊胡",
+          "en": "goatee"
+        },
+        {
+          "zh": "食物在脸上",
+          "en": "food_on_face"
+        },
+        {
+          "zh": "饭在脸上",
+          "en": "rice_on_face"
+        },
+        {
+          "zh": "奶油在脸上",
+          "en": "cream_on_face"
         }
       ]
     },
@@ -487,6 +1903,1008 @@
         {
           "zh": "机械翅膀",
           "en": "mechanical_wings"
+        },
+        {
+          "zh": "翅膀",
+          "en": "wings"
+        },
+        {
+          "zh": "蝙蝠翅膀",
+          "en": "bat_wings"
+        },
+        {
+          "zh": "黑色之翼",
+          "en": "black_wings"
+        },
+        {
+          "zh": "不对称的翅膀",
+          "en": "asymmetrical_wings"
+        },
+        {
+          "zh": "不与本体相连的翅膀",
+          "en": "detached_wings"
+        },
+        {
+          "zh": "妖精的翅膀",
+          "en": "fairy_wings"
+        },
+        {
+          "zh": "仿造的翅膀",
+          "en": "fake_wings"
+        },
+        {
+          "zh": "燃烧着的翅膀",
+          "en": "fiery_wings"
+        },
+        {
+          "zh": "昆虫翅膀",
+          "en": "insect_wings"
+        },
+        {
+          "zh": "大翅膀",
+          "en": "large_wings"
+        },
+        {
+          "zh": "腰间的翅膀",
+          "en": "low_wings"
+        },
+        {
+          "zh": "迷你翅膀",
+          "en": "mini_wings"
+        },
+        {
+          "zh": "有多种颜色的翅膀",
+          "en": "multicolored_wings"
+        },
+        {
+          "zh": "多对翅膀",
+          "en": "multiple_wings"
+        },
+        {
+          "zh": "去掉了(原设有的)翅膀",
+          "en": "no_wings"
+        },
+        {
+          "zh": "带翅膀的头盔",
+          "en": "winged_helmet"
+        }
+      ]
+    },
+    {
+      "id": "cat_1",
+      "name": "耳朵",
+      "tags": [
+        {
+          "zh": "精灵耳朵",
+          "en": "elf ears"
+        },
+        {
+          "zh": "尖耳朵",
+          "en": "pointy_ears"
+        },
+        {
+          "zh": "长尖耳朵",
+          "en": "long_pointy_ears"
+        },
+        {
+          "zh": "恶魔耳朵",
+          "en": "demon ears"
+        },
+        {
+          "zh": "天使耳朵",
+          "en": "angel ears"
+        },
+        {
+          "zh": "外星人耳朵",
+          "en": "alien ears"
+        },
+        {
+          "zh": "兽耳",
+          "en": "animal_ears"
+        },
+        {
+          "zh": "假兽耳",
+          "en": "fake_animal_ears"
+        },
+        {
+          "zh": "耳朵穿过帽子或头饰",
+          "en": "ears_through_headwear"
+        },
+        {
+          "zh": "耳朵通红",
+          "en": "ear_blush"
+        },
+        {
+          "zh": "耳饰",
+          "en": "ear_ornament"
+        },
+        {
+          "zh": "耳洞",
+          "en": "ear_piercing"
+        },
+        {
+          "zh": "动物耳朵绒毛",
+          "en": "animal_ear_fluff"
+        },
+        {
+          "zh": "垂耳",
+          "en": "ears_down"
+        },
+        {
+          "zh": "松软的耳朵",
+          "en": "floppy_ears"
+        },
+        {
+          "zh": "狐狸耳朵",
+          "en": "fox_ears"
+        },
+        {
+          "zh": "猫耳朵",
+          "en": "cat_ears"
+        },
+        {
+          "zh": "狗耳朵",
+          "en": "dog_ears"
+        },
+        {
+          "zh": "郊狼耳朵",
+          "en": "coyote_ears"
+        },
+        {
+          "zh": "兔耳",
+          "en": "bunny_ears"
+        },
+        {
+          "zh": "老鼠耳朵",
+          "en": "mouse_ears"
+        },
+        {
+          "zh": "松鼠耳朵",
+          "en": "squirrel_ears"
+        },
+        {
+          "zh": "浣熊耳朵",
+          "en": "raccoon_ears"
+        },
+        {
+          "zh": "熊耳朵",
+          "en": "bear_ears"
+        },
+        {
+          "zh": "熊猫耳朵",
+          "en": "panda_ears"
+        },
+        {
+          "zh": "狮子耳朵",
+          "en": "lion_ears"
+        },
+        {
+          "zh": "美洲豹耳朵",
+          "en": "jaguar_ears"
+        },
+        {
+          "zh": "虎耳",
+          "en": "tiger_ears"
+        },
+        {
+          "zh": "狼耳朵",
+          "en": "wolf ears"
+        },
+        {
+          "zh": "马耳",
+          "en": "horse_ears"
+        },
+        {
+          "zh": "牛耳朵",
+          "en": "cow ears"
+        },
+        {
+          "zh": "猪耳朵",
+          "en": "pig ears"
+        },
+        {
+          "zh": "羊耳朵",
+          "en": "sheep ears"
+        },
+        {
+          "zh": "山羊耳朵",
+          "en": "goat ears"
+        },
+        {
+          "zh": "山羊角",
+          "en": "goat_horns"
+        },
+        {
+          "zh": "弯角",
+          "en": "curled_horns"
+        },
+        {
+          "zh": "角上的头发",
+          "en": "hair_on_horn"
+        },
+        {
+          "zh": "鹿耳朵",
+          "en": "deer ears"
+        },
+        {
+          "zh": "羚羊耳朵",
+          "en": "antelope ears"
+        },
+        {
+          "zh": "鹿角",
+          "en": "antlers"
+        },
+        {
+          "zh": "犀牛耳朵",
+          "en": "rhino ears"
+        },
+        {
+          "zh": "大象耳朵",
+          "en": "elephant ears"
+        },
+        {
+          "zh": "蝙蝠耳朵",
+          "en": "bat_ears"
+        },
+        {
+          "zh": "额外的耳朵",
+          "en": "extra_ears"
+        },
+        {
+          "zh": "羊驼耳",
+          "en": "alpaca_ears"
+        },
+        {
+          "zh": "龙耳朵",
+          "en": "dragon ears"
+        },
+        {
+          "zh": "机械耳",
+          "en": "robot_ears"
+        },
+        {
+          "zh": "龙角",
+          "en": "dragon_horns"
+        },
+        {
+          "zh": "鬼角",
+          "en": "oni_horns"
+        },
+        {
+          "zh": "兽角",
+          "en": "horns"
+        },
+        {
+          "zh": "假角",
+          "en": "fake_horns"
+        }
+      ]
+    },
+    {
+      "id": "cat_2",
+      "name": "眉毛",
+      "tags": [
+        {
+          "zh": "浓眉",
+          "en": "thick eyebrows"
+        },
+        {
+          "zh": "眉毛翘起",
+          "en": "cocked eyebrow"
+        },
+        {
+          "zh": "短眉毛",
+          "en": "short eyebrows"
+        },
+        {
+          "zh": "V字眉",
+          "en": "v-shaped eyebrows"
+        }
+      ]
+    },
+    {
+      "id": "cat_3",
+      "name": "瞳孔",
+      "tags": [
+        {
+          "zh": "瞳孔",
+          "en": "pupils"
+        },
+        {
+          "zh": "明亮的瞳孔",
+          "en": "bright_pupils"
+        },
+        {
+          "zh": "蓝色瞳孔",
+          "en": "blue_pupils"
+        },
+        {
+          "zh": "紫色瞳孔",
+          "en": "purple_pupils"
+        },
+        {
+          "zh": "橙色瞳孔",
+          "en": "orange_pupils"
+        },
+        {
+          "zh": "不匹配的瞳孔",
+          "en": "mismatched_pupils"
+        },
+        {
+          "zh": "Q版实心圆瞳孔",
+          "en": "solid_circle_pupils"
+        },
+        {
+          "zh": "瞳孔散大",
+          "en": "dilated_pupils"
+        },
+        {
+          "zh": "收缩的瞳孔",
+          "en": "constricted_pupils"
+        },
+        {
+          "zh": "竖的瞳孔/猫眼",
+          "en": "slit_pupils"
+        },
+        {
+          "zh": "蛇瞳（瞳孔闪光）",
+          "en": "snake_pupils"
+        },
+        {
+          "zh": "水平瞳孔",
+          "en": "horizontal_pupils"
+        },
+        {
+          "zh": "长方形瞳孔",
+          "en": "rectangular_pupils"
+        },
+        {
+          "zh": "方形瞳孔",
+          "en": "square_pupils"
+        },
+        {
+          "zh": "点瞳孔",
+          "en": "dot_pupils"
+        },
+        {
+          "zh": "五角星形状瞳孔",
+          "en": "star-shaped_pupils"
+        },
+        {
+          "zh": "花状瞳孔",
+          "en": "flower-shaped pupils"
+        },
+        {
+          "zh": "爱心形瞳孔",
+          "en": "heart-shaped_pupils"
+        },
+        {
+          "zh": "钻石形状瞳孔",
+          "en": "diamond-shaped_pupils"
+        },
+        {
+          "zh": "蝴蝶形瞳孔",
+          "en": "butterfly-shaped_pupils"
+        },
+        {
+          "zh": "符号形瞳孔",
+          "en": "symbol-shaped_pupils"
+        },
+        {
+          "zh": "X形瞳孔",
+          "en": "x-shaped_pupils"
+        },
+        {
+          "zh": "十字形瞳孔",
+          "en": "cross-shaped_pupils"
+        },
+        {
+          "zh": "十字星星眼",
+          "en": "\"+_+\""
+        },
+        {
+          "zh": "额外的瞳孔",
+          "en": "extra_pupils"
+        },
+        {
+          "zh": "没有瞳孔",
+          "en": "no_pupils"
+        },
+        {
+          "zh": "魔瞳",
+          "en": "devil pupils"
+        },
+        {
+          "zh": "瞳孔闪烁",
+          "en": "pupils sparkling"
+        },
+        {
+          "zh": "眼睛里有符号",
+          "en": "symbol_in_eye"
+        },
+        {
+          "zh": "眼睛里的星星",
+          "en": "star_in_eye"
+        },
+        {
+          "zh": "虚线的眼睛",
+          "en": "dashed_eyes"
+        },
+        {
+          "zh": "美瞳",
+          "en": "color contact lenses"
+        }
+      ]
+    },
+    {
+      "id": "cat_4",
+      "name": "眼神",
+      "tags": [
+        {
+          "zh": "明亮的眼睛",
+          "en": "light_eyes"
+        },
+        {
+          "zh": "发光的眼睛",
+          "en": "glowing_eyes"
+        },
+        {
+          "zh": "闪亮的眼睛",
+          "en": "shiny_eyes"
+        },
+        {
+          "zh": "邪恶的眼睛",
+          "en": "evil_eyes"
+        },
+        {
+          "zh": "疯狂的眼睛",
+          "en": "crazy_eyes"
+        },
+        {
+          "zh": "空洞的眼睛",
+          "en": "empty_eyes"
+        },
+        {
+          "zh": "坚定的眼睛",
+          "en": "solid_eyes"
+        },
+        {
+          "zh": "锐利的眼",
+          "en": "sharp_eyes"
+        },
+        {
+          "zh": "锐利的眼睛",
+          "en": "slanted_eyes"
+        },
+        {
+          "zh": "眨眼",
+          "en": "wink"
+        },
+        {
+          "zh": "睁大眼睛",
+          "en": "wide-eyed"
+        },
+        {
+          "zh": "眼中闪现强烈的情感",
+          "en": "glint"
+        },
+        {
+          "zh": "眼尾上扬",
+          "en": "tsurime"
+        },
+        {
+          "zh": "眼尾下垂",
+          "en": "tareme"
+        }
+      ]
+    },
+    {
+      "id": "cat_5",
+      "name": "鼻子",
+      "tags": [
+        {
+          "zh": "尖鼻子",
+          "en": "pointed nose"
+        },
+        {
+          "zh": "小鼻子",
+          "en": "small nose"
+        },
+        {
+          "zh": "大鼻子",
+          "en": "big nose"
+        },
+        {
+          "zh": "没鼻子的",
+          "en": "no_nose"
+        },
+        {
+          "zh": "点状鼻",
+          "en": "dot_nose"
+        },
+        {
+          "zh": "鼻泡",
+          "en": "nose_bubble"
+        },
+        {
+          "zh": "闻",
+          "en": "smelling"
+        },
+        {
+          "zh": "鼻子",
+          "en": "nose"
+        },
+        {
+          "zh": "流鼻血",
+          "en": "nosebleed"
+        },
+        {
+          "zh": "鼻涕",
+          "en": "snot"
+        },
+        {
+          "zh": "动物口鼻部",
+          "en": "snout"
+        }
+      ]
+    },
+    {
+      "id": "cat_6",
+      "name": "嘴巴",
+      "tags": [
+        {
+          "zh": "厚嘴唇",
+          "en": "thick lips"
+        },
+        {
+          "zh": "肿嘴唇",
+          "en": "puffy lips"
+        },
+        {
+          "zh": "口红",
+          "en": "lipstick"
+        },
+        {
+          "zh": "心形嘴",
+          "en": "heart-shaped mouth"
+        },
+        {
+          "zh": "嘟嘴",
+          "en": "pout"
+        },
+        {
+          "zh": "嘴下痣",
+          "en": "mole under mouth"
+        },
+        {
+          "zh": "张嘴",
+          "en": "open_mouth"
+        },
+        {
+          "zh": "喘气（张大嘴）",
+          "en": "gasping"
+        },
+        {
+          "zh": "嘴巴微微张开",
+          "en": "Slightly_open_mouth"
+        },
+        {
+          "zh": "波浪嘴",
+          "en": "wavy_mouth"
+        },
+        {
+          "zh": "闭嘴",
+          "en": "close_mouth"
+        },
+        {
+          "zh": "点嘴",
+          "en": "dot_mouth"
+        },
+        {
+          "zh": "没有嘴",
+          "en": "no_mouth"
+        },
+        {
+          "zh": "堵嘴",
+          "en": "gag"
+        },
+        {
+          "zh": "啃",
+          "en": "gnaw"
+        },
+        {
+          "zh": "猫嘴",
+          "en": ":3"
+        },
+        {
+          "zh": "张嘴",
+          "en": ":o"
+        },
+        {
+          "zh": "V嘴",
+          "en": ":>"
+        },
+        {
+          "zh": "嘴唇张开",
+          "en": "parted_lips"
+        },
+        {
+          "zh": "勒住嘴",
+          "en": "bit_gag"
+        },
+        {
+          "zh": "栗子嘴",
+          "en": "chestnut_mouth"
+        },
+        {
+          "zh": "被封住嘴",
+          "en": "cleave_gag"
+        },
+        {
+          "zh": "闭着的嘴",
+          "en": "closed_mouth"
+        },
+        {
+          "zh": "蒙住的嘴",
+          "en": "covered_mouth"
+        },
+        {
+          "zh": "有多张嘴巴",
+          "en": "extra_mouth"
+        },
+        {
+          "zh": "嘴里有食物",
+          "en": "food_in_mouth"
+        },
+        {
+          "zh": "嘴里有头发",
+          "en": "hair_in_mouth"
+        },
+        {
+          "zh": "将系头发的东西叼在嘴里",
+          "en": "hair_tie_in_mouth"
+        },
+        {
+          "zh": "嘟嘴|抿嘴",
+          "en": "homu"
+        },
+        {
+          "zh": "嘴唇",
+          "en": "lips"
+        },
+        {
+          "zh": "嘴",
+          "en": "mouth"
+        },
+        {
+          "zh": "用嘴叼着",
+          "en": "mouth_hold"
+        },
+        {
+          "zh": "用嘴",
+          "en": "oral"
+        },
+        {
+          "zh": "奶嘴",
+          "en": "pacifier"
+        },
+        {
+          "zh": "撅起的嘴唇",
+          "en": "Pouted lips"
+        },
+        {
+          "zh": "把嘴画在侧脸",
+          "en": "sideways_mouth"
+        },
+        {
+          "zh": "嘴里含着勺子",
+          "en": "spoon_in_mouth"
+        },
+        {
+          "zh": "三角嘴",
+          "en": "triangle_mouth"
+        },
+        {
+          "zh": "唾液",
+          "en": "saliva"
+        },
+        {
+          "zh": "流口水",
+          "en": "drooling"
+        },
+        {
+          "zh": "嘴角画着口水滴形状的缺口",
+          "en": "mouth_drool"
+        }
+      ]
+    },
+    {
+      "id": "cat_7",
+      "name": "牙齿",
+      "tags": [
+        {
+          "zh": "牙",
+          "en": "tooth"
+        },
+        {
+          "zh": "上牙",
+          "en": "upper_teeth"
+        },
+        {
+          "zh": "虎牙|尖牙",
+          "en": "fangs"
+        },
+        {
+          "zh": "肤色虎牙",
+          "en": "skin_fang"
+        },
+        {
+          "zh": "圆齿",
+          "en": "round_teeth"
+        },
+        {
+          "zh": "锋利的牙齿",
+          "en": "sharp_teeth"
+        },
+        {
+          "zh": "咬紧牙关",
+          "en": "clenched_teeth"
+        },
+        {
+          "zh": "龅牙",
+          "en": "buck_teeth"
+        },
+        {
+          "zh": "露出虎牙|露出尖牙",
+          "en": "fang_out"
+        },
+        {
+          "zh": "狼牙棒",
+          "en": "spiked_club"
+        },
+        {
+          "zh": "牙刷",
+          "en": "toothbrush"
+        },
+        {
+          "zh": "象牙",
+          "en": "tusks"
+        },
+        {
+          "zh": "鲨鱼牙",
+          "en": "shark_mouth"
+        }
+      ]
+    },
+    {
+      "id": "cat_8",
+      "name": "舌头",
+      "tags": [
+        {
+          "zh": "舌头放在上唇",
+          "en": ":q"
+        },
+        {
+          "zh": "舌头放在下唇",
+          "en": ":p"
+        },
+        {
+          "zh": "眨眼舌头上伸",
+          "en": ";p"
+        },
+        {
+          "zh": "舌吻|法式湿吻",
+          "en": "french_kiss"
+        },
+        {
+          "zh": "长舌头",
+          "en": "long_tongue"
+        },
+        {
+          "zh": "舌头",
+          "en": "tongue"
+        },
+        {
+          "zh": "吐舌头",
+          "en": "tongue_out"
+        },
+        {
+          "zh": "小舌头|口盖垂|悬雍垂",
+          "en": "uvula"
+        }
+      ]
+    },
+    {
+      "id": "cat_9",
+      "name": "指甲",
+      "tags": [
+        {
+          "zh": "手指甲",
+          "en": "fingernails"
+        },
+        {
+          "zh": "脚趾甲",
+          "en": "toenails"
+        },
+        {
+          "zh": "指甲油",
+          "en": "nail_polish"
+        },
+        {
+          "zh": "脚趾甲油",
+          "en": "toenail_polish"
+        },
+        {
+          "zh": "黑指甲",
+          "en": "black_nails"
+        },
+        {
+          "zh": "红指甲",
+          "en": "red_nails"
+        },
+        {
+          "zh": "粉色指甲",
+          "en": "pink_nails"
+        },
+        {
+          "zh": "长指甲",
+          "en": "long_fingernails"
+        },
+        {
+          "zh": "钉子|指甲",
+          "en": "nail"
+        },
+        {
+          "zh": "多彩指甲",
+          "en": "multicolored_nails"
+        },
+        {
+          "zh": "美甲",
+          "en": "nail_art"
+        }
+      ]
+    },
+    {
+      "id": "cat_10",
+      "name": "肩部",
+      "tags": [
+        {
+          "zh": "赤肩",
+          "en": "bare shoulders"
+        },
+        {
+          "zh": "锁骨",
+          "en": "collarbonea"
+        },
+        {
+          "zh": "腋下",
+          "en": "armpits"
+        },
+        {
+          "zh": "腋窝皱痕",
+          "en": "armpit_crease"
+        }
+      ]
+    },
+    {
+      "id": "cat_11",
+      "name": "胸部",
+      "tags": [
+        {
+          "zh": "胸部",
+          "en": "chest"
+        },
+        {
+          "zh": "贫乳(A)",
+          "en": "flat chest"
+        },
+        {
+          "zh": "小胸部(B)",
+          "en": "small_breasts"
+        },
+        {
+          "zh": "中等胸部(C)",
+          "en": "medium breasts"
+        },
+        {
+          "zh": "大胸部(D)",
+          "en": "big breasts"
+        },
+        {
+          "zh": "巨乳(E)",
+          "en": "huge breasts"
+        },
+        {
+          "zh": "超巨乳(F)",
+          "en": "gigantic breasts"
+        },
+        {
+          "zh": "胸部分开",
+          "en": "breasts apart"
+        },
+        {
+          "zh": "下垂",
+          "en": "hanging breasts"
+        },
+        {
+          "zh": "晃动",
+          "en": "bouncing breasts"
+        },
+        {
+          "zh": "乳沟",
+          "en": "cleavage"
+        },
+        {
+          "zh": "乳晕",
+          "en": "areola"
+        },
+        {
+          "zh": "乳头",
+          "en": "nipples"
+        },
+        {
+          "zh": "胸肌",
+          "en": "pectorals"
+        },
+        {
+          "zh": "大胸肌",
+          "en": "large_pectorals"
+        },
+        {
+          "zh": "半露前胸",
+          "en": "unbuttoned clothes"
+        }
+      ]
+    },
+    {
+      "id": "cat_12",
+      "name": "腹部",
+      "tags": [
+        {
+          "zh": "肚子",
+          "en": "belly"
+        },
+        {
+          "zh": "腹肌",
+          "en": "absolute_territory"
+        },
+        {
+          "zh": "隆起的腹部",
+          "en": "inflation"
+        },
+        {
+          "zh": "肚脐",
+          "en": "navel"
+        },
+        {
+          "zh": "腹股沟",
+          "en": "groin"
+        },
+        {
+          "zh": "身体上有食物",
+          "en": "food_on_body"
+        }
+      ]
+    },
+    {
+      "id": "cat_13",
+      "name": "脚",
+      "tags": [
+        {
+          "zh": "脚",
+          "en": "feet"
+        },
+        {
+          "zh": "大长腿",
+          "en": "long_legs"
+        },
+        {
+          "zh": "粗壮的大腿",
+          "en": "thick_thighs"
+        },
+        {
+          "zh": "趾尖|脚尖",
+          "en": "toe-point"
         }
       ]
     }
