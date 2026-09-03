@@ -131,9 +131,45 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border-color: var(--accent);
   font-weight: 600;
 }
+.pp-tag { position: relative; }
 .pp-tag .zh { color: var(--textPrimary); }
-.pp-tag .en { color: var(--textSecondary); font-size: 12px; }
-.pp-tag.active .en { color: rgba(22,23,28,0.6); }
+/* 悬浮英文提示 */
+.pp-tag::after {
+  content: attr(data-en);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: #2b2b33;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-family: 'Consolas', 'Monaco', monospace;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s, transform 0.15s;
+  z-index: 50;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.pp-tag::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 3px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  border: 5px solid transparent;
+  border-top-color: #2b2b33;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s, transform 0.15s;
+  z-index: 50;
+}
+.pp-tag:hover::after, .pp-tag:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
 
 /* 提示词区域 */
 .pp-mixer {
@@ -163,6 +199,44 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .pp-textarea:focus { border-color: var(--accent); }
 .pp-textarea::placeholder { color: var(--textSecondary); }
+
+/* 中英双栏 */
+.pp-mixer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.pp-side-label {
+  font-size: 12px; font-weight: 600;
+  color: var(--textSecondary);
+  margin-bottom: 6px;
+  display: flex; align-items: center; gap: 6px;
+}
+.pp-side-label .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  display: inline-block;
+}
+.pp-side-label .dot.zh-dot { background: #ff7a45; }
+.pp-side-label .dot.en-dot { background: #45a8ff; }
+.pp-mirror {
+  min-height: 100px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 15px;
+  line-height: 1.7;
+  background: rgba(22,23,28,0.02);
+  color: var(--textPrimary);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.pp-mirror:empty::before {
+  content: '点标签后这里显示中文提示词';
+  color: var(--textSecondary);
+  font-size: 14px;
+}
+.pp-mirror .mirror-extra { color: var(--textSecondary); }
+.pp-mirror .mirror-sep { color: rgba(22,23,28,0.2); margin: 0 2px; }
 .pp-mixer-tools {
   display: flex; flex-wrap: wrap; gap: 8px;
   margin-top: 14px;
@@ -258,6 +332,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .pp-header h1 { font-size: 24px; }
   .pp-nav a { padding: 6px 10px; font-size: 13px; }
   .pp-tray { padding: 16px; }
+  .pp-mixer-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -299,7 +374,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <span class="pp-mixer-title">提示词</span>
       <span class="pp-mixer-counter" id="counter">0 / 380</span>
     </div>
-    <textarea class="pp-textarea" id="prompt-area" placeholder="点标签自动拼好，也可以直接在这里写"></textarea>
+    <div class="pp-mixer-grid">
+      <div>
+        <div class="pp-side-label"><span class="dot zh-dot"></span>中文</div>
+        <div class="pp-mirror" id="prompt-zh"></div>
+      </div>
+      <div>
+        <div class="pp-side-label"><span class="dot en-dot"></span>English</div>
+        <textarea class="pp-textarea" id="prompt-area" placeholder="点标签自动拼好，也可以直接在这里写"></textarea>
+      </div>
+    </div>
     <div class="pp-mixer-tools" id="tools"></div>
     <div class="pp-translate-area" id="translate-area">
       <input type="text" class="pp-translate-input" id="translate-input" placeholder="输入中文，翻译后自动填入提示词，例：夕阳下的猫">
@@ -326,20 +410,39 @@ var currentSubject = 0;
 var currentCategory = 0;
 var maxChars = 380;
 var subjectCache = {};   // 已懒加载的主体数据，按 id 缓存
+var tagZhMap = {};       // 英文标签 → 中文映射（用于左侧中文栏）
+
+function escapeHtml(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+// 读取提示词框中所有片段
+function getPromptParts() {
+  return document.getElementById('prompt-area').value
+    .split(',').map(function(s) { return s.trim(); }).filter(Boolean);
+}
+
+function syncSelected() {
+  selectedTags.clear();
+  getPromptParts().forEach(function(p) { selectedTags.add(p); });
+}
+
+// 左侧中文栏：已知标签显示中文，手动输入/工具追加片段灰色原样显示
+function updateMirror() {
+  var parts = getPromptParts();
+  var el = document.getElementById('prompt-zh');
+  el.innerHTML = parts.map(function(p) {
+    var zh = tagZhMap[p];
+    if (zh) return escapeHtml(zh);
+    return '<span class="mirror-extra">' + escapeHtml(p) + '</span>';
+  }).join('<span class="mirror-sep">、</span>');
+}
 
 function showToast(msg) {
   var t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
   setTimeout(function() { t.classList.remove('show'); }, 2000);
-}
-
-function updatePrompt() {
-  var tags = Array.from(selectedTags);
-  var text = tags.join(', ');
-  var area = document.getElementById('prompt-area');
-  area.value = text;
-  updateCounter();
 }
 
 function updateCounter() {
@@ -389,6 +492,10 @@ function loadSubject(idx, cb) {
     })
     .then(function(subject) {
       subjectCache[meta.id] = subject;
+      // 注册该主体所有标签的中英映射，供左侧中文栏使用
+      subject.categories.forEach(function(c) {
+        c.tags.forEach(function(t) { tagZhMap[t.en] = t.zh; });
+      });
       cb(subject);
     })
     .catch(function(err) {
@@ -442,24 +549,30 @@ function renderTags() {
   var category = subject.categories[currentCategory];
   var el = document.getElementById('tag-group');
   el.innerHTML = category.tags.map(function(tag) {
-    var key = tag.en;
-    var active = selectedTags.has(key) ? ' active' : '';
-    return '<button class="pp-tag' + active + '" data-en="' + tag.en + '" data-zh="' + tag.zh + '">' +
+    var active = selectedTags.has(tag.en) ? ' active' : '';
+    return '<button class="pp-tag' + active + '" data-en="' + tag.en + '" data-zh="' + tag.zh + '" title="">' +
       '<span class="zh">' + tag.zh + '</span>' +
-      '<span class="en">' + tag.en + '</span>' +
     '</button>';
   }).join('');
   el.querySelectorAll('.pp-tag').forEach(function(btn) {
     btn.addEventListener('click', function() {
       var en = this.dataset.en;
-      if (selectedTags.has(en)) {
-        selectedTags.delete(en);
+      var zh = this.dataset.zh;
+      tagZhMap[en] = zh;  // 记住中英映射
+      var area = document.getElementById('prompt-area');
+      var parts = getPromptParts();
+      var idx = parts.indexOf(en);
+      if (idx >= 0) {
+        parts.splice(idx, 1);
         this.classList.remove('active');
       } else {
-        selectedTags.add(en);
+        parts.push(en);
         this.classList.add('active');
       }
-      updatePrompt();
+      area.value = parts.join(', ');
+      syncSelected();
+      updateCounter();
+      updateMirror();
     });
   });
 }
@@ -485,6 +598,7 @@ function handleTool(id) {
     selectedTags.clear();
     area.value = '';
     updateCounter();
+    updateMirror();
     renderTags();
     showToast('已清空');
   } else if (id === 'copy') {
@@ -505,25 +619,37 @@ function handleTool(id) {
   } else if (id === 'negative') {
     if (tool && tool.prompt) {
       area.value = tool.prompt;
-      selectedTags.clear();
+      syncSelected();
       renderTags();
       updateCounter();
+      updateMirror();
       showToast('已填入负面词');
     }
   } else if (id === 'lighting' || id === 'quality') {
     if (tool && tool.prompt) {
+      // 为追加片段注册中文映射
+      var zhMap = id === 'lighting'
+        ? { 'professional lighting': '专业布光', 'soft box lighting': '柔光箱光', 'rim light': '轮廓光', 'studio lighting': '摄影棚灯光' }
+        : { 'masterpiece': '杰作', 'best quality': '最佳品质', 'highly detailed': '高度细节', 'ultra-detailed': '超高细节', '8k': '8K分辨率', 'highres': '高分辨率' };
+      Object.keys(zhMap).forEach(function(k) { tagZhMap[k] = zhMap[k]; });
       var current = area.value.trim();
       area.value = current ? current + ', ' + tool.prompt : tool.prompt;
+      syncSelected();
       updateCounter();
+      updateMirror();
       showToast('已添加「' + tool.label + '」');
     }
   } else if (id === 'random_color') {
-    var colors = ['red', 'blue', 'green', 'purple', 'pink', 'orange', 'cyan', 'gold', 'silver', 'teal'];
+    var colorZh = { red: '红色', blue: '蓝色', green: '绿色', purple: '紫色', pink: '粉色', orange: '橙色', cyan: '青色', gold: '金色', silver: '银色', teal: '青色' };
+    var colors = Object.keys(colorZh);
     var pick = colors[Math.floor(Math.random() * colors.length)];
+    tagZhMap[pick] = colorZh[pick];
     var current2 = area.value.trim();
     area.value = current2 ? current2 + ', ' + pick : pick;
+    syncSelected();
     updateCounter();
-    showToast('已随机添加颜色: ' + pick);
+    updateMirror();
+    showToast('已随机添加颜色: ' + colorZh[pick]);
   }
 }
 
@@ -554,10 +680,8 @@ function init() {
 
   document.getElementById('prompt-area').addEventListener('input', function() {
     updateCounter();
-    // 同步标签选中状态
-    var parts = this.value.split(',').map(function(s) { return s.trim(); }).filter(Boolean);
-    selectedTags.clear();
-    parts.forEach(function(p) { selectedTags.add(p); });
+    syncSelected();
+    updateMirror();
     renderTags();
   });
 
@@ -569,7 +693,9 @@ function init() {
       var area = document.getElementById('prompt-area');
       var current = area.value.trim();
       area.value = current ? current + ', ' + text : text;
+      syncSelected();
       updateCounter();
+      updateMirror();
       showToast('已插入（实际翻译需接入翻译API）');
       this.value = '';
     }
