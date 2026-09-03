@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Obsidian 词云 - 空间笔记图谱</title>
+  <link rel="icon" href="assets/images/title.ico" type="image/x-icon">
+  <link rel="shortcut icon" type="image/x-icon" href="assets/images/title.ico" media="screen"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #faf9f4;
+      --cardBg: #ffffff;
+      --textPrimary: rgba(22,23,28,0.88);
+      --textSecondary: rgba(22,23,28,0.55);
+      --accent: #ffd83d;
+      --accentHover: #ffe066;
+      --border: rgba(22,23,28,0.08);
+      --borderStrong: rgba(22,23,28,0.18);
+      --fontFamily: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Microsoft YaHei', sans-serif;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: var(--fontFamily);
+      background: var(--bg);
+      color: var(--textPrimary);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    /* ========== Three.js Canvas ========== */
+    #three-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+    }
+
+    /* ========== 顶部菜单栏 ========== */
+    .bottom-bar {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 16px;
+      background: var(--cardBg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 2px 12px rgba(22,23,28,0.06);
+      z-index: 10;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      max-width: calc(100vw - 32px);
+    }
+
+    .bar-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--textSecondary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding-right: 6px;
+      border-right: 1px solid var(--border);
+      margin-right: 4px;
+    }
+
+    .bar-label .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #888;
+    }
+    .bar-label .dot.active {
+      background: var(--accent);
+      box-shadow: 0 0 6px rgba(255,216,61,0.6);
+    }
+
+    .stat-item {
+      font-size: 12px;
+      color: var(--textSecondary);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      background: rgba(22,23,28,0.03);
+      border-radius: 8px;
+    }
+
+    /* 按钮组 */
+    .bar-btn {
+      padding: 7px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--textPrimary);
+      background: rgba(22,23,28,0.04);
+      transition: all 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+    .bar-btn:hover:not(:disabled) {
+      background: rgba(22,23,28,0.08);
+      transform: translateY(-1px);
+    }
+    .bar-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    .bar-btn.primary {
+      background: var(--accent);
+      font-weight: 600;
+      color: #333;
+    }
+    .bar-btn.primary:hover:not(:disabled) {
+      background: var(--accentHover);
+    }
+
+    /* 搜索框 */
+    .bar-search {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: rgba(22,23,28,0.03);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .bar-search:focus-within {
+      border-color: var(--borderStrong);
+      box-shadow: 0 0 0 3px rgba(255,216,61,0.15);
+    }
+    .bar-search input {
+      border: none;
+      background: none;
+      outline: none;
+      font-family: inherit;
+      font-size: 13px;
+      color: var(--textPrimary);
+      width: 160px;
+    }
+    .bar-search input::placeholder { color: var(--textSecondary); }
+    .bar-search i { color: var(--textSecondary); font-size: 12px; }
+
+    /* 搜索建议下拉 */
+    .search-dropdown {
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 0;
+      min-width: 200px;
+      max-height: 260px;
+      overflow-y: auto;
+      background: var(--cardBg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(22,23,28,0.12);
+      z-index: 20;
+      display: none;
+    }
+    .search-dropdown.visible { display: block; }
+    .search-dropdown-item {
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--textPrimary);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.1s;
+    }
+    .search-dropdown-item:hover,
+    .search-dropdown-item.active {
+      background: rgba(255,216,61,0.2);
+    }
+    .search-dropdown-item .sub {
+      font-size: 11px;
+      color: var(--textSecondary);
+    }
+    .search-dropdown-empty {
+      padding: 16px;
+      font-size: 12px;
+      color: var(--textSecondary);
+      text-align: center;
+    }
+    .search-dropdown::-webkit-scrollbar { width: 6px; }
+    .search-dropdown::-webkit-scrollbar-thumb {
+      background: rgba(22,23,28,0.15);
+      border-radius: 3px;
+    }
+
+    /* ========== 中心浮动笔记卡片 ========== */
+    .note-card-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .note-card-overlay.visible { display: flex; }
+
+    .note-card {
+      width: min(520px, 100%);
+      max-height: 80vh;
+      background: var(--cardBg);
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 60px rgba(22,23,28,0.15), 0 2px 8px rgba(22,23,28,0.06);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: card-pop 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes card-pop {
+      from { opacity: 0; transform: scale(0.92) translateY(10px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .note-card-header {
+      padding: 20px 24px 14px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .note-card-close {
+      position: absolute;
+      top: 12px; right: 14px;
+      width: 28px; height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--textSecondary);
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .note-card-close:hover {
+      background: rgba(22,23,28,0.06);
+      color: var(--textPrimary);
+    }
+
+    .note-card-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--textPrimary);
+      margin-bottom: 4px;
+      padding-right: 32px;
+    }
+    .note-card-meta {
+      font-size: 12px;
+      color: var(--textSecondary);
+      display: flex;
+      gap: 14px;
+    }
+    .note-card-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .note-card-body {
+      padding: 18px 24px;
+      overflow-y: auto;
+      flex: 1;
+    }
+    .note-card-body::-webkit-scrollbar { width: 6px; }
+    .note-card-body::-webkit-scrollbar-thumb {
+      background: rgba(22,23,28,0.15);
+      border-radius: 3px;
+    }
+
+    .note-card-content {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--textPrimary);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .note-card-body h4 {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--textSecondary);
+      margin: 16px 0 10px;
+      letter-spacing: 0.05em;
+    }
+    .note-card-body h4:first-child { margin-top: 0; }
+
+    .link-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .link-tag {
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      background: rgba(22,23,28,0.04);
+      border: 1px solid var(--border);
+      color: var(--textPrimary);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .link-tag:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #333;
+      font-weight: 600;
+      transform: translateY(-1px);
+    }
+
+    /* ========== Modal ========== */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(22,23,28,0.45);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 60;
+      display: none;
+    }
+    .overlay.visible { display: flex; }
+
+    .modal {
+      width: 420px;
+      padding: 32px 28px;
+      background: var(--cardBg);
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 60px rgba(22,23,28,0.15);
+      text-align: center;
+    }
+
+    .modal-icon {
+      font-size: 42px;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .modal h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--textPrimary);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .modal p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--textSecondary);
+      margin-bottom: 18px;
+    }
+
+    .modal input {
+      width: 100%;
+      padding: 10px 14px;
+      background: rgba(22,23,28,0.03);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--textPrimary);
+      font-size: 13px;
+      font-family: inherit;
+      margin-bottom: 16px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .modal input:focus { border-color: var(--borderStrong); }
+
+    .modal .btn-group {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .btn-modal {
+      padding: 9px 20px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--textPrimary);
+      background: rgba(22,23,28,0.04);
+      transition: all 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-modal:hover { background: rgba(22,23,28,0.08); }
+    .btn-modal.primary {
+      background: var(--accent);
+      color: #333;
+      font-weight: 600;
+    }
+    .btn-modal.primary:hover { background: var(--accentHover); }
+
+    /* ========== Loading ========== */
+    .loading-text {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 100;
+      text-align: center;
+      display: none;
+    }
+    .loading-text.visible { display: block; }
+
+    .loading-spinner {
+      width: 44px;
+      height: 44px;
+      border: 3px solid rgba(22,23,28,0.1);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+      margin: 0 auto 12px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .loading-text p {
+      font-size: 13px;
+      color: var(--textSecondary);
+    }
+
+    /* ========== 无数据提示 ========== */
+    .empty-hint {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .empty-hint i {
+      font-size: 56px;
+      color: rgba(22,23,28,0.15);
+      margin-bottom: 14px;
+    }
+
+    .empty-hint p {
+      font-size: 14px;
+      color: var(--textSecondary);
+      font-weight: 500;
+    }
+
+    .empty-hint p.sub {
+      font-size: 12px;
+      margin-top: 6px;
+      opacity: 0.7;
+    }
+
+    /* ========== 响应式 ========== */
+    @media (max-width: 768px) {
+      .bottom-bar {
+        padding: 8px 10px;
+        gap: 6px;
+        font-size: 11px;
+      }
+      .bar-btn { padding: 6px 10px; font-size: 12px; }
+      .stat-item { padding: 3px 8px; font-size: 11px; }
+      .bar-label { display: none; }
+      .modal { width: calc(100vw - 32px); padding: 24px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Three.js 画布 -->
+  <canvas id="three-canvas"></canvas>
+
+  <!-- ========== 中心浮动笔记卡片 ========== -->
+  <div class="note-card-overlay" id="note-card-overlay">
+    <div class="note-card">
+      <div class="note-card-header">
+        <div class="note-card-close" id="note-card-close">
+          <i class="fas fa-times"></i>
+        </div>
+        <div class="note-card-title" id="note-title">--</div>
+        <div class="note-card-meta">
+          <span id="note-meta">--</span>
+        </div>
+      </div>
+      <div class="note-card-body">
+        <div class="note-card-content" id="note-content">点击笔记球查看内容</div>
+        <h4>关联笔记</h4>
+        <div class="link-tags" id="note-links">
+          <span class="stat-item" style="background:none;padding:0;">无关联</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 底部状态栏（合并按钮） ========== -->
+  <div class="bottom-bar" id="bottom-bar" style="position:relative;">
+    <div class="bar-label">
+      <span class="dot active" id="bar-vault-dot"></span>
+      <span id="stat-vault">Obsidian 词云</span>
+    </div>
+
+    <button class="bar-btn primary" id="btn-open-vault">
+      <i class="fas fa-folder-open"></i>
+      <span>打开库</span>
+    </button>
+
+    <!-- 搜索框 -->
+    <div class="bar-search" id="bar-search" style="position:relative;">
+      <i class="fas fa-search"></i>
+      <input type="text" id="search-input" placeholder="搜索笔记..." />
+      <div class="search-dropdown" id="search-dropdown"></div>
+    </div>
+
+    <button class="bar-btn" id="btn-reset-view" disabled>
+      <i class="fas fa-expand"></i>
+      <span>重置视角</span>
+    </button>
+    <button class="bar-btn" id="btn-toggle-links" disabled>
+      <i class="fas fa-bezier-curve"></i>
+      <span>隐藏/显示线</span>
+    </button>
+
+    <div style="width:1px;height:20px;background:var(--border);margin:0 4px;"></div>
+
+    <div class="stat-item" id="stat-notes">
+      <i class="fas fa-sticky-note"></i>
+      <span>0</span>
+    </div>
+    <div class="stat-item" id="stat-links">
+      <i class="fas fa-diagram-project"></i>
+      <span>0</span>
+    </div>
+  </div>
+
+  <!-- ========== 无数据提示 ========== -->
+  <div class="empty-hint" id="empty-hint">
+    <i class="fas fa-database"></i>
+    <p>点击下方"打开库"按钮开始</p>
+    <p class="sub">支持 Chrome / Edge 99+</p>
+  </div>
+
+  <!-- ========== 遮罩层 ========== -->
+  <div class="overlay" id="modal-overlay">
+    <div class="modal">
+      <i class="fas fa-folder-open modal-icon"></i>
+      <h2>选择 Obsidian 库</h2>
+      <p>在浏览器文件选择器中找到你的 Obsidian 库文件夹。<br>浏览器会请求读取权限来扫描 .md 笔记。</p>
+      <input type="text" id="vault-path-input" placeholder="路径仅用于显示" />
+      <div class="btn-group">
+        <button class="btn-modal" id="btn-cancel-modal">
+          <i class="fas fa-times"></i>
+          <span>取消</span>
+        </button>
+        <button class="btn-modal primary" id="btn-pick-dir">
+          <i class="fas fa-folder-open"></i>
+          <span>选择目录</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== Loading ========== -->
+  <div class="loading-text" id="loading-text">
+    <div class="loading-spinner"></div>
+    <p id="loading-msg">处理中...</p>
+  </div>
+
+  <!-- importmap -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./assets/js/three.module.js"
+    }
+  }
+  </script>
+
+  <script type="module">
+    import * as THREE from 'three';
+
+    // =============================================
+    //  固化默认路径
+    // =============================================
+    const DEFAULT_VAULT_HINT = 'D:\\Obsidian\\MyVault';
+    const VAULT_PATH_KEY = 'obsidian_vault_path';
+    const MAX_NOTES = 300;
+
+    // =============================================
+    //  Three.js 场景（米白风格）
+    // =============================================
+    const canvas = document.getElementById('three-canvas');
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0xfaf9f4, 1);
+
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.Fog(0xfaf9f4, 30, 90);
+
+    const camera = new THREE.PerspectiveCamera(
+      55, window.innerWidth / window.innerHeight, 0.1, 1000
+    );
+    camera.position.set(0, 15, 30);
+
+    // 光照：米白色需要更强的光
+    const ambient = new THREE.AmbientLight(0xffffff, 0.7);
+    scene.add(ambient);
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1.0);
+    dirLight.position.set(15, 25, 15);
+    scene.add(dirLight);
+    const fillLight = new THREE.DirectionalLight(0xfff8e0, 0.35);
+    fillLight.position.set(-10, 10, -5);
+    scene.add(fillLight);
+
+    // 浅色星尘
+    const starsGeo = new THREE.BufferGeometry();
+    const starCount = 600;
+    const starPos = new Float32Array(starCount * 3);
+    for (let i = 0; i < starCount; i++) {
+      starPos[i*3]   = (Math.random() - 0.5) * 180;
+      starPos[i*3+1] = (Math.random() - 0.5) * 180;
+      starPos[i*3+2] = (Math.random() - 0.5) * 180;
+    }
+    starsGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+    const starsMat = new THREE.PointsMaterial({
+      color: 0xbfbdb0, size: 0.12, transparent: true, opacity: 0.5,
+      sizeAttenuation: true
+    });
+    const stars = new THREE.Points(starsGeo, starsMat);
+    scene.add(stars);
+
+    const notesGroup = new THREE.Group();
+    scene.add(notesGroup);
+    const labelsGroup = new THREE.Group();
+    scene.add(labelsGroup);
+    const linesGroup = new THREE.Group();
+    scene.add(linesGroup);
+
+    // =============================================
+    //  控制器
+    // =============================================
+    const controls = {
+      target: new THREE.Vector3(0, 0, 0),
+      autoRotate: true,
+      autoRotateSpeed: 0.0006,
+      _isDragging: false,
+      _prevX: 0, _prevY: 0,
+      _spherical: new THREE.Spherical(),
+      _focusAnim: null,   // { targetFrom, targetTo, radiusFrom, radiusTo, t, duration }
+      _init() {
+        this._spherical.setFromVector3(new THREE.Vector3().subVectors(camera.position, this.target));
+      },
+      _update() {
+        const offset = new THREE.Vector3().setFromSpherical(this._spherical);
+        camera.position.copy(this.target).add(offset);
+        camera.lookAt(this.target);
+      },
+      reset() {
+        this._spherical.radius = 35;
+        this._spherical.theta = 0;
+        this._spherical.phi = Math.PI / 3;
+        this.target.set(0, 0, 0);
+        this._focusAnim = null;
+        this._update();
+      },
+      // 平滑聚焦到某个球
+      focusOn(pos, radius = 12) {
+        this.autoRotate = false;
+        this._focusAnim = {
+          targetFrom: this.target.clone(),
+          targetTo: pos.clone(),
+          radiusFrom: this._spherical.radius,
+          radiusTo: radius,
+          t: 0,
+          duration: 0.9
+        };
+      },
+      _tickFocus(delta) {
+        if (!this._focusAnim) return;
+        const a = this._focusAnim;
+        a.t += delta;
+        const k = Math.min(1, a.t / a.duration);
+        const ease = 1 - Math.pow(1 - k, 3); // ease-out cubic
+        this.target.lerpVectors(a.targetFrom, a.targetTo, ease);
+        this._spherical.radius = a.radiusFrom + (a.radiusTo - a.radiusFrom) * ease;
+        this._update();
+        if (k >= 1) this._focusAnim = null;
+      }
+    };
+    controls._init();
+    controls.reset();
+
+    canvas.addEventListener('pointerdown', (e) => {
+      controls._isDragging = true;
+      controls._prevX = e.clientX;
+      controls._prevY = e.clientY;
+      controls.autoRotate = false;
+      canvas.setPointerCapture(e.pointerId);
+    });
+    canvas.addEventListener('pointermove', (e) => {
+      if (!controls._isDragging) return;
+      const dx = e.clientX - controls._prevX;
+      const dy = e.clientY - controls._prevY;
+      controls._prevX = e.clientX;
+      controls._prevY = e.clientY;
+      controls._spherical.theta -= dx * 0.005;
+      controls._spherical.phi -= dy * 0.005;
+      controls._spherical.phi = Math.max(0.1, Math.min(Math.PI - 0.1, controls._spherical.phi));
+      controls._update();
+    });
+    canvas.addEventListener('pointerup', () => { controls._isDragging = false; });
+    canvas.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      controls._spherical.radius *= (1 + e.deltaY * 0.001);
+      controls._spherical.radius = Math.max(10, Math.min(120, controls._spherical.radius));
+      controls._update();
+    }, { passive: false });
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // =============================================
+    //  Raycaster
+    // =============================================
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+    let hoveredNote = null;
+    let allNoteMeshes = [];
+
+    canvas.addEventListener('pointermove', (e) => {
+      if (controls._isDragging) return;
+      mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(mouse, camera);
+      const meshes = allNoteMeshes.map(n => n.mesh);
+      const hits = raycaster.intersectObjects(meshes, false);
+
+      if (hoveredNote) {
+        hoveredNote.mesh.material.emissive.setHex(hoveredNote.origEmissive);
+        hoveredNote.mesh.scale.copy(hoveredNote.origScale);
+      }
+      if (hits.length > 0) {
+        const pair = allNoteMeshes.find(n => n.mesh === hits[0].object);
+        if (pair) {
+          hoveredNote = pair;
+          pair.mesh.material.emissive.setHex(0xffd83d);
+          pair.mesh.scale.copy(pair.origScale).multiplyScalar(1.25);
+          canvas.style.cursor = 'pointer';
+        }
+      } else {
+        hoveredNote = null;
+        canvas.style.cursor = 'grab';
+      }
+    });
+
+    // 单击：只聚焦视角；双击：聚焦 + 打开笔记卡片
+    let clickTimer = null;
+    let lastClickPair = null;
+
+    canvas.addEventListener('click', (e) => {
+      if (controls._isDragging) return;
+      mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(mouse, camera);
+      const meshes = allNoteMeshes.map(n => n.mesh);
+      const hits = raycaster.intersectObjects(meshes, false);
+      if (hits.length === 0) {
+        noteCardOverlay.classList.remove('visible');
+        // 取消待处理的双击
+        if (clickTimer) { clearTimeout(clickTimer); clickTimer = null; }
+        return;
+      }
+      const pair = allNoteMeshes.find(n => n.mesh === hits[0].object);
+      if (!pair) return;
+
+      // 聚焦视角（每次都做）
+      controls.focusOn(pair.mesh.position, 12);
+
+      // 防抖区分单/双击
+      if (clickTimer) {
+        clearTimeout(clickTimer);
+        clickTimer = null;
+        // 双击：开卡片
+        showNoteCard(pair.note);
+      } else {
+        lastClickPair = pair;
+        clickTimer = setTimeout(() => {
+          clickTimer = null;
+          // 单击：只移视角（已经在上面做了 focusOn）
+        }, 260);
+      }
+    });
+
+    // =============================================
+    //  UI 元素
+    // =============================================
+    const modalOverlay = document.getElementById('modal-overlay');
+    const btnOpenVault = document.getElementById('btn-open-vault');
+    const btnPickDir = document.getElementById('btn-pick-dir');
+    const btnCancelModal = document.getElementById('btn-cancel-modal');
+    const btnResetView = document.getElementById('btn-reset-view');
+    const btnToggleLinks = document.getElementById('btn-toggle-links');
+    const vaultPathInput = document.getElementById('vault-path-input');
+    const emptyHint = document.getElementById('empty-hint');
+    const loadingText = document.getElementById('loading-text');
+    const loadingMsg = document.getElementById('loading-msg');
+
+    const noteCardOverlay = document.getElementById('note-card-overlay');
+    const noteCardClose = document.getElementById('note-card-close');
+
+    // 搜索
+    const searchInput = document.getElementById('search-input');
+    const searchDropdown = document.getElementById('search-dropdown');
+    let searchActiveIdx = -1;
+
+    function showSearchResults(query) {
+      const q = query.trim().toLowerCase();
+      if (!q || !allNoteMeshes.length) {
+        searchDropdown.classList.remove('visible');
+        return;
+      }
+      // 匹配：名字开头 > 包含 > 内容中出现
+      const results = [];
+      for (const p of allNoteMeshes) {
+        const n = p.note;
+        const nameLo = n.name.toLowerCase();
+        let score = 0;
+        if (nameLo === q) score += 100;
+        else if (nameLo.startsWith(q)) score += 30;
+        else if (nameLo.includes(q)) score += 10;
+        if (score > 0) results.push({ pair: p, score });
+      }
+      results.sort((a, b) => b.score - a.score).splice(0, 12);
+
+      if (results.length === 0) {
+        searchDropdown.innerHTML = '<div class="search-dropdown-empty">没有匹配的笔记</div>';
+      } else {
+        searchDropdown.innerHTML = results.map((r, i) => `
+          <div class="search-dropdown-item ${i === searchActiveIdx ? 'active' : ''}" data-idx="${i}">
+            <span><i class="fas fa-sticky-note" style="color:var(--textSecondary);margin-right:6px;"></i>${r.pair.note.name}</span>
+            <span class="sub">${r.pair.note.linkCount} 链接</span>
+          </div>
+        `).join('');
+        searchDropdown.querySelectorAll('.search-dropdown-item').forEach((el, i) => {
+          el.addEventListener('click', () => {
+            const idx = parseInt(el.dataset.idx);
+            focusSearchResult(results[idx].pair);
+          });
+        });
+      }
+      searchDropdown.classList.add('visible');
+    }
+
+    function focusSearchResult(pair) {
+      searchDropdown.classList.remove('visible');
+      searchActiveIdx = -1;
+      controls.focusOn(pair.mesh.position, 10);
+      showNoteCard(pair.note);
+      // 高亮一下（临时放大 + 发黄光）
+      pair.mesh.material.emissive.setHex(0xffd83d);
+      pair.mesh.scale.copy(pair.origScale).multiplyScalar(1.4);
+      setTimeout(() => {
+        pair.mesh.material.emissive.setHex(pair.mesh.origEmissive);
+        pair.mesh.scale.copy(pair.origScale);
+      }, 1500);
+    }
+
+    searchInput.addEventListener('input', (e) => {
+      searchActiveIdx = -1;
+      showSearchResults(e.target.value);
+    });
+    searchInput.addEventListener('keydown', (e) => {
+      const items = searchDropdown.querySelectorAll('.search-dropdown-item');
+      if (items.length === 0) return;
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        searchActiveIdx = Math.min(searchActiveIdx + 1, items.length - 1);
+        items.forEach((el, i) => el.classList.toggle('active', i === searchActiveIdx));
+        if (searchActiveIdx >= 0) items[searchActiveIdx].scrollIntoView({ block: 'nearest' });
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        searchActiveIdx = Math.max(searchActiveIdx - 1, -1);
+        items.forEach((el, i) => el.classList.toggle('active', i === searchActiveIdx));
+        if (searchActiveIdx >= 0) items[searchActiveIdx].scrollIntoView({ block: 'nearest' });
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (searchActiveIdx >= 0 && searchActiveIdx < items.length) {
+          items[searchActiveIdx].click();
+        } else {
+          // 直接取第一个结果
+          const firstResult = allNoteMeshes.find(p =>
+            p.note.name.toLowerCase().includes(searchInput.value.trim().toLowerCase())
+          );
+          if (firstResult) focusSearchResult(firstResult);
+        }
+      } else if (e.key === 'Escape') {
+        searchDropdown.classList.remove('visible');
+        searchActiveIdx = -1;
+      }
+    });
+    // 点外部关闭下拉
+    document.addEventListener('click', (e) => {
+      if (!searchInput.parentElement.contains(e.target)) {
+        searchDropdown.classList.remove('visible');
+      }
+    });
+
+    // 初始化
+    vaultPathInput.value = localStorage.getItem(VAULT_PATH_KEY) || DEFAULT_VAULT_HINT;
+
+    btnOpenVault.addEventListener('click', () => {
+      modalOverlay.classList.add('visible');
+    });
+    btnCancelModal.addEventListener('click', () => {
+      modalOverlay.classList.remove('visible');
+    });
+    btnPickDir.addEventListener('click', async () => {
+      modalOverlay.classList.remove('visible');
+      await pickDirectoryAndLoad();
+    });
+    btnResetView.addEventListener('click', () => {
+      controls.reset();
+      controls.autoRotate = true;
+    });
+    btnToggleLinks.addEventListener('click', () => {
+      linksGroup.visible = !linksGroup.visible;
+    });
+
+    noteCardClose.addEventListener('click', () => {
+      noteCardOverlay.classList.remove('visible');
+    });
+    noteCardOverlay.addEventListener('click', (e) => {
+      if (e.target === noteCardOverlay) noteCardOverlay.classList.remove('visible');
+    });
+
+    // Esc 关闭卡片
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        noteCardOverlay.classList.remove('visible');
+        modalOverlay.classList.remove('visible');
+      }
+    });
+
+    // =============================================
+    //  File System Access
+    // =============================================
+    async function pickDirectoryAndLoad() {
+      try {
+        if (!window.showDirectoryPicker) {
+          alert('当前浏览器不支持 File System Access API。\n请使用 Chrome / Edge (99+) 并通过 localhost 或 https:// 协议访问。');
+          return;
+        }
+
+        showLoading('请求访问权限...');
+        const dirHandle = await window.showDirectoryPicker({ mode: 'read', startIn: 'documents' });
+
+        localStorage.setItem(VAULT_PATH_KEY, dirHandle.name);
+        document.getElementById('stat-vault').textContent = dirHandle.name;
+
+        showLoading('扫描 Markdown 笔记...');
+        const notes = await scanMarkdownFiles(dirHandle);
+
+        if (notes.length === 0) {
+          hideLoading();
+          alert('该目录下未找到 .md 文件。');
+          return;
+        }
+
+        showLoading(`扫描到 ${notes.length} 篇笔记，解析关联...`);
+        processAndRender(notes);
+        hideLoading();
+
+      } catch (err) {
+        hideLoading();
+        console.error(err);
+        if (err.name !== 'AbortError') alert('打开目录失败: ' + err.message);
+      }
+    }
+
+    async function scanMarkdownFiles(dirHandle) {
+      const notes = [];
+      async function walk(handle, depth = 0) {
+        if (depth > 10) return;
+        for await (const entry of handle.values()) {
+          if (entry.kind === 'file' && entry.name.endsWith('.md')) {
+            try {
+              const file = await entry.getFile();
+              const text = await file.text();
+              notes.push({
+                name: entry.name.replace(/\.md$/i, ''),
+                path: entry.name,
+                content: text,
+                links: [], backlinks: [],
+                size: file.size
+              });
+            } catch (e) { /* skip */ }
+          } else if (entry.kind === 'directory') {
+            await walk(entry, depth + 1);
+          }
+        }
+      }
+      await walk(dirHandle);
+      return notes;
+    }
+
+    // =============================================
+    //  解析 + 布局 + 渲染
+    // =============================================
+    function processAndRender(notes) {
+      // 解析双链
+      const linkRegex = /\[\[([^\|\]]+?)(?:\|[^\]]+)?\]\]/g;
+      for (const note of notes) {
+        const links = new Set();
+        let m;
+        while ((m = linkRegex.exec(note.content)) !== null) {
+          let target = m[1].trim().split(/[\/\\]/).pop();
+          links.add(target);
+        }
+        note.links = Array.from(links);
+      }
+
+      // 反链
+      const nameMap = new Map();
+      for (const n of notes) nameMap.set(n.name.toLowerCase(), n);
+
+      for (const note of notes) {
+        for (const linkName of note.links) {
+          const target = nameMap.get(linkName.toLowerCase());
+          if (target && target !== note && !target.backlinks.includes(note.name)) {
+            target.backlinks.push(note.name);
+          }
+        }
+      }
+
+      for (const note of notes) {
+        note.linkCount = note.links.length + note.backlinks.length;
+      }
+
+      // Top N
+      const sorted = [...notes].sort((a, b) => b.linkCount - a.linkCount);
+      const selected = sorted.slice(0, MAX_NOTES);
+
+      // 去重边
+      const edges = [];
+      const seen = new Set();
+      const selectedNames = new Set(selected.map(n => n.name.toLowerCase()));
+      for (const note of selected) {
+        for (const linkName of note.links) {
+          const target = nameMap.get(linkName.toLowerCase());
+          if (target && selectedNames.has(target.name.toLowerCase())) {
+            const key = [note.name, target.name].sort().join('|');
+            if (!seen.has(key)) { seen.add(key); edges.push({ from: note.name, to: target.name }); }
+          }
+        }
+      }
+
+      document.querySelector('#stat-notes span').textContent = selected.length;
+      document.querySelector('#stat-links span').textContent = edges.length;
+      emptyHint.style.display = 'none';
+
+      showLoading('布局计算中...');
+      const positions = forceLayout(selected, edges);
+
+      showLoading('渲染中...');
+      renderScene(selected, positions, edges);
+
+      hideLoading();
+      btnResetView.disabled = false;
+      btnToggleLinks.disabled = false;
+    }
+
+    // =============================================
+    //  力导向布局（3D，短距离版）
+    // =============================================
+    function forceLayout(nodes, edges) {
+      const N = nodes.length;
+      const positions = new Map();
+      const velocities = new Map();
+
+      const maxLinks = Math.max(1, ...nodes.map(n => n.linkCount));
+      // 先计算好整体 maxLinks 存下来，给 createSphereNote 用
+      forceLayout.maxLinks = maxLinks;
+
+      for (let i = 0; i < N; i++) {
+        const n = nodes[i];
+        const t = n.linkCount / maxLinks;
+        // 更紧凑：0.6 ~ 3（原 0.8 ~ 5）
+        const radius = 0.6 + (1 - t) * 2.4;
+        const phi = Math.acos(1 - 2 * (i + 0.5) / N);
+        const theta = Math.PI * (1 + Math.sqrt(5)) * i;
+        positions.set(n.name, {
+          x: radius * Math.sin(phi) * Math.cos(theta),
+          y: radius * Math.sin(phi) * Math.sin(theta),
+          z: radius * Math.cos(phi)
+        });
+        velocities.set(n.name, { x: 0, y: 0, z: 0 });
+      }
+
+      const ITERATIONS = Math.min(220, 60 + N);
+      const REPULSION = 5;        // 更紧凑：原 12 → 5
+      const ATTRACTION = 0.20;   // 更强拉近：原 0.12 → 0.20
+      const IDEAL_DIST = 0.4;    // 更短线：原 0.8 → 0.4
+      const DAMPING = 0.85;
+
+      for (let iter = 0; iter < ITERATIONS; iter++) {
+        const temp = 1 - iter / ITERATIONS;
+        const forces = new Map();
+        for (const n of nodes) forces.set(n.name, { x: 0, y: 0, z: 0 });
+
+        for (let i = 0; i < N; i++) {
+          for (let j = i + 1; j < N; j++) {
+            const a = positions.get(nodes[i].name);
+            const b = positions.get(nodes[j].name);
+            const dx = a.x - b.x, dy = a.y - b.y, dz = a.z - b.z;
+            let dist2 = dx*dx + dy*dy + dz*dz;
+            dist2 = Math.max(dist2, 0.3);
+            const dist = Math.sqrt(dist2);
+            const f = REPULSION / dist2;
+            const fx = f * dx / dist;
+            const fy = f * dy / dist;
+            const fz = f * dz / dist;
+            forces.get(nodes[i].name).x += fx;
+            forces.get(nodes[i].name).y += fy;
+            forces.get(nodes[i].name).z += fz;
+            forces.get(nodes[j].name).x -= fx;
+            forces.get(nodes[j].name).y -= fy;
+            forces.get(nodes[j].name).z -= fz;
+          }
+        }
+
+        for (const e of edges) {
+          const a = positions.get(e.from);
+          const b = positions.get(e.to);
+          if (!a || !b) continue;
+          const dx = b.x - a.x, dy = b.y - a.y, dz = b.z - a.z;
+          const dist = Math.sqrt(dx*dx + dy*dy + dz*dz) || 0.01;
+          const f = (dist - IDEAL_DIST) * ATTRACTION;
+          const fx = f * dx / dist;
+          const fy = f * dy / dist;
+          const fz = f * dz / dist;
+          forces.get(e.from).x += fx;
+          forces.get(e.from).y += fy;
+          forces.get(e.from).z += fz;
+          forces.get(e.to).x -= fx;
+          forces.get(e.to).y -= fy;
+          forces.get(e.to).z -= fz;
+        }
+
+        for (const n of nodes) {
+          const v = velocities.get(n.name);
+          const f = forces.get(n.name);
+          v.x = (v.x + f.x) * DAMPING * temp;
+          v.y = (v.y + f.y) * DAMPING * temp;
+          v.z = (v.z + f.z) * DAMPING * temp;
+          const p = positions.get(n.name);
+          p.x += v.x; p.y += v.y; p.z += v.z;
+        }
+      }
+
+      return positions;
+    }
+
+    // =============================================
+    //  Canvas 文字纹理（用于球上的小平面）
+    // =============================================
+    function createLabelTexture(text, linkCount) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 512;
+      canvas.height = 128;
+      const ctx = canvas.getContext('2d');
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      let fontSize = 44;
+      ctx.font = `700 ${fontSize}px ${getComputedStyle(document.body).fontFamily}`;
+      while (ctx.measureText(text).width > canvas.width - 60 && fontSize > 14) {
+        fontSize -= 2;
+        ctx.font = `700 ${fontSize}px ${getComputedStyle(document.body).fontFamily}`;
+      }
+
+      // 浅色描边 + 深色字让字在浅米白背景上清晰
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.lineWidth = 5;
+      ctx.strokeStyle = 'rgba(22,23,28,0.55)';
+      ctx.strokeText(text, canvas.width / 2, canvas.height / 2);
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+
+      const tex = new THREE.CanvasTexture(canvas);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      return tex;
+    }
+
+    // =============================================
+    //  圆球笔记（label 独立，平级放置）
+    // =============================================
+    function createSphereNote(name, linkCount) {
+      const maxLinks = forceLayout.maxLinks || 20;
+      const t = Math.pow(Math.min(1, linkCount / maxLinks), 0.5);
+      const radius = 0.25 + t * 0.75;
+      const geo = new THREE.SphereGeometry(radius, 32, 32);
+
+      const r = Math.round(250 + t * 5);
+      const g = Math.round(249 + t * (-25));
+      const b = Math.round(244 + t * (-75));
+      const color = new THREE.Color(`rgb(${r},${g},${b})`);
+
+      const mat = new THREE.MeshStandardMaterial({
+        color: color,
+        metalness: 0.15,
+        roughness: 0.35,
+        emissive: new THREE.Color(`rgb(${Math.round(t*255)}, ${Math.round(t*220)}, ${Math.round(t*50)}`),
+        emissiveIntensity: 0.15 + t * 0.4
+      });
+
+      const mesh = new THREE.Mesh(geo, mat);
+      mesh.origEmissive = mat.emissive.getHex();
+      mesh.origScale = new THREE.Vector3(1, 1, 1);
+      mesh.userData.radius = radius;
+
+      // label 独立（不挂到 mesh 下），外部会在 notesGroup 里平级放置
+      const labelTex = createLabelTexture(name, linkCount);
+      const labelMat = new THREE.MeshBasicMaterial({
+        map: labelTex,
+        transparent: true,
+        depthTest: false,
+        depthWrite: false
+      });
+      const labelW = Math.max(0.45, Math.min(1.2, radius * 2.2));
+      const labelH = labelW * 0.28;
+      const labelGeo = new THREE.PlaneGeometry(labelW, labelH);
+      const label = new THREE.Mesh(labelGeo, labelMat);
+
+      return { mesh, label };
+    }
+
+    // =============================================
+    //  神经元连接线（曲线 + 突触小球 + 发光）
+    // =============================================
+    const neuronPulseSpheres = []; // animate 里做脉冲
+    let neuronLineMat = null;
+    let neuronSynapseMat = null;
+    let neuronPulseMat = null;
+
+    function createNeuronConnection(p1, p2, thickness = 0.035) {
+      // 1) 生成带中间控制点的曲线（让线弯一点，像神经纤维）
+      const v1 = new THREE.Vector3(p1.x, p1.y, p1.z);
+      const v2 = new THREE.Vector3(p2.x, p2.y, p2.z);
+      const mid = v1.clone().add(v2).multiplyScalar(0.5);
+      const perp = new THREE.Vector3().crossVectors(
+        new THREE.Vector3(1, 0, 0).cross(v2.clone().sub(v1)).normalize(),
+        v2.clone().sub(v1).normalize()
+      ).normalize();
+      const len = v1.distanceTo(v2);
+      const curveOffset = perp.multiplyScalar(len * 0.18 * (Math.random() * 0.6 + 0.7));
+      const cp = mid.clone().add(curveOffset);
+      const curve = new THREE.CatmullRomCurve3([v1, cp, v2]);
+
+      // 2) TubeGeometry（主干）
+      const tubeGeo = new THREE.TubeGeometry(curve, 32, thickness, 6, false);
+      const tube = new THREE.Mesh(tubeGeo, neuronLineMat);
+
+      // 3) 突触小球：在曲线中间 + 两端靠近处
+      const synapses = [];
+      const tValues = [0.25, 0.55, 0.8];
+      for (const t of tValues) {
+        const pos = curve.getPoint(t);
+        const sGeo = new THREE.SphereGeometry(thickness * 1.8, 12, 12);
+        const sMesh = new THREE.Mesh(sGeo, neuronSynapseMat);
+        sMesh.position.copy(pos);
+        synapses.push(sMesh);
+      }
+
+      // 4) 发光的脉冲小球（在曲线上往返流动）
+      const pulseGeo = new THREE.SphereGeometry(thickness * 1.2, 10, 10);
+      const pulseMesh = new THREE.Mesh(pulseGeo, neuronPulseMat.clone());
+      pulseMesh.position.copy(curve.getPoint(0));
+      pulseMesh.userData = { curve, t: Math.random(), speed: 0.25 + Math.random() * 0.2 };
+
+      return { tube, synapses, pulse: pulseMesh };
+    }
+
+    // =============================================
+    //  渲染
+    // =============================================
+    function renderScene(notes, positions, edges) {
+      // 清理
+      [...notesGroup.children, ...labelsGroup.children, ...linesGroup.children].forEach(child => {
+        if (child.geometry) child.geometry.dispose();
+        if (child.material) {
+          if (Array.isArray(child.material)) child.material.forEach(m => { if (m.map) m.map.dispose(); m.dispose(); });
+          else { if (child.material.map) child.material.map.dispose(); child.material.dispose(); }
+        }
+      });
+      notesGroup.clear(); labelsGroup.clear(); linesGroup.clear();
+      allNoteMeshes = [];
+      neuronPulseSpheres.length = 0;
+
+      // 球 + label
+      for (const note of notes) {
+        const pos = positions.get(note.name);
+        if (!pos) continue;
+        const { mesh, label } = createSphereNote(note.name, note.linkCount);
+        mesh.position.set(pos.x, pos.y, pos.z);
+        label.position.set(pos.x, pos.y, pos.z);
+        notesGroup.add(mesh);
+        labelsGroup.add(label);
+        allNoteMeshes.push({ mesh, label, note, origScale: mesh.origScale.clone() });
+      }
+
+      // 神经元连接（合并材质定义，让所有 tube 共享一个材质，节省 draw call）
+      neuronLineMat = new THREE.MeshStandardMaterial({
+        color: 0x7a9ab5,          // 冷蓝灰
+        metalness: 0.3,
+        roughness: 0.4,
+        transparent: true,
+        opacity: 0.75,
+        emissive: 0x1a3852,
+        emissiveIntensity: 0.4
+      });
+      neuronSynapseMat = new THREE.MeshStandardMaterial({
+        color: 0xffd83d,          // 突触小球用亮黄
+        metalness: 0.2,
+        roughness: 0.5,
+        emissive: 0xffd83d,
+        emissiveIntensity: 1.2
+      });
+      neuronPulseMat = new THREE.MeshStandardMaterial({
+        color: 0xffe866,
+        emissive: 0xffe866,
+        emissiveIntensity: 2.0,
+        transparent: true,
+        opacity: 0.9
+      });
+
+      // 边：每 3 条才加一个脉冲球（控制总数，避免卡顿）
+      const pulseInterval = edges.length > 150 ? 4 : 2;
+      edges.forEach((e, idx) => {
+        const p1 = positions.get(e.from);
+        const p2 = positions.get(e.to);
+        if (!p1 || !p2) return;
+        const { tube, synapses, pulse } = createNeuronConnection(p1, p2, 0.035);
+        linesGroup.add(tube);
+        synapses.forEach(s => linesGroup.add(s));
+        // 只有部分连接加脉冲（避免过多 draw call）
+        if (idx % pulseInterval === 0) {
+          linesGroup.add(pulse);
+          neuronPulseSpheres.push(pulse);
+        }
+      });
+    }
+
+    // =============================================
+    //  中心浮动卡片
+    // =============================================
+    function showNoteCard(note) {
+      document.getElementById('note-title').textContent = note.name;
+      document.getElementById('note-meta').innerHTML =
+        `<i class="fas fa-folder"></i> ${note.path} · ${note.linkCount} 关联`;
+
+      // 清洗内容
+      const clean = note.content
+        .replace(/```[\s\S]*?```/g, '')
+        .replace(/`[^`]+`/g, '')
+        .replace(/\[\[([^\|\]]+?)(?:\|[^\]]+)?\]\]/g, '$1')
+        .replace(/!\[.*?\]\(.*?\)/g, '(图片)')
+        .replace(/^#{1,6}\s+/gm, '')
+        .replace(/[>*_~]/g, '')
+        .replace(/\n{3,}/g, '\n\n')
+        .trim();
+
+      document.getElementById('note-content').textContent = clean || '(笔记为空)';
+
+      const linksContainer = document.getElementById('note-links');
+      linksContainer.innerHTML = '';
+      const allLinks = [...new Set([...note.links, ...note.backlinks])];
+      if (allLinks.length === 0) {
+        linksContainer.innerHTML = '<span class="stat-item" style="background:none;padding:0;">无关联</span>';
+      } else {
+        allLinks.forEach(name => {
+          const tag = document.createElement('span');
+          tag.className = 'link-tag';
+          tag.textContent = name;
+          tag.addEventListener('click', () => {
+            const pair = allNoteMeshes.find(n => n.note.name === name);
+            if (pair) {
+              controls.focusOn(pair.mesh.position, 10);
+              showNoteCard(pair.note);
+            }
+          });
+          linksContainer.appendChild(tag);
+        });
+      }
+
+      noteCardOverlay.classList.add('visible');
+    }
+
+    // =============================================
+    //  Loading
+    // =============================================
+    function showLoading(msg) {
+      loadingMsg.textContent = msg || '处理中...';
+      loadingText.classList.add('visible');
+    }
+    function hideLoading() { loadingText.classList.remove('visible'); }
+
+    // =============================================
+    //  动画循环
+    // =============================================
+    const timer = new THREE.Timer();
+
+    function animate() {
+      requestAnimationFrame(animate);
+      timer.update();
+      const delta = timer.getDelta();
+      const time = timer.getElapsed();
+
+      // 平滑聚焦动画优先
+      if (controls._focusAnim) {
+        controls._tickFocus(delta);
+      } else if (controls.autoRotate && !controls._isDragging) {
+        controls._spherical.theta += controls.autoRotateSpeed * delta * 1000;
+        controls._update();
+      }
+
+      // label 永远面向相机，并贴在球朝向相机的那一侧表面
+      const dir = new THREE.Vector3();
+      const CAMERA_POS = new THREE.Vector3();
+      camera.getWorldPosition(CAMERA_POS);
+      for (const pair of allNoteMeshes) {
+        // label 位置：球心 + (球心→相机方向) * radius
+        dir.subVectors(CAMERA_POS, pair.mesh.position).normalize();
+        const r = pair.mesh.userData.radius || 0.5;
+        pair.label.position.copy(pair.mesh.position).addScaledVector(dir, r);
+        pair.label.lookAt(CAMERA_POS);
+        // 轻微浮动：只影响球位置，label 跟着 mesh（我们上面已经用 mesh.position 计算了 label 位置）
+        pair.mesh.position.y += Math.sin(time * 0.6 + pair.mesh.position.x * 0.8) * 0.0008;
+      }
+
+      // 神经元脉冲球沿曲线流动（往返）
+      for (const pulse of neuronPulseSpheres) {
+        const ud = pulse.userData;
+        ud.t += ud.speed * delta;
+        if (ud.t > 1) ud.t -= 1;
+        if (ud.t < 0) ud.t += 1;
+        pulse.position.copy(ud.curve.getPoint(ud.t));
+        // 脉冲动效：缩放 + emissive 闪烁
+        const s = 0.9 + Math.sin(time * 6 + ud.t * 12) * 0.3;
+        pulse.scale.set(s, s, s);
+        pulse.material.emissiveIntensity = 1.5 + Math.sin(time * 8 + ud.t * 12) * 1.0;
+      }
+
+      stars.rotation.y += delta * 0.02;
+      stars.rotation.x += delta * 0.01;
+
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // =============================================
+    //  浏览器支持检查
+    // =============================================
+    if (!window.showDirectoryPicker) {
+      emptyHint.innerHTML = `
+        <i class="fas fa-exclamation-triangle"></i>
+        <p>当前浏览器不支持 File System Access API</p>
+        <p class="sub">请使用 Chrome / Edge (99+) 通过 localhost 或 https:// 访问</p>
+      `;
+      document.getElementById('btn-open-vault').disabled = true;
+    }
+
+  </script>
+
+</body>
+</html>
