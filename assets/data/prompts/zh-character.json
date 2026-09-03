@@ -77,6 +77,60 @@
       ]
     },
     {
+      "id": "age",
+      "name": "年龄",
+      "tags": [
+        {
+          "zh": "婴儿",
+          "en": "baby"
+        },
+        {
+          "zh": "幼儿",
+          "en": "toddler"
+        },
+        {
+          "zh": "儿童",
+          "en": "child"
+        },
+        {
+          "zh": "少年",
+          "en": "teenager"
+        },
+        {
+          "zh": "青年",
+          "en": "young_adult"
+        },
+        {
+          "zh": "中年",
+          "en": "middle_aged"
+        },
+        {
+          "zh": "老年",
+          "en": "old"
+        },
+        {
+          "zh": "幼儿园",
+          "en": "kindergartener"
+        },
+        {
+          "zh": "未成年",
+          "en": "underage"
+        },
+        {
+          "zh": "青少年早期（11-15）",
+          "en": "early teen"
+        },
+        {
+          "zh": "大人",
+          "en": "adult"
+        },
+        {
+          "zh": "老人",
+          "en": "elder"
+        }
+      ]
+    },
+    {
       "id": "identity",
       "name": "身份",
       "tags": [
@@ -664,60 +718,7 @@
         }
       ]
     },
-    {
-      "id": "age",
-      "name": "年龄",
-      "tags": [
-        {
-          "zh": "婴儿",
-          "en": "baby"
-        },
-        {
-          "zh": "幼儿",
-          "en": "toddler"
-        },
-        {
-          "zh": "儿童",
-          "en": "child"
-        },
-        {
-          "zh": "少年",
-          "en": "teenager"
-        },
-        {
-          "zh": "青年",
-          "en": "young_adult"
-        },
-        {
-          "zh": "中年",
-          "en": "middle_aged"
-        },
-        {
-          "zh": "老年",
-          "en": "old"
-        },
-        {
-          "zh": "幼儿园",
-          "en": "kindergartener"
-        },
-        {
-          "zh": "未成年",
-          "en": "underage"
-        },
-        {
-          "zh": "青少年早期（11-15）",
-          "en": "early teen"
-        },
-        {
-          "zh": "大人",
-          "en": "adult"
-        },
-        {
-          "zh": "老人",
-          "en": "elder"
-        }
-      ]
-    },
+
     {
       "id": "skin",
       "name": "皮肤",

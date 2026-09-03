@@ -218,25 +218,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .pp-side-label .dot.zh-dot { background: #ff7a45; }
 .pp-side-label .dot.en-dot { background: #45a8ff; }
-.pp-mirror {
-  min-height: 100px;
-  padding: 14px 16px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  font-size: 15px;
-  line-height: 1.7;
-  background: rgba(22,23,28,0.02);
-  color: var(--textPrimary);
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-.pp-mirror:empty::before {
-  content: '点标签后这里显示中文提示词';
+.pp-copy-btn {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 12px;
+  border-radius: 7px;
+  background: rgba(22,23,28,0.05);
   color: var(--textSecondary);
-  font-size: 14px;
+  transition: all 0.15s;
 }
-.pp-mirror .mirror-extra { color: var(--textSecondary); }
-.pp-mirror .mirror-sep { color: rgba(22,23,28,0.2); margin: 0 2px; }
+.pp-copy-btn:hover { background: var(--accent); color: #333; font-weight: 600; }
 .pp-mixer-tools {
   display: flex; flex-wrap: wrap; gap: 8px;
   margin-top: 14px;
@@ -356,15 +348,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
   <div class="pp-trays">
     <div class="pp-tray">
-      <div class="pp-tray-label"><span class="num">1</span>主体 Subject</div>
+      <div class="pp-tray-label"><span class="num">1</span>主体</div>
       <div class="pp-radio-group" id="subject-group"></div>
     </div>
     <div class="pp-tray">
-      <div class="pp-tray-label"><span class="num">2</span>类别 Category</div>
+      <div class="pp-tray-label"><span class="num">2</span>类别</div>
       <div class="pp-radio-group" id="category-group"></div>
     </div>
     <div class="pp-tray">
-      <div class="pp-tray-label"><span class="num">3</span>标签 Pick your pigments</div>
+      <div class="pp-tray-label"><span class="num">3</span>标签</div>
       <div class="pp-tags" id="tag-group"></div>
     </div>
   </div>
@@ -376,11 +368,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     </div>
     <div class="pp-mixer-grid">
       <div>
-        <div class="pp-side-label"><span class="dot zh-dot"></span>中文</div>
-        <div class="pp-mirror" id="prompt"></div>
+        <div class="pp-side-label">
+          <span class="dot zh-dot"></span>中文
+          <button class="pp-copy-btn" id="copy-zh" type="button">复制</button>
+        </div>
+        <textarea class="pp-textarea" id="prompt-zh" placeholder="点标签后这里显示中文提示词，用英文逗号分隔，可手动修改"></textarea>
       </div>
       <div>
-        <div class="pp-side-label"><span class="dot en-dot"></span>English</div>
+        <div class="pp-side-label">
+          <span class="dot en-dot"></span>English
+          <button class="pp-copy-btn" id="copy-en" type="button">复制</button>
+        </div>
         <textarea class="pp-textarea" id="prompt-area" placeholder="点标签自动拼好，也可以直接在这里写"></textarea>
       </div>
     </div>
@@ -410,7 +408,8 @@ var currentSubject = 0;
 var currentCategory = 0;
 var maxChars = 380;
 var subjectCache = {};   // 已懒加载的主体数据，按 id 缓存
-var tagZhMap = {};       // 英文标签 → 中文映射（用于左侧中文栏）
+var tagZhMap = {};       // 英文标签 → 中文映射
+var tagEnMap = {};       // 中文标签 → 英文映射（反向，用于中文栏编辑同步）
 
 function escapeHtml(s) {
   return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -421,10 +420,16 @@ function escapeAttr(s) {
   return escapeHtml(s).replace(/"/g, '&quot;');
 }
 
-// 读取提示词框中所有片段
+function zhArea()  { return document.getElementById('prompt-zh'); }
+function enArea()  { return document.getElementById('prompt-area'); }
+
+// 按英文逗号分割提示词
+function parseParts(str) {
+  return String(str).split(',').map(function(s) { return s.trim(); }).filter(Boolean);
+}
+
 function getPromptParts() {
-  return document.getElementById('prompt-area').value
-    .split(',').map(function(s) { return s.trim(); }).filter(Boolean);
+  return parseParts(enArea().value);
 }
 
 function syncSelected() {
@@ -432,15 +437,21 @@ function syncSelected() {
   getPromptParts().forEach(function(p) { selectedTags.add(p); });
 }
 
-// 左侧中文栏：已知标签显示中文，手动输入/工具追加片段灰色原样显示
-function updateMirror() {
-  var parts = getPromptParts();
-  var el = document.getElementById('prompt');
-  el.innerHTML = parts.map(function(p) {
-    var zh = tagZhMap[p];
-    if (zh) return escapeHtml(zh);
-    return '<span class="mirror-extra">' + escapeHtml(p) + '</span>';
-  }).join('<span class="mirror-sep">、</span>');
+// 英文栏变化 → 重建中文栏（已知标签显示中文，未映射的英文原样显示）
+function syncZhFromEn() {
+  var parts = parseParts(enArea().value);
+  zhArea().value = parts.map(function(p) { return tagZhMap[p] || p; }).join(', ');
+}
+
+// 中文栏变化 → 重建英文栏（有中文映射的同步，手动输入的无映射中文不同步到英文栏）
+function syncEnFromZh() {
+  var parts = parseParts(zhArea().value);
+  var enParts = [];
+  parts.forEach(function(z) {
+    var en = tagEnMap[z];
+    if (en) enParts.push(en);
+  });
+  enArea().value = enParts.join(', ');
 }
 
 function showToast(msg) {
@@ -497,9 +508,12 @@ function loadSubject(idx, cb) {
     })
     .then(function(subject) {
       subjectCache[meta.id] = subject;
-      // 注册该主体所有标签的中英映射，供左侧中文栏使用
+      // 注册该主体所有标签的中英双向映射
       subject.categories.forEach(function(c) {
-        c.tags.forEach(function(t) { tagZhMap[t.en] = t.zh; });
+        c.tags.forEach(function(t) {
+          tagZhMap[t.en] = t.zh;
+          tagEnMap[t.zh] = t.en;
+        });
       });
       cb(subject);
     })
@@ -564,29 +578,33 @@ function renderTags() {
       var en = this.dataset.en;
       var zh = this.dataset.zh;
       tagZhMap[en] = zh;  // 记住中英映射
-      var area = document.getElementById('prompt-area');
-      var parts = getPromptParts();
-      var idx = parts.indexOf(en);
+      tagEnMap[zh] = en;
+      var enParts = parseParts(enArea().value);
+      var zhParts = parseParts(zhArea().value);
+      var idx = enParts.indexOf(en);
       if (idx >= 0) {
-        parts.splice(idx, 1);
+        enParts.splice(idx, 1);
+        var zi = zhParts.indexOf(zh);
+        if (zi >= 0) zhParts.splice(zi, 1);
         this.classList.remove('active');
       } else {
-        parts.push(en);
+        enParts.push(en);
+        zhParts.push(zh);
         this.classList.add('active');
       }
-      area.value = parts.join(', ');
+      enArea().value = enParts.join(', ');
+      zhArea().value = zhParts.join(', ');
       syncSelected();
       updateCounter();
-      updateMirror();
     });
   });
 }
 
 function renderTools() {
   var el = document.getElementById('tools');
-  el.innerHTML = DATA.tools.map(function(t) {
-    var cls = (t.id === 'copy') ? 'pp-tool-btn primary' : 'pp-tool-btn';
-    return '<button class="' + cls + '" data-id="' + t.id + '">' + t.label + '</button>';
+  // 复制按钮已移到中英两栏标题后，工具区不再渲染
+  el.innerHTML = DATA.tools.filter(function(t) { return t.id !== 'copy'; }).map(function(t) {
+    return '<button class="pp-tool-btn" data-id="' + t.id + '">' + t.label + '</button>';
   }).join('');
   el.querySelectorAll('.pp-tool-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
@@ -595,26 +613,32 @@ function renderTools() {
   });
 }
 
+// 通用复制
+function copyText(text, okMsg) {
+  if (!text.trim()) { showToast('内容为空'); return; }
+  navigator.clipboard.writeText(text).then(function() {
+    showToast(okMsg);
+  }).catch(function() {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast(okMsg);
+  });
+}
+
 function handleTool(id) {
-  var area = document.getElementById('prompt-area');
   var tool = DATA.tools.find(function(t) { return t.id === id; });
 
   if (id === 'clear') {
     selectedTags.clear();
-    area.value = '';
+    enArea().value = '';
+    zhArea().value = '';
     updateCounter();
-    updateMirror();
     renderTags();
     showToast('已清空');
-  } else if (id === 'copy') {
-    if (!area.value.trim()) { showToast('提示词为空'); return; }
-    navigator.clipboard.writeText(area.value).then(function() {
-      showToast('已复制到剪贴板');
-    }).catch(function() {
-      area.select();
-      document.execCommand('copy');
-      showToast('已复制');
-    });
   } else if (id === 'translate') {
     var ta = document.getElementById('translate-area');
     ta.classList.toggle('show');
@@ -623,11 +647,11 @@ function handleTool(id) {
     }
   } else if (id === 'negative') {
     if (tool && tool.prompt) {
-      area.value = tool.prompt;
+      enArea().value = tool.prompt;
+      syncZhFromEn();
       syncSelected();
       renderTags();
       updateCounter();
-      updateMirror();
       showToast('已填入负面词');
     }
   } else if (id === 'lighting' || id === 'quality') {
@@ -636,12 +660,15 @@ function handleTool(id) {
       var zhMap = id === 'lighting'
         ? { 'professional lighting': '专业布光', 'soft box lighting': '柔光箱光', 'rim light': '轮廓光', 'studio lighting': '摄影棚灯光' }
         : { 'masterpiece': '杰作', 'best quality': '最佳品质', 'highly detailed': '高度细节', 'ultra-detailed': '超高细节', '8k': '8K分辨率', 'highres': '高分辨率' };
-      Object.keys(zhMap).forEach(function(k) { tagZhMap[k] = zhMap[k]; });
-      var current = area.value.trim();
-      area.value = current ? current + ', ' + tool.prompt : tool.prompt;
+      Object.keys(zhMap).forEach(function(k) {
+        tagZhMap[k] = zhMap[k];
+        tagEnMap[zhMap[k]] = k;
+      });
+      var current = enArea().value.trim();
+      enArea().value = current ? current + ', ' + tool.prompt : tool.prompt;
+      syncZhFromEn();
       syncSelected();
       updateCounter();
-      updateMirror();
       showToast('已添加「' + tool.label + '」');
     }
   } else if (id === 'random_color') {
@@ -649,11 +676,12 @@ function handleTool(id) {
     var colors = Object.keys(colorZh);
     var pick = colors[Math.floor(Math.random() * colors.length)];
     tagZhMap[pick] = colorZh[pick];
-    var current2 = area.value.trim();
-    area.value = current2 ? current2 + ', ' + pick : pick;
+    tagEnMap[colorZh[pick]] = pick;
+    var current2 = enArea().value.trim();
+    enArea().value = current2 ? current2 + ', ' + pick : pick;
+    syncZhFromEn();
     syncSelected();
     updateCounter();
-    updateMirror();
     showToast('已随机添加颜色: ' + colorZh[pick]);
   }
 }
@@ -683,34 +711,60 @@ function init() {
   renderTools();
   renderFAQ();
 
-  document.getElementById('prompt-area').addEventListener('input', function() {
+  // 英文栏手动编辑 → 重建中文栏
+  enArea().addEventListener('input', function() {
     updateCounter();
     syncSelected();
-    updateMirror();
+    syncZhFromEn();
     renderTags();
+  });
+
+  // 中文栏手动编辑 → 反向同步英文栏（无映射的中文片段不同步）
+  zhArea().addEventListener('input', function() {
+    syncEnFromZh();
+    syncSelected();
+    updateCounter();
+    renderTags();
+  });
+
+  // 两个独立复制按钮
+  document.getElementById('copy-zh').addEventListener('click', function() {
+    copyText(zhArea().value, '已复制中文提示词');
+  });
+  document.getElementById('copy-en').addEventListener('click', function() {
+    copyText(enArea().value, '已复制英文提示词');
   });
 
   document.getElementById('translate-input').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
       var text = this.value.trim();
       if (!text) return;
-      // 模拟翻译：直接追加到提示词
-      var area = document.getElementById('prompt-area');
-      var current = area.value.trim();
-      area.value = current ? current + ', ' + text : text;
+      // 模拟翻译：输入的中文先追加到中文栏（接入翻译 API 后应把译文追加到英文栏）
+      var current = zhArea().value.trim();
+      zhArea().value = current ? current + ', ' + text : text;
+      syncEnFromZh();
       syncSelected();
       updateCounter();
-      updateMirror();
-      showToast('已插入（实际翻译需接入翻译API）');
+      renderTags();
+      showToast('已插入中文（英文翻译需接入翻译API）');
       this.value = '';
     }
   });
 }
 
-// 加载数据
+// 加载主配置（主文件 prompt.json；若未来按语言拆分可回退 prompt-zh.json）
 fetch('./assets/data/prompt.json')
-  .then(function(r) { return r.json(); })
+  .then(function(r) {
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json();
+  })
+  .catch(function() {
+    return fetch('./assets/data/prompt-zh.json').then(function(r) { return r.json(); });
+  })
   .then(function(data) {
+    if (!data || !data.meta || !Array.isArray(data.subjects)) {
+      throw new Error('主配置格式不正确');
+    }
     DATA = data;
     init();
   })
