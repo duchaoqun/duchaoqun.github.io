@@ -1,0 +1,122 @@
+{
+  "id": "objects",
+  "name": "物品",
+  "categories": [
+    {
+      "id": "digital",
+      "name": "数码设备",
+      "tags": [
+        {
+          "zh": "电脑",
+          "en": "computer"
+        },
+        {
+          "zh": "鼠标",
+          "en": "mouse"
+        },
+        {
+          "zh": "手机",
+          "en": "cell_phone"
+        },
+        {
+          "zh": "相机",
+          "en": "camera"
+        },
+        {
+          "zh": "耳机",
+          "en": "headphones"
+        },
+        {
+          "zh": "键盘",
+          "en": "keyboard"
+        }
+      ]
+    },
+    {
+      "id": "weapons",
+      "name": "武器",
+      "tags": [
+        {
+          "zh": "剑",
+          "en": "sword"
+        },
+        {
+          "zh": "弓箭",
+          "en": "bow_and_arrow"
+        },
+        {
+          "zh": "枪",
+          "en": "gun"
+        },
+        {
+          "zh": "法杖",
+          "en": "staff"
+        },
+        {
+          "zh": "盾牌",
+          "en": "shield"
+        }
+      ]
+    },
+    {
+      "id": "animals",
+      "name": "动物",
+      "tags": [
+        {
+          "zh": "猫",
+          "en": "cat"
+        },
+        {
+          "zh": "狗",
+          "en": "dog"
+        },
+        {
+          "zh": "兔子",
+          "en": "rabbit"
+        },
+        {
+          "zh": "狐狸",
+          "en": "fox"
+        },
+        {
+          "zh": "狼",
+          "en": "wolf"
+        },
+        {
+          "zh": "龙",
+          "en": "dragon"
+        },
+        {
+          "zh": "凤凰",
+          "en": "phoenix"
+        }
+      ]
+    },
+    {
+      "id": "plants",
+      "name": "植物",
+      "tags": [
+        {
+          "zh": "玫瑰",
+          "en": "rose"
+        },
+        {
+          "zh": "樱花",
+          "en": "cherry_blossom"
+        },
+        {
+          "zh": "向日葵",
+          "en": "sunflower"
+        },
+        {
+          "zh": "荷花",
+          "en": "lotus"
+        },
+        {
+          "zh": "大树",
+          "en": "big_tree"
+        }
+      ]
+    }
+  ]
+}

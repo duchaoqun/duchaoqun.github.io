@@ -1,0 +1,114 @@
+{
+  "id": "color",
+  "name": "色彩氛围",
+  "categories": [
+    {
+      "id": "grayscale",
+      "name": "灰度色",
+      "tags": [
+        {
+          "zh": "黑色",
+          "en": "black"
+        },
+        {
+          "zh": "深灰色",
+          "en": "darkgray"
+        },
+        {
+          "zh": "灰色",
+          "en": "gray"
+        },
+        {
+          "zh": "浅灰色",
+          "en": "lightgray"
+        },
+        {
+          "zh": "白色",
+          "en": "white"
+        }
+      ]
+    },
+    {
+      "id": "warm_tone",
+      "name": "暖色调",
+      "tags": [
+        {
+          "zh": "红色",
+          "en": "red"
+        },
+        {
+          "zh": "橙色",
+          "en": "orange"
+        },
+        {
+          "zh": "黄色",
+          "en": "yellow"
+        },
+        {
+          "zh": "金色",
+          "en": "gold"
+        },
+        {
+          "zh": "棕色",
+          "en": "brown"
+        }
+      ]
+    },
+    {
+      "id": "cool_tone",
+      "name": "冷色调",
+      "tags": [
+        {
+          "zh": "蓝色",
+          "en": "blue"
+        },
+        {
+          "zh": "青色",
+          "en": "cyan"
+        },
+        {
+          "zh": "绿色",
+          "en": "green"
+        },
+        {
+          "zh": "紫色",
+          "en": "purple"
+        },
+        {
+          "zh": "银色",
+          "en": "silver"
+        }
+      ]
+    },
+    {
+      "id": "mood",
+      "name": "情绪氛围",
+      "tags": [
+        {
+          "zh": "梦幻",
+          "en": "dreamy"
+        },
+        {
+          "zh": "忧郁",
+          "en": "melancholic"
+        },
+        {
+          "zh": "温馨",
+          "en": "cozy"
+        },
+        {
+          "zh": "神秘",
+          "en": "mysterious"
+        },
+        {
+          "zh": "活力",
+          "en": "vibrant"
+        },
+        {
+          "zh": "宁静",
+          "en": "serene"
+        }
+      ]
+    }
+  ]
+}

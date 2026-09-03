@@ -1,0 +1,494 @@
+{
+  "id": "character",
+  "name": "人物",
+  "categories": [
+    {
+      "id": "basic",
+      "name": "基础",
+      "tags": [
+        {
+          "zh": "女性",
+          "en": "female"
+        },
+        {
+          "zh": "男性",
+          "en": "male"
+        },
+        {
+          "zh": "成熟女性",
+          "en": "mature_female"
+        },
+        {
+          "zh": "成熟",
+          "en": "mature"
+        },
+        {
+          "zh": "小女孩",
+          "en": "little_girl"
+        },
+        {
+          "zh": "小男孩",
+          "en": "little_boy"
+        },
+        {
+          "zh": "2个女孩",
+          "en": "2girls"
+        },
+        {
+          "zh": "2个男孩",
+          "en": "2boys"
+        },
+        {
+          "zh": "姐妹",
+          "en": "sisters"
+        },
+        {
+          "zh": "多个女孩",
+          "en": "multiple_girls"
+        },
+        {
+          "zh": "单人",
+          "en": "solo"
+        },
+        {
+          "zh": "大小姐",
+          "en": "ojousama"
+        },
+        {
+          "zh": "美少女",
+          "en": "bishoujo"
+        },
+        {
+          "zh": "可爱的女孩",
+          "en": "adorable_girl"
+        },
+        {
+          "zh": "痴女",
+          "en": "female_pervert"
+        },
+        {
+          "zh": "熟女",
+          "en": "milf"
+        },
+        {
+          "zh": "韩国偶像",
+          "en": "beautiful Korean idol"
+        }
+      ]
+    },
+    {
+      "id": "identity",
+      "name": "身份",
+      "tags": [
+        {
+          "zh": "学生",
+          "en": "student"
+        },
+        {
+          "zh": "女学生",
+          "en": "schoolgirl"
+        },
+        {
+          "zh": "大学生",
+          "en": "college_student"
+        },
+        {
+          "zh": "老师",
+          "en": "teacher"
+        },
+        {
+          "zh": "护士",
+          "en": "nurse"
+        },
+        {
+          "zh": "医生",
+          "en": "doctor"
+        },
+        {
+          "zh": "警察",
+          "en": "police"
+        },
+        {
+          "zh": "女仆",
+          "en": "maid"
+        },
+        {
+          "zh": "魔法少女",
+          "en": "magical_girl"
+        },
+        {
+          "zh": "偶像",
+          "en": "idol"
+        },
+        {
+          "zh": "修女",
+          "en": "nun"
+        },
+        {
+          "zh": "巫女",
+          "en": "miko"
+        },
+        {
+          "zh": "公主",
+          "en": "princess"
+        },
+        {
+          "zh": "骑士",
+          "en": "knight"
+        },
+        {
+          "zh": "战士",
+          "en": "warrior"
+        }
+      ]
+    },
+    {
+      "id": "anime",
+      "name": "二次元",
+      "tags": [
+        {
+          "zh": "动漫风格",
+          "en": "anime_style"
+        },
+        {
+          "zh": "萝莉",
+          "en": "loli"
+        },
+        {
+          "zh": "正太",
+          "en": "shota"
+        },
+        {
+          "zh": "御姐",
+          "en": "onee_san"
+        },
+        {
+          "zh": "傲娇",
+          "en": "tsundere"
+        },
+        {
+          "zh": "病娇",
+          "en": "yandere"
+        },
+        {
+          "zh": "猫娘",
+          "en": "catgirl"
+        },
+        {
+          "zh": "狐娘",
+          "en": "foxgirl"
+        },
+        {
+          "zh": "兔娘",
+          "en": "bunny_girl"
+        }
+      ]
+    },
+    {
+      "id": "age",
+      "name": "年龄",
+      "tags": [
+        {
+          "zh": "婴儿",
+          "en": "baby"
+        },
+        {
+          "zh": "幼儿",
+          "en": "toddler"
+        },
+        {
+          "zh": "儿童",
+          "en": "child"
+        },
+        {
+          "zh": "少年",
+          "en": "teenager"
+        },
+        {
+          "zh": "青年",
+          "en": "young_adult"
+        },
+        {
+          "zh": "中年",
+          "en": "middle_aged"
+        },
+        {
+          "zh": "老年",
+          "en": "old"
+        }
+      ]
+    },
+    {
+      "id": "skin",
+      "name": "皮肤",
+      "tags": [
+        {
+          "zh": "白皙皮肤",
+          "en": "pale_skin"
+        },
+        {
+          "zh": "健康肤色",
+          "en": "fair_skin"
+        },
+        {
+          "zh": "小麦色皮肤",
+          "en": "tanned_skin"
+        },
+        {
+          "zh": "深色皮肤",
+          "en": "dark_skin"
+        },
+        {
+          "zh": "光滑皮肤",
+          "en": "smooth_skin"
+        },
+        {
+          "zh": "雀斑",
+          "en": "freckles"
+        }
+      ]
+    },
+    {
+      "id": "body",
+      "name": "身材",
+      "tags": [
+        {
+          "zh": "苗条",
+          "en": "slender"
+        },
+        {
+          "zh": "丰满",
+          "en": "plump"
+        },
+        {
+          "zh": "肌肉发达",
+          "en": "muscular"
+        },
+        {
+          "zh": "娇小",
+          "en": "petite"
+        },
+        {
+          "zh": "高挑",
+          "en": "tall"
+        },
+        {
+          "zh": "曲线美",
+          "en": "curvy"
+        }
+      ]
+    },
+    {
+      "id": "face_shape",
+      "name": "脸型",
+      "tags": [
+        {
+          "zh": "鹅蛋脸",
+          "en": "oval_face"
+        },
+        {
+          "zh": "圆脸",
+          "en": "round_face"
+        },
+        {
+          "zh": "方脸",
+          "en": "square_face"
+        },
+        {
+          "zh": "瓜子脸",
+          "en": "heart_shaped_face"
+        },
+        {
+          "zh": "V字脸",
+          "en": "v_shaped_face"
+        }
+      ]
+    },
+    {
+      "id": "hair",
+      "name": "头发",
+      "tags": [
+        {
+          "zh": "长发",
+          "en": "long_hair"
+        },
+        {
+          "zh": "短发",
+          "en": "short_hair"
+        },
+        {
+          "zh": "中长发",
+          "en": "medium_hair"
+        },
+        {
+          "zh": "双马尾",
+          "en": "twintails"
+        },
+        {
+          "zh": "马尾辫",
+          "en": "ponytail"
+        },
+        {
+          "zh": "麻花辫",
+          "en": "braid"
+        },
+        {
+          "zh": "卷发",
+          "en": "curly_hair"
+        },
+        {
+          "zh": "直发",
+          "en": "straight_hair"
+        },
+        {
+          "zh": "波浪卷",
+          "en": "wavy_hair"
+        },
+        {
+          "zh": "丸子头",
+          "en": "hair_bun"
+        }
+      ]
+    },
+    {
+      "id": "hair_color",
+      "name": "发型",
+      "tags": [
+        {
+          "zh": "黑发",
+          "en": "black_hair"
+        },
+        {
+          "zh": "金发",
+          "en": "blonde_hair"
+        },
+        {
+          "zh": "银发",
+          "en": "silver_hair"
+        },
+        {
+          "zh": "白发",
+          "en": "white_hair"
+        },
+        {
+          "zh": "红发",
+          "en": "red_hair"
+        },
+        {
+          "zh": "蓝发",
+          "en": "blue_hair"
+        },
+        {
+          "zh": "粉发",
+          "en": "pink_hair"
+        },
+        {
+          "zh": "绿发",
+          "en": "green_hair"
+        },
+        {
+          "zh": "紫发",
+          "en": "purple_hair"
+        },
+        {
+          "zh": "渐变发色",
+          "en": "gradient_hair"
+        },
+        {
+          "zh": "挑染",
+          "en": "streaked_hair"
+        }
+      ]
+    },
+    {
+      "id": "eyes",
+      "name": "眼睛",
+      "tags": [
+        {
+          "zh": "大眼睛",
+          "en": "big_eyes"
+        },
+        {
+          "zh": "小眼睛",
+          "en": "small_eyes"
+        },
+        {
+          "zh": "蓝色眼睛",
+          "en": "blue_eyes"
+        },
+        {
+          "zh": "绿色眼睛",
+          "en": "green_eyes"
+        },
+        {
+          "zh": "红色眼睛",
+          "en": "red_eyes"
+        },
+        {
+          "zh": "金色眼睛",
+          "en": "golden_eyes"
+        },
+        {
+          "zh": "紫色眼睛",
+          "en": "purple_eyes"
+        },
+        {
+          "zh": "异色瞳",
+          "en": "heterochromia"
+        }
+      ]
+    },
+    {
+      "id": "expression",
+      "name": "面部",
+      "tags": [
+        {
+          "zh": "微笑",
+          "en": "smile"
+        },
+        {
+          "zh": "严肃",
+          "en": "serious"
+        },
+        {
+          "zh": "害羞",
+          "en": "blush"
+        },
+        {
+          "zh": "流泪",
+          "en": "crying"
+        },
+        {
+          "zh": "愤怒",
+          "en": "angry"
+        },
+        {
+          "zh": "惊讶",
+          "en": "surprised"
+        }
+      ]
+    },
+    {
+      "id": "wings",
+      "name": "翅膀",
+      "tags": [
+        {
+          "zh": "天使翅膀",
+          "en": "angel_wings"
+        },
+        {
+          "zh": "恶魔翅膀",
+          "en": "demon_wings"
+        },
+        {
+          "zh": "蝴蝶翅膀",
+          "en": "butterfly_wings"
+        },
+        {
+          "zh": "机械翅膀",
+          "en": "mechanical_wings"
+        }
+      ]
+    }
+  ]
+}

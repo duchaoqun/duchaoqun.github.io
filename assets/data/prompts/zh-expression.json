@@ -1,0 +1,106 @@
+{
+  "id": "expression",
+  "name": "表情",
+  "categories": [
+    {
+      "id": "smile",
+      "name": "笑",
+      "tags": [
+        {
+          "zh": "微笑",
+          "en": "smile"
+        },
+        {
+          "zh": "大笑",
+          "en": "laughing"
+        },
+        {
+          "zh": "露齿笑",
+          "en": "grin"
+        },
+        {
+          "zh": "迷人的微笑",
+          "en": "seductive_smile"
+        },
+        {
+          "zh": "挑逗的微笑",
+          "en": "smirk"
+        },
+        {
+          "zh": "咯咯笑",
+          "en": "giggling"
+        },
+        {
+          "zh": "坏笑",
+          "en": "evil_smile"
+        }
+      ]
+    },
+    {
+      "id": "cry",
+      "name": "哭",
+      "tags": [
+        {
+          "zh": "哭泣",
+          "en": "crying"
+        },
+        {
+          "zh": "泪流满面",
+          "en": "tears"
+        },
+        {
+          "zh": "开心的眼泪",
+          "en": "happy_tears"
+        }
+      ]
+    },
+    {
+      "id": "negative_emotion",
+      "name": "负面情绪",
+      "tags": [
+        {
+          "zh": "愤怒",
+          "en": "angry"
+        },
+        {
+          "zh": "悲伤",
+          "en": "sad"
+        },
+        {
+          "zh": "恐惧",
+          "en": "scared"
+        },
+        {
+          "zh": "厌恶",
+          "en": "disgust"
+        }
+      ]
+    },
+    {
+      "id": "positive_emotion",
+      "name": "积极情绪",
+      "tags": [
+        {
+          "zh": "开心",
+          "en": "happy"
+        },
+        {
+          "zh": "兴奋",
+          "en": "excited"
+        },
+        {
+          "zh": "惊讶",
+          "en": "surprised"
+        },
+        {
+          "zh": "害羞",
+          "en": "blush"
+        },
+        {
+          "zh": "得意",
+          "en": "smug"
+        }
+      ]
+    }
+  ]
+}

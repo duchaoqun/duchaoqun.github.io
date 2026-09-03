@@ -1,0 +1,270 @@
+{
+  "id": "environment",
+  "name": "环境",
+  "categories": [
+    {
+      "id": "background",
+      "name": "背景",
+      "tags": [
+        {
+          "zh": "透明背景",
+          "en": "transparent_background"
+        },
+        {
+          "zh": "白色背景",
+          "en": "white_background"
+        },
+        {
+          "zh": "黑色背景",
+          "en": "black_background"
+        },
+        {
+          "zh": "灰色背景",
+          "en": "grey_background"
+        },
+        {
+          "zh": "简单背景",
+          "en": "simple_background"
+        },
+        {
+          "zh": "渐变背景",
+          "en": "gradient_background"
+        },
+        {
+          "zh": "抽象背景",
+          "en": "abstract_background"
+        },
+        {
+          "zh": "模糊背景",
+          "en": "blurred_background"
+        },
+        {
+          "zh": "星空背景",
+          "en": "starry_background"
+        },
+        {
+          "zh": "彩虹背景",
+          "en": "rainbow_background"
+        },
+        {
+          "zh": "赛博朋克",
+          "en": "cyberpunk"
+        },
+        {
+          "zh": "城市灯光",
+          "en": "city_lights"
+        }
+      ]
+    },
+    {
+      "id": "season",
+      "name": "季节",
+      "tags": [
+        {
+          "zh": "春天",
+          "en": "spring"
+        },
+        {
+          "zh": "夏天",
+          "en": "summer"
+        },
+        {
+          "zh": "秋天",
+          "en": "autumn"
+        },
+        {
+          "zh": "冬天",
+          "en": "winter"
+        }
+      ]
+    },
+    {
+      "id": "weather",
+      "name": "天气",
+      "tags": [
+        {
+          "zh": "晴天",
+          "en": "sunny"
+        },
+        {
+          "zh": "雨天",
+          "en": "rainy"
+        },
+        {
+          "zh": "雪天",
+          "en": "snowy"
+        },
+        {
+          "zh": "雾天",
+          "en": "foggy"
+        },
+        {
+          "zh": "暴风雨",
+          "en": "stormy"
+        },
+        {
+          "zh": "雷电",
+          "en": "lightning"
+        }
+      ]
+    },
+    {
+      "id": "nature",
+      "name": "大自然",
+      "tags": [
+        {
+          "zh": "森林",
+          "en": "forest"
+        },
+        {
+          "zh": "海滩",
+          "en": "beach"
+        },
+        {
+          "zh": "山脉",
+          "en": "mountains"
+        },
+        {
+          "zh": "草原",
+          "en": "grassland"
+        },
+        {
+          "zh": "沙漠",
+          "en": "desert"
+        },
+        {
+          "zh": "瀑布",
+          "en": "waterfall"
+        },
+        {
+          "zh": "湖泊",
+          "en": "lake"
+        },
+        {
+          "zh": "花田",
+          "en": "flower_field"
+        }
+      ]
+    },
+    {
+      "id": "sky",
+      "name": "天空",
+      "tags": [
+        {
+          "zh": "日出",
+          "en": "sunrise"
+        },
+        {
+          "zh": "日落",
+          "en": "sunset"
+        },
+        {
+          "zh": "夜空",
+          "en": "night_sky"
+        },
+        {
+          "zh": "满天星斗",
+          "en": "starry_sky"
+        },
+        {
+          "zh": "极光",
+          "en": "aurora"
+        },
+        {
+          "zh": "彩虹",
+          "en": "rainbow"
+        }
+      ]
+    },
+    {
+      "id": "outdoor",
+      "name": "室外",
+      "tags": [
+        {
+          "zh": "街道",
+          "en": "street"
+        },
+        {
+          "zh": "公园",
+          "en": "park"
+        },
+        {
+          "zh": "广场",
+          "en": "plaza"
+        },
+        {
+          "zh": "校园",
+          "en": "campus"
+        },
+        {
+          "zh": "游乐园",
+          "en": "amusement_park"
+        },
+        {
+          "zh": "海边",
+          "en": "seaside"
+        }
+      ]
+    },
+    {
+      "id": "city",
+      "name": "城市",
+      "tags": [
+        {
+          "zh": "摩天大楼",
+          "en": "skyscraper"
+        },
+        {
+          "zh": "小巷",
+          "en": "alley"
+        },
+        {
+          "zh": "天桥",
+          "en": "overpass"
+        },
+        {
+          "zh": "霓虹灯",
+          "en": "neon_lights"
+        },
+        {
+          "zh": "便利店",
+          "en": "convenience_store"
+        }
+      ]
+    },
+    {
+      "id": "indoor",
+      "name": "室内",
+      "tags": [
+        {
+          "zh": "客厅",
+          "en": "living_room"
+        },
+        {
+          "zh": "卧室",
+          "en": "bedroom"
+        },
+        {
+          "zh": "厨房",
+          "en": "kitchen"
+        },
+        {
+          "zh": "教室",
+          "en": "classroom"
+        },
+        {
+          "zh": "咖啡馆",
+          "en": "cafe"
+        },
+        {
+          "zh": "图书馆",
+          "en": "library"
+        },
+        {
+          "zh": "浴室",
+          "en": "bathroom"
+        }
+      ]
+    }
+  ]
+}

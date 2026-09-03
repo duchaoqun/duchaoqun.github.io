@@ -1,0 +1,80 @@
+{
+  "id": "art_style",
+  "name": "艺术风格",
+  "categories": [
+    {
+      "id": "painting",
+      "name": "绘画",
+      "tags": [
+        {
+          "zh": "油画",
+          "en": "oil_paint"
+        },
+        {
+          "zh": "水彩画",
+          "en": "watercolor"
+        },
+        {
+          "zh": "水墨画",
+          "en": "ink_wash_painting"
+        },
+        {
+          "zh": "丙烯画",
+          "en": "acrylic_paint"
+        },
+        {
+          "zh": "中国画",
+          "en": "Chinese_painting"
+        }
+      ]
+    },
+    {
+      "id": "illustration",
+      "name": "插画",
+      "tags": [
+        {
+          "zh": "动漫风格",
+          "en": "anime_style"
+        },
+        {
+          "zh": "像素艺术",
+          "en": "pixel_art"
+        },
+        {
+          "zh": "扁平插画",
+          "en": "flat_illustration"
+        },
+        {
+          "zh": "手绘",
+          "en": "hand_drawn"
+        }
+      ]
+    },
+    {
+      "id": "quality",
+      "name": "画面品质",
+      "tags": [
+        {
+          "zh": "杰作",
+          "en": "masterpiece"
+        },
+        {
+          "zh": "最高品质",
+          "en": "best_quality"
+        },
+        {
+          "zh": "超高细节",
+          "en": "ultra_detailed"
+        },
+        {
+          "zh": "8K分辨率",
+          "en": "8k_resolution"
+        },
+        {
+          "zh": "高分辨率",
+          "en": "highres"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "id": "accessories",
+  "name": "饰品",
+  "categories": [
+    {
+      "id": "headwear",
+      "name": "头饰",
+      "tags": [
+        {
+          "zh": "头顶光环",
+          "en": "halo"
+        },
+        {
+          "zh": "皇冠",
+          "en": "crown"
+        },
+        {
+          "zh": "头带",
+          "en": "headband"
+        },
+        {
+          "zh": "花冠",
+          "en": "head_wreath"
+        },
+        {
+          "zh": "头巾",
+          "en": "bandana"
+        }
+      ]
+    },
+    {
+      "id": "glasses",
+      "name": "眼镜",
+      "tags": [
+        {
+          "zh": "眼镜",
+          "en": "glasses"
+        },
+        {
+          "zh": "墨镜",
+          "en": "sunglasses"
+        },
+        {
+          "zh": "单片眼镜",
+          "en": "monocle"
+        }
+      ]
+    },
+    {
+      "id": "jewelry",
+      "name": "首饰",
+      "tags": [
+        {
+          "zh": "项链",
+          "en": "necklace"
+        },
+        {
+          "zh": "耳环",
+          "en": "earrings"
+        },
+        {
+          "zh": "戒指",
+          "en": "ring"
+        },
+        {
+          "zh": "手镯",
+          "en": "bracelet"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "id": "lighting",
+  "name": "光影效果",
+  "categories": [
+    {
+      "id": "light_source",
+      "name": "光源",
+      "tags": [
+        {
+          "zh": "日光",
+          "en": "Sunlight"
+        },
+        {
+          "zh": "月光",
+          "en": "Moonlight"
+        },
+        {
+          "zh": "火光",
+          "en": "Firelight"
+        },
+        {
+          "zh": "人工光",
+          "en": "Artificial Lighting"
+        },
+        {
+          "zh": "自然光",
+          "en": "Natural Lighting"
+        },
+        {
+          "zh": "摄影棚灯光",
+          "en": "Studio Lighting"
+        }
+      ]
+    },
+    {
+      "id": "light_type",
+      "name": "光线类型",
+      "tags": [
+        {
+          "zh": "正面光",
+          "en": "Frontlight"
+        },
+        {
+          "zh": "背光",
+          "en": "Backlight"
+        },
+        {
+          "zh": "侧光",
+          "en": "Sidelight"
+        },
+        {
+          "zh": "顶光",
+          "en": "Toplight"
+        },
+        {
+          "zh": "体积光",
+          "en": "Volumetric Lighting"
+        }
+      ]
+    },
+    {
+      "id": "light_effect",
+      "name": "光照效果",
+      "tags": [
+        {
+          "zh": "聚光灯",
+          "en": "Spotlight"
+        },
+        {
+          "zh": "泛光灯",
+          "en": "Floodlight"
+        },
+        {
+          "zh": "LED灯",
+          "en": "LED light"
+        },
+        {
+          "zh": "频闪灯",
+          "en": "Strobe"
+        },
+        {
+          "zh": "明亮的",
+          "en": "bright"
+        }
+      ]
+    }
+  ]
+}

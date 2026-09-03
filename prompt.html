@@ -325,6 +325,7 @@ var selectedTags = new Set();
 var currentSubject = 0;
 var currentCategory = 0;
 var maxChars = 380;
+var subjectCache = {};   // 已懒加载的主体数据，按 id 缓存
 
 function showToast(msg) {
   var t = document.getElementById('toast');
@@ -365,6 +366,48 @@ function renderFooter() {
   }).join('');
 }
 
+// 获取当前已加载的主体完整数据
+function currentSubjectData() {
+  return subjectCache[DATA.subjects[currentSubject].id];
+}
+
+// 懒加载某个主体的 JSON 文件（带缓存）
+function loadSubject(idx, cb) {
+  var meta = DATA.subjects[idx];
+  if (subjectCache[meta.id]) {
+    cb(subjectCache[meta.id]);
+    return;
+  }
+  document.getElementById('category-group').innerHTML =
+    '<span style="color:var(--textSecondary);font-size:13px;padding:6px 0;">加载中…</span>';
+  document.getElementById('tag-group').innerHTML =
+    '<span style="color:var(--textSecondary);font-size:13px;padding:6px 0;">加载中…</span>';
+  fetch('./assets/data/' + meta.file)
+    .then(function(r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then(function(subject) {
+      subjectCache[meta.id] = subject;
+      cb(subject);
+    })
+    .catch(function(err) {
+      console.error('加载主体「' + meta.name + '」失败:', err);
+      document.getElementById('tag-group').innerHTML =
+        '<span style="color:#e74c3c;font-size:13px;padding:6px 0;">加载失败，请通过 HTTP 协议访问</span>';
+    });
+}
+
+function selectSubject(idx) {
+  currentSubject = idx;
+  currentCategory = 0;
+  renderSubjects();
+  loadSubject(idx, function() {
+    renderCategories();
+    renderTags();
+  });
+}
+
 function renderSubjects() {
   var el = document.getElementById('subject-group');
   el.innerHTML = DATA.subjects.map(function(s, i) {
@@ -372,17 +415,14 @@ function renderSubjects() {
   }).join('');
   el.querySelectorAll('.pp-radio-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
-      currentSubject = parseInt(this.dataset.idx);
-      currentCategory = 0;
-      renderSubjects();
-      renderCategories();
-      renderTags();
+      selectSubject(parseInt(this.dataset.idx));
     });
   });
 }
 
 function renderCategories() {
-  var subject = DATA.subjects[currentSubject];
+  var subject = currentSubjectData();
+  if (!subject) return;
   var el = document.getElementById('category-group');
   el.innerHTML = subject.categories.map(function(c, i) {
     return '<button class="pp-radio-btn' + (i === currentCategory ? ' active' : '') + '" data-idx="' + i + '">' + c.name + '</button>';
@@ -397,7 +437,8 @@ function renderCategories() {
 }
 
 function renderTags() {
-  var subject = DATA.subjects[currentSubject];
+  var subject = currentSubjectData();
+  if (!subject) return;
   var category = subject.categories[currentCategory];
   var el = document.getElementById('tag-group');
   el.innerHTML = category.tags.map(function(tag) {
@@ -507,8 +548,7 @@ function init() {
   renderNav();
   renderFooter();
   renderSubjects();
-  renderCategories();
-  renderTags();
+  selectSubject(0);
   renderTools();
   renderFAQ();
 

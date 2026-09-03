@@ -1,0 +1,118 @@
+{
+  "id": "photography",
+  "name": "摄影",
+  "categories": [
+    {
+      "id": "angle",
+      "name": "视角",
+      "tags": [
+        {
+          "zh": "动态角度",
+          "en": "dynamic_angle"
+        },
+        {
+          "zh": "从上拍",
+          "en": "from_above"
+        },
+        {
+          "zh": "从下拍",
+          "en": "from_below"
+        },
+        {
+          "zh": "电影角度",
+          "en": "cinematic_angle"
+        },
+        {
+          "zh": "倾斜角度",
+          "en": "dutch_angle"
+        },
+        {
+          "zh": "俯视图",
+          "en": "aerial_view"
+        },
+        {
+          "zh": "侧视图",
+          "en": "side_view"
+        }
+      ]
+    },
+    {
+      "id": "composition",
+      "name": "构图",
+      "tags": [
+        {
+          "zh": "特写",
+          "en": "close-up"
+        },
+        {
+          "zh": "全身",
+          "en": "full_body"
+        },
+        {
+          "zh": "半身",
+          "en": "upper_body"
+        },
+        {
+          "zh": "面部特写",
+          "en": "face_closeup"
+        },
+        {
+          "zh": "广角",
+          "en": "wide_angle"
+        }
+      ]
+    },
+    {
+      "id": "lens",
+      "name": "镜头效果",
+      "tags": [
+        {
+          "zh": "景深",
+          "en": "depth_of_field"
+        },
+        {
+          "zh": "散景",
+          "en": "bokeh"
+        },
+        {
+          "zh": "鱼眼",
+          "en": "fisheye"
+        },
+        {
+          "zh": "微距",
+          "en": "macro"
+        },
+        {
+          "zh": "长焦",
+          "en": "telephoto"
+        }
+      ]
+    },
+    {
+      "id": "style",
+      "name": "摄影风格",
+      "tags": [
+        {
+          "zh": "人像摄影",
+          "en": "portrait_photography"
+        },
+        {
+          "zh": "街拍",
+          "en": "street_photography"
+        },
+        {
+          "zh": "时尚摄影",
+          "en": "fashion_photography"
+        },
+        {
+          "zh": "胶片摄影",
+          "en": "film_photography"
+        },
+        {
+          "zh": "宝丽来",
+          "en": "polaroid"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "id": "action",
+  "name": "动作",
+  "categories": [
+    {
+      "id": "basic_pose",
+      "name": "基本姿态",
+      "tags": [
+        {
+          "zh": "站立",
+          "en": "standing"
+        },
+        {
+          "zh": "坐",
+          "en": "sitting"
+        },
+        {
+          "zh": "躺着",
+          "en": "lying"
+        },
+        {
+          "zh": "倚靠",
+          "en": "leaning"
+        },
+        {
+          "zh": "鞠躬",
+          "en": "bowing"
+        },
+        {
+          "zh": "倒立",
+          "en": "upside-down"
+        }
+      ]
+    },
+    {
+      "id": "arm_action",
+      "name": "手臂动作",
+      "tags": [
+        {
+          "zh": "举手",
+          "en": "hands_up"
+        },
+        {
+          "zh": "叉腰",
+          "en": "hands_on_hips"
+        },
+        {
+          "zh": "抱胸",
+          "en": "arms_crossed"
+        },
+        {
+          "zh": "伸手",
+          "en": "reaching_out"
+        }
+      ]
+    },
+    {
+      "id": "leg_action",
+      "name": "腿脚动作",
+      "tags": [
+        {
+          "zh": "翘腿",
+          "en": "crossing_legs"
+        },
+        {
+          "zh": "蹲下",
+          "en": "squatting"
+        },
+        {
+          "zh": "踮脚",
+          "en": "tiptoe"
+        },
+        {
+          "zh": "踢腿",
+          "en": "kicking"
+        }
+      ]
+    },
+    {
+      "id": "sports",
+      "name": "运动健身",
+      "tags": [
+        {
+          "zh": "跑步",
+          "en": "running"
+        },
+        {
+          "zh": "跳跃",
+          "en": "jumping"
+        },
+        {
+          "zh": "游泳",
+          "en": "swimming"
+        },
+        {
+          "zh": "骑自行车",
+          "en": "cycling"
+        },
+        {
+          "zh": "瑜伽",
+          "en": "yoga"
+        }
+      ]
+    },
+    {
+      "id": "magic",
+      "name": "魔法",
+      "tags": [
+        {
+          "zh": "施法",
+          "en": "casting_spell"
+        },
+        {
+          "zh": "飞行",
+          "en": "flying"
+        },
+        {
+          "zh": "召唤",
+          "en": "summoning"
+        },
+        {
+          "zh": "传送",
+          "en": "teleportation"
+        }
+      ]
+    }
+  ]
+}

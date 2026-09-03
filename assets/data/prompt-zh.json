@@ -5,11 +5,21 @@
     "description": "中英双语标签 秒出专业级 AI 图像/视频提示词",
     "maxChars": 380,
     "nav": [
-      { "label": "首页", "url": "https://www.duchaoqun.cn" },
-      { "label": "反馈与建议", "url": "https://www.duchaoqun.cn" }
+      {
+        "label": "首页",
+        "url": "https://www.duchaoqun.cn"
+      },
+      {
+        "label": "反馈与建议",
+        "url": "https://www.duchaoqun.cn"
+      }
     ],
     "footer": [
-      { "label": "GitHub", "url": "https://github.com/duchaoqun", "external": true }
+      {
+        "label": "GitHub",
+        "url": "https://github.com/duchaoqun",
+        "external": true
+      }
     ],
     "theme": {
       "bg": "#faf9f4",
@@ -29,870 +39,98 @@
     }
   },
   "tools": [
-    { "id": "lighting", "label": "人像布光", "prompt": "professional lighting, soft box lighting, rim light, studio lighting" },
-    { "id": "quality", "label": "画质优化", "prompt": "masterpiece, best quality, highly detailed, ultra-detailed, 8k, highres" },
-    { "id": "random_color", "label": "随机换色" },
-    { "id": "negative", "label": "负面词", "prompt": "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry" },
-    { "id": "clear", "label": "清空" },
-    { "id": "copy", "label": "复制" },
-    { "id": "translate", "label": "翻译" }
+    {
+      "id": "lighting",
+      "label": "人像布光",
+      "prompt": "professional lighting, soft box lighting, rim light, studio lighting"
+    },
+    {
+      "id": "quality",
+      "label": "画质优化",
+      "prompt": "masterpiece, best quality, highly detailed, ultra-detailed, 8k, highres"
+    },
+    {
+      "id": "random_color",
+      "label": "随机换色"
+    },
+    {
+      "id": "negative",
+      "label": "负面词",
+      "prompt": "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry"
+    },
+    {
+      "id": "clear",
+      "label": "清空"
+    },
+    {
+      "id": "copy",
+      "label": "复制"
+    },
+    {
+      "id": "translate",
+      "label": "翻译"
+    }
   ],
   "subjects": [
     {
       "id": "character",
       "name": "人物",
-      "categories": [
-        {
-          "id": "basic",
-          "name": "基础",
-          "tags": [
-            { "zh": "女性", "en": "female" },
-            { "zh": "男性", "en": "male" },
-            { "zh": "成熟女性", "en": "mature_female" },
-            { "zh": "成熟", "en": "mature" },
-            { "zh": "小女孩", "en": "little_girl" },
-            { "zh": "小男孩", "en": "little_boy" },
-            { "zh": "2个女孩", "en": "2girls" },
-            { "zh": "2个男孩", "en": "2boys" },
-            { "zh": "姐妹", "en": "sisters" },
-            { "zh": "多个女孩", "en": "multiple_girls" },
-            { "zh": "单人", "en": "solo" },
-            { "zh": "大小姐", "en": "ojousama" },
-            { "zh": "美少女", "en": "bishoujo" },
-            { "zh": "可爱的女孩", "en": "adorable_girl" },
-            { "zh": "痴女", "en": "female_pervert" },
-            { "zh": "熟女", "en": "milf" },
-            { "zh": "韩国偶像", "en": "beautiful Korean idol" }
-          ]
-        },
-        {
-          "id": "identity",
-          "name": "身份",
-          "tags": [
-            { "zh": "学生", "en": "student" },
-            { "zh": "女学生", "en": "schoolgirl" },
-            { "zh": "大学生", "en": "college_student" },
-            { "zh": "老师", "en": "teacher" },
-            { "zh": "护士", "en": "nurse" },
-            { "zh": "医生", "en": "doctor" },
-            { "zh": "警察", "en": "police" },
-            { "zh": "女仆", "en": "maid" },
-            { "zh": "魔法少女", "en": "magical_girl" },
-            { "zh": "偶像", "en": "idol" },
-            { "zh": "修女", "en": "nun" },
-            { "zh": "巫女", "en": "miko" },
-            { "zh": "公主", "en": "princess" },
-            { "zh": "骑士", "en": "knight" },
-            { "zh": "战士", "en": "warrior" }
-          ]
-        },
-        {
-          "id": "anime",
-          "name": "二次元",
-          "tags": [
-            { "zh": "动漫风格", "en": "anime_style" },
-            { "zh": "萝莉", "en": "loli" },
-            { "zh": "正太", "en": "shota" },
-            { "zh": "御姐", "en": "onee_san" },
-            { "zh": "傲娇", "en": "tsundere" },
-            { "zh": "病娇", "en": "yandere" },
-            { "zh": "猫娘", "en": "catgirl" },
-            { "zh": "狐娘", "en": "foxgirl" },
-            { "zh": "兔娘", "en": "bunny_girl" }
-          ]
-        },
-        {
-          "id": "age",
-          "name": "年龄",
-          "tags": [
-            { "zh": "婴儿", "en": "baby" },
-            { "zh": "幼儿", "en": "toddler" },
-            { "zh": "儿童", "en": "child" },
-            { "zh": "少年", "en": "teenager" },
-            { "zh": "青年", "en": "young_adult" },
-            { "zh": "中年", "en": "middle_aged" },
-            { "zh": "老年", "en": "old" }
-          ]
-        },
-        {
-          "id": "skin",
-          "name": "皮肤",
-          "tags": [
-            { "zh": "白皙皮肤", "en": "pale_skin" },
-            { "zh": "健康肤色", "en": "fair_skin" },
-            { "zh": "小麦色皮肤", "en": "tanned_skin" },
-            { "zh": "深色皮肤", "en": "dark_skin" },
-            { "zh": "光滑皮肤", "en": "smooth_skin" },
-            { "zh": "雀斑", "en": "freckles" }
-          ]
-        },
-        {
-          "id": "body",
-          "name": "身材",
-          "tags": [
-            { "zh": "苗条", "en": "slender" },
-            { "zh": "丰满", "en": "plump" },
-            { "zh": "肌肉发达", "en": "muscular" },
-            { "zh": "娇小", "en": "petite" },
-            { "zh": "高挑", "en": "tall" },
-            { "zh": "曲线美", "en": "curvy" }
-          ]
-        },
-        {
-          "id": "face_shape",
-          "name": "脸型",
-          "tags": [
-            { "zh": "鹅蛋脸", "en": "oval_face" },
-            { "zh": "圆脸", "en": "round_face" },
-            { "zh": "方脸", "en": "square_face" },
-            { "zh": "瓜子脸", "en": "heart_shaped_face" },
-            { "zh": "V字脸", "en": "v_shaped_face" }
-          ]
-        },
-        {
-          "id": "hair",
-          "name": "头发",
-          "tags": [
-            { "zh": "长发", "en": "long_hair" },
-            { "zh": "短发", "en": "short_hair" },
-            { "zh": "中长发", "en": "medium_hair" },
-            { "zh": "双马尾", "en": "twintails" },
-            { "zh": "马尾辫", "en": "ponytail" },
-            { "zh": "麻花辫", "en": "braid" },
-            { "zh": "卷发", "en": "curly_hair" },
-            { "zh": "直发", "en": "straight_hair" },
-            { "zh": "波浪卷", "en": "wavy_hair" },
-            { "zh": "丸子头", "en": "hair_bun" }
-          ]
-        },
-        {
-          "id": "hair_color",
-          "name": "发型",
-          "tags": [
-            { "zh": "黑发", "en": "black_hair" },
-            { "zh": "金发", "en": "blonde_hair" },
-            { "zh": "银发", "en": "silver_hair" },
-            { "zh": "白发", "en": "white_hair" },
-            { "zh": "红发", "en": "red_hair" },
-            { "zh": "蓝发", "en": "blue_hair" },
-            { "zh": "粉发", "en": "pink_hair" },
-            { "zh": "绿发", "en": "green_hair" },
-            { "zh": "紫发", "en": "purple_hair" },
-            { "zh": "渐变发色", "en": "gradient_hair" },
-            { "zh": "挑染", "en": "streaked_hair" }
-          ]
-        },
-        {
-          "id": "eyes",
-          "name": "眼睛",
-          "tags": [
-            { "zh": "大眼睛", "en": "big_eyes" },
-            { "zh": "小眼睛", "en": "small_eyes" },
-            { "zh": "蓝色眼睛", "en": "blue_eyes" },
-            { "zh": "绿色眼睛", "en": "green_eyes" },
-            { "zh": "红色眼睛", "en": "red_eyes" },
-            { "zh": "金色眼睛", "en": "golden_eyes" },
-            { "zh": "紫色眼睛", "en": "purple_eyes" },
-            { "zh": "异色瞳", "en": "heterochromia" }
-          ]
-        },
-        {
-          "id": "expression",
-          "name": "面部",
-          "tags": [
-            { "zh": "微笑", "en": "smile" },
-            { "zh": "严肃", "en": "serious" },
-            { "zh": "害羞", "en": "blush" },
-            { "zh": "流泪", "en": "crying" },
-            { "zh": "愤怒", "en": "angry" },
-            { "zh": "惊讶", "en": "surprised" }
-          ]
-        },
-        {
-          "id": "wings",
-          "name": "翅膀",
-          "tags": [
-            { "zh": "天使翅膀", "en": "angel_wings" },
-            { "zh": "恶魔翅膀", "en": "demon_wings" },
-            { "zh": "蝴蝶翅膀", "en": "butterfly_wings" },
-            { "zh": "机械翅膀", "en": "mechanical_wings" }
-          ]
-        }
-      ]
+      "file": "prompts/zh-character.json"
     },
     {
       "id": "environment",
       "name": "环境",
-      "categories": [
-        {
-          "id": "background",
-          "name": "背景",
-          "tags": [
-            { "zh": "透明背景", "en": "transparent_background" },
-            { "zh": "白色背景", "en": "white_background" },
-            { "zh": "黑色背景", "en": "black_background" },
-            { "zh": "灰色背景", "en": "grey_background" },
-            { "zh": "简单背景", "en": "simple_background" },
-            { "zh": "渐变背景", "en": "gradient_background" },
-            { "zh": "抽象背景", "en": "abstract_background" },
-            { "zh": "模糊背景", "en": "blurred_background" },
-            { "zh": "星空背景", "en": "starry_background" },
-            { "zh": "彩虹背景", "en": "rainbow_background" },
-            { "zh": "赛博朋克", "en": "cyberpunk" },
-            { "zh": "城市灯光", "en": "city_lights" }
-          ]
-        },
-        {
-          "id": "season",
-          "name": "季节",
-          "tags": [
-            { "zh": "春天", "en": "spring" },
-            { "zh": "夏天", "en": "summer" },
-            { "zh": "秋天", "en": "autumn" },
-            { "zh": "冬天", "en": "winter" }
-          ]
-        },
-        {
-          "id": "weather",
-          "name": "天气",
-          "tags": [
-            { "zh": "晴天", "en": "sunny" },
-            { "zh": "雨天", "en": "rainy" },
-            { "zh": "雪天", "en": "snowy" },
-            { "zh": "雾天", "en": "foggy" },
-            { "zh": "暴风雨", "en": "stormy" },
-            { "zh": "雷电", "en": "lightning" }
-          ]
-        },
-        {
-          "id": "nature",
-          "name": "大自然",
-          "tags": [
-            { "zh": "森林", "en": "forest" },
-            { "zh": "海滩", "en": "beach" },
-            { "zh": "山脉", "en": "mountains" },
-            { "zh": "草原", "en": "grassland" },
-            { "zh": "沙漠", "en": "desert" },
-            { "zh": "瀑布", "en": "waterfall" },
-            { "zh": "湖泊", "en": "lake" },
-            { "zh": "花田", "en": "flower_field" }
-          ]
-        },
-        {
-          "id": "sky",
-          "name": "天空",
-          "tags": [
-            { "zh": "日出", "en": "sunrise" },
-            { "zh": "日落", "en": "sunset" },
-            { "zh": "夜空", "en": "night_sky" },
-            { "zh": "满天星斗", "en": "starry_sky" },
-            { "zh": "极光", "en": "aurora" },
-            { "zh": "彩虹", "en": "rainbow" }
-          ]
-        },
-        {
-          "id": "outdoor",
-          "name": "室外",
-          "tags": [
-            { "zh": "街道", "en": "street" },
-            { "zh": "公园", "en": "park" },
-            { "zh": "广场", "en": "plaza" },
-            { "zh": "校园", "en": "campus" },
-            { "zh": "游乐园", "en": "amusement_park" },
-            { "zh": "海边", "en": "seaside" }
-          ]
-        },
-        {
-          "id": "city",
-          "name": "城市",
-          "tags": [
-            { "zh": "摩天大楼", "en": "skyscraper" },
-            { "zh": "小巷", "en": "alley" },
-            { "zh": "天桥", "en": "overpass" },
-            { "zh": "霓虹灯", "en": "neon_lights" },
-            { "zh": "便利店", "en": "convenience_store" }
-          ]
-        },
-        {
-          "id": "indoor",
-          "name": "室内",
-          "tags": [
-            { "zh": "客厅", "en": "living_room" },
-            { "zh": "卧室", "en": "bedroom" },
-            { "zh": "厨房", "en": "kitchen" },
-            { "zh": "教室", "en": "classroom" },
-            { "zh": "咖啡馆", "en": "cafe" },
-            { "zh": "图书馆", "en": "library" },
-            { "zh": "浴室", "en": "bathroom" }
-          ]
-        }
-      ]
+      "file": "prompts/zh-environment.json"
     },
     {
       "id": "objects",
       "name": "物品",
-      "categories": [
-        {
-          "id": "digital",
-          "name": "数码设备",
-          "tags": [
-            { "zh": "电脑", "en": "computer" },
-            { "zh": "鼠标", "en": "mouse" },
-            { "zh": "手机", "en": "cell_phone" },
-            { "zh": "相机", "en": "camera" },
-            { "zh": "耳机", "en": "headphones" },
-            { "zh": "键盘", "en": "keyboard" }
-          ]
-        },
-        {
-          "id": "weapons",
-          "name": "武器",
-          "tags": [
-            { "zh": "剑", "en": "sword" },
-            { "zh": "弓箭", "en": "bow_and_arrow" },
-            { "zh": "枪", "en": "gun" },
-            { "zh": "法杖", "en": "staff" },
-            { "zh": "盾牌", "en": "shield" }
-          ]
-        },
-        {
-          "id": "animals",
-          "name": "动物",
-          "tags": [
-            { "zh": "猫", "en": "cat" },
-            { "zh": "狗", "en": "dog" },
-            { "zh": "兔子", "en": "rabbit" },
-            { "zh": "狐狸", "en": "fox" },
-            { "zh": "狼", "en": "wolf" },
-            { "zh": "龙", "en": "dragon" },
-            { "zh": "凤凰", "en": "phoenix" }
-          ]
-        },
-        {
-          "id": "plants",
-          "name": "植物",
-          "tags": [
-            { "zh": "玫瑰", "en": "rose" },
-            { "zh": "樱花", "en": "cherry_blossom" },
-            { "zh": "向日葵", "en": "sunflower" },
-            { "zh": "荷花", "en": "lotus" },
-            { "zh": "大树", "en": "big_tree" }
-          ]
-        }
-      ]
+      "file": "prompts/zh-objects.json"
     },
     {
       "id": "action",
       "name": "动作",
-      "categories": [
-        {
-          "id": "basic_pose",
-          "name": "基本姿态",
-          "tags": [
-            { "zh": "站立", "en": "standing" },
-            { "zh": "坐", "en": "sitting" },
-            { "zh": "躺着", "en": "lying" },
-            { "zh": "倚靠", "en": "leaning" },
-            { "zh": "鞠躬", "en": "bowing" },
-            { "zh": "倒立", "en": "upside-down" }
-          ]
-        },
-        {
-          "id": "arm_action",
-          "name": "手臂动作",
-          "tags": [
-            { "zh": "举手", "en": "hands_up" },
-            { "zh": "叉腰", "en": "hands_on_hips" },
-            { "zh": "抱胸", "en": "arms_crossed" },
-            { "zh": "伸手", "en": "reaching_out" }
-          ]
-        },
-        {
-          "id": "leg_action",
-          "name": "腿脚动作",
-          "tags": [
-            { "zh": "翘腿", "en": "crossing_legs" },
-            { "zh": "蹲下", "en": "squatting" },
-            { "zh": "踮脚", "en": "tiptoe" },
-            { "zh": "踢腿", "en": "kicking" }
-          ]
-        },
-        {
-          "id": "sports",
-          "name": "运动健身",
-          "tags": [
-            { "zh": "跑步", "en": "running" },
-            { "zh": "跳跃", "en": "jumping" },
-            { "zh": "游泳", "en": "swimming" },
-            { "zh": "骑自行车", "en": "cycling" },
-            { "zh": "瑜伽", "en": "yoga" }
-          ]
-        },
-        {
-          "id": "magic",
-          "name": "魔法",
-          "tags": [
-            { "zh": "施法", "en": "casting_spell" },
-            { "zh": "飞行", "en": "flying" },
-            { "zh": "召唤", "en": "summoning" },
-            { "zh": "传送", "en": "teleportation" }
-          ]
-        }
-      ]
+      "file": "prompts/zh-action.json"
     },
     {
       "id": "expression",
       "name": "表情",
-      "categories": [
-        {
-          "id": "smile",
-          "name": "笑",
-          "tags": [
-            { "zh": "微笑", "en": "smile" },
-            { "zh": "大笑", "en": "laughing" },
-            { "zh": "露齿笑", "en": "grin" },
-            { "zh": "迷人的微笑", "en": "seductive_smile" },
-            { "zh": "挑逗的微笑", "en": "smirk" },
-            { "zh": "咯咯笑", "en": "giggling" },
-            { "zh": "坏笑", "en": "evil_smile" }
-          ]
-        },
-        {
-          "id": "cry",
-          "name": "哭",
-          "tags": [
-            { "zh": "哭泣", "en": "crying" },
-            { "zh": "泪流满面", "en": "tears" },
-            { "zh": "开心的眼泪", "en": "happy_tears" }
-          ]
-        },
-        {
-          "id": "negative_emotion",
-          "name": "负面情绪",
-          "tags": [
-            { "zh": "愤怒", "en": "angry" },
-            { "zh": "悲伤", "en": "sad" },
-            { "zh": "恐惧", "en": "scared" },
-            { "zh": "厌恶", "en": "disgust" }
-          ]
-        },
-        {
-          "id": "positive_emotion",
-          "name": "积极情绪",
-          "tags": [
-            { "zh": "开心", "en": "happy" },
-            { "zh": "兴奋", "en": "excited" },
-            { "zh": "惊讶", "en": "surprised" },
-            { "zh": "害羞", "en": "blush" },
-            { "zh": "得意", "en": "smug" }
-          ]
-        }
-      ]
+      "file": "prompts/zh-expression.json"
     },
     {
       "id": "clothing",
       "name": "服饰",
-      "categories": [
-        {
-          "id": "style",
-          "name": "服饰风格",
-          "tags": [
-            { "zh": "时尚穿搭", "en": "stylish modern outfit" },
-            { "zh": "街头风", "en": "streetwear" },
-            { "zh": "复古风", "en": "vintage" },
-            { "zh": "哥特风", "en": "gothic" },
-            { "zh": "赛博朋克风", "en": "cyberpunk fashion" }
-          ]
-        },
-        {
-          "id": "tops",
-          "name": "上衣",
-          "tags": [
-            { "zh": "T恤", "en": "t-shirt" },
-            { "zh": "衬衫", "en": "shirt" },
-            { "zh": "毛衣", "en": "sweater" },
-            { "zh": "卫衣", "en": "hoodie" },
-            { "zh": "吊带", "en": "camisole" }
-          ]
-        },
-        {
-          "id": "bottoms",
-          "name": "裙子/裤子",
-          "tags": [
-            { "zh": "短裙", "en": "skirt" },
-            { "zh": "百褶裙", "en": "pleated_skirt" },
-            { "zh": "牛仔裤", "en": "jeans" },
-            { "zh": "短裤", "en": "shorts" },
-            { "zh": "长裤", "en": "trousers" }
-          ]
-        },
-        {
-          "id": "shoes",
-          "name": "鞋子",
-          "tags": [
-            { "zh": "运动鞋", "en": "sneakers" },
-            { "zh": "高跟鞋", "en": "high_heels" },
-            { "zh": "靴子", "en": "boots" },
-            { "zh": "凉鞋", "en": "sandals" }
-          ]
-        },
-        {
-          "id": "uniform",
-          "name": "校服/正装",
-          "tags": [
-            { "zh": "校服", "en": "school_uniform" },
-            { "zh": "水手服", "en": "sailor_uniform" },
-            { "zh": "西装", "en": "suit" },
-            { "zh": "礼服", "en": "formal_dress" }
-          ]
-        },
-        {
-          "id": "swimwear",
-          "name": "泳装",
-          "tags": [
-            { "zh": "比基尼", "en": "bikini" },
-            { "zh": "连体泳衣", "en": "swimsuit" },
-            { "zh": "死库水", "en": "school_swimsuit" }
-          ]
-        },
-        {
-          "id": "sock",
-          "name": "袜子",
-          "tags": [
-            { "zh": "全身袜", "en": "bodystocking" },
-            { "zh": "连裤袜|裤袜", "en": "pantyhose" },
-            { "zh": "裤袜(泛指裤袜或长筒袜)", "en": "legwear" },
-            { "zh": "长筒袜(过膝高筒袜)", "en": "thighhighs" },
-            { "zh": "齐膝袜", "en": "kneehighs" },
-            { "zh": "裸腿", "en": "bare_legs" },
-            { "zh": "连体白丝", "en": "white_bodystocking" },
-            { "zh": "连体黑丝", "en": "black_bodystocking" },
-            { "zh": "衣服下的袜子", "en": "stocking_under_clothes" },
-            { "zh": "白丝裤袜", "en": "white_pantyhose" },
-            { "zh": "黑丝裤袜", "en": "black_pantyhose" },
-            { "zh": "有腿环的裤袜", "en": "thighband_pantyhose" },
-            { "zh": "紧致的裤袜(勾勒出线条)", "en": "pantylines" },
-            { "zh": "单边穿着连裤袜", "en": "single_leg_pantyhose" },
-            { "zh": "裤袜里的内裤", "en": "panties_under_pantyhose" },
-            { "zh": "网袜", "en": "fishnets" },
-            { "zh": "渔网袜", "en": "stirrup_legwear" },
-            { "zh": "露趾袜", "en": "toeless_legwear" },
-            { "zh": "双色裤袜", "en": "mismatched_legwear" },
-            { "zh": "双色袜袜", "en": "two-tone_legwear" },
-            { "zh": "不对称裤袜", "en": "asymmetrical_legwear" },
-            { "zh": "长短袜", "en": "uneven_legwear" },
-            { "zh": "白色长筒袜", "en": "white_thighhighs_legwear" },
-            { "zh": "黑色长筒袜", "en": "black_thighhighs_legwear" },
-            { "zh": "粉色长筒袜", "en": "pink_thighhighs_legwear" },
-            { "zh": "吊带袜", "en": "suspenders_legwear" },
-            { "zh": "破损的裤袜", "en": "torn_legwear" },
-            { "zh": "破损的过膝袜", "en": "torn_thighhighs_legwear" },
-            { "zh": "透明的袜子", "en": "see-through_legwear" },
-            { "zh": "花边袜", "en": "frilled_legwear" },
-            { "zh": "蕾边袜丝", "en": "lace-trimmed_legwear" },
-            { "zh": "有接缝的袜", "en": "seamed_legwear" },
-            { "zh": "中间有一条黑线的袜子", "en": "back-seameds_legwear" },
-            { "zh": "动物耳朵过膝袜", "en": "animal_ear_legwear" },
-            { "zh": "横条纹袜", "en": "striped_legwear" },
-            { "zh": "竖条纹袜", "en": "vertical-striped_legwear" },
-            { "zh": "圆斑袜", "en": "polka_dot_legwear" },
-            { "zh": "印花袜", "en": "print_legwear" },
-            { "zh": "短裤穿在袜子外", "en": "legwear_under_shorts" },
-            { "zh": "过膝袜", "en": "over-kneehighs" },
-            { "zh": "鲍比袜(白短袜)", "en": "bobby_socks" },
-            { "zh": "日式厚底短袜(足袋)", "en": "tabi" },
-            { "zh": "踝袜", "en": "ankle_socks" },
-            { "zh": "腿套|暖腿袜", "en": "leg_warmers" },
-            { "zh": "单短袜", "en": "single_sock" },
-            { "zh": "横条短袜", "en": "striped_socks" },
-            { "zh": "袜子有开口", "en": "leg_cutout" },
-            { "zh": "腿环|袜带", "en": "leg_garter" },
-            { "zh": "吊带袜的吊带", "en": "garter_straps" },
-            { "zh": "大腿绑带", "en": "thigh_strap" },
-            { "zh": "大腿缎带", "en": "thigh_ribbon" },
-            { "zh": "腿锻带", "en": "leg_ribbon" },
-            { "zh": "腿上的绷带", "en": "bandaid_on_leg" },
-            { "zh": "包扎过的腿", "en": "bandaged_leg" },
-            { "zh": "脚踝系带", "en": "ankle_lace-up" },
-            { "zh": "腿上系着带子或工具包或枪套", "en": "thigh_holster" },
-            { "zh": "膝盖上的创可贴", "en": "bandaid_on_knee" },
-            { "zh": "含菱形花纹的裤袜", "en": "argyle_legwear" },
-            { "zh": "带蝴蝶结的裤袜", "en": "bow_legwear" },
-            { "zh": "吊臂袜带", "en": "arm_garter" },
-            { "zh": "短袜", "en": "socks" },
-            { "zh": "丝袜", "en": "stockings" },
-            { "zh": "黑丝", "en": "black stockings" },
-            { "zh": "渔网袜", "en": "fishnet stockings" },
-            { "zh": "吊带袜", "en": "garters" },
-            { "zh": "泡泡袜", "en": "loose_socks" },
-            { "zh": "褶边长筒袜", "en": "rilled thighhighs" },
-            { "zh": "条纹连裤袜", "en": "striped pantyhose" },
-            { "zh": "蕾丝裤袜", "en": "lace legwear" },
-            { "zh": "尼龙袜", "en": "nylon socks" },
-            { "zh": "足球袜", "en": "soccer socks" },
-            { "zh": "运动袜", "en": "sports socks" },
-            { "zh": "整理裤袜", "en": "adjusting_legwear" },
-            { "zh": "褪下的裤袜", "en": "pantyhose_pull" },
-            { "zh": "脱袜子", "en": "socks_removed" },
-            { "zh": "拉起袜子(短袜)", "en": "sock_pull" },
-            { "zh": "拉起袜子(长袜)", "en": "thighhighs_pull" }
-          ]
-        }
-      ]
+      "file": "prompts/zh-clothing.json"
     },
     {
       "id": "accessories",
       "name": "饰品",
-      "categories": [
-        {
-          "id": "headwear",
-          "name": "头饰",
-          "tags": [
-            { "zh": "头顶光环", "en": "halo" },
-            { "zh": "皇冠", "en": "crown" },
-            { "zh": "头带", "en": "headband" },
-            { "zh": "花冠", "en": "head_wreath" },
-            { "zh": "头巾", "en": "bandana" }
-          ]
-        },
-        {
-          "id": "glasses",
-          "name": "眼镜",
-          "tags": [
-            { "zh": "眼镜", "en": "glasses" },
-            { "zh": "墨镜", "en": "sunglasses" },
-            { "zh": "单片眼镜", "en": "monocle" }
-          ]
-        },
-        {
-          "id": "jewelry",
-          "name": "首饰",
-          "tags": [
-            { "zh": "项链", "en": "necklace" },
-            { "zh": "耳环", "en": "earrings" },
-            { "zh": "戒指", "en": "ring" },
-            { "zh": "手镯", "en": "bracelet" }
-          ]
-        }
-      ]
+      "file": "prompts/zh-accessories.json"
     },
     {
       "id": "photography",
       "name": "摄影",
-      "categories": [
-        {
-          "id": "angle",
-          "name": "视角",
-          "tags": [
-            { "zh": "动态角度", "en": "dynamic_angle" },
-            { "zh": "从上拍", "en": "from_above" },
-            { "zh": "从下拍", "en": "from_below" },
-            { "zh": "电影角度", "en": "cinematic_angle" },
-            { "zh": "倾斜角度", "en": "dutch_angle" },
-            { "zh": "俯视图", "en": "aerial_view" },
-            { "zh": "侧视图", "en": "side_view" }
-          ]
-        },
-        {
-          "id": "composition",
-          "name": "构图",
-          "tags": [
-            { "zh": "特写", "en": "close-up" },
-            { "zh": "全身", "en": "full_body" },
-            { "zh": "半身", "en": "upper_body" },
-            { "zh": "面部特写", "en": "face_closeup" },
-            { "zh": "广角", "en": "wide_angle" }
-          ]
-        },
-        {
-          "id": "lens",
-          "name": "镜头效果",
-          "tags": [
-            { "zh": "景深", "en": "depth_of_field" },
-            { "zh": "散景", "en": "bokeh" },
-            { "zh": "鱼眼", "en": "fisheye" },
-            { "zh": "微距", "en": "macro" },
-            { "zh": "长焦", "en": "telephoto" }
-          ]
-        },
-        {
-          "id": "style",
-          "name": "摄影风格",
-          "tags": [
-            { "zh": "人像摄影", "en": "portrait_photography" },
-            { "zh": "街拍", "en": "street_photography" },
-            { "zh": "时尚摄影", "en": "fashion_photography" },
-            { "zh": "胶片摄影", "en": "film_photography" },
-            { "zh": "宝丽来", "en": "polaroid" }
-          ]
-        }
-      ]
+      "file": "prompts/zh-photography.json"
     },
     {
       "id": "lighting",
       "name": "光影效果",
-      "categories": [
-        {
-          "id": "light_source",
-          "name": "光源",
-          "tags": [
-            { "zh": "日光", "en": "Sunlight" },
-            { "zh": "月光", "en": "Moonlight" },
-            { "zh": "火光", "en": "Firelight" },
-            { "zh": "人工光", "en": "Artificial Lighting" },
-            { "zh": "自然光", "en": "Natural Lighting" },
-            { "zh": "摄影棚灯光", "en": "Studio Lighting" }
-          ]
-        },
-        {
-          "id": "light_type",
-          "name": "光线类型",
-          "tags": [
-            { "zh": "正面光", "en": "Frontlight" },
-            { "zh": "背光", "en": "Backlight" },
-            { "zh": "侧光", "en": "Sidelight" },
-            { "zh": "顶光", "en": "Toplight" },
-            { "zh": "体积光", "en": "Volumetric Lighting" }
-          ]
-        },
-        {
-          "id": "light_effect",
-          "name": "光照效果",
-          "tags": [
-            { "zh": "聚光灯", "en": "Spotlight" },
-            { "zh": "泛光灯", "en": "Floodlight" },
-            { "zh": "LED灯", "en": "LED light" },
-            { "zh": "频闪灯", "en": "Strobe" },
-            { "zh": "明亮的", "en": "bright" }
-          ]
-        }
-      ]
+      "file": "prompts/zh-lighting.json"
     },
     {
       "id": "color",
       "name": "色彩氛围",
-      "categories": [
-        {
-          "id": "grayscale",
-          "name": "灰度色",
-          "tags": [
-            { "zh": "黑色", "en": "black" },
-            { "zh": "深灰色", "en": "darkgray" },
-            { "zh": "灰色", "en": "gray" },
-            { "zh": "浅灰色", "en": "lightgray" },
-            { "zh": "白色", "en": "white" }
-          ]
-        },
-        {
-          "id": "warm_tone",
-          "name": "暖色调",
-          "tags": [
-            { "zh": "红色", "en": "red" },
-            { "zh": "橙色", "en": "orange" },
-            { "zh": "黄色", "en": "yellow" },
-            { "zh": "金色", "en": "gold" },
-            { "zh": "棕色", "en": "brown" }
-          ]
-        },
-        {
-          "id": "cool_tone",
-          "name": "冷色调",
-          "tags": [
-            { "zh": "蓝色", "en": "blue" },
-            { "zh": "青色", "en": "cyan" },
-            { "zh": "绿色", "en": "green" },
-            { "zh": "紫色", "en": "purple" },
-            { "zh": "银色", "en": "silver" }
-          ]
-        },
-        {
-          "id": "mood",
-          "name": "情绪氛围",
-          "tags": [
-            { "zh": "梦幻", "en": "dreamy" },
-            { "zh": "忧郁", "en": "melancholic" },
-            { "zh": "温馨", "en": "cozy" },
-            { "zh": "神秘", "en": "mysterious" },
-            { "zh": "活力", "en": "vibrant" },
-            { "zh": "宁静", "en": "serene" }
-          ]
-        }
-      ]
+      "file": "prompts/zh-color.json"
     },
     {
       "id": "art_style",
       "name": "艺术风格",
-      "categories": [
-        {
-          "id": "painting",
-          "name": "绘画",
-          "tags": [
-            { "zh": "油画", "en": "oil_paint" },
-            { "zh": "水彩画", "en": "watercolor" },
-            { "zh": "水墨画", "en": "ink_wash_painting" },
-            { "zh": "丙烯画", "en": "acrylic_paint" },
-            { "zh": "中国画", "en": "Chinese_painting" }
-          ]
-        },
-        {
-          "id": "illustration",
-          "name": "插画",
-          "tags": [
-            { "zh": "动漫风格", "en": "anime_style" },
-            { "zh": "像素艺术", "en": "pixel_art" },
-            { "zh": "扁平插画", "en": "flat_illustration" },
-            { "zh": "手绘", "en": "hand_drawn" }
-          ]
-        },
-        {
-          "id": "quality",
-          "name": "画面品质",
-          "tags": [
-            { "zh": "杰作", "en": "masterpiece" },
-            { "zh": "最高品质", "en": "best_quality" },
-            { "zh": "超高细节", "en": "ultra_detailed" },
-            { "zh": "8K分辨率", "en": "8k_resolution" },
-            { "zh": "高分辨率", "en": "highres" }
-          ]
-        }
-      ]
+      "file": "prompts/zh-art_style.json"
     },
     {
       "id": "post_process",
       "name": "后期处理",
-      "categories": [
-        {
-          "id": "portrait",
-          "name": "肖像",
-          "tags": [
-            { "zh": "便利店霓虹肖像", "en": "convenience store neon portrait" },
-            { "zh": "电影感极简肖像", "en": "cinematic minimalist portrait" },
-            { "zh": "35mm 闪光灯杂志肖像", "en": "35mm flash magazine portrait" },
-            { "zh": "柔和轻盈 35mm 肖像", "en": "soft light 35mm portrait" },
-            { "zh": "奢华魅力美妆肖像", "en": "luxury glamour beauty portrait" }
-          ]
-        },
-        {
-          "id": "character",
-          "name": "角色",
-          "tags": [
-            { "zh": "9:16 Cosplay 人物截图", "en": "9:16 cosplay character screenshot" },
-            { "zh": "都市回头街拍肖像", "en": "urban street look back portrait" },
-            { "zh": "韩国偶像 3x3 格子肖像", "en": "Korean idol 3x3 grid portrait" },
-            { "zh": "CCD 相机闪光灯韩国偶像", "en": "CCD camera flash Korean idol" }
-          ]
-        },
-        {
-          "id": "example",
-          "name": "成品范例",
-          "tags": [
-            { "zh": "Sam Altman 滑板公园快照", "en": "Sam Altman skate park snapshot" },
-            { "zh": "Sam Altman 熊熊自拍", "en": "Sam Altman bear selfie" },
-            { "zh": "GPT-Image-2 细节展示", "en": "GPT-Image-2 detail showcase" },
-            { "zh": "AI 自我感知肖像", "en": "AI self-awareness portrait" }
-          ]
-        }
-      ]
+      "file": "prompts/zh-post_process.json"
     }
   ],
   "faq": [

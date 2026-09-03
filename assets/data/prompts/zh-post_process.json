@@ -1,0 +1,76 @@
+{
+  "id": "post_process",
+  "name": "后期处理",
+  "categories": [
+    {
+      "id": "portrait",
+      "name": "肖像",
+      "tags": [
+        {
+          "zh": "便利店霓虹肖像",
+          "en": "convenience store neon portrait"
+        },
+        {
+          "zh": "电影感极简肖像",
+          "en": "cinematic minimalist portrait"
+        },
+        {
+          "zh": "35mm 闪光灯杂志肖像",
+          "en": "35mm flash magazine portrait"
+        },
+        {
+          "zh": "柔和轻盈 35mm 肖像",
+          "en": "soft light 35mm portrait"
+        },
+        {
+          "zh": "奢华魅力美妆肖像",
+          "en": "luxury glamour beauty portrait"
+        }
+      ]
+    },
+    {
+      "id": "character",
+      "name": "角色",
+      "tags": [
+        {
+          "zh": "9:16 Cosplay 人物截图",
+          "en": "9:16 cosplay character screenshot"
+        },
+        {
+          "zh": "都市回头街拍肖像",
+          "en": "urban street look back portrait"
+        },
+        {
+          "zh": "韩国偶像 3x3 格子肖像",
+          "en": "Korean idol 3x3 grid portrait"
+        },
+        {
+          "zh": "CCD 相机闪光灯韩国偶像",
+          "en": "CCD camera flash Korean idol"
+        }
+      ]
+    },
+    {
+      "id": "example",
+      "name": "成品范例",
+      "tags": [
+        {
+          "zh": "Sam Altman 滑板公园快照",
+          "en": "Sam Altman skate park snapshot"
+        },
+        {
+          "zh": "Sam Altman 熊熊自拍",
+          "en": "Sam Altman bear selfie"
+        },
+        {
+          "zh": "GPT-Image-2 细节展示",
+          "en": "GPT-Image-2 detail showcase"
+        },
+        {
+          "zh": "AI 自我感知肖像",
+          "en": "AI self-awareness portrait"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,460 @@
+{
+  "id": "clothing",
+  "name": "服饰",
+  "categories": [
+    {
+      "id": "style",
+      "name": "服饰风格",
+      "tags": [
+        {
+          "zh": "时尚穿搭",
+          "en": "stylish modern outfit"
+        },
+        {
+          "zh": "街头风",
+          "en": "streetwear"
+        },
+        {
+          "zh": "复古风",
+          "en": "vintage"
+        },
+        {
+          "zh": "哥特风",
+          "en": "gothic"
+        },
+        {
+          "zh": "赛博朋克风",
+          "en": "cyberpunk fashion"
+        }
+      ]
+    },
+    {
+      "id": "tops",
+      "name": "上衣",
+      "tags": [
+        {
+          "zh": "T恤",
+          "en": "t-shirt"
+        },
+        {
+          "zh": "衬衫",
+          "en": "shirt"
+        },
+        {
+          "zh": "毛衣",
+          "en": "sweater"
+        },
+        {
+          "zh": "卫衣",
+          "en": "hoodie"
+        },
+        {
+          "zh": "吊带",
+          "en": "camisole"
+        }
+      ]
+    },
+    {
+      "id": "bottoms",
+      "name": "裙子/裤子",
+      "tags": [
+        {
+          "zh": "短裙",
+          "en": "skirt"
+        },
+        {
+          "zh": "百褶裙",
+          "en": "pleated_skirt"
+        },
+        {
+          "zh": "牛仔裤",
+          "en": "jeans"
+        },
+        {
+          "zh": "短裤",
+          "en": "shorts"
+        },
+        {
+          "zh": "长裤",
+          "en": "trousers"
+        }
+      ]
+    },
+    {
+      "id": "shoes",
+      "name": "鞋子",
+      "tags": [
+        {
+          "zh": "运动鞋",
+          "en": "sneakers"
+        },
+        {
+          "zh": "高跟鞋",
+          "en": "high_heels"
+        },
+        {
+          "zh": "靴子",
+          "en": "boots"
+        },
+        {
+          "zh": "凉鞋",
+          "en": "sandals"
+        }
+      ]
+    },
+    {
+      "id": "uniform",
+      "name": "校服/正装",
+      "tags": [
+        {
+          "zh": "校服",
+          "en": "school_uniform"
+        },
+        {
+          "zh": "水手服",
+          "en": "sailor_uniform"
+        },
+        {
+          "zh": "西装",
+          "en": "suit"
+        },
+        {
+          "zh": "礼服",
+          "en": "formal_dress"
+        }
+      ]
+    },
+    {
+      "id": "swimwear",
+      "name": "泳装",
+      "tags": [
+        {
+          "zh": "比基尼",
+          "en": "bikini"
+        },
+        {
+          "zh": "连体泳衣",
+          "en": "swimsuit"
+        },
+        {
+          "zh": "死库水",
+          "en": "school_swimsuit"
+        }
+      ]
+    },
+    {
+      "id": "sock",
+      "name": "袜子",
+      "tags": [
+        {
+          "zh": "全身袜",
+          "en": "bodystocking"
+        },
+        {
+          "zh": "连裤袜|裤袜",
+          "en": "pantyhose"
+        },
+        {
+          "zh": "裤袜(泛指裤袜或长筒袜)",
+          "en": "legwear"
+        },
+        {
+          "zh": "长筒袜(过膝高筒袜)",
+          "en": "thighhighs"
+        },
+        {
+          "zh": "齐膝袜",
+          "en": "kneehighs"
+        },
+        {
+          "zh": "裸腿",
+          "en": "bare_legs"
+        },
+        {
+          "zh": "连体白丝",
+          "en": "white_bodystocking"
+        },
+        {
+          "zh": "连体黑丝",
+          "en": "black_bodystocking"
+        },
+        {
+          "zh": "衣服下的袜子",
+          "en": "stocking_under_clothes"
+        },
+        {
+          "zh": "白丝裤袜",
+          "en": "white_pantyhose"
+        },
+        {
+          "zh": "黑丝裤袜",
+          "en": "black_pantyhose"
+        },
+        {
+          "zh": "有腿环的裤袜",
+          "en": "thighband_pantyhose"
+        },
+        {
+          "zh": "紧致的裤袜(勾勒出线条)",
+          "en": "pantylines"
+        },
+        {
+          "zh": "单边穿着连裤袜",
+          "en": "single_leg_pantyhose"
+        },
+        {
+          "zh": "裤袜里的内裤",
+          "en": "panties_under_pantyhose"
+        },
+        {
+          "zh": "网袜",
+          "en": "fishnets"
+        },
+        {
+          "zh": "渔网袜",
+          "en": "stirrup_legwear"
+        },
+        {
+          "zh": "露趾袜",
+          "en": "toeless_legwear"
+        },
+        {
+          "zh": "双色裤袜",
+          "en": "mismatched_legwear"
+        },
+        {
+          "zh": "双色袜袜",
+          "en": "two-tone_legwear"
+        },
+        {
+          "zh": "不对称裤袜",
+          "en": "asymmetrical_legwear"
+        },
+        {
+          "zh": "长短袜",
+          "en": "uneven_legwear"
+        },
+        {
+          "zh": "白色长筒袜",
+          "en": "white_thighhighs_legwear"
+        },
+        {
+          "zh": "黑色长筒袜",
+          "en": "black_thighhighs_legwear"
+        },
+        {
+          "zh": "粉色长筒袜",
+          "en": "pink_thighhighs_legwear"
+        },
+        {
+          "zh": "吊带袜",
+          "en": "suspenders_legwear"
+        },
+        {
+          "zh": "破损的裤袜",
+          "en": "torn_legwear"
+        },
+        {
+          "zh": "破损的过膝袜",
+          "en": "torn_thighhighs_legwear"
+        },
+        {
+          "zh": "透明的袜子",
+          "en": "see-through_legwear"
+        },
+        {
+          "zh": "花边袜",
+          "en": "frilled_legwear"
+        },
+        {
+          "zh": "蕾边袜丝",
+          "en": "lace-trimmed_legwear"
+        },
+        {
+          "zh": "有接缝的袜",
+          "en": "seamed_legwear"
+        },
+        {
+          "zh": "中间有一条黑线的袜子",
+          "en": "back-seameds_legwear"
+        },
+        {
+          "zh": "动物耳朵过膝袜",
+          "en": "animal_ear_legwear"
+        },
+        {
+          "zh": "横条纹袜",
+          "en": "striped_legwear"
+        },
+        {
+          "zh": "竖条纹袜",
+          "en": "vertical-striped_legwear"
+        },
+        {
+          "zh": "圆斑袜",
+          "en": "polka_dot_legwear"
+        },
+        {
+          "zh": "印花袜",
+          "en": "print_legwear"
+        },
+        {
+          "zh": "短裤穿在袜子外",
+          "en": "legwear_under_shorts"
+        },
+        {
+          "zh": "过膝袜",
+          "en": "over-kneehighs"
+        },
+        {
+          "zh": "鲍比袜(白短袜)",
+          "en": "bobby_socks"
+        },
+        {
+          "zh": "日式厚底短袜(足袋)",
+          "en": "tabi"
+        },
+        {
+          "zh": "踝袜",
+          "en": "ankle_socks"
+        },
+        {
+          "zh": "腿套|暖腿袜",
+          "en": "leg_warmers"
+        },
+        {
+          "zh": "单短袜",
+          "en": "single_sock"
+        },
+        {
+          "zh": "横条短袜",
+          "en": "striped_socks"
+        },
+        {
+          "zh": "袜子有开口",
+          "en": "leg_cutout"
+        },
+        {
+          "zh": "腿环|袜带",
+          "en": "leg_garter"
+        },
+        {
+          "zh": "吊带袜的吊带",
+          "en": "garter_straps"
+        },
+        {
+          "zh": "大腿绑带",
+          "en": "thigh_strap"
+        },
+        {
+          "zh": "大腿缎带",
+          "en": "thigh_ribbon"
+        },
+        {
+          "zh": "腿锻带",
+          "en": "leg_ribbon"
+        },
+        {
+          "zh": "腿上的绷带",
+          "en": "bandaid_on_leg"
+        },
+        {
+          "zh": "包扎过的腿",
+          "en": "bandaged_leg"
+        },
+        {
+          "zh": "脚踝系带",
+          "en": "ankle_lace-up"
+        },
+        {
+          "zh": "腿上系着带子或工具包或枪套",
+          "en": "thigh_holster"
+        },
+        {
+          "zh": "膝盖上的创可贴",
+          "en": "bandaid_on_knee"
+        },
+        {
+          "zh": "含菱形花纹的裤袜",
+          "en": "argyle_legwear"
+        },
+        {
+          "zh": "带蝴蝶结的裤袜",
+          "en": "bow_legwear"
+        },
+        {
+          "zh": "吊臂袜带",
+          "en": "arm_garter"
+        },
+        {
+          "zh": "短袜",
+          "en": "socks"
+        },
+        {
+          "zh": "丝袜",
+          "en": "stockings"
+        },
+        {
+          "zh": "黑丝",
+          "en": "black stockings"
+        },
+        {
+          "zh": "渔网袜",
+          "en": "fishnet stockings"
+        },
+        {
+          "zh": "吊带袜",
+          "en": "garters"
+        },
+        {
+          "zh": "泡泡袜",
+          "en": "loose_socks"
+        },
+        {
+          "zh": "褶边长筒袜",
+          "en": "rilled thighhighs"
+        },
+        {
+          "zh": "条纹连裤袜",
+          "en": "striped pantyhose"
+        },
+        {
+          "zh": "蕾丝裤袜",
+          "en": "lace legwear"
+        },
+        {
+          "zh": "尼龙袜",
+          "en": "nylon socks"
+        },
+        {
+          "zh": "足球袜",
+          "en": "soccer socks"
+        },
+        {
+          "zh": "运动袜",
+          "en": "sports socks"
+        },
+        {
+          "zh": "整理裤袜",
+          "en": "adjusting_legwear"
+        },
+        {
+          "zh": "褪下的裤袜",
+          "en": "pantyhose_pull"
+        },
+        {
+          "zh": "脱袜子",
+          "en": "socks_removed"
+        },
+        {
+          "zh": "拉起袜子(短袜)",
+          "en": "sock_pull"
+        },
+        {
+          "zh": "拉起袜子(长袜)",
+          "en": "thighhighs_pull"
+        }
+      ]
+    }
+  ]
+}
