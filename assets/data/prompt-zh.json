@@ -1,24 +1,15 @@
 {
   "meta": {
-    "title": "IMGPrompt",
+    "title": "Prompt Mixer",
     "subtitle": "像挑颜料一样，挑提示词",
-    "description": "5000+ 中英双语标签 · 秒出专业级 AI 图像/视频提示词 · Midjourney / FLUX / GPT-Image / Veo / Kling",
+    "description": "中英双语标签 秒出专业级 AI 图像/视频提示词",
     "maxChars": 380,
     "nav": [
-      { "label": "指南", "url": "https://prompt.newzone.top/zh/guide" },
-      { "label": "AI Short", "url": "https://www.aishort.top/", "external": true },
-      { "label": "AI 工具箱", "url": "https://tools.newzone.top/zh", "external": true },
-      { "label": "反馈与建议", "url": "https://prompt.newzone.top/zh/feedback" }
+      { "label": "首页", "url": "https://www.duchaoqun.cn" },
+      { "label": "反馈与建议", "url": "https://www.duchaoqun.cn" }
     ],
     "footer": [
-      { "label": "快速上手", "url": "https://prompt.newzone.top/zh/guide" },
-      { "label": "挑选标签", "url": "https://prompt.newzone.top/zh/guide/pick-tags" },
-      { "label": "编辑提示词", "url": "https://prompt.newzone.top/zh/guide/edit-prompt" },
-      { "label": "图像提示词规则", "url": "https://prompt.newzone.top/zh/guide/prompt-rule" },
-      { "label": "提示词数据", "url": "https://prompt.newzone.top/zh/guide/data" },
-      { "label": "桌面客户端", "url": "https://prompt.newzone.top/zh/guide/desktop" },
-      { "label": "项目部署", "url": "https://prompt.newzone.top/zh/guide/deploy" },
-      { "label": "GitHub", "url": "https://github.com/rockbenben/img-prompt", "external": true }
+      { "label": "GitHub", "url": "https://github.com/duchaoqun", "external": true }
     ],
     "theme": {
       "bg": "#faf9f4",
@@ -563,6 +554,89 @@
             { "zh": "连体泳衣", "en": "swimsuit" },
             { "zh": "死库水", "en": "school_swimsuit" }
           ]
+        },
+        {
+          "id": "sock",
+          "name": "袜子",
+          "tags": [
+            { "zh": "全身袜", "en": "bodystocking" },
+            { "zh": "连裤袜|裤袜", "en": "pantyhose" },
+            { "zh": "裤袜(泛指裤袜或长筒袜)", "en": "legwear" },
+            { "zh": "长筒袜(过膝高筒袜)", "en": "thighhighs" },
+            { "zh": "齐膝袜", "en": "kneehighs" },
+            { "zh": "裸腿", "en": "bare_legs" },
+            { "zh": "连体白丝", "en": "white_bodystocking" },
+            { "zh": "连体黑丝", "en": "black_bodystocking" },
+            { "zh": "衣服下的袜子", "en": "stocking_under_clothes" },
+            { "zh": "白丝裤袜", "en": "white_pantyhose" },
+            { "zh": "黑丝裤袜", "en": "black_pantyhose" },
+            { "zh": "有腿环的裤袜", "en": "thighband_pantyhose" },
+            { "zh": "紧致的裤袜(勾勒出线条)", "en": "pantylines" },
+            { "zh": "单边穿着连裤袜", "en": "single_leg_pantyhose" },
+            { "zh": "裤袜里的内裤", "en": "panties_under_pantyhose" },
+            { "zh": "网袜", "en": "fishnets" },
+            { "zh": "渔网袜", "en": "stirrup_legwear" },
+            { "zh": "露趾袜", "en": "toeless_legwear" },
+            { "zh": "双色裤袜", "en": "mismatched_legwear" },
+            { "zh": "双色袜袜", "en": "two-tone_legwear" },
+            { "zh": "不对称裤袜", "en": "asymmetrical_legwear" },
+            { "zh": "长短袜", "en": "uneven_legwear" },
+            { "zh": "白色长筒袜", "en": "white_thighhighs_legwear" },
+            { "zh": "黑色长筒袜", "en": "black_thighhighs_legwear" },
+            { "zh": "粉色长筒袜", "en": "pink_thighhighs_legwear" },
+            { "zh": "吊带袜", "en": "suspenders_legwear" },
+            { "zh": "破损的裤袜", "en": "torn_legwear" },
+            { "zh": "破损的过膝袜", "en": "torn_thighhighs_legwear" },
+            { "zh": "透明的袜子", "en": "see-through_legwear" },
+            { "zh": "花边袜", "en": "frilled_legwear" },
+            { "zh": "蕾边袜丝", "en": "lace-trimmed_legwear" },
+            { "zh": "有接缝的袜", "en": "seamed_legwear" },
+            { "zh": "中间有一条黑线的袜子", "en": "back-seameds_legwear" },
+            { "zh": "动物耳朵过膝袜", "en": "animal_ear_legwear" },
+            { "zh": "横条纹袜", "en": "striped_legwear" },
+            { "zh": "竖条纹袜", "en": "vertical-striped_legwear" },
+            { "zh": "圆斑袜", "en": "polka_dot_legwear" },
+            { "zh": "印花袜", "en": "print_legwear" },
+            { "zh": "短裤穿在袜子外", "en": "legwear_under_shorts" },
+            { "zh": "过膝袜", "en": "over-kneehighs" },
+            { "zh": "鲍比袜(白短袜)", "en": "bobby_socks" },
+            { "zh": "日式厚底短袜(足袋)", "en": "tabi" },
+            { "zh": "踝袜", "en": "ankle_socks" },
+            { "zh": "腿套|暖腿袜", "en": "leg_warmers" },
+            { "zh": "单短袜", "en": "single_sock" },
+            { "zh": "横条短袜", "en": "striped_socks" },
+            { "zh": "袜子有开口", "en": "leg_cutout" },
+            { "zh": "腿环|袜带", "en": "leg_garter" },
+            { "zh": "吊带袜的吊带", "en": "garter_straps" },
+            { "zh": "大腿绑带", "en": "thigh_strap" },
+            { "zh": "大腿缎带", "en": "thigh_ribbon" },
+            { "zh": "腿锻带", "en": "leg_ribbon" },
+            { "zh": "腿上的绷带", "en": "bandaid_on_leg" },
+            { "zh": "包扎过的腿", "en": "bandaged_leg" },
+            { "zh": "脚踝系带", "en": "ankle_lace-up" },
+            { "zh": "腿上系着带子或工具包或枪套", "en": "thigh_holster" },
+            { "zh": "膝盖上的创可贴", "en": "bandaid_on_knee" },
+            { "zh": "含菱形花纹的裤袜", "en": "argyle_legwear" },
+            { "zh": "带蝴蝶结的裤袜", "en": "bow_legwear" },
+            { "zh": "吊臂袜带", "en": "arm_garter" },
+            { "zh": "短袜", "en": "socks" },
+            { "zh": "丝袜", "en": "stockings" },
+            { "zh": "黑丝", "en": "black stockings" },
+            { "zh": "渔网袜", "en": "fishnet stockings" },
+            { "zh": "吊带袜", "en": "garters" },
+            { "zh": "泡泡袜", "en": "loose_socks" },
+            { "zh": "褶边长筒袜", "en": "rilled thighhighs" },
+            { "zh": "条纹连裤袜", "en": "striped pantyhose" },
+            { "zh": "蕾丝裤袜", "en": "lace legwear" },
+            { "zh": "尼龙袜", "en": "nylon socks" },
+            { "zh": "足球袜", "en": "soccer socks" },
+            { "zh": "运动袜", "en": "sports socks" },
+            { "zh": "整理裤袜", "en": "adjusting_legwear" },
+            { "zh": "褪下的裤袜", "en": "pantyhose_pull" },
+            { "zh": "脱袜子", "en": "socks_removed" },
+            { "zh": "拉起袜子(短袜)", "en": "sock_pull" },
+            { "zh": "拉起袜子(长袜)", "en": "thighhighs_pull" }
+          ]
         }
       ]
     },
@@ -823,24 +897,8 @@
   ],
   "faq": [
     {
-      "question": "IMGPrompt 是什么？支持哪些 AI 绘画模型？",
-      "answer": "IMGPrompt 是一款专为文生图模型打造的提示词编辑器，通过可视化的标签和中英双语显示帮助你快速组合出英文提示词。官方适配 Nano Banana、GPT-image-2、Midjourney、FLUX、Seedance、Veo、Kling 等主流图像/视频模型；生成的 prompt 也兼容 Stable Diffusion、DALL·E 以及其他接受兼容语法的模型。"
-    },
-    {
       "question": "需要登录或付费吗？数据会上传到服务器吗？",
-      "answer": "完全免费，无需注册或登录。所有提示词组合和输入内容都在浏览器本地处理，不依赖后端数据库；仅当你使用翻译功能时，待译文本会发送给第三方翻译接口。项目在 GitHub 开源，可自行审计代码或自部署。"
-    },
-    {
-      "question": "IMGPrompt 跟 PromptHero、Lexica、PromptBase 有什么区别？",
-      "answer": "IMGPrompt 是「点选构建」工具，不是 prompt 搜索引擎。PromptHero、Lexica、PromptBase 让你浏览或购买别人写好的 prompt；IMGPrompt 让你通过点击中英双语标签自己组合。同时 IMGPrompt 完全在浏览器本地运行，无需登录、不上传任何数据；上述平台通常需要注册账号才能完整使用。"
-    },
-    {
-      "question": "IMGPrompt 支持 AI 视频模型 Veo、Kling、Runway 吗？",
-      "answer": "支持。IMGPrompt 不仅适配 Midjourney、FLUX、Nano Banana 等图像模型，也支持 Google Veo、Kling、Seedance、Runway、Hailuo 等视频模型。多数同类站点只覆盖图像模型，IMGPrompt 是少数同时免费支持新一代 AI 视频生成的工具之一。"
-    },
-    {
-      "question": "不会英文也能用 IMGPrompt 吗？",
-      "answer": "可以。界面共 18 种语言，每个标签同时显示英文和你的母语标签。用母语点选，IMGPrompt 自动用英文（AI 图像和视频模型实际需要的语言）组合 prompt。「翻译」按钮还能一键把母语句子转成英文 prompt。"
+      "answer": "完全免费，无需注册或登录。所有提示词组合和输入内容都在浏览器本地处理，不依赖后端数据库；"
     }
   ]
 }
