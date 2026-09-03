@@ -1,0 +1,1985 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Word Graph · 英语高频词脑图</title>
+  <link rel="icon" href="assets/images/title.ico" type="image/x-icon">
+  <link rel="shortcut icon" type="image/x-icon" href="assets/images/title.ico" media="screen"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0a1628;
+      --bg2: #101e38;
+      --card: rgba(14, 24, 44, 0.92);
+      --cardBorder: rgba(245, 193, 88, 0.25);
+      --accent: #f5c158;       /* 暖金 */
+      --accent2: #6cb4ee;      /* 学术蓝 */
+      --accentGlow: rgba(245, 193, 88, 0.55);
+      --textPrimary: rgba(248, 246, 238, 0.94);
+      --textSecondary: rgba(210, 214, 228, 0.62);
+      --textMuted: rgba(180, 190, 210, 0.45);
+      --lineColor: rgba(108, 180, 238, 0.55);
+      --fontSans: 'Inter', 'Noto Serif SC', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      --fontSerif: 'Cormorant Garamond', 'Noto Serif SC', Georgia, serif;
+    }
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      font-family: var(--fontSans);
+      background: radial-gradient(ellipse at top, #15284a 0%, var(--bg) 45%, #050c18 100%);
+      color: var(--textPrimary);
+      -webkit-font-smoothing: antialiased;
+    }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+    /* ========== Canvas ========== */
+    #three-canvas {
+      position: fixed; inset: 0; z-index: 1;
+    }
+
+    /* ========== 顶部控制栏 ========== */
+    .topbar {
+      position: fixed;
+      top: 18px; left: 50%; transform: translateX(-50%);
+      padding: 10px 16px;
+      background: rgba(10, 22, 40, 0.62);
+      border: 1px solid rgba(245, 193, 88, 0.14);
+      border-radius: 14px;
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.04);
+      z-index: 10;
+      display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+      max-width: calc(100vw - 36px);
+    }
+    .tb-brand {
+      display: flex; align-items: center; gap: 8px;
+      padding-right: 12px; margin-right: 4px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .tb-brand .logo {
+      width: 28px; height: 28px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), #d4943c);
+      display: flex; align-items: center; justify-content: center;
+      color: #1a1204; font-weight: 700; font-family: var(--fontSerif);
+      font-size: 15px;
+      box-shadow: 0 0 12px var(--accentGlow);
+    }
+    .tb-brand .title {
+      font-family: var(--fontSerif);
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.01em;
+      color: var(--textPrimary);
+    }
+    .tb-brand .sub {
+      font-size: 10px;
+      color: var(--textMuted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .tb-search {
+      display: flex; align-items: center; gap: 6px;
+      padding: 6px 12px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      transition: all .18s;
+      position: relative;
+    }
+    .tb-search:focus-within {
+      border-color: rgba(245,193,88,0.55);
+      box-shadow: 0 0 0 3px rgba(245,193,88,0.12);
+    }
+    .tb-search input {
+      border: none; background: transparent; outline: none;
+      color: var(--textPrimary);
+      font-size: 13px;
+      font-family: inherit;
+      width: 160px;
+    }
+    .tb-search input::placeholder { color: var(--textMuted); }
+    .tb-search i { color: var(--textMuted); font-size: 12px; }
+    .search-dropdown {
+      position: absolute;
+      top: calc(100% + 8px); left: 0; right: 0;
+      max-height: 260px; overflow-y: auto;
+      background: rgba(14, 24, 44, 0.98);
+      border: 1px solid rgba(245,193,88,0.15);
+      border-radius: 12px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.55);
+      backdrop-filter: blur(16px);
+      z-index: 20; display: none;
+    }
+    .search-dropdown.visible { display: block; }
+    .sd-item {
+      padding: 10px 14px; font-size: 13px; color: var(--textPrimary);
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+      transition: background .1s;
+    }
+    .sd-item:hover, .sd-item.active { background: rgba(245,193,88,0.12); }
+    .sd-item .tag { font-size: 10px; color: var(--textMuted); letter-spacing: 0.05em; }
+    .sd-empty { padding: 16px; text-align: center; font-size: 12px; color: var(--textMuted); }
+    .search-dropdown::-webkit-scrollbar { width: 6px; }
+    .search-dropdown::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 3px; }
+
+    .tb-btn {
+      padding: 7px 13px; border-radius: 10px; font-size: 12.5px;
+      font-weight: 500; color: var(--textPrimary);
+      background: rgba(255,255,255,0.06);
+      transition: all .15s;
+      display: inline-flex; align-items: center; gap: 6px;
+      white-space: nowrap;
+    }
+    .tb-btn:hover:not(:disabled) {
+      background: rgba(245,193,88,0.12);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+    .tb-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .tb-btn.primary {
+      background: linear-gradient(135deg, var(--accent), #d9a23c);
+      color: #1a1204; font-weight: 600;
+    }
+    .tb-btn.primary:hover:not(:disabled) {
+      box-shadow: 0 4px 18px rgba(245,193,88,0.4);
+      color: #1a1204;
+    }
+    .tb-stat {
+      font-size: 12px; color: var(--textSecondary);
+      padding: 5px 10px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 8px;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .tb-stat i { color: var(--accent); font-size: 10px; }
+    .sp { width: 1px; height: 20px; background: rgba(255,255,255,0.07); }
+
+    /* ========== 单词详情卡片 ========== */
+    .overlay {
+      position: fixed; inset: 0;
+      background: rgba(5, 10, 20, 0.55);
+      backdrop-filter: blur(6px);
+      z-index: 50;
+      display: none; align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .overlay.visible { display: flex; }
+
+    .word-card {
+      width: min(560px, 100%);
+      max-height: 86vh;
+      background: var(--card);
+      border: 1px solid var(--cardBorder);
+      border-radius: 22px;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.65), 0 0 60px rgba(245,193,88,0.07);
+      display: flex; flex-direction: column; overflow: hidden;
+      animation: pop .28s cubic-bezier(.34,1.56,.64,1);
+    }
+    @keyframes pop {
+      from { opacity: 0; transform: scale(.9) translateY(12px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .wc-header {
+      padding: 22px 24px 16px;
+      background:
+        radial-gradient(ellipse at top right, rgba(245,193,88,0.1), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+    }
+    .wc-close {
+      position: absolute; top: 14px; right: 14px;
+      width: 30px; height: 30px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--textMuted); font-size: 14px; cursor: pointer;
+      transition: all .15s;
+    }
+    .wc-close:hover { background: rgba(255,255,255,0.08); color: var(--textPrimary); }
+    .wc-word {
+      font-family: var(--fontSerif);
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--textPrimary);
+      letter-spacing: -0.01em;
+      line-height: 1.05;
+      padding-right: 34px;
+      text-transform: capitalize;
+    }
+    .wc-phonetic {
+      margin-top: 6px;
+      font-family: 'Inter', serif;
+      font-size: 15px;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+      font-weight: 500;
+    }
+    .wc-body {
+      padding: 16px 24px 20px;
+      overflow-y: auto;
+      flex: 1;
+    }
+    .wc-body::-webkit-scrollbar { width: 6px; }
+    .wc-body::-webkit-scrollbar-thumb { background: rgba(245,193,88,0.2); border-radius: 3px; }
+
+    .wc-section-title {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 600;
+      color: var(--textMuted);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+    .wc-section-title i { color: var(--accent); font-size: 10px; }
+    .wc-section-title + :not(.wc-section-title) { margin-bottom: 18px; }
+
+    .wc-notes {
+      font-size: 13.5px;
+      line-height: 1.85;
+      color: var(--textPrimary);
+      font-family: 'Noto Serif SC', var(--fontSans);
+      padding: 12px 14px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+    }
+
+    .wc-cover {
+      width: 100%; aspect-ratio: 16 / 9;
+      border-radius: 12px; overflow: hidden;
+      background: linear-gradient(135deg, rgba(108,180,238,0.15), rgba(245,193,88,0.15));
+      border: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 4px;
+    }
+    .wc-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .wc-cover .fallback {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--fontSerif);
+      font-size: 64px; font-weight: 700;
+      background: linear-gradient(135deg, #1d3557, #2a4a7e);
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    .wc-links {
+      display: flex; flex-wrap: wrap; gap: 7px;
+    }
+    .wc-link {
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(108,180,238,0.18);
+      color: var(--textSecondary);
+      cursor: pointer;
+      transition: all .16s;
+      font-weight: 500;
+    }
+    .wc-link:hover {
+      background: rgba(108,180,238,0.14);
+      border-color: var(--accent2);
+      color: var(--accent2);
+      transform: translateY(-1px);
+    }
+    .wc-link i { color: var(--accent); margin-right: 5px; font-size: 9px; }
+
+    .wc-footer {
+      padding: 12px 24px 16px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 10px;
+    }
+    .wc-meta {
+      font-size: 11px; color: var(--textMuted);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .wc-meta i { color: var(--accent2); font-size: 11px; }
+    .wc-actions { display: flex; gap: 8px; }
+    .wc-btn {
+      padding: 7px 14px; border-radius: 10px;
+      font-size: 12px; font-weight: 500;
+      background: rgba(255,255,255,0.07);
+      color: var(--textPrimary);
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: all .15s;
+    }
+    .wc-btn:hover { background: rgba(255,255,255,0.12); }
+    .wc-btn.primary {
+      background: linear-gradient(135deg, var(--accent), #d9a23c);
+      color: #1a1204; font-weight: 600;
+    }
+
+    /* ========== Loading ========== */
+    .loading {
+      position: fixed; inset: 0; z-index: 90;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: radial-gradient(ellipse at center, #0e1d38 0%, var(--bg) 80%);
+      transition: opacity .4s, visibility .4s;
+    }
+    .loading.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .load-ring {
+      width: 54px; height: 54px;
+      border: 3px solid rgba(245,193,88,0.12);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 18px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .load-word {
+      font-family: var(--fontSerif);
+      font-size: 20px;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      margin-bottom: 6px;
+    }
+    .load-sub {
+      font-size: 12px;
+      color: var(--textMuted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ========== Hover tooltip (replaces floating plane labels) ========== */
+    .hover-tooltip {
+      position: fixed;
+      z-index: 40;
+      pointer-events: none;
+      padding: 8px 14px;
+      background: rgba(10, 20, 40, 0.55);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border: 1px solid rgba(245, 193, 88, 0.28);
+      border-radius: 12px;
+      box-shadow: 0 10px 32px rgba(0,0,0,0.55), 0 0 24px rgba(245,193,88,0.08);
+      transform: translate(-50%, calc(-100% - 14px));
+      animation: fadeIn .12s ease-out;
+      white-space: nowrap;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translate(-50%, calc(-100% - 8px)); } to { opacity: 1; transform: translate(-50%, calc(-100% - 14px)); } }
+    .ht-word {
+      font-family: var(--fontSerif);
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.01em;
+      background: linear-gradient(180deg, #fff8e0 0%, #f5c158 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1.1;
+      text-transform: capitalize;
+    }
+    .ht-meta {
+      font-size: 10.5px;
+      color: var(--textMuted);
+      letter-spacing: 0.06em;
+      margin-top: 3px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .ht-meta .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accentGlow);
+    }
+
+    /* ========== 响应式 ========== */
+    @media (max-width: 768px) {
+      .topbar { padding: 7px 10px; gap: 7px; }
+      .tb-btn { padding: 6px 10px; font-size: 11.5px; }
+      .tb-stat { padding: 3px 8px; font-size: 11px; }
+      .tb-brand .sub, .tb-brand { display: none; }
+      .tb-search input { width: 110px; font-size: 12px; }
+      .wc-header { padding: 18px 18px 12px; }
+      .wc-word { font-size: 30px; }
+      .wc-body { padding: 14px 18px; }
+      .wc-footer { padding: 10px 18px 14px; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="three-canvas"></canvas>
+
+  <!-- Floating hover tooltip (replaces floating plane labels) -->
+  <div class="hover-tooltip" id="hover-tooltip" style="display:none">
+    <div class="ht-word" id="ht-word">—</div>
+    <div class="ht-meta" id="ht-meta">—</div>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading" id="loading">
+    <div class="load-ring"></div>
+    <div class="load-word">VOCABULARY</div>
+    <div class="load-sub" id="load-sub">正在构建词汇脑图…</div>
+  </div>
+
+  <!-- Top control bar -->
+  <div class="topbar">
+    <div class="tb-brand">
+      <div class="logo">A</div>
+      <div>
+        <div class="title">Word Graph</div>
+        <div class="sub">English · 20 HF Words</div>
+      </div>
+    </div>
+
+    <div class="tb-search" id="tb-search">
+      <i class="fas fa-search"></i>
+      <input type="text" id="search-input" placeholder="搜索单词…" autocomplete="off">
+      <div class="search-dropdown" id="search-dropdown"></div>
+    </div>
+
+    <div class="sp"></div>
+
+    <button class="tb-btn" id="btn-reset" disabled><i class="fas fa-expand"></i><span>重置视角</span></button>
+    <button class="tb-btn" id="btn-tour" disabled><i class="fas fa-play"></i><span>自动巡览</span></button>
+    <button class="tb-btn" id="btn-links" disabled><i class="fas fa-bezier-curve"></i><span>隐藏连线</span></button>
+    <button class="tb-btn primary" id="btn-random" disabled><i class="fas fa-dice"></i><span>随机单词</span></button>
+
+    <div class="sp"></div>
+
+    <div class="tb-stat"><i class="fas fa-book"></i><span id="stat-words">0</span><span style="opacity:.6">词</span></div>
+    <div class="tb-stat"><i class="fas fa-link"></i><span id="stat-links">0</span><span style="opacity:.6">关联</span></div>
+  </div>
+
+  <!-- Word detail overlay -->
+  <div class="overlay" id="overlay">
+    <div class="word-card" id="word-card">
+      <div class="wc-header">
+        <div class="wc-close" id="wc-close"><i class="fas fa-times"></i></div>
+        <div class="wc-word" id="wc-word">—</div>
+        <div class="wc-phonetic" id="wc-phonetic">/—/</div>
+      </div>
+
+      <div class="wc-body">
+        <div class="wc-section-title"><i class="fas fa-image"></i>Cover · 图示</div>
+        <div class="wc-cover" id="wc-cover">
+          <div class="fallback" id="wc-cover-fb">?</div>
+          <img id="wc-cover-img" alt="cover" style="display:none" onload="this.style.display='block';document.getElementById('wc-cover-fb').style.display='none';" onerror="this.style.display='none';">
+        </div>
+
+        <div class="wc-section-title" style="margin-top:18px"><i class="fas fa-book-open"></i>Notes · 释义笔记</div>
+        <div class="wc-notes" id="wc-notes">（加载中…）</div>
+
+        <div class="wc-section-title" style="margin-top:18px"><i class="fas fa-project-diagram"></i>Related Words · 关联词汇</div>
+        <div class="wc-links" id="wc-links"></div>
+      </div>
+
+      <div class="wc-footer">
+        <div class="wc-meta" id="wc-meta">
+          <i class="fas fa-info-circle"></i>
+          <span>双击球体查看详情 · 单击切换视角</span>
+        </div>
+        <div class="wc-actions">
+          <button class="wc-btn" id="wc-prev"><i class="fas fa-arrow-left"></i><span>上一个</span></button>
+          <button class="wc-btn primary" id="wc-next"><span>下一个</span><i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Importmap for Three.js -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./assets/js/three.module.js"
+    }
+  }
+  </script>
+
+  <script type="module">
+    import * as THREE from 'three';
+
+    // =========================================================================
+    //  Scene / Renderer / Camera
+    // =========================================================================
+    const canvas = document.getElementById('three-canvas');
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x000000, 0);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.15;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.Fog(0x0a1628, 12, 55);
+
+    const camera = new THREE.PerspectiveCamera(58, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(0, 10, 22);
+
+    // ---- Lighting (academic warm gold + cool blue) ----
+    const ambient = new THREE.AmbientLight(0x3a4a70, 0.6);
+    scene.add(ambient);
+    const keyLight = new THREE.DirectionalLight(0xf5c158, 0.75);  // 暖金主光
+    keyLight.position.set(12, 20, 10);
+    scene.add(keyLight);
+    const coolLight = new THREE.DirectionalLight(0x6cb4ee, 0.6);  // 学术蓝辅光
+    coolLight.position.set(-14, 8, -12);
+    scene.add(coolLight);
+    const rimLight = new THREE.PointLight(0xf5c158, 1.2, 40);     // 中心金色光晕
+    rimLight.position.set(0, 0, 0);
+    scene.add(rimLight);
+
+    // ---- Star dust background (richer galaxy-style field) ----
+    const starsGeo = new THREE.BufferGeometry();
+    const starCount = 2000;
+    const starPos = new Float32Array(starCount * 3);
+    const starColors = new Float32Array(starCount * 3);
+    const starSizes = new Float32Array(starCount);
+    const starTwinkle = [];
+    const STAR_PALETTE = [
+      new THREE.Color(0xffffff), new THREE.Color(0xb8c4e0), new THREE.Color(0x8ab4ff),
+      new THREE.Color(0xf5c158), new THREE.Color(0xffd98a), new THREE.Color(0xffa07a),
+      new THREE.Color(0xcde4ff), new THREE.Color(0xe8d0a0)
+    ];
+    for (let i = 0; i < starCount; i++) {
+      // 分层分布：薄的星系盘（YZ平面）+ 外层散星
+      let x, y, z;
+      if (i < starCount * 0.6) {
+        // Galactic disc (compressed along Y so it's a thin disc)
+        const r = 60 + Math.pow(Math.random(), 0.5) * 160;
+        const theta = Math.random() * Math.PI * 2;
+        x = r * Math.cos(theta);
+        z = r * Math.sin(theta);
+        y = (Math.random() - 0.5) * 30;
+      } else {
+        // Outer halo (spherical)
+        const r = 90 + Math.pow(Math.random(), 0.6) * 160;
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(2 * Math.random() - 1);
+        x = r * Math.sin(phi) * Math.cos(theta);
+        y = r * Math.sin(phi) * Math.sin(theta);
+        z = r * Math.cos(phi);
+      }
+      starPos[i*3]   = x;
+      starPos[i*3+1] = y;
+      starPos[i*3+2] = z;
+      // 调色：1/3 暖金，1/3 学术蓝，1/3 白+杂色
+      const roll = Math.random();
+      let col;
+      if (roll < 0.3)      col = STAR_PALETTE[3 + Math.floor(Math.random() * 3)]; // 暖金+橙
+      else if (roll < 0.65) col = STAR_PALETTE[1 + Math.floor(Math.random() * 3)]; // 学术蓝
+      else                  col = STAR_PALETTE[Math.floor(Math.random() * 3)];     // 白系
+      starColors[i*3]   = col.r;
+      starColors[i*3+1] = col.g;
+      starColors[i*3+2] = col.b;
+      const s = 0.04 + Math.pow(Math.random(), 2.5) * 0.35;
+      starSizes[i] = s;
+      starTwinkle.push({ base: s, phase: Math.random() * Math.PI * 2, speed: 0.4 + Math.random() * 1.6, amp: 0.25 + Math.random() * 0.6 });
+    }
+    starsGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+    starsGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
+    starsGeo.setAttribute('aSize', new THREE.BufferAttribute(starSizes, 1));
+    const stars = new THREE.Points(starsGeo, new THREE.PointsMaterial({
+      vertexColors: true, size: 0.1, transparent: true, opacity: 0.9,
+      sizeAttenuation: true, blending: THREE.AdditiveBlending, depthWrite: false
+    }));
+    scene.add(stars);
+
+    // ---- Floating golden dust particles (academic sparkle) ----
+    const dustGeo = new THREE.BufferGeometry();
+    const dustCount = 260;
+    const dustPos = new Float32Array(dustCount * 3);
+    const dustColors = new Float32Array(dustCount * 3);
+    const dustDatum = [];
+    const DUST_PALETTE = [
+      new THREE.Color(0xf5c158), new THREE.Color(0xffe39a), new THREE.Color(0xffa865),
+      new THREE.Color(0x6cb4ee), new THREE.Color(0xaec6ff)
+    ];
+    for (let i = 0; i < dustCount; i++) {
+      const r = 4 + Math.random() * 16;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(2 * Math.random() - 1);
+      dustPos[i*3]   = r * Math.sin(phi) * Math.cos(theta);
+      dustPos[i*3+1] = r * Math.sin(phi) * Math.sin(theta);
+      dustPos[i*3+2] = r * Math.cos(phi);
+      const col = Math.random() < 0.7 ? DUST_PALETTE[Math.floor(Math.random()*3)] : DUST_PALETTE[3+Math.floor(Math.random()*2)];
+      dustColors[i*3]   = col.r;
+      dustColors[i*3+1] = col.g;
+      dustColors[i*3+2] = col.b;
+      dustDatum.push({ r, theta, phi, speed: 0.05 + Math.random() * 0.2 });
+    }
+    dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPos, 3));
+    dustGeo.setAttribute('color', new THREE.BufferAttribute(dustColors, 3));
+    const dust = new THREE.Points(dustGeo, new THREE.PointsMaterial({
+      vertexColors: true, size: 0.14, transparent: true, opacity: 0.72,
+      blending: THREE.AdditiveBlending, depthWrite: false, sizeAttenuation: true
+    }));
+    scene.add(dust);
+
+    // Containers
+    const wordsGroup = new THREE.Group(); scene.add(wordsGroup);
+    const linesGroup = new THREE.Group(); scene.add(linesGroup);
+
+    // =========================================================================
+    //  Shared utilities: soft circular particle sprite + PMREM environment map
+    // =========================================================================
+    // Generate a soft circular radial-gradient alpha sprite (so points look like dots, not squares)
+    function makeParticleSprite() {
+      const size = 128;
+      const c = document.createElement('canvas');
+      c.width = c.height = size;
+      const ctx = c.getContext('2d');
+      const g = ctx.createRadialGradient(size/2, size/2, 0, size/2, size/2, size/2);
+      g.addColorStop(0.00, 'rgba(255,255,255,1)');
+      g.addColorStop(0.30, 'rgba(255,255,255,0.85)');
+      g.addColorStop(0.55, 'rgba(255,255,255,0.35)');
+      g.addColorStop(0.80, 'rgba(255,255,255,0.06)');
+      g.addColorStop(1.00, 'rgba(255,255,255,0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, size, size);
+      const t = new THREE.CanvasTexture(c);
+      t.colorSpace = THREE.SRGBColorSpace;
+      return t;
+    }
+    const particleSprite = makeParticleSprite();
+    // Apply soft circular sprite to stars & dust
+    stars.material.map = particleSprite;
+    stars.material.alphaTest = 0.02;
+    stars.material.needsUpdate = true;
+    dust.material.map = particleSprite;
+    dust.material.alphaTest = 0.02;
+    dust.material.needsUpdate = true;
+
+    // Generate procedural gradient environment (for ball reflections) using PMREMGenerator
+    let envMap = null;
+    function buildEnvMap() {
+      const pmrem = new THREE.PMREMGenerator(renderer);
+      pmrem.compileEquirectangularShader();
+      const W = 512, H = 256;
+      const c = document.createElement('canvas');
+      c.width = W; c.height = H;
+      const ctx = c.getContext('2d');
+      // Sky-horizon gradient (night blue top → deep navy horizon → warm gold horizon streak → dark ground): creates rich 3D reflection zones
+      const bg = ctx.createLinearGradient(0, 0, 0, H);
+      bg.addColorStop(0.00, '#0b1b3a'); // top night sky
+      bg.addColorStop(0.45, '#17325c'); // upper sky
+      bg.addColorStop(0.50, '#6b8ec9'); // upper horizon light blue
+      bg.addColorStop(0.54, '#e8c070'); // warm gold horizon band (sun)
+      bg.addColorStop(0.56, '#f5c158'); // brightest horizon sun
+      bg.addColorStop(0.58, '#946a36');
+      bg.addColorStop(0.65, '#152442');
+      bg.addColorStop(1.00, '#060e1e');
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, W, H);
+      // Add soft sun sphere at the horizon band for a sharp highlight reflection
+      const sun = ctx.createRadialGradient(W*0.62, H*0.55, 2, W*0.62, H*0.55, 90);
+      sun.addColorStop(0, 'rgba(255,240,200,1)');
+      sun.addColorStop(0.2, 'rgba(255,210,130,0.7)');
+      sun.addColorStop(0.5, 'rgba(255,170,80,0.18)');
+      sun.addColorStop(1,   'rgba(255,170,80,0)');
+      ctx.fillStyle = sun;
+      ctx.fillRect(0, 0, W, H);
+      // Add a few scattered bright points (reflected "lights" for multi-sparkle specular)
+      for (let i = 0; i < 22; i++) {
+        const x = Math.random() * W;
+        const y = Math.random() * H * 0.5;
+        const rr = 1.5 + Math.random() * 5;
+        ctx.beginPath();
+        ctx.arc(x, y, rr, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(${200+Math.random()*55|0}, ${220+Math.random()*35|0}, 255, ${0.35+Math.random()*0.55})`;
+        ctx.fill();
+      }
+      const tex = new THREE.CanvasTexture(c);
+      tex.mapping = THREE.EquirectangularReflectionMapping;
+      tex.colorSpace = THREE.SRGBColorSpace;
+      const rt = pmrem.fromEquirectangular(tex);
+      envMap = rt.texture;
+      tex.dispose();
+      pmrem.dispose();
+    }
+
+    // =========================================================================
+    //  Orbit controls (custom spherical)
+    // =========================================================================
+    const controls = {
+      target: new THREE.Vector3(0, 0, 0),
+      autoRotate: true,
+      autoRotateSpeed: 0.00055,
+      _isDragging: false,
+      _prevX: 0, _prevY: 0,
+      _spherical: new THREE.Spherical(),
+      _focusAnim: null,
+      _init() {
+        this._spherical.setFromVector3(new THREE.Vector3().subVectors(camera.position, this.target));
+      },
+      _update() {
+        const offset = new THREE.Vector3().setFromSpherical(this._spherical);
+        camera.position.copy(this.target).add(offset);
+        camera.lookAt(this.target);
+      },
+      reset() {
+        this._spherical.radius = 28;
+        this._spherical.theta = 0;
+        this._spherical.phi = Math.PI / 2.6;
+        this.target.set(0, 0, 0);
+        this._focusAnim = null;
+        this._update();
+      },
+      focusOn(pos, radius = 7) {
+        this.autoRotate = false;
+        this._focusAnim = {
+          tFrom: this.target.clone(),
+          tTo: pos.clone(),
+          rFrom: this._spherical.radius,
+          rTo: radius,
+          t: 0, duration: 0.9
+        };
+      },
+      _tickFocus(delta) {
+        if (!this._focusAnim) return;
+        const a = this._focusAnim;
+        a.t += delta;
+        const k = Math.min(1, a.t / a.duration);
+        const ease = 1 - Math.pow(1 - k, 3);
+        this.target.lerpVectors(a.tFrom, a.tTo, ease);
+        this._spherical.radius = a.rFrom + (a.rTo - a.rFrom) * ease;
+        this._update();
+        if (k >= 1) this._focusAnim = null;
+      }
+    };
+    controls._init();
+    controls.reset();
+
+    canvas.addEventListener('pointerdown', e => {
+      controls._isDragging = true;
+      controls._prevX = e.clientX; controls._prevY = e.clientY;
+      controls.autoRotate = false;
+      stopTour();
+      canvas.setPointerCapture(e.pointerId);
+    });
+    canvas.addEventListener('pointermove', e => {
+      if (!controls._isDragging) return;
+      const dx = e.clientX - controls._prevX, dy = e.clientY - controls._prevY;
+      controls._prevX = e.clientX; controls._prevY = e.clientY;
+      controls._spherical.theta -= dx * 0.005;
+      controls._spherical.phi   -= dy * 0.005;
+      controls._spherical.phi = Math.max(0.1, Math.min(Math.PI - 0.1, controls._spherical.phi));
+      controls._update();
+    });
+    canvas.addEventListener('pointerup', () => { controls._isDragging = false; });
+    canvas.addEventListener('pointercancel', () => { controls._isDragging = false; });
+    canvas.addEventListener('wheel', e => {
+      e.preventDefault();
+      controls._spherical.radius *= (1 + e.deltaY * 0.001);
+      controls._spherical.radius = Math.max(8, Math.min(90, controls._spherical.radius));
+      controls._update();
+    }, { passive: false });
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // =========================================================================
+    //  Raycaster for hover / single-click focus / double-click open
+    // =========================================================================
+    const raycaster = new THREE.Raycaster();
+    const mouseVec = new THREE.Vector2();
+    let hovered = null;  // { group, coreMesh, label, data }
+    const allPairs = []; // global registry
+
+    // Find pair from ray-hit object — only coreMesh is pickable (not the facing-camera sprite)
+    function pairFromHitObject(obj) {
+      // Walk up parent chain but STOP if we hit a marked core mesh (pickable) first
+      let cur = obj;
+      while (cur) {
+        if (cur.userData && cur.userData.isPickableCore) {
+          // cur is the coreMesh; its parent IS the sphereGroup
+          const p = allPairs.find(p => p.coreMesh === cur);
+          if (p) return p;
+        }
+        const p = allPairs.find(p => p.group === cur);
+        if (p) return p;
+        cur = cur.parent;
+      }
+      return null;
+    }
+
+    // Raycaster / tooltip references
+    // (hover tooltip preview disabled by user request — word now painted directly on ball surface)
+    let mouseScreen = { x: 0, y: 0 };
+
+    canvas.addEventListener('pointermove', e => {
+      mouseScreen.x = e.clientX; mouseScreen.y = e.clientY;
+      if (controls._isDragging) return;
+      mouseVec.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouseVec.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(mouseVec, camera);
+      const groups = allPairs.map(p => p.group);
+      const hits = raycaster.intersectObjects(groups, true); // recursive (into group children)
+      if (hovered) {
+        hovered.coreMesh.material.emissive.setHex(hovered.origEmissive);
+        hovered.group.scale.copy(hovered.origScale);
+      }
+      if (hits.length > 0) {
+        const pair = pairFromHitObject(hits[0].object);
+        if (pair) {
+          hovered = pair;
+          pair.coreMesh.material.emissive.setHex(0xf5c158);
+          pair.coreMesh.material.emissiveIntensity = Math.max(pair.origEmissiveIntensity * 1.8, 1.6);
+          pair.group.scale.copy(pair.origScale).multiplyScalar(1.22);
+          canvas.style.cursor = 'pointer';
+        }
+      } else {
+        hovered = null;
+        canvas.style.cursor = 'grab';
+      }
+    });
+    // Restore hovered state when leaving canvas
+    canvas.addEventListener('pointerleave', () => {
+      if (hovered) {
+        hovered.coreMesh.material.emissive.setHex(hovered.origEmissive);
+        hovered.coreMesh.material.emissiveIntensity = hovered.origEmissiveIntensity;
+        hovered.group.scale.copy(hovered.origScale);
+        hovered = null;
+      }
+    });
+
+    let clickTimer = null;
+    let lastClicked = null;
+    canvas.addEventListener('click', e => {
+      if (controls._isDragging) return;
+      mouseVec.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouseVec.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(mouseVec, camera);
+      const groups = allPairs.map(p => p.group);
+      const hits = raycaster.intersectObjects(groups, true);
+      if (hits.length === 0) {
+        // ---- Clicked empty background → RESTORE normal 3D layout + show all connections ----
+        restoreFlatLayout();
+        applyConnectionFilter(null);
+        if (clickTimer) { clearTimeout(clickTimer); clickTimer = null; }
+        return;
+      }
+      const pair = pairFromHitObject(hits[0].object);
+      if (!pair) return;
+
+      // ---- Clicked a word ball → filter connections + gather relatives onto shared FRONT-PLANE ----
+      applyConnectionFilter(pair.data.word);
+      focusFlatLayout(pair.data.word);
+
+      // Always focus camera on click (group.position = word center; animates behind flight)
+      controls.focusOn(pair.group.position, 5.5);
+
+      if (clickTimer) {
+        // Double click -> open card (filter + focus already applied in single-click pre-fire)
+        clearTimeout(clickTimer); clickTimer = null;
+        openWordCard(pair.data.word);
+      } else {
+        lastClicked = pair;
+        clickTimer = setTimeout(() => { clickTimer = null; }, 270);
+      }
+    });
+
+    // =========================================================================
+    //  Build flat rectangular billboard texture for word: text + badge on transparent bg.
+    //  Returns { tex, aspect } where aspect = w/h of canvas (used to keep correct sprite ratio).
+    //  Sizing: word fits with generous margins so ALL letters are always visible, no truncation.
+    // =========================================================================
+    function makeWordBillboardTexture(word, linkCount, glowCSS, tNorm) {
+      // Paint word once to measure it
+      let fontSize = 112;
+      const fontShrink = () => `700 ${fontSize}px 'Cormorant Garamond', Georgia, serif`;
+      const tmp = document.createElement('canvas').getContext('2d');
+      tmp.font = fontShrink();
+      while (tmp.measureText(word).width > 580 && fontSize > 28) { fontSize -= 6; tmp.font = fontShrink(); }
+      // Leave generous margin — 1.0× wider than text on each side, and less top pad (no badge now)
+      const textW = Math.ceil(tmp.measureText(word).width);
+      const padX = Math.ceil(textW * 1.0 + 40);
+      const padY   = Math.ceil(fontSize * 0.70);
+      const C = document.createElement('canvas');
+      C.width  = Math.max(320, textW + padX * 2);
+      C.height = Math.max(160, fontSize + padY * 2);
+      const W = C.width, H = C.height;
+      const ctx = C.getContext('2d');
+      ctx.clearRect(0, 0, W, H);
+
+      const cx = W / 2;
+      const cy = H / 2;
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.font = fontShrink();
+
+      // ---- Outer solid stroke for legibility against reflections ----
+      ctx.shadowColor = glowCSS;
+      ctx.shadowBlur  = 14 + 18 * tNorm;
+      ctx.lineJoin  = 'round';
+      ctx.miterLimit = 2;
+      ctx.lineWidth = Math.max(5, fontSize * 0.11);
+      ctx.strokeStyle = 'rgba(6, 12, 24, 0.95)';
+      ctx.strokeText(word, cx, cy);
+
+      // ---- Soft mid stroke for depth (half contrast) ----
+      ctx.lineWidth = Math.max(2, fontSize * 0.05);
+      ctx.strokeStyle = 'rgba(8, 14, 26, 0.55)';
+      ctx.shadowBlur = 0;
+      ctx.strokeText(word, cx, cy);
+
+      // ---- Gold→White→Gold gradient fill ----
+      const grad = ctx.createLinearGradient(0, cy - fontSize * 0.9, 0, cy + fontSize * 0.9);
+      grad.addColorStop(0, '#ffffff');
+      grad.addColorStop(0.52, glowCSS);
+      grad.addColorStop(1, '#d48c1d');
+      ctx.fillStyle = grad;
+      ctx.shadowColor = 'rgba(255,255,255,0.35)';
+      ctx.shadowBlur = 4;
+      ctx.fillText(word, cx, cy);
+      ctx.shadowBlur = 0;
+
+      const tex = new THREE.CanvasTexture(C);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.anisotropy = 16;
+      tex.needsUpdate = true;
+      return { tex, aspect: W / H };
+    }
+
+    // =========================================================================
+    //  Create word sphere — reflective 3D ball + facing-camera billboard word
+    // =========================================================================
+    function createWordSphere(word, linkCount, maxLinks) {
+      const t = Math.pow(Math.min(1, linkCount / Math.max(1, maxLinks)), 0.55);
+      // Compact solid 3D ball radius
+      const radius = 0.22 + t * 0.44;  // 0.22 ~ 0.66
+      const geo = new THREE.SphereGeometry(radius, 64, 64);
+
+      // Hue: 连接少 -> 学术蓝, 连接多 -> 暖金
+      const hue = 0.58 - 0.47 * t;
+      const sat = 0.62 + 0.25 * t;
+      const lgt = 0.36 + 0.16 * t;
+      const baseColor = new THREE.Color().setHSL(hue, sat, lgt);
+      const glowColor = new THREE.Color().setHSL(hue, 1.00, 0.56 + 0.18 * t);
+      const glowCSS = `rgb(${Math.floor(glowColor.r*255)},${Math.floor(glowColor.g*255)},${Math.floor(glowColor.b*255)})`;
+
+      // --- Core: highly reflective MeshPhysicalMaterial with PMREM env reflections ---
+      const metal = 0.48 + 0.36 * t;
+      const rough = Math.max(0.06, 0.22 - 0.14 * t);
+      const coreMat = new THREE.MeshPhysicalMaterial({
+        color: baseColor,
+        metalness: metal,
+        roughness: rough,
+        envMap: envMap,
+        envMapIntensity: 1.15 + 0.55 * t,
+        sheen: 0.35 + 0.35 * t,
+        sheenColor: glowColor.clone().lerp(new THREE.Color(0xffffff), 0.4),
+        sheenRoughness: 0.5,
+        specularIntensity: 0.9 + 0.4 * t,
+        specularColor: new THREE.Color(0xffffff),
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.04 + 0.06 * (1 - t),
+        emissive: glowColor,
+        emissiveIntensity: 0.08 + 0.22 * t,
+        side: THREE.FrontSide,
+        depthWrite: true
+      });
+      // Fresnel edge brightening (keeps 3D form definition)
+      coreMat.onBeforeCompile = (shader) => {
+        shader.uniforms.uFresnelPower = { value: 2.6 };
+        shader.uniforms.uFresnelColor = { value: glowColor.clone() };
+        shader.uniforms.uFresnelStrength = { value: 0.28 + 0.30 * t };
+        shader.vertexShader = shader.vertexShader.replace(
+          '#include <common>',
+          `#include <common>\nvarying vec3 vNormalW;\nvarying vec3 vViewDirW;\n`
+        );
+        shader.vertexShader = shader.vertexShader.replace(
+          '#include <worldpos_vertex>',
+          `#include <worldpos_vertex>\n  vec4 wPos = modelMatrix * vec4(position, 1.0);\n  vNormalW = normalize(mat3(modelMatrix) * normal);\n  vViewDirW = normalize(cameraPosition - wPos.xyz);\n`
+        );
+        shader.fragmentShader = shader.fragmentShader.replace(
+          '#include <common>',
+          `#include <common>\nvarying vec3 vNormalW;\nvarying vec3 vViewDirW;\nuniform float uFresnelPower;\nuniform vec3 uFresnelColor;\nuniform float uFresnelStrength;\n`
+        );
+        shader.fragmentShader = shader.fragmentShader.replace(
+          '#include <emissivemap_fragment>',
+          `#include <emissivemap_fragment>\n  float fr = pow(1.0 - max(dot(normalize(vNormalW), normalize(vViewDirW)), 0.0), uFresnelPower);\n  totalEmissiveRadiance += uFresnelColor * fr * uFresnelStrength;\n`
+        );
+        coreMat.userData.shader = shader;
+      };
+      coreMat.needsUpdate = true;
+
+      const mesh = new THREE.Mesh(geo, coreMat);
+      mesh.origEmissive = coreMat.emissive.getHex();
+      mesh.origScale = new THREE.Vector3(1, 1, 1);
+      mesh.userData.radius = radius;
+      mesh.userData.tNorm = t;
+      // Raycaster will pick only core meshes, not sprites → mark this object
+      mesh.userData.isPickableCore = true;
+
+      // --- Word billboard: THREE.Sprite (always faces camera automatically) ---
+      const { tex: spriteTex, aspect } = makeWordBillboardTexture(word, linkCount, glowCSS, t);
+      const spriteMat = new THREE.SpriteMaterial({
+        map: spriteTex,
+        transparent: true,
+        opacity: 1.0,
+        depthTest: true,     // occluded by balls that are in front
+        depthWrite: false,
+        sizeAttenuation: true
+      });
+      const sprite = new THREE.Sprite(spriteMat);
+      // Base world-space size: width ~ 1.55× the ball diameter so text sits nicely on the face
+      const baseW = radius * 2 * 1.55;
+      const baseH = baseW / aspect;
+      sprite.scale.set(baseW, baseH, 1);
+      sprite.userData.baseScale = new THREE.Vector3(baseW, baseH, 1);
+      sprite.userData.baseRadius = radius;
+
+      const sphereGroup = new THREE.Group();
+      sphereGroup.add(mesh);
+      sphereGroup.add(sprite);
+      sphereGroup.userData.coreMesh = mesh;
+      sphereGroup.userData.sprite = sprite;
+
+      return { mesh: sphereGroup, radius };
+    }
+
+    // =========================================================================
+    //  Connections (celestial-style curved arcs) + orbital satellite motion
+    // =========================================================================
+    let lineMat, pulseMat, trailMat;
+    const pulsePool = [];   // all orbiting satellite meshes (1 per orbital body = 1 mesh)
+    const connectedLines = []; // registry: [{ from:word, to:word, tube:Mesh, satellites:Mesh[] }]
+    let focusedConnectionWord = null; // word currently filtered (null = show all)
+    const ORBIT_MATS_CACHE = {}; // cache pulse colors by index
+
+    // =========================================================================
+    //  Focus-Flat layout transition engine
+    //  When user clicks a ball: gather center + all direct relatives, fly them to a
+    //  camera-facing planar arrangement for inspection; on reset/background click fly back.
+    // =========================================================================
+    const originalPositions = new Map();  // word -> {x,y,z} (force-layout snapshot, immutable)
+    let layoutState = 'normal';           // 'normal' | 'transitioning' | 'focus'
+    let layoutAnim = null;                // {t, duration, start:Map<word,Vec3>, end:Map<word,Vec3>, centerWord}
+
+    // Easing
+    function easeInOutCubic(t) { return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2; }
+    function vec3From(o) { return new THREE.Vector3(o.x, o.y, o.z); }
+
+    // Rebuild connection geometry whenever node positions have settled after a transition.
+    // Because TubeGeometry is baked at creation time, moving endpoints requires regeneration.
+    function rebuildConnectionsGeometry() {
+      // 1. Dispose & remove existing tube + satellites from linesGroup
+      for (const c of connectedLines) {
+        if (c.tube && linesGroup.children.includes(c.tube)) linesGroup.remove(c.tube);
+        if (c.tube) {
+          if (c.tube.geometry) c.tube.geometry.dispose();
+          if (c.tube.material) c.tube.material.dispose();
+        }
+        for (const s of c.satellites) {
+          if (linesGroup.children.includes(s)) linesGroup.remove(s);
+          if (s.geometry) s.geometry.dispose();
+          if (s.material) s.material.dispose();
+          // dispose inner halo children
+          for (let k = s.children.length - 1; k >= 0; k--) {
+            const ch = s.children[k];
+            if (ch.geometry) ch.geometry.dispose();
+            if (ch.material) ch.material.dispose();
+          }
+        }
+      }
+      connectedLines.length = 0;
+      pulsePool.length = 0;
+
+      // 2. Lookup current positions from sphereGroup positions (matches animate loop's truth)
+      function curPos(word) {
+        const pair = allPairs.find(p => p.data.word.toLowerCase() === word.toLowerCase());
+        if (!pair) return null;
+        return { x: pair.group.position.x, y: pair.group.position.y, z: pair.group.position.z };
+      }
+
+      // 3. Re-create every edge using current endpoints
+      for (const e of (window.__englishEdges || [])) {
+        const p1 = curPos(e.from);
+        const p2 = curPos(e.to);
+        if (!p1 || !p2) continue;
+        const { tube, satellites } = makeConnection(p1, p2, 0.032);
+        linesGroup.add(tube);
+        for (const sat of satellites) {
+          linesGroup.add(sat);
+          pulsePool.push(sat);
+        }
+        connectedLines.push({
+          from: e.from.toLowerCase(),
+          to:   e.to.toLowerCase(),
+          tube, satellites
+        });
+      }
+
+      // 4. Re-apply filter so non-focus lines remain hidden correctly
+      applyConnectionFilter(focusedConnectionWord);
+    }
+
+    // =========================================================================
+    //  Apply connection visibility filter: show only edges that touch `word` (null = show all).
+    // =========================================================================
+    function applyConnectionFilter(word) {
+      focusedConnectionWord = word ? word.toLowerCase() : null;
+      if (!focusedConnectionWord) {
+        for (const c of connectedLines) {
+          c.tube.visible = true;
+          for (const s of c.satellites) s.visible = true;
+        }
+        return;
+      }
+      for (const c of connectedLines) {
+        const match = (c.from === focusedConnectionWord) || (c.to === focusedConnectionWord);
+        c.tube.visible = match;
+        for (const s of c.satellites) s.visible = match;
+      }
+    }
+
+    // Helper: get pair by word (case-insensitive)
+    function pairByWord(w) { return allPairs.find(p => p.data.word.toLowerCase() === String(w).toLowerCase()); }
+
+    // Helper: return flat-listed unique related words of centerWord (from 00.json relate_words[])
+    function relatedWordsOf(centerWord) {
+      const k = centerWord.toLowerCase();
+      const entry = wordIndex.get(k);
+      if (!entry) return [];
+      const set = new Set();
+      for (const r of (entry.relate_words || [])) {
+        const rk = String(r).toLowerCase();
+        if (rk === k) continue;
+        if (wordIndex.has(rk)) set.add(rk);
+      }
+      return [...set];
+    }
+
+    // During transitions we hide tubes/satellites because their endpoints are flying apart → connections would look torn.
+    function _setConnectionsHiddenDuringTransition(hidden) {
+      for (const c of connectedLines) {
+        // Only apply visibility if we have a focus filter; during normal→restore no filter:
+        // tubes still use filtered visibility after rebuild
+        // For transition period, just hide ALL tubes & satellites (stretched look is the only visual bug to avoid)
+        c.tube.visible = !hidden;
+        for (const s of c.satellites) s.visible = !hidden;
+      }
+      if (hidden) {
+        // Nodes still visible, lines hidden → matches clean "nodes are flying" aesthetic
+      } else {
+        // Transition ended; reapply filter to match focus state
+        applyConnectionFilter(focusedConnectionWord);
+      }
+    }
+
+    // =========================================================================
+    //  Focus FLAT layout: move center word + its direct relatives onto a single plane
+    //  that faces the camera. All other nodes stay at their places (and are non-filtered
+    //  to hidden via applyConnectionFilter so they stay dimly present in background —
+    //  but actually we don't force-hide them; the filter layer handles connections only).
+    // =========================================================================
+    function focusFlatLayout(centerWord) {
+      if (!centerWord) return;
+      const centerKey = centerWord.toLowerCase();
+      const centerPair = pairByWord(centerKey);
+      if (!centerPair) return;
+
+      const relatives = relatedWordsOf(centerKey);
+      const wordsToMove = new Set([centerKey, ...relatives]);
+
+      // 1. Build start positions from CURRENT pair group positions (so multiple transitions chain correctly)
+      const start = new Map();
+      for (const w of wordsToMove) {
+        const pr = pairByWord(w);
+        if (pr) start.set(w, pr.group.position.clone());
+      }
+
+      // 2. Build camera-facing plane UV basis
+      // Plane center = camera pos + dir * DIST (D in front of camera by ~18 world units)
+      const camPos = new THREE.Vector3();
+      camera.getWorldPosition(camPos);
+      const camTarget = controls.target.clone();
+      const camDir = new THREE.Vector3().subVectors(camTarget, camPos).normalize();
+      if (camDir.lengthSq() < 0.0001) camDir.set(0, 0, -1);
+      const DIST = 16;
+      const planeCenter = new THREE.Vector3().copy(camPos).addScaledVector(camDir, DIST);
+
+      // Build two orthonormal basis vectors U and V perpendicular to the normal (camDir)
+      // Use Gram-Schmidt with arbitrary up-approx
+      const up = new THREE.Vector3(Math.abs(camDir.y) < 0.98 ? 0 : 1,
+                                   Math.abs(camDir.y) < 0.98 ? 1 : 0, 0);
+      const U = new THREE.Vector3().crossVectors(camDir, up).normalize();
+      const V = new THREE.Vector3().crossVectors(U, camDir).normalize();
+
+      // 3. Place center word at planeCenter; arrange relatives on a circle around it ON THE PLANE
+      const M = relatives.length;
+      // Circle radius scales with count so words don't overlap: r = base + density
+      const R = 2.6 + Math.max(0, M - 4) * 0.5;
+      const end = new Map();
+      end.set(centerKey, planeCenter.clone());
+      for (let i = 0; i < M; i++) {
+        const theta = (i / M) * Math.PI * 2;
+        const uCoord = R * Math.cos(theta);
+        const vCoord = R * Math.sin(theta);
+        const pos = new THREE.Vector3()
+          .copy(planeCenter)
+          .addScaledVector(U, uCoord)
+          .addScaledVector(V, vCoord);
+        end.set(relatives[i], pos);
+      }
+
+      // 4. Other words (NOT in focus set) → stay at current positions; no motion
+      //    But for the nodes that DO move, we'll create the transition.
+
+      // 5. Kick off tween animation. During transition: hide tubes (avoid torn look).
+      layoutAnim = {
+        t: 0,
+        duration: 0.95, // seconds
+        start,
+        end,
+        words: [...wordsToMove],
+        centerWord: centerKey
+      };
+      layoutState = 'transitioning';
+      _setConnectionsHiddenDuringTransition(true);
+    }
+
+    // =========================================================================
+    //  Restore layout: fly the currently-focused set of nodes back to their original positions.
+    // =========================================================================
+    function restoreFlatLayout() {
+      if (layoutState === 'normal') {
+        applyConnectionFilter(null);
+        return;
+      }
+      // If during transition, cancel current one, use current positions as start, end = originals.
+      const wordsToMove = layoutAnim
+        ? [...layoutAnim.words]
+        : [...originalPositions.keys()];
+
+      const start = new Map();
+      const end = new Map();
+      for (const w of wordsToMove) {
+        const pr = pairByWord(w);
+        if (pr) start.set(w, pr.group.position.clone());
+        const o = originalPositions.get(w);
+        if (o) end.set(w, new THREE.Vector3(o.x, o.y, o.z));
+      }
+      layoutAnim = {
+        t: 0,
+        duration: 1.05,
+        start, end,
+        words: wordsToMove,
+        centerWord: null,
+        restore: true
+      };
+      layoutState = 'transitioning';
+      _setConnectionsHiddenDuringTransition(true);
+    }
+
+    function makeConnection(p1, p2, thickness = 0.04) {
+      const v1 = new THREE.Vector3(p1.x, p1.y, p1.z);
+      const v2 = new THREE.Vector3(p2.x, p2.y, p2.z);
+
+      // ---- STRAIGHT LINE (LineCurve3) Tube pipe ----
+      //  No more curvature / bend — direct line between the two word balls
+      //  (Layout ideal edge length already doubled so spatial line length doubles automatically)
+      const curve = new THREE.LineCurve3(v1, v2);
+
+      // Tubular segments minimal = 4 for straight line (cylinder), still smooth shade
+      const tube = new THREE.Mesh(new THREE.TubeGeometry(curve, 6, thickness * 1.2, 8, false), lineMat);
+
+      // =========================================================================
+      //  Celestial orbital satellite system: 3~5 bodies per connection
+      //  Satellites travel along the straight line curve now (particle stream between stars)
+      // =========================================================================
+      const PALETTE = [
+        { body: 0xffd46b, glow: 0xffb13b }, // gold sunlet
+        { body: 0x8ec5ff, glow: 0x4fa7ff }, // icy blue
+        { body: 0xd7b4ff, glow: 0xa478ff }, // violet
+        { body: 0xffb084, glow: 0xff7d4a }, // peach
+        { body: 0x9cf0e3, glow: 0x4ad4bf }  // cyan
+      ];
+      const satelliteCount = 3 + Math.floor(Math.random() * 3); // 3..5
+      const satellites = [];
+      const bodySizes = [
+        thickness * 1.3,
+        thickness * 1.9,
+        thickness * 2.8,
+        thickness * 1.5,
+        thickness * 2.2
+      ];
+      for (let i = 0; i < satelliteCount; i++) {
+        const palette = PALETTE[i % PALETTE.length];
+        const size = bodySizes[i % bodySizes.length] * (0.85 + Math.random() * 0.4);
+        const bodyMat = new THREE.MeshBasicMaterial({
+          color: palette.body,
+          transparent: true,
+          opacity: 1.0,
+          blending: THREE.AdditiveBlending,
+          depthWrite: false
+        });
+        const bodyGeo = new THREE.SphereGeometry(size, 16, 16);
+        const sat = new THREE.Mesh(bodyGeo, bodyMat);
+
+        // Additive glow halo (shell 2.2x body size)
+        const haloMat = new THREE.MeshBasicMaterial({
+          color: palette.glow,
+          transparent: true,
+          opacity: 0.18 + Math.random() * 0.2,
+          blending: THREE.AdditiveBlending,
+          depthWrite: false,
+          side: THREE.BackSide
+        });
+        const haloR = size * 2.25;
+        const halo = new THREE.Mesh(new THREE.SphereGeometry(haloR, 16, 16), haloMat);
+        halo.userData.baseOpacity = haloMat.opacity;
+        sat.add(halo);
+
+        // Varied orbital phases, speeds & directions
+        const baseSpeed = 0.15 + Math.random() * 0.36;
+        const direction = Math.random() < 0.5 ? +1 : -1;
+        const speedScaled = baseSpeed * ((i % 3 === 0) ? 1.7 : (i % 3 === 1) ? 1.0 : 0.58) * direction;
+        sat.position.copy(curve.getPoint(Math.random()));
+        sat.userData = {
+          curve, t: Math.random(), speed: speedScaled,
+          phase: Math.random() * Math.PI * 2,
+          bodyRadius: size,
+          baseHalo: halo
+        };
+        satellites.push(sat);
+      }
+
+      return { tube, satellites };
+    }
+
+    // =========================================================================
+    //  Force-directed 3D layout
+    // =========================================================================
+    function forceLayout(nodes, edges) {
+      const N = nodes.length;
+      const pos = new Map();
+      const vel = new Map();
+      const maxLinks = Math.max(1, ...nodes.map(n => n.linkCount));
+      forceLayout.maxLinks = maxLinks;
+      // Initial Fibonacci sphere distribution (positions relative to connection count: high-count closer to center)
+      for (let i = 0; i < N; i++) {
+        const n = nodes[i];
+        const tNorm = n.linkCount / maxLinks;
+        const r = 4.4 + (1 - tNorm) * 15;      // ×2 散射半径，保证连接长度翻倍后仍有层次
+        const phi = Math.acos(1 - 2 * (i + 0.5) / N);
+        const theta = Math.PI * (1 + Math.sqrt(5)) * i;
+        pos.set(n.word, {
+          x: r * Math.sin(phi) * Math.cos(theta),
+          y: r * Math.sin(phi) * Math.sin(theta),
+          z: r * Math.cos(phi)
+        });
+        vel.set(n.word, { x: 0, y: 0, z: 0 });
+      }
+      const ITERS = Math.min(240, 100 + N * 7);
+      const REPULSION = 14.5;     // ×4.14 对应尺度²放大的斥力（保持分离）
+      const ATTRACTION = 0.14;    // 吸引力略降（理想长度更长，不需要每轮强拉）
+      const IDEAL = 3.2;          // 连接静止长度 ×2（1.6 → 3.2），物理边距翻倍
+      const DAMPING = 0.84;
+      const GRAVITY = -0.022;     // 中心引力稍减，避免尺度放大后中心挤成一团
+
+      for (let iter = 0; iter < ITERS; iter++) {
+        const temp = 1 - iter / ITERS;
+        const forces = new Map();
+        for (const n of nodes) forces.set(n.word, { x: 0, y: 0, z: 0 });
+
+        for (let i = 0; i < N; i++) {
+          for (let j = i + 1; j < N; j++) {
+            const a = pos.get(nodes[i].word);
+            const b = pos.get(nodes[j].word);
+            const dx = a.x - b.x, dy = a.y - b.y, dz = a.z - b.z;
+            let d2 = dx*dx + dy*dy + dz*dz;
+            d2 = Math.max(d2, 0.15);
+            const d = Math.sqrt(d2);
+            const f = REPULSION / d2;
+            const fx = f * dx / d, fy = f * dy / d, fz = f * dz / d;
+            forces.get(nodes[i].word).x += fx; forces.get(nodes[i].word).y += fy; forces.get(nodes[i].word).z += fz;
+            forces.get(nodes[j].word).x -= fx; forces.get(nodes[j].word).y -= fy; forces.get(nodes[j].word).z -= fz;
+          }
+        }
+        for (const e of edges) {
+          const a = pos.get(e.from);
+          const b = pos.get(e.to);
+          if (!a || !b) continue;
+          const dx = b.x - a.x, dy = b.y - a.y, dz = b.z - a.z;
+          const d = Math.sqrt(dx*dx + dy*dy + dz*dz) || 0.001;
+          const f = (d - IDEAL) * ATTRACTION;
+          const fx = f * dx / d, fy = f * dy / d, fz = f * dz / d;
+          forces.get(e.from).x += fx; forces.get(e.from).y += fy; forces.get(e.from).z += fz;
+          forces.get(e.to  ).x -= fx; forces.get(e.to  ).y -= fy; forces.get(e.to  ).z -= fz;
+        }
+        // Central gravity (proportional to distance, pull to center)
+        for (const n of nodes) {
+          const p = pos.get(n.word);
+          forces.get(n.word).x += p.x * GRAVITY;
+          forces.get(n.word).y += p.y * GRAVITY;
+          forces.get(n.word).z += p.z * GRAVITY;
+        }
+        for (const n of nodes) {
+          const v = vel.get(n.word);
+          const f = forces.get(n.word);
+          v.x = (v.x + f.x) * DAMPING * temp;
+          v.y = (v.y + f.y) * DAMPING * temp;
+          v.z = (v.z + f.z) * DAMPING * temp;
+          const p = pos.get(n.word);
+          p.x += v.x; p.y += v.y; p.z += v.z;
+        }
+      }
+      return pos;
+    }
+
+    // =========================================================================
+    //  Render scene from 00.json data
+    // =========================================================================
+    let wordData = [];   // from 00.json
+    let wordIndex = new Map(); // word -> entry
+    let currentWord = null;    // opened card word (for prev/next nav)
+
+    function setLoad(msg) { document.getElementById('load-sub').textContent = msg; }
+    function hideLoad() { document.getElementById('loading').classList.add('hidden'); }
+
+    async function bootstrap() {
+      setLoad('读取 00.json …');
+      try {
+        const res = await fetch('./assets/data/english/00.json');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        wordData = await res.json();
+      } catch (err) {
+        alert('无法加载 assets/data/english/00.json: ' + err.message);
+        hideLoad();
+        return;
+      }
+      wordData.forEach(e => wordIndex.set(e.word.toLowerCase(), e));
+
+      // Build node + edge data
+      const nodes = wordData.map(e => ({ word: e.word, linkCount: 0 }));
+      // Compute linkCount from relate_words (bidirectional)
+      const validWords = new Set(wordData.map(e => e.word.toLowerCase()));
+      const edges = [];
+      const edgeKey = new Set();
+      for (const entry of wordData) {
+        if (!entry.relate_words) continue;
+        for (const rw of entry.relate_words) {
+          if (!validWords.has(rw.toLowerCase())) continue;
+          const a = entry.word.toLowerCase(), b = rw.toLowerCase();
+          const key = a < b ? a + '|' + b : b + '|' + a;
+          if (edgeKey.has(key)) continue;
+          edgeKey.add(key);
+          edges.push({ from: entry.word, to: rw });
+        }
+      }
+      // Accumulate linkCount on nodes
+      const byWord = new Map(nodes.map(n => [n.word, n]));
+      for (const e of edges) {
+        if (byWord.has(e.from)) byWord.get(e.from).linkCount++;
+        if (byWord.has(e.to))   byWord.get(e.to).linkCount++;
+      }
+      // Any node with zero edges still gets at least 1 for scaling
+      for (const n of nodes) if (n.linkCount === 0) n.linkCount = 1;
+
+      document.getElementById('stat-words').textContent = nodes.length;
+      document.getElementById('stat-links').textContent = edges.length;
+
+      setLoad('计算三维布局…');
+      await new Promise(r => setTimeout(r, 50));
+      const positions = forceLayout(nodes, edges);
+
+      // ---- Save immutable baseline (for restore after focus-flat) ----
+      originalPositions.clear();
+      for (const entry of wordData) {
+        const p = positions.get(entry.word);
+        if (p) originalPositions.set(entry.word.toLowerCase(), { x: p.x, y: p.y, z: p.z });
+      }
+      window.__englishEdges = edges; // expose for rebuildConnectionsGeometry
+
+      setLoad('生成反射环境贴图…');
+      await new Promise(r => setTimeout(r, 20));
+      buildEnvMap();
+
+      setLoad('渲染词球与连线…');
+      await new Promise(r => setTimeout(r, 30));
+
+      // ---- Materials (star/glass aesthetic) ----
+      lineMat = new THREE.MeshBasicMaterial({
+        color: 0x9fd0ff,
+        transparent: true, opacity: 0.38,
+        blending: THREE.AdditiveBlending, depthWrite: false
+      });
+      pulseMat = new THREE.MeshBasicMaterial({
+        color: 0xf5c158,
+        transparent: true, opacity: 1,
+        blending: THREE.AdditiveBlending, depthWrite: false
+      });
+
+      // Clear existing
+      [...wordsGroup.children, ...linesGroup.children].forEach(c => {
+        if (c.geometry) c.geometry.dispose();
+        if (c.material) {
+          const mats = Array.isArray(c.material) ? c.material : [c.material];
+          for (const m of mats) {
+            if (m.map) m.map.dispose();
+            m.dispose();
+          }
+        }
+      });
+      wordsGroup.clear(); linesGroup.clear();
+      allPairs.length = 0;
+      pulsePool.length = 0;
+
+      const maxL = Math.max(1, ...nodes.map(n => n.linkCount));
+
+      for (const entry of wordData) {
+        const n = byWord.get(entry.word);
+        const p = positions.get(entry.word);
+        if (!p) continue;
+        const { mesh, radius } = createWordSphere(entry.word, n.linkCount, maxL);
+        // `mesh` here is the sphereGroup (Group containing coreMesh + facing-camera word sprite)
+        const group = mesh;
+        const coreMesh = group.userData.coreMesh;
+        const sprite = group.userData.sprite;
+        group.position.set(p.x, p.y, p.z);
+        wordsGroup.add(group);
+        const pair = {
+          group, coreMesh, sprite,
+          radius,
+          origScale: new THREE.Vector3(1, 1, 1),
+          origEmissive: coreMesh.origEmissive,
+          origEmissiveIntensity: coreMesh.material.emissiveIntensity,
+          data: entry
+        };
+        allPairs.push(pair);
+      }
+
+      // Connections — celestial arcs + orbital satellite motion
+      pulsePool.length = 0;
+      connectedLines.length = 0;   // reset filter registry
+      focusedConnectionWord = null;
+      edges.forEach((e, i) => {
+        const p1 = positions.get(e.from);
+        const p2 = positions.get(e.to);
+        if (!p1 || !p2) return;
+        const { tube, satellites } = makeConnection(p1, p2, 0.032);
+        linesGroup.add(tube);
+        for (const sat of satellites) {
+          linesGroup.add(sat);
+          pulsePool.push(sat);
+        }
+        connectedLines.push({
+          from: e.from.toLowerCase(),
+          to:   e.to.toLowerCase(),
+          tube, satellites
+        });
+      });
+      // If any previous filter was set (e.g. page reloaded but state persisted) show all now.
+      applyConnectionFilter(null);
+
+      // Enable UI buttons
+      ['btn-reset','btn-tour','btn-links','btn-random'].forEach(id => document.getElementById(id).disabled = false);
+
+      hideLoad();
+      // Gentle auto-tour on launch
+      setTimeout(startTour, 700);
+    }
+
+    // =========================================================================
+    //  Word card (loads individual {word}.json + cover from 00.json entry)
+    // =========================================================================
+    const overlay = document.getElementById('overlay');
+    const wcClose = document.getElementById('wc-close');
+
+    async function openWordCard(word) {
+      stopTour();
+      const entry = wordIndex.get(word.toLowerCase());
+      if (!entry) return;
+      currentWord = word;
+
+      // ---- Filter connections + bring relatives into a shared camera-facing plane ----
+      applyConnectionFilter(word);
+      focusFlatLayout(word);
+
+      document.getElementById('wc-word').textContent = word;
+      document.getElementById('wc-phonetic').textContent = '加载中…';
+      document.getElementById('wc-notes').textContent = '正在读取词汇详解…';
+      const linksEl = document.getElementById('wc-links');
+      linksEl.innerHTML = '<span style="font-size:12px;color:var(--textMuted)">—</span>';
+
+      const cover = entry.cover || '';
+      const img = document.getElementById('wc-cover-img');
+      const fb  = document.getElementById('wc-cover-fb');
+      fb.style.display = 'flex';
+      fb.textContent = word.charAt(0).toUpperCase();
+      if (cover) {
+        img.src = cover;
+        img.onerror = () => { img.style.display = 'none'; fb.style.display = 'flex'; };
+      } else {
+        img.removeAttribute('src');
+        img.style.display = 'none';
+        fb.style.display = 'flex';
+      }
+
+      // Navigate & focus the sphere
+      const pair = allPairs.find(p => p.data.word.toLowerCase() === word.toLowerCase());
+      if (pair) {
+        controls.focusOn(pair.group.position, 5.5);
+        // Brief highlight pulse (coreMesh emissive + group scale + halos brighten)
+        pair.coreMesh.material.emissive.setHex(0xf5c158);
+        pair.coreMesh.material.emissiveIntensity = Math.max(pair.origEmissiveIntensity * 2.0, 1.8);
+        pair.group.scale.copy(pair.origScale).multiplyScalar(1.35);
+        setTimeout(() => {
+          pair.coreMesh.material.emissive.setHex(pair.origEmissive);
+          pair.coreMesh.material.emissiveIntensity = pair.origEmissiveIntensity;
+          pair.group.scale.copy(pair.origScale);
+        }, 1100);
+      }
+
+      overlay.classList.add('visible');
+
+      // Load individual word JSON
+      try {
+        const res = await fetch(`./assets/data/english/${encodeURIComponent(word)}.json`);
+        if (!res.ok) throw new Error('not found');
+        const info = await res.json();
+        document.getElementById('wc-phonetic').textContent = info.phonetic || '—';
+        document.getElementById('wc-notes').textContent = info.notes || '(暂无释义)';
+      } catch {
+        document.getElementById('wc-phonetic').textContent = '—';
+        document.getElementById('wc-notes').textContent = '⚠ 未找到 ' + word + '.json 详情文件';
+      }
+
+      // Render relate_words as tags
+      const rw = entry.relate_words || [];
+      linksEl.innerHTML = '';
+      if (rw.length === 0) {
+        linksEl.innerHTML = '<span style="font-size:12px;color:var(--textMuted)">暂无关联词</span>';
+      } else {
+        for (const r of rw) {
+          const tag = document.createElement('button');
+          tag.className = 'wc-link';
+          tag.innerHTML = `<i class="fas fa-circle"></i>${r}`;
+          tag.addEventListener('click', () => {
+            if (wordIndex.has(r.toLowerCase())) openWordCard(r);
+            else {
+              // If not in 00.json, just jump & show hint
+              const fallback = allPairs[0];
+              if (fallback) controls.focusOn(fallback.group.position, 20);
+              document.getElementById('wc-notes').textContent = `⚠ 关联词「${r}」暂未收录在当前脑图中。`;
+            }
+          });
+          linksEl.appendChild(tag);
+        }
+      }
+      // Meta count
+      const idx = wordData.findIndex(w => w.word.toLowerCase() === word.toLowerCase());
+      const total = wordData.length;
+      document.getElementById('wc-meta').innerHTML =
+        `<i class="fas fa-list-ol"></i><span>第 ${idx + 1} / ${total} 词 · ${rw.length} 个关联</span>`;
+    }
+
+    function closeCard() {
+      overlay.classList.remove('visible');
+      // Closing card = reset filter → show all connections again
+      applyConnectionFilter(null);
+    }
+    wcClose.addEventListener('click', closeCard);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeCard(); });
+    window.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeCard();
+      if (!overlay.classList.contains('visible')) return;
+      if (e.key === 'ArrowLeft')  navWord(-1);
+      if (e.key === 'ArrowRight') navWord(+1);
+    });
+
+    function navWord(delta) {
+      if (!currentWord) return;
+      const idx = wordData.findIndex(w => w.word.toLowerCase() === currentWord.toLowerCase());
+      if (idx < 0) return;
+      const nextIdx = (idx + delta + wordData.length) % wordData.length;
+      openWordCard(wordData[nextIdx].word);
+    }
+    document.getElementById('wc-prev').addEventListener('click', () => navWord(-1));
+    document.getElementById('wc-next').addEventListener('click', () => navWord(+1));
+
+    // =========================================================================
+    //  UI buttons / search / tour
+    // =========================================================================
+    document.getElementById('btn-reset').addEventListener('click', () => {
+      controls.reset();
+      controls.autoRotate = true;
+      stopTour();
+      // Reset view also clears connection filter + restores 3D spherical layout
+      restoreFlatLayout();
+      applyConnectionFilter(null);
+    });
+    document.getElementById('btn-links').addEventListener('click', (e) => {
+      linesGroup.visible = !linesGroup.visible;
+      e.currentTarget.querySelector('span').textContent = linesGroup.visible ? '隐藏连线' : '显示连线';
+    });
+    document.getElementById('btn-random').addEventListener('click', () => {
+      if (allPairs.length === 0) return;
+      const p = allPairs[Math.floor(Math.random() * allPairs.length)];
+      openWordCard(p.data.word);
+    });
+
+    // ---- Search ----
+    const searchInput = document.getElementById('search-input');
+    const searchDropdown = document.getElementById('search-dropdown');
+    let searchActiveIdx = -1;
+
+    function runSearch(q) {
+      const query = q.trim().toLowerCase();
+      if (!query || allPairs.length === 0) { searchDropdown.classList.remove('visible'); return; }
+      const scored = [];
+      for (const p of allPairs) {
+        const w = p.data.word.toLowerCase();
+        let s = 0;
+        if (w === query) s += 100;
+        else if (w.startsWith(query)) s += 40;
+        else if (w.includes(query)) s += 12;
+        if (s > 0) scored.push({ p, s });
+      }
+      scored.sort((a, b) => b.s - a.s);
+      const top = scored.slice(0, 10);
+      if (top.length === 0) {
+        searchDropdown.innerHTML = '<div class="sd-empty">未找到匹配的单词</div>';
+      } else {
+        searchDropdown.innerHTML = top.map((r, i) => `
+          <div class="sd-item ${i === searchActiveIdx ? 'active' : ''}" data-idx="${i}">
+            <span>${r.p.data.word}</span>
+            <span class="tag">${r.p.data.relate_words?.length || 0} 关联</span>
+          </div>`).join('');
+        searchDropdown.querySelectorAll('.sd-item').forEach((el, i) => {
+          el.addEventListener('click', () => pickSearch(top[i].p));
+        });
+      }
+      searchDropdown.classList.add('visible');
+    }
+    function pickSearch(pair) {
+      searchDropdown.classList.remove('visible');
+      searchActiveIdx = -1;
+      searchInput.value = pair.data.word;
+      openWordCard(pair.data.word);
+    }
+    searchInput.addEventListener('input', () => { searchActiveIdx = -1; runSearch(searchInput.value); });
+    searchInput.addEventListener('keydown', e => {
+      const items = searchDropdown.querySelectorAll('.sd-item');
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        searchActiveIdx = Math.min(searchActiveIdx + 1, items.length - 1);
+        items.forEach((el, i) => el.classList.toggle('active', i === searchActiveIdx));
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        searchActiveIdx = Math.max(searchActiveIdx - 1, -1);
+        items.forEach((el, i) => el.classList.toggle('active', i === searchActiveIdx));
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (searchActiveIdx >= 0 && items[searchActiveIdx]) items[searchActiveIdx].click();
+        else if (items[0]) items[0].click();
+        else {
+          // If exact match available
+          const match = allPairs.find(p => p.data.word.toLowerCase() === searchInput.value.trim().toLowerCase());
+          if (match) pickSearch(match);
+        }
+      } else if (e.key === 'Escape') {
+        searchDropdown.classList.remove('visible'); searchActiveIdx = -1;
+      }
+    });
+    document.addEventListener('click', e => {
+      if (!searchInput.parentElement.contains(e.target)) searchDropdown.classList.remove('visible');
+    });
+
+    // ---- Auto tour ----
+    let tourTimer = null;
+    let tourIdx = 0;
+    const btnTour = document.getElementById('btn-tour');
+    function startTour() {
+      if (tourTimer || allPairs.length === 0) return;
+      btnTour.querySelector('i').className = 'fas fa-pause';
+      btnTour.querySelector('span').textContent = '暂停巡览';
+      tourIdx = Math.floor(Math.random() * allPairs.length);
+      const step = () => {
+        if (allPairs.length === 0) return;
+        const p = allPairs[tourIdx % allPairs.length];
+        controls.focusOn(p.group.position, 6);
+        // Soft highlight (no card opens during tour)
+        p.coreMesh.material.emissive.setHex(0xf5c158);
+        p.coreMesh.material.emissiveIntensity = Math.max(p.origEmissiveIntensity * 1.8, 1.6);
+        p.group.scale.copy(p.origScale).multiplyScalar(1.22);
+        setTimeout(() => {
+          p.coreMesh.material.emissive.setHex(p.origEmissive);
+          p.coreMesh.material.emissiveIntensity = p.origEmissiveIntensity;
+          p.group.scale.copy(p.origScale);
+        }, 800);
+        tourIdx++;
+      };
+      step();
+      tourTimer = setInterval(step, 2800);
+    }
+    function stopTour() {
+      if (tourTimer) { clearInterval(tourTimer); tourTimer = null; }
+      if (btnTour) {
+        btnTour.querySelector('i').className = 'fas fa-play';
+        if (btnTour.querySelector('span')) btnTour.querySelector('span').textContent = '自动巡览';
+      }
+    }
+    btnTour.addEventListener('click', () => tourTimer ? stopTour() : startTour());
+
+    // =========================================================================
+    //  Animation loop
+    // =========================================================================
+    const timer = new THREE.Timer();
+    function animate() {
+      requestAnimationFrame(animate);
+      timer.update();
+      const delta = timer.getDelta();
+      const time = timer.getElapsed();
+
+      if (controls._focusAnim) controls._tickFocus(delta);
+      else if (controls.autoRotate && !controls._isDragging) {
+        controls._spherical.theta += controls.autoRotateSpeed * delta * 1000;
+        controls._update();
+      }
+
+      // =========================================================================
+      // Layout transition: lerp focus-set nodes start → end via ease-in-out cubic.
+      // On completion, rebuild connection geometry at new endpoints + restore visibility.
+      // =========================================================================
+      if (layoutState === 'transitioning' && layoutAnim) {
+        layoutAnim.t += delta / layoutAnim.duration;
+        if (layoutAnim.t >= 1) {
+          // Snap to final exactly
+          for (const w of layoutAnim.words) {
+            const pr = pairByWord(w);
+            const target = layoutAnim.end.get(w);
+            if (pr && target) pr.group.position.copy(target);
+          }
+          // Rebuild tube geometry so endpoints match new settled positions
+          layoutState = layoutAnim.restore ? 'normal' : 'focus';
+          const wasRestore = !!layoutAnim.restore;
+          layoutAnim = null;
+          rebuildConnectionsGeometry();
+          _setConnectionsHiddenDuringTransition(false);
+          // After normal-restore → filter should show all (no specific focus word)
+          if (wasRestore) applyConnectionFilter(null);
+        } else {
+          const kt = easeInOutCubic(Math.max(0, Math.min(1, layoutAnim.t)));
+          for (const w of layoutAnim.words) {
+            const pr = pairByWord(w);
+            const s = layoutAnim.start.get(w);
+            const e = layoutAnim.end.get(w);
+            if (pr && s && e) {
+              pr.group.position.x = s.x + (e.x - s.x) * kt;
+              pr.group.position.y = s.y + (e.y - s.y) * kt;
+              pr.group.position.z = s.z + (e.z - s.z) * kt;
+            }
+          }
+        }
+      }
+
+      // Per-sphere updates: breathing motion, distance-based faint far-glow, BILLBOARD reposition
+      const camPos = new THREE.Vector3();
+      camera.getWorldPosition(camPos);
+      const farCloseSpan = 38;
+      // Scratch vector reused in loop
+      const _cam2node = new THREE.Vector3();
+      for (const p of allPairs) {
+        const dist = camPos.distanceTo(p.group.position);
+        const farK = Math.max(0, Math.min(1, (dist - 10) / farCloseSpan)); // 0@10u .. 1@48u
+        // Gentle breathing / micro float — DISABLED during layout transition (avoids fighting lerp)
+        if (layoutState !== 'transitioning') {
+          p.group.position.y += Math.sin(time * 0.7 + p.group.position.x * 0.9) * 0.0006;
+        }
+        // Very slow core sphere self-rotation (reflections shimmer; billboard word unaffected)
+        p.coreMesh.rotation.y += 0.0008;
+
+        // ---- SPRITE / BILLBOARD positioning ----
+        // Place sprite at ball front face = group center + (camera direction from center normalized) × radius × 1.02
+        if (p.sprite) {
+          _cam2node.subVectors(camPos, p.group.position).normalize();
+          // sprite is child of sphereGroup, so position must be in GROUP local space
+          // (since group is not rotated relative to world, local = world)
+          const offset = p.radius * 1.03 + 0.005;
+          p.sprite.position.set(_cam2node.x * offset, _cam2node.y * offset, _cam2node.z * offset);
+
+          // Distance-aware scaling: keep the sprite roughly readable at all distances.
+          // baseScale: size at 20u camera distance. Adjust linearly so tiny distant balls
+          // still have readable words (sub-linear dampening to prevent explosion far away).
+          const refDist = 22;
+          const scl = Math.pow(Math.max(1.15, dist / refDist), 0.70);
+          const bs = p.sprite.userData.baseScale;
+          p.sprite.scale.set(bs.x * scl, bs.y * scl, 1);
+
+          // Fade sprite slightly at VERY close zoom so it doesn't cover the entire reflection ball
+          if (dist < 3.2) {
+            p.sprite.material.opacity = Math.max(0.05, (dist - 0.8) / 2.4);
+          } else {
+            p.sprite.material.opacity = 1.0;
+          }
+          // Far nodes: keep sprite crisp even when far (no fade out)
+          p.sprite.material.needsUpdate = false;
+        }
+
+        // Core emissive flicker; far nodes get a gentle boost so they look like faint sparkles
+        const breath = 0.82 + 0.25 * Math.sin(time * 1.8 + p.group.position.x + p.group.position.z);
+        const farEmissiveBoost = (hovered === p) ? 1.0 : (1.0 + 1.1 * farK);
+        p.coreMesh.material.emissiveIntensity = p.origEmissiveIntensity * breath * farEmissiveBoost;
+      }
+
+      // Star twinkle — modulate per-vertex color RGB (brightness flicker)
+      const colorsAttr = starsGeo.getAttribute('color');
+      for (let i = 0; i < starCount; i++) {
+        const st = starTwinkle[i];
+        // base RGB values were stored once; recompute multiplier from twinkle
+        const k = 0.55 + 0.55 * (Math.sin(time * st.speed + st.phase) * 0.5 + 0.5);
+        colorsAttr.array[i*3]   = starColors[i*3]   * k;
+        colorsAttr.array[i*3+1] = starColors[i*3+1] * k;
+        colorsAttr.array[i*3+2] = starColors[i*3+2] * k;
+      }
+      colorsAttr.needsUpdate = true;
+
+      // Celestial orbital motion: 每颗卫星沿曲线轨道运行，带呼吸、旋转、发光呼吸
+      for (const sat of pulsePool) {
+        const ud = sat.userData;
+        // Travel along orbit (curve)
+        ud.t += ud.speed * delta;
+        if (ud.t > 1) ud.t -= 1;
+        if (ud.t < 0) ud.t += 1;
+        sat.position.copy(ud.curve.getPoint(ud.t));
+
+        // Celestial size pulsation (gas giants breathe, rocky planets flicker — subtle)
+        const brBody = 0.92 + 0.08 * Math.sin(time * 2.6 + ud.phase);
+        sat.scale.set(brBody, brBody, brBody);
+
+        // Planet self-rotation
+        sat.rotation.y += delta * 0.6;
+
+        // Atmospheric halo breathing
+        if (ud.baseHalo && ud.baseHalo.material) {
+          const haloBreath = ud.baseHalo.userData.baseOpacity * (0.7 + 0.6 * Math.sin(time * 1.4 + ud.phase));
+          ud.baseHalo.material.opacity = haloBreath;
+        }
+      }
+
+      // Dust slow swirl
+      for (let i = 0; i < dustCount; i++) {
+        const d = dustDatum[i];
+        d.theta += d.speed * delta * 0.05;
+        d.phi += Math.sin(time * 0.1 + i) * delta * 0.03;
+        const r = d.r + Math.sin(time * 0.2 + i) * 0.15;
+        dustPos[i*3]   = r * Math.sin(d.phi) * Math.cos(d.theta);
+        dustPos[i*3+1] = r * Math.sin(d.phi) * Math.sin(d.theta);
+        dustPos[i*3+2] = r * Math.cos(d.phi);
+      }
+      dustGeo.attributes.position.needsUpdate = true;
+
+      stars.rotation.y += delta * 0.012;
+      stars.rotation.x += delta * 0.005;
+      dust.rotation.y  += delta * 0.018;
+
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // Boot
+    bootstrap();
+  </script>
+</body>
+</html>

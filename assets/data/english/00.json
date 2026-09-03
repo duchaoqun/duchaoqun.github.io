@@ -1,0 +1,107 @@
+[
+  {
+    "word": "time",
+    "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=clock%20hourglass%20time%20concept%20minimal&image_size=square_hd",
+    "relate_words": ["day", "year", "life", "world", "way", "part"]
+  },
+  {
+    "word": "person",
+    "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=human%20person%20silhouette%20portrait&image_size=square_hd",
+    "relate_words": ["man", "woman", "family", "child", "life", "hand"]
+  },
+  {
+    "word": "year",
+    "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=calendar%20four%20seasons%20yearly%20cycle&image_size=square_hd",
+    "relate_words": ["time", "day", "life", "world", "child", "country"]
+  },
+  {
+    "word": "way",
+    "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=road%20path%20journey%20direction%20sign&image_size=square_hd",
+    "relate_words": ["thing", "place", "life", "time", "world", "state"]
+  },
+  {
+    "word": "day",
+    "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=sunrise%20morning%20daylight%20sky&image_size=square_hd",
+    "relate_words": ["time", "year", "life", "school", "way", "world"]
+  },
+  {
+    "word": "man",
+    "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=man%20gentleman%20male%20figure%20portrait&image_size=square_hd",
+    "relate_words": ["person", "woman", "family", "child", "world", "life"]
+  },
+  {
+    "word": "thing",
+    "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=abstract%20objects%20collection%20things%20items&image_size=square_hd",
+    "relate_words": ["way", "life", "part", "world", "problem", "hand"]
+  },
+  {
+    "word": "woman",
+    "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=woman%20lady%20female%20portrait%20elegant&image_size=square_hd",
+    "relate_words": ["person", "man", "family", "child", "life", "student"]
+  },
+  {
+    "word": "life",
+    "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=tree%20of%20life%20nature%20growth%20cycle&image_size=square_hd",
+    "relate_words": ["time", "world", "person", "man", "woman", "child", "family", "day"]
+  },
+  {
+    "word": "child",
+    "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=child%20kid%20young%20innocent%20playing&image_size=square_hd",
+    "relate_words": ["person", "family", "man", "woman", "world", "school", "student", "life"]
+  },
+  {
+    "word": "world",
+    "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=planet%20earth%20globe%20world%20map&image_size=square_hd",
+    "relate_words": ["life", "time", "country", "place", "state", "person", "family", "year"]
+  },
+  {
+    "word": "school",
+    "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=school%20building%20education%20books%20classroom&image_size=square_hd",
+    "relate_words": ["student", "family", "child", "place", "state", "way", "day"]
+  },
+  {
+    "word": "state",
+    "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=government%20building%20capitol%20state%20flag&image_size=square_hd",
+    "relate_words": ["country", "world", "place", "student", "school", "life", "way"]
+  },
+  {
+    "word": "family",
+    "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=family%20parents%20children%20home%20together&image_size=square_hd",
+    "relate_words": ["person", "child", "man", "woman", "life", "world", "school", "country", "place"]
+  },
+  {
+    "word": "student",
+    "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=student%20books%20backpack%20studying%20youth&image_size=square_hd",
+    "relate_words": ["school", "child", "person", "way", "state", "hand", "life"]
+  },
+  {
+    "word": "country",
+    "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=nation%20countryside%20landscape%20flag%20map&image_size=square_hd",
+    "relate_words": ["world", "state", "place", "family", "life", "time", "year"]
+  },
+  {
+    "word": "problem",
+    "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=question%20mark%20puzzle%20problem%20solving&image_size=square_hd",
+    "relate_words": ["life", "thing", "world", "state", "country", "way"]
+  },
+  {
+    "word": "hand",
+    "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=human%20hand%20gesture%20palm%20creation&image_size=square_hd",
+    "relate_words": ["person", "thing", "student", "child", "part", "life"]
+  },
+  {
+    "word": "part",
+    "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=puzzle%20piece%20jigsaw%20part%20whole&image_size=square_hd",
+    "relate_words": ["thing", "place", "time", "world", "hand", "life", "way"]
+  },
+  {
+    "word": "place",
+    "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=location%20pin%20map%20destination%20travel&image_size=square_hd",
+    "relate_words": ["country", "world", "school", "state", "family", "way", "part", "life"]
+  },
+  {
+    "word":"body",
+    "cover":"",
+    "relate_words":[]
+  }
+]
