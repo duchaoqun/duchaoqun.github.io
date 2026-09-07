@@ -816,7 +816,7 @@
       const hits = raycaster.intersectObjects(groups, true); // recursive (into group children)
       if (hovered) {
         hovered.coreMesh.material.emissive.setHex(hovered.origEmissive);
-        hovered.group.scale.copy(hovered.origScale);
+        hovered.group.scale.copy(hovered.origScale).multiplyScalar(hovered.focusScale || 1);
       }
       if (hits.length > 0) {
         const pair = pairFromHitObject(hits[0].object);
@@ -824,7 +824,7 @@
           hovered = pair;
           pair.coreMesh.material.emissive.setHex(0xf5c158);
           pair.coreMesh.material.emissiveIntensity = Math.max(pair.origEmissiveIntensity * 1.8, 1.6);
-          pair.group.scale.copy(pair.origScale).multiplyScalar(1.22);
+          pair.group.scale.copy(pair.origScale).multiplyScalar((pair.focusScale || 1) * 1.22);
           canvas.style.cursor = 'pointer';
         }
       } else {
@@ -837,7 +837,7 @@
       if (hovered) {
         hovered.coreMesh.material.emissive.setHex(hovered.origEmissive);
         hovered.coreMesh.material.emissiveIntensity = hovered.origEmissiveIntensity;
-        hovered.group.scale.copy(hovered.origScale);
+        hovered.group.scale.copy(hovered.origScale).multiplyScalar(hovered.focusScale || 1);
         hovered = null;
       }
     });
@@ -865,8 +865,9 @@
       applyConnectionFilter(pair.data.word);
       focusFlatLayout(pair.data.word);
 
-      // Always focus camera on click (group.position = word center; animates behind flight)
-      controls.focusOn(pair.group.position, 5.5);
+      // 相机聚焦到中心球的静止位置（中心球不移动 → 目标永远有效 → 精确居中）
+      if (focusFraming) controls.focusOn(focusFraming.center, focusFraming.dist);
+      else controls.focusOn(pair.group.position, 8.5);
 
       if (clickTimer) {
         // Double click -> open card (filter + focus already applied in single-click pre-fire)
@@ -1016,11 +1017,12 @@
         map: spriteTex,
         transparent: true,
         opacity: 1.0,
-        depthTest: true,     // occluded by balls that are in front
+        depthTest: false,    // 单词永不被光晕环/管道/卫星遮盖
         depthWrite: false,
         sizeAttenuation: true
       });
       const sprite = new THREE.Sprite(spriteMat);
+      sprite.renderOrder = 999;  // 最后绘制 → 文字永远在最上层清晰可读
       // Base world-space size: width ~ 1.55× the ball diameter so text sits nicely on the face
       const baseW = radius * 2 * 1.55;
       const baseH = baseW / aspect;
@@ -1054,6 +1056,9 @@
     const originalPositions = new Map();  // word -> {x,y,z} (force-layout snapshot, immutable)
     let layoutState = 'normal';           // 'normal' | 'transitioning' | 'focus'
     let layoutAnim = null;                // {t, duration, start:Map<word,Vec3>, end:Map<word,Vec3>, centerWord}
+    let displacedWords = new Set();       // 当前已飞离基线位置的词集合
+    let focusFraming = null;              // { center:Vec3, dist:number } 聚焦模式相机取景参数
+    let focusedCenterWord = null;         // 当前聚焦中心词（还原时需缩放复位）
 
     // Easing
     function easeInOutCubic(t) { return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2; }
@@ -1179,59 +1184,79 @@
       if (!centerPair) return;
 
       const relatives = relatedWordsOf(centerKey);
-      const wordsToMove = new Set([centerKey, ...relatives]);
+      const relativeSet = new Set(relatives);
 
-      // 1. Build start positions from CURRENT pair group positions (so multiple transitions chain correctly)
+      // ★ 中心球保持原地不动（这样 focusOn(centerPos) 的目标点永远有效 → 球精确居中）
+      //   只把关联词飞到「以中心球为圆心、正对相机」的平面上
+      const centerPos = centerPair.group.position.clone();
+
+      // 待移动集合 = 新关联词（→ 圆环） + 之前已被移位的词（→ 飞回原位）
+      //  保证「点击 A 后直接点 B」时 A 的关联词同时归位，布局不会乱
+      const moveWords = new Set([...relativeSet, ...displacedWords]);
+      // 上一个聚焦的中心球也参与（缩放还原，或降级为新中心球的关联球）
+      if (focusedCenterWord && focusedCenterWord !== centerKey) moveWords.add(focusedCenterWord);
+
       const start = new Map();
-      for (const w of wordsToMove) {
+      for (const w of moveWords) {
         const pr = pairByWord(w);
         if (pr) start.set(w, pr.group.position.clone());
       }
 
-      // 2. Build camera-facing plane UV basis
-      // Plane center = camera pos + dir * DIST (D in front of camera by ~18 world units)
-      const camPos = new THREE.Vector3();
-      camera.getWorldPosition(camPos);
-      const camTarget = controls.target.clone();
-      const camDir = new THREE.Vector3().subVectors(camTarget, camPos).normalize();
-      if (camDir.lengthSq() < 0.0001) camDir.set(0, 0, -1);
-      const DIST = 16;
-      const planeCenter = new THREE.Vector3().copy(camPos).addScaledVector(camDir, DIST);
+      // 相机取景轴 = (相机位置 − 轨道目标) 的方向。focusOn 动画全程保持该方向不变
+      // （只改 target 和 radius），所以以它为法线的平面在动画结束后依然正对相机
+      const N = new THREE.Vector3().subVectors(camera.position, controls.target).normalize();
+      if (N.lengthSq() < 0.0001) N.set(0, 0, -1);
+      const up = new THREE.Vector3(Math.abs(N.y) < 0.98 ? 0 : 1,
+                                   Math.abs(N.y) < 0.98 ? 1 : 0, 0);
+      const U = new THREE.Vector3().crossVectors(N, up).normalize();
+      const V = new THREE.Vector3().crossVectors(U, N).normalize();
 
-      // Build two orthonormal basis vectors U and V perpendicular to the normal (camDir)
-      // Use Gram-Schmidt with arbitrary up-approx
-      const up = new THREE.Vector3(Math.abs(camDir.y) < 0.98 ? 0 : 1,
-                                   Math.abs(camDir.y) < 0.98 ? 1 : 0, 0);
-      const U = new THREE.Vector3().crossVectors(camDir, up).normalize();
-      const V = new THREE.Vector3().crossVectors(U, camDir).normalize();
-
-      // 3. Place center word at planeCenter; arrange relatives on a circle around it ON THE PLANE
+      // 关联词均布在以中心球为圆心的圆环上（落在过中心球、正对相机的平面内）
       const M = relatives.length;
-      // Circle radius scales with count so words don't overlap: r = base + density
-      const R = 2.6 + Math.max(0, M - 4) * 0.5;
+      const R = 2.6 + Math.max(0, M - 4) * 0.5;   // 词越多环越大，避免重叠
       const end = new Map();
-      end.set(centerKey, planeCenter.clone());
       for (let i = 0; i < M; i++) {
-        const theta = (i / M) * Math.PI * 2;
-        const uCoord = R * Math.cos(theta);
-        const vCoord = R * Math.sin(theta);
+        const theta = (i / M) * Math.PI * 2 + Math.PI / M;
         const pos = new THREE.Vector3()
-          .copy(planeCenter)
-          .addScaledVector(U, uCoord)
-          .addScaledVector(V, vCoord);
+          .copy(centerPos)
+          .addScaledVector(U, R * Math.cos(theta))
+          .addScaledVector(V, R * Math.sin(theta));
         end.set(relatives[i], pos);
       }
+      // 不在新环上的旧移位词 → 目标为原始基线位置（飞回家）
+      for (const w of moveWords) {
+        if (end.has(w)) continue;
+        const pr = pairByWord(w);
+        const o = originalPositions.get(w);
+        if (pr && o) end.set(w, new THREE.Vector3(o.x, o.y, o.z));
+      }
 
-      // 4. Other words (NOT in focus set) → stay at current positions; no motion
-      //    But for the nodes that DO move, we'll create the transition.
+      // 相机取景：距离按环半径自适应，保证整圈关联词都在视野内
+      focusFraming = { center: centerPos.clone(), dist: Math.max(8.5, R * 2.5) };
 
-      // 5. Kick off tween animation. During transition: hide tubes (avoid torn look).
+      // ★ 聚焦缩放：中心球放大更醒目，关联球适当缩小，归位球还原
+      const CENTER_SCALE = 1.6, RELATIVE_SCALE = 0.65;
+      const scaleStart = new Map(), scaleEnd = new Map();
+      const setScaleTarget = (w, target) => {
+        const pr = pairByWord(w);
+        if (!pr) return;
+        scaleStart.set(w, pr.group.scale.x);
+        scaleEnd.set(w, target);
+        pr.focusScale = target;
+      };
+      setScaleTarget(centerKey, CENTER_SCALE);   // 中心球不移位但放大
+      for (const w of moveWords) setScaleTarget(w, relativeSet.has(w) ? RELATIVE_SCALE : 1.0);
+
+      // 启动补间动画；过渡期间隐藏管道（防止端点撕裂感）
+      displacedWords = relativeSet;   // 动画结束后处于移位状态的恰为新关联词集合
+      focusedCenterWord = centerKey;
       layoutAnim = {
         t: 0,
-        duration: 0.95, // seconds
+        duration: 0.95,
         start,
         end,
-        words: [...wordsToMove],
+        words: [...moveWords],
+        scaleStart, scaleEnd,
         centerWord: centerKey
       };
       layoutState = 'transitioning';
@@ -1242,20 +1267,27 @@
     //  Restore layout: fly the currently-focused set of nodes back to their original positions.
     // =========================================================================
     function restoreFlatLayout() {
-      if (layoutState === 'normal') {
+      // 归位对象 = 所有已移位词 + 正在飞行中的词（打断当前动画、从当前位置直接回家）
+      const wordsToMove = new Set(displacedWords);
+      if (layoutAnim && layoutAnim.words) layoutAnim.words.forEach(w => wordsToMove.add(w));
+      if (focusedCenterWord) wordsToMove.add(focusedCenterWord);  // 上一个中心球缩放还原
+      focusedCenterWord = null;
+      focusFraming = null;
+      if (wordsToMove.size === 0) {
         applyConnectionFilter(null);
         return;
       }
-      // If during transition, cancel current one, use current positions as start, end = originals.
-      const wordsToMove = layoutAnim
-        ? [...layoutAnim.words]
-        : [...originalPositions.keys()];
-
       const start = new Map();
       const end = new Map();
+      const scaleStart = new Map(), scaleEnd = new Map();
       for (const w of wordsToMove) {
         const pr = pairByWord(w);
-        if (pr) start.set(w, pr.group.position.clone());
+        if (pr) {
+          start.set(w, pr.group.position.clone());
+          scaleStart.set(w, pr.group.scale.x);
+          scaleEnd.set(w, 1.0);
+          pr.focusScale = 1;
+        }
         const o = originalPositions.get(w);
         if (o) end.set(w, new THREE.Vector3(o.x, o.y, o.z));
       }
@@ -1263,7 +1295,8 @@
         t: 0,
         duration: 1.05,
         start, end,
-        words: wordsToMove,
+        words: [...wordsToMove],
+        scaleStart, scaleEnd,
         centerWord: null,
         restore: true
       };
@@ -1542,6 +1575,7 @@
           group, coreMesh, sprite,
           radius,
           origScale: new THREE.Vector3(1, 1, 1),
+          focusScale: 1,   // 聚焦模式基础缩放（中心 1.6 / 关联 0.65 / 常态 1）
           origEmissive: coreMesh.origEmissive,
           origEmissiveIntensity: coreMesh.material.emissiveIntensity,
           data: entry
@@ -1595,6 +1629,8 @@
       // ---- Filter connections + bring relatives into a shared camera-facing plane ----
       applyConnectionFilter(word);
       focusFlatLayout(word);
+      // 导航路径（搜索/上一个/下一个/随机/关联词跳转）同样让相机飞到新中心
+      if (focusFraming) controls.focusOn(focusFraming.center, focusFraming.dist);
 
       document.getElementById('wc-word').textContent = word;
       document.getElementById('wc-phonetic').textContent = '加载中…';
@@ -1619,15 +1655,14 @@
       // Navigate & focus the sphere
       const pair = allPairs.find(p => p.data.word.toLowerCase() === word.toLowerCase());
       if (pair) {
-        controls.focusOn(pair.group.position, 5.5);
-        // Brief highlight pulse (coreMesh emissive + group scale + halos brighten)
+        // 相机聚焦已由上方 focusFraming 统一处理（中心球居中 + 环形取景），此处仅做高亮脉冲
         pair.coreMesh.material.emissive.setHex(0xf5c158);
         pair.coreMesh.material.emissiveIntensity = Math.max(pair.origEmissiveIntensity * 2.0, 1.8);
-        pair.group.scale.copy(pair.origScale).multiplyScalar(1.35);
+        pair.group.scale.copy(pair.origScale).multiplyScalar((pair.focusScale || 1) * 1.35);
         setTimeout(() => {
           pair.coreMesh.material.emissive.setHex(pair.origEmissive);
           pair.coreMesh.material.emissiveIntensity = pair.origEmissiveIntensity;
-          pair.group.scale.copy(pair.origScale);
+          pair.group.scale.copy(pair.origScale).multiplyScalar(pair.focusScale || 1);
         }, 1100);
       }
 
@@ -1756,7 +1791,11 @@
       searchDropdown.classList.remove('visible');
       searchActiveIdx = -1;
       searchInput.value = pair.data.word;
-      openWordCard(pair.data.word);
+      // 搜索只定位到球体：关联聚焦 + 相机居中，不打开详情卡
+      applyConnectionFilter(pair.data.word);
+      focusFlatLayout(pair.data.word);
+      if (focusFraming) controls.focusOn(focusFraming.center, focusFraming.dist);
+      else controls.focusOn(pair.group.position, 8.5);
     }
     searchInput.addEventListener('input', () => { searchActiveIdx = -1; runSearch(searchInput.value); });
     searchInput.addEventListener('keydown', e => {
@@ -1802,11 +1841,11 @@
         // Soft highlight (no card opens during tour)
         p.coreMesh.material.emissive.setHex(0xf5c158);
         p.coreMesh.material.emissiveIntensity = Math.max(p.origEmissiveIntensity * 1.8, 1.6);
-        p.group.scale.copy(p.origScale).multiplyScalar(1.22);
+        p.group.scale.copy(p.origScale).multiplyScalar((p.focusScale || 1) * 1.22);
         setTimeout(() => {
           p.coreMesh.material.emissive.setHex(p.origEmissive);
           p.coreMesh.material.emissiveIntensity = p.origEmissiveIntensity;
-          p.group.scale.copy(p.origScale);
+          p.group.scale.copy(p.origScale).multiplyScalar(p.focusScale || 1);
         }, 800);
         tourIdx++;
       };
@@ -1851,14 +1890,22 @@
             const target = layoutAnim.end.get(w);
             if (pr && target) pr.group.position.copy(target);
           }
+          // 缩放精确落位
+          for (const [w, s1] of layoutAnim.scaleEnd) {
+            const pr = pairByWord(w);
+            if (pr) pr.group.scale.setScalar(s1);
+          }
           // Rebuild tube geometry so endpoints match new settled positions
           layoutState = layoutAnim.restore ? 'normal' : 'focus';
           const wasRestore = !!layoutAnim.restore;
           layoutAnim = null;
           rebuildConnectionsGeometry();
           _setConnectionsHiddenDuringTransition(false);
-          // After normal-restore → filter should show all (no specific focus word)
-          if (wasRestore) applyConnectionFilter(null);
+          // 归位完成 → 清空移位记录，显示全部连线
+          if (wasRestore) {
+            applyConnectionFilter(null);
+            displacedWords = new Set();
+          }
         } else {
           const kt = easeInOutCubic(Math.max(0, Math.min(1, layoutAnim.t)));
           for (const w of layoutAnim.words) {
@@ -1870,6 +1917,12 @@
               pr.group.position.y = s.y + (e.y - s.y) * kt;
               pr.group.position.z = s.z + (e.z - s.z) * kt;
             }
+          }
+          // 缩放同步补间（中心球放大 / 关联球缩小 / 归位还原）
+          for (const [w, s0] of layoutAnim.scaleStart) {
+            const pr = pairByWord(w);
+            const s1 = layoutAnim.scaleEnd.get(w);
+            if (pr && s1 !== undefined) pr.group.scale.setScalar(s0 + (s1 - s0) * kt);
           }
         }
       }
@@ -1982,4 +2035,5 @@
     bootstrap();
   </script>
 </body>
+</html>
 </html>

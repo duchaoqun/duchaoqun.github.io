@@ -2,106 +2,386 @@
   {
     "word": "time",
     "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=clock%20hourglass%20time%20concept%20minimal&image_size=square_hd",
-    "relate_words": ["day", "year", "life", "world", "way", "part"]
+    "relate_words": [
+      "minute","hour","day","month","year","life"
+    ]
   },
   {
     "word": "person",
     "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=human%20person%20silhouette%20portrait&image_size=square_hd",
-    "relate_words": ["man", "woman", "family", "child", "life", "hand"]
+    "relate_words": [
+      "man",
+      "woman",
+      "family",
+      "child",
+      "hand"
+    ]
   },
   {
     "word": "year",
     "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=calendar%20four%20seasons%20yearly%20cycle&image_size=square_hd",
-    "relate_words": ["time", "day", "life", "world", "child", "country"]
+    "relate_words": [
+      "time",
+      "day"
+    ]
   },
   {
     "word": "way",
     "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=road%20path%20journey%20direction%20sign&image_size=square_hd",
-    "relate_words": ["thing", "place", "life", "time", "world", "state"]
+    "relate_words": []
   },
   {
     "word": "day",
     "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=sunrise%20morning%20daylight%20sky&image_size=square_hd",
-    "relate_words": ["time", "year", "life", "school", "way", "world"]
+    "relate_words": ["time","year"]
   },
   {
     "word": "man",
     "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=man%20gentleman%20male%20figure%20portrait&image_size=square_hd",
-    "relate_words": ["person", "woman", "family", "child", "world", "life"]
+    "relate_words": ["person","woman","family"]
   },
   {
     "word": "thing",
     "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=abstract%20objects%20collection%20things%20items&image_size=square_hd",
-    "relate_words": ["way", "life", "part", "world", "problem", "hand"]
+    "relate_words": []
   },
   {
     "word": "woman",
     "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=woman%20lady%20female%20portrait%20elegant&image_size=square_hd",
-    "relate_words": ["person", "man", "family", "child", "life", "student"]
+    "relate_words": ["person","man","family"]
   },
   {
     "word": "life",
     "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=tree%20of%20life%20nature%20growth%20cycle&image_size=square_hd",
-    "relate_words": ["time", "world", "person", "man", "woman", "child", "family", "day"]
+    "relate_words": []
   },
   {
     "word": "child",
     "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=child%20kid%20young%20innocent%20playing&image_size=square_hd",
-    "relate_words": ["person", "family", "man", "woman", "world", "school", "student", "life"]
+    "relate_words": ["person","family","man","woman"]
   },
   {
     "word": "world",
     "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=planet%20earth%20globe%20world%20map&image_size=square_hd",
-    "relate_words": ["life", "time", "country", "place", "state", "person", "family", "year"]
+    "relate_words": []
   },
   {
     "word": "school",
     "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=school%20building%20education%20books%20classroom&image_size=square_hd",
-    "relate_words": ["student", "family", "child", "place", "state", "way", "day"]
+    "relate_words": ["student","family"]
   },
   {
     "word": "state",
     "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=government%20building%20capitol%20state%20flag&image_size=square_hd",
-    "relate_words": ["country", "world", "place", "student", "school", "life", "way"]
+    "relate_words": []
   },
   {
     "word": "family",
     "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=family%20parents%20children%20home%20together&image_size=square_hd",
-    "relate_words": ["person", "child", "man", "woman", "life", "world", "school", "country", "place"]
+    "relate_words": [
+      "person",
+      "child",
+      "man",
+      "woman",
+      "life",
+      "world",
+      "school",
+      "country",
+      "place"
+    ]
   },
   {
     "word": "student",
     "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=student%20books%20backpack%20studying%20youth&image_size=square_hd",
-    "relate_words": ["school", "child", "person", "way", "state", "hand", "life"]
+    "relate_words": [
+      "school",
+      "child",
+      "person",
+      "way",
+      "state",
+      "hand",
+      "life"
+    ]
   },
   {
     "word": "country",
     "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=nation%20countryside%20landscape%20flag%20map&image_size=square_hd",
-    "relate_words": ["world", "state", "place", "family", "life", "time", "year"]
+    "relate_words": [
+      "world",
+      "state",
+      "place",
+      "family",
+      "life",
+      "time",
+      "year"
+    ]
   },
   {
     "word": "problem",
     "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=question%20mark%20puzzle%20problem%20solving&image_size=square_hd",
-    "relate_words": ["life", "thing", "world", "state", "country", "way"]
+    "relate_words": [
+      "life",
+      "thing",
+      "world",
+      "state",
+      "country",
+      "way"
+    ]
   },
   {
     "word": "hand",
     "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=human%20hand%20gesture%20palm%20creation&image_size=square_hd",
-    "relate_words": ["person", "thing", "student", "child", "part", "life"]
+    "relate_words": [
+      "person",
+      "thing",
+      "student",
+      "child",
+      "part",
+      "life"
+    ]
   },
   {
     "word": "part",
-    "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=puzzle%20piece%20jigsaw%20part%20whole&image_size=square_hd",
-    "relate_words": ["thing", "place", "time", "world", "hand", "life", "way"]
+    "cover": "",
+    "relate_words": [
+      "thing",
+      "place",
+      "time",
+      "world",
+      "hand",
+      "life",
+      "way"
+    ]
   },
   {
     "word": "place",
-    "cover": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=location%20pin%20map%20destination%20travel&image_size=square_hd",
-    "relate_words": ["country", "world", "school", "state", "family", "way", "part", "life"]
+    "cover": "",
+    "relate_words": [
+      "country",
+      "world",
+      "school",
+      "state",
+      "family",
+      "way",
+      "part",
+      "life"
+    ]
   },
   {
-    "word":"body",
-    "cover":"",
-    "relate_words":[]
-  }
+    "word": "body",
+    "cover": "",
+    "relate_words": []
+  },
+  {
+    "word": "sport",
+    "cover": "",
+    "relate_words": [
+      "ping-pong",
+      "football",
+      "basketball",
+      "tennis",
+      "swimming",
+      "running",
+      "jumping",
+      "volball"
+    ]
+  },
+  {
+    "word": "jump",
+    "cover": "",
+    "relate_words": [
+      "leg"
+    ]
+  },
+  {
+    "word": "high",
+    "cover": "",
+    "relate_words": [
+      ""
+    ]
+  },
+  {
+    "word": "far",
+    "cover": "",
+    "relate_words": [
+      ""
+    ]
+  },
+  {
+    "word": "ping-pong",
+    "cover": "",
+    "relate_words": [
+      ""
+    ]
+  },
+  {
+    "word": "volleyball",
+    "cover": "",
+    "relate_words": [
+      ""
+    ]
+  },
+  {
+    "word": "across",
+    "cover": "",
+    "relate_words": [
+      ""
+    ]
+  },
+  {
+    "word": "hope",
+    "cover": "",
+    "relate_words": [
+      ""
+    ]
+  },
+  {
+    "word": "lose",
+    "cover": "",
+    "relate_words": [
+      ""
+    ]
+  },
+  {
+    "word": "because",
+    "cover": "",
+    "relate_words": [
+      ""
+    ]
+  },
+  {
+    "word": "cancer",
+    "cover": "",
+    "relate_words": [
+      ""
+    ]
+  },
+  {
+    "word": "other",
+    "cover": "",
+    "relate_words": [
+      ""
+    ]
+  },
+  {
+    "word": "money",
+    "cover": "",
+    "relate_words": [
+      ""
+    ]
+  },
+  {"word": "hard","cover": "","relate_words": ["easy"]},
+  {"word": "kind","cover": "","relate_words": [""]},
+  {
+    "word": "keep",
+    "cover": "",
+    "relate_words": [
+      ""
+    ]
+  },
+  {
+    "word": "month",
+    "cover": "",
+    "relate_words": [
+      ""
+    ]
+  },
+  {
+    "word": "ill",
+    "cover": "",
+    "relate_words": [
+      ""
+    ]
+  },
+  {
+    "word": "anymore",
+    "cover": "",
+    "relate_words": [
+      ""
+    ]
+  },
+  {
+    "word": "year",
+    "cover": "",
+    "relate_words": [
+      ""
+    ]
+  },
+  {
+    "word": "remember",
+    "cover": "",
+    "relate_words": [
+      ""
+    ]
+  },
+  {
+    "word": "fail",
+    "cover": "",
+    "relate_words": [
+      ""
+    ]
+  },
+  {    "word": "give",    "cover": "",    "relate_words": [      ""    ]  },
+  {    "word": "never",    "cover": "",    "relate_words": [      ""    ]  },
+  {    "word": "try",    "cover": "",    "relate_words": [      ""    ]  },
+  {    "word": "star",    "cover": "",    "relate_words": [      ""    ]  },
+  {    "word": "ability",    "cover": "",    "relate_words": [      ""    ]  },
+  {    "word": "player",    "cover": "",    "relate_words": [      ""    ]  },
+  {    "word": "wash",    "cover": "",    "relate_words": [      ""    ]  },
+  {    "word": "dish",    "cover": "",    "relate_words": [      ""    ]  },
+  {    "word": "feed",    "cover": "",    "relate_words": [      ""    ]  },
+  {    "word": "sweep",    "cover": "",    "relate_words": [      ""    ]  },
+  {    "word": "floor",    "cover": "",    "relate_words": ["building"]  },
+  {    "word": "rubbish",    "cover": "",    "relate_words": [""]  },
+  {    "word": "chore",    "cover": "",    "relate_words": ["home"]  },
+  {    "word": "may",    "cover": "",    "relate_words": ["can"]  },
+  {    "word": "outside",    "cover": "",    "relate_words": ["inside"]  },
+  {    "word": "tidy",    "cover": "",    "relate_words": ["room"]  },
+  {    "word": "easy",    "cover": "",    "relate_words": ["hard"]  },
+  {"word": "hard","cover": "","relate_words": ["easy"]},
+  {"word": "clean","cover": "","relate_words": ["keep"]},
+  {"word": "job","cover": "","relate_words": [""]},
+  {"word": "dirty","cover": "","relate_words": [""]},
+  {"word": "desk","cover": "","relate_words": [""]},
+  {"word": "wall","cover": "","relate_words": ["tidy"]},
+  {"word": "again","cover": "","relate_words": [""]},
+  {"word": "also","cover": "","relate_words": [""]},
+  {"word": "sunshine","cover": "","relate_words": ["sun,cloud"]},
+  {"word": "sometimes","cover": "","relate_words": [""]},
+  {"word": "feel","cover": "","relate_words": [""]},
+  {"word": "tired","cover": "","relate_words": ["work,study"]},
+  {"word": "helpful","cover": "","relate_words": [""]},
+  {"word": "warm","cover": "","relate_words": [""]},
+  {"word": "water","cover": "","relate_words": [""]},
+  {"word": "yard","cover": "","relate_words": ["house"]},
+  {"word": "helper","cover": "","relate_words": [""]},
+  {"word": "pick","cover": "","relate_words": ["hand"]},
+  {"word": "pig","cover": "","relate_words": ["animal"]},
+  {"word": "cow","cover": "","relate_words": ["animal"]},
+  {"word": "cut","cover": "","relate_words": [""]},
+  {"word": "grass","cover": "","relate_words": [""]},
+  {"word": "weather","cover": "","relate_words": [""]},
+  {"word": "sunny","cover": "","relate_words": [""]},
+  {"word": "cloud","cover": "","relate_words": [""]},
+  {"word": "cloudy","cover": "","relate_words": [""]},
+  {"word": "rain","cover": "","relate_words": [""]},
+  {"word": "rainy","cover": "","relate_words": [""]},
+  {"word": "snow","cover": "","relate_words": [""]},
+  {"word": "wind","cover": "","relate_words": [""]},
+  {"word": "windy","cover": "","relate_words": [""]},
+  {"word": "by","cover": "","relate_words": [""]},
+  {"word": "any","cover": "","relate_words": [""]},
+  {"word": "cold","cover": "","relate_words": [""]},
+  {"word": "or","cover": "","relate_words": [""]},
+  {"word": "enjoy","cover": "","relate_words": [""]},
+  {"word": "diary","cover": "","relate_words": [""]},
+  {"word": "teacher","cover": "","relate_words": [""]},
+  {"word": "taste","cover": "","relate_words": [""]},
+  {"word": "ice cream","cover": "","relate_words": [""]},
+  {"word": "real","cover": "","relate_words": [""]},
+  {"word": "later","cover": "","relate_words": [""]},
+  {"word": "coat","cover": "","relate_words": [""]},
+  {"word": "turn","cover": "","relate_words": [""]},
+  {"word": "TV","cover": "","relate_words": [""]},
+  {"word": "report","cover": "","relate_words": [""]}
 ]
