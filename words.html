@@ -420,6 +420,26 @@ function getEntry(word) {
   return { word: word, cover: '', relate_words: [] };
 }
 
+/* 单词图片统一从 assets/photo/{word}.webp 取 */
+function photoUrl(word) {
+  return './assets/photo/' + encodeURIComponent(word) + '.webp';
+}
+
+/* 给 img 绑定 onerror：加载失败时隐藏 img，显示默认卡片 */
+function bindImgFallback(img, coverEl, word) {
+  img.onerror = function() {
+    img.style.display = 'none';
+    img.removeAttribute('src');
+    coverEl.classList.add('no-img');
+    coverEl.setAttribute('data-letter', word.charAt(0).toUpperCase());
+  };
+  img.onload = function() {
+    img.style.display = '';
+    coverEl.classList.remove('no-img');
+    coverEl.removeAttribute('data-letter');
+  };
+}
+
 /* 渲染主舞台：中心大卡片 + 散布的关联词小卡片 */
 function renderStage(word) {
   currentWord = word;
@@ -430,17 +450,9 @@ function renderStage(word) {
   var img = document.getElementById('center-img');
   var cw = document.getElementById('center-word');
   cw.textContent = entry.word;
-  if (entry.cover) {
-    img.src = entry.cover;
-    img.style.display = '';
-    cover.classList.remove('no-img');
-    cover.removeAttribute('data-letter');
-  } else {
-    img.style.display = 'none';
-    img.removeAttribute('src');
-    cover.classList.add('no-img');
-    cover.setAttribute('data-letter', entry.word.charAt(0).toUpperCase());
-  }
+  img.src = photoUrl(entry.word);
+  img.alt = entry.word;
+  bindImgFallback(img, cover, entry.word);
 
   // 散布关联词小卡片
   var field = document.getElementById('field');
@@ -477,19 +489,14 @@ function renderStage(word) {
     card.style.setProperty('--rot', rot.toFixed(2) + 'deg');
     card.style.animationDelay = (i * 0.04) + 's';
 
-    // 封面
-    var rel = getEntry(rw);
+    // 封面（统一从 assets/photo/{word}.webp 取）
     var coverDiv = document.createElement('div');
     coverDiv.className = 'ww-card-cover';
-    if (rel.cover) {
-      var cimg = document.createElement('img');
-      cimg.src = rel.cover;
-      cimg.alt = rw;
-      coverDiv.appendChild(cimg);
-    } else {
-      coverDiv.classList.add('no-img');
-      coverDiv.setAttribute('data-letter', rw.charAt(0).toUpperCase());
-    }
+    var cimg = document.createElement('img');
+    cimg.alt = rw;
+    coverDiv.appendChild(cimg);
+    cimg.src = photoUrl(rw);
+    bindImgFallback(cimg, coverDiv, rw);
 
     // 词
     var wordDiv = document.createElement('div');

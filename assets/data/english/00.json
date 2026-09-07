@@ -300,27 +300,9 @@
       ""
     ]
   },
-  {
-    "word": "year",
-    "cover": "",
-    "relate_words": [
-      ""
-    ]
-  },
-  {
-    "word": "remember",
-    "cover": "",
-    "relate_words": [
-      ""
-    ]
-  },
-  {
-    "word": "fail",
-    "cover": "",
-    "relate_words": [
-      ""
-    ]
-  },
+  {    "word": "year",    "cover": "",    "relate_words": [      ""    ]  },
+  {    "word": "remember",    "cover": "",    "relate_words": [      ""    ]  },
+  {    "word": "fail",    "cover": "",    "relate_words": [      ""    ]  },
   {    "word": "give",    "cover": "",    "relate_words": [      ""    ]  },
   {    "word": "never",    "cover": "",    "relate_words": [      ""    ]  },
   {    "word": "try",    "cover": "",    "relate_words": [      ""    ]  },
@@ -353,7 +335,7 @@
   {"word": "helpful","cover": "","relate_words": [""]},
   {"word": "warm","cover": "","relate_words": [""]},
   {"word": "water","cover": "","relate_words": [""]},
-  {"word": "yard","cover": "","relate_words": ["house"]},
+  {"word": "yard","cover": "asset/photo/yard.webp","relate_words": ["house","tree","grass","backyard","fence"]},
   {"word": "helper","cover": "","relate_words": [""]},
   {"word": "pick","cover": "","relate_words": ["hand"]},
   {"word": "pig","cover": "","relate_words": ["animal"]},
