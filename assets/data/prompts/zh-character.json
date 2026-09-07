@@ -1104,6 +1104,14 @@
         {
           "zh": "耳后有头发",
           "en": "hair_behind_ear"
+        },
+        {
+          "zh": "齐刘海",
+          "en": "straight‑cut bangs"
+        },
+        {
+          "zh": "漫画刘海",
+          "en": "cartoon bangs"
         }
       ]
     },
@@ -1890,7 +1898,12 @@
         {
           "zh": "奶油在脸上",
           "en": "cream_on_face"
+        },
+        {
+          "zh": "烟熏妆",
+          "en": "smoky eyes"
         }
+
       ]
     },
     {

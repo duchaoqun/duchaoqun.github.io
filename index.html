@@ -484,6 +484,39 @@
       letter-spacing: 1px;
     }
 
+    /* 底部链接（小字，居中，在版权上方） */
+    .footer-links {
+      position: absolute;
+      bottom: 48px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 4px 10px;
+      max-width: 92vw;
+      z-index: 10;
+    }
+    .footer-links a {
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      color: rgba(22,23,28,0.55);
+      background: rgba(255,255,255,0.5);
+      border: 1px solid rgba(22,23,28,0.06);
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .footer-links a:hover {
+      color: rgba(22,23,28,0.88);
+      background: #ffd83d;
+      border-color: #ffd83d;
+    }
+    .footer-links a.is-external::after {
+      content: ' ↗';
+      opacity: 0.6;
+    }
+
     /* 点击激活态（移动端无 hover 时使用） */
     .contact-item.active .qr-popup {
       opacity: 1;
@@ -764,9 +797,12 @@
     </div>
   </div>
 
+  <!-- 底部链接 -->
+  <nav class="footer-links" id="footer-links"></nav>
+
   <!-- 底部版权 -->
   <footer class="footer">
-    Copyright 2011-2026 DuChaoQun Design · Made with ❤️
+    Copyright 2011-<span id="footer-year">2026</span> DuChaoQun Design · Made with ❤️
   </footer>
 
   <script>
@@ -823,6 +859,28 @@
     document.addEventListener('click', () => {
       contactItems.forEach(item => item.classList.remove('active'));
     });
+
+    /* 底部快捷链接（小字，链接到各子页面） */
+    const FOOTER_LINKS = [
+      { name: '导航',         url: 'nav.html' },
+      { name: '提示词混合器', url: 'prompt.html' },
+      { name: '英语词图',     url: 'english.html' },
+      { name: 'Obsidian 词云', url: 'obsidian.html' },
+      { name: '开放世界',     url: 'hello.html' },
+      { name: '2048',         url: 'pages/2048.html' },
+      { name: '俄罗斯方块',   url: 'pages/Tetris.html' },
+      { name: 'RGB 颜色',     url: 'tools/color.html' },
+      { name: '条形码',       url: 'tools/barcode.html' },
+      { name: '关系图谱',     url: 'tools/cytoscape.html' },
+      { name: '手写签名',     url: 'tools/signature-generator.html' }
+    ];
+    const footerLinks = document.getElementById('footer-links');
+    footerLinks.innerHTML = FOOTER_LINKS.map(item =>
+      '<a href="' + item.url + '">' + item.name + '</a>'
+    ).join('');
+
+    /* 版权年份动态生成 */
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
