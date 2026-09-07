@@ -572,6 +572,16 @@
                     geo = new THREE.ConeGeometry(obj.radius || 0.5, obj.height || 1, 12);
                     mesh = new THREE.Mesh(geo, material);
                     break;
+                case 'group':
+                    // 组合体：递归创建 children，放进一个 Group
+                    mesh = new THREE.Group();
+                    if (obj.children) {
+                        obj.children.forEach(function(child) {
+                            var childMesh = createMesh(child);
+                            if (childMesh) mesh.add(childMesh);
+                        });
+                    }
+                    break;
                 default:
                     console.warn('未知类型:', obj.type);
                     return null;
@@ -586,8 +596,15 @@
                 actions: obj.actions || [],
             };
 
-            if (mesh.userData.collidable) COLLIDABLE_MESHES.push(mesh);
-            if (mesh.userData.interactive) INTERACTIVE_MESHES.push(mesh);
+            // Group 没有自己的 geometry，碰撞和交互交给子 mesh 处理
+            if (mesh.isGroup) {
+                if (mesh.userData.interactive) {
+                    mesh.children.forEach(function(c) { INTERACTIVE_MESHES.push(c); });
+                }
+            } else {
+                if (mesh.userData.collidable) COLLIDABLE_MESHES.push(mesh);
+                if (mesh.userData.interactive) INTERACTIVE_MESHES.push(mesh);
+            }
 
             return mesh;
         }

@@ -53,6 +53,23 @@
     { "id": "flag_cloth", "type": "box", "position": [17.6, 2.5, -3], "size": [1, 0.6, 0.02], "color": "#ff4444", "collidable": false, "interactive": true, "name": "红旗", "actions": ["查看", "收起"] },
     { "id": "bench_1", "type": "box", "position": [-18, 0.5, 8], "size": [3, 0.3, 0.5], "color": "#887766", "collidable": true },
     { "id": "lamp_1", "type": "cylinder", "position": [20, 2, -20], "radiusTop": 0.05, "radiusBottom": 0.1, "height": 4, "color": "#333333", "collidable": true },
-    { "id": "lamp_1_bulb", "type": "sphere", "position": [20, 4.3, -20], "radius": 0.2, "color": "#ffee88", "collidable": false, "emissive": "#ffcc44", "interactive": true, "name": "路灯", "actions": ["开关", "查看"] }
+    { "id": "lamp_1_bulb", "type": "sphere", "position": [20, 4.3, -20], "radius": 0.2, "color": "#ffee88", "collidable": false, "emissive": "#ffcc44", "interactive": true, "name": "路灯", "actions": ["开关", "查看"] },
+    {
+      "id": "npc_1",
+      "type": "group",
+      "position": [0, 0, 5],
+      "collidable": true,
+      "interactive": true,
+      "name": "旅人",
+      "actions": ["对话", "查看"],
+      "children": [
+        { "id": "npc_1_head",      "type": "sphere",   "position": [0, 1.65, 0], "radius": 0.22, "color": "#f0c8a0", "collidable": false },
+        { "id": "npc_1_torso",     "type": "box",      "position": [0, 1.1, 0],  "size": [0.5, 0.7, 0.28], "color": "#4a6fa5", "collidable": false },
+        { "id": "npc_1_arm_l",    "type": "cylinder", "position": [-0.36, 1.1, 0], "radiusTop": 0.08, "radiusBottom": 0.08, "height": 0.65, "color": "#3a5a8a", "collidable": false },
+        { "id": "npc_1_arm_r",    "type": "cylinder", "position": [0.36, 1.1, 0],  "radiusTop": 0.08, "radiusBottom": 0.08, "height": 0.65, "color": "#3a5a8a", "collidable": false },
+        { "id": "npc_1_leg_l",    "type": "cylinder", "position": [-0.14, 0.35, 0], "radiusTop": 0.1, "radiusBottom": 0.1, "height": 0.7, "color": "#2a3a5a", "collidable": false },
+        { "id": "npc_1_leg_r",    "type": "cylinder", "position": [0.14, 0.35, 0],  "radiusTop": 0.1, "radiusBottom": 0.1, "height": 0.7, "color": "#2a3a5a", "collidable": false }
+      ]
+    }
   ]
 }

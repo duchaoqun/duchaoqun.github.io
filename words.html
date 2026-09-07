@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>杜超群 - 学单词</title>
+<link rel="icon" href="assets/images/title.ico" type="image/x-icon">
+<link rel="shortcut icon" type="image/x-icon" href="assets/images/title.ico" media="screen"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #faf9f4;
+  --cardBg: #ffffff;
+  --textPrimary: rgba(22,23,28,0.88);
+  --textSecondary: rgba(22,23,28,0.55);
+  --accent: #ffd83d;
+  --accentHover: #ffe066;
+  --border: rgba(22,23,28,0.08);
+  --fontFamily: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Microsoft YaHei', sans-serif;
+  --maxWidth: 1280px;
+}
+html, body {
+  background: var(--bg);
+  color: var(--textPrimary);
+  font-family: var(--fontFamily);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+/* 顶部导航 */
+.pp-topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,249,244,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.pp-topbar-inner {
+  max-width: var(--maxWidth); margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px;
+  padding: 12px 24px;
+  flex-wrap: wrap;
+}
+.pp-logo {
+  font-size: 20px; font-weight: 700;
+  letter-spacing: -0.02em;
+  display: flex; align-items: center; gap: 8px;
+}
+.pp-logo-dot {
+  width: 28px; height: 28px; border-radius: 8px;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+
+/* 控制区 */
+.ww-controls {
+  display: flex; align-items: center; gap: 8px;
+  flex-wrap: wrap;
+}
+.ww-search-wrap {
+  position: relative;
+}
+.ww-search {
+  width: 180px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--cardBg);
+  font-family: inherit; font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s, width 0.15s;
+}
+.ww-search:focus { border-color: var(--accent); width: 220px; }
+.ww-search::placeholder { color: var(--textSecondary); }
+
+/* 搜索下拉 */
+.ww-search-results {
+  position: absolute; top: calc(100% + 6px); left: 0; right: 0;
+  background: var(--cardBg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  max-height: 320px; overflow-y: auto;
+  display: none; z-index: 200;
+}
+.ww-search-results.show { display: block; }
+.ww-search-item {
+  display: block; width: 100%; text-align: left;
+  padding: 8px 14px; font-size: 14px;
+  color: var(--textPrimary);
+  transition: background 0.12s;
+}
+.ww-search-item:hover { background: var(--accent); }
+.ww-search-empty { padding: 10px 14px; font-size: 13px; color: var(--textSecondary); }
+
+/* 工具按钮 */
+.ww-btn {
+  padding: 8px 14px; border-radius: 10px;
+  font-size: 13px; font-weight: 500;
+  background: rgba(22,23,28,0.04);
+  color: var(--textPrimary);
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.ww-btn:hover { background: rgba(22,23,28,0.08); }
+.ww-btn.active {
+  background: var(--accent); font-weight: 600;
+}
+
+/* 主舞台 */
+.ww-main {
+  max-width: var(--maxWidth); margin: 0 auto;
+  padding: 24px 24px 80px;
+}
+.ww-stage {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  min-height: 600px;
+  margin: 24px auto;
+}
+.ww-field {
+  position: absolute; inset: 0;
+}
+
+/* 散布的小卡片（关联词） */
+.ww-card {
+  position: absolute;
+  width: 96px;
+  background: var(--cardBg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  overflow: hidden;
+  cursor: pointer;
+  transform: translate(-50%, -50%) rotate(var(--rot, 0deg));
+  transition: transform 0.18s ease, box-shadow 0.18s;
+  z-index: 2;
+  animation: ww-pop-in 0.3s ease both;
+  text-align: center;
+}
+.ww-card:hover {
+  transform: translate(-50%, -50%) rotate(0deg) scale(1.08);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.16);
+  z-index: 6;
+}
+@keyframes ww-pop-in {
+  from { opacity: 0; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(0.7); }
+  to   { opacity: 1; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(1); }
+}
+.ww-card-cover {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent);
+}
+.ww-card-cover img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.ww-card-cover.no-img {
+  background: linear-gradient(135deg, #ffe27a, #ffd83d);
+}
+.ww-card-cover.no-img::after {
+  content: attr(data-letter);
+  font-size: 30px; font-weight: 700; color: #333;
+}
+.ww-card-word {
+  padding: 5px 6px;
+  font-size: 13px; font-weight: 600;
+  color: var(--textPrimary);
+  border-top: 1px solid var(--border);
+  background: var(--cardBg);
+}
+.ww-empty {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 13px; color: var(--textSecondary);
+  background: var(--cardBg);
+  padding: 8px 14px; border-radius: 10px;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+  z-index: 2;
+}
+
+/* 中心大卡片 */
+.ww-center {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(180px, 28%, 240px);
+  z-index: 5;
+  cursor: pointer;
+}
+.ww-center-inner {
+  background: var(--cardBg);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 14px 36px rgba(0,0,0,0.16);
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+.ww-center:hover .ww-center-inner { transform: scale(1.03); }
+.ww-center-cover {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent);
+}
+.ww-center-cover img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.ww-center-cover.no-img {
+  background: linear-gradient(135deg, #ffe27a, #ffd83d);
+}
+.ww-center-cover.no-img::after {
+  content: attr(data-letter);
+  font-size: clamp(48px, 10vw, 72px);
+  font-weight: 700; color: #333;
+}
+.ww-center-word {
+  padding: 14px 10px;
+  font-size: clamp(20px, 3.4vw, 26px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  background: var(--cardBg);
+}
+
+/* 详情弹窗 */
+.ww-modal {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(22,23,28,0.4);
+  display: none; align-items: center; justify-content: center;
+  padding: 24px;
+}
+.ww-modal.show { display: flex; }
+.ww-modal-card {
+  background: var(--cardBg);
+  border-radius: 16px;
+  padding: 28px 32px;
+  max-width: 560px; width: 100%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  position: relative;
+  animation: ww-pop 0.2s ease;
+}
+@keyframes ww-pop { from { transform: scale(0.94); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.ww-modal-close {
+  position: absolute; top: 12px; right: 14px;
+  width: 32px; height: 32px; border-radius: 8px;
+  font-size: 22px; line-height: 1;
+  color: var(--textSecondary);
+  transition: background 0.12s;
+}
+.ww-modal-close:hover { background: rgba(22,23,28,0.06); color: var(--textPrimary); }
+.ww-modal-word {
+  font-size: 28px; font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.ww-modal-phonetic {
+  margin-top: 6px;
+  font-size: 16px; color: var(--textSecondary);
+  font-family: 'Consolas', 'Monaco', monospace;
+}
+.ww-modal-notes {
+  margin-top: 16px;
+  font-size: 15px; line-height: 1.8;
+  color: var(--textPrimary);
+}
+
+/* 底部 */
+.pp-footer {
+  border-top: 1px solid var(--border);
+  padding: 24px;
+  text-align: center;
+}
+.pp-footer-links {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+  margin-bottom: 12px;
+}
+.pp-footer-links a {
+  padding: 6px 12px; border-radius: 8px;
+  font-size: 13px; color: var(--textSecondary);
+  transition: all 0.15s;
+}
+.pp-footer-links a:hover { color: var(--textPrimary); background: rgba(22,23,28,0.04); }
+.pp-footer-copy { font-size: 12px; color: var(--textSecondary); }
+
+/* Toast */
+.pp-toast {
+  position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(100px);
+  background: #333; color: #fff;
+  padding: 12px 24px; border-radius: 12px;
+  font-size: 14px; z-index: 1100;
+  opacity: 0; transition: all 0.3s;
+  pointer-events: none;
+}
+.pp-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* 加载态 */
+.ww-loading {
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%,-50%);
+  color: var(--textSecondary); font-size: 14px;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .pp-topbar-inner { padding: 10px 16px; }
+  .ww-controls { width: 100%; }
+  .ww-search { width: 100%; }
+  .ww-search:focus { width: 100%; }
+  .ww-search-wrap { flex: 1; min-width: 140px; }
+  .ww-main { padding: 16px 16px 60px; }
+  .ww-stage { margin: 20px auto; }
+}
+</style>
+</head>
+<body>
+
+<div class="pp-topbar">
+  <div class="pp-topbar-inner">
+    <div class="pp-logo">
+      <span class="pp-logo-dot">🔤</span>
+      学单词
+    </div>
+    <div class="ww-controls">
+      <div class="ww-search-wrap">
+        <input type="search" id="search" class="ww-search" placeholder="搜索单词…" autocomplete="off">
+        <div class="ww-search-results" id="search-results"></div>
+      </div>
+      <button class="ww-btn" id="play-btn">▶ 随机播放</button>
+      <button class="ww-btn" id="rand-btn">🎲 随机切换</button>
+      <button class="ww-btn" id="detail-btn">📖 查看详情</button>
+    </div>
+  </div>
+</div>
+
+<div class="ww-main">
+  <div class="ww-stage" id="stage">
+    <div class="ww-field" id="field"></div>
+    <div class="ww-center" id="center">
+      <div class="ww-center-inner">
+        <div class="ww-center-cover" id="center-cover">
+          <img id="center-img" alt="">
+        </div>
+        <div class="ww-center-word" id="center-word"></div>
+      </div>
+    </div>
+    <div class="ww-loading" id="loading">加载中…</div>
+  </div>
+</div>
+
+<!-- 详情弹窗 -->
+<div class="ww-modal" id="modal">
+  <div class="ww-modal-card">
+    <button class="ww-modal-close" id="modal-close">×</button>
+    <div class="ww-modal-word" id="modal-word"></div>
+    <div class="ww-modal-phonetic" id="modal-phonetic"></div>
+    <div class="ww-modal-notes" id="modal-notes"></div>
+  </div>
+</div>
+
+<div class="pp-footer">
+  <div class="pp-footer-links">
+    <a href="index.html">主页</a>
+    <a href="nav.html">导航</a>
+    <a href="prompt.html">提示词混合器</a>
+  </div>
+  <div class="pp-footer-copy">数据本地处理，不上传服务器</div>
+</div>
+
+<div class="pp-toast" id="toast"></div>
+
+<script>
+var DATA = null;
+var wordMap = new Map();   // word -> { word, cover, relate_words[] }
+var currentWord = 'time';
+var playTimer = null;
+
+function escapeHtml(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+function escapeAttr(s) { return escapeHtml(s).replace(/"/g, '&quot;'); }
+
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 2000);
+}
+
+/* 构建词 → 关系映射（合并重复词） */
+function buildMap(data) {
+  data.forEach(function(item) {
+    var w = (item.word || '').trim();
+    if (!w) return;
+    var rels = (item.relate_words || []).map(function(r) { return (r || '').trim(); })
+               .filter(function(r) { return r; });
+    if (wordMap.has(w)) {
+      var ex = wordMap.get(w);
+      ex.relate_words = Array.from(new Set(ex.relate_words.concat(rels)));
+      if (!ex.cover && item.cover) ex.cover = item.cover;
+    } else {
+      wordMap.set(w, { word: w, cover: item.cover || '', relate_words: Array.from(new Set(rels)) });
+    }
+  });
+}
+
+function getEntry(word) {
+  if (wordMap.has(word)) return wordMap.get(word);
+  return { word: word, cover: '', relate_words: [] };
+}
+
+/* 渲染主舞台：中心大卡片 + 散布的关联词小卡片 */
+function renderStage(word) {
+  currentWord = word;
+  var entry = getEntry(word);
+
+  // 中心大卡片
+  var cover = document.getElementById('center-cover');
+  var img = document.getElementById('center-img');
+  var cw = document.getElementById('center-word');
+  cw.textContent = entry.word;
+  if (entry.cover) {
+    img.src = entry.cover;
+    img.style.display = '';
+    cover.classList.remove('no-img');
+    cover.removeAttribute('data-letter');
+  } else {
+    img.style.display = 'none';
+    img.removeAttribute('src');
+    cover.classList.add('no-img');
+    cover.setAttribute('data-letter', entry.word.charAt(0).toUpperCase());
+  }
+
+  // 散布关联词小卡片
+  var field = document.getElementById('field');
+  field.innerHTML = '';
+  var rels = entry.relate_words.filter(function(r) { return r && r.trim(); });
+  if (rels.length === 0) {
+    var empty = document.createElement('div');
+    empty.className = 'ww-empty';
+    empty.textContent = '暂无关联词，点中心词看详情';
+    field.appendChild(empty);
+    return;
+  }
+
+  // 散布算法：均匀角度 + 随机半径扰动，避开中心区域
+  var n = rels.length;
+  rels.forEach(function(rw, i) {
+    var angle = (i / n) * Math.PI * 2 - Math.PI / 2;       // 从顶部开始均匀分布
+    var jitter = (Math.random() - 0.5) * (Math.PI * 0.55 / Math.max(n, 4)); // 角度抖动
+    angle += jitter;
+    var baseR = 38;                                          // 基础半径（百分比）
+    var r = baseR + (Math.random() - 0.5) * 14;              // 半径抖动
+    r = Math.max(28, Math.min(47, r));                        // 钳制
+    var x = 50 + r * Math.cos(angle);
+    var y = 50 + r * Math.sin(angle);
+    x = Math.max(8, Math.min(92, x));
+    y = Math.max(10, Math.min(90, y));
+
+    var rot = (Math.random() - 0.5) * 22;                    // 随机微旋转 ±11°
+
+    var card = document.createElement('button');
+    card.className = 'ww-card';
+    card.style.left = x + '%';
+    card.style.top = y + '%';
+    card.style.setProperty('--rot', rot.toFixed(2) + 'deg');
+    card.style.animationDelay = (i * 0.04) + 's';
+
+    // 封面
+    var rel = getEntry(rw);
+    var coverDiv = document.createElement('div');
+    coverDiv.className = 'ww-card-cover';
+    if (rel.cover) {
+      var cimg = document.createElement('img');
+      cimg.src = rel.cover;
+      cimg.alt = rw;
+      coverDiv.appendChild(cimg);
+    } else {
+      coverDiv.classList.add('no-img');
+      coverDiv.setAttribute('data-letter', rw.charAt(0).toUpperCase());
+    }
+
+    // 词
+    var wordDiv = document.createElement('div');
+    wordDiv.className = 'ww-card-word';
+    wordDiv.textContent = rw;
+
+    card.appendChild(coverDiv);
+    card.appendChild(wordDiv);
+    card.addEventListener('click', function() { renderStage(rw); });
+    field.appendChild(card);
+  });
+}
+
+/* 搜索 */
+function renderSearch(query) {
+  var el = document.getElementById('search-results');
+  query = query.trim().toLowerCase();
+  if (!query) { el.classList.remove('show'); el.innerHTML = ''; return; }
+  var keys = Array.from(wordMap.keys());
+  var matches = keys.filter(function(w) { return w.toLowerCase().indexOf(query) >= 0; }).slice(0, 12);
+  if (!matches.length) {
+    el.innerHTML = '<div class="ww-search-empty">无匹配单词</div>';
+  } else {
+    el.innerHTML = matches.map(function(w) {
+      return '<button class="ww-search-item" data-w="' + escapeAttr(w) + '">' + escapeHtml(w) + '</button>';
+    }).join('');
+    el.querySelectorAll('.ww-search-item').forEach(function(b) {
+      b.addEventListener('click', function() {
+        renderStage(b.dataset.w);
+        document.getElementById('search').value = '';
+        el.classList.remove('show'); el.innerHTML = '';
+      });
+    });
+  }
+  el.classList.add('show');
+}
+
+/* 随机取词（优先有关联词的） */
+function randomWord() {
+  var withRels = [];
+  var all = [];
+  wordMap.forEach(function(e) {
+    all.push(e);
+    if (e.relate_words.length > 0) withRels.push(e);
+  });
+  var pool = withRels.length ? withRels : all;
+  return pool[Math.floor(Math.random() * pool.length)].word;
+}
+
+/* 随机播放：3秒自动切换 */
+function togglePlay() {
+  var btn = document.getElementById('play-btn');
+  if (playTimer) {
+    clearInterval(playTimer); playTimer = null;
+    btn.textContent = '▶ 随机播放';
+    btn.classList.remove('active');
+    showToast('已暂停随机播放');
+  } else {
+    renderStage(randomWord());
+    playTimer = setInterval(function() { renderStage(randomWord()); }, 3000);
+    btn.textContent = '⏸ 暂停播放';
+    btn.classList.add('active');
+    showToast('开启随机播放，每 3 秒切换');
+  }
+}
+
+/* 查看详情：加载 assets/data/english/{word}.json */
+function showDetail() {
+  var modal = document.getElementById('modal');
+  var mw = document.getElementById('modal-word');
+  var mp = document.getElementById('modal-phonetic');
+  var mn = document.getElementById('modal-notes');
+  mw.textContent = currentWord;
+  mp.textContent = '加载中…';
+  mn.textContent = '';
+  modal.classList.add('show');
+  fetch('./assets/data/english/' + encodeURIComponent(currentWord) + '.json')
+    .then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function(d) {
+      mw.textContent = d.word || currentWord;
+      mp.textContent = d.phonetic || '';
+      mn.textContent = d.notes || '暂无注释';
+    })
+    .catch(function() {
+      mp.textContent = '';
+      mn.textContent = '暂无该词的详情数据。可补充 assets/data/english/' + currentWord + '.json';
+    });
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('show');
+}
+
+function init() {
+  document.getElementById('loading').style.display = 'none';
+
+  // 搜索
+  var search = document.getElementById('search');
+  search.addEventListener('input', function() { renderSearch(this.value); });
+  // Enter 选中第一个匹配
+  search.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      var first = document.querySelector('.ww-search-item');
+      if (first) first.click();
+    } else if (e.key === 'Escape') {
+      this.value = ''; renderSearch('');
+    }
+  });
+  // 点击外部关闭搜索下拉
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.ww-search-wrap')) {
+      var el = document.getElementById('search-results');
+      el.classList.remove('show');
+    }
+  });
+
+  // 按钮
+  document.getElementById('play-btn').addEventListener('click', togglePlay);
+  document.getElementById('rand-btn').addEventListener('click', function() {
+    renderStage(randomWord());
+    showToast('已随机切换');
+  });
+  document.getElementById('detail-btn').addEventListener('click', showDetail);
+
+  // 中心点击也可看详情
+  document.getElementById('center').addEventListener('click', showDetail);
+
+  // 弹窗关闭
+  document.getElementById('modal-close').addEventListener('click', closeModal);
+  document.getElementById('modal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  // 键盘：/ 聚焦搜索，Esc 关弹窗，→/空格 随机切换
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === '/') { e.preventDefault(); search.focus(); }
+    if (e.key === 'ArrowRight' || e.key === ' ') {
+      e.preventDefault();
+      renderStage(randomWord());
+    }
+  });
+
+  // 选一个有关联词的起始词
+  renderStage('time');
+}
+
+// 加载数据
+fetch('./assets/data/english/00.json')
+  .then(function(r) {
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json();
+  })
+  .then(function(data) {
+    if (!Array.isArray(data)) throw new Error('00.json 格式不正确');
+    DATA = data;
+    buildMap(data);
+    init();
+  })
+  .catch(function(err) {
+    console.error('加载失败:', err);
+    document.querySelector('.ww-main').innerHTML =
+      '<p style="text-align:center;padding:60px;color:rgba(22,23,28,0.55);">数据加载失败，请通过 HTTP 协议访问本页面。</p>';
+  });
+</script>
+
+</body>
+</html>
