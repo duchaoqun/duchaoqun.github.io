@@ -1,0 +1,293 @@
+{
+  "meta": {
+    "title": "杜超群 · 站点导航",
+    "subtitle": "收录本站全部页面与工具，一键直达",
+    "nav": [
+      { "label": "首页", "url": "index.html" },
+      { "label": "导航", "url": "nav.html" }
+    ],
+    "footer": [
+      { "label": "GitHub", "url": "https://github.com/duchaoqun", "external": true }
+    ]
+  },
+  "categories": [
+    {
+      "name": "主页",
+      "items": [
+        { "title": "个人主页", "desc": "深海气泡卡片，个人信息与联系方式", "url": "index.html", "icon": "🏠" },
+        { "title": "站点导航", "desc": "本页，收录全部页面入口", "url": "nav.html", "icon": "🧭" }
+      ]
+    },
+    {
+      "name": "AI 对话",
+      "items": [
+        { "title": "DeepSeek", "desc": "深度求索 AI 对话助手", "url": "https://chat.deepseek.com/", "icon": "🐋", "external": true },
+        { "title": "豆包", "desc": "字节跳动 AI 助手", "url": "https://www.doubao.com", "icon": "🫘", "external": true },
+        { "title": "通义千问", "desc": "阿里巴巴大模型对话", "url": "https://tongyi.aliyun.com/", "icon": "🪐", "external": true },
+        { "title": "腾讯元宝", "desc": "腾讯大模型 AI 助手", "url": "https://yuanbao.tencent.com", "icon": "💎", "external": true },
+        { "title": "文心一言", "desc": "百度大模型对话平台", "url": "https://yiyan.baidu.com", "icon": "🍃", "external": true },
+        { "title": "Kimi", "desc": "月之暗面 Moonshot 长文本对话", "url": "https://kimi.moonshot.cn", "icon": "🌙", "external": true },
+        { "title": "灵犀", "desc": "WPS Copilot 办公助手", "url": "https://copilot.wps.cn", "icon": "🦌", "external": true },
+        { "title": "Copilot", "desc": "微软 Microsoft Copilot", "url": "https://copilot.microsoft.com", "icon": "🤖", "external": true },
+        { "title": "Gemini", "desc": "谷歌 AI 对话与编程助手", "url": "https://gemini.google.com", "icon": "✨", "external": true }
+      ]
+    },
+    {
+      "name": "AI 创作",
+      "items": [
+        { "title": "提示词混合器", "desc": "像挑颜料一样，挑提示词，中英双语标签", "url": "prompt.html", "icon": "🎨" },
+        { "title": "Civitai", "desc": "AI 图像模型与微调模型站", "url": "https://civitai.com/models", "icon": "🖼️", "external": true },
+        { "title": "Diffusion Bee", "desc": "macOS 本地 Stable Diffusion 工具", "url": "https://diffusionbee.com/", "icon": "🐝", "external": true },
+        { "title": "ComfyUI 教程", "desc": "ComfyUI 图像生成 Turbo Steps 详解", "url": "https://lzw.me/a/comfyui-z-image-turbo-steps.html", "icon": "📚", "external": true },
+        { "title": "讯飞配音", "desc": "科大讯飞 AI 文字转语音", "url": "https://peiyin.xunfei.cn", "icon": "🔊", "external": true },
+        { "title": "ImagePrompt", "desc": "图文反推 AI 提示词工具", "url": "https://imageprompt.org", "icon": "🔳", "external": true },
+        { "title": "ImageToPrompt", "desc": "图片转提示词在线工具", "url": "https://imagetoprompt.org", "icon": "🔁", "external": true },
+        { "title": "Liner.ai", "desc": "AI 模型训练平台", "url": "https://liner.ai", "icon": "🧠", "external": true },
+        { "title": "Woy.ai", "desc": "AI 图像生成与创作平台", "url": "https://woy.ai", "icon": "🪄", "external": true }
+      ]
+    },
+    {
+      "name": "搜索引擎",
+      "items": [
+        { "title": "百度一下", "desc": "国内主流搜索引擎", "url": "https://www.baidu.com", "icon": "🔍", "external": true },
+        { "title": "谷歌一下", "desc": "Google 全球搜索", "url": "https://www.google.com", "icon": "🔎", "external": true },
+        { "title": "必应一下", "desc": "微软 Bing 搜索", "url": "https://www.bing.com", "icon": "🅱️", "external": true },
+        { "title": "Yandex", "desc": "俄罗斯主流搜索引擎", "url": "https://www.yandex.com", "icon": "🇷🇺", "external": true },
+        { "title": "360 搜索", "desc": "360 综合搜索", "url": "https://www.so.com", "icon": "③", "external": true },
+        { "title": "搜狗搜索", "desc": "搜狐旗下搜索引擎", "url": "https://www.sogou.com", "icon": "🐶", "external": true }
+      ]
+    },
+    {
+      "name": "创作者平台",
+      "items": [
+        { "title": "抖音创作者", "desc": "抖音创作者服务中心", "url": "https://creator.douyin.com", "icon": "🎵", "external": true },
+        { "title": "汽水音乐", "desc": "抖音旗下音乐平台", "url": "https://music.douyin.com", "icon": "🥤", "external": true },
+        { "title": "快手创作者", "desc": "快手创作者个人主页", "url": "https://cp.kuaishou.com/profile", "icon": "⚡", "external": true },
+        { "title": "微信视频号", "desc": "微信视频号官方平台", "url": "https://channels.weixin.qq.com/platform", "icon": "📹", "external": true }
+      ]
+    },
+    {
+      "name": "英语学习",
+      "items": [
+        { "title": "Dictionary API", "desc": "免费英文单词释义查询接口", "url": "https://api.dictionaryapi.dev/api/v2/entries/en/word", "icon": "📕", "external": true },
+        { "title": "Naveegator", "desc": "英语听力与阅读练习平台", "url": "https://naveegator.in", "icon": "🧭", "external": true },
+        { "title": "Voscreen", "desc": "短视频沉浸式英语学习", "url": "https://www.voscreen.com", "icon": "📺", "external": true },
+        { "title": "纽约时报", "desc": "The New York Times 英文新闻", "url": "https://www.nytimes.com", "icon": "📰", "external": true },
+        { "title": "听力学", "desc": "英语听力训练资料站", "url": "https://www.tjxz.cc", "icon": "🎧", "external": true },
+        { "title": "wikiHow", "desc": "英文 How-to 百科教程", "url": "https://www.wikihow.com", "icon": "📝", "external": true },
+        { "title": "Quora", "desc": "英文问答社区", "url": "https://www.quora.com", "icon": "💬", "external": true },
+        { "title": "arXiv", "desc": "英文预印本学术论文库", "url": "https://arxiv.org", "icon": "📄", "external": true },
+        { "title": "Kemono", "desc": "创作者内容归档平台", "url": "https://kemono.party", "icon": "🐾", "external": true },
+        { "title": "RedGifs", "desc": "NSFW 成人 GIF 内容站", "url": "https://www.redgifs.com/explore", "icon": "🔞", "external": true, "nsfw": true }
+      ]
+    },
+    {
+      "name": "学习笔记",
+      "items": [
+        { "title": "英语高频词脑图", "desc": "English Word Graph 词频关系图谱", "url": "english.html", "icon": "📖" },
+        { "title": "Obsidian 词云", "desc": "空间笔记图谱可视化", "url": "obsidian.html", "icon": "☁️" },
+        { "title": "Obsidian 笔记搜索", "desc": "关键词检索本地笔记内容", "url": "tools/obsidian.html", "icon": "🔎" },
+        { "title": "巴巴哇字帖", "desc": "在线生成硬笔书法字帖", "url": "https://www.babawar.com/", "icon": "✒️", "external": true }
+      ]
+    },
+    {
+      "name": "在线课程",
+      "items": [
+        { "title": "Coursera", "desc": "国际名校在线课程平台", "url": "https://www.coursera.org/", "icon": "🎓", "external": true },
+        { "title": "PhET", "desc": "科罗拉多大学科学模拟实验", "url": "https://phet.colorado.edu/", "icon": "🔬", "external": true },
+        { "title": "数学9", "desc": "中文数学学习资源站", "url": "http://www.shuxue9.com", "icon": "➗", "external": true },
+        { "title": "Maths is Fun", "desc": "英文数学概念图解学习", "url": "https://www.mathsisfun.com", "icon": "📐", "external": true }
+      ]
+    },
+    {
+      "name": "编程学习",
+      "items": [
+        { "title": "LeetCode 力扣", "desc": "算法与编程刷题平台", "url": "https://leetcode.cn", "icon": "💻", "external": true }
+      ]
+    },
+    {
+      "name": "电子书库",
+      "items": [
+        { "title": "Z-Library", "desc": "全球最大电子书库（z-lib.gs 镜像）", "url": "https://zh.z-lib.gs", "icon": "📚", "external": true },
+        { "title": "Z-Library 官网", "desc": "Z-Library 主域名镜像", "url": "https://www.z-lib.org/", "icon": "📘", "external": true },
+        { "title": "Z-Library is", "desc": "Z-Library 备用镜像", "url": "https://z-lib.is/", "icon": "📗", "external": true },
+        { "title": "LibGen", "desc": "Library Genesis 学术资源库", "url": "https://libgen.is/", "icon": "🗂️", "external": true },
+        { "title": "PDF Drive", "desc": "PDF 电子书搜索引擎", "url": "https://www.pdfdrive.com/", "icon": "📑", "external": true },
+        { "title": "The Books Across", "desc": "精选电子书推荐与下载", "url": "https://thebooksacross.com/", "icon": "🔖", "external": true },
+        { "title": "书栈网", "desc": "BookStack 开源文档系统", "url": "https://www.bookstack.cn/", "icon": "🧱", "external": true },
+        { "title": "Anna's Archive", "desc": "安娜的档案，综合资源检索", "url": "https://annas-archive.org/", "icon": "🗂️", "external": true }
+      ]
+    },
+    {
+      "name": "音乐",
+      "items": [
+        { "title": "网易云音乐", "desc": "国内主流音乐流媒体平台", "url": "https://music.163.com", "icon": "🎵", "external": true },
+        { "title": "EEV3 Music", "desc": "在线音乐资源站", "url": "https://www.eev3.com", "icon": "🎼", "external": true },
+        { "title": "AAZ Music", "desc": "在线音乐资源站", "url": "https://www.aaz.cx", "icon": "🎶", "external": true },
+        { "title": "HiFini", "desc": "Hi-Res 无损音乐论坛", "url": "https://hifini.net", "icon": "💿", "external": true },
+        { "title": "歌曲宝", "desc": "在线听歌与下载站", "url": "https://www.gequbao.com", "icon": "🎸", "external": true },
+        { "title": "999TTT", "desc": "在线音乐资源站", "url": "http://www.999ttt.com", "icon": "🎹", "external": true },
+        { "title": "歌曲海", "desc": "在线听歌与下载站", "url": "https://www.gequhai.com", "icon": "🌊", "external": true },
+        { "title": "悦听", "desc": "在线音乐播放站", "url": "https://www.yueting.net", "icon": "👂", "external": true }
+      ]
+    },
+    {
+      "name": "电影",
+      "items": [
+        { "title": "电影天堂", "desc": "老牌电影下载站", "url": "https://www.dytt8.net", "icon": "🎬", "external": true },
+        { "title": "迅雷吧", "desc": "迅雷资源下载站", "url": "https://xunlei8.top", "icon": "⚡", "external": true },
+        { "title": "电影天堂二站", "desc": "电影下载备用站", "url": "https://www.dydytt.net", "icon": "🎞️", "external": true },
+        { "title": "片库网", "desc": "在线影视观看站", "url": "https://m.piankuwan.com", "icon": "🍿", "external": true }
+      ]
+    },
+    {
+      "name": "种子资源",
+      "items": [
+        { "title": "种子帝", "desc": "BT 种子导航站", "url": "https://www.zhongzidizhi.com", "icon": "🌱", "external": true },
+        { "title": "Kickass", "desc": "Kickass 磁力搜索主站", "url": "https://kickass.sx", "icon": "🧲", "external": true },
+        { "title": "Kickass 备站", "desc": "Kickass 磁力搜索备用", "url": "https://kickasstorrents.to", "icon": "🧲", "external": true },
+        { "title": "The Pirate Bay", "desc": "海盗湾 BT 磁力站", "url": "https://thepiratebay.org", "icon": "🏴‍☠️", "external": true },
+        { "title": "TorrentKitty 中文", "desc": "磁力猫中文站", "url": "https://cn.torrentkitty.tv", "icon": "🐱", "external": true },
+        { "title": "TorrentKitty", "desc": "磁力猫国际站", "url": "https://www.torrentkitty.tv", "icon": "🐈", "external": true },
+        { "title": "ThePornBest", "desc": "NSFW 成人资源站", "url": "https://thepornbest.com", "icon": "🔞", "external": true, "nsfw": true }
+      ]
+    },
+    {
+      "name": "小游戏",
+      "items": [
+        { "title": "2048", "desc": "经典数字合成益智游戏", "url": "pages/2048.html", "icon": "🔢" },
+        { "title": "俄罗斯方块", "desc": "小霸王风格复古方块消除", "url": "pages/Tetris.html", "icon": "🟰" },
+        { "title": "开放世界", "desc": "Hello 开放世界探索页", "url": "hello.html", "icon": "🌍" }
+      ]
+    },
+    {
+      "name": "图片素材",
+      "items": [
+        { "title": "91 图搜", "desc": "以图搜图与图片聚合搜索", "url": "https://www.91sotu.com", "icon": "🖼️", "external": true },
+        { "title": "Pixabay", "desc": "免费高清图片与视频素材", "url": "https://www.pixabay.com", "icon": "📷", "external": true },
+        { "title": "Wallhaven", "desc": "高清壁纸社区", "url": "https://wallhaven.cc", "icon": "🌄", "external": true },
+        { "title": "Pinterest", "desc": "图片灵感与创意收藏", "url": "https://www.pinterest.com", "icon": "📌", "external": true },
+        { "title": "Imgur", "desc": "图片托管与社区分享", "url": "https://imgur.com", "icon": "📤", "external": true }
+      ]
+    },
+    {
+      "name": "图标素材",
+      "items": [
+        { "title": "FontAwesome", "desc": "矢量图标字体库官方站", "url": "https://fontawesome.com/", "icon": "⭐", "external": true },
+        { "title": "FontIcons", "desc": "FontAwesome 中文镜像", "url": "https://fontawesome.dashgame.com/", "icon": "▶️", "external": true },
+        { "title": "Icons8", "desc": "多风格图标与插图资源", "url": "https://icons8.com/", "icon": "8️⃣", "external": true },
+        { "title": "Flaticon", "desc": "矢量图标素材库", "url": "https://www.flaticon.com/", "icon": "🏷️", "external": true },
+        { "title": "Iconfont", "desc": "阿里妈妈矢量图标库", "url": "https://www.iconfont.cn/", "icon": "💠", "external": true },
+        { "title": "Iconfinder", "desc": "图标搜索与定制平台", "url": "https://www.iconfinder.com/", "icon": "🔎", "external": true },
+        { "title": "Phosphor Icons", "desc": "灵活可变的图标族", "url": "https://phosphoricons.com/", "icon": "✨", "external": true },
+        { "title": "UI Buttons", "desc": "CSS 按钮设计灵感库", "url": "https://ui-buttons.web.app/", "icon": "🔘", "external": true }
+      ]
+    },
+    {
+      "name": "设计工具",
+      "items": [
+        { "title": "Figma", "desc": "协作式 UI 原型与设计工具", "url": "https://www.figma.com", "icon": "🖊️", "external": true },
+        { "title": "SVGator", "desc": "在线 SVG 动画制作工具", "url": "https://app.svgator.com", "icon": "🎞️", "external": true },
+        { "title": "Halftone Maker", "desc": "半色调图案在线生成器", "url": "https://halftonemaker.com", "icon": "⚫", "external": true },
+        { "title": "ICO 制作", "desc": "在线生成 ICO 图标文件", "url": "https://toolonline.net/ico-generator", "icon": "🪟", "external": true },
+        { "title": "Aseprite", "desc": "像素画与动画编辑器文档", "url": "https://www.aseprite.org/docs", "icon": "👾", "external": true }
+      ]
+    },
+    {
+      "name": "Mac 软件",
+      "items": [
+        { "title": "Mac78", "desc": "Mac 软件下载站", "url": "https://www.mac78.com", "icon": "🍎", "external": true },
+        { "title": "MacOS Home", "desc": "Mac 软件资源站", "url": "https://macoshome.com", "icon": "🍏", "external": true },
+        { "title": "ANW", "desc": "Mac 软件站（备 anw2.cc / anw3.cc）", "url": "https://anw1.cc", "icon": "🍐", "external": true }
+      ]
+    },
+    {
+      "name": "实用工具",
+      "items": [
+        { "title": "RGB 颜色", "desc": "调色与颜色值转换工具", "url": "tools/color.html", "icon": "🌈" },
+        { "title": "条形码生成", "desc": "在线生成各类条形码", "url": "tools/barcode.html", "icon": "📊" },
+        { "title": "关系图谱", "desc": "Cytoscape 节点关系可视化", "url": "tools/cytoscape.html", "icon": "🕸️" },
+        { "title": "手写签名生成器", "desc": "文字转手写风格签名图片", "url": "tools/signature-generator.html", "icon": "✍️" },
+        { "title": "QQ 邮箱", "desc": "QQ 邮箱网页版登录入口", "url": "https://wx.mail.qq.com", "icon": "✉️", "external": true },
+        { "title": "ToolOnline", "desc": "在线工具大全集合", "url": "https://toolonline.net", "icon": "🧰", "external": true },
+        { "title": "BleachBit", "desc": "系统垃圾清理开源工具", "url": "https://www.bleachbit.org", "icon": "🧹", "external": true },
+        { "title": "AnyTxt", "desc": "本地文档全文搜索工具", "url": "https://anytxt.net/", "icon": "🗂️", "external": true },
+        { "title": "WolframAlpha", "desc": "计算知识引擎", "url": "https://www.wolframalpha.com", "icon": "🧮", "external": true },
+        { "title": "URL 解码器", "desc": "URL 编码转码工具", "url": "https://www.urldecoder.io", "icon": "🔗", "external": true },
+        { "title": "Unicode 编码", "desc": "Unicode 字符查询与编码", "url": "https://home.unicode.org", "icon": "🔤", "external": true },
+        { "title": "代码高亮", "desc": "HighlightCode 在线代码高亮", "url": "https://highlightcode.com", "icon": "💡", "external": true },
+        { "title": "B 站视频下载", "desc": "Bilibili 视频在线下载接口", "url": "https://xbeibeix.com/api/bilibili", "icon": "📺", "external": true },
+        { "title": "Hotbox", "desc": "流媒体在线下载站", "url": "https://www.hotbox.fun", "icon": "📦", "external": true },
+        { "title": "APK Downloader", "desc": "谷歌商店 APK 在线下载", "url": "https://apps.evozi.com/apk-downloader", "icon": "📲", "external": true },
+        { "title": "BMCX", "desc": "工具站，综合学习查询", "url": "https://www.bmcx.com/", "icon": "🔧", "external": true }
+      ]
+    },
+    {
+      "name": "开发工具",
+      "items": [
+        { "title": "JD-GUI", "desc": "Java 反编译工具", "url": "http://jd.benow.ca", "icon": "🔍", "external": true },
+        { "title": "VisualVM", "desc": "Java 应用可视化监控", "url": "https://visualvm.github.io", "icon": "👁️", "external": true },
+        { "title": "Azul Zulu", "desc": "OpenJDK 发行版", "url": "https://www.azul.com", "icon": "☕", "external": true },
+        { "title": "MvnRepository", "desc": "Maven 依赖仓库检索", "url": "https://mvnrepository.com", "icon": "📦", "external": true },
+        { "title": "Maven Central", "desc": "Maven 中央仓库搜索", "url": "https://search.maven.org", "icon": "🗃️", "external": true },
+        { "title": "阿里云 Maven", "desc": "阿里云 Maven 镜像指南", "url": "https://developer.aliyun.com/mvn/guide", "icon": "🪞", "external": true },
+        { "title": "网易镜像", "desc": "网易开源镜像站", "url": "http://mirrors.163.com", "icon": "🐖", "external": true },
+        { "title": "中科大镜像", "desc": "中国移动镜像站", "url": "https://cmcc.mirrors.ustc.edu.cn", "icon": "🪞", "external": true },
+        { "title": "云效 DevOps", "desc": "阿里云研发工作台", "url": "https://devops.aliyun.com", "icon": "🛠️", "external": true }
+      ]
+    },
+    {
+      "name": "云计算与域名",
+      "items": [
+        { "title": "阿里云", "desc": "阿里云计算服务平台", "url": "https://www.aliyun.com", "icon": "☁️", "external": true },
+        { "title": "Vultr", "desc": "海外 VPS 云服务器", "url": "https://www.vultr.com", "icon": "🖥️", "external": true },
+        { "title": "GoDaddy", "desc": "域名注册与管理", "url": "https://account.godaddy.com", "icon": "🌐", "external": true },
+        { "title": "花生壳", "desc": "内网穿透与域名解析", "url": "http://www.oray.com", "icon": "🥜", "external": true }
+      ]
+    },
+    {
+      "name": "网络代理",
+      "items": [
+        { "title": "WireGuard", "desc": "WireGuard VPN 协议工具", "url": "https://www.wireguard.com", "icon": "🛡️", "external": true },
+        { "title": "EfCloud", "desc": "代理节点服务", "url": "https://www.efcloud.vip", "icon": "☁️", "external": true },
+        { "title": "EasyFastCloud", "desc": "代理节点服务", "url": "https://easyfastcloud.com", "icon": "⚡", "external": true },
+        { "title": "DNS Leak Test", "desc": "DNS 泄漏在线检测", "url": "https://dnsleaktest.com", "icon": "🧪", "external": true }
+      ]
+    },
+    {
+      "name": "资讯导航",
+      "items": [
+        { "title": "伊萨书签", "desc": "网址导航书签站", "url": "https://www.ysa.cc/", "icon": "🔖", "external": true },
+        { "title": "虫部落", "desc": "搜索与导航聚合社区", "url": "https://www.chongbuluo.com/", "icon": "🐛", "external": true },
+        { "title": "Hacker News", "desc": "YC 黑客新闻资讯", "url": "https://news.ycombinator.com/", "icon": "📰", "external": true },
+        { "title": "AOL", "desc": "美国在线新闻门户", "url": "https://www.aol.com", "icon": "📨", "external": true },
+        { "title": "高效工作", "desc": "工作技巧与资源导航", "url": "https://www.gaoxiaojob.com", "icon": "💼", "external": true }
+      ]
+    },
+    {
+      "name": "赞助",
+      "items": [
+        { "title": "爱发电", "desc": "创作者赞助收款平台", "url": "https://afdian.com/", "icon": "💖", "external": true }
+      ]
+    },
+    {
+      "name": "政务数据",
+      "items": [
+        { "title": "吉林省住房公积金", "desc": "吉林省公积金查询与管理", "url": "http://sgjj.sgj.jl.gov.cn", "icon": "🏦", "external": true },
+        { "title": "国家统计局", "desc": "国家官方统计数据发布", "url": "https://www.stats.gov.cn", "icon": "📈", "external": true },
+        { "title": "全国标准信息", "desc": "国家标准信息查询服务平台", "url": "https://std.samr.gov.cn", "icon": "📐", "external": true },
+        { "title": "中国气象局", "desc": "官方天气与气象数据", "url": "https://weather.cma.cn", "icon": "🌦️", "external": true },
+        { "title": "企业信用公示", "desc": "国家企业信用信息公示系统", "url": "https://www.gsxt.gov.cn/index.html", "icon": "🏢", "external": true },
+        { "title": "国家标准全文", "desc": "国家标准全文公开系统", "url": "https://openstd.samr.gov.cn/bzgk/gb/index", "icon": "📋", "external": true },
+        { "title": "维基百科", "desc": "Kiwix 离线维基百科下载", "url": "https://download.kiwix.org", "icon": "🌐", "external": true },
+        { "title": "互联网安全", "desc": "全国互联网安全管理服务平台", "url": "https://beian.mps.gov.cn/web/dashboard/home", "icon": "🛡️", "external": true }
+      ]
+    },
+    {
+      "name": "文档资料",
+      "items": [
+        { "title": "jgfg.pdf", "desc": "PDF 文档在线查看", "url": "pdf/jgfg.pdf", "icon": "📄", "external": true }
+      ]
+    }
+  ]
+}

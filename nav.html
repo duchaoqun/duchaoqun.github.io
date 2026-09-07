@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>杜超群 - 导航</title>
+<link rel="icon" href="assets/images/title.ico" type="image/x-icon">
+<link rel="shortcut icon" type="image/x-icon" href="assets/images/title.ico" media="screen"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #faf9f4;
+  --cardBg: #ffffff;
+  --textPrimary: rgba(22,23,28,0.88);
+  --textSecondary: rgba(22,23,28,0.55);
+  --accent: #ffd83d;
+  --accentHover: #ffe066;
+  --border: rgba(22,23,28,0.08);
+  --fontFamily: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Microsoft YaHei', sans-serif;
+  --fontSize: 16px;
+  --titleSize: 30px;
+  --maxWidth: 1280px;
+}
+html, body {
+  background: var(--bg);
+  color: var(--textPrimary);
+  font-family: var(--fontFamily);
+  font-size: var(--fontSize);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+/* 顶部导航 */
+.pp-topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,249,244,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.pp-topbar-inner {
+  max-width: var(--maxWidth); margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 24px;
+}
+.pp-logo {
+  font-size: 20px; font-weight: 700;
+  letter-spacing: -0.02em;
+  display: flex; align-items: center; gap: 8px;
+}
+.pp-logo-dot {
+  width: 28px; height: 28px; border-radius: 8px;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+.pp-nav { display: flex; gap: 4px; align-items: center; }
+.pp-nav a {
+  padding: 8px 14px; border-radius: 8px;
+  font-size: 14px; color: var(--textSecondary);
+  transition: all 0.15s;
+}
+.pp-nav a:hover { color: var(--textPrimary); background: rgba(22,23,28,0.04); }
+
+/* 主内容 */
+.pp-main { max-width: var(--maxWidth); margin: 0 auto; padding: 40px 24px 80px; }
+
+/* 标题区 */
+.pp-header { text-align: center; margin-bottom: 40px; }
+.pp-header h1 {
+  font-size: var(--titleSize); font-weight: 700;
+  letter-spacing: -0.03em; margin-bottom: 8px;
+}
+.pp-header p { color: var(--textSecondary); font-size: 15px; }
+
+/* 搜索框 */
+.pp-search-wrap {
+  max-width: 520px; margin: 20px auto 0;
+  position: relative;
+}
+.pp-search {
+  width: 100%;
+  padding: 12px 16px 12px 42px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-family: inherit; font-size: 15px;
+  outline: none; background: var(--cardBg);
+  color: var(--textPrimary);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.pp-search:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(255,216,61,0.18);
+}
+.pp-search::placeholder { color: var(--textSecondary); }
+.pp-search-icon {
+  position: absolute;
+  left: 14px; top: 50%; transform: translateY(-50%);
+  font-size: 16px; color: var(--textSecondary);
+  pointer-events: none;
+}
+
+/* 分类托盘 */
+.pp-trays { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+.pp-tray {
+  background: var(--cardBg);
+  border-radius: 16px;
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+}
+.pp-tray-label {
+  font-size: 13px; font-weight: 600;
+  color: var(--textSecondary);
+  margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.pp-tray-label .num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; border-radius: 6px;
+  background: var(--accent); color: #333; font-size: 12px; font-weight: 700;
+}
+.pp-tray-label .count {
+  margin-left: auto;
+  font-size: 12px; font-weight: 500;
+  color: var(--textSecondary);
+  background: rgba(22,23,28,0.04);
+  padding: 2px 10px; border-radius: 8px;
+}
+
+/* 导航卡片网格 */
+.pp-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+.pp-nav-card {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 14px 16px;
+  background: rgba(22,23,28,0.02);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: all 0.18s ease;
+  position: relative;
+}
+.pp-nav-card:hover {
+  background: var(--cardBg);
+  border-color: rgba(22,23,28,0.16);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  transform: translateY(-2px);
+}
+.pp-nav-card.is-external::after {
+  content: '↗';
+  position: absolute; top: 10px; right: 12px;
+  font-size: 13px; color: var(--textSecondary);
+}
+.pp-nav-icon {
+  flex-shrink: 0;
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.pp-nav-body { flex: 1; min-width: 0; }
+.pp-nav-title {
+  font-size: 15px; font-weight: 600;
+  color: var(--textPrimary);
+  margin-bottom: 2px;
+  line-height: 1.3;
+}
+.pp-nav-desc {
+  font-size: 12px; color: var(--textSecondary);
+  line-height: 1.5;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.pp-nav-card.hidden { display: none; }
+.pp-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--textSecondary);
+  font-size: 13px;
+  padding: 16px 0;
+}
+
+/* 底部 */
+.pp-footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 24px;
+  text-align: center;
+}
+.pp-footer-links {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+  margin-bottom: 16px;
+}
+.pp-footer-links a {
+  padding: 6px 12px; border-radius: 8px;
+  font-size: 13px; color: var(--textSecondary);
+  transition: all 0.15s;
+}
+.pp-footer-links a:hover { color: var(--textPrimary); background: rgba(22,23,28,0.04); }
+.pp-footer-copy { font-size: 12px; color: var(--textSecondary); }
+
+/* Toast */
+.pp-toast {
+  position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(100px);
+  background: #333; color: #fff;
+  padding: 12px 24px; border-radius: 12px;
+  font-size: 14px; z-index: 1000;
+  opacity: 0; transition: all 0.3s;
+  pointer-events: none;
+}
+.pp-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* 分类快速跳转栏 */
+.pp-catindex {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  justify-content: center;
+  max-width: var(--maxWidth);
+  margin: 0 auto 28px;
+  padding: 0 4px;
+}
+.pp-catindex a {
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--textSecondary);
+  background: var(--cardBg);
+  border: 1px solid var(--border);
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.pp-catindex a:hover {
+  color: var(--textPrimary);
+  border-color: var(--accent);
+  background: var(--accent);
+  font-weight: 600;
+}
+.pp-tray { scroll-margin-top: 80px; }
+
+/* NSFW 标记 */
+.pp-nav-card.is-nsfw {
+  border-color: rgba(231,76,60,0.25);
+  background: rgba(231,76,60,0.04);
+}
+.pp-nav-card.is-nsfw .pp-nav-icon {
+  background: #e74c3c; color: #fff;
+}
+.pp-nav-card.is-nsfw::before {
+  content: 'NSFW';
+  position: absolute; top: 10px; right: 30px;
+  font-size: 10px; font-weight: 700;
+  color: #fff; background: #e74c3c;
+  padding: 2px 6px; border-radius: 5px;
+  letter-spacing: 0.5px;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .pp-main { padding: 24px 16px 60px; }
+  .pp-header h1 { font-size: 24px; }
+  .pp-nav a { padding: 6px 10px; font-size: 13px; }
+  .pp-tray { padding: 16px; }
+  .pp-nav-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="pp-topbar">
+  <div class="pp-topbar-inner">
+    <a class="pp-logo" href="index.html">
+      <span class="pp-logo-dot">🧭</span>
+      导航
+    </a>
+    <nav class="pp-nav" id="nav"></nav>
+  </div>
+</div>
+
+<div class="pp-main">
+  <div class="pp-header">
+    <h1>杜超群 · 站点导航</h1>
+    <p>收录本站全部页面与工具，一键直达</p>
+  </div>
+
+  <div class="pp-search-wrap">
+    <span class="pp-search-icon">🔍</span>
+    <input type="text" class="pp-search" id="search" placeholder="输入关键词搜索页面，如：提示词、2048、颜色">
+  </div>
+
+  <nav class="pp-catindex" id="catindex"></nav>
+
+  <div class="pp-trays" id="trays"></div>
+</div>
+
+<div class="pp-footer">
+  <div class="pp-footer-links" id="footer-links"></div>
+  <div class="pp-footer-copy">数据本地处理，不上传服务器</div>
+</div>
+
+<div class="pp-toast" id="toast"></div>
+
+<script>
+var NAV_DATA = null;
+
+function escapeHtml(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+function escapeAttr(s) {
+  return escapeHtml(s).replace(/"/g, '&quot;');
+}
+
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 1800);
+}
+
+function renderNav() {
+  var nav = document.getElementById('nav');
+  nav.innerHTML = NAV_DATA.meta.nav.map(function(item) {
+    return '<a href="' + escapeAttr(item.url) + '">' + escapeHtml(item.label) + '</a>';
+  }).join('');
+}
+
+function renderFooter() {
+  var el = document.getElementById('footer-links');
+  el.innerHTML = NAV_DATA.meta.footer.map(function(item) {
+    var ext = item.external ? ' ↗' : '';
+    return '<a href="' + escapeAttr(item.url) + '" target="_blank" rel="noopener">' + escapeHtml(item.label) + ext + '</a>';
+  }).join('');
+}
+
+function renderCategoryIndex(filter) {
+  var el = document.getElementById('catindex');
+  el.innerHTML = NAV_DATA.categories.map(function(cat, i) {
+    var visible = !filter || cat.items.some(function(item) {
+      return item.title.toLowerCase().indexOf(filter) >= 0
+        || (item.desc || '').toLowerCase().indexOf(filter) >= 0
+        || cat.name.toLowerCase().indexOf(filter) >= 0;
+    });
+    if (!visible) return '';
+    return '<a href="#cat-' + i + '">' + escapeHtml(cat.name) + '</a>';
+  }).join('');
+}
+
+function renderTrays(filter) {
+  filter = (filter || '').trim().toLowerCase();
+  var trays = document.getElementById('trays');
+  trays.innerHTML = NAV_DATA.categories.map(function(cat, i) {
+    var cards = cat.items.map(function(item) {
+      var hit = !filter
+        || item.title.toLowerCase().indexOf(filter) >= 0
+        || (item.desc || '').toLowerCase().indexOf(filter) >= 0
+        || cat.name.toLowerCase().indexOf(filter) >= 0;
+      var hidden = hit ? '' : ' hidden';
+      var cls = 'pp-nav-card';
+      if (item.external) cls += ' is-external';
+      if (item.nsfw) cls += ' is-nsfw';
+      var target = item.external ? ' target="_blank" rel="noopener"' : '';
+      return '<a class="' + cls + hidden + '" href="' + escapeAttr(item.url) + '"' + target + '>' +
+        '<div class="pp-nav-icon">' + escapeHtml(item.icon || '🔗') + '</div>' +
+        '<div class="pp-nav-body">' +
+          '<div class="pp-nav-title">' + escapeHtml(item.title) + '</div>' +
+          '<div class="pp-nav-desc">' + escapeHtml(item.desc || '') + '</div>' +
+        '</div>' +
+      '</a>';
+    }).join('');
+    var visibleCount = cat.items.filter(function(item) {
+      if (!filter) return true;
+      return item.title.toLowerCase().indexOf(filter) >= 0
+        || (item.desc || '').toLowerCase().indexOf(filter) >= 0
+        || cat.name.toLowerCase().indexOf(filter) >= 0;
+    }).length;
+    var count = visibleCount + ' / ' + cat.items.length;
+    var empty = visibleCount === 0 ? '<div class="pp-empty">本类无匹配项</div>' : '';
+    var trayHidden = visibleCount === 0 ? ' style="display:none;"' : '';
+    return '<div class="pp-tray" id="cat-' + i + '"' + trayHidden + '>' +
+      '<div class="pp-tray-label"><span class="num">' + (i + 1) + '</span>' + escapeHtml(cat.name) +
+        '<span class="count">' + count + '</span>' +
+      '</div>' +
+      '<div class="pp-nav-grid">' + cards + empty + '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function init() {
+  renderNav();
+  renderFooter();
+  renderCategoryIndex('');
+  renderTrays('');
+  var search = document.getElementById('search');
+  search.addEventListener('input', function() {
+    renderCategoryIndex(this.value);
+    renderTrays(this.value);
+  });
+  // 快捷键：/ 聚焦搜索
+  document.addEventListener('keydown', function(e) {
+    if (e.key === '/' && document.activeElement !== search) {
+      e.preventDefault();
+      search.focus();
+    }
+    if (e.key === 'Escape' && document.activeElement === search) {
+      search.value = '';
+      renderCategoryIndex('');
+      renderTrays('');
+      search.blur();
+    }
+  });
+}
+
+// 加载 nav.json 数据
+fetch('./assets/data/nav.json')
+  .then(function(r) {
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json();
+  })
+  .then(function(data) {
+    if (!data || !data.meta || !Array.isArray(data.categories)) {
+      throw new Error('导航配置格式不正确');
+    }
+    NAV_DATA = data;
+    init();
+  })
+  .catch(function(err) {
+    console.error('加载失败:', err);
+    document.querySelector('.pp-main').innerHTML = '<p style="text-align:center;padding:60px;">导航数据加载失败，请通过 HTTP 协议访问本页面。</p>';
+  });
+</script>
+
+</body>
+</html>
