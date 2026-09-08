@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>老虎机 - 宝石转盘</title>
+<link rel="icon" href="assets/images/title.ico" type="image/x-icon">
+<link rel="shortcut icon" type="image/x-icon" href="assets/images/title.ico" media="screen"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #faf9f4;
+  --cardBg: #ffffff;
+  --textPrimary: rgba(22,23,28,0.88);
+  --textSecondary: rgba(22,23,28,0.55);
+  --accent: #ffd83d;
+  --accentHover: #ffe066;
+  --border: rgba(22,23,28,0.08);
+  --joker: #ff4d4d;
+  --fontFamily: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Microsoft YaHei', sans-serif;
+  --maxWidth: 1280px;
+}
+html, body { background: var(--bg); color: var(--textPrimary); font-family: var(--fontFamily); line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+.pp-topbar { position: sticky; top: 0; z-index: 100; background: rgba(250,249,244,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+.pp-topbar-inner { max-width: var(--maxWidth); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 24px; }
+.pp-logo { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; display: flex; align-items: center; gap: 8px; }
+.pp-logo-dot { width: 28px; height: 28px; border-radius: 8px; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+.pp-topbar-links { display: flex; gap: 4px; }
+.pp-topbar-links a { padding: 6px 12px; border-radius: 8px; font-size: 13px; color: var(--textSecondary); transition: all 0.15s; }
+.pp-topbar-links a:hover { color: var(--textPrimary); background: rgba(22,23,28,0.04); }
+
+.sl-main { max-width: var(--maxWidth); margin: 0 auto; padding: 24px 24px 80px; }
+
+/* 主区域：左转盘 + 右押注 */
+.sl-stage {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 20px;
+  margin-bottom: 20px;
+  align-items: start;
+}
+
+/* 老虎机外壳 */
+.sl-machine {
+  background: linear-gradient(145deg, #ffffff, #f0ece0);
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 20px 60px rgba(22,23,28,0.12), inset 0 1px 0 rgba(255,255,255,0.8);
+  border: 1px solid var(--border);
+}
+.sl-machine-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
+.sl-title { color: var(--textPrimary); font-size: 22px; font-weight: 700; letter-spacing: 0.05em; }
+.sl-wallet { display: flex; align-items: center; gap: 8px; background: var(--bg); border: 1px solid var(--border); padding: 8px 16px; border-radius: 12px; color: var(--textPrimary); font-size: 18px; font-weight: 700; }
+.sl-wallet .gem { font-size: 20px; }
+.sl-wallet-val { color: var(--accent); }
+
+.sl-result {
+  background: rgba(255,216,61,0.15); border: 1px solid rgba(255,216,61,0.5);
+  color: #8a6d00; padding: 10px 16px; border-radius: 10px; font-size: 15px; font-weight: 600;
+  text-align: center; min-height: 40px; display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px; transition: all 0.3s;
+}
+.sl-result.win { background: rgba(100,220,120,0.18); border-color: rgba(100,220,120,0.55); color: #1a7d3a; animation: pulse 0.5s; }
+@keyframes pulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.02);} }
+
+/* 转轮容器 */
+.sl-canvas-wrap {
+  background: linear-gradient(180deg, #faf9f4, #ece7d6);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 4px 16px rgba(22,23,28,0.08);
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+/* 4个转轮横向排列 */
+.sl-reels {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+}
+.sl-reel {
+  width: 130px;
+  height: 360px;            /* 显示 3 行符号 */
+  overflow: hidden;
+  border-radius: 14px;
+  background: #fff;
+  border: 3px solid #d9d2c0;
+  box-shadow: inset 0 4px 12px rgba(22,23,28,0.1);
+  position: relative;
+}
+/* 小丑牌转轮: 金色边框 */
+.sl-reel-joker {
+  border: 4px solid #d4a017;
+  box-shadow: 0 0 20px rgba(212,160,23,0.5), inset 0 4px 12px rgba(22,23,28,0.1);
+}
+/* 转轮内的符号条 */
+.sl-reel-strip {
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+}
+/* 单个符号卡片 */
+.sl-symbol-card {
+  width: 130px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7f3e6;
+  border-bottom: 1px solid rgba(22,23,28,0.06);
+}
+.sl-symbol-inner {
+  width: 108px;
+  height: 108px;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 2px solid #e0d8c0;
+  box-shadow: 0 2px 6px rgba(22,23,28,0.08);
+}
+.sl-symbol-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 中奖线覆盖层 */
+.sl-payline-overlay {
+  position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%);
+  height: 80px; pointer-events: none;
+  border-top: 2px dashed rgba(22,23,28,0.35);
+  border-bottom: 2px dashed rgba(22,23,28,0.35);
+  box-shadow: 0 0 30px rgba(255,216,61,0.4) inset;
+}
+
+/* 控制条 */
+.sl-controls { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
+.sl-btn { padding: 12px 32px; border-radius: 12px; font-size: 16px; font-weight: 700; transition: all 0.15s; letter-spacing: 0.05em; }
+.sl-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.sl-btn-start { background: var(--accent); color: #333; box-shadow: 0 4px 14px rgba(255,216,61,0.4); }
+.sl-btn-start:hover:not(:disabled) { background: var(--accentHover); transform: translateY(-1px); }
+.sl-btn-start:active:not(:disabled) { transform: translateY(1px); }
+/* 右侧押注面板 */
+.sl-bet-panel {
+  background: var(--cardBg); border: 1px solid var(--border); border-radius: 16px; padding: 18px;
+  position: sticky; top: 80px;
+}
+.sl-bet-header { margin-bottom: 14px; }
+.sl-bet-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+.sl-bet-sub { font-size: 12px; color: var(--textSecondary); line-height: 1.5; }
+.sl-bet-total { margin-top: 10px; font-size: 14px; color: var(--textSecondary); }
+.sl-bet-total strong { color: var(--accent); font-size: 20px; }
+.sl-bet-grid { display: flex; flex-direction: column; gap: 10px; max-height: 460px; overflow-y: auto; padding-right: 4px; }
+.sl-bet-item { display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg); }
+.sl-bet-sym { width: 52px; height: 52px; border-radius: 10px; background: var(--cardBg); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; flex-shrink: 0; border: 1px solid var(--border); overflow: hidden; }
+.sl-bet-sym img { width: 100%; height: 100%; border-radius: 8px; object-fit: cover; }
+.sl-bet-ctrl { display: flex; align-items: center; gap: 3px; flex: 1; min-width: 0; }
+.sl-bet-btn { width: 22px; height: 22px; border-radius: 6px; background: var(--accent); color: #333; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.1s; }
+.sl-bet-btn:hover:not(:disabled) { background: var(--accentHover); }
+.sl-bet-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.sl-bet-input { width: 38px; height: 24px; padding: 0 3px; border: 1px solid var(--border); border-radius: 6px; text-align: center; font-size: 13px; font-weight: 600; font-family: inherit; outline: none; background: var(--cardBg); }
+.sl-bet-input:focus { border-color: var(--accent); }
+
+/* 符号对照表 */
+.sl-ref { background: var(--cardBg); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-bottom: 20px; }
+.sl-ref-title { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+.sl-ref-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 10px; }
+.sl-ref-item { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px; border-radius: 10px; background: var(--bg); border: 1px solid var(--border); }
+.sl-ref-num { font-size: 12px; color: var(--textSecondary); font-weight: 600; }
+.sl-ref-img { width: 54px; height: 54px; border-radius: 8px; background: var(--cardBg); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; overflow: hidden; }
+.sl-ref-img img { width: 100%; height: 100%; border-radius: 8px; object-fit: cover; }
+.sl-ref-path { font-size: 10px; color: var(--textSecondary); font-family: monospace; }
+
+.sl-ref { display: none; }
+
+.pp-footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; }
+.pp-footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 12px; }
+.pp-footer-links a { padding: 6px 12px; border-radius: 8px; font-size: 13px; color: var(--textSecondary); transition: all 0.15s; }
+.pp-footer-links a:hover { color: var(--textPrimary); background: rgba(22,23,28,0.04); }
+.pp-footer-copy { font-size: 12px; color: var(--textSecondary); }
+
+.pp-toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(100px); background: #333; color: #fff; padding: 12px 24px; border-radius: 12px; font-size: 14px; z-index: 1100; opacity: 0; transition: all 0.3s; pointer-events: none; }
+.pp-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+@media (max-width: 960px) {
+  .sl-stage { grid-template-columns: 1fr; }
+  .sl-bet-panel { position: relative; top: 0; }
+  .sl-bet-grid { max-height: none; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+}
+@media (max-width: 600px) {
+  .sl-main { padding: 16px 16px 60px; }
+  .sl-machine { padding: 14px; }
+  .sl-canvas-wrap { height: auto; padding: 10px 0; }
+  .sl-reels { gap: 6px; }
+  .sl-reel { width: 78px; height: 216px; }
+  .sl-symbol-card { width: 78px; height: 72px; }
+  .sl-symbol-inner { width: 66px; height: 66px; }
+  .sl-btn { padding: 10px 22px; font-size: 14px; }
+}
+</style>
+</head>
+<body>
+
+<div class="pp-topbar">
+  <div class="pp-topbar-inner">
+    <div class="pp-logo"><span class="pp-logo-dot">🎰</span>老虎机 · 宝石转盘</div>
+    <nav class="pp-topbar-links">
+      <a href="index.html">主页</a><a href="nav.html">导航</a>
+    </nav>
+  </div>
+</div>
+
+<div class="sl-main">
+  <div class="sl-stage">
+    <!-- 左：转盘 -->
+    <div class="sl-machine">
+      <div class="sl-machine-head">
+        <div class="sl-title">⭐ 幸运转盘 ⭐</div>
+        <div class="sl-wallet"><span class="gem">💎</span>钱包：<span class="sl-wallet-val" id="wallet">100</span></div>
+      </div>
+      <div class="sl-result" id="result">准备就绪，按 [开始] 转动转盘</div>
+
+      <div class="sl-canvas-wrap">
+        <div class="sl-reels" id="reels"></div>
+        <div class="sl-payline-overlay"></div>
+      </div>
+
+      <div class="sl-controls">
+        <button class="sl-btn sl-btn-start" id="btn-start">▶ 开始</button>
+      </div>
+    </div>
+
+    <!-- 右：押注面板 -->
+    <div class="sl-bet-panel">
+      <div class="sl-bet-header">
+        <div class="sl-bet-title">💰 押注面板</div>
+        <div class="sl-bet-sub">每个符号单独押注<br>规则：2同×2 / 3同×3 / 3同小丑牌图×5<br>中奖图为小丑牌图再×10<br>数字键 1-5 加 1，空格开始</div>
+        <div class="sl-bet-total">总押注：<strong id="bet-total">0</strong> 💎</div>
+      </div>
+      <div class="sl-bet-grid" id="bet-grid"></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="pp-footer">
+  <div class="pp-footer-links">
+    <a href="index.html">主页</a><a href="nav.html">导航</a><a href="prompt.html">提示词</a><a href="words.html">学单词</a><a href="notes.html">文档</a>
+  </div>
+  <p class="pp-footer-copy">© 2011-2026 杜超群</p>
+</div>
+
+<div class="pp-toast" id="toast"></div>
+
+
+
+<script>
+/* ========= 配置 ========= */
+var INIT_WALLET = 100;
+var SYMBOL_COUNT = 5;
+var REEL_COUNT = 3;          // 右侧主体 3 列
+var LUCK_REEL = true;        // 最左侧小丑牌转轮
+var SYMBOLS_PER_REV = 5;     // 每圈符号数
+var SYMBOL_SIZE = 120;       // 每个符号卡片尺寸(px)
+var REEL_STRIP_LEN = 40;     // 转轮strip长度(符号数, 越长滚动越自然)
+var PAYOUT = { 2: 2, 3: 3 }; // 2个相同×2, 3个相同×3
+var JOKER_3X_PAYOUT = 5;     // 3个相同且为小丑牌图 → ×5
+var JOKER_MULT = 10;         // 中奖图为小丑牌图 → 总奖励×10
+
+var SYMBOL_COLORS = ['#ff4d4d','#ff9f43','#feca57','#1dd1a1','#54a0ff'];
+var SYMBOL_EMOJI = ['🔴','🟠','🟡','🟢','🔵'];
+
+/* ========= 状态 ========= */
+var wallet = INIT_WALLET;
+var bets = {};
+var symbols = [];
+var reelEls = [];       // 每个转轮的DOM元素
+var reelStrips = [];    // 每个转轮的strip DOM元素
+var jokerSymbol = null;  // 本局小丑牌图(由最左侧转轮决定)
+var isSpinning = false;
+var audioCtx = null;
+
+/* ========= 音效 ========= */
+function initAudio() { if (!audioCtx) { try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e){} } }
+function playTone(freq, dur, type, vol) {
+  if (!audioCtx) return;
+  var osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
+  osc.type = type || 'sine'; osc.frequency.value = freq;
+  gain.gain.value = vol || 0.15;
+  osc.connect(gain); gain.connect(audioCtx.destination);
+  var now = audioCtx.currentTime;
+  gain.gain.setValueAtTime(gain.gain.value, now);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + dur);
+  osc.start(now); osc.stop(now + dur);
+}
+var spinTickTimer = null;
+function startSpinTick() { if (!spinTickTimer) spinTickTimer = setInterval(()=>playTone(700+Math.random()*300, 0.04, 'square', 0.05), 60); }
+function stopSpinTick() { clearInterval(spinTickTimer); spinTickTimer = null; }
+function playReelStop() { playTone(200, 0.15, 'sawtooth', 0.12); }
+function playWin() { playTone(523,0.12,'sine',0.18); setTimeout(()=>playTone(659,0.12,'sine',0.18),100); setTimeout(()=>playTone(784,0.2,'sine',0.18),200); }
+function playLose() { playTone(180, 0.3, 'sawtooth', 0.1); }
+
+/* ========= 工具 ========= */
+function showToast(msg) { var t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1600); }
+function rand(n) { return Math.floor(Math.random()*n); }
+function getSymbolImg(num) { return 'assets/images/slots/' + num + '.jpg'; }
+
+function renderSymbolInner(el, num, size) {
+  el.innerHTML = '';
+  var img = document.createElement('img');
+  img.src = getSymbolImg(num); img.alt = num;
+  img.onerror = function() {
+    el.innerHTML = '';
+    el.style.background = SYMBOL_COLORS[(num-1)%SYMBOL_COLORS.length];
+    el.style.color = '#fff';
+    el.textContent = SYMBOL_EMOJI[(num-1)%SYMBOL_EMOJI.length];
+  };
+  el.appendChild(img);
+}
+
+/* ========= CSS 转轮构建 ========= */
+// 生成一个符号卡片(带图片/占位+金色边框)
+function buildSymbolCard(num) {
+  var card = document.createElement('div');
+  card.className = 'sl-symbol-card';
+  var inner = document.createElement('div');
+  inner.className = 'sl-symbol-inner';
+  inner.dataset.sym = num;
+  renderSymbolInner(inner, num);
+  card.appendChild(inner);
+  return card;
+}
+
+// 构建转轮strip(长序列符号)
+function buildReelStrip() {
+  var strip = document.createElement('div');
+  strip.className = 'sl-reel-strip';
+  // 生成足够长的随机符号序列
+  for (var i = 0; i < REEL_STRIP_LEN; i++) {
+    var num = symbols[rand(symbols.length)];
+    strip.appendChild(buildSymbolCard(num));
+  }
+  return strip;
+}
+
+// 构建全部转轮(最左侧为小丑牌转轮, 带金色边框)
+function buildReelsHTML() {
+  var container = document.getElementById('reels');
+  container.innerHTML = '';
+  reelEls = []; reelStrips = [];
+  var total = REEL_COUNT + 1;
+  for (var r = 0; r < total; r++) {
+    var reel = document.createElement('div');
+    reel.className = 'sl-reel' + (r === 0 ? ' sl-reel-joker' : '');
+    var strip = buildReelStrip();
+    reel.appendChild(strip);
+    container.appendChild(reel);
+    reelEls.push(reel);
+    reelStrips.push(strip);
+  }
+  // 初始化位置: 让中间符号对齐中奖线
+  setTimeout(function() {
+    for (var r = 0; r < reelEls.length; r++) {
+      var m = getReelMetrics(r);
+      // 选一个中间位置的卡片居中
+      var mid = Math.floor(REEL_STRIP_LEN / 2);
+      reelStrips[r].style.transform = 'translateY(' + (m.centerOffset - mid * m.cardH) + 'px)';
+    }
+  }, 50);
+}
+
+/* ========= 转盘动画(CSS transform 直上直下) ========= */
+function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+// 获取转轮窗口高度和单卡片实际高度(适配响应式)
+function getReelMetrics(reelIdx) {
+  var reel = reelEls[reelIdx];
+  var card = reelStrips[reelIdx].firstElementChild;
+  var cardH = card ? card.offsetHeight : SYMBOL_SIZE;
+  var reelH = reel.offsetHeight;
+  // 视口中心相对于strip顶部的偏移: 让第N张卡片中心对齐视口中心
+  // strip初始translateY=0时, 第0张卡片顶部在视口顶部. 视口中心在 reelH/2
+  // 第N张卡片中心在 N*cardH + cardH/2
+  // 要对齐: strip translateY = reelH/2 - (N*cardH + cardH/2) = reelH/2 - cardH/2 - N*cardH
+  var centerOffset = reelH / 2 - cardH / 2;
+  return { cardH: cardH, centerOffset: centerOffset };
+}
+
+// 将转轮的 strip 平移到目标位置, 使符号 targetSym 停在中奖线中心
+function spinReelTo(reelIdx, targetSym, extraSteps, duration, onDone) {
+  var strip = reelStrips[reelIdx];
+  var cards = strip.children;
+  var m = getReelMetrics(reelIdx);
+  var cardH = m.cardH, centerOffset = m.centerOffset;
+  // 找到 strip 中最后一个等于 targetSym 的位置(确保向前滚动能到达)
+  var targetPos = -1;
+  for (var i = cards.length - 1; i >= 0; i--) {
+    if (parseInt(cards[i].querySelector('.sl-symbol-inner').dataset.sym) === targetSym) {
+      targetPos = i; break;
+    }
+  }
+  if (targetPos < 0) {
+    strip.appendChild(buildSymbolCard(targetSym));
+    targetPos = strip.children.length - 1;
+  }
+  // 目标位置: 第 (targetPos+extraSteps) 张卡片中心对齐视口中心
+  var toY = centerOffset - (targetPos + extraSteps) * cardH;
+  var cur = parseFloat(strip.style.transform.replace('translateY(', '') || '0') || 0;
+  var fromY = cur;
+  var startTime = performance.now();
+  function step(now) {
+    var t = Math.min((now - startTime) / duration, 1);
+    var eased = easeOutCubic(t);
+    var y = fromY + (toY - fromY) * eased;
+    strip.style.transform = 'translateY(' + y + 'px)';
+    if (t < 1) {
+      requestAnimationFrame(step);
+    } else {
+      strip.style.transform = 'translateY(' + toY + 'px)';
+      if (onDone) onDone();
+    }
+  }
+  requestAnimationFrame(step);
+}
+
+// 无过渡快速滚动(起始阶段高速下落)
+function freeScroll(reelIdx, speed) {
+  var strip = reelStrips[reelIdx];
+  var cur = parseFloat(strip.style.transform.replace('translateY(', '') || '0') || 0;
+  strip.style.transform = 'translateY(' + (cur - speed) + 'px)';
+}
+
+function startSpin() {
+  if (isSpinning) return;
+  initAudio();
+  var totalBet = 0;
+  for (var k in bets) totalBet += (bets[k] || 0);
+  if (totalBet <= 0) { showToast('请先押注'); return; }
+  if (totalBet > wallet) { showToast('余额不足'); return; }
+
+  isSpinning = true;
+  document.getElementById('btn-start').disabled = true;
+  document.getElementById('result').textContent = '转动中…';
+  document.getElementById('result').className = 'sl-result';
+
+  wallet -= totalBet;
+  updateWallet();
+
+  // 决定结果
+  var finalSymbols = [];
+  for (var i = 0; i < REEL_COUNT; i++) finalSymbols.push(symbols[rand(symbols.length)]);
+  jokerSymbol = symbols[rand(symbols.length)];
+
+  startSpinTick();
+
+  // 1. 先让所有转轮高速自由下落
+  var freeTimer = setInterval(function() {
+    for (var r = 0; r < reelEls.length; r++) freeScroll(r, 40);
+  }, 16);
+
+  // 2. 最左侧(小丑牌)转轮先停
+  setTimeout(function() {
+    clearInterval(freeTimer);
+    spinReelTo(0, jokerSymbol, 6, 1200, function() {
+      playReelStop();
+      // 3. 依次停止右侧 3 个主体转轮
+      startMainReelsSpin(finalSymbols);
+    });
+  }, 700);
+}
+
+function startMainReelsSpin(finalSymbols) {
+  var stopped = 0;
+  for (var i = 0; i < REEL_COUNT; i++) {
+    (function(idx) {
+      var reelIdx = idx + 1;
+      var target = finalSymbols[idx];
+      var delay = idx * 350;
+      var dur = 1400 + idx * 200;
+      setTimeout(function() {
+        spinReelTo(reelIdx, target, 5 + idx, dur, function() {
+          playReelStop();
+          stopped++;
+          if (stopped === REEL_COUNT) {
+            setTimeout(function() { settle(finalSymbols); }, 150);
+          }
+        });
+      }, delay);
+    })(i);
+  }
+}
+
+/* ========= 结算 ========= */
+function settle(finalSymbols) {
+  stopSpinTick();
+  // 统计右侧3个转轮中各符号出现次数
+  var counts = {};
+  finalSymbols.forEach(function(s) { counts[s] = (counts[s]||0) + 1; });
+
+  var totalWin = 0, detail = [];
+  for (var sym in counts) {
+    var c = counts[sym];
+    if (c >= 2) {
+      var symNum = parseInt(sym);
+      var bet = getBet(symNum);
+      var isJoker = (symNum === jokerSymbol);
+      var mult;
+      if (c === 2) {
+        mult = PAYOUT[2];  // 2个相同 → ×2
+      } else { // c === 3
+        mult = isJoker ? JOKER_3X_PAYOUT : PAYOUT[3]; // 3个小丑牌图×5, 普通×3
+      }
+      var win = bet * mult;
+      // 中奖图为小丑牌图 → 总奖励×10
+      if (isJoker) win *= JOKER_MULT;
+      totalWin += win;
+      if (bet > 0) {
+        var d = '符号' + sym + ' ×' + c + ' 押' + bet + ' ×' + mult;
+        if (isJoker) d += '(小丑×' + JOKER_MULT + ')';
+        d += '=' + win;
+        detail.push(d);
+      }
+    }
+  }
+  wallet += totalWin;
+  updateWallet();
+
+  var el = document.getElementById('result');
+  if (totalWin > 0) {
+    playWin();
+    var msg = '🎉 中奖！本局小丑牌=图' + jokerSymbol + '。' + detail.join('；') + ' 共得 ' + totalWin + ' 💎';
+    el.textContent = msg; el.className = 'sl-result win';
+  } else {
+    playLose();
+    el.textContent = '本局小丑牌=图' + jokerSymbol + '。未中奖，再接再厉！';
+    el.className = 'sl-result';
+  }
+  isSpinning = false;
+  document.getElementById('btn-start').disabled = false;
+}
+
+/* ========= 钱包/押注 UI ========= */
+function updateWallet() { document.getElementById('wallet').textContent = wallet; }
+function getBet(num) { return bets[num] || 0; }
+function setBet(num, val) { bets[num] = Math.max(0, parseInt(val)||0); updateBetUI(); updateBetTotal(); }
+function addBet(num, delta) {
+  var cur = getBet(num), next = cur + delta;
+  if (next < 0) next = 0;
+  var total = 0; for (var k in bets) total += (bets[k]||0);
+  total = total - cur + next;
+  if (total > wallet) { showToast('余额不足'); return; }
+  setBet(num, next);
+}
+function updateBetTotal() {
+  var t = 0; for (var k in bets) t += (bets[k]||0);
+  document.getElementById('bet-total').textContent = t;
+}
+function updateBetUI() {
+  var grid = document.getElementById('bet-grid');
+  grid.innerHTML = '';
+  symbols.forEach(function(num) {
+    var item = document.createElement('div');
+    item.className = 'sl-bet-item';
+    item.innerHTML =
+      '<div class="sl-bet-sym" data-sym="'+num+'"></div>' +
+      '<div class="sl-bet-ctrl">' +
+        '<button class="sl-bet-btn" data-act="dec" data-num="'+num+'">−</button>' +
+        '<input type="number" class="sl-bet-input" min="0" value="'+getBet(num)+'" data-num="'+num+'">' +
+        '<button class="sl-bet-btn" data-act="inc" data-num="'+num+'">+</button>' +
+      '</div>';
+    grid.appendChild(item);
+    renderSymbolInner(item.querySelector('.sl-bet-sym'), num);
+  });
+  grid.querySelectorAll('.sl-bet-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      if (isSpinning) return;
+      addBet(parseInt(this.dataset.num), this.dataset.act==='inc'?1:-1);
+    });
+  });
+  grid.querySelectorAll('.sl-bet-input').forEach(function(inp) {
+    inp.addEventListener('change', function() {
+      if (isSpinning) { this.value = getBet(parseInt(this.dataset.num)); return; }
+      setBet(parseInt(this.dataset.num), this.value);
+    });
+    inp.addEventListener('focus', function() { this.select(); });
+  });
+}
+
+/* ========= 键盘 ========= */
+var selectedBetIdx = 0;
+document.addEventListener('keydown', function(e) {
+  if (e.target.tagName === 'INPUT') return;
+  if (isSpinning) return;
+  var num = null;
+  if (e.key >= '1' && e.key <= '5') num = parseInt(e.key)-1;
+  if (num !== null && num < symbols.length) {
+    selectedBetIdx = num; addBet(symbols[num], 1); showToast('符号 '+symbols[num]+' +1'); return;
+  }
+  if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') { addBet(symbols[selectedBetIdx],1); e.preventDefault(); }
+  else if (e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') { addBet(symbols[selectedBetIdx],-1); e.preventDefault(); }
+  if (e.key === ' ') { e.preventDefault(); startSpin(); }
+});
+
+/* ========= 初始化 ========= */
+function init() {
+  symbols = [];
+  for (var i = 1; i <= SYMBOL_COUNT; i++) symbols.push(i);
+  for (var j = symbols.length-1; j > 0; j--) {
+    var k = rand(j+1), t = symbols[j]; symbols[j] = symbols[k]; symbols[k] = t;
+  }
+  buildReelsHTML();
+  updateWallet();
+  updateBetUI();
+  updateBetTotal();
+  document.getElementById('btn-start').addEventListener('click', startSpin);
+}
+init();
+</script>
+
+</body>
+</html>
