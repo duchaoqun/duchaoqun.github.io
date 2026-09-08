@@ -159,5 +159,13 @@
   { "word": "own", "cover": "assets/photo/own.webp", "relate_words": [] },
   { "word": "cross", "cover": "assets/photo/cross.webp", "relate_words": [] },
   { "word": "careful", "cover": "assets/photo/careful.webp", "relate_words": [] },
-  { "word": "underground", "cover": "assets/photo/underground.webp", "relate_words": [] }
+  { "word": "underground", "cover": "assets/photo/underground.webp", "relate_words": [] },
+  { "word": "grassland", "cover": "assets/photo/grassland.webp", "relate_words": ["grass"] },
+  { "word": "amid", "cover": "assets/photo/amid.webp", "relate_words": [] },
+  { "word": "capital", "cover": "assets/photo/capital.webp", "relate_words": [] },
+  { "word": "cheongsam", "cover": "assets/photo/cheongsam.webp", "relate_words": [] },
+  { "word": "compose", "cover": "assets/photo/compose.webp", "relate_words": [] },
+  { "word": "courtship", "cover": "assets/photo/courtship.webp", "relate_words": [] },
+  { "word": "enterprise", "cover": "assets/photo/enterprise.webp", "relate_words": [] },
+  { "word": "notation", "cover": "assets/photo/notation.webp", "relate_words": [] }
   ]

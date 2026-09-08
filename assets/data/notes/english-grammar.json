@@ -1,0 +1,2373 @@
+{
+  "title": "英语语法笔记",
+  "author": "杜超群",
+  "date": "2026-09-08",
+  "summary": "系统整理英语拼读、词性、句子成分、句型、从句、时态、语态等语法知识。",
+  "chapters": [
+    {
+      "id": "ch1",
+      "title": "1. 拼读",
+      "intro": [],
+      "sections": [
+        {
+          "id": "ch1-1",
+          "title": "1.1. 字母发音",
+          "intro": [
+            { "type": "code", "language": "text", "code": "A[æ]apple\nB[b]boy\nC[k]car\nD[d]dog\nE[e]egg\nF[f]fish\nG[ɡ]girl\nH[h]hat\nI[ɪ]igloo\nJ[dʒ]jacket\nK[k]kid\nL[l]lamb\nM[m]monkey\nN[n]nose\nO[ɑ:]ox\nP[p]pen\nQ[kw]queen\nR[r]rabbit\nS[s]sun\nT[t]tiger\nU[ʌ]up\nV[v]van\nW[w]web\nX[ks]box\nY[j]yo-yo\nZ[z]zebra" }
+          ]
+        },
+        {
+          "id": "ch1-2",
+          "title": "1.2. 音标发音",
+          "intro": [
+            { "type": "table", "headers": ["序号", "类别", "IPA88", "IPA66", "Graphemes"], "rows": [
+              ["1", "长元", "i:", "", "ea, eat, meat, dream, pea, ice cream..."],
+              ["2", "长元", "ɑ:", "", "ar - arm, card, farm, park, part, artist..."],
+              ["3", "长元", "ɔ:", "", "or - horse, north, fork, morning, fore, al - all..."],
+              ["4", "长元", "u:", "", "oo - noodle, foot, tooth, moon, noon, room..."],
+              ["5", "长元", "ɜ:", "ə:", "ir - bird, first, girl, T-shirt, ur - nurse, er - her..."],
+              ["6", "短元", "ɪ", "i", "i - it, is, chip, big, pig, sit..."],
+              ["7", "短元", "æ", "", "a - am, at, bag, apple, gas, fat..."],
+              ["8", "短元", "e", "ɛ", "e - egg, bed, red, leg, hen, set..."],
+              ["9", "短元", "ɒ", "ɔ", "o - dog, not, god, got, top, shop..."],
+              ["10", "短元", "ʌ", "", "u - us, up, sun, duck, nut, but..."],
+              ["11", "短元", "ʊ", "u", "u - push, pull, wolf, look, bush, would..."],
+              ["12", "短元", "ə", "", "about, ladder, pencil, dollar, honour, augur"],
+              ["13", "双元", "eɪ", "ei", "ay - play, tray, pay, bay, say, day..."],
+              ["14", "双元", "aɪ", "ai", "spider, sky, night, pie, tie, guy..."],
+              ["15", "双元", "ɒɪ", "ɔi", "oi - oil, boil, join, oy - toy, boy, joy"],
+              ["16", "双元", "əʊ", "eu", "ow - yellow, snow, window, sow, open, moat..."],
+              ["17", "双元", "aʊ", "au", "ow - now, owl, bow, cow, ou - shout, ouch..."],
+              ["18", "双元", "ɪə", "iə", "ear - ear, tear, clear, hear, year, near..."],
+              ["19", "双元", "eə", "ɛə", "air - air, hair, fair, chair, dare, pear..."],
+              ["20", "双元", "ʊə", "uə", "tour, cure, actual"],
+              ["21", "浊辅", "b", "", "bug, bubble"],
+              ["22", "清辅", "p", "", "pin, pen, spin, dippy"],
+              ["23", "浊辅", "d", "", "d - den, dad, do, milled, dd - add"],
+              ["24", "清辅", "f", "", "fat, cliff, phone, enough, half, often"],
+              ["25", "浊辅", "g", "", "gun, egg, ghost, guest, prologue"],
+              ["26", "清辅", "h", "", "hop, who"],
+              ["27", "浊辅", "dʒ", "", "j - jam, jump, jam, wage, giraffe, edge..."],
+              ["28", "清辅", "k", "", "c - cat, cook, coat, k - kiss, keep, kite..."],
+              ["29", "边音", "l", "", "live, well"],
+              ["30", "鼻音", "m", "", "man, summer, comb, column, palm"],
+              ["31", "鼻音", "n", "", "net, funny, know, gnat, pneumonic, mneumonic"],
+              ["32", "浊辅", "r", "", "r, rr, wr, rh run, carrot, wrench"],
+              ["33", "清辅", "s", "", "ce - ice, nice, rice, pace, sit, less..."],
+              ["34", "清辅", "t", "", "tip, matter, thomas, two, bet, ripped"],
+              ["35", "浊辅", "v", "", "v - vine, of, stephen, five, vat, verse..."],
+              ["36", "半元", "w", "", "wit, why, quick, choir, worse, 窝"],
+              ["37", "浊辅", "z", "", "z - zed, buzz, craze, s - his, scissors, fries..."],
+              ["38", "浊辅", "ʒ", "", "treasure, division, azure"],
+              ["39", "清辅", "tʃ", "", "ch - chip, watch, chair, future, action, righteous..."],
+              ["40", "清辅", "ʃ", "", "sh - sham, dish, share, wish, ocean, sure..."],
+              ["41", "清辅", "θ", "", "south, path, mouth, math, think"],
+              ["42", "浊辅", "ð", "", "leather"],
+              ["43", "鼻音", "ŋ", "", "ring, pink, tongue"],
+              ["44", "半元", "j", "", "you, onion, hallelujah"],
+              ["45", "清辅", "ts", "", "ts - hats, kites, cats, sweets, 复数"],
+              ["46", "清辅", "tr", "", "tr - try, train, truck, trip"],
+              ["47", "浊辅", "dz", "", "ds - hands, birds, seeds, cards, beds, 复数"],
+              ["48", "浊辅", "dr", "", "dr - dress, drink, dream, draw, driver, dry"]
+            ]},
+            { "type": "paragraph", "text": "https://en.wikipedia.org/wiki/Received_Pronunciation#Vowels" }
+          ]
+        },
+        {
+          "id": "ch1-3",
+          "title": "1.3. 简单模拟",
+          "intro": [
+            { "type": "code", "language": "text", "code": "/iː/ sheep cheap believe see magazine he me be seat stram mean receive 嘴要咧开，亿一，\n/ɪ/ shit bitch chip ticket give trick sit fish king win live hit wish office lily\n/æ/ 嘴要张开、张大，而且尽量放宽，刚开始练习时可以夸张一点。\napple\n/e/ 嘴不要张太大，上下齿间距离宁可偏小。\negg  bed  ten  wear  head\n/a:/ 嘴巴张到最大，下巴下垂，舌身平放口内，略向后收。明悟了，啊！\nheart  start\n/ʌ/ 把手放在肚子上感觉到收腹，突然间被打了一下，\nrun\n/ɜ:/ə:/ 感觉像生气了，饿坏了，说的我饿了。\nbird\n/ə/\nabout again center\n/ɔ:/ 嘴巴是圆的，类似模仿狮子叫，┗|｀O′|┛ 嗷~~\ntalk\n/ɔ/ not\n/u:/ 升堂！威武...\nsoon moon\n/ʊ/u/ 比升堂的时候嘴要张开一点，污\nput wood\n/aɪ/ my\n/eɪ/ei/ day pain\n/əʊ/eu/ no tow\n/ɒɪ/ɔi/ boy oyster join, buoy\n/ɪə/iə/ ear, steer, here, tier\n/aʊ/au/ now, cow\n/ʊə/uə/ tour, cure, actual,\n/eə/ɛə/ chair, dare, pear, where, their, prayer,\n/p/ pin, pen, spin, dippy\n/d/ dad, do, dry, add, milled\n/t/ tip, matter, thomas, two, bet, ripped" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch2",
+      "title": "2. 名词",
+      "intro": [
+        { "type": "paragraph", "text": "noun n. 属于一种实词，名词可以做定语修饰名词，参考 #定语。" }
+      ],
+      "sections": [
+        {
+          "id": "ch2-1",
+          "title": "2.1. concrete noun",
+          "intro": [
+            { "type": "paragraph", "text": "a concrete noun is something which can be perceived with the 5 senses, things like people, places, things: girl, horse, plant, train, milk, music, perfume, rain, wind." }
+          ]
+        },
+        {
+          "id": "ch2-2",
+          "title": "2.2. abstract noun",
+          "intro": [
+            { "type": "paragraph", "text": "An abstract noun is a noun that refers to something that you can't touch or see. Uncountable. It's a type of noun which does not exist as a material object and so cannot be perceived with the 5 senses - you can not see it, smell it, taste is, hear it, touch it, an abstract noun can be an idea, a quality, a concept: love, happiness, freedom, peace, anger, knowledge, truth." }
+          ]
+        },
+        {
+          "id": "ch2-3",
+          "title": "2.3. material noun",
+          "intro": [
+            { "type": "paragraph", "text": "物质名词：A material noun is for substances that are uncountable." },
+            { "type": "paragraph", "text": "water  rice" }
+          ]
+        },
+        {
+          "id": "ch2-4",
+          "title": "2.4. collective noun",
+          "intro": [
+            { "type": "paragraph", "text": "集体名词：A collective noun is for a group of people or things." },
+            { "type": "paragraph", "text": "family  team" }
+          ]
+        },
+        {
+          "id": "ch2-5",
+          "title": "2.5. 名词复数的变化规则",
+          "intro": [
+            { "type": "list", "ordered": false, "items": [
+              "一般情况的词加 -s：map-maps，bag-bags，car-cars",
+              "以 s, sh, ch, x 等结尾的词，加 -es：bus-buses，watch-watches",
+              "以 ce, se, ze, (d)ge 等结尾的词，加 -s：license-licenses",
+              "以辅音字母 + y 结尾的词：把 y 变成 i 加 es：baby-babies"
+            ]}
+          ]
+        },
+        {
+          "id": "ch2-6",
+          "title": "2.6. 名词的所有格",
+          "intro": [
+            { "type": "paragraph", "text": "在英语中有些名词可以加“'s”来表示所有关系，带这种词尾的名词形式称为该名词的所有格，如：a teacher's book。" },
+            { "type": "paragraph", "text": "名词所有格的规则如下：" },
+            { "type": "list", "ordered": true, "items": [
+              "单数名词词尾加“'s”，复数名词词尾没有 s，也要加“'s”，如 the boy's bag 男孩的书包，men's room 男厕所。",
+              "若名词已有复数词尾 -s，只加“'”，如：the workers' struggle 工人的斗争。",
+              "凡不能加“'s”的名词，都可以用“名词 + of + 名词”的结构来表示所有关系，如：the title of the song 歌的名字。"
+            ]},
+            { "type": "code", "language": "text", "code": "Could not position within a table!  不能 放置 在 一个表里面！  助动词+副词+及物动词+介词+冠词+名词\n\naux.    adv.    vt.   prep. art.   n." }
+          ]
+        },
+        {
+          "id": "ch2-7",
+          "title": "2.7. 动名词",
+          "intro": [],
+          "subsections": [
+            {
+              "id": "ch2-7-1",
+              "title": "2.7.1. 书写规则",
+              "blocks": [
+                { "type": "paragraph", "text": "一般情况：直接在动词原形后加 -ing。" },
+                { "type": "code", "language": "text", "code": "read ➡️ reading\nplay ➡️ playing\nwork ➡️ working" },
+                { "type": "paragraph", "text": "以不发音的 e 结尾：去 e 加 -ing。" },
+                { "type": "code", "language": "text", "code": "write ➡️ writing\nmake ➡️ making\ntake ➡️ taking" },
+                { "type": "paragraph", "text": "以 -ee、-oe、-ye 结尾的动词，直接加 -ing。" },
+                { "type": "code", "language": "text", "code": "see ➡️ seeing\nhoe ➡️ hoeing\ndye ➡️ dyeing" },
+                { "type": "paragraph", "text": "以重读闭音节结尾：末尾只有一个辅音字母，先双写这个辅音字母，再加 -ing。" },
+                { "type": "code", "language": "text", "code": "run ➡️ running\nswim ➡️ swimming\nstop ➡️ stopping" },
+                { "type": "paragraph", "text": "以 ie 结尾：将 ie 变为 y，再加 -ing。" },
+                { "type": "code", "language": "text", "code": "die ➡️ dying\nlie ➡️ lying\ntie ➡️ tying" }
+              ]
+            },
+            {
+              "id": "ch2-7-2",
+              "title": "2.7.2. 区分动名词和现在分词",
+              "blocks": [
+                { "type": "paragraph", "text": "动名词的形态与现在分词是一样的，然而这容易给同学们带来困惑，怎么区分 v-ing 这个双面词呢？" },
+                { "type": "list", "ordered": false, "items": [
+                  "He is dancing. 现在分词（他正在跳舞）",
+                  "His hobby is dancing. 动名词（他的爱好是跳舞）"
+                ]},
+                { "type": "paragraph", "text": "动名词和现在分词由于形态相同，很难区分；破解此难题的秘诀就是要牢记：动名词具有名词的性质，名词在句中可做主语、宾语、表语，同样的动名词也能做宾语、表语、和主语。" }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch2-8",
+          "title": "2.8. 动名词作主语",
+          "intro": [
+            { "type": "list", "ordered": false, "items": [
+              "working with him is fun (和他一起工作很有趣）",
+              "Seeing is believing. (眼见为实）"
+            ]},
+            { "type": "paragraph", "text": "动名词作主语时，仍有动词的意味，若该动词原为及物动词，之后仍需加宾语。宾语即使为复数，所形成的动名词短语仍视为单数，之后接单数动词。" },
+            { "type": "list", "ordered": false, "items": [
+              "Helping others gives me great pleasure. 帮助别人使我很愉快，help 是 vt. helping others 是本句的主语，整个帮助别人的动作，而不是 others。"
+            ]}
+          ]
+        },
+        {
+          "id": "ch2-9",
+          "title": "2.9. 动名词作 be 动词后的表语",
+          "intro": [
+            { "type": "list", "ordered": false, "items": [
+              "His hobby is collecting stamps.（他的爱好是收集邮票）动名词+宾语作为表语",
+              "My favorite sport is skating. (我最喜爱的运动是滑冰）喜爱是运动是已知的事情，所以用动名词 skating 作表语。",
+              "Seeing is believing. (眼见为实）眼见为实表示的是一种经历，故用动名词 believing 作表语。"
+            ]}
+          ]
+        },
+        {
+          "id": "ch2-10",
+          "title": "2.10. 动名词作宾语",
+          "intro": [],
+          "subsections": [
+            {
+              "id": "ch2-10-1",
+              "title": "2.10.1. 作完全及物动词的宾语",
+              "blocks": [
+                { "type": "list", "ordered": false, "items": [
+                  "He detests gambling. (他憎恨赌博）",
+                  "Some people do not enjoy smoking. (有些人不喜欢吸烟）"
+                ]},
+                { "type": "paragraph", "text": "下列及物动词习惯上均用动名词作宾语：" },
+                { "type": "code", "language": "text", "code": "喜欢考虑逃避免（enjoy, consider, escape, avoid）\n承认放弃太冒险（admit, give up, risk）\n介意想象莫推延（mind, imagine, fancy, delay, put off）\n欣赏完成是期望（appreciate, finish, look forward to）\n建议允许勤练习（suggest, allow, practice）\n不禁原谅要坚持（can't help, excuse, insist on）\n继续注意使成功（keep on, pay attention to, succeed in）" },
+                { "type": "paragraph", "text": "He considered studying abroad." },
+                { "type": "paragraph", "text": "I once imagined going on a date with him." },
+                { "type": "paragraph", "text": "I haven't finished writing this letter." },
+                { "type": "paragraph", "text": "I avoid seeing him again." },
+                { "type": "paragraph", "text": "Let's practice speaking English." },
+                { "type": "paragraph", "text": "Please pay attention to taking care of your baby." },
+                { "type": "note", "variant": "info", "text": "部分动词可以跟动名词或不定式，但意思不相同；而 continue、begin、start、like/dislike、love、hate 这 5 个动词既可以跟动名词也可以跟不定式，且意思相同。" }
+              ]
+            },
+            {
+              "id": "ch2-10-2",
+              "title": "2.10.2. 作介词的宾语",
+              "blocks": [
+                { "type": "list", "ordered": false, "items": [
+                  "She is fond of taking a walk.（她喜欢散步）",
+                  "His illness prevented us from starting our business. (他的病使得我们无法开展我们的事业）",
+                  "The book is worth reading. （这本书值得看）"
+                ]},
+                { "type": "paragraph", "text": "比较 worth、worthy、worthwhile 的用法：" },
+                { "type": "paragraph", "text": "worth 是介词，置于 be 动词之后，可接动名词或名词作宾语。" },
+                { "type": "list", "ordered": false, "items": [
+                  "the issue is worth paying attention to （这个议题值得注意）",
+                  "the car is worth a fortune. (这部车值不少钱）"
+                ]},
+                { "type": "paragraph", "text": "worthy。形容词，与 of 连用。“be worthy of + 名词”，译为值得……" },
+                { "type": "paragraph", "text": "worthwhile。形容词，译为值得的，置于名词前。" },
+                { "type": "list", "ordered": false, "items": [
+                  "That's a worthwhile book to read.（那是一本值得看的书）"
+                ]}
+              ]
+            },
+            {
+              "id": "ch2-10-3",
+              "title": "2.10.3. 所有格与动名词的关系",
+              "blocks": [
+                { "type": "paragraph", "text": "我们提过 that 引导的名词性从句可作主语。" },
+                { "type": "list", "ordered": false, "items": [
+                  "That John refused to do his homework made his father angry. （约翰不肯做功课使得他父亲非常生气）"
+                ]},
+                { "type": "paragraph", "text": "此时可以将 that 从句化为动名词短语，仍作句中的主语。" },
+                { "type": "paragraph", "text": "化简方法：去掉 that，将 that 从句中的主语变成所有格，that 从句的动词变成动名词。" },
+                { "type": "paragraph", "text": "上例可成 John's refusing to do his homework made his father angry." },
+                { "type": "paragraph", "text": "动名词可与名词连用，形成复合名词：" },
+                { "type": "list", "ordered": false, "items": [
+                  "a sleeping car 卧铺车厢",
+                  "a dining room 饭厅",
+                  "a walking stick 手杖",
+                  "a sewing machine 缝纫机",
+                  "drinking water 饮用水"
+                ]}
+              ]
+            },
+            {
+              "id": "ch2-10-4",
+              "title": "2.10.4. 常用的动名词惯用语",
+              "blocks": [
+                { "type": "paragraph", "text": "It is no use V-ing ... 是无用的" },
+                { "type": "list", "ordered": false, "items": [
+                  "It is no use trying to escape (想逃走是没用的)"
+                ]},
+                { "type": "paragraph", "text": "On V-ing 一...就..." },
+                { "type": "list", "ordered": false, "items": [
+                  "On hearing it, he cried. (一听到那件事他就哭了)"
+                ]},
+                { "type": "paragraph", "text": "Cannot help/resist/stop V-ing 忍不住..." },
+                { "type": "list", "ordered": false, "items": [
+                  "He couldn't help crying when he saw her = He couldn't but cry when he saw her. (当他看见她时忍不住哭了)"
+                ]}
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch3",
+      "title": "3. 动词",
+      "intro": [
+        { "type": "paragraph", "text": "VERB. V. VT. VI. 属于一种实词，动词用来表示主语做什么（行为动词）或表示主语是什么或怎么样（状态动词）的词。" },
+        { "type": "paragraph", "text": "VT. 及物动词后面必须跟有动作的对象（即宾语），并且可以直接跟宾语，有被动形式，表示某种行为。" },
+        { "type": "paragraph", "text": "VI. 不及物动词后面不能直接加宾语，需要加上介词（to、of、at 等），就是一个动作不能施加到另一个东西上，可以独立完成的动作，没有被动形式，只是表示某种状态。" }
+      ],
+      "sections": [
+        {
+          "id": "ch3-1",
+          "title": "3.1. be 动词",
+          "intro": [
+            { "type": "paragraph", "text": "be 表示状态和存在（是），am is are。主词 + be 动词。" },
+            { "type": "paragraph", "text": "第一人称：讲话的人，I" },
+            { "type": "list", "ordered": false, "items": [
+              "I am a student.",
+              "I am a boy. (boy 可数前面要 a)",
+              "I was a student."
+            ]},
+            { "type": "paragraph", "text": "第二人称：听话的是第二人称，you" },
+            { "type": "list", "ordered": false, "items": [
+              "You are my sons.",
+              "We are happy."
+            ]},
+            { "type": "paragraph", "text": "第三人称：不在场的是第三人称。" },
+            { "type": "paragraph", "text": "三单 he, she, it 使用 is：" },
+            { "type": "list", "ordered": false, "items": [
+              "She is in US.",
+              "He is running.",
+              "He is my student."
+            ]},
+            { "type": "paragraph", "text": "三复 they。" }
+          ]
+        },
+        {
+          "id": "ch3-2",
+          "title": "3.2. be 动词否定形式",
+          "intro": [
+            { "type": "paragraph", "text": "am/is/are not... isn't, aren't" },
+            { "type": "list", "ordered": false, "items": [
+              "You are not my student.",
+              "He is not my son.",
+              "He is not a good basketball player.",
+              "He's not a good basketball player. 缩写",
+              "He isn't a good basketball player. 缩写"
+            ]}
+          ]
+        },
+        {
+          "id": "ch3-3",
+          "title": "3.3. be 动词疑问句",
+          "intro": [
+            { "type": "paragraph", "text": "Am/Is/Are + 主词 + ..." },
+            { "type": "paragraph", "text": "be 动词问句，be 动词回答。" },
+            { "type": "list", "ordered": false, "items": [
+              "That is his camera. -> Is that a his camera?",
+              "The girl is a high school student. -> Is the girl a high school student?"
+            ]},
+            { "type": "paragraph", "text": "Yes, 主词 + am/is/are. No, 主词 + am/is/are not." },
+            { "type": "list", "ordered": false, "items": [
+              "Is that man your math teacher?",
+              "Yes, he is. No, he isn't. (当双方都知道的时候，就用代词 he)",
+              "No, he is my English teacher.",
+              "Are you eating your lunch? Yes, I am. No, I am not."
+            ]},
+            { "type": "paragraph", "text": "实际上很多动词既是及物动词，又是不及物动词。区分的标准就是能不能被动。比如，被跑是不存在的，所以 run 不及物；被喜欢则是正常的，所以 like 及物。具体每个动词后究竟加什么介词就得联系动词短语了。" },
+            { "type": "list", "ordered": false, "items": [
+              "play basketball 及物动词+名词",
+              "I can see a boy. 及物动词+名词",
+              "listen to music 不及物动词+介词+名词宾语"
+            ]}
+          ]
+        },
+        {
+          "id": "ch3-4",
+          "title": "3.4. 一般动词",
+          "intro": [
+            { "type": "paragraph", "text": "主词 + 一般动词（一般现在时，动词 +s 和 +es 的情况）+..." },
+            { "type": "list", "ordered": false, "items": [
+              "I like dogs. We like dogs.",
+              "You like dogs. You like dogs.",
+              "She likes dogs. They like dogs. 三单(He, She, It)情况特殊"
+            ]},
+            { "type": "paragraph", "text": "一般 +s，读音 /s/，或者 /z/。" },
+            { "type": "list", "ordered": false, "items": [
+              "works /wɜːk/ 辅音 /s/？",
+              "plays /pleɪ/ 元音 /z/？"
+            ]},
+            { "type": "paragraph", "text": "结尾是 o, s, sh, ch 的时候 +es：" },
+            { "type": "list", "ordered": false, "items": [
+              "goes /gəuz/",
+              "washes /ɪz/",
+              "watches /ɪz/"
+            ]},
+            { "type": "paragraph", "text": "结尾辅音字母 + y 的时候，y -> ies：" },
+            { "type": "list", "ordered": false, "items": [
+              "cry -> cries",
+              "study -> studies"
+            ]},
+            { "type": "paragraph", "text": "have & has" },
+            { "type": "list", "ordered": false, "items": [
+              "They have a lot of money. 钱币的总称（美元，人民币可数），不可数",
+              "He has a lot of money."
+            ]}
+          ]
+        },
+        {
+          "id": "ch3-5",
+          "title": "3.5. 一般动词否定形式",
+          "intro": [
+            { "type": "paragraph", "text": "一般动词不能直接 +not，需要助动词 do/does，助动词是帮助一般动词用的。主词 + do/does + 动词原形 +..." },
+            { "type": "list", "ordered": false, "items": [
+              "They don't have a lot of money.",
+              "He doesn't has a lot of money.",
+              "The twin brothers go to school by bus. The twin brothers don't go to school by bus."
+            ]}
+          ]
+        },
+        {
+          "id": "ch3-6",
+          "title": "3.6. 不定式（infinitive）",
+          "intro": [
+            { "type": "paragraph", "text": "动词不定式的基本形式是“to + 动词原形”，有时可以不带 to。动词不定式（或不定式短语）没有人称和数的变化，在句子中不能做谓语（非谓语动词）。动词不定式仍可保留动词的特点，既可以有自己的宾语和状语。动词不定式同它的宾语或状语构成不定式短语。" },
+            { "type": "paragraph", "text": "动词不定式在句中可以作句子除谓语之外的任何句子成分，但它毕竟是动词，所以有动词的属性。" },
+            { "type": "paragraph", "text": "虽然动词不定式在语法上没有表面上的直接主语，但它表达的意义是动作，这一动作一定由使动者（动词的使用者）发出。这一使动者（动词的使用者）我们称之为逻辑主语。" },
+            { "type": "paragraph", "text": "to infinitive：the basic form of a verb such as be or run. In English, an infinitive is used by itself, as is swim in 'She can swim', or with to as in 'She likes to swim'.（动词的）不定式（英语中的动词不定式可单独使用，如 she can swim 中的 swim，或带 to，如 she likes to swim）" },
+            { "type": "paragraph", "text": "to read the newspaper, to speak at the meeting" },
+            { "type": "paragraph", "text": "用法：动词不定式具有名词、形容词和副词的特征，因此在句子中可以做主语、表语、宾语、宾语补足语、定语和状语：" },
+            { "type": "list", "ordered": false, "items": [
+              "She wanted to borrow my radio. 宾语",
+              "The began to read and write. 宾语",
+              "Lucy asked him to turn off the radio. 宾语补足语",
+              "Jim told Lin Feng to go home at once. 宾语补足语",
+              "The father made his son (to) study hard. 宾语补足语，可以省略 to 么？",
+              "He rushed into the house to save the girl. 目的状语",
+              "She went to see her grandma last Sunday. 目的状语",
+              "Have you got anything to say? 定语",
+              "I had something to eat this morning. 定语"
+            ]}
+          ]
+        },
+        {
+          "id": "ch3-7",
+          "title": "3.7. 不定式作主语",
+          "intro": [
+            { "type": "paragraph", "text": "To learn a foreign language is not easy. 主语" },
+            { "type": "paragraph", "text": "做主语用的动词不定式常常用 it 替代，叫做形式主语。动词不定式（或短语）放在后面。" },
+            { "type": "list", "ordered": false, "items": [
+              "It is adj. for sb. to do something.",
+              "It takes sb. some time to do something.",
+              "It is not easy to learn a foreign language.",
+              "It took us three days to do the work."
+            ]},
+            { "type": "paragraph", "text": "不定式的否定形式：动词不定式的否定形式由“not + 动词不定式”构成。如：" },
+            { "type": "list", "ordered": false, "items": [
+              "Tell him not to be late.",
+              "The policeman told the boys not to play in the street."
+            ]},
+            { "type": "paragraph", "text": "不定式省去 to 的情况：在感官动词 see、watch、hear、feel 和使役动词 make、have、let 等所接的宾语中（不定式做宾语补足语），不定式应省去 to。但是在被动语态中不能省。如：" },
+            { "type": "list", "ordered": false, "items": [
+              "Let me listen to you sing the song.",
+              "He watched his son play computer games.",
+              "I saw him run away.",
+              "变被动 —— He was seen to run away.",
+              "The boss make the workers work the whole night.",
+              "变被动 —— The workers were made to work the whole night."
+            ]},
+            { "type": "paragraph", "text": "3. 常接 to do 不定式作宾语的动词：" },
+            { "type": "paragraph", "text": "agree to do, afford to do, refuse to do, decide to do, pretend to do, happen to do, hope to do, plan to do, manage to do, want to do, prefer to do, would like to do, be supposed to do" },
+            { "type": "paragraph", "text": "4. 常接 to do 不定式做宾补的动词：" },
+            { "type": "paragraph", "text": "teach sb to do, tell sb to do, ask sb to do, wish sb to do, want sb to do, allow sb to do, warn sb to do, advise sb to do, require sb to do, encourage sb to do, expect sb to do" },
+            { "type": "paragraph", "text": "5. 动词不定式和疑问词连用：" },
+            { "type": "paragraph", "text": "动词不定式可以和疑问词 what，which, how, where, when 等连用，构成不定式短语。如：" },
+            { "type": "list", "ordered": false, "items": [
+              "The question is when to start.",
+              "I don't know where to go.",
+              "He showed me how to use a computer.",
+              "What to do is a big problem."
+            ]},
+            { "type": "paragraph", "text": "6. 形式宾语：" },
+            { "type": "paragraph", "text": "这一句型由形式主语变化而来，也是由 it 充当，常常跟在动词 find, think, make 后。to do 不定式是真正的宾语。构成句型：find / think / make it adj. for sb. to do sth." },
+            { "type": "list", "ordered": false, "items": [
+              "I find (that) it is important for us to learn English well.（宾语从句，it 做形式主语）",
+              "I find it important for us to learn English well. (去掉 is，it 做形式宾语）"
+            ]}
+          ]
+        },
+        {
+          "id": "ch3-8",
+          "title": "3.8. 系动词",
+          "intro": [
+            { "type": "paragraph", "text": "linking verb 系动词，也称联系动词，是用来辅助主语的动词，它不涉及具体的动作，只起连接的作用。它本身有词义，但不能单独用作谓语，其后必须跟表语，构成系表结构说明主语的状况、性质、特征等情况。" },
+            { "type": "paragraph", "text": "状态 be 是最常见的系动词：" },
+            { "type": "list", "ordered": false, "items": [
+              "You are beautiful.",
+              "I am 20 years old."
+            ]}
+          ],
+          "subsections": [
+            {
+              "id": "ch3-8-1",
+              "title": "3.8.1. 状态保持",
+              "blocks": [
+                { "type": "paragraph", "text": "用来表示主语继续或保持一种状况或态度：keep, stay, remain, rest, lie, stand。" },
+                { "type": "list", "ordered": false, "items": [
+                  "You should keep awake during my lecture.",
+                  "No one stay alive forever.",
+                  "He remained single after divorce."
+                ]}
+              ]
+            },
+            {
+              "id": "ch3-8-2",
+              "title": "3.8.2. 状态改变",
+              "blocks": [
+                { "type": "paragraph", "text": "这些系动词表示主语变成什么样：get（变成）、fall、run、become。" },
+                { "type": "list", "ordered": false, "items": [
+                  "Years later, I become you. 多年以后，我便成了你。",
+                  "I became nervous in the exam. 在考试里我变得紧张。"
+                ]},
+                { "type": "paragraph", "text": "come，go 是反义词，come 变好 go 变坏。" },
+                { "type": "list", "ordered": false, "items": [
+                  "Milk goes bad very soon in summer. 在夏天牛奶一会儿就变质。",
+                  "Things will come right in the end. 事情终究能变好。"
+                ]},
+                { "type": "paragraph", "text": "turn，grow 是相对的，一个是快速变，一个是慢慢变。" },
+                { "type": "list", "ordered": false, "items": [
+                  "The weather turned cool after the rain. 雨后天气一下子变冷了。",
+                  "I grew to like her. 我慢慢喜欢上她了。"
+                ]},
+                { "type": "note", "variant": "info", "text": "I'm going to Paris next week, and I want to visit this museum. It's very famous! 打算做某事。" }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch3-9",
+          "title": "3.9. 感官系动词",
+          "intro": [
+            { "type": "paragraph", "text": "眼耳鼻舌身意，感觉色声香味触法：look（看上去）、sound（听起来）、smell（闻起来）、taste（尝起来）、feel（感觉，摸起来）、seem（似乎是）、appear（出现、显现）等。" },
+            { "type": "list", "ordered": false, "items": [
+              "I felt nervous when I saw her. 当我看到她时，我觉得紧张。",
+              "The food smells good, we are ready to eat. 食物闻起来不错，我们准备开吃了。",
+              "You look so beautiful. 你看起来如此美丽。",
+              "The moon looks like a moon-cake. 月亮看起来像月饼。"
+            ]}
+          ]
+        },
+        {
+          "id": "ch3-10",
+          "title": "3.10. 情态动词",
+          "intro": [
+            { "type": "list", "ordered": false, "items": [
+              "情态动词无人称和数的变化。",
+              "不能单独使用，必须与其后的动词原形构成谓语。否定式构成是在情态动词后面加 \"not\"。",
+              "情态动词属不及物动词，故没有被动语态。"
+            ]}
+          ],
+          "subsections": [
+            {
+              "id": "ch3-10-1",
+              "title": "3.10.1. can, could",
+              "blocks": [
+                { "type": "quote", "text": "表示能力（体力、知识、技能）。" },
+                { "type": "list", "ordered": false, "items": [
+                  "Can you lift this heavy box?（体力）",
+                  "Mary can speak three languages.（知识）",
+                  "Can you skate?（技能）"
+                ]},
+                { "type": "paragraph", "text": "此时可用 be able to 代替。Can 只有一般现在时和一般过去式；而 be able to 则有更多的时态。" },
+                { "type": "list", "ordered": false, "items": [
+                  "I'll not be able to come this afternoon."
+                ]},
+                { "type": "paragraph", "text": "当表示“经过努力才得以做成功某事”时应用 be able to，不能用 Can。如：" },
+                { "type": "list", "ordered": false, "items": [
+                  "He was able to go to the party yesterday evening in spite of the heavy rain."
+                ]},
+                { "type": "quote", "text": "表示请求和允许。" },
+                { "type": "list", "ordered": false, "items": [
+                  "Can I go now? Yes, you can. / No, you can't."
+                ]},
+                { "type": "paragraph", "text": "此时可与 may 互换。在疑问句中还可用 could, might 代替，不是过去式，只是语气更委婉，不能用于肯定句和答语中。" },
+                { "type": "list", "ordered": false, "items": [
+                  "Could I come to see you tomorrow? Yes, you can. (No, I'm afraid not.)"
+                ]},
+                { "type": "quote", "text": "表示客观可能性（客观原因形成的能力）。" },
+                { "type": "list", "ordered": false, "items": [
+                  "They've changed the timetable, so we can go by bus instead.",
+                  "This hall can hold 500 people at least."
+                ]},
+                { "type": "quote", "text": "表示推测（惊讶、怀疑、不相信的态度），用于疑问句、否定句和感叹句中。" },
+                { "type": "list", "ordered": false, "items": [
+                  "Can this be true?",
+                  "This can't be done by him.",
+                  "How can this be true?"
+                ]}
+              ]
+            },
+            {
+              "id": "ch3-10-2",
+              "title": "3.10.2. may, might",
+              "blocks": [
+                { "type": "paragraph", "text": "表示请求和允许。might 比 may 语气更委婉，而不是过去式。否定回答时可用 can't 或 mustn't，表示“不可以，禁止”。" },
+                { "type": "list", "ordered": false, "items": [
+                  "Might/May I smoke in this room? No, you mustn't.",
+                  "May/Might I take this book out of the room? Yes, you can. (No, you can't / mustn't.)"
+                ]},
+                { "type": "paragraph", "text": "用 May I...? 征询对方许可时比较正式和客气。用 Can I...? 在口语中更常见。" },
+                { "type": "paragraph", "text": "用于祈使句，表示祝愿。" },
+                { "type": "list", "ordered": false, "items": [
+                  "May you succeed!"
+                ]},
+                { "type": "paragraph", "text": "表示推测、可能性（不用于疑问句）。might 不是过去式，它所表示的可能性比 may 小。" },
+                { "type": "list", "ordered": false, "items": [
+                  "He may/might be very busy now.",
+                  "Your mother may/might not know the truth."
+                ]}
+              ]
+            },
+            {
+              "id": "ch3-10-3",
+              "title": "3.10.3. must, have to",
+              "blocks": [
+                { "type": "quote", "text": "表示必须、必要。" },
+                { "type": "list", "ordered": false, "items": [
+                  "You must come in time."
+                ]},
+                { "type": "paragraph", "text": "在回答引出的问句时，如果是否定的，不能用 mustn't（禁止，不准），而用 needn't, don't have to（不必）。" },
+                { "type": "code", "language": "text", "code": "—— Must we hand in our exercise books today?\n—— Yes, you must.\n—— No, you don't have to / you needn't." },
+                { "type": "paragraph", "text": "2) must 是说话人的主观看法，而 have to 则强调客观需要。Must 只有一现在时，have to 有更多的时态形式。" },
+                { "type": "list", "ordered": true, "items": [
+                  "The play isn't interesting, I really must go now.",
+                  "I had to work when I was your age."
+                ]},
+                { "type": "paragraph", "text": "3) 表示推测、可能性（只用于肯定的陈述句）" },
+                { "type": "list", "ordered": true, "items": [
+                  "You're Tom's good friend, so you must know what he likes best.",
+                  "Your mother must be waiting for you now."
+                ]}
+              ]
+            },
+            {
+              "id": "ch3-10-4",
+              "title": "3.10.4. dare, need",
+              "blocks": [
+                { "type": "paragraph", "text": "1) dare 作情态动词用时，常用于疑问句、否定句和条件从句中，过去式形式为 dared。" },
+                { "type": "list", "ordered": true, "items": [
+                  "How dare you say I'm unfair?",
+                  "He daren't speak English before such a crowd, dare he?",
+                  "If we dared not go there that day, we couldn't get the beautiful flowers."
+                ]},
+                { "type": "note", "variant": "info", "text": "need 作情态动词用时，常用于疑问句、否定句。在肯定句中一般用 must, have to, ought to, should 代替。\nYou needn't come so early.\nNeed I finish the work today? Yes, you must. / No, you needn't." },
+                { "type": "paragraph", "text": "3) dare 和 need 作实义动词用时，有人称、时态和数的变化。在肯定句中，dare 后面常接带 to 的不定式。在疑问句和否定句中，dare 后面可接带 to 或不带 to 的不定式。而 need 后面只能接带 to 的不定式。" },
+                { "type": "list", "ordered": true, "items": [
+                  "I dare to swim across this river.",
+                  "He doesn't dare (to) answer.",
+                  "He needs to finish his homework today."
+                ]}
+              ]
+            },
+            {
+              "id": "ch3-10-5",
+              "title": "3.10.5. shall, should",
+              "blocks": [
+                { "type": "paragraph", "text": "shall 用于第一人称，征求对方的意见。" },
+                { "type": "list", "ordered": false, "items": [
+                  "What shall we do this evening?"
+                ]},
+                { "type": "paragraph", "text": "shall 用于第二、三人称，表示说话人给对方的命令、警告、允诺或威胁。" },
+                { "type": "list", "ordered": false, "items": [
+                  "You shall fail if you don't work hard. (警告)",
+                  "He shall have the book when I finish it. (允诺)",
+                  "He shall be punished. (威胁)"
+                ]}
+              ]
+            },
+            {
+              "id": "ch3-10-6",
+              "title": "3.10.6. will, would",
+              "blocks": [
+                { "type": "paragraph", "text": "表示请求、建议等，would 更委婉。" },
+                { "type": "list", "ordered": false, "items": [
+                  "Will/Would you pass me the ball, please?"
+                ]},
+                { "type": "paragraph", "text": "表示意志、愿望和决心。" },
+                { "type": "list", "ordered": false, "items": [
+                  "I will never do that again.",
+                  "They asked him if he would go abroad."
+                ]},
+                { "type": "paragraph", "text": "would 表示过去反复发生的动作或某种倾向。would 表示过去习惯时比 used to 正式，且没有“现已无此习惯”的含义。" },
+                { "type": "list", "ordered": false, "items": [
+                  "During the vacation, he would visit me every other day.",
+                  "The wound would not heal."
+                ]},
+                { "type": "paragraph", "text": "表示估计和猜想。" },
+                { "type": "list", "ordered": false, "items": [
+                  "It would be about ten o'clock when she left home."
+                ]}
+              ]
+            },
+            {
+              "id": "ch3-10-7",
+              "title": "3.10.7. should, ought to",
+              "blocks": [
+                { "type": "paragraph", "text": "1) should, ought to 表示“应该”，ought to 表示义务或责任，比 should 语气重。" },
+                { "type": "list", "ordered": true, "items": [
+                  "I should help her because she is in trouble.",
+                  "You ought to take care of the baby."
+                ]},
+                { "type": "paragraph", "text": "4) 表示劝告、建议和命令。should, ought to 可通用，但在疑问句中常用 should。" },
+                { "type": "list", "ordered": true, "items": [
+                  "You should/ought to go to class right away.",
+                  "Should I open the window?"
+                ]},
+                { "type": "paragraph", "text": "7) 表示推测：should, ought to（客观推测），must（主观推测）。" },
+                { "type": "list", "ordered": true, "items": [
+                  "He must be home by now. (断定他已到家)",
+                  "He ought to/should be home by now. (不太肯定)",
+                  "This is where the oil must be. (直爽)",
+                  "This is where the oil ought to/should be. (含蓄)"
+                ]}
+              ]
+            },
+            {
+              "id": "ch3-10-8",
+              "title": "3.10.8. 情态动词 + 不定式完成式（have done）",
+              "blocks": [
+                { "type": "paragraph", "text": "can / could + have done 在肯定句中表示“本来可以做而实际上能做某事”，是虚拟语气；在疑问句或否定句中表示对过去行为的怀疑或不肯定，表示推测。" },
+                { "type": "list", "ordered": false, "items": [
+                  "You could have done better, but you didn't try your best. （虚拟语气）",
+                  "He can't have been to that town.（推测）",
+                  "Can he have got the book?（推测）"
+                ]},
+                { "type": "paragraph", "text": "may / might + 不定式完成式（have done）表示对过去行为的推测。不能用于疑问句中，没有虚拟语气的用法。Might 所表示的可能性比 may 小。" },
+                { "type": "list", "ordered": false, "items": [
+                  "He may not have finished the work.",
+                  "If we had taken the other road, we might have arrived earlier."
+                ]},
+                { "type": "paragraph", "text": "must + 不定式完成式（have done）用于肯定句中，表示对过去行为的推测。意为“一定、想必”。其疑问、否定形式用 can，can't 代替。" },
+                { "type": "list", "ordered": false, "items": [
+                  "You must have seen the film Titanic.",
+                  "He must have been to Shanghai."
+                ]},
+                { "type": "paragraph", "text": "should + 不定式完成式（have done）用于肯定句中，表示对过去行为的推测。" },
+                { "type": "list", "ordered": false, "items": [
+                  "He should have finished the work by now."
+                ]},
+                { "type": "paragraph", "text": "表示“本应该做而实际上没有做某事”，其否定式表示某种行为本不该发生却发生了。可以与 ought to + 不定式完成式（have done）互换。" },
+                { "type": "list", "ordered": false, "items": [
+                  "You ought to/should have helped him. (but you didn't.)",
+                  "She shouldn't have taken away my measuring tape, for I wanted to use it."
+                ]},
+                { "type": "paragraph", "text": "needn't + 不定式完成式（have done）表示“本来不必做而实际上做了某事”。" },
+                { "type": "list", "ordered": false, "items": [
+                  "You needn't have watered the flowers, for it is going to rain."
+                ]},
+                { "type": "paragraph", "text": "will + 不定式完成式（have done）主要用于第二、三人称，表示对已完成的动作或事态的推测。" },
+                { "type": "list", "ordered": false, "items": [
+                  "He will have arrived by now."
+                ]},
+                { "type": "list", "ordered": false, "items": [
+                  "He could be here soon. 他很快就来。",
+                  "We can't carry the heavy box. 我们搬不动那箱子。",
+                  "I'm sorry I can't help you. 对不起，我帮不上你。"
+                ]},
+                { "type": "paragraph", "text": "基本助动词与情态助动词最主要的区别之一是：基本助动词本身没有词义，而情态助动词则有自己的词义，能表示说话人对有关动作或状态的看法，或表示主观设想：" },
+                { "type": "list", "ordered": false, "items": [
+                  "What have you been doing since? （构成完成进行体，本身无词义）你一直在干什么？",
+                  "I am afraid I must be going. （一定要）恐怕我必须走了",
+                  "You may have read some account of the matter. （或许已经）你可能已经读过关于这件事的一些报道"
+                ]},
+                { "type": "paragraph", "text": "除此之外，情态助动词还有如下词法和句法特征：" },
+                { "type": "paragraph", "text": "除 ought 和 used 和 have to 以外，其他情态动词后面只能接不带 to 的不定式。如果我们把 ought to 和 used to 看做是固定词组的话，那么，所有情态动词无一例外地只能接不带 to 的不定式：" },
+                { "type": "list", "ordered": false, "items": [
+                  "We used to grow beautiful roses. 我们过去常常种这种漂亮的玫瑰花",
+                  "I asked if he would come and repair my television set. 我问他是否来修我的电视机"
+                ]},
+                { "type": "paragraph", "text": "情态助动词在限定动词词组总是位居第一：" },
+                { "type": "list", "ordered": false, "items": [
+                  "They need not have been punished so severely. 他们不需要如此严厉的惩罚"
+                ]},
+                { "type": "paragraph", "text": "情态助动词用于第三人称单数现在式的时候，没有词形变化，即其词尾无 -s 形式：" },
+                { "type": "list", "ordered": false, "items": [
+                  "She dare not say what she thinks. 她不敢说她是怎么想的"
+                ]},
+                { "type": "paragraph", "text": "情态动词没有非限定形式，即没有不定式和分词形式，也没有相应的动名词：" },
+                { "type": "list", "ordered": false, "items": [
+                  "Still, she needn't have run away. 不过，她不必跑了"
+                ]},
+                { "type": "paragraph", "text": "情态助动词的“时”的形式并不是时间区别的主要标志。在不少场合，情态助动词的现在时和过去时形式都可以表示现在、过去或将来时间：" },
+                { "type": "list", "ordered": false, "items": [
+                  "Would you mind very much if I ask you to do something? 你会很介意如果我让你做什么？",
+                  "She told him he ought not to have done it. 她告诉他他不应该这样做"
+                ]},
+                { "type": "paragraph", "text": "情态助动词之间是相互排斥的，即在一个限定动词词组中只能出现一个情态助动词，但有时却可以与 have 和 be 基本助动词连用：" },
+                { "type": "list", "ordered": false, "items": [
+                  "You should have washed the wound. 你应该已经洗好了伤口",
+                  "Well, you shouldn't be reading a novel. 嗯，你不应该读一本小说"
+                ]},
+                { "type": "note", "variant": "warn", "text": "情态动词 must 一般疑问句否定回答要用 needn't 而不是 mustn't。\nMust I read books every day? 我必须每天读书\nNo, you needn't. 不，你不必" },
+                { "type": "paragraph", "text": "谓语动词 vs 非谓语动词？" }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch3-11",
+          "title": "3.11. 助动词 aux",
+          "intro": [
+            { "type": "paragraph", "text": "又叫辅助动词，它不能单独作谓语，需要跟主要动词一起构成谓语。" },
+            { "type": "paragraph", "text": "英语中的谓语动词本身往往是不能够独立完成刚才说的那些本领的，以及另外一些其他的本领，而且谓语动词独立也无法完成比如表示否定、可能性、必须性等意思。想让谓语动词充分发挥，必须使用一类经常和动词一起使用的词，帮助完成任务，它就是\"助动词\"。" },
+            { "type": "paragraph", "text": "be, do, have, shall, will。" },
+            { "type": "paragraph", "text": "https://www.hjenglish.com/new/p1320640/" },
+            { "type": "paragraph", "text": "助动词 + 过去分词 = 各种完成时态" },
+            { "type": "paragraph", "text": "助动词除了做助动词（没有实义，只是帮助谓语动词而已），还可以做实义动词，甚至其他词性。所以千万不要把助动词和它其他的身份弄混淆。" },
+            { "type": "paragraph", "text": "参考 have 的详解。" }
+          ]
+        },
+        {
+          "id": "ch3-12",
+          "title": "3.12. 及物动词",
+          "intro": [
+            { "type": "paragraph", "text": "verb transitive. 后面可以直接跟名词宾语，无需介词。" }
+          ]
+        },
+        {
+          "id": "ch3-13",
+          "title": "3.13. 不及物动词",
+          "intro": [
+            { "type": "paragraph", "text": "verb intransitive. 说明此动词后面不能直接跟宾语，必须在动词和名词间加介词。" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch4",
+      "title": "4. 形容词",
+      "intro": [
+        { "type": "paragraph", "text": "adjective adj. a. 很多语言中均有的主要词类中的一种。主要用来修饰名词的词，表示事物的特征。" },
+        { "type": "paragraph", "text": "形容词用来修饰名词或代词，表示人或事物的性质、状态，和特征的程度好坏与否。" },
+        { "type": "paragraph", "text": "形容词作定语修饰名词时，要放在名词的前边。但是如果形容词修饰以 -thing 为字尾的词语时，要放在这些词之后，例如：something nice。" },
+        { "type": "paragraph", "text": "以 -ly 结尾的形容词：" },
+        { "type": "list", "ordered": true, "items": [
+          "friendly，deadly，lovely，lonely，likely，lively，ugly，brotherly，仍为形容词。",
+          "有些以 -ly 结尾既为形容词，也为副词：daily，weekly，monthly，yearly，early"
+        ]},
+        { "type": "list", "ordered": false, "items": [
+          "The Times is a daily paper.",
+          "The Times is published daily."
+        ]},
+        { "type": "paragraph", "text": "用形容词表示类别和整体：某些形容词加上定冠词可以泛指一类人，与谓语动词的复数连接。如：the dead，the living，the rich，the poor，the blind，the hungry。" },
+        { "type": "paragraph", "text": "多个形容词修饰名词的顺序：限定词 -- 数词 -- 描绘词 --（大小，长短，形状，新旧，颜色）-- 出处 -- 材料性质，类别 -- 名词。" },
+        { "type": "list", "ordered": false, "items": [
+          "a small round table；",
+          "a tall gray building；",
+          "a dirty old brown shirt；",
+          "a famous German medical school;"
+        ]}
+      ],
+      "sections": []
+    },
+    {
+      "id": "ch5",
+      "title": "5. 数词",
+      "intro": [
+        { "type": "paragraph", "text": "属于一种实词。numeral num. three 三。num = 数词，numeral 的缩写。" },
+        { "type": "paragraph", "text": "数词：表示数目多少的数词叫基数词；表示顺序的数词叫序数词。" },
+        { "type": "paragraph", "text": "数词的用法：" },
+        { "type": "paragraph", "text": "1）倍数表示法" },
+        { "type": "list", "ordered": true, "items": [
+          "主语 + 谓语 + 倍数（或分数）+ as + adj. + as：I have three times as many as you. 我有你三倍那么多。",
+          "主语 + 谓语 + 倍数（分数）+ the size (amount, length…) of…：The earth is 49 times the size of the moon. 地球是月球的 49 倍。",
+          "主语 + 谓语 + 倍数（分数）+ 形容词（副词）比较级 + than…：The grain output is 8 percent higher this year than that of last year.",
+          "还可以用 by + 倍数，表示增加多少倍：The production of grain has been increased by four times this year."
+        ]},
+        { "type": "paragraph", "text": "2）分数表示法：构成：基数词代表分子，序数词代表分母。分子大于 1 时，分子的序数词用单数，分母序数词用复数：1/3 one-third；3/37 three and three-sevenths" }
+      ],
+      "sections": []
+    },
+    {
+      "id": "ch6",
+      "title": "6. 代词",
+      "intro": [
+        { "type": "paragraph", "text": "代词 pronoun 简称 pron. 是代替名词的一种词类。大多数代词具有名词和形容词的功能。" },
+        { "type": "paragraph", "text": "英语中的代词，按其意义、特征及在句中的作用分为：人称代词、物主代词、指示代词、反身代词、相互代词、疑问代词、关系代词、连接代词和不定代词九种。" }
+      ],
+      "sections": [
+        {
+          "id": "ch6-1",
+          "title": "6.1. 人称代词",
+          "intro": [
+            { "type": "paragraph", "text": "人称代词的用法：I saw her with them, at least, I thought it was her. 我看到她和他们在一起，至少我认为是她。（her 做宾语，them 做介词宾语，her 作主语补语，感觉 with them 是主补）" },
+            { "type": "list", "ordered": true, "items": [
+              "a. Who broke the vase？——谁打碎了花瓶？",
+              "b. Me.——我。（me 作主语补语 = It's me.）"
+            ]},
+            { "type": "paragraph", "text": "并列人称代词的排列顺序：" },
+            { "type": "list", "ordered": true, "items": [
+              "单数人称代词并列作主语时，其顺序为：第二人称 -> 第三人称 -> 第一人称：you -> he/she; it -> I",
+              "复数人称代词作主语时，其顺序为：第一人称 -> 第二人称 -> 第三人称：we -> you -> they"
+            ]}
+          ]
+        },
+        {
+          "id": "ch6-2",
+          "title": "6.2. 物主代词",
+          "intro": [
+            { "type": "paragraph", "text": "det. is an abbreviation for \"determiner\". In grammar, a determiner is a word that comes before a noun and is used to introduce or specify the noun. It helps to indicate things like definiteness (e.g., \"the\" is a definite determiner), indefiniteness (e.g., \"a\", \"an\"), quantity (e.g., \"some\", \"many\", \"few\"), or possession (e.g., \"my\", \"your\", \"his\", \"her\", \"its\", \"our\", \"their\")." },
+            { "type": "list", "ordered": false, "items": [
+              "In the phrase \"the book\", \"the\" is a determiner that specifies a particular book.",
+              "In \"a dog\", \"a\" is an indefinite determiner introducing a non-specific dog.",
+              "In \"my car\", \"my\" is a possessive determiner showing that the car belongs to the speaker."
+            ]},
+            { "type": "paragraph", "text": "my, your, his, her, its, our, their" }
+          ]
+        },
+        {
+          "id": "ch6-3",
+          "title": "6.3. 反身代词",
+          "intro": [
+            { "type": "code", "language": "text", "code": "i --> Myself\nyou --> yourself\nyou --> yourselves\nshe --> herself\nhe --> himself\nwe --> ourselves\nthey --> themselves\nit --> itself\none --> oneself" }
+          ]
+        },
+        {
+          "id": "ch6-4",
+          "title": "6.4. 指示代词",
+          "intro": [
+            { "type": "paragraph", "text": "指示代词分单数（this / that）和复数（these / those）两种形式，既可作限定词又可做代词。" }
+          ]
+        },
+        {
+          "id": "ch6-5",
+          "title": "6.5. that",
+          "intro": [
+            { "type": "list", "ordered": false, "items": [
+              "The car that she bought is black.",
+              "The car she bought is black.",
+              "The bird that lives in my garden is beautiful."
+            ]}
+          ]
+        },
+        {
+          "id": "ch6-6",
+          "title": "6.6. 疑问代词",
+          "intro": [
+            { "type": "paragraph", "text": "指人：whom；指物：whose、what；既可指人又可指物：which。" }
+          ]
+        },
+        {
+          "id": "ch6-7",
+          "title": "6.7. who",
+          "intro": [
+            { "type": "paragraph", "text": "The man who teaches Chinese is from Beijing." },
+            { "type": "paragraph", "text": "代词比较辨异 one，that 和 it：one 表示泛指，that 和 it 表示特指。that 与所指名词为同类，但不是同一个，而 it 与所指名词为同一个。" },
+            { "type": "list", "ordered": false, "items": [
+              "I can't find my hat. I think I must buy one. (不定)",
+              "The hat you bought is bigger than that I bought. (同类但不同个)",
+              "I can't find my hat. I don't know where I put it. (同一物)"
+            ]}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch7",
+      "title": "7. 冠词",
+      "intro": [
+        { "type": "paragraph", "text": "冠词 art.（英语：article）是印欧语系和亚非语系语言中，位于名词或名词词组前后，主要限定句中名词的词，是虚词。" },
+        { "type": "paragraph", "text": "不定冠词 a/an：a/an + 名词，是指某一类特定事物中的一个，但具体是哪一个并不重要，常位于名词或名词修饰语前。注意：位于下列形容词 such，what，many，half 之后。" },
+        { "type": "list", "ordered": false, "items": [
+          "There is a cat in the tree.",
+          "such a cat (这样的一只猫); many a man."
+        ]},
+        { "type": "paragraph", "text": "many a + 单数可数名词，形式上为单数，但意义上为复数（意为“许多”）。类似 lots of。若用作主语，其谓语通常与形式一致而不与意义一致（即谓语用单数）。" },
+        { "type": "paragraph", "text": "Many a successful store has paid its rent cheerfully. 许多成功的店铺都非常乐意地付了房租" },
+        { "type": "paragraph", "text": "as/so/too/how/however/enough + 形容词 + a/an + 名词" },
+        { "type": "paragraph", "text": "It is as pleasant a day as I have ever spent." }
+      ],
+      "sections": [
+        {
+          "id": "ch7-1",
+          "title": "7.1. 定冠词 the",
+          "intro": [
+            { "type": "paragraph", "text": "用来限定后面的名词是讲话者明确指出的某个特定事物，定冠词 the 与指示代词 this，that 同源，有“那（这）个”的意思。" },
+            { "type": "paragraph", "text": "the + 名词单数，指一类人或者事物：The horse is a useful animal. the dollar; the fox;" },
+            { "type": "paragraph", "text": "Take the medicine. 把药吃了。特指双方都明白的人或物。" },
+            { "type": "paragraph", "text": "He bought a house. I've been to the house. 上文提到过的人或事。" },
+            { "type": "paragraph", "text": "the + 名词复数，指整个群体：They are the teachers of this school. 指全体教师。They are teachers of this school. 指部分教师。" },
+            { "type": "paragraph", "text": "the + 专有名词：由普通名词构成的国家名称、机关团体、阶级、等专有名词，指世上独一物二的事物。" },
+            { "type": "list", "ordered": false, "items": [
+              "the People's Republic of China 中华人民共和国",
+              "the sun、the sky、the moon、the earth"
+            ]},
+            { "type": "paragraph", "text": "the + 与形容词或分词连用，表示一类人或事物：the rich 富人；the living 生者。" },
+            { "type": "paragraph", "text": "用在表示乐器的名词之前：She plays the piano. 她会弹钢琴。" },
+            { "type": "paragraph", "text": "用在姓氏的复数名词之前，表示一家人：the Greens 格林一家人（或格林夫妇）。" },
+            { "type": "paragraph", "text": "用在惯用语中：in the day，in the morning (afternoon, evening)，the day after tomorrow，the day before yesterday，the next morning，in the sky (water, field, country)，in the dark，in the rain，in the distance，in the middle (of)，in the end，on the whole，by the way，go to the theatre。" },
+            { "type": "paragraph", "text": "零冠词：" },
+            { "type": "paragraph", "text": "冠词 + 形容词 + 名词结构。两个形容词都有冠词，表示两个不同东西。He raises a black and a white cat. 他养了一只黑猫和一只白猫。如后一个形容词无冠词，则指一物。He raises a black and white cat. 他养了一只花猫。" },
+            { "type": "paragraph", "text": "冠词位置：quite，rather 与单数名词连用，冠词放在其后。但当 rather，quite 前仍有形容词，不定冠词放其前后均可。如：quite a lot。" },
+            { "type": "paragraph", "text": "在 as，though 引导的让步状语从句中，当标语为形容词修饰的名词时，不定冠词放形容词后：Brave a man though he is, he trembles at the sight of snakes." },
+            { "type": "paragraph", "text": "当名词被比较级形容词修饰时，不定冠词通常置于比较级形容词之后。" },
+            { "type": "paragraph", "text": "定冠词通常位于名词或名词修饰语前，但放在 all，both，double，half，twice，three times 等词之后，名词之前。All the students in the class went out. 班里的所有学生都出去了。" },
+            { "type": "paragraph", "text": "Where do you live？I live on the second floor. 你住在哪？我住在二层。用在序数词和形容词最高级，及形容词 only，very，same 等前面。" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch8",
+      "title": "8. 副词",
+      "intro": [
+        { "type": "paragraph", "text": "副词（adverb，简写为 adv）是一种用来修饰动词、形容词、全句的词，说明时间、地点、程度、方式等概念的词。副词基本放在动词的后面，形容词的前面。副词一般在句子中做状语。是一种半虚半实的词。" },
+        { "type": "paragraph", "text": "可分为：地点副词、方式副词、程度副词、疑问副词和连接副词。的排列顺序：时间、地点副词，小单位的在前，大单位在后。" },
+        { "type": "paragraph", "text": "程度副词：much, little, very, rather, so, too, quite, perfectly, enough, extremely, entirely, almost, slightly, fairly, a lot/bit/little, far, by far, even, nearly, pretty, as, this/that(=so), fully, absolutely, barely, completely, hardly, just, only, really, scarcely." },
+        { "type": "list", "ordered": false, "items": [
+          "I don't know him well enough. 副词 enough 要放在形容词的后面（特例）",
+          "There is enough food for everyone to eat. There is food enough for everyone to eat. 形容词 enough 放在名词前后都可。",
+          "He speaks English very well. 他英语说得非常好。是程度副词，用来修饰“well”。“very well”是修饰“speak”的程度状语。"
+        ]},
+        { "type": "paragraph", "text": "兼有两种形式的副词：" },
+        { "type": "paragraph", "text": "close 与 closely：He is sitting close to me. Watch him closely. close 意思是“近”；closely 意思是“仔细地”" },
+        { "type": "paragraph", "text": "late 与 lately：You have come too late. What have you been doing lately? late 意思是“晚”；lately 意思是“最近”" }
+      ],
+      "sections": [
+        {
+          "id": "ch8-1",
+          "title": "8.1. 频率副词",
+          "intro": [
+            { "type": "paragraph", "text": "频率副词一般用在一般现在时。Adverbs of Frequency. An adverb of frequency tells us how often something takes place." },
+            { "type": "list", "ordered": false, "items": [
+              "100% always, I always wake up at 6 o'clock.",
+              "90% usually, I usually come home after work.",
+              "80% normally / generally, I normally swim after school.",
+              "70% often / frequently, I often spend Christmas with friends.",
+              "50% sometimes, I sometimes play tennis on the weekend.",
+              "30% occasionally, I occasionally eat Vietnamese food.",
+              "10% seldom, I seldom go to the library.",
+              "5% rarely, I rarely listen to the radio.",
+              "0% never, I never listen to rock music."
+            ]}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch9",
+      "title": "9. 介词",
+      "intro": [],
+      "sections": [
+        {
+          "id": "ch9-1",
+          "title": "9.1. 介词概说",
+          "intro": [
+            { "type": "paragraph", "text": "介词（prepositions，简称 prep），又称前置词，是英语中最活跃的词类之一，连接主语和表语。特别是一些常用介词的搭配力特别强，可以用来表示各种不同的意思。英语里大部分习语都是由介词和其他词构成的。介词在句中一般不重读。在定语从句“介词 + who/which”的结构中，不能用 that 代替 who/which。" },
+            { "type": "list", "ordered": false, "items": [
+              "She is a good student from who we should learn.",
+              "介词是一种用来表示词与词、词与句之间的关系的虚词，在句中不能单独作句子成分。",
+              "介词后面一般有名词代词或相当于名词的其他词类，短语或从句作它的宾语。",
+              "介词和它的宾语构成介词词组，在句中作状语，表语，补语或介词宾语。",
+              "介词可以分为时间介词、地点介词、方式介词、原因介词和其他介词。",
+              "简单介词，如 on, at, in, above, by, with, under, for, after, around 等。",
+              "合成类介词：inside, outside, onto, out of, within 等。",
+              "短语介词，指多个单词构成的介词，如 in front of, out of, instead of, far from, apart from, according to, ahead of, along with。"
+            ]},
+            { "type": "list", "ordered": false, "items": [
+              "Let's go for a walk along the river. 名词",
+              "He's standing in front of me. 代词"
+            ]}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch10",
+      "title": "10. 连词",
+      "intro": [],
+      "sections": [
+        {
+          "id": "ch10-1",
+          "title": "10.1. 连词概说",
+          "intro": [
+            { "type": "paragraph", "text": "conjunction conj. 连词，连接词，虚词，它不能独立担任句子成分而只起连接词与词，短语与短语以及句与句的作用。" },
+            { "type": "paragraph", "text": "and, but, or, nor, so, therefore, yet, however, for, hence, as well as, both…and, not only…but also, either…or, neither…nor, then。" },
+            { "type": "paragraph", "text": "not…but… 意思为“不是……而是……” not 和 but 后面的用词要遵循一致原则。" },
+            { "type": "list", "ordered": false, "items": [
+              "They were not the bones of an animal, but (the bones) of a human being."
+            ]},
+            { "type": "paragraph", "text": "比较 so 和 such：其规律由 so 与 such 的不同词性决定。such 是形容词，修饰名词或名词词组，so 是副词，只能修饰形容词或副词。so 还可与表示数量的形容词 many，few，much，little 连用，形成固定搭配。" },
+            { "type": "code", "language": "text", "code": "so + adj.         such + a(n) + n.\nso + adj. + a(n) + n.   such + n. (pl.)\nso + adj. + n. (pl.)    such + n. (pl.)\nso + adj. + n. [不可数]   such + n. [不可数]\n\nso foolish；such a fool       so nice a flower；such a nice flower\nso many/few flowers；such nice flowers   so much/little money；such rapid progress\nso many people；such a lot of people" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch11",
+      "title": "11. 分词",
+      "intro": [
+        { "type": "paragraph", "text": "分词就是具有动词及形容词二者特征的词，尤指以 -ing 或 -ed, -d, -t, -en 或 -n 结尾的英语动词性形容词，具有形容词功能，同时又表现各种动词性特点，如时态、语态、带状语性修饰语的性能及带宾词的性能。分词分为现在分词和过去分词两种，是一种非谓语动词形式。现在分词和过去分词主要差别在于：现在分词表示“主动和进行”，过去分词表示“被动和完成”（不及物动词的过去分词不表示被动，只表示完成）。分词可以有自己的状语、宾语或逻辑主语等。" }
+      ],
+      "sections": [
+        {
+          "id": "ch11-1",
+          "title": "11.1. 过去分词",
+          "intro": [
+            { "type": "paragraph", "text": "past participle，通常含有被动意义。" },
+            { "type": "paragraph", "text": "规则动词构成规则：一般是由动词加 -ed。" },
+            { "type": "code", "language": "text", "code": "work - worked, visit - visited\n以 e 结尾的动词加 -d：\nlive - lived, agree - agreed\n以“辅音字母 + y”结尾的动词，将 y 变为 i，再加 -ed：\nstudy - studied, cry - cried, try - tried\n重读闭音节结尾，末尾只有一个辅音字母，先双写该辅音字母，再加“-ed”：\nstop - stopped, drop - dropped\n以 c 结尾的动词，加 -ked：\ntraffic - trafficked, arc - arcked" },
+            { "type": "note", "variant": "info", "text": "这样做主要是为了避免变化后其原型尾音 /k/ 变成 /s/。根据英文的拼写规则，c 在字母 e、i、y 之前均发 /s/，其他情况下均发 /k/。如果直接加“ed”的话，trafficed 将会读成 /'træfɪsɪd/，而不读 /'træfɪkt/。" },
+            { "type": "paragraph", "text": "不规则动词构成规则。" }
+          ]
+        },
+        {
+          "id": "ch11-2",
+          "title": "11.2. 现在分词",
+          "intro": [
+            { "type": "paragraph", "text": "现在分词（present participle）（又称 -ing 形式，现在进行式），是分词的一种，分词又分为现在分词和过去分词，它们都是非限定动词，现在分词在句子里面不能单独充当谓语，但能充当其它的一些成分（定语，表语，补语，状语），并且它们具有动词的性质，所以又是类动词的一种。" },
+            { "type": "paragraph", "text": "一般式：doing" },
+            { "type": "list", "ordered": false, "items": [
+              "直接 +ing: draw -> drawing, read -> reading",
+              "重读闭音节结尾的单词，双写词尾字母再 +ing: run -> running, begin -> beginning",
+              "不发音 e 结尾的单词，去掉 e 再 +ing: bite -> biting, write -> writing",
+              "以 ie 结尾的单词，把 ie 变成 y 再 +ing: lie -> lying, die -> dying"
+            ]},
+            { "type": "paragraph", "text": "一般被动式：being done；完成式：having done；完成被动式：having been done。所有否定式都是在 -ing 前面加 not，包括独立主格形式。" },
+            { "type": "paragraph", "text": "具有双重性，一面具有动词的特征，可以有自己的宾语和状语；另一面具有形容词和副词的特征，可以充当表语，定语，状语，补足语，可以表示主动或正在进行的动作，是非谓语动词的一种。" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch12",
+      "title": "12. 感叹词",
+      "intro": [
+        { "type": "paragraph", "text": "interjection interj. oh 哦。虚词。" }
+      ],
+      "sections": []
+    },
+    {
+      "id": "ch13",
+      "title": "13. 连字符",
+      "intro": [
+        { "type": "paragraph", "text": "3-year-old & 3 years old。在英语中，我们要表达年龄可以用“数字-year-old”，也可以用“数字 + years old”，这两者的区别主要就在于连字符。" },
+        { "type": "paragraph", "text": "当加了连字符的时候，“3-year-old”则相当于一个形容词，作定语：" },
+        { "type": "list", "ordered": false, "items": [
+          "Lily is a 3-year-old girl. 莉莉是一个三岁的小女孩。"
+        ]},
+        { "type": "paragraph", "text": "但没有连字符时，“3 years old”中 year 必须加 s，作表语：" },
+        { "type": "list", "ordered": false, "items": [
+          "Lily is 3 years old. 莉莉三岁了。"
+        ]},
+        { "type": "paragraph", "text": "形容词 + 名词" },
+        { "type": "list", "ordered": false, "items": [
+          "long-distance telephone（长途电话）",
+          "old-style machine（旧式机器）",
+          "old-fashioned machine（老式机器）",
+          "cold-blooded animals（冷血动物）"
+        ]},
+        { "type": "paragraph", "text": "名词 + v-ing" },
+        { "type": "list", "ordered": false, "items": [
+          "peace-loving people（热爱和平的人民）"
+        ]},
+        { "type": "paragraph", "text": "名词 + 过去分词" },
+        { "type": "list", "ordered": false, "items": [
+          "hand-made goods（手工制品）",
+          "man-made lake（人工湖泊）"
+        ]},
+        { "type": "paragraph", "text": "副词 + 过去分词" },
+        { "type": "list", "ordered": false, "items": [
+          "highly-developed industry（高度发达的工业）"
+        ]},
+        { "type": "paragraph", "text": "副词 + v-ing" },
+        { "type": "list", "ordered": false, "items": [
+          "hard-working people（勤劳的人民）"
+        ]},
+        { "type": "paragraph", "text": "名词 + 名词" },
+        { "type": "list", "ordered": false, "items": [
+          "coal-mine（煤矿）",
+          "wave-length（波长）"
+        ]},
+        { "type": "paragraph", "text": "名词 + 形容词" },
+        { "type": "list", "ordered": false, "items": [
+          "snow-white paper（雪白的纸）"
+        ]},
+        { "type": "paragraph", "text": "形容词 + v-ing（或过去分词）" },
+        { "type": "list", "ordered": false, "items": [
+          "funny-looking man（相貌可笑的人）",
+          "clear-cut answer（明确的回答）"
+        ]},
+        { "type": "paragraph", "text": "形容词 + 形容词" },
+        { "type": "list", "ordered": false, "items": [
+          "dark-blue ink（深蓝色的墨水）"
+        ]}
+      ],
+      "sections": []
+    },
+    {
+      "id": "ch14",
+      "title": "14. 疑问句",
+      "intro": [],
+      "sections": [
+        {
+          "id": "ch14-1",
+          "title": "14.1. 一般疑问句",
+          "intro": [
+            { "type": "paragraph", "text": "can, do。" }
+          ]
+        },
+        {
+          "id": "ch14-2",
+          "title": "14.2. 特殊疑问句",
+          "intro": [
+            { "type": "paragraph", "text": "特殊疑问句是英语中以特殊疑问词开头，对句中某一成分提问的句子。" },
+            { "type": "paragraph", "text": "what, who, whose, which, when, where, how, why" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch15",
+      "title": "15. 句子成分",
+      "intro": [
+        { "type": "code", "language": "text", "code": "  I   play  basketball with my friends in the park.\n主    谓     宾                 方              地          时" },
+        { "type": "paragraph", "text": "主语、谓语、宾语、定语、状语、独立成分、表语。" },
+        { "type": "paragraph", "text": "一个完整的英语句子，至少由两部分组成：主语和谓语。" },
+        { "type": "paragraph", "text": "句子主干成分：主语、谓语、宾语、表语。句子修饰成分：同位语、定语、状语、补语。" },
+        { "type": "paragraph", "text": "英语句子基本形式：(状语)，主语（定语/同位语/插入语）+ 谓语（胖：时态、语态、单复数）+ 宾语/表语（定语/同位语/状语）。" },
+        { "type": "paragraph", "text": "简单句：不能再拆，否则句意不完整。" },
+        { "type": "paragraph", "text": "复合句（Compound Sentences）：将句子简单的叠加，它们之间是并列关系，翻译为复合句或并列句。" },
+        { "type": "paragraph", "text": "复杂句（Complex Sentences）：就是把一个句子套在另一个句子里面，甚至一个句子套的一个句子还能再套一个句子...一直套下去...。是一种从属关系。" },
+        { "type": "paragraph", "text": "基本原则就是名词周围可以有一切形容词性的东西，动词周围可以有一切副词性的东西，及物动词和介词后面可以跟一切名词性的东西。" },
+        { "type": "table", "headers": ["含义", "结构"], "rows": [
+          ["可以独立完成的动作", "主语 + 动词"],
+          ["又一个动作的承受者", "主语 + 动词 + 宾语"],
+          ["有两个动作的承受者", "主语 + 动词 + 间接宾语 + 直接宾语"],
+          ["只有一个动作承受者", "主语 + 动词 + 宾语 + (宾语)补语"],
+          ["把这个词后面的信息赋予给前者", "主语 + 动词 + (主语)宾语(表语)"]
+        ]}
+      ],
+      "sections": [
+        {
+          "id": "ch15-1",
+          "title": "15.1. 主语",
+          "intro": [
+            { "type": "paragraph", "text": "主语（Subject）：名词、代词、非谓语动词、从句（即主语从句）。" },
+            { "type": "paragraph", "text": "主语是谓语的陈述对象，如“我写字”中的“我”就是主语，它做出“写”这个动作，“写”则是谓语，用来陈述主语的动作，而“字”是接受谓语“写”这个动作的对象，它因此被称为宾语。" },
+            { "type": "paragraph", "text": "常常由名词、代词、动名词、不定式短语、名词性从句、名词短语、表距离的地点副词短语等。" },
+            { "type": "paragraph", "text": "名词作主语：The child is my daughter. 主系表" },
+            { "type": "paragraph", "text": "代词作主语：He always keeps his promise." },
+            { "type": "paragraph", "text": "动名词或不定式短语作主语：动词一定一定不能做主语，要变成动名词或者不定式短语，如此才能和名词对等。" },
+            { "type": "list", "ordered": false, "items": [
+              "Seeing her makes me angry.",
+              "To see him is my purpose of coming here."
+            ]},
+            { "type": "paragraph", "text": "那么什么情况下用动名词做主语呢？一般情况下是用来表示已知的事实或曾经做过的经历。" },
+            { "type": "list", "ordered": false, "items": [
+              "collecting stamps is one of my hobbies.",
+              "Listening to music makes me happy."
+            ]},
+            { "type": "paragraph", "text": "这里 collecting stamps 和 Listening to music 都是以往的一种经历。" },
+            { "type": "paragraph", "text": "用不定式做主语时，通常表示一种意愿、目的或尚未做的事。" },
+            { "type": "list", "ordered": false, "items": [
+              "To study in the United States is my greatest desire.",
+              "To go to Japan for a visit is my plan for this year."
+            ]},
+            { "type": "paragraph", "text": "不定式或动名词作主语时往往造成主语太长的情况（如上），故通常用代词 it 置于句首做形式主语，而将真正的主语移至句尾。但是，动名词移至句尾时通常要改为不定式短语。" },
+            { "type": "list", "ordered": false, "items": [
+              "Collecting stamps is one of his hobbies. = It is of his hobbies to collect stamps.",
+              "To study in the United States is my greatest desire. = It is my greatest desire to study in the United States."
+            ]},
+            { "type": "note", "variant": "warn", "text": "例外：It is no use + 动名词短语。这里不可使用不定式短语，千万千万记住哦！It is no use crying over split milk. 但是，当你把 no use 换成 useless 或者 of no use 后面可跟不定式短语。" },
+            { "type": "paragraph", "text": "名词性从句做主语：首先得弄清楚什么是名词性从句？它起什么作用？定义：在句子中起名词作用的句子叫名词性从句（Noun Clauses）。我们都知道在英语中名词可以做主语、宾语、同位语、表语、定语、状语、补语。" },
+            { "type": "paragraph", "text": "因此根据在句中不同的语法功能名词性从句可分为：" },
+            { "type": "list", "ordered": true, "items": [
+              "A. 主语从句（作主语）：That the earth is round is true.",
+              "B. 宾语从句（作宾语）：Do you know where he lives.",
+              "C. 表语从句（作表语）：My opinion is that you should not go alone.",
+              "D. 同位语从句（用于解释说明前面的名词）：The fact that the earth is round is true."
+            ]},
+            { "type": "paragraph", "text": "根据构成来看名词性从句一共有三种：" },
+            { "type": "paragraph", "text": "（1）That 从句。任何一个主语起首的句子前加 That 就是 that 从句。That the earth is round is true." },
+            { "type": "paragraph", "text": "（2）Whether 从句。Whether 从句由可用 yes 或 no 回答的一般疑问句变化而成，具体分为：" },
+            { "type": "paragraph", "text": "A. 问句有 be 动词和助动词（can、will、may、should、ought to、have、must）时。主语与 be 动词或助动词还原，前面加上 whether，这就形成了 whether 从句。" },
+            { "type": "list", "ordered": false, "items": [
+              "例1. Is he happy? -> whether he is happy. I don't know whether he is happy. Whether 从句在复合句中作宾语",
+              "例2. can he do it? -> whether he can do it. Whether he can do it is still unknown. Whether 从句在复合句中作主语。"
+            ]},
+            { "type": "paragraph", "text": "B. 问句有 do、does、did 等助动词时。主语与助动词还原，再将助动词 Do、does、did 去掉，后面的动词依人称和时态变化。" },
+            { "type": "list", "ordered": false, "items": [
+              "例1. Did he come? -> whether he did come -> whether he came.",
+              "例2. Does he like it? -> whether he likes it"
+            ]},
+            { "type": "paragraph", "text": "（3）疑问词所引导的从句。由疑问词（when、what、how、where、why）等特殊疑问句变化而成。具体分为：" },
+            { "type": "paragraph", "text": "A. 问句有 be 动词和助动词时。主语与 be 动词或者助动词还原，前面保留疑问词。" },
+            { "type": "list", "ordered": false, "items": [
+              "例1. What are you doing? -> what you are doing. I want to know what you are doing. 在复合句中作宾语",
+              "例2. Where can he find it? -> where he can find it. Where he can find it is unknown. 在复合句中作主语"
+            ]},
+            { "type": "paragraph", "text": "B. 问句有 do、does、did 等助动词时。主语与助动词还原，前面保留疑问词；再将助动词 Do、does、did 去掉，后面的动词依人称和时态变化。" },
+            { "type": "list", "ordered": false, "items": [
+              "例1. what did he write? -> what he wrote."
+            ]},
+            { "type": "note", "variant": "info", "text": "注意：Who、what、which 为疑问代词，若在句中作主语，变成名词性从句时结构不变。例：who came here. / What happened last night. / Which was bought." },
+            { "type": "paragraph", "text": "5、名词短语作主语。名词短语由“疑问词 + 不定式短语”形成。" },
+            { "type": "paragraph", "text": "① 疑问副词：" },
+            { "type": "list", "ordered": false, "items": [
+              "Where to live",
+              "Whether to try again",
+              "When to talk to him",
+              "How to do it"
+            ]},
+            { "type": "list", "ordered": false, "items": [
+              "例1. Where to live is still unknown.",
+              "例2. Whether to try again is still not decided"
+            ]},
+            { "type": "paragraph", "text": "② 疑问代词：" },
+            { "type": "list", "ordered": false, "items": [
+              "What to do",
+              "Whom to see",
+              "Which to buy"
+            ]},
+            { "type": "paragraph", "text": "例：which to buy depends on how much money do you have." },
+            { "type": "paragraph", "text": "6、表距离的地点副词短语做主语：From + 地点 + to + 地点。例：from shanghai to Beijing is about 1000 kilometers. 如果主语太长可以用 it 代替做形式主语。" },
+            { "type": "code", "language": "text", "code": "S（subject 主语）+ V（verb 谓语动词）+ O（object 宾语）。\n主系表结构：S（subject 主语）+ V（verb 谓语动词，也称为系动词，就是所说的“系”）" },
+            { "type": "paragraph", "text": "倒装：Not until the fish in the river died did the villagers realize how serious the pollution was. 注意：倒装在主句，从句不倒装 / did 和 not 提前，只剩动词原形。" },
+            { "type": "paragraph", "text": "强调：It was not until the fish died in the river that the villagers realized how serious the pollution was. 如果强调的是主语或宾语且指人用 who，其他一律用 that。是 that，而非其他/主句的顺序（倒装不强调，强调就不倒装）。" },
+            { "type": "paragraph", "text": "人称代词（主格），名词性代词，指示代词，不定代词，such（----样的人、物），it（时间，天气，距离等）。" },
+            { "type": "paragraph", "text": "at midnight / in the（泛指）middle of the night。例：It is 9 o'clock when I went home. 我回家的时候已经九点了。" },
+            { "type": "list", "ordered": false, "items": [
+              "一般句：It was nine when I got home.",
+              "强调句：It was at nine that I got home.",
+              "原形：I got home at nine."
+            ]},
+            { "type": "note", "variant": "info", "text": "注意：作主语在句首 / it 作主语构成（常用 v-ing，不常用只有 use，good）。\n（1）It is +adj. + of sb.（人的属性）/ for sb.（物的属性）to do\n例：It is necessary to finish the design before National day. Tomorrow is National day. 有必要在国庆节之前完成设计。明天是国庆日\n（2）it is + n. + for/of sb. to do\n例：It is not good manners for Arabs to stand close talking to their friends. 对阿拉伯人来说，和他们的朋友说话离得近不是一个好习惯\nIt is a great honor for us to be invited to the party. 被邀请参加聚会是我们极大的荣幸\n在感叹句中必须用 it 作形式主语：What a joy/pleasure (it is) to read the book.\n在问句中必须用形式主语：Is it possible to go to the moon by spaceship? 可以乘宇宙飞船去月球吗？" },
+            { "type": "paragraph", "text": "数词作主语：Ten out of 100 Americans are over/above/more than 65." },
+            { "type": "paragraph", "text": "动名词作主语：一般 / 完成时。v-ing: 主动/doing/having done；not doing: 被动/being done/having been done。" },
+            { "type": "note", "variant": "info", "text": "注意：doing 无时间限定/与谓语同时出现/在谓语动词后发生 having done 发生在谓语之前。He still remembers being prized." },
+            { "type": "paragraph", "text": "当逻辑主语为无生命的东西时：" },
+            { "type": "list", "ordered": true, "items": [
+              "作主语时，通常表示一般性的无时间性的东西。而不定式表示某一种具体的动作。Smoking is habit difficult to break：抽烟的习惯很难打破的",
+              "主语和表语一致：Seeing is believing：眼见为实",
+              "逻辑主语必须是所有格形式：The old man's taking pity on the snake leads to his death. 那个老人怜悯那条蛇，导致他的死亡。",
+              "\"it\" 作形式主语：当表语为 no use，no good，no harm，any good，fun 等名词或 useless，nice，good，interesting，worthwhile 等形容词时，句首常用 it 作形式主语，动名词后置。句型常用于说明“某种活动或某件事情如何”"
+            ]},
+            { "type": "paragraph", "text": "不定式作主语：To + 动词原形。Not to do。解释：具有动词的性质，作宾语，状语/具有名词的性质，作主语/具有形容词性质，作定语/具有副词的性质，作状语。除谓语不可作之外，其他都可。" },
+            { "type": "list", "ordered": false, "items": [
+              "一般式：to do",
+              "进行时：to be doing",
+              "完成时：to have done",
+              "完成进行时：to have been doing"
+            ]},
+            { "type": "list", "ordered": false, "items": [
+              "to do: 表示动作发生在谓语之后，I want to go home. 与谓语动词几乎同时发生",
+              "to be doing: 表示与谓语动词同时发生",
+              "to have done: 发生在谓语动词之前 Someone was considered to have done something.",
+              "to have been doing: 动作从过去开始一直持续到谓语动词这个动作的发生"
+            ]},
+            { "type": "paragraph", "text": "不定式表示一种确定的动作：To do morning exercises this morning is not good for your health. 今天早上去做早操对你的健康不好。" },
+            { "type": "paragraph", "text": "名词化的形容词：the poor / the sick；名词化的过去分词：the disabled；名词化的介词短语：From my home to school is three kilometers. 从我家到学校有三公里。" },
+            { "type": "paragraph", "text": "副词 ---- 不定式或动名词：What an excitement to find a shark when you're swimming in the sea. 当你在大海中游泳时，发现鲨鱼是多么兴奋的事。" },
+            { "type": "paragraph", "text": "句子作主语：" },
+            { "type": "paragraph", "text": "【1】that 引导的从句，无意义，不担当句子成分，不省略。" },
+            { "type": "list", "ordered": false, "items": [
+              "a. It + v + that 从句",
+              "b. It + 系动词 + 表语 + that 从句",
+              "c. It is strange that he didn't come here yesterday：奇怪的是，昨天他没来这里"
+            ]},
+            { "type": "paragraph", "text": "当形容词为 important/necessary/strange 时，that should + 动词原形：It is strange that he should（表示吃惊）pass the exam. 奇怪的是，他可以通过考试。" },
+            { "type": "paragraph", "text": "【2】It is + n. + that 从句：What a pity it is that you didn't come to this party. 真遗憾你没来这个聚会。当名词为 a pity/a shame/a surprise 时，+ should + v 原形（表示竟然）：What a pity that she should be fail in exam. 真遗憾，她竟然考试不及格。" },
+            { "type": "paragraph", "text": "【3】It is + 过去分词 + that 从句：It is reported that a car accident happened there. 据报道，发生一场车祸。从句 s + be v-ed + inf.：He is said to be studying in the USA. 据说他在美国学习。有人建议 suggest/order/request + 从句 should + 动词原形。" },
+            { "type": "paragraph", "text": "【4】It + 动词原形 seem/appear/turn out + that：It seems that it will rain. 看来要下雨。" },
+            { "type": "list", "ordered": false, "items": [
+              "〔1〕It strikes sb. that 从句：表示“某人突然想…”",
+              "It occurs to sb. that 从句：表示“某人发生了…”",
+              "〔2〕为强调从句意义，that 从句常放在句首：That he will come here is of great help. 他来这儿是很有帮助的。That you failed the exam will…：你考试失败了会…",
+              "--What made his father so angry? 什么使他父亲很生气？",
+              "--That he failed the exam. 或 He fails the exam. 他考试不及格"
+            ]},
+            { "type": "paragraph", "text": "c. 在问句中必须有形式主语：It is true that Bush will visit China again?" },
+            { "type": "paragraph", "text": "Whether/if 是否不担当句子成分，也不省略。" },
+            { "type": "list", "ordered": false, "items": [
+              "A. 句首只用 whether：Whether he will come to the meeting is unknown yet.",
+              "B. 句末形式主语都可用 It whether/if：It is of no/little important whether/if it will rain today.",
+              "c. 在有些句型中，从句不在前 It doesn't matter whether：It doesn't matter whether it is new/it will rain tomorrow."
+            ]},
+            { "type": "paragraph", "text": "【3】连接代词 who/whom/whose/what/which 担当从句成分，有意义，不省略。" },
+            { "type": "list", "ordered": false, "items": [
+              "A. what + sb. + clause：What we will do next is not decided.",
+              "B. what + 修饰词 意为什么样的……：What color you like is none of my business.",
+              "C. what ……人，……事，……物：What he said at the meeting surprised everyone present."
+            ]},
+            { "type": "note", "variant": "info", "text": "注意：what 前是否有先行词 / 与 that 之间的区别。That he said it at the meeting surprised everyone present." },
+            { "type": "paragraph", "text": "What 与 which 的区别：Which/what you want --- 若给定范围用 which，没有用 what。" },
+            { "type": "paragraph", "text": "What --- be that --- 强调句的一种（强调后者）：What I need most is that someone helps me." },
+            { "type": "paragraph", "text": "另外，what 引导的从句作主语时，大多数情况下视为第三人称单数：What we need is time. What you said yesterday is right. 但也有例外，如 What we need are good doctors." },
+            { "type": "note", "variant": "info", "text": "注意：当 what 引导的名词性从句作主语时，主谓一致问题极为复杂。著名学者周海中教授在论文《关于 what-分句作主语的主谓一致问题》中就这一问题做了深入研究，并给出了 10 种的主谓一致关系。这些一致关系值得英语学习者和使用者特别注意。" },
+            { "type": "paragraph", "text": "There be + what clause：There was we call People's Republic of China in Chinese history. What + 比较级 what more / what worse. what 引导从句作状语修饰全句的内容。在句首或句中，很少在句尾。" },
+            { "type": "paragraph", "text": "Which + n (single)；Whose + n（只用此）：Whose father is a doctor is no sense. It 从句作形式主语（what……人或物时，不用 it）。" },
+            { "type": "paragraph", "text": "【4】连接副词 when/where/how/why 担当句子成分，有意义，不省略。How the accident happened puzzled everyone. 句尾用形式主语 it。" },
+            { "type": "paragraph", "text": "【5】引导主语从句：whoever/whosever/whatever/whichever/anyone that/anything that。whoever = anyone who（泛指）/anything that（特指）。Whoever 指人从意义判断；Who 引导指事。" },
+            { "type": "paragraph", "text": "Since the introduction of reform, China has made earth shaking changes. 自从改革以来，中国发生了翻天覆地的变化。" },
+            { "type": "paragraph", "text": "主语不能缺。中文中句子没有主语翻译成英文的办法：" },
+            { "type": "paragraph", "text": "it 作主语：It is hot outside. It keeps raining." },
+            { "type": "paragraph", "text": "there be 句型：使用 there be 句型前提不是非要表示某处有某物，不能出现两个动词，只要满足：1. 都有“有”字。2. 都没有主语。" },
+            { "type": "list", "ordered": false, "items": [
+              "There is a flower on his head. 他头上有朵花。",
+              "There are loads of individuals having affection for me. 有很多人喜欢我。",
+              "There are numerous factors accounting for my perspective. 有许多因素解释我的观点。"
+            ]},
+            { "type": "paragraph", "text": "主动变被动：" },
+            { "type": "list", "ordered": false, "items": [
+              "Grammar must be pointed out to be quite crucial in the examination of postgraduates. 必须指出英语语法在考研中是相当重要的",
+              "Pollution is realized exceedingly severe by an increasing number of people. 越来越多的人意识到污染很严重",
+              "Superstars should never be pursued blindly. 我们不该盲目跟风",
+              "Respecting parents is argued to be of great important. 孝敬父母被认为很重要"
+            ]},
+            { "type": "paragraph", "text": "主谓一致：谓语动词的数必须和主语在人称和数上保持一致。一致：指句子之间或词语之间的人称、数等方面保持一致，最主要的是主语和谓语之间数的一致。三大原则：语法一致、意义一致、就近一致。" },
+            { "type": "paragraph", "text": "语法一致：句子的谓语动词在形式上和主语的单复数保持一致。" },
+            { "type": "list", "ordered": false, "items": [
+              "Time is money. 单数主语",
+              "Carrots are delicious. 复数主语"
+            ]},
+            { "type": "code", "language": "text", "code": "主语 + 谓语动词\n可数名词单数 + 谓语动词单数\n可数名词复数 + 谓语动词复数\n不可数名词 + 谓语动词单数\n非谓语动词作主语(相当于单数名词) + 谓语动词单数\n  To eat a carrot every day is good for the rabbit.\n  Eating carrots is healthy.\nand 连接不同的名词作主语 + 谓语动词复数\n  The rabbit and the wolf are at the party.\nas well as, except, but 连接主语 + 谓语动词单数 (假象主语“就远一致”？？)\n  The rabbit as well as other animals gets a carrot." },
+            { "type": "paragraph", "text": "不定代词作主语【谓语动词和不定式背后的概念保持一致】" },
+            { "type": "list", "ordered": false, "items": [
+              "表示每一个，指单数 + 谓语动词单数：Everyone gets a carrot. / Each of them gets a carrot.",
+              "表示他们，指复数 + 谓语动词复数：Both of them like carrots. / Some of them are afraid of the wolf.",
+              "表示没有，没法数，+ 单数/复数谓语动词均可：None of them get/gets a carrot. / Neither of them is/are afraid of wolf."
+            ]},
+            { "type": "paragraph", "text": "意义一致：主语意义为单数，谓语动词用单数，主语意义为复数，谓语动词用复数。" },
+            { "type": "paragraph", "text": "同一主语多种身份：主语在意义上是一个人，有 2 个身份，用单数：The teacher and video creator is a rabbit。" },
+            { "type": "paragraph", "text": "复数名词的单数意义，形式上是复数，但表达意义是单数：" },
+            { "type": "list", "ordered": false, "items": [
+              "The years is a long time. \"十年\"表示一个时间段",
+              "A knife and fork is needed for eating the carrot. \"刀叉\"表示一个整体（吃饭工具的整体？）"
+            ]},
+            { "type": "paragraph", "text": "不定代词的单复数形式【视具体语义而判断】。" },
+            { "type": "paragraph", "text": "名词的形和意：" },
+            { "type": "list", "ordered": false, "items": [
+              "形复意单（用单数谓语动词）：Physics is my favorite subject. 物理学科是我最喜欢的科目",
+              "形单意复（用复数谓语动词）：The cattle are on the hill. 牛群在山上",
+              "单复数同形名词（看具体意思）：A sheep is eating grass. / The sheep are eating grass."
+            ]},
+            { "type": "paragraph", "text": "集体名词：" },
+            { "type": "list", "ordered": true, "items": [
+              "有些名词即可表集合、又可表集合中的全部成员：The rabbit's family is huge. 强调家这个集合 / The rabbit's family are all at home. 强调家庭成员所有人",
+              "只能表示一个类别的事物，只能用单数谓语动词：All the furniture here is expensive. 家具永远不可数",
+              "The + 形容词可视为集合名词，表单/复数意义：The young are expected to learn from the old. 表年轻人们 / The new is going to replace the old. 表示新事物"
+            ]},
+            { "type": "paragraph", "text": "就近一致：谓语动词单复数由最近的主语决定。" },
+            { "type": "list", "ordered": true, "items": [
+              "由下列连接两个名词或代词作主语时，谓语动词由离它最近的主语/名词决定：or / either or / neither nor / not only but also。Either you or I am going to the party. / Not only the rabbit but also many other animals like carrots.",
+              "there be 就近原则：There is a carrot and two apples on the table. / There are two apples and a carrot on the table."
+            ]}
+          ]
+        },
+        {
+          "id": "ch15-2",
+          "title": "15.2. 谓语",
+          "intro": [
+            { "type": "paragraph", "text": "谓语（动词）（Predicate Verb）谓语（predicate），是句子中的必不可少的成分。谓语是由简单动词或动词短语（助动词或情态动词 + 主要动词）构成。谓语分为简单谓语和复合谓语。" }
+          ],
+          "subsections": [
+            {
+              "id": "ch15-2-1",
+              "title": "15.2.1. 简单谓语",
+              "blocks": [
+                { "type": "paragraph", "text": "由一个动词或短语动词构成的谓语，就是简单谓语。不管这些谓语动词是什么时态，语态，语气，都是简单谓语。" },
+                { "type": "list", "ordered": false, "items": [
+                  "We plant trees in spring every year. 我们每年春天都种许多树。",
+                  "The aircraft had taken off at 7. 飞机已在 7 点起飞。"
+                ]},
+                { "type": "paragraph", "text": "predicate pred. 相对定义（不准确）：谓语（动词）就是具有时态和语态的实义动词（词组）或系动词。" },
+                { "type": "list", "ordered": false, "items": [
+                  "一句话中动词有且只能有一个，多余变成非谓语结构，少了的就加 be 动词，说明主语动作或者状态的词语（说明主语做什么，是什么，怎么样）",
+                  "只跟主语有关系，说明主语情况",
+                  "在人称和单复数形式上应与主语保持一致"
+                ]}
+              ]
+            },
+            {
+              "id": "ch15-2-2",
+              "title": "15.2.2. 复合谓语",
+              "blocks": [
+                { "type": "paragraph", "text": "复合谓语由两部分构成。" },
+                { "type": "list", "ordered": true, "items": [
+                  "由情态动词加一个不带 to 的不定式构成：These students will go to visit the museum tomorrow. 明天这些学生将去参观博物馆。",
+                  "由个别动词和一个动词不定式构成：许多带复合宾语的句子在变成被动结构后，也包含了一个复合谓语。Jack was seen to swim across the river. 有人看到杰克游过河了。",
+                  "由连系动词加表语构成：The weather has turned cold. 天气已经变冷了。",
+                  "由情态动词和连系动词构成。谓语说明主语的动作，状态或特征：We should become healthy. 我们应该变得健康。"
+                ]},
+                { "type": "paragraph", "text": "谓语动词和非谓语动词辨别：谓语动词和非谓语动词的区别：" },
+                { "type": "list", "ordered": true, "items": [
+                  "谓语动词在句中可单独作谓语，而非谓语动词不能单独作谓语。Miss Mary teaches us English. 玛丽教我们英语。（teaches 动词作谓语）/ Mr. Victor came to our classroom to have a talk with us last week. 维克托先生上周来到了我们教室和我们谈话。（to have a talk... 不定式作状语）",
+                  "谓语动词受主语的人称和数的限制，而非谓语动词形式没有这种限制。Larke likes the pop music. 拉克喜欢流行音乐。（动词用单数第三人称形式）/ Larke has nothing to do today. 今天拉克没什么事要做。（do 用原形）"
+                ]},
+                { "type": "paragraph", "text": "3）非谓语动词的特征：如果非谓语动词是及物动词，后面须跟宾语。Studying English is my favorite. 学习英语是我的爱好。（studying 后跟宾语）" },
+                { "type": "paragraph", "text": "2 非谓语动词可以带有自己的状语或逻辑主语。Working under such a condition is terrible. 在这样的环境下工作太可怕了。（under such a condition 是 working 的状语）/ It's too difficult for him to master English in such a short time. 他在这么短的时间内掌握英语太难了。（for him 作不定式的逻辑主语）" },
+                { "type": "paragraph", "text": "3 非谓语动词仍有语态和时态的变化。I am sorry to have kept you waiting long. 对不起让你久等了。（to have kept... 是不定式的完成形式）/ Seen from the mountain, the city looks much more beautiful. 从山上看，这座城市美丽多了。（seen from... 是分词的被动形式）" },
+                { "type": "paragraph", "text": "4 非谓语动词在句中可以当成名词或者形容词来使用。Our coming made him happy. 我们的到来使他很高兴。（coming 起名词作用）/ There are two big swimming pools here. 这儿有两个大型游泳池。（swimming 起形容词作用）" },
+                { "type": "list", "ordered": false, "items": [
+                  "I like book.",
+                  "I like sleeping. 动名词",
+                  "I like to sleep. 不定式",
+                  "How did she break the window?"
+                ]}
+              ]
+            },
+            {
+              "id": "ch15-2-3",
+              "title": "15.2.3. 动作型谓语",
+              "blocks": [
+                { "type": "paragraph", "text": "说明主语做什么，由动词 + 动词语义不完整时用的补足结构构成。" },
+                { "type": "paragraph", "text": "简单谓语动词构成的谓语（由实义动词/动词短语构成）：" },
+                { "type": "list", "ordered": false, "items": [
+                  "I eat an apple every day. 我吃苹果"
+                ]},
+                { "type": "paragraph", "text": "复合谓语动词构成的谓语（由简单谓语动词 + 其他词语共同作谓语）：" },
+                { "type": "paragraph", "text": "情态动词 + 实义动词（或者动词短语的原型）：" },
+                { "type": "list", "ordered": false, "items": [
+                  "I can speak Chinese",
+                  "I can look after her"
+                ]},
+                { "type": "paragraph", "text": "助动词 + 实义动词（或者动词短语的原型）：" },
+                { "type": "list", "ordered": false, "items": [
+                  "I will buy a book"
+                ]},
+                { "type": "paragraph", "text": "助动词 + 其他的动词形式（be + doing 或 have/has + done）：" },
+                { "type": "list", "ordered": false, "items": [
+                  "I am working now",
+                  "I have learned English for 10 years"
+                ]}
+              ]
+            },
+            {
+              "id": "ch15-2-4",
+              "title": "15.2.4. 状态型谓语",
+              "blocks": [
+                { "type": "paragraph", "text": "说明主语是什么或者怎么样的，由系动词（is, am, are）+ 表语结构构成。" },
+                { "type": "list", "ordered": false, "items": [
+                  "I am an English teacher. 我是英语老师",
+                  "She is very beautiful. 她很漂亮"
+                ]}
+              ]
+            },
+            {
+              "id": "ch15-2-5",
+              "title": "15.2.5. 谓语构成",
+              "blocks": [
+                { "type": "paragraph", "text": "谓语动词一般由动词的各种时态来体现。" },
+                { "type": "list", "ordered": false, "items": [
+                  "I like walking. 我喜欢走路。(一般现在时主动语态)",
+                  "I made your birthday cake last night. 昨晚我做好了你的生日蛋糕。(一般过去时主动语态)",
+                  "It is used by travelers and business people all over the world. 全世界旅行者和商人都使用它（is used 为谓语，一般现在时被动语态）"
+                ]},
+                { "type": "paragraph", "text": "复合类型，可分为两种情况：" },
+                { "type": "paragraph", "text": "第一种是由情态动词或助动词 + 不带 to 的动词不定式构成的复合谓语：" },
+                { "type": "list", "ordered": false, "items": [
+                  "What does this word mean? 这个单词是什么意思？",
+                  "I won't do it again. 我不会再做它（指这件事 it one more time）。",
+                  "I will go and move away the bag. 我会移走这个袋子的。",
+                  "You would better catch a bus. 你最好乘坐公交车。"
+                ]},
+                { "type": "paragraph", "text": "第二种是由连系动词 + 表语构成的复合谓语。例如：" },
+                { "type": "list", "ordered": false, "items": [
+                  "You look the same. 你们看起来很像。",
+                  "We all go home. 我们回家吧。[=Let's go home]",
+                  "My pen is in my bag. 我的钢笔在我的书包里。",
+                  "I felt tired all day long. 我整天感到疲惫。",
+                  "He seemed rather tired last night. 他昨晚看起来相当的累。"
+                ]},
+                { "type": "note", "variant": "info", "text": "连系动词和表语在意思上紧密联系，不宜分割。" }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch15-3",
+          "title": "15.3. 宾语",
+          "intro": [
+            { "type": "paragraph", "text": "宾语（Object）：名词、代词、非谓语动词、从句（即宾语从句）。" },
+            { "type": "paragraph", "text": "宾语，是指一个动作（动词）的接受者。宾语分为直接宾语和间接宾语两大类，其中直接宾语指动作的直接对象，间接宾语说明动作的非直接，但受动作影响的对象。一般而言，及物动词后面最少要有一个宾语，而该宾语通常为直接宾语，有些及物动词要求两个宾语，则这两个宾语通常一个为直接宾语，另一个为间接宾语。直接宾语一般指物，间接宾语一般指人。" },
+            { "type": "paragraph", "text": "Show me（间接宾语）your tickets（直接宾语）, please. 请让我看看你的票。" },
+            { "type": "paragraph", "text": "名词作宾语：Show your passport, please. 请出示护照。" },
+            { "type": "paragraph", "text": "代词作宾语：She didn't say anything. 她什么也没说。（此处为不定代词）" },
+            { "type": "paragraph", "text": "数词作宾语：How many do you want? — I want two. 你要几个？－ 我要两个。/ How much milk do you want? — A bottle. 你要多少牛奶？— 一瓶。" },
+            { "type": "paragraph", "text": "名词化的形容词作宾语：They sent the injured to the hospital. 他们把伤员送到医院。" },
+            { "type": "paragraph", "text": "不定式或 ing 形式作宾语：I decided to go shopping. 我决定去购物。/ I enjoy working with you. 我和你们一道工作很愉快。" },
+            { "type": "paragraph", "text": "从句作宾语：Did you write down what he said? 你把他的话写下了没有？" },
+            { "type": "paragraph", "text": "宾语从句：用作宾语的从句叫做宾语从句。" },
+            { "type": "paragraph", "text": "由陈述句转化而来的宾语从句，引导词为 that，that 在口语或非正式文体中可省略；I think that it will be sunny tomorrow. / I think that he will come here by train. / I know nothing about her except that she is a teacher. 介词宾语 that 不能省略 / I remembered, first of all, that I lost my USB. 有插入语 that 不能省略。" },
+            { "type": "paragraph", "text": "由一般疑问句转化而来的宾语从句，引导词为 if 或 whether；He asked me if/whether I knew his new address. 他问我是否知道他的新地址。" },
+            { "type": "paragraph", "text": "由特殊疑问句转化而来的宾语从句，引导词为句子本身的特殊疑问词，即 what，when，where 等。如：I want to know when you got back home yesterday. 我想知道你昨天什么时候到家的。" },
+            { "type": "paragraph", "text": "语序：宾语从句的语序为陈述句语序，即“主语 + 动词 + 宾语 + 其他”。也就是说，将疑问句转化成宾语从句时，一定要将疑问句语序转变成陈述句语序。如：Can you tell me what he will do tomorrow? 你能告诉我他明天将要做什么吗？" },
+            { "type": "note", "variant": "info", "text": "【提示】当疑问词在宾语从句中做主语时，语序不变。如：Do you know what makes him so excited? 你知道什么事使他如此兴奋吗？/ I don't know what is wrong with him. 我不知道他出什么事了。" },
+            { "type": "paragraph", "text": "时态：主句为一般现在时态，则宾语从句根据实际情况用任意的时态；但主句为一般过去时态时，宾语从句则要用过去的相对应的某种时态。例如：She tells me that she will come by bus. 她说她将要坐公交车来。/ She told me that she would come by bus. 她说她将要坐公交车来。" },
+            { "type": "note", "variant": "info", "text": "【提示】如果宾语从句表示的是客观真理或是科学事实，其谓语动词仍用一般现在时态。如：Our teacher told us that the sun is much bigger than the moon. 老师告诉我们说太阳比月球大得多。" },
+            { "type": "paragraph", "text": "复合宾语：在英语中，有些动词接了一个宾语后句子意思仍不完整，还需要再加上一个词或短语放在宾语之后来补充说明其身份、特征、状态或所做的动作，这种“宾语 + 宾语补足语”结构称为复合宾语。We call him Jack. 我们叫他杰克。这里 him 是宾语，Jack 是宾语补足语。/ They appointed him chairman. 他们任命他为主席。这里的 him 是宾语，chairman 是宾语补足语。" },
+            { "type": "paragraph", "text": "双宾语：双宾语就是有些动词后面跟直接宾语和间接宾语。直接宾语指的是动词所涉及的物，间接宾语是指受益于动词所表示行为的人。They gave him a watch. 这里的 him 是间接宾语，a watch 是直接宾语，这种间接宾语和直接宾语同时出现的情况叫双宾语。" },
+            { "type": "paragraph", "text": "如何区分双宾语和复合宾语：" },
+            { "type": "paragraph", "text": "宾语补语：英语中有些动词加上宾语之后，意思还不完整，这时候就需要加一个词语补充宾语的意思，使整个句子的意思完整。宾补只跟宾语有关系。" },
+            { "type": "list", "ordered": false, "items": [
+              "I make you happy",
+              "能作宾补的词语：形容词、名词、数词、动词不定式、动名词、副词、分词、介词短语、句子"
+            ]},
+            { "type": "list", "ordered": false, "items": [
+              "You make me mad",
+              "I will make you rich",
+              "I call her Mary（名词作宾补）",
+              "I put my career first",
+              "I put my book on the table"
+            ]},
+            { "type": "list", "ordered": false, "items": [
+              "You should keep the room clean and tidy (adj)",
+              "We made him our monitor (n)",
+              "His father told him not to play in the street (动词不定式)",
+              "My father likes to watch the boys playing basketball（现在分词）",
+              "Yesterday I had a picture taken with two American（过去分词）"
+            ]},
+            { "type": "paragraph", "text": "固定句型：主谓宾宾补：ask sb to do sth / want sb to do sth / make sb sth / make sb do sth。" },
+            { "type": "paragraph", "text": "宾补和双宾的区别：双宾要求一个表示人，一个表示物；名词作宾补，这个宾补和宾语是同位语关系，表示宾语和宾补是同一个人或同一个事物。" },
+            { "type": "paragraph", "text": "宾语（补语）：Papa Rabbit considers you smart.（谓语 / 宾语 / 宾补）" },
+            { "type": "paragraph", "text": "宾语补语（Object Complement）；表语（主语补语）（Predicative）：名词、代词、非谓语动词、从句（即表语从句）、形容词、介词、介词短语；状语（Adverbial）：副词、介词、非谓语动词、从句（即状语从句）。" }
+          ]
+        },
+        {
+          "id": "ch15-4",
+          "title": "15.4. 定语",
+          "intro": [
+            { "type": "paragraph", "text": "定语（Attributive）：名词、代词、非谓语动词、从句（即定语从句）、形容词、介词。" },
+            { "type": "paragraph", "text": "修饰或限定名词（短语）或代词的词语叫做定语，说明名词或代词的品质与特征的。其实只要在中文中听到“......的 + 名词”的结构，“......的”就是修饰这个名词的定语成分。" },
+            { "type": "list", "ordered": false, "items": [
+              "定语只跟名词有关系，哪里有名词，哪里就有定语",
+              "不管什么语言里面，名词都是需要定语的，如果没有定语，名词的范围就太大了",
+              "在英语里面普通名词才能带定语，专有名词不能带定语，除非特殊情况"
+            ]},
+            { "type": "paragraph", "text": "Good Teacher  my teacher" },
+            { "type": "paragraph", "text": "充当定语的词语：形容词、代词、数词、名词（短语）[此时的名词已经形容词化了]、量词、名词所有格('s)、副词、介词短语、非谓语【动词不定式、动名词】、从句。" },
+            { "type": "paragraph", "text": "形容词（短语）作定语：That kind (形容词) nightingale died at last." },
+            { "type": "paragraph", "text": "名词（短语）作定语【已经形容词化了】：名词作定语修饰名词，往往是说明被修饰名词的材料、用途、时间、地点、内容、类别等。名词在作为定语的时候，一般使用单数形式。" },
+            { "type": "list", "ordered": false, "items": [
+              "表材料：a diamond necklace、a bamboo pole、paper money、a stone bridge",
+              "表用途：a meeting room、the telephone poles、the railway station、trade union、water pipe、Christmas card = card for Christmas",
+              "表时间：a day bed、the dinner party、the Spring and Autumn Period、evening suit、midday lunch",
+              "表地点：London hotels、Beijing University、body temperature、the kitchen window、our garden gate = the gate in our garden",
+              "表内容：a story book、piano lessons、the sports meet、oxygen supply、the grammar rules",
+              "表类别：children education、enemy soldiers、a bus driver"
+            ]},
+            { "type": "paragraph", "text": "个别情况用复数形式，因为做定语的名词，原本就是以复数形式出现的：a sports meet、a goods train、customs house、a sales manager。" },
+            { "type": "paragraph", "text": "The nightingale's（名词所有格）singing can make the rose bloom.（不推荐）/ The singing of the nightingale（名词所有格）can make the rose bloom.（推荐）" },
+            { "type": "list", "ordered": false, "items": [
+              "可数名词通常不能单独使用，必须有修饰成分；如果单独使用，需要在名词前加 the 或 a/an，或者用复数形式",
+              "虽然名词修饰名词有两种写法，但是推荐使用 of"
+            ]},
+            { "type": "paragraph", "text": "介词短语作定语：The nightingale out of the window（介词短语）heard the sighs of the young man. / For instance, the dog from that movie also makes a super quick appearance in Tarzan.（介词短语做后置定语，形容词性成分。）比如，那部电影当中的狗在电影《泰山》当中打了回酱油。" },
+            { "type": "paragraph", "text": "非谓语【现在/过去分词、不定式】作定语：In the end, the singing（分词）nightingale died because of love. / The dog wearing the collar hears a warning signal when it enters the radio field.（含有现在分词短语担任的后置定语，依然是形容词性成分。）当进入无线电波范围的时候，带着那个项圈的狗会听到一声警报声。/ It lay on its side like a dog killed by a car.（含有过去分词短语做后置定语，形容词性成分）它侧身躺着，就像一条被汽车轧死的狗。" },
+            { "type": "paragraph", "text": "定语从句作定语：The rose for which the nightingale swapped her life（从句）failed to help the student. / Today I'm bringing dogs and trainers to the prison, including the dog that Brian has been working with.（包含定语从句，也是形容词性成分）今天我正带着狗和训练员去那个监狱，也带着那条一直和 Brian 工作的狗。" },
+            { "type": "paragraph", "text": "分类（定语的位置）：中文总是把定语放在名词前面，但是英文遵循前小后大。也就是定语的位置取决于它的长短，当一个单词修饰名词时通常放在名词之前，当两个以上的单词修饰名词时通常放在名词之后。过去分词作定语，都放在名词之后。" },
+            { "type": "list", "ordered": false, "items": [
+              "This is a story about a rose and a nightingale（介词短语作定语，比较长，放在所修饰的名词之后）这是一个夜莺和玫瑰的故事",
+              "At the party of the prince, the youngster understanding romance was rejected（现在分词短语作定语，比较长，放在所修饰的名词之后）在王子的舞会上，那个懂爱的年轻人被拒绝了",
+              "The boy dumped looks pitiful（过去分词作定语，即使是一个单词也通常放在所修饰的名词之后）那么被抛弃的男孩看起来很可怜"
+            ]},
+            { "type": "paragraph", "text": "前置定语：放在名词前面的定语。由形容词性物主代词、形容词、数词、名词、量词、名词所有格('s)、指示代词构成：my book / expensive book / Pudding's house / three books / English book / a bottle of water / this book。" },
+            { "type": "paragraph", "text": "后置定语：放在名词后面修饰前面的名词的定语。由介词短语、动词不定式、动名词、名词所有格('s)、句子构成。中文的定语，不管有多少个，或者多长都是放在前面的；中文没有后置定语的概念。" }
+          ]
+        },
+        {
+          "id": "ch15-5",
+          "title": "15.5. 同位语",
+          "intro": [
+            { "type": "paragraph", "text": "同位语（Appositive）：名词、代词、非谓语动词、从句（即同位语从句）。两个不同的词语都表示同一个事物或人，对前面的名词或代词作进一步的解释。" },
+            { "type": "paragraph", "text": "事实上，在作文中只要出现名词（短语）都可以试图加另外一个名词（短语）作它的同位语，但是前后要用逗号或破折号隔开。" },
+            { "type": "list", "ordered": false, "items": [
+              "English is playing a key role in our communication with others. 加上同位语：English, a worldwide language, is playing a key role in our communication with others",
+              "A boy writes the name of Beckham on his face. 加上同位语：A boy--a crazy football fan--writes the name of Beckham, a well-known worldwide superstar on his face"
+            ]},
+            { "type": "paragraph", "text": "同位语起强调补充说明的作用：My father, the fat man, is drinking. / Pudding, my teacher, is very strict. 构成成分：通常由名词、代词、从句担任。" },
+            { "type": "paragraph", "text": "插入语：只要是句子中间插入的我们都可以叫插入语，而只有两个成分位置相同我们才叫同位语。独立成分：和全句没有任何语法关系。" }
+          ]
+        },
+        {
+          "id": "ch15-6",
+          "title": "15.6. 状语",
+          "intro": [
+            { "type": "paragraph", "text": "当你提到一件事，那么对方围绕这件事心中所泛起的疑问所涉及的信息都是状语。比如你对你的朋友说：我们吃饭去。你的朋友心中会有一大堆问号：为啥吃饭？去哪吃饭？怎么去吃饭的地方？几点吃饭？如何吃饭？这些问题的答案其实都是状语。状语就是用来说明状态的语言成分。这里说的是一个运动过程的状态，也就是说状语是说明一个动作是怎样进行的。同时状语也是用来说明一个东西是如何存在的。定语是用来说明一个东西是什么样的，而状语是用来说一个动作是什么样的。如果没有状语的话你就无法表达一个稍微复杂的动作，你只能表达一个单纯的动作的概念，比如说跑步、走路、吃饭，但是你无法说明这个动作的性质。" }
+          ],
+          "subsections": [
+            {
+              "id": "ch15-6-1",
+              "title": "15.6.1. 状语从句",
+              "blocks": [
+                { "type": "paragraph", "text": "在很多时候，用简单的副词无法表达稍微复杂的意思，有的时候需要用一个句子来说明这个动作是怎么样发生的，那么这个句子就叫做状语从句。可以这样来理解，任何一个事情发生的时候，都需要有一个时间，都需要有一个地点，都需要有一个原因，都需要有一个目的，都能造成一定的结果，都通过一定的方式，有的时候会通过一定的比较，有的时候需要排除一切的状况。这里的时间、地点、原因、目的、结果、方式、比较、其他一切的状况等都叫做状语。当这些东西用一个句子来表达的时候，就变成了状语从句。或者说，状语从句实际上就是一个加长版的副词。从本质上讲，状语从句是通过语义来进行判定的。" },
+                { "type": "paragraph", "text": "定义：修饰动词、形容词、副词、句子，表示时间、地点、原因、目的、结果、方式、伴随、条件、程度、让步、频率等。英语的状语一般放在句子的后面，这点和中文不一样，中文的状语放在中间，英语一句话中可以同时出现多个状语。" },
+                { "type": "list", "ordered": false, "items": [
+                  "I teach English in Anhui 我在安徽教英语",
+                  "I am busy in Anhui 我在安徽忙（地点状语）",
+                  "I am happy today 我今天开心（时间状语）",
+                  "I speak English slowly 我说英语慢（方式状语）",
+                  "He often plays basketball 他经常打篮球（时间状语）"
+                ]},
+                { "type": "paragraph", "text": "充当状语的词语：副词、介词短语、动词不定式、动名词、状语从句。" }
+              ]
+            },
+            {
+              "id": "ch15-6-2",
+              "title": "15.6.2. 副词作状语",
+              "blocks": [
+                { "type": "list", "ordered": false, "items": [
+                  "He speaks English very well. 他英语说得非常好。程度状语。"
+                ]}
+              ]
+            },
+            {
+              "id": "ch15-6-3",
+              "title": "15.6.3. 介词短语作状语",
+              "blocks": [
+                { "type": "list", "ordered": false, "items": [
+                  "She usually gets up at seven in the morning. 她一般在早上七点起床。",
+                  "The boy was praised for his bravery. 这个男孩因为他的勇敢而被夸奖。",
+                  "Chris will run in the 5,000 meters, and is the No. 14 seed.（含有介词短语作状语，副词性成分）",
+                  "People are absorbed into \"a culture of consumption\""
+                ]}
+              ]
+            },
+            {
+              "id": "ch15-6-4",
+              "title": "15.6.4. 现在分词短语作状语",
+              "blocks": [
+                { "type": "list", "ordered": false, "items": [
+                  "Considering the DoD's half a trillion dollar budget, $200 million seems like a paltry sum.（现在分词短语作状语，副词性成分）"
+                ]}
+              ]
+            },
+            {
+              "id": "ch15-6-5",
+              "title": "15.6.5. 过去分词短语作状语",
+              "blocks": [
+                { "type": "list", "ordered": false, "items": [
+                  "Faced with the situation, what are we supposed to do?",
+                  "Shocked by what I saw, I backed off, starting to leave through the door.（过去分词和现在分词短语作状语，副词性成分。而且在这里，过去分词短语里还包含了一个宾语从句。）（因为）被我所看到的所震惊，我后退了，开始从那扇门离开。"
+                ]}
+              ]
+            },
+            {
+              "id": "ch15-6-6",
+              "title": "15.6.6. 句子作状语（状语从句）",
+              "blocks": [
+                { "type": "paragraph", "text": "在这里，一定要明白，状语从句只是用一个句子来解释某一个动作（过程）的发生情景而已，无论这个句子有多长，它都只是起到一个辅助作用。" },
+                { "type": "list", "ordered": false, "items": [
+                  "When she was 12 years old, she began to live in Dalian. 她 12 岁的那一年开始居住于大连。时间状语",
+                  "If I am not busy tomorrow, I will play football with you. 如果我明天不忙，我就会陪你踢足球。条件状语",
+                  "Today there are many actors that matter, so we have to understand that while the US role may still be the most important, it's different.（句子作状语，也就是所谓的状语从句，副词性成分）今天，有很多参与者都很重要。所以我们必须明白一点，即便美国的角色也许是最重要的那一个，但是情况已经不同了。"
+                ]}
+              ]
+            },
+            {
+              "id": "ch15-6-7",
+              "title": "15.6.7. 不定式作状语",
+              "blocks": [
+                { "type": "list", "ordered": false, "items": [
+                  "He rushed into the house to save the girl. 不定式在句子中可以作目的状语"
+                ]}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch15-7",
+          "title": "15.7. 表语",
+          "intro": [
+            { "type": "paragraph", "text": "表语说明主语的状况、性质、特征等情况。系动词和表语是不能分开的，没有系动词就没有表语，没有表语就没有系动词。名词、形容词、介词短语、名词所有格、动词不定式、动名词、代词、数词、分词、副词、句子。be 系动词 + 表语。" },
+            { "type": "paragraph", "text": "名词做表语，说明主语是什么：He is my brother. 他是我的兄弟。/ He is the boss of the company. 他是公司的老板。" },
+            { "type": "paragraph", "text": "形容词做表语，说明主语的状态怎么样：He is strong. / He is very rich." },
+            { "type": "paragraph", "text": "介词短语做表语：He is in the hospital. 他在医院里。注意区分 He is in hospital. 他住院了。" },
+            { "type": "paragraph", "text": "不定式做表语，用不定式作表语时通常是表示一种意愿、目的、计划或未完成的事：His job is to teach English. / My hope, goal, desire, wish, intention, plan, purpose, ambition is to win the championship." },
+            { "type": "paragraph", "text": "动名词做表语，主语与动名词是同位关系。即主语 = 表语。因此，主语和表语可以互换句法功能。表示一种经历或已知的事：His job is teaching English. = Teaching English is his job." },
+            { "type": "paragraph", "text": "从句作表语：The problem is they don't trust me. 问题是他们信不过我。" }
+          ]
+        },
+        {
+          "id": "ch15-8",
+          "title": "15.8. 独立成分",
+          "intro": [
+            { "type": "paragraph", "text": "与全句没有什么语法关系。" },
+            { "type": "paragraph", "text": "感叹词：oh、hello、aha" },
+            { "type": "paragraph", "text": "表达肯定与否定的答语：yes、no" },
+            { "type": "paragraph", "text": "插入语：I think、I believe、to tell you the truth、believe it or not" },
+            { "type": "paragraph", "text": "称呼语：Mr Li、your pudding、Mum" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch16",
+      "title": "16. 句型：主谓结构",
+      "intro": [
+        { "type": "paragraph", "text": "主谓结构的词语可以配上状语表示动作发生的时间、地点、方式等。可以用一个句子的演变来表示主谓结构的应用。" },
+        { "type": "paragraph", "text": "中心句子：Lucy sleeps." },
+        { "type": "list", "ordered": false, "items": [
+          "Lucy sleeps well. 露西睡的很好。加了方式状语 well。",
+          "Lucy sleeps on the bed. 露西在床上睡觉。加了地点状语 on the bed。",
+          "Lucy sleeps every afternoon. 露西每个下午都睡觉。加了时间状语 every afternoon。",
+          "Lucy slept soundly for 8 hours. 露西大睡了 8 小时。"
+        ]},
+        { "type": "code", "language": "text", "code": "An ant   fell       into a river\n主语       谓语      地点状语\n\nThe children    are playing   in the park.\n主语            谓语           地点状语\n\nThe wind   will start   in the afternoon.\n主语          谓语          时间状语\n\nThe baby   cried    just now.\n主语           谓语     时间状语\n\nThey  lived  happily  ever after.\n主语  谓语   方式状语  时间状语\n\nThe guests   are talking   loudly.\n主语            谓语            方式状语\n\nThe birds   are singing   happily in the woods.  方式状语 + 地点状语\n\nHe waited at the railway station all morning.  地点状语 + 方式状语\n\nYears ago, in a remote countryside, a great man named Odysseus lived there.  状语可放在句首" },
+        { "type": "note", "variant": "info", "text": "不要见了 are 就觉得是主系表结构，这个 are 是助动词，和 singing 一起表现在进行时的。和系动词的 are 不一样，如 we are friends." },
+        { "type": "paragraph", "text": "总结：" },
+        { "type": "list", "ordered": true, "items": [
+          "主谓结构用于动词不及物时，一般和状语一起用。",
+          "状语可前置，可后置。",
+          "不及物动词的判定标准是没有被动，加被动时不通顺，别扭。"
+        ]}
+      ],
+      "sections": []
+    },
+    {
+      "id": "ch17",
+      "title": "17. 句型：祈使句（imperative sentence）",
+      "intro": [
+        { "type": "paragraph", "text": "发出指令、请求、祝愿、忠告、禁止、命令、建议、或者邀请等，核心目标是促使听者采取行动或者做出反应。肯定句以“动词原形”开头，否定式在动词前面加 don't。" },
+        { "type": "paragraph", "text": "祈使句的主语一般是第二人称 you，偶尔也会出现第三人称 everybody、somebody, nobody 等不定代词的情况：" },
+        { "type": "list", "ordered": false, "items": [
+          "Everybody stand up!",
+          "Somebody answer the phone.",
+          "Nobody move!",
+          "Be quiet!",
+          "Wake up!",
+          "Get out! 命令",
+          "Don't close the door.",
+          "Don't wear a face mask when running. 忠告",
+          "Don't bug me!",
+          "Please wait for me. 请求",
+          "Let's battle! 建议",
+          "Let's play together.",
+          "Have a nice day! 祝愿",
+          "No smoking! 禁止"
+        ]},
+        { "type": "paragraph", "text": "几乎都已经把主语省略掉了；但有时为了讲清楚是对谁发出的命令/请求，会把主语加上：You wait for me here." }
+      ],
+      "sections": [
+        {
+          "id": "ch17-1",
+          "title": "17.1. 肯定句",
+          "intro": [
+            { "type": "paragraph", "text": "动词原形 Do：Get out! / Let's go!" },
+            { "type": "paragraph", "text": "Be + 形容词、名词：Be quiet! / Be a lamb and open it for me." }
+          ]
+        },
+        {
+          "id": "ch17-2",
+          "title": "17.2. 否定句",
+          "intro": [
+            { "type": "paragraph", "text": "在句首加 Don't：Don't be shy. / Don't push this." },
+            { "type": "paragraph", "text": "带主语的否定句，仍是在句首加 Don't：Don't + 主语 + 动词原形；Don't you open the door." },
+            { "type": "paragraph", "text": "在句首加 Never：Never put off till tomorrow what you can do today. 今日事今日毕 / Never say die! 永不言弃" },
+            { "type": "paragraph", "text": "No + doing、名词：No smoking. No parking." },
+            { "type": "paragraph", "text": "Let 的否定句，当宾语是第一人称 me/us 时，Let me/us not do something.：Let's not waste time!" },
+            { "type": "paragraph", "text": "Let 的否定句，当宾语是第三人称：在句首加 Don't，Don't let + 宾语 + do sth.：Don't let the fire go out." },
+            { "type": "paragraph", "text": "与 please 连用，语气更委婉。Please be quiet.（如果放句首，后面不用逗号。）/ Be quiet, please.（如果放句末，前面一般加个逗号。）/ Please don't + stop!（否定 please 放在 don't 前面。）" },
+            { "type": "paragraph", "text": "在没有主语的肯定祈使句前面加 do，表强调，“务必、一定要...”，情绪比较强烈：Do be careful! / Do shut up!" },
+            { "type": "paragraph", "text": "祈使句表条件，祈使句 + and、or（else）、otherwise + 句子（一般将来时 will + 动词原形）。" },
+            { "type": "list", "ordered": false, "items": [
+              "Work hard, and you will succeed.",
+              "Hurry up, or you will be late!",
+              "Pipe down or else you will all get detention!",
+              "Do as you're told, otherwise you'll be in trouble!"
+            ]}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch18",
+      "title": "18. 从句",
+      "intro": [
+        { "type": "paragraph", "text": "除了谓语动词之外，每种句子成分其实都可以由从句充当。" }
+      ],
+      "sections": []
+    },
+    {
+      "id": "ch19",
+      "title": "19. 从句是怎么来的？",
+      "intro": [],
+      "sections": [
+        {
+          "id": "ch19-1",
+          "title": "19.1. 从句的由来",
+          "intro": [
+            { "type": "table", "headers": ["陈述句", "陈述句语序，含关系代词", "从句"], "rows": [
+              ["I bought the carrot", "I bought that", "that I bought"],
+              ["The rabbit ate a carrot", "Who ate a carrot", "who ate a carrot"],
+              ["I saw the teacher yesterday", "I saw whom yesterday", "whom I saw yesterday"],
+              ["The teacher's favorite food is carrot", "Whose favorite food is carrot", "whose favorite food is carrot"],
+              ["The teacher likes the food", "The teacher likes which", "which the teacher likes"]
+            ]},
+            { "type": "paragraph", "text": "that vs which (the difference)：关系代词 that 和 which 经常可以互换。他们到底有什么区别？" },
+            { "type": "paragraph", "text": "先行词是唯一的，没有其他可能的时候，用 that：" },
+            { "type": "list", "ordered": false, "items": [
+              "The rabbit ate the largest carrot that I've ever seen.",
+              "all the rabbits that ate a carrot",
+              "the only rabbit that ate a carrot",
+              "the first rabbit that ate a carrot"
+            ]},
+            { "type": "paragraph", "text": "用 that 的情况：" },
+            { "type": "list", "ordered": true, "items": [
+              "当前行词是不定代词 much、little、none、all、few、every(thing)、any(thing)、no(thing)",
+              "当主语以 here、there 开头",
+              "当前行词被 the only、the same、the very、the last、the one 等限定词修饰时：This is the only film that has been shown in our school this term 这是我们学校本学期放映的唯一一部电影",
+              "当前行词被 any、few、little、no、all、much、some 等修饰时：You can take any seat that is free 任何空着的座位你都可以坐",
+              "当前行词被序数词或形容词最高级修饰时",
+              "当前行词是疑问代词 who、which、what 或主句以这些词开头时",
+              "当前行词既有人又有物时"
+            ]},
+            { "type": "paragraph", "text": "https://zhuanlan.zhihu.com/p/359059703" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch20",
+      "title": "20. 名词性从句",
+      "intro": [
+        { "type": "paragraph", "text": "主语从句、宾语从句、表语从句、同位语从句、定语从句、状语从句。" },
+        { "type": "paragraph", "text": "一般疑问句，不用疑问词，用 yes 或 no 回答的句子。" },
+        { "type": "paragraph", "text": "be 动词的一般疑问句：Is your father angry? Yes, he is. / Are there any birds in the sky? Yes, there are. / Were the babies crying last night? Yes, there were." },
+        { "type": "paragraph", "text": "情态动词的一般疑问句：Can you bring me some apples? No, I can't. / Must I do it now? Yes, you must. No, you needn't." },
+        { "type": "paragraph", "text": "一般动词（实义动词）的一般疑问句：Do(Does, Did) + 主语 + 动词原形 + ～？Does he have supper at home every day? Yes, he does. / Did he do morning exercises yesterday? Yes, he did." },
+        { "type": "paragraph", "text": "完成时的一般疑问句：Have(Has) + 主语 + 过去分词 + ～？Have you known her since your childhood? Yes, I have." },
+        { "type": "paragraph", "text": "过去完成时的一般疑问句：Had + 主语 + 过去分词 + ～？Had he learned about two thousand English words before he came here? Yes, he did." },
+        { "type": "paragraph", "text": "有时主语可以省略，从而形成祈使句。祈使句句首一定为原型动词，之前省略了 You should. Be quiet. = (You should) be quiet. / Work hard. = (you should) work hard." },
+        { "type": "paragraph", "text": "祈使句变成否定形式时，在原型动词前加 Don't：Don't be silly. 别傻了" },
+        { "type": "paragraph", "text": "从句：“从”其实指的就是“从属”，它是一种标志，把一个标志放在一个句子的前面，就表示这个句子属于一个从属位置了。He comes back. 如果我们在它的前面加上一个从属地位的标志词，假如说加上一个 when：When he comes back. 那么句子的意思就变了，变成“当他回来的时候”，体会一下，“当他回来的时候”这句话就不再独立了，似乎没有说完，感觉像是服务另外一句话，比如说：“当他回来的时候，我正在做作业”，处于从属地位的句子，其实干的就是辅助修饰其他句子的事。" }
+      ],
+      "sections": []
+    },
+    {
+      "id": "ch21",
+      "title": "21. 定语从句/关系从句/形容词性从句",
+      "intro": [
+        { "type": "paragraph", "text": "a tasty carrot 一根好吃的胡萝卜 / a carrot that I bought 一根我买来的胡萝卜。" },
+        { "type": "paragraph", "text": "在被修饰的词（carrot）之后添加另一个和它有关系的词，然后再把这个新词放到另一个句子中进行补充说明/逻辑阐述。语法上这个新词叫“关系词（引导词）that”，它之前的被修饰的词叫“先行词”。这里的另一个句子就是“定语从句/形容词从句”，而因为其中包含“关系词”的缘故，也叫关系从句。" },
+        { "type": "code", "language": "text", "code": "a  carrot    that        I bought\n    先行词  关系词     从句" },
+        { "type": "paragraph", "text": "先行词，是定语从句所修饰的名词或代词，一般位于定语从句之前。关系词，是用来引导定语从句的词。关系词指代先行词，在定语从句中充当句子成分。关系词可分为关系代词（that、which、who、whom、whose）和关系副词（when、where、why）。构成：先行词名词（短语）+ 引导词 + 定语从句。" }
+      ],
+      "sections": [
+        {
+          "id": "ch21-1",
+          "title": "21.1. 按照先行词种类",
+          "intro": [
+            { "type": "paragraph", "text": "先行词是人：that、who、whom、whose" },
+            { "type": "paragraph", "text": "先行词是物：that、which、whose" },
+            { "type": "paragraph", "text": "先行词是时间：that、which、when" },
+            { "type": "paragraph", "text": "先行词是地点：that、which、where" },
+            { "type": "paragraph", "text": "先行词是原因：that、which、why" }
+          ]
+        },
+        {
+          "id": "ch21-2",
+          "title": "21.2. 按照引导词的词性",
+          "intro": [
+            { "type": "paragraph", "text": "代词：who、whom、that、which、whose。副词：where、when、why。" },
+            { "type": "paragraph", "text": "一般情况下，that 都等于 which。关系代词：在从句充当主语或宾语成分。" },
+            { "type": "list", "ordered": false, "items": [
+              "that 作关系代词：从句中充当主语或宾语，既可以指人也可以指物",
+              "which = that 作关系代词，从句中充当主语或宾语",
+              "who 作关系代词：从句中充当主语或宾语，一般指人，意思是：....的人，那个....；他们，他",
+              "whom 作关系代词：从句中只能充当宾语，一般指人，意思与 who 同义",
+              "whose 作关系代词：从句中只能充当定语，既可以指人也可以指物，意思是：那个人的，那些人的，那一个的，那一些的"
+            ]},
+            { "type": "paragraph", "text": "关系副词：在从句中不能充当主干成分。" },
+            { "type": "list", "ordered": false, "items": [
+              "where 作关系副词：从句中不能充当主干（即主谓宾），先行词是地点",
+              "when 作关系副词：从句中不能充当主干（即主谓宾），先行词是时间",
+              "why 作关系副词：从句中不能充当主干（即主谓宾），先行词是原因"
+            ]},
+            { "type": "paragraph", "text": "关系代词引导的定语从句：" },
+            { "type": "list", "ordered": false, "items": [
+              "The rabbit is eating a carrot that I bought.",
+              "The teacher who ate a carrot is a rabbit.",
+              "The teacher whom I saw yesterday is a rabbit.",
+              "The teacher whose favorite food is carrot is a rabbit.",
+              "The food which the teacher likes is a carrot."
+            ]},
+            { "type": "paragraph", "text": "这里的关系代词之所以是 who，whom，whose，which，都是为了在它们引导的从句中更通顺，因为这些词表达的逻辑关系，实际上是从对应的陈述句里变来的，而这些从句中，除去关系代词在开头作引导词，其他词的语序与对应的陈述句的语序是一致的。" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch22",
+      "title": "22. 人称",
+      "intro": [
+        { "type": "paragraph", "text": "第一人称，是叙述人称之一。在语法上是指表达者一方，在文学作品中是指叙事视角之一，在言语（书面或口头）活动中，指称说话人自己的为第一人称。如“我”、“我们”等。" },
+        { "type": "paragraph", "text": "第二人称，属于一种语法中的范畴。在言语活动中，指称与说话人相对的听话人。" },
+        { "type": "paragraph", "text": "第三人称，是指说话人与听话人以外第三方。在言语活动中，记叙、抒情一类文章中，叙述人不出现在作品中，而是以旁观者的身份出现。在叙事性文学作品中运用第三人称是最常见的叙述方式。运用第三人称即以第三者的身份来叙述，能比较直接客观地展现丰富多彩的生活，不受时间和空间限制，反映现实比较灵活自由。" },
+        { "type": "paragraph", "text": "单数：他、她、它；复数：他们、她们、它们。" },
+        { "type": "table", "headers": ["人称", "数", "主格", "宾格", "形容词性物主代词", "名词性物主代词"], "rows": [
+          ["第一人称", "单数", "I 我", "me 我", "my 我的", "mine 我的"],
+          ["第一人称", "复数", "We 我们", "us 我们", "our 我们的", "ours 我们的"],
+          ["第二人称", "单数", "you 你", "you 你", "your 你的", "yours 你的"],
+          ["第二人称", "复数", "you 你们", "you 你们", "your 你们的", "yours 你们的"],
+          ["第三人称", "单数", "he 他", "him 他", "his 他的", "his 他的"],
+          ["第三人称", "单数", "she 她", "her 她", "her 她的", "hers 她的"],
+          ["第三人称", "单数", "it 它", "it 它", "its 它的", "its 它的"],
+          ["第三人称", "复数", "they 他们", "them 他们", "their 他们的", "theirs 他们的"]
+        ]},
+        { "type": "divider" },
+        { "type": "paragraph", "text": "She has a toothache, she should get some rest." },
+        { "type": "paragraph", "text": "Did you + 动词原型，过去的动作。" },
+        { "type": "list", "ordered": false, "items": [
+          "When will Duo be back from China?",
+          "Is there a problem with this website? 有什么问题吗？",
+          "I'll go to the movies with you. 看电影",
+          "The children got up and then went to school. 孩子们起床了，然后去了学校。",
+          "Which team has the fastest player? Has 三单",
+          "Oh, the class is over! 结束了"
+        ]},
+        { "type": "paragraph", "text": "Are 问属性感受 + 名词，形容词，介词短语。" },
+        { "type": "list", "ordered": false, "items": [
+          "Are you having a good time in New York?",
+          "Are you a student?",
+          "Are you hungry?",
+          "Are you in the library?"
+        ]},
+        { "type": "paragraph", "text": "Do 问行为能力 + 动词原型。" },
+        { "type": "list", "ordered": false, "items": [
+          "Do you like apples?",
+          "Do you have a dog?",
+          "Do you have a toothache?",
+          "Do you know the answer?"
+        ]}
+      ],
+      "sections": []
+    },
+    {
+      "id": "ch23",
+      "title": "23. 时态",
+      "intro": [
+        { "type": "paragraph", "text": "谓语动词表示动作的时间：现在、过去、将来、过去将来。谓语动词表示动作的状态：未说明（一般）、完成、进行、不但完成而且继续（完成进行）。" },
+        { "type": "table", "headers": ["", "一般", "进行", "完成", "完成进行"], "rows": [
+          ["现在", "一般现在时态 eat/eats", "现在进行时态 am/is/are eating", "现在完成时态 has/have eaten", "现在完成进行时态 has/have been eating"],
+          ["过去", "一般过去时态 ate", "过去进行时态 was/were eating", "过去完成时态 had eaten", "过去完成进行时态 had been eating"],
+          ["将来", "一般将来时态 will eat", "将来进行时态 will be eating", "将来完成时态 will have eaten", "将来完成进行时态 will have been eating"],
+          ["过去将来", "一般过去将来时态 would eat", "过去将来进行时态 would be eating", "过去将来完成时态 would have eaten", "过去将来完成进行时态 would have been eating"]
+        ]}
+      ],
+      "sections": [
+        {
+          "id": "ch23-1",
+          "title": "23.1. To Be: Present Tense",
+          "intro": [
+            { "type": "paragraph", "text": "现在时态，表述一个事实状态。To Be 的现在时态，“时”指动作发生的时间，“态”指动作的样子和状态。" },
+            { "type": "code", "language": "text", "code": "I am -> I am happy today.\nyou are -> You are smart.\nhe is -> He is my friend.\nshe is -> She is busy.\nit is -> It is true.\nwe are -> We are tired.\nthey are -> They are here." },
+            { "type": "paragraph", "text": "我 I 用 am，你用 are，剩下 is 留给他她它，两个以上都用 are。" }
+          ]
+        },
+        {
+          "id": "ch23-2",
+          "title": "23.2. To Be: Present Tense: Negative Form",
+          "intro": [
+            { "type": "paragraph", "text": "否定形式就是 be 后面接 not。" }
+          ]
+        },
+        {
+          "id": "ch23-3",
+          "title": "23.3. 时态后移",
+          "intro": [
+            { "type": "paragraph", "text": "Present simple, present continuous and present perfect.（一般现在时，现在进行时，现在完成时）When we backshift, present simple changes to past simple, present continuous changes to past continuous and present perfect changes to past perfect." },
+            { "type": "list", "ordered": false, "items": [
+              "一般现在：I travel a lot in my job.",
+              "一般过去：Duo said that she travelled a lot in her job.",
+              "现在进行：The baby is sleeping.",
+              "过去进行：He told me the baby was sleeping.",
+              "现在完成：I have hurt my leg.",
+              "过去完成：She said she had hurt her leg."
+            ]}
+          ]
+        },
+        {
+          "id": "ch23-4",
+          "title": "23.4. The Present Simple Tense",
+          "intro": [
+            { "type": "paragraph", "text": "一般现在时：现在的状态、经常或习惯性的动作、客观事实或普遍真理等。" },
+            { "type": "list", "ordered": false, "items": [
+              "I always sleep eight hours.",
+              "She runs every morning.",
+              "I call my mom every week.",
+              "They always talk about the weather.",
+              "I don't drink beer. 我不喝啤酒。",
+              "Thank you for making a difference. 谢谢你带来的改变。"
+            ]},
+            { "type": "paragraph", "text": "谓语动词表示动作的假设、情感等：虚拟语气、陈述语气、祈使语气。" },
+            { "type": "paragraph", "text": "+ 动词原形；+ 动词原形 + s（第三人称单数）。" }
+          ],
+          "subsections": [
+            {
+              "id": "ch23-4-1",
+              "title": "23.4.1. Basic form",
+              "blocks": [
+                { "type": "list", "ordered": false, "items": [
+                  "I eat carrots.",
+                  "You eat carrots.",
+                  "We eat carrots."
+                ]}
+              ]
+            },
+            {
+              "id": "ch23-4-2",
+              "title": "23.4.2. third-person singular",
+              "blocks": [
+                { "type": "list", "ordered": false, "items": [
+                  "She eats carrots.",
+                  "The rabbit eats carrots."
+                ]}
+              ]
+            },
+            {
+              "id": "ch23-4-3",
+              "title": "23.4.3. Express the truth",
+              "blocks": [
+                { "type": "list", "ordered": false, "items": [
+                  "The sun rises in the east.",
+                  "The earth revolves around the sun."
+                ]},
+                { "type": "paragraph", "text": "表达习惯/重复的动作：I play basketball. / The bus leaves at 8PM every day. / I eat lunch at noon every day." },
+                { "type": "paragraph", "text": "eat: The base form of the verb \"to eat.\" every: Adverbs of frequency are often used with the present simple." },
+                { "type": "paragraph", "text": "表时预计发生的事：The bus leaves at 8PM tonight." },
+                { "type": "paragraph", "text": "一般现在时否定句 The present simple negative：The verb \"be\" takes the same form in positive and negative sentences. The only difference is adding \"not\". I am a farmer. I am not a doctor." }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch23-5",
+          "title": "23.5. 现在进行时态",
+          "intro": [
+            { "type": "paragraph", "text": "助动词 be 的变位 + 动词的现在分词。" },
+            { "type": "paragraph", "text": "I eat carrots. 示例：" },
+            { "type": "list", "ordered": false, "items": [
+              "I am eating carrots.",
+              "You/we/they are eating a carrot.",
+              "She/he/it is eating a carrot."
+            ]},
+            { "type": "paragraph", "text": "be 的两个身份：系动词，构成主系表结构。I am a smart rabbit. I 等于 a smart rabbit. 助动词，构成时态。I am eating carrots." },
+            { "type": "paragraph", "text": "现在分词：通常 +ing，例如 looking, smelling, tasting。有些动词在此基础上改变拼写（不规则的原因主要是为了发音更加方便）：write - writing, hit - hitting, die - dying。" }
+          ]
+        },
+        {
+          "id": "ch23-6",
+          "title": "23.6. 现在完成时态",
+          "intro": [
+            { "type": "paragraph", "text": "过去发生或已经完成的动作对现在造成的影响或结果，或从过去已经开始，持续到现在的动作或状态。助动词 have 的变位 + 动词的过去分词。" },
+            { "type": "paragraph", "text": "I eat carrots. 示例：I have eaten carrots. 我吃过胡萝卜（言下之意：我曾吃过这种食物，是只见过世面的兔子）" },
+            { "type": "list", "ordered": false, "items": [
+              "You/we/they have eaten a carrot.",
+              "She/he/it has eaten a carrot.",
+              "You have watched my video."
+            ]},
+            { "type": "paragraph", "text": "have 的两个身份：实义动词：I have some coins for this video 我有一些硬币给这个视频。助动词，构成时态。" },
+            { "type": "paragraph", "text": "过去分词：通常 +ed，例如 looked、smelled 闻、tasted 品尝。有些动词是不规则变化的：" },
+            { "type": "code", "language": "text", "code": "eat -> eaten；give, see, fall -> given, seen, fallen\nbring -> brought；bring, buy, fight, think -> bought, fought, thought\nfeel -> felt；keep, sleep, leave -> kept, slept, left" },
+            { "type": "note", "variant": "warn", "text": "注意：过去分词 不等于 过去式。" }
+          ]
+        },
+        {
+          "id": "ch23-7",
+          "title": "23.7. 现在完成进行时态",
+          "intro": [
+            { "type": "paragraph", "text": "对于现在这个时间点，不但已经完成了一部分，而且还要继续进行的动作。进行态 + 完成态的综合。现在完成时态：have 的变位 + 动词过去分词。现在进行时态：be 的变位 + 动词现在分词。have 的变位 + be 的过去分词（be 的变位 been）+ 动词的现在分词。" },
+            { "type": "paragraph", "text": "I eat carrots. 示例：I have been eating carrots. 我在吃胡萝卜（不但已经吃了些，还将继续）" },
+            { "type": "list", "ordered": false, "items": [
+              "You have been watching my video （你到现在为止已经看了我的视频一段时间了，还要再继续看一段时间）",
+              "I have been thinking of you （我到现在为止已经想你一段时间了，还要再继续想一段时间）"
+            ]}
+          ]
+        },
+        {
+          "id": "ch23-8",
+          "title": "23.8. 过去一般时态",
+          "intro": [
+            { "type": "paragraph", "text": "+ 动词过去式。过去式：通常 +ed，如：looked、smelled 闻、tasted 品尝。" },
+            { "type": "note", "variant": "warn", "text": "注：过去式 不等于 过去分词，过去式也不要和时态的过去时搞混淆。过去式是动词的一种形式（变位）。过去时是过去这种时间，里面有四种时态。" },
+            { "type": "paragraph", "text": "过去时间中的一般理解，单纯理解为：动作发生了，至于这个动作：多久、什么时候开始、什么时候结束，我们没有上下文就不得而知。" },
+            { "type": "list", "ordered": false, "items": [
+              "The rabbit ate a carrot 兔子吃了胡萝卜（只知道这个兔子过去某个时刻在吃胡萝卜）",
+              "You watched my video 你看了我的视频",
+              "I thought of you 我想了你"
+            ]},
+            { "type": "paragraph", "text": "一般过去时态：表现过去的习惯动作。I played basketball 我打了篮球（并不能看出这是不是重复习惯动作）/ I used to play basketball（我曾经经常打篮球）。" }
+          ]
+        },
+        {
+          "id": "ch23-9",
+          "title": "23.9. 过去进行时态",
+          "intro": [
+            { "type": "paragraph", "text": "某些动作肯定要持续一段时间，比如“吃”这个动作不可能是瞬间的，但是一般过去时态的注意点不在过程上，只是单纯强调这事儿是否发生了。过去进行时态：强调过去某个时间段，某个动作是当时进行中的。助动词 be 的变位（was/were）+ 动词的现在分词。" },
+            { "type": "list", "ordered": false, "items": [
+              "The rabbit is eating a carrot. / The rabbit was eating a carrot （这只兔子在过去某个时间点处于正在吃胡萝卜的过程中）",
+              "You are watching my video. / You were watching my video （你在过去某个时间点处在看我的视频的过程中）",
+              "I am thinking of you. / I was thinking of you （我在过去某个时间点处在想你的过程中）"
+            ]}
+          ]
+        },
+        {
+          "id": "ch23-10",
+          "title": "23.10. 过去完成时态",
+          "intro": [
+            { "type": "paragraph", "text": "过去完成时，以过去某个时间为标准，在此以前发生的动作或行为，或在过去某动作之前完成的行为，即“过去的过去”。助动词 have 的变位（had）+ 动词的过去分词。" },
+            { "type": "list", "ordered": false, "items": [
+              "The rabbit has eaten a carrot. / The rabbit had eaten a carrot（这只兔子在过去某个时间点已经吃了个胡萝卜了）",
+              "You have watched my video. / You had watched my video（你在过去某个时间点已经看过了我的视频）",
+              "I have thought of you. / I had thought of you（我在过去某个时间点已经想过你了）"
+            ]}
+          ]
+        },
+        {
+          "id": "ch23-11",
+          "title": "23.11. 过去完成进行时态",
+          "intro": [
+            { "type": "paragraph", "text": "现在完成进行时态往前推一个时间段，重点在于：对于过去某个点，不但已经完成了一部分了，而且还要继续进行的动作。助动词 have 的变位（had）+ 动词的过去分词。" },
+            { "type": "list", "ordered": false, "items": [
+              "The rabbit has been eating a carrot. / The rabbit had been eating a carrot（这兔子在过去某个时间点已经吃(某根)胡萝卜一段时间了，还要在过去那个时间点之后继续吃一段时间）",
+              "You have been watching my video. / You had been watching my video（你在过去某个时间点之前已经看了我视频一段时间，还要在那个时间点之后继续看一段时间）",
+              "I have been thinking of you. / I had been thinking of you （我在过去某个时间点之前已经想你一段时间了，还要在那个时间点后继续想一段时间）"
+            ]}
+          ]
+        },
+        {
+          "id": "ch23-12",
+          "title": "23.12. 将来一般时态",
+          "intro": [
+            { "type": "paragraph", "text": "英语中表达将来动词本身没有相应的拼写变化，英语中要表达将来必须要借助助动词（will 或者 shall）来帮忙（放在谓语动词之前）因为这个原因，有些语言学家认为英语的动词本身根本就没有“将来时态”。英语里面有的仅仅是“将来时态的表达”。" },
+            { "type": "list", "ordered": true, "items": [
+              "一般现在时态可以表达将来的动作：The bus leaves at 8PM",
+              "助动词 be 的变位 + going + to + 动词原形：I am going to eat a carrot 我很快将要吃胡萝卜",
+              "甚至上句的 going 也可以省略，变为助动词 be 的变位 + to + 动词原形：You are to eat a carrot 你必须去吃一个胡萝卜",
+              "又或者也可以用介词 about 取代 going，即 + about + to + 动词原形：I am about to eat a carrot 我将要吃根胡萝卜"
+            ]},
+            { "type": "paragraph", "text": "构成语法：助动词 will + 动词原形。" },
+            { "type": "list", "ordered": false, "items": [
+              "The sun will rise again tomorrow 太阳明天也会照常升起",
+              "I will definitely do my best to make high-quality videos 我以后也一定会尽全力做高质量视频"
+            ]},
+            { "type": "note", "variant": "warn", "text": "注意：如果不太确定将来会发生，就不能用一般将来时态（要借助动词的“语气”）。" }
+          ]
+        },
+        {
+          "id": "ch23-13",
+          "title": "23.13. 将来进行时态 Future Progressive Tense",
+          "intro": [
+            { "type": "paragraph", "text": "在将来某个时间，某个动作是在进行的过程中。助动词 will + be + 动词现在分词。" },
+            { "type": "paragraph", "text": "I will be eating a carrot for lunch tomorrow from 1PM to 3PM 我明天午饭会在吃胡萝卜这个动作过程中" }
+          ]
+        },
+        {
+          "id": "ch23-14",
+          "title": "23.14. 将来完成时态",
+          "intro": [
+            { "type": "paragraph", "text": "助动词 will + have + 动词过去分词。" },
+            { "type": "paragraph", "text": "I will have finished making the video by 4PM tomorrow, so I can publish it after that." },
+            { "type": "paragraph", "text": "If suddenly you forget me. Do not look for me. For I shall already have forgotten you." },
+            { "type": "list", "ordered": false, "items": [
+              "The rabbit has eaten a carrot. / The rabbit will have eaten a carrot （这只兔子在将来某个时间点已经吃了个胡萝卜）",
+              "You have watched my video. / You will have watched my video （你在将来某个时间点已经看过了我的视频）",
+              "I have thought of you. / I will have thought of you （我在将来某个时间点已经想过你了）"
+            ]},
+            { "type": "note", "variant": "info", "text": "注：这个比一般将来时态更加笃定。" }
+          ]
+        },
+        {
+          "id": "ch23-15",
+          "title": "23.15. 将来完成进行时态",
+          "intro": [
+            { "type": "paragraph", "text": "对于将来某个点，不但已经完成了一部分而且还要继续进行的动作。助动词 will + have + been + 动词现在分词。" },
+            { "type": "list", "ordered": false, "items": [
+              "You have been watching my video. / You will have been watching my video.（你在将来某个时间点之前已经看了我视频一段时间了，还要在那个时间点之后继续看一段时间）",
+              "I have been thinking of you. / I will have been thinking of you （我在将来某个时间点之前已经想你一段时间了，还要在那个时间点后继续想你一段时间）"
+            ]}
+          ]
+        },
+        {
+          "id": "ch23-16",
+          "title": "23.16. 过去将来一般时态",
+          "intro": [
+            { "type": "paragraph", "text": "以过去将来时间为参照点，相对于过去某一时间点的将来，和现在没关系。常常出现在从句中。例如：去年说过我上个月要开始做视频。例如：上个月说我明年要出书。" },
+            { "type": "paragraph", "text": "语法构成：would + 动词原形。" },
+            { "type": "list", "ordered": false, "items": [
+              "I said I would eat a carrot for lunch. 我(之前)说过我会在午饭吃根胡萝卜（午饭时间对于之前我说那话的时间来说是在将来，但至于现在午饭时间有没有到，不得而知）= I said I was going to eat a carrot for lunch.",
+              "I knew you would watch my video. 我(之前)就知道你会看我的视频（你看我视频这件事对于我做出这个判断的时间来说是在将来）= I knew you were going to watch my video."
+            ]},
+            { "type": "note", "variant": "info", "text": "注意：would 多义。\nI said I would eat a carrot for lunch. 过去将来一般时态\nIf I were you, I would eat a carrot. 构成 eat 的虚拟语气，我不可能是你，所以这里的“吃”是“虚拟”动作。\nWould you pass me the carrot, please? 比 will 更礼貌\nWould you like a carrot for lunch? 比 will 更礼貌" }
+          ]
+        },
+        {
+          "id": "ch23-17",
+          "title": "23.17. 过去将来进行时态",
+          "intro": [
+            { "type": "paragraph", "text": "would + be + 动词现在分词。" },
+            { "type": "paragraph", "text": "I said I would be eating a carrot at 1PM tomorrow/yesterday 我(之前)说我明天下午 1 点会在吃胡萝卜（我之前说我明天/昨天下午 1 点会是在吃胡萝卜这个过程中）" }
+          ]
+        },
+        {
+          "id": "ch23-18",
+          "title": "23.18. 过去将来完成时态",
+          "intro": [
+            { "type": "paragraph", "text": "would + have + 动词的过去分词。" },
+            { "type": "paragraph", "text": "I said I would have eaten a carrot by 1PM tomorrow/yesterday 我(之前)说我明天/昨天下午 1 点会已经吃掉了根胡萝卜（我之前说我明天/昨天下午 1 点会已经做完了吃胡萝卜这个动作）" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch24",
+      "title": "24. 过去将来完成进行时态",
+      "intro": [
+        { "type": "paragraph", "text": "would + have + been + 动词的现在分词。" },
+        { "type": "paragraph", "text": "I said I would have been eating lunch for 2 hours by 1PM tomorrow/yesterday 我(之前)说我明天/昨天下午 1 点前会已经吃了两钟头中饭（我之前说我会明天/昨天下午 1 点时在吃中饭这个过程中，之前吃了 2 钟头，之后还会继续吃）" }
+      ],
+      "sections": [
+        {
+          "id": "ch24-1",
+          "title": "24.1. 主动语态 被动语态",
+          "intro": [
+            { "type": "paragraph", "text": "语态表示主语和谓语的关系。语态有两种：主动语态和被动语态。" },
+            { "type": "paragraph", "text": "如果主语是动作的执行者，或者是说动作是由主语完成的，要用主动语态，如：We speak Chinese in China. 在中国我们说汉语；如果主语是动作的承受者，或者是说动作不是由主语而是由其他人完成的，则用被动语态，如：Chinese is spoken by us in China. 在中国汉语被我们说。" },
+            { "type": "paragraph", "text": "主动语态改成被动语态：" },
+            { "type": "list", "ordered": true, "items": [
+              "将主动语态的宾语作被动语态的主语；",
+              "谓语动词变为“be + 及物动词的过去分词”，并通过 be 的变化来表达出不同的时态；",
+              "主动语态的主语变为介词 by 的宾语，组成介词短语放在被动结构中的谓语动词之后。（有时 by 的短语可以省略）"
+            ]},
+            { "type": "paragraph", "text": "Bruce writes a letter every week. -> A letter is written by Bruce every week." },
+            { "type": "paragraph", "text": "被动语态的用法：" },
+            { "type": "list", "ordered": true, "items": [
+              "一般现在时的被动语态构成：is/am/are + 及物动词的过去分词。Our classroom is cleaned everyday.",
+              "一般过去时的被动语态构成：was/were + 及物动词的过去分词。A new shop was built last year.",
+              "现在完成时的被动语态构成：has/have + been + 及物动词的过去分词。This book has been translated into many languages.",
+              "一般将来时的被动语态构成：will + be + 及物动词的过去分词。Many more trees will be planted next year.",
+              "含有情态动词的被动语态构成：情态动词 + be + 及物动词的过去分词。Young trees must be watered often.",
+              "现在进行时的被动语态构成：am/is/are + being + 及物动词的过去分词。Uncle Wang is mending my bike now. -> My bike is being repaired by Tom now.",
+              "不定式的被动语态：to + be + 及物动词的过去分词。There are two books to be read. -> There are twenty more trees to be planted."
+            ]},
+            { "type": "paragraph", "text": "使用被动语态应注意的几个问题：" },
+            { "type": "list", "ordered": true, "items": [
+              "不及物动词无被动语态。What will happen in 100 years. / The dinosaurs disappeared about 65 million years ago.",
+              "有些动词用主动形式表示被动意义。This pen writes well. / This new book sells well.",
+              "感官动词或使役动词使用省略 to 的动词不定式，主动语态中不带 to，但变为被动语态时，须加上 to。make somebody do something -> somebody + be + made to do something；see somebody do something -> somebody + be + seen to do something。The boss made the little boy do heavy work. -> The little boy was made to do heavy work by the boss.",
+              "如果是接双宾语的动词改为被动语态时，直接宾语(物)作主语，那么动词后要用介词，这个介词是由与其搭配的动词决定。He gave me a book. -> A book was given to me by him. / He showed me a ticket. -> A ticket was shown to me by him.",
+              "一些动词短语用于被动语态时，动词短语应当看作一个整体，而不能丢掉其中的介词或副词。We can't laugh at him. -> He can't be laughed at by us."
+            ]},
+            { "type": "paragraph", "text": "常见考法：对于语态考查，多以单选、词语运用的形式考查学生在具体语境中灵活运用被动语态的能力。一般情况下，会综合考查时态和语态，这时，要根据语境和动作发生的时间来确定时态，然后再确定语态。" },
+            { "type": "paragraph", "text": "典型例题：—— Could you tell me whom the radio __________ by? —— Sorry, I have no idea. A invents B invented C is invented D was invented" },
+            { "type": "paragraph", "text": "解析：题干的意思是“你能告诉我收音机是谁发明的吗？”，发明收音机是过去的事，所以用过去时，排除 A 和 C；而 radio 和 invent 构成被动关系，应用被动语态，排除 B。答案：D" },
+            { "type": "note", "variant": "warn", "text": "误区提醒：有些动词后跟不带 to 的不定式作宾语补足语，但改为被动结构后要加上“to”，这一点我们必须注意。\n典型例题：The young man was often seen _____ by the lake. A to draw B to drawing C draw D drew\n解析：这是 2007 年济南的中考题。“看到某人做某事”为 see sb. do sth.。句中动词原形是省略 to 的不定式，在被动语态中要还原 to。答案：A" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch25",
+      "title": "25. 书写规则",
+      "intro": [
+        { "type": "paragraph", "text": "英语书中目录（书名、章节名等）的大小写规则是：标题的首个单词、名词、动词、形容词、副词、代词和感叹词的首字母应大写。冠词、介词和连词通常首字母小写，除非它们是标题的第一个单词。" },
+        { "type": "paragraph", "text": "具体规则：" },
+        { "type": "list", "ordered": false, "items": [
+          "首字母大写原则：标题的第一个单词，无论其词性，首字母必须大写。",
+          "实词大写：名词、动词、形容词、副词、代词和感叹词的首字母应大写。",
+          "虚词（通常）小写：冠词、介词、连词和感叹词（如 and, the, of, for）通常首字母小写，除非它们位于标题的第一个单词。",
+          "例外情况：即使虚词也是标题的第一个单词，也应大写。"
+        ]}
+      ],
+      "sections": []
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 {
   "documents": [
     { "id": "frontend-guide", "name": "前端开发入门指南", "file": "frontend-guide.json", "summary": "从前端基础到现代框架的入门教程，涵盖 HTML、CSS、JavaScript 三级章节结构示例。" },
-    { "id": "rust-tui", "name": "Rust 终端 UI 开发笔记", "file": "rust-tui.json", "summary": "使用 ratatui + crossterm 构建终端应用的实践记录。" }
+    { "id": "rust-tui", "name": "Rust 终端 UI 开发笔记", "file": "rust-tui.json", "summary": "使用 ratatui + crossterm 构建终端应用的实践记录。" },
+    { "id": "english-grammar", "name": "英语语法笔记", "file": "english-grammar.json", "summary": "系统整理英语拼读、词性、句子成分、句型、从句、时态、语态等语法知识，共 25 章节。" }
   ]
 }
