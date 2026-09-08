@@ -1,0 +1,170 @@
+{
+  "title": "前端开发入门指南",
+  "author": "杜超群",
+  "date": "2026-09-08",
+  "summary": "本指南演示 notes.html 的文档 JSON 结构，包含三级章节、段落、图片、代码块、列表、引用、表格、分割线、提示框等常用元素。",
+  "chapters": [
+    {
+      "id": "ch1",
+      "title": "第一章 HTML 基础",
+      "intro": [
+        { "type": "paragraph", "text": "HTML（HyperText Markup Language）是构建网页的骨架。本章介绍 HTML 的核心概念与常用标签。" },
+        { "type": "note", "variant": "info", "text": "本章所有代码均可直接在浏览器中运行，无需安装任何环境。" }
+      ],
+      "sections": [
+        {
+          "id": "ch1-1",
+          "title": "1.1 文档结构",
+          "subsections": [
+            {
+              "id": "ch1-1-1",
+              "title": "1.1.1 基本 HTML 模板",
+              "blocks": [
+                { "type": "paragraph", "text": "一个标准的 HTML5 文档包含 `<!DOCTYPE>` 声明、`<html>` 根元素、`<head>` 头部和 `<body>` 主体。下面是一个最小可用的模板：" },
+                { "type": "code", "language": "html", "code": "<!DOCTYPE html>\n<html lang=\"zh-CN\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>页面标题</title>\n</head>\n<body>\n  <h1>Hello, World!</h1>\n</body>\n</html>" },
+                { "type": "paragraph", "text": "`lang` 属性帮助搜索引擎和屏幕阅读器识别语言。`charset=\"UTF-8\"` 确保中文正常显示。" },
+                { "type": "image", "src": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=HTML%20document%20structure%20diagram%20with%20DOCTYPE%20html%20head%20body%20tags%20clean%20technical%20illustration&image_size=square", "alt": "HTML 文档结构图", "caption": "图 1.1 HTML 文档结构示意" }
+              ]
+            },
+            {
+              "id": "ch1-1-2",
+              "title": "1.1.2 常用标签速查",
+              "blocks": [
+                { "type": "paragraph", "text": "下表列出前端开发中最常用的 HTML 标签及其用途：" },
+                { "type": "table", "headers": ["标签", "用途", "示例"], "rows": [
+                  ["<h1>~<h6>", "标题", "<h1>主标题</h1>"],
+                  ["<p>", "段落", "<p>正文文本</p>"],
+                  ["<a>", "链接", "<a href=\\\"url\\\">链接</a>"],
+                  ["<img>", "图片", "<img src=\\\"x.png\\\">"],
+                  ["<ul>/<li>", "无序列表", "<ul><li>项</li></ul>"]
+                ]},
+                { "type": "divider" },
+                { "type": "paragraph", "text": "掌握这些标签后，即可拼装出结构清晰的静态网页。" }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch1-2",
+          "title": "1.2 表单与输入",
+          "subsections": [
+            {
+              "id": "ch1-2-1",
+              "title": "1.2.1 表单元素",
+              "blocks": [
+                { "type": "paragraph", "text": "表单是用户与服务端交互的入口。常用输入控件包括文本框、单选、复选、下拉等。" },
+                { "type": "code", "language": "html", "code": "<form action=\"/submit\" method=\"post\">\n  <input type=\"text\" name=\"user\" placeholder=\"用户名\">\n  <input type=\"password\" name=\"pwd\">\n  <button type=\"submit\">提交</button>\n</form>" },
+                { "type": "list", "ordered": true, "items": [
+                  "text：单行文本输入",
+                  "password：密码输入，内容被遮蔽",
+                  "radio：单选按钮，同组 name 共享",
+                  "checkbox：复选框"
+                ]},
+                { "type": "note", "variant": "warn", "text": "永远不要信任客户端提交的表单数据，服务端必须再次校验。" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch2",
+      "title": "第二章 CSS 样式",
+      "intro": [
+        { "type": "paragraph", "text": "CSS 决定网页的视觉呈现。本章覆盖选择器、盒模型与常用布局技巧。" }
+      ],
+      "sections": [
+        {
+          "id": "ch2-1",
+          "title": "2.1 选择器",
+          "subsections": [
+            {
+              "id": "ch2-1-1",
+              "title": "2.1.1 基础选择器",
+              "blocks": [
+                { "type": "paragraph", "text": "CSS 选择器决定哪些元素被应用样式。基础选择器包括标签、类、ID 和通用选择器。" },
+                { "type": "code", "language": "css", "code": "/* 标签选择器 */\np { color: #333; }\n\n/* 类选择器 */\n.card { border-radius: 12px; }\n\n/* ID 选择器 */\n#main { max-width: 960px; }\n\n/* 通用选择器 */\n* { margin: 0; padding: 0; }" },
+                { "type": "paragraph", "text": "类选择器以 `.` 开头，ID 选择器以 `#` 开头。ID 在页面中应唯一，类可复用。" }
+              ]
+            },
+            {
+              "id": "ch2-1-2",
+              "title": "2.1.2 组合与伪类",
+              "blocks": [
+                { "type": "paragraph", "text": "通过组合可以精确定位元素，伪类则用于交互状态。" },
+                { "type": "code", "language": "css", "code": "/* 后代选择器 */\n.card .title { font-weight: 600; }\n\n/* 伪类 */\na:hover { color: #ffd83d; }\nbutton:active { transform: scale(0.96); }\ninput:focus { border-color: #ffd83d; }" }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch2-2",
+          "title": "2.2 盒模型",
+          "subsections": [
+            {
+              "id": "ch2-2-1",
+              "title": "2.2.1 content / padding / border / margin",
+              "blocks": [
+                { "type": "paragraph", "text": "每个元素都是一个矩形盒子，由内容、内边距、边框、外边距四层构成。" },
+                { "type": "image", "src": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=CSS%20box%20model%20diagram%20content%20padding%20border%20margin%20labeled%20clean%20technical%20illustration&image_size=landscape_16_9", "alt": "CSS 盒模型示意", "caption": "图 2.1 CSS 盒模型" },
+                { "type": "quote", "text": "box-sizing: border-box 是现代前端开发的事实标准，它让宽度计算更直观。", "cite": "前端工程实践" },
+                { "type": "code", "language": "css", "code": "*, *::before, *::after {\n  box-sizing: border-box;\n}" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch3",
+      "title": "第三章 JavaScript 入门",
+      "intro": [
+        { "type": "paragraph", "text": "JavaScript 为网页注入交互能力。本章介绍变量、函数与 DOM 操作。" }
+      ],
+      "sections": [
+        {
+          "id": "ch3-1",
+          "title": "3.1 变量与函数",
+          "subsections": [
+            {
+              "id": "ch3-1-1",
+              "title": "3.1.1 let / const / var",
+              "blocks": [
+                { "type": "paragraph", "text": "现代 JS 推荐使用 `let` 和 `const`，避免使用 `var`。`const` 声明的引用不可变，但对象内部仍可修改。" },
+                { "type": "code", "language": "javascript", "code": "let count = 0;          // 可变\nconst PI = 3.14159;    // 常量\nconst arr = [1, 2];    // 引用不可变\narr.push(3);           // 但内部可修改 ✓" },
+                { "type": "note", "variant": "tip", "text": "默认用 const，需要重新赋值时才用 let，这是社区最佳实践。" }
+              ]
+            },
+            {
+              "id": "ch3-1-2",
+              "title": "3.1.2 箭头函数",
+              "blocks": [
+                { "type": "paragraph", "text": "箭头函数语法简洁，且不绑定自己的 this，特别适合回调。" },
+                { "type": "code", "language": "javascript", "code": "const add = (a, b) => a + b;\nconst square = x => x * x;\nconst greet = (name = 'guest') => `Hello, ${name}`;" }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch3-2",
+          "title": "3.2 DOM 操作",
+          "subsections": [
+            {
+              "id": "ch3-2-1",
+              "title": "3.2.1 查找与修改元素",
+              "blocks": [
+                { "type": "paragraph", "text": "DOM 是文档对象模型，JS 通过它动态操作页面。" },
+                { "type": "code", "language": "javascript", "code": "const el = document.querySelector('#title');\nel.textContent = '新标题';\nel.classList.add('active');\nel.addEventListener('click', () => {\n  console.log('被点击了');\n});" },
+                { "type": "list", "ordered": false, "items": [
+                  "querySelector：返回第一个匹配元素",
+                  "addEventListener：绑定事件回调",
+                  "classList：便捷增删 class"
+                ]}
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

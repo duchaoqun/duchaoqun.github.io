@@ -1,0 +1,74 @@
+{
+  "title": "Rust 终端 UI 开发笔记",
+  "author": "杜超群",
+  "date": "2026-09-08",
+  "summary": "记录使用 ratatui 0.30 + crossterm 构建终端应用的实践要点，含布局、事件循环与状态管理示例。",
+  "chapters": [
+    {
+      "id": "ch1",
+      "title": "第一章 环境搭建",
+      "intro": [
+        { "type": "paragraph", "text": "ratatui 是 Rust 生态中最流行的终端 UI 库，配合 crossterm 处理跨平台终端输入与输出。" }
+      ],
+      "sections": [
+        {
+          "id": "ch1-1",
+          "title": "1.1 Cargo.toml 依赖",
+          "subsections": [
+            {
+              "id": "ch1-1-1",
+              "title": "1.1.1 基础依赖配置",
+              "blocks": [
+                { "type": "code", "language": "toml", "code": "[dependencies]\nratatui = \"0.30\"\ncrossterm = \"0.28\"\n\n[profile.release]\nopt-level = 3\nlto = true" },
+                { "type": "note", "variant": "info", "text": "Windows 下 crossterm 无需额外依赖，开箱即用。" }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch1-2",
+          "title": "1.2 终端初始化",
+          "subsections": [
+            {
+              "id": "ch1-2-1",
+              "title": "1.2.1 进入与退出 raw mode",
+              "blocks": [
+                { "type": "paragraph", "text": "raw mode 关闭终端默认行缓冲，让程序逐字符捕获输入。" },
+                { "type": "code", "language": "rust", "code": "use crossterm::{terminal::{enable_raw_mode, disable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen}, execute};\nuse std::io;\n\nfn main() -> io::Result<()> {\n    enable_raw_mode()?;\n    let mut stdout = io::stdout();\n    execute!(stdout, EnterAlternateScreen)?;\n\n    // ... app loop here\n\n    execute!(stdout, LeaveAlternateScreen)?;\n    disable_raw_mode()?;\n    Ok(())\n}" },
+                { "type": "note", "variant": "warn", "text": "务必在程序退出前恢复终端，panic 会导致终端状态错乱。建议用 Drop trait 或 RAII 包装。" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch2",
+      "title": "第二章 布局与渲染",
+      "intro": [
+        { "type": "paragraph", "text": "ratatui 采用声明式布局，通过 Layout 切分区域，每帧重绘整个界面。" }
+      ],
+      "sections": [
+        {
+          "id": "ch2-1",
+          "title": "2.1 Layout 切分",
+          "subsections": [
+            {
+              "id": "ch2-1-1",
+              "title": "2.1.1 垂直三段布局",
+              "blocks": [
+                { "type": "paragraph", "text": "典型布局：顶部标题栏、中间主内容、底部状态栏。" },
+                { "type": "code", "language": "rust", "code": "use ratatui::{prelude::*, widgets::*};\n\nfn ui(frame: &mut Frame) {\n    let chunks = Layout::default()\n        .direction(Direction::Vertical)\n        .constraints([\n            Constraint::Length(3),  // header\n            Constraint::Min(1),   // main\n            Constraint::Length(1), // status\n        ])\n        .split(frame.area());\n\n    frame.render_widget(Paragraph::new(\"Title\"), chunks[0]);\n    frame.render_widget(Paragraph::new(\"Content\"), chunks[1]);\n    frame.render_widget(Paragraph::new(\"Status\"), chunks[2]);\n}" },
+                { "type": "list", "ordered": false, "items": [
+                  "Constraint::Length(n)：固定 n 行",
+                  "Constraint::Min(n)：至少 n 行，可拉伸",
+                  "Constraint::Percentage(p)：按百分比"
+                ]}
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

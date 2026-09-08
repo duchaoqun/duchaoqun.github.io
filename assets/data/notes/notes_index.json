@@ -1,0 +1,6 @@
+{
+  "documents": [
+    { "id": "frontend-guide", "name": "前端开发入门指南", "file": "frontend-guide.json", "summary": "从前端基础到现代框架的入门教程，涵盖 HTML、CSS、JavaScript 三级章节结构示例。" },
+    { "id": "rust-tui", "name": "Rust 终端 UI 开发笔记", "file": "rust-tui.json", "summary": "使用 ratatui + crossterm 构建终端应用的实践记录。" }
+  ]
+}
