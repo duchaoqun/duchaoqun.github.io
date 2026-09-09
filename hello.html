@@ -442,13 +442,13 @@
             renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, powerPreference: 'high-performance' });
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setClearColor(0x050515, 1);
+            renderer.setClearColor(0x88c4ff, 1);
 
             // 2. 场景
             scene = new THREE.Scene();
 
             // 3. 相机（放在玩家"眼睛"位置）
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.05, 300);
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.05, 600);
             camera.position.copy(player.position);
 
             // 4. 射线拾取
@@ -486,10 +486,12 @@
                 if (!res.ok) throw new Error('HTTP ' + res.status);
                 var data = await res.json();
 
-                // 玩家参数
+                // 玩家参数（出生在沙滩上）
                 if (data.player) {
                     var p = data.player;
-                    player.position.set(p.position[0], p.position[1], p.position[2]);
+                    var spawnX = 0, spawnZ = 28;
+                    var spawnH = getIslandHeight(spawnX, spawnZ);
+                    player.position.set(spawnX, spawnH + p.height, spawnZ);
                     if (p.height) player.height = p.height;
                     if (p.radius) player.radius = p.radius;
                     if (p.speed) player.speed = p.speed;
@@ -498,14 +500,17 @@
                     camera.position.copy(player.position);
                 }
 
-                // 雾（蓝天白云的白天色调）
-                scene.fog = new THREE.Fog(0xcfe6f5, 30, 140);
+                // 雾（热带远雾）
+                scene.fog = new THREE.Fog(0xb8d8e8, 50, 200);
 
-                // 光照
+                // 光照（热带日光）
+                scene.add(new THREE.AmbientLight(0xb0c8e0, 0.5));
+                var hemi = new THREE.HemisphereLight(0x88bbff, 0x446633, 0.6);
+                scene.add(hemi);
                 setupLighting(data.lighting);
 
                 // 天空渐变背景（蓝天）
-                var skyGeo = new THREE.SphereGeometry(300, 32, 32);
+                var skyGeo = new THREE.SphereGeometry(500, 32, 32);
                 var skyMat = new THREE.ShaderMaterial({
                     side: THREE.BackSide,
                     uniforms: {
@@ -533,13 +538,30 @@
                 var sky = new THREE.Mesh(skyGeo, skyMat);
                 scene.add(sky);
 
-                // 物体
+                // 物体（过滤掉旧地面/墙/山丘，由海岛地形替代）
+                var skipIds = ['ground', 'hill_1', 'hill_2', 'wall_s', 'wall_n', 'wall_e', 'wall_w'];
                 if (data.objects) {
                     data.objects.forEach(function(obj) {
+                        if (skipIds.indexOf(obj.id) >= 0) return; // 跳过旧地形
                         var mesh = createMesh(obj);
-                        if (mesh) scene.add(mesh);
+                        if (mesh) {
+                            // 把物体放到海岛地表上
+                            var ox = mesh.position.x;
+                            var oz = mesh.position.z;
+                            var oh = getIslandHeight(ox, oz);
+                            if (oh > 0) {
+                                mesh.position.y = oh + (obj.position[1] || 0);
+                            }
+                            scene.add(mesh);
+                        }
                     });
                 }
+
+                // 构建海岛世界
+                buildIsland();
+                buildOcean();
+                buildSun();
+                addPalmTrees();
 
                 // 白云粒子
                 addClouds();
@@ -569,9 +591,9 @@
                 scene.add(new THREE.AmbientLight(new THREE.Color(l.ambient.color), l.ambient.intensity));
             }
             if (l.directional) {
-                var dl = new THREE.DirectionalLight(new THREE.Color(l.directional.color), l.directional.intensity);
-                dl.position.set(l.directional.position[0], l.directional.position[1], l.directional.position[2]);
-                scene.add(dl);
+                sunLight = new THREE.DirectionalLight(new THREE.Color(l.directional.color), l.directional.intensity);
+                sunLight.position.set(l.directional.position[0], l.directional.position[1], l.directional.position[2]);
+                scene.add(sunLight);
             }
             if (l.hemi) {
                 scene.add(new THREE.HemisphereLight(
@@ -580,6 +602,357 @@
                     l.hemi.intensity
                 ));
             }
+        }
+
+        /* ============================================================
+         * 噪声函数（值噪声 + fBm）
+         * ============================================================ */
+        function hash2(x, y) {
+            var s = Math.sin(x * 127.1 + y * 311.7) * 43758.5453;
+            return s - Math.floor(s);
+        }
+        function smoothNoise(x, y) {
+            var ix = Math.floor(x), iy = Math.floor(y);
+            var fx = x - ix, fy = y - iy;
+            var ux = fx * fx * (3 - 2 * fx);
+            var uy = fy * fy * (3 - 2 * fy);
+            var a = hash2(ix, iy);
+            var b = hash2(ix + 1, iy);
+            var c = hash2(ix, iy + 1);
+            var d = hash2(ix + 1, iy + 1);
+            return a + (b - a) * ux + (c - a + (a - b - c + d) * ux) * uy;
+        }
+        function fbm(x, y, octaves) {
+            var v = 0, amp = 1, freq = 1, max = 0;
+            for (var i = 0; i < octaves; i++) {
+                v += smoothNoise(x * freq, y * freq) * amp;
+                max += amp;
+                amp *= 0.5;
+                freq *= 2;
+            }
+            return v / max;
+        }
+
+        /* ============================================================
+         * 海岛高度场
+         * ============================================================ */
+        var ISLAND_RADIUS = 38;
+        var SEA_LEVEL = 0;
+        var oceanMesh = null;
+        var sunLight = null;
+        var sunSphere = null;
+        var palmTrees = [];
+        var terrainMesh = null;
+
+        function getIslandHeight(x, z) {
+            var d = Math.sqrt(x * x + z * z);
+            // 岛屿衰减：中心1，边缘0
+            var falloff = Math.max(0, 1 - d / ISLAND_RADIUS);
+            falloff = falloff * falloff * (3 - 2 * falloff); // smoothstep
+
+            // 多层噪声
+            var base = fbm(x * 0.045, z * 0.045, 5);
+            var ridge = fbm(x * 0.09 + 100, z * 0.09 + 100, 4);
+
+            // 中央山峰 + 山脊
+            var mountain = falloff * (base * 0.6 + ridge * 0.4) * 16;
+            // 海滩区域（边缘）压低
+            var beach = falloff * 0.3;
+            var height = mountain + beach - 0.5;
+
+            // 岛外 → 海底
+            if (falloff < 0.001) {
+                height = -3 - fbm(x * 0.02, z * 0.02, 2) * 4;
+            } else {
+                // 边缘细节
+                var detail = fbm(x * 0.2, z * 0.2, 3) * 0.4 * falloff;
+                height += detail;
+            }
+            return height;
+        }
+
+        /* ============================================================
+         * 海岛地形网格（顶点着色）
+         * ============================================================ */
+        function buildIsland() {
+            var size = 160;
+            var seg = 200;
+            var geo = new THREE.PlaneGeometry(size, size, seg, seg);
+            geo.rotateX(-Math.PI / 2);
+
+            var pos = geo.attributes.position;
+            var colors = new Float32Array(pos.count * 3);
+            var cSand = new THREE.Color(0xe8d8a0);   // 干沙
+            var cSandWet = new THREE.Color(0xc4ad6b); // 湿沙
+            var cGrass = new THREE.Color(0x4a8c3a);   // 草地
+            var cGrassDark = new THREE.Color(0x336028); // 深草
+            var cRock = new THREE.Color(0x6b5d4f);    // 岩石
+            var cRockLight = new THREE.Color(0x8a7d6e); // 浅岩
+            var cUnderwater = new THREE.Color(0x4a6b5a); // 水下沙
+
+            for (var i = 0; i < pos.count; i++) {
+                var x = pos.getX(i);
+                var z = pos.getZ(i);
+                var h = getIslandHeight(x, z);
+                pos.setY(i, h);
+
+                var c = new THREE.Color();
+                if (h < -0.5) {
+                    c.copy(cUnderwater);
+                } else if (h < 0.3) {
+                    c.copy(cSandWet).lerp(cSand, (h + 0.5) / 0.8);
+                } else if (h < 1.2) {
+                    c.copy(cSand).lerp(cGrass, (h - 0.3) / 0.9);
+                } else if (h < 4) {
+                    c.copy(cGrass).lerp(cGrassDark, (h - 1.2) / 2.8);
+                } else if (h < 8) {
+                    c.copy(cGrassDark).lerp(cRock, (h - 4) / 4);
+                } else if (h < 12) {
+                    c.copy(cRock).lerp(cRockLight, (h - 8) / 4);
+                } else {
+                    c.copy(cRockLight);
+                }
+                colors[i * 3] = c.r;
+                colors[i * 3 + 1] = c.g;
+                colors[i * 3 + 2] = c.b;
+            }
+            geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            geo.computeVertexNormals();
+
+            var mat = new THREE.MeshStandardMaterial({
+                vertexColors: true,
+                roughness: 0.95,
+                metalness: 0.0,
+                flatShading: false,
+            });
+            var mesh = new THREE.Mesh(geo, mat);
+            mesh.receiveShadow = true;
+            scene.add(mesh);
+            terrainMesh = mesh;
+            // 地形不加入 COLLIDABLE_MESHES（用高度采样碰撞）
+        }
+
+        /* ============================================================
+         * 海洋（动态着色器水面）
+         * ============================================================ */
+        function buildOcean() {
+            var geo = new THREE.PlaneGeometry(400, 400, 128, 128);
+            geo.rotateX(-Math.PI / 2);
+
+            var mat = new THREE.ShaderMaterial({
+                transparent: true,
+                uniforms: {
+                    uTime: { value: 0 },
+                    uSunDir: { value: new THREE.Vector3(0.5, 0.6, 0.4).normalize() },
+                    uShallow: { value: new THREE.Color(0x4dc8d4) },  // 浅水碧绿
+                    uDeep: { value: new THREE.Color(0x1464a8) },     // 深水蓝
+                    uFoam: { value: new THREE.Color(0xffffff) },
+                    uCameraPos: { value: new THREE.Vector3() },
+                },
+                vertexShader: `
+                    uniform float uTime;
+                    varying vec3 vWorldPos;
+                    varying vec3 vNormal;
+                    varying float vWaveHeight;
+                    // 值噪声 GLSL
+                    float hash(vec2 p) {
+                        return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+                    }
+                    float vnoise(vec2 p) {
+                        vec2 i = floor(p);
+                        vec2 f = fract(p);
+                        vec2 u = f * f * (3.0 - 2.0 * f);
+                        float a = hash(i);
+                        float b = hash(i + vec2(1,0));
+                        float c = hash(i + vec2(0,1));
+                        float d = hash(i + vec2(1,1));
+                        return a + (b-a)*u.x + (c-a+(a-b-c+d)*u.x)*u.y;
+                    }
+                    void main() {
+                        vec3 pos = position;
+                        float t = uTime;
+                        // 多层正弦波
+                        float w1 = sin(pos.x * 0.3 + t * 0.8) * 0.18;
+                        float w2 = sin(pos.z * 0.25 + t * 0.6 + 1.3) * 0.15;
+                        float w3 = sin((pos.x + pos.z) * 0.5 + t * 1.1) * 0.08;
+                        float w4 = sin(pos.x * 0.8 - pos.z * 0.6 + t * 1.5) * 0.05;
+                        float h = w1 + w2 + w3 + w4;
+                        pos.y += h;
+                        vWaveHeight = h;
+                        // 估算法线（偏导）
+                        float eps = 0.5;
+                        float hx = sin((pos.x+eps) * 0.3 + t * 0.8) * 0.18
+                                 + sin((pos.z) * 0.25 + t * 0.6 + 1.3) * 0.15;
+                        float hz = sin((pos.x) * 0.3 + t * 0.8) * 0.18
+                                 + sin((pos.z+eps) * 0.25 + t * 0.6 + 1.3) * 0.15;
+                        vNormal = normalize(vec3(-(hx - h) / eps, 1.0, -(hz - h) / eps));
+                        vec4 worldPos = modelMatrix * vec4(pos, 1.0);
+                        vWorldPos = worldPos.xyz;
+                        gl_Position = projectionMatrix * viewMatrix * worldPos;
+                    }
+                `,
+                fragmentShader: `
+                    uniform vec3 uSunDir;
+                    uniform vec3 uShallow;
+                    uniform vec3 uDeep;
+                    uniform vec3 uFoam;
+                    uniform vec3 uCameraPos;
+                    uniform float uTime;
+                    varying vec3 vWorldPos;
+                    varying vec3 vNormal;
+                    varying float vWaveHeight;
+                    float hash(vec2 p) {
+                        return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+                    }
+                    void main() {
+                        vec3 viewDir = normalize(uCameraPos - vWorldPos);
+                        // 菲涅尔
+                        float fres = pow(1.0 - max(dot(vNormal, viewDir), 0.0), 3.0);
+                        fres = clamp(fres, 0.0, 1.0);
+                        // 水深（距离岛心）
+                        float dist = length(vWorldPos.xz);
+                        float depth = smoothstep(30.0, 80.0, dist);
+                        vec3 waterCol = mix(uShallow, uDeep, depth);
+                        // 高光
+                        vec3 reflectDir = reflect(-uSunDir, vNormal);
+                        float spec = pow(max(dot(reflectDir, viewDir), 0.0), 80.0);
+                        // 浪花：波峰 + 噪声
+                        float foamNoise = hash(floor(vWorldPos.xz * 2.0 + uTime * 0.5));
+                        float foam = smoothstep(0.3, 0.45, vWaveHeight) * foamNoise;
+                        // 近岸浪花
+                        float shoreFoam = smoothstep(28.0, 38.0, dist) * (1.0 - smoothstep(36.0, 42.0, dist));
+                        shoreFoam *= hash(floor(vWorldPos.xz * 1.5 + uTime));
+                        foam = max(foam, shoreFoam * 0.7);
+                        vec3 col = waterCol + uFoam * foam + vec3(1.0) * spec * 0.6;
+                        // 菲涅尔混入天空色
+                        vec3 skyCol = vec3(0.65, 0.8, 0.95);
+                        col = mix(col, skyCol, fres * 0.4);
+                        float alpha = 0.72 + fres * 0.25 + foam * 0.3;
+                        gl_FragColor = vec4(col, clamp(alpha, 0.0, 1.0));
+                    }
+                `,
+            });
+            oceanMesh = new THREE.Mesh(geo, mat);
+            oceanMesh.position.y = SEA_LEVEL;
+            scene.add(oceanMesh);
+        }
+
+        /* ============================================================
+         * 太阳
+         * ============================================================ */
+        function buildSun() {
+            var sunDir = new THREE.Vector3(0.5, 0.6, 0.4).normalize();
+            // 太阳：用 Canvas 生成带核心+光晕的纹理，做成 Sprite（加法混合，无深度问题）
+            var c = document.createElement('canvas');
+            c.width = 512; c.height = 512;
+            var ctx = c.getContext('2d');
+            // 外层大光晕
+            var g1 = ctx.createRadialGradient(256, 256, 0, 256, 256, 256);
+            g1.addColorStop(0, 'rgba(255,250,230,0.9)');
+            g1.addColorStop(0.08, 'rgba(255,245,200,0.7)');
+            g1.addColorStop(0.2, 'rgba(255,235,170,0.35)');
+            g1.addColorStop(0.45, 'rgba(255,220,140,0.12)');
+            g1.addColorStop(1, 'rgba(255,200,100,0)');
+            ctx.fillStyle = g1;
+            ctx.fillRect(0, 0, 512, 512);
+            // 核心实心圆
+            var g2 = ctx.createRadialGradient(256, 256, 0, 256, 256, 40);
+            g2.addColorStop(0, 'rgba(255,255,255,1)');
+            g2.addColorStop(0.5, 'rgba(255,250,230,0.9)');
+            g2.addColorStop(1, 'rgba(255,240,200,0)');
+            ctx.fillStyle = g2;
+            ctx.fillRect(0, 0, 512, 512);
+
+            var sunTex = new THREE.CanvasTexture(c);
+            var sunMat = new THREE.SpriteMaterial({
+                map: sunTex,
+                transparent: true,
+                depthWrite: false,
+                depthTest: false,
+                fog: false,
+                blending: THREE.AdditiveBlending,
+            });
+            sunSphere = new THREE.Sprite(sunMat);
+            sunSphere.scale.set(80, 80, 1);
+            sunSphere.position.copy(sunDir.clone().multiplyScalar(400));
+            scene.add(sunSphere);
+            // 定向光
+            if (!sunLight) {
+                sunLight = new THREE.DirectionalLight(0xfff4e0, 1.5);
+                scene.add(sunLight);
+            }
+            sunLight.position.copy(sunDir.clone().multiplyScalar(50));
+            sunLight.intensity = 1.5;
+        }
+
+        /* ============================================================
+         * 棕榈树
+         * ============================================================ */
+        function addPalmTrees() {
+            var positions = [
+                { x: 20, z: 12 }, { x: -18, z: 15 }, { x: 14, z: -18 },
+                { x: -22, z: -10 }, { x: 25, z: 5 }, { x: -12, z: 22 },
+                { x: 8, z: 25 }, { x: -28, z: 3 },
+            ];
+            positions.forEach(function(p) {
+                var h = getIslandHeight(p.x, p.z);
+                if (h < 0.1) return; // 只在沙滩上种
+                createPalmTree(p.x, h, p.z);
+            });
+        }
+        function createPalmTree(x, y, z) {
+            var group = new THREE.Group();
+            var trunkMat = new THREE.MeshStandardMaterial({ color: 0x8a6b3f, roughness: 0.9 });
+            // 弯曲树干（3段圆柱）
+            var trunkH = 4.5 + Math.random() * 1.5;
+            var segs = 4;
+            var lean = 0.15 + Math.random() * 0.15;
+            var prevY = 0;
+            var prevX = 0;
+            for (var s = 0; s < segs; s++) {
+                var segH = trunkH / segs;
+                var cyl = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.18 - s * 0.02, 0.22 - s * 0.02, segH, 8),
+                    trunkMat
+                );
+                cyl.position.set(prevX, prevY + segH / 2, 0);
+                cyl.rotation.z = lean;
+                group.add(cyl);
+                prevY += segH * Math.cos(lean);
+                prevX += segH * Math.sin(lean);
+            }
+            // 树叶（掌状叶）
+            var leafMat = new THREE.MeshStandardMaterial({ color: 0x2d8a3a, roughness: 0.8, side: THREE.DoubleSide });
+            var numLeaves = 7;
+            for (var l = 0; l < numLeaves; l++) {
+                var angle = (l / numLeaves) * Math.PI * 2;
+                var leafGeo = new THREE.ConeGeometry(0.15, 3.5, 4);
+                var leaf = new THREE.Mesh(leafGeo, leafMat);
+                leaf.position.set(prevX + Math.cos(angle) * 1.0, prevY + 0.3, Math.sin(angle) * 1.0);
+                leaf.rotation.z = Math.PI / 2 + 0.3;
+                leaf.rotation.y = angle;
+                leaf.scale.set(1, 1.4, 0.3);
+                group.add(leaf);
+            }
+            // 椰子
+            var coconutMat = new THREE.MeshStandardMaterial({ color: 0x5a3a1a, roughness: 0.8 });
+            for (var c = 0; c < 3; c++) {
+                var coconut = new THREE.Mesh(new THREE.SphereGeometry(0.18, 8, 6), coconutMat);
+                var ca = (c / 3) * Math.PI * 2;
+                coconut.position.set(prevX + Math.cos(ca) * 0.4, prevY, Math.sin(ca) * 0.4);
+                group.add(coconut);
+            }
+            group.position.set(x, y, z);
+            group.rotation.y = Math.random() * Math.PI * 2;
+            scene.add(group);
+            // 树干碰撞（用粗略 AABB，不可见但可射线命中）
+            var trunkBox = new THREE.Mesh(new THREE.BoxGeometry(0.5, trunkH, 0.5), new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false }));
+            trunkBox.position.set(x + prevX / 2, y + trunkH / 2, z);
+            trunkBox.userData = { id: 'palm_' + palmTrees.length, name: '棕榈树', collidable: true, interactive: true, actions: ['查看', '砍伐'] };
+            scene.add(trunkBox);
+            COLLIDABLE_MESHES.push(trunkBox);
+            INTERACTIVE_MESHES.push(trunkBox);
+            palmTrees.push(group);
         }
 
         function createMesh(obj) {
@@ -822,7 +1195,9 @@
                 // 扫掠碰撞：从当前位置向 dir 发射 moveLen 距离
                 arrowRaycaster.set(a.position, dir);
                 arrowRaycaster.far = moveLen;
-                var hits = arrowRaycaster.intersectObjects(COLLIDABLE_MESHES, false);
+                var arrowTargets = COLLIDABLE_MESHES.slice();
+                if (terrainMesh) arrowTargets.push(terrainMesh);
+                var hits = arrowRaycaster.intersectObjects(arrowTargets, false);
 
                 if (hits.length > 0) {
                     var hit = hits[0];
@@ -893,7 +1268,9 @@
             var materials = [wood, wood, wood, wood, front, wood];
             photoWall = new THREE.Mesh(geo, materials);
             // 放在玩家前方（-Z 方向），面朝玩家（+Z 面为前）
-            photoWall.position.set(0, h / 2 + 0.1, -12);
+            var pwZ = -12;
+            var pwH = getIslandHeight(0, pwZ);
+            photoWall.position.set(0, Math.max(pwH, 0) + h / 2, pwZ);
             photoWall.userData = {
                 id: 'photoWall',
                 name: '照片墙',
@@ -1248,8 +1625,21 @@
 
             // 边界保护：掉出世界就重置
             if (ny < -30) {
-                nx = 0; ny = 1.7; nz = 0;
+                nx = 0; nz = 28;
+                ny = getIslandHeight(nx, nz) + player.height;
                 player.velocity.set(0, 0, 0);
+            }
+
+            // 地形高度碰撞（高度场采样）
+            var terrainH = getIslandHeight(nx, nz);
+            var footY = ny - player.height;
+            if (footY < terrainH) {
+                // 脚在地面以下 → 站到地面上
+                ny = terrainH + player.height;
+                if (player.velocity.y < 0) {
+                    player.velocity.y = 0;
+                }
+                player.onGround = true;
             }
 
             // 最终写入
@@ -1301,6 +1691,11 @@
             updateArrows(dt);
             updateBow(now);
             updateClouds(dt);
+            // 海洋着色器动画
+            if (oceanMesh) {
+                oceanMesh.material.uniforms.uTime.value = now * 0.001;
+                oceanMesh.material.uniforms.uCameraPos.value.copy(camera.position);
+            }
             renderer.render(scene, camera);
 
             requestAnimationFrame(loop);
