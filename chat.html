@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>微信聊天记录生成器</title>
+<link rel="icon" href="assets/images/title.ico" type="image/x-icon">
+<link rel="shortcut icon" type="image/x-icon" href="assets/images/title.ico" media="screen"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #faf9f4;
+  --cardBg: #ffffff;
+  --textPrimary: rgba(22,23,28,0.88);
+  --textSecondary: rgba(22,23,28,0.55);
+  --accent: #ffd83d;
+  --accentHover: #ffe066;
+  --border: rgba(22,23,28,0.08);
+  --wechatGreen: #07c160;
+  --bubbleGreen: #95ec69;
+  --bubbleWhite: #ffffff;
+  --chatBg: #ededed;
+  --fontFamily: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --maxWidth: 1400px;
+}
+html, body {
+  background: var(--bg);
+  color: var(--textPrimary);
+  font-family: var(--fontFamily);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+input, select, textarea { font-family: inherit; }
+
+/* ===== 顶部导航 ===== */
+.pp-topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,249,244,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.pp-topbar-inner {
+  max-width: var(--maxWidth); margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; padding: 12px 24px; flex-wrap: wrap;
+}
+.pp-logo {
+  font-size: 20px; font-weight: 700; letter-spacing: -0.02em;
+  display: flex; align-items: center; gap: 8px;
+}
+.pp-logo-dot {
+  width: 28px; height: 28px; border-radius: 8px;
+  background: var(--wechatGreen);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; color: #fff;
+}
+.pp-topbar-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.ww-btn {
+  padding: 8px 14px; border-radius: 10px;
+  font-size: 13px; font-weight: 500;
+  background: rgba(22,23,28,0.04);
+  color: var(--textPrimary);
+  transition: all 0.15s; white-space: nowrap;
+}
+.ww-btn:hover { background: rgba(22,23,28,0.08); }
+.ww-btn.primary { background: var(--wechatGreen); color: #fff; }
+.ww-btn.primary:hover { background: #06ad56; }
+.ww-btn.danger { background: #ff4d4f; color: #fff; }
+.ww-btn.danger:hover { background: #e04345; }
+
+/* ===== 主体三栏 ===== */
+.ch-main {
+  max-width: var(--maxWidth); margin: 0 auto;
+  padding: 20px 24px 60px;
+}
+.ch-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 400px) 1fr 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+/* 通用面板 */
+.ch-panel {
+  background: var(--cardBg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  overflow: hidden;
+}
+.ch-panel-header {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px; font-weight: 600;
+  display: flex; align-items: center; gap: 8px;
+}
+.ch-panel-header .tag {
+  font-size: 11px; font-weight: 500;
+  padding: 2px 8px; border-radius: 6px;
+  background: rgba(22,23,28,0.06); color: var(--textSecondary);
+}
+.ch-panel-header .tag.left { background: #e3f2fd; color: #1976d2; }
+.ch-panel-header .tag.right { background: #e8f5e9; color: #388e3c; }
+.ch-panel-body { padding: 16px 18px; }
+
+/* ===== 左侧预览（手机外壳） ===== */
+.ch-phone-wrap {
+  display: flex; flex-direction: column; align-items: center;
+}
+.ch-phone {
+  width: 100%; max-width: 375px;
+  background: #1a1a1a;
+  border-radius: 36px;
+  padding: 12px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+}
+.ch-phone-screen {
+  background: var(--chatBg);
+  border-radius: 26px;
+  overflow: hidden;
+  position: relative;
+}
+/* 截图目标 */
+.wechat-screen {
+  background: var(--chatBg);
+  width: 100%;
+}
+/* 状态栏 */
+.wx-statusbar {
+  height: 28px;
+  background: #f7f7f7;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 16px;
+  font-size: 13px; font-weight: 600; color: #181818;
+  font-family: -apple-system, 'Helvetica Neue', sans-serif;
+}
+.wx-statusbar .sb-left { display: flex; align-items: center; gap: 4px; }
+.wx-statusbar .sb-right { display: flex; align-items: center; gap: 5px; font-size: 12px; }
+.wx-statusbar .sb-signal { display: inline-flex; gap: 1px; align-items: flex-end; }
+.wx-statusbar .sb-signal span { width: 2px; background: #181818; border-radius: 1px; }
+.wx-statusbar .sb-signal span:nth-child(1) { height: 4px; }
+.wx-statusbar .sb-signal span:nth-child(2) { height: 6px; }
+.wx-statusbar .sb-signal span:nth-child(3) { height: 8px; }
+.wx-statusbar .sb-signal span:nth-child(4) { height: 10px; }
+.wx-statusbar .sb-5g { font-size: 11px; font-weight: 700; }
+.wx-statusbar .sb-battery {
+  display: inline-flex; align-items: center; gap: 2px;
+  font-size: 11px; font-weight: 600;
+}
+.wx-statusbar .sb-battery-icon {
+  width: 18px; height: 10px; border: 1px solid #181818; border-radius: 2px;
+  position: relative; display: inline-block; overflow: hidden;
+}
+.wx-statusbar .sb-battery-icon::after {
+  content: ''; position: absolute; right: -3px; top: 2px;
+  width: 2px; height: 4px; background: #181818; border-radius: 0 1px 1px 0;
+}
+/* 顶部栏 */
+.wx-navbar {
+  height: 44px;
+  background: #ededed;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 14px;
+  border-bottom: 1px solid #d6d6d6;
+}
+.wx-nav-back {
+  font-size: 20px; color: #181818; width: 30px;
+}
+.wx-nav-title {
+  font-size: 16px; font-weight: 600; color: #181818;
+  max-width: 60%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.wx-nav-more {
+  font-size: 22px; color: #181818; width: 30px; text-align: right;
+  letter-spacing: -2px;
+}
+/* 聊天区 */
+.wx-chat {
+  padding: 12px 12px 20px;
+  min-height: 400px;
+  max-height: 560px;
+  overflow-y: auto;
+  background: var(--chatBg);
+}
+.wx-chat::-webkit-scrollbar { width: 0; }
+/* 时间分割 */
+.wx-time {
+  text-align: center;
+  margin: 12px 0;
+  font-size: 12px; color: #999;
+}
+.wx-time span {
+  background: rgba(0,0,0,0.15);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+/* 系统消息（撤回、通话等） */
+.wx-system {
+  text-align: center;
+  margin: 12px 0;
+  font-size: 12px; color: #999;
+}
+.wx-system span {
+  background: rgba(0,0,0,0.12);
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+/* 消息行 */
+.wx-msg {
+  display: flex;
+  margin-bottom: 14px;
+  align-items: flex-start;
+  position: relative;
+}
+.wx-msg.right { flex-direction: row-reverse; }
+.wx-avatar {
+  width: 40px; height: 40px;
+  border-radius: 4px;
+  background: #ccc;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+.wx-avatar-wrap { position: relative; }
+.wx-msg.left .wx-avatar-wrap { margin-right: 10px; }
+.wx-msg.right .wx-avatar-wrap { margin-left: 10px; }
+/* 气泡容器 */
+.wx-bubble-wrap {
+  max-width: 72%;
+  display: flex; flex-direction: column;
+  position: relative;
+}
+.wx-msg.left .wx-bubble-wrap { align-items: flex-start; }
+.wx-msg.right .wx-bubble-wrap { align-items: flex-end; }
+/* 昵称（群聊） */
+.wx-nickname {
+  font-size: 12px; color: #888;
+  margin-bottom: 4px;
+  padding: 0 4px;
+}
+/* 文字气泡 */
+.wx-bubble {
+  position: relative;
+  padding: 9px 12px;
+  border-radius: 6px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #181818;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+.wx-msg.left .wx-bubble {
+  background: var(--bubbleWhite);
+}
+.wx-msg.right .wx-bubble {
+  background: var(--bubbleGreen);
+}
+/* 气泡尾巴 */
+.wx-bubble::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  width: 0; height: 0;
+  border-style: solid;
+}
+.wx-msg.left .wx-bubble::before {
+  left: -6px;
+  border-width: 5px 6px 5px 0;
+  border-color: transparent var(--bubbleWhite) transparent transparent;
+}
+.wx-msg.right .wx-bubble::before {
+  right: -6px;
+  border-width: 5px 0 5px 6px;
+  border-color: transparent transparent transparent var(--bubbleGreen);
+}
+/* 图片消息 */
+.wx-img {
+  max-width: 180px;
+  max-height: 240px;
+  border-radius: 8px;
+  display: block;
+}
+.wx-img-bubble {
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.wx-img-bubble::before { display: none !important; }
+/* 表情消息 */
+.wx-emoji {
+  width: 60px; height: 60px;
+  font-size: 48px;
+  line-height: 60px;
+  text-align: center;
+}
+.wx-emoji-bubble {
+  background: transparent !important;
+  padding: 0 !important;
+}
+.wx-emoji-bubble::before { display: none !important; }
+/* 语音消息 */
+.wx-voice {
+  display: flex; align-items: center;
+  min-width: 80px;
+  padding: 9px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  position: relative;
+  cursor: pointer;
+}
+.wx-msg.left .wx-voice { background: var(--bubbleWhite); }
+.wx-msg.right .wx-voice { background: var(--bubbleGreen); }
+.wx-voice-icon {
+  font-size: 16px; margin-right: 6px;
+}
+.wx-msg.right .wx-voice-icon { margin-right: 0; margin-left: 6px; order: 2; }
+.wx-voice::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  width: 0; height: 0;
+  border-style: solid;
+}
+.wx-msg.left .wx-voice::before {
+  left: -6px;
+  border-width: 5px 6px 5px 0;
+  border-color: transparent var(--bubbleWhite) transparent transparent;
+}
+.wx-msg.right .wx-voice::before {
+  right: -6px;
+  border-width: 5px 0 5px 6px;
+  border-color: transparent transparent transparent var(--bubbleGreen);
+}
+/* 红包 */
+.wx-redpacket {
+  width: 230px;
+  background: linear-gradient(180deg, #fa9d3b 0%, #e9742f 100%);
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.wx-redpacket::before { display: none !important; }
+.wx-redpacket-top {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 14px;
+}
+.wx-redpacket-label {
+  font-size: 13px; font-weight: 600;
+  display: flex; align-items: center; gap: 4px;
+}
+.wx-redpacket-icon {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: #c2581f;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 11px;
+}
+.wx-redpacket-open {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: #f7d77a;
+  color: #b5651d;
+  font-size: 13px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+.wx-redpacket-greeting {
+  font-size: 15px;
+  min-height: 22px;
+  margin-bottom: 10px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.wx-redpacket-bottom {
+  font-size: 11px; opacity: 0.85;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  padding-top: 8px;
+}
+/* 转账 */
+.wx-transfer {
+  width: 240px;
+  background: linear-gradient(135deg, #f5b15a 0%, #e89a3c 100%);
+  border-radius: 8px;
+  padding: 0;
+  color: #fff;
+  overflow: hidden;
+}
+.wx-transfer::before { display: none !important; }
+.wx-transfer-top {
+  display: flex; align-items: center;
+  padding: 16px 14px 12px;
+  gap: 10px;
+}
+.wx-transfer-check {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: rgba(255,255,255,0.95);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.wx-transfer-check svg { width: 14px; height: 14px; fill: #e89a3c; }
+.wx-transfer-amount {
+  font-size: 19px; font-weight: 700;
+  flex: 1;
+}
+.wx-transfer-status {
+  font-size: 12px; opacity: 0.9;
+  flex-shrink: 0;
+}
+.wx-transfer-bottom {
+  font-size: 11px; opacity: 0.7;
+  padding: 8px 14px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+/* 位置 */
+.wx-location {
+  width: 230px;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.wx-location::before { display: none !important; }
+.wx-location-map {
+  width: 100%; height: 100px;
+  background: linear-gradient(135deg, #a8d8a8 0%, #7cc07c 100%);
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.wx-location-map::after {
+  content: '📍';
+  font-size: 28px;
+}
+.wx-location-info {
+  padding: 8px 12px;
+}
+.wx-location-title {
+  font-size: 14px; font-weight: 500; color: #181818;
+  margin-bottom: 2px;
+}
+.wx-location-addr {
+  font-size: 12px; color: #888;
+}
+/* 文件 */
+.wx-file {
+  width: 240px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex; align-items: center; gap: 10px;
+}
+.wx-file::before { display: none !important; }
+.wx-file-icon {
+  width: 36px; height: 36px; border-radius: 6px;
+  background: #e3f2fd;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.wx-file-info { flex: 1; min-width: 0; }
+.wx-file-name {
+  font-size: 14px; color: #181818;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.wx-file-size {
+  font-size: 11px; color: #999; margin-top: 2px;
+}
+/* 输入栏（仅装饰，不导出可隐藏） */
+.wx-inputbar {
+  display: flex; align-items: center;
+  padding: 7px 8px 7px 10px;
+  background: #f7f7f7;
+  border-top: 1px solid #d6d6d6;
+  gap: 8px;
+  min-height: 52px;
+}
+.wx-inputbar .wx-ib-voice {
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.wx-inputbar .wx-ib-voice svg { width: 20px; height: 20px; fill: #333; }
+.wx-input-field {
+  flex: 1;
+  height: 36px;
+  background: #fff;
+  border-radius: 4px;
+  border: 0.5px solid #dcdcdc;
+}
+.wx-inputbar .wx-ib-btn {
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.wx-inputbar .wx-ib-btn svg { width: 22px; height: 22px; fill: #333; }
+/* 消息删除按钮 */
+.wx-msg-del {
+  position: absolute;
+  top: -4px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: #ff4d4f;
+  color: #fff;
+  font-size: 12px; line-height: 18px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 5;
+  padding: 0;
+}
+.wx-msg.left .wx-msg-del { left: 30px; }
+.wx-msg.right .wx-msg-del { right: 30px; }
+.wx-msg:hover .wx-msg-del { opacity: 1; }
+.wx-time-row .wx-msg-del, .wx-system-row .wx-msg-del { opacity: 0; }
+.wx-time-row:hover .wx-msg-del, .wx-system-row:hover .wx-msg-del { opacity: 1; }
+
+/* 预览下方提示 */
+.ch-preview-tip {
+  margin-top: 14px;
+  font-size: 12px; color: var(--textSecondary);
+  text-align: center;
+}
+
+/* ===== 表单面板 ===== */
+.ch-form-row { margin-bottom: 14px; }
+.ch-form-row > label {
+  display: block;
+  font-size: 13px; font-weight: 500;
+  color: var(--textPrimary);
+  margin-bottom: 6px;
+}
+.ch-input, .ch-select, .ch-textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--cardBg);
+  font-size: 14px;
+  color: var(--textPrimary);
+  outline: none;
+  transition: border-color 0.15s;
+}
+.ch-input:focus, .ch-select:focus, .ch-textarea:focus {
+  border-color: var(--wechatGreen);
+}
+.ch-textarea {
+  resize: vertical;
+  min-height: 72px;
+  line-height: 1.5;
+}
+.ch-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='3'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+}
+.ch-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+/* 头像设置 */
+.ch-avatar-row {
+  display: flex; align-items: center; gap: 12px;
+}
+.ch-avatar-preview {
+  width: 48px; height: 48px;
+  border-radius: 8px;
+  background: #eee;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; font-weight: 700; color: #fff;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.ch-avatar-preview img { width: 100%; height: 100%; object-fit: cover; }
+.ch-avatar-actions { display: flex; flex-direction: column; gap: 6px; }
+.ch-file-label {
+  font-size: 13px; color: var(--wechatGreen);
+  cursor: pointer;
+}
+.ch-file-label:hover { text-decoration: underline; }
+.ch-file-input { display: none; }
+.ch-btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px; font-weight: 600;
+  background: var(--wechatGreen);
+  color: #fff;
+  transition: background 0.15s;
+  margin-top: 4px;
+}
+.ch-btn:hover { background: #06ad56; }
+.ch-btn.secondary {
+  background: rgba(22,23,28,0.06);
+  color: var(--textPrimary);
+}
+.ch-btn.secondary:hover { background: rgba(22,23,28,0.1); }
+
+/* 表情选择器 */
+.ch-emoji-picker {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 4px;
+  max-height: 180px;
+  overflow-y: auto;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fafafa;
+}
+.ch-emoji-picker button {
+  font-size: 22px;
+  padding: 4px;
+  border-radius: 6px;
+  transition: background 0.12s;
+}
+.ch-emoji-picker button:hover { background: var(--accent); }
+
+/* 图片预览缩略 */
+.ch-img-preview {
+  max-width: 120px;
+  max-height: 80px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  display: none;
+}
+.ch-img-preview.show { display: block; }
+
+/* 字段显隐 */
+.ch-field { display: none; }
+.ch-field.show { display: block; }
+
+/* 消息列表 */
+.ch-msg-list {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border);
+  max-height: 260px;
+  overflow-y: auto;
+}
+.ch-msg-list-title {
+  font-size: 13px; font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--textSecondary);
+}
+.ch-msg-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-size: 13px;
+  transition: background 0.12s;
+}
+.ch-msg-item:hover { background: rgba(22,23,28,0.04); }
+.ch-msg-item .side-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  flex-shrink: 0;
+}
+.ch-msg-item .side-dot.left { background: #1976d2; }
+.ch-msg-item .side-dot.right { background: #388e3c; }
+.ch-msg-item .side-dot.system { background: #999; }
+.ch-msg-item .text {
+  flex: 1;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  color: var(--textPrimary);
+}
+.ch-msg-item .type-tag {
+  font-size: 11px; color: var(--textSecondary);
+  background: rgba(22,23,28,0.06);
+  padding: 1px 6px; border-radius: 4px;
+}
+.ch-msg-item .del {
+  color: #ff4d4f;
+  font-size: 14px;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.ch-msg-item .del:hover { background: rgba(255,77,79,0.1); }
+.ch-msg-empty {
+  text-align: center;
+  color: var(--textSecondary);
+  font-size: 13px;
+  padding: 16px 0;
+}
+
+/* ===== 底部 ===== */
+.pp-footer {
+  border-top: 1px solid var(--border);
+  padding: 24px;
+  text-align: center;
+}
+.pp-footer-links {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+  margin-bottom: 12px;
+}
+.pp-footer-links a {
+  padding: 6px 12px; border-radius: 8px;
+  font-size: 13px; color: var(--textSecondary);
+  transition: all 0.15s;
+}
+.pp-footer-links a:hover { color: var(--textPrimary); background: rgba(22,23,28,0.04); }
+.pp-footer-copy { font-size: 12px; color: var(--textSecondary); }
+
+/* Toast */
+.pp-toast {
+  position: fixed; bottom: 32px; left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: #333; color: #fff;
+  padding: 12px 24px; border-radius: 12px;
+  font-size: 14px; z-index: 1100;
+  opacity: 0; transition: all 0.3s;
+  pointer-events: none;
+}
+.pp-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ===== 响应式 ===== */
+@media (max-width: 1100px) {
+  .ch-grid { grid-template-columns: 1fr 1fr; }
+  .ch-phone-wrap { grid-column: 1 / -1; order: -1; }
+}
+@media (max-width: 700px) {
+  .ch-grid { grid-template-columns: 1fr; }
+  .pp-topbar-inner { padding: 10px 16px; }
+  .ch-main { padding: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<div class="pp-topbar">
+  <div class="pp-topbar-inner">
+    <div class="pp-logo">
+      <span class="pp-logo-dot">💬</span>
+      微信聊天记录生成器
+    </div>
+    <div class="pp-topbar-actions">
+      <button class="ww-btn" id="btn-add-time">🕐 加时间</button>
+      <button class="ww-btn" id="btn-clear">🗑 清空</button>
+      <button class="ww-btn primary" id="btn-screenshot">📸 生成长截图</button>
+    </div>
+  </div>
+</div>
+
+<!-- 主体三栏 -->
+<div class="ch-main">
+  <div class="ch-grid">
+
+    <!-- 左：预览 -->
+    <div class="ch-panel">
+      <div class="ch-panel-header">
+        📱 聊天预览
+        <span style="flex:1"></span>
+        <span class="tag">悬停消息可删除</span>
+      </div>
+      <div class="ch-panel-body">
+        <div class="ch-phone-wrap">
+          <div class="ch-phone">
+            <div class="ch-phone-screen">
+              <div class="wechat-screen" id="wechat-screen">
+                <!-- 状态栏 -->
+                <div class="wx-statusbar">
+                  <span class="sb-left" id="sb-time">14:30</span>
+                  <span class="sb-right">
+                    <span class="sb-signal"><span></span><span></span><span></span><span></span></span>
+                    <span class="sb-battery">
+                      <span id="sb-battery-num" style="font-size:11px;font-weight:600;">88</span>
+                      <span class="sb-battery-icon" id="sb-battery-icon"></span>
+                    </span>
+                  </span>
+                </div>
+                <!-- 顶部栏 -->
+                <div class="wx-navbar">
+                  <span class="wx-nav-back">‹</span>
+                  <span class="wx-nav-title" id="chat-title">对方</span>
+                  <span class="wx-nav-more">⋯</span>
+                </div>
+                <!-- 聊天消息区 -->
+                <div class="wx-chat" id="wx-chat"></div>
+                <!-- 输入栏（装饰） -->
+                <div class="wx-inputbar" id="wx-inputbar">
+                  <span class="wx-ib-voice"><svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.36-.98.85C16.52 14.81 14.46 16.5 12 16.5s-4.52-1.69-4.93-4.65c-.08-.49-.49-.85-.98-.85-.61 0-1.09.54-1 1.14C5.28 16.27 8.01 18.5 11 18.93V21c0 .55.45 1 1 1s1-.45 1-1v-2.07c2.99-.43 5.72-2.66 6.09-6.36.09-.6-.39-1.14-1-1.14z"/></svg></span>
+                  <span class="wx-input-field"></span>
+                  <span class="wx-ib-btn"><svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></span>
+                  <span class="wx-ib-btn"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/></svg></span>
+                  <span class="wx-ib-btn"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ch-preview-tip">预览为手机尺寸，导出截图为高清长图</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 中：对方输入 -->
+    <div class="ch-panel">
+      <div class="ch-panel-header">
+        👤 对方（左侧）
+        <span class="tag left">对方</span>
+      </div>
+      <div class="ch-panel-body">
+        <!-- 头像昵称 -->
+        <div class="ch-form-row">
+          <label>头像与昵称</label>
+          <div class="ch-avatar-row">
+            <div class="ch-avatar-preview" id="left-avatar-preview">?</div>
+            <div class="ch-avatar-actions">
+              <input type="text" class="ch-input" id="left-name" placeholder="对方昵称" value="小可爱">
+              <label class="ch-file-label">
+                上传头像
+                <input type="file" class="ch-file-input" id="left-avatar" accept="image/*">
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 消息类型 -->
+        <div class="ch-form-row">
+          <label>消息类型</label>
+          <select class="ch-select" id="left-type">
+            <option value="text">文字</option>
+            <option value="image">图片</option>
+            <option value="emoji">表情</option>
+            <option value="voice">语音</option>
+            <option value="redpacket">红包</option>
+            <option value="transfer">转账</option>
+            <option value="location">位置</option>
+            <option value="file">文件</option>
+            <option value="withdraw">撤回消息</option>
+          </select>
+        </div>
+
+        <!-- 文字 -->
+        <div class="ch-form-row ch-field show" data-for="text">
+          <label>消息内容</label>
+          <textarea class="ch-textarea" id="left-text" placeholder="输入对方说的话…"></textarea>
+        </div>
+
+        <!-- 图片 -->
+        <div class="ch-form-row ch-field" data-for="image">
+          <label>选择图片</label>
+          <img class="ch-img-preview" id="left-img-preview">
+          <label class="ch-file-label">
+            点击上传图片
+            <input type="file" class="ch-file-input" id="left-image" accept="image/*">
+          </label>
+        </div>
+
+        <!-- 表情 -->
+        <div class="ch-form-row ch-field" data-for="emoji">
+          <label>选择表情</label>
+          <div class="ch-emoji-picker" id="left-emoji-picker"></div>
+        </div>
+
+        <!-- 语音 -->
+        <div class="ch-form-row ch-field" data-for="voice">
+          <label>语音时长（秒）</label>
+          <input type="number" class="ch-input" id="left-voice" value="8" min="1" max="60">
+        </div>
+
+        <!-- 红包 -->
+        <div class="ch-form-row ch-field" data-for="redpacket">
+          <label>红包金额（元）</label>
+          <input type="text" class="ch-input" id="left-rp-amount" placeholder="88.88" value="88.88">
+        </div>
+        <div class="ch-form-row ch-field" data-for="redpacket">
+          <label>红包祝福语</label>
+          <input type="text" class="ch-input" id="left-rp-greeting" placeholder="恭喜发财，大吉大利" value="恭喜发财，大吉大利">
+        </div>
+
+        <!-- 转账 -->
+        <div class="ch-form-row ch-field" data-for="transfer">
+          <label>转账金额（元）</label>
+          <input type="text" class="ch-input" id="left-tr-amount" placeholder="520.00" value="520.00">
+        </div>
+        <div class="ch-form-row ch-field" data-for="transfer">
+          <label>转账状态</label>
+          <select class="ch-select" id="left-tr-status">
+            <option value="待收款">待收款</option>
+            <option value="已被接收" selected>已被接收</option>
+          </select>
+        </div>
+
+        <!-- 位置 -->
+        <div class="ch-form-row ch-field" data-for="location">
+          <label>位置名称</label>
+          <input type="text" class="ch-input" id="left-loc-title" placeholder="星巴克咖啡" value="星巴克咖啡(国贸店)">
+        </div>
+        <div class="ch-form-row ch-field" data-for="location">
+          <label>详细地址</label>
+          <input type="text" class="ch-input" id="left-loc-addr" placeholder="北京市朝阳区建国门外大街1号" value="北京市朝阳区建国门外大街1号">
+        </div>
+
+        <!-- 文件 -->
+        <div class="ch-form-row ch-field" data-for="file">
+          <label>文件名</label>
+          <input type="text" class="ch-input" id="left-file-name" placeholder="项目方案.pdf" value="项目方案.pdf">
+        </div>
+        <div class="ch-form-row ch-field" data-for="file">
+          <label>文件大小</label>
+          <input type="text" class="ch-input" id="left-file-size" placeholder="2.3MB" value="2.3MB">
+        </div>
+
+        <!-- 撤回 -->
+        <div class="ch-form-row ch-field" data-for="withdraw">
+          <label style="color:var(--textSecondary);font-weight:400;">将生成一条"对方撤回了一条消息"系统提示</label>
+        </div>
+
+        <button class="ch-btn" id="left-send">⬅ 作为对方发送</button>
+
+        <!-- 消息列表 -->
+        <div class="ch-msg-list">
+          <div class="ch-msg-list-title">消息列表（点击删除）</div>
+          <div id="msg-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右：我方输入 -->
+    <div class="ch-panel">
+      <div class="ch-panel-header">
+        🧑 我方（右侧）
+        <span class="tag right">我方</span>
+      </div>
+      <div class="ch-panel-body">
+        <div class="ch-form-row">
+          <label>头像与昵称</label>
+          <div class="ch-avatar-row">
+            <div class="ch-avatar-preview" id="right-avatar-preview">我</div>
+            <div class="ch-avatar-actions">
+              <input type="text" class="ch-input" id="right-name" placeholder="我的昵称" value="我">
+              <label class="ch-file-label">
+                上传头像
+                <input type="file" class="ch-file-input" id="right-avatar" accept="image/*">
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="ch-form-row">
+          <label>消息类型</label>
+          <select class="ch-select" id="right-type">
+            <option value="text">文字</option>
+            <option value="image">图片</option>
+            <option value="emoji">表情</option>
+            <option value="voice">语音</option>
+            <option value="redpacket">红包</option>
+            <option value="transfer">转账</option>
+            <option value="location">位置</option>
+            <option value="file">文件</option>
+            <option value="withdraw">撤回消息</option>
+          </select>
+        </div>
+
+        <div class="ch-form-row ch-field show" data-for="text">
+          <label>消息内容</label>
+          <textarea class="ch-textarea" id="right-text" placeholder="输入我说的话…"></textarea>
+        </div>
+
+        <div class="ch-form-row ch-field" data-for="image">
+          <label>选择图片</label>
+          <img class="ch-img-preview" id="right-img-preview">
+          <label class="ch-file-label">
+            点击上传图片
+            <input type="file" class="ch-file-input" id="right-image" accept="image/*">
+          </label>
+        </div>
+
+        <div class="ch-form-row ch-field" data-for="emoji">
+          <label>选择表情</label>
+          <div class="ch-emoji-picker" id="right-emoji-picker"></div>
+        </div>
+
+        <div class="ch-form-row ch-field" data-for="voice">
+          <label>语音时长（秒）</label>
+          <input type="number" class="ch-input" id="right-voice" value="12" min="1" max="60">
+        </div>
+
+        <div class="ch-form-row ch-field" data-for="redpacket">
+          <label>红包金额（元）</label>
+          <input type="text" class="ch-input" id="right-rp-amount" placeholder="66.66" value="66.66">
+        </div>
+        <div class="ch-form-row ch-field" data-for="redpacket">
+          <label>红包祝福语</label>
+          <input type="text" class="ch-input" id="right-rp-greeting" placeholder="生日快乐" value="生日快乐！">
+        </div>
+
+        <div class="ch-form-row ch-field" data-for="transfer">
+          <label>转账金额（元）</label>
+          <input type="text" class="ch-input" id="right-tr-amount" placeholder="1314.00" value="1314.00">
+        </div>
+        <div class="ch-form-row ch-field" data-for="transfer">
+          <label>转账状态</label>
+          <select class="ch-select" id="right-tr-status">
+            <option value="待收款">待收款</option>
+            <option value="已收款" selected>已收款</option>
+          </select>
+        </div>
+
+        <div class="ch-form-row ch-field" data-for="location">
+          <label>位置名称</label>
+          <input type="text" class="ch-input" id="right-loc-title" placeholder="公司" value="公司">
+        </div>
+        <div class="ch-form-row ch-field" data-for="location">
+          <label>详细地址</label>
+          <input type="text" class="ch-input" id="right-loc-addr" placeholder="北京市海淀区中关村" value="北京市海淀区中关村">
+        </div>
+
+        <div class="ch-form-row ch-field" data-for="file">
+          <label>文件名</label>
+          <input type="text" class="ch-input" id="right-file-name" placeholder="合同.docx" value="合同.docx">
+        </div>
+        <div class="ch-form-row ch-field" data-for="file">
+          <label>文件大小</label>
+          <input type="text" class="ch-input" id="right-file-size" placeholder="1.5MB" value="1.5MB">
+        </div>
+
+        <div class="ch-form-row ch-field" data-for="withdraw">
+          <label style="color:var(--textSecondary);font-weight:400;">将生成一条"你撤回了一条消息"系统提示</label>
+        </div>
+
+        <button class="ch-btn" id="right-send">➡ 作为我方发送</button>
+
+        <div class="ch-msg-list">
+          <div class="ch-msg-list-title">操作</div>
+          <button class="ch-btn secondary" id="btn-sample" style="margin-bottom:8px;">📝 填充示例消息</button>
+          <button class="ch-btn secondary" id="btn-hide-input">👁 隐藏/显示输入栏</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 底部 -->
+<div class="pp-footer">
+  <div class="pp-footer-links">
+    <a href="index.html">主页</a>
+    <a href="nav.html">导航</a>
+    <a href="words.html">学单词</a>
+    <a href="slots.html">老虎机</a>
+  </div>
+  <div class="pp-footer-copy">微信聊天记录生成器 · 仅供娱乐</div>
+</div>
+
+<div class="pp-toast" id="toast"></div>
+
+<script>
+/* ==================== 状态 ==================== */
+var state = {
+  leftName: '小可爱',
+  rightName: '我',
+  leftAvatar: '',
+  rightAvatar: '',
+  messages: [],
+  showInputBar: true
+};
+var msgIdSeq = 1;
+
+var EMOJIS = ['😀','😁','😂','🤣','😃','😄','😅','😆','😉','😊','😋','😎','😍','😘','🥰','😗','😙','😚','🙂','🤗','🤩','🤔','🤨','😐','😑','😶','🙄','😏','😣','😥','😮','🤐','😯','😪','😫','🥱','😴','😌','😛','😜','😝','🤤','😒','😓','😔','😕','🙃','🤑','😲','☹','🙁','😖','😞','😟','😤','😢','😭','😦','😧','😨','😩','🤯','😬','😰','😱','🥵','🥶','😳','🤪','😵','🥴','😠','😡','🤬','😷','🤒','🤕','🤢','🤮','🤧','😇','🥳','🥺','🤠','🤡','🤥','🤫','🤭','🧐','🤓','😈','👿','👹','👺','💀','👻','👽','🤖','💩','😺','😸','😻','😼','😽','🙀','😿','😾','👋','🤚','🖐','✋','🖖','👌','🤌','🤏','✌','🤞','🤟','🤘','🤙','👈','👉','👆','🖕','👇','☝','👎','👍','✊','👊','🤛','🤜','👏','🙌','👐','🤲','🤝','🙏','❤️','🧡','💛','💚','💙','💜','🖤','🤍','🤎','💔','❣','💕','💞','💓','💗','💖','💘','💝','💟','🔥','✨','⭐','🌟','💫','💥','💢','💦','💨','🕳','💣','💬','👁','‍🗨','🗨','🗯','💭','💤','🎉','🎊','🎁','🎈','🎂','🌹','🌸','🌺','🌻','🌷','🍀','🎵','🎶','🍺','🍻','☕','🍔','🍟','🍕'];
+
+/* ==================== 工具 ==================== */
+function $(id) { return document.getElementById(id); }
+function showToast(msg) {
+  var t = $('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 1800);
+}
+function escapeHtml(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+function readFileAsDataURL(file, cb) {
+  var reader = new FileReader();
+  reader.onload = function(e) { cb(e.target.result); };
+  reader.readAsDataURL(file);
+}
+function defaultAvatar(name) {
+  var colors = ['#ff6b6b','#feca57','#48dbfb','#1dd1a1','#5f27cd','#ff9ff3','#54a0ff','#ee5a6f'];
+  var c = colors[name.charCodeAt(0) % colors.length];
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"><rect width="80" height="80" fill="' + c + '"/><text x="40" y="52" font-size="36" font-family="sans-serif" font-weight="700" fill="#fff" text-anchor="middle">' + (name.charAt(0) || '?') + '</text></svg>'
+  );
+}
+function getAvatar(side) {
+  return side === 'left' ? (state.leftAvatar || defaultAvatar(state.leftName)) : (state.rightAvatar || defaultAvatar(state.rightName));
+}
+function avatarHtml(side) {
+  return '<img class="wx-avatar" src="' + getAvatar(side) + '" alt="">';
+}
+
+/* ==================== 渲染聊天 ==================== */
+function renderChat() {
+  var chat = $('wx-chat');
+  if (state.messages.length === 0) {
+    chat.innerHTML = '<div style="text-align:center;color:#999;padding:40px 0;font-size:13px;">暂无消息，请在右侧添加</div>';
+    renderMsgList();
+    return;
+  }
+  var html = '';
+  state.messages.forEach(function(m) {
+    if (m.type === 'time') {
+      html += '<div class="wx-time wx-time-row" data-id="' + m.id + '">' +
+        '<button class="wx-msg-del" onclick="delMsg(' + m.id + ')">×</button>' +
+        '<span>' + escapeHtml(m.content) + '</span></div>';
+    } else if (m.type === 'system') {
+      html += '<div class="wx-system wx-system-row" data-id="' + m.id + '">' +
+        '<button class="wx-msg-del" onclick="delMsg(' + m.id + ')">×</button>' +
+        '<span>' + escapeHtml(m.content) + '</span></div>';
+    } else if (m.type === 'withdraw') {
+      var who = m.side === 'left' ? state.leftName : '你';
+      var text = (m.side === 'right' ? '你' : who) + '撤回了一条消息';
+      html += '<div class="wx-system wx-system-row" data-id="' + m.id + '">' +
+        '<button class="wx-msg-del" onclick="delMsg(' + m.id + ')">×</button>' +
+        '<span>' + text + '</span></div>';
+    } else {
+      html += renderMsgBubble(m);
+    }
+  });
+  chat.innerHTML = html;
+  chat.scrollTop = chat.scrollHeight;
+  renderMsgList();
+}
+
+function renderMsgBubble(m) {
+  var side = m.side; // left | right
+  var html = '<div class="wx-msg ' + side + '" data-id="' + m.id + '">';
+  html += '<button class="wx-msg-del" onclick="delMsg(' + m.id + ')">×</button>';
+  html += '<div class="wx-avatar-wrap">' + avatarHtml(side) + '</div>';
+  html += '<div class="wx-bubble-wrap">';
+
+  switch (m.type) {
+    case 'text':
+      html += '<div class="wx-bubble">' + escapeHtml(m.content) + '</div>';
+      break;
+    case 'image':
+      html += '<div class="wx-bubble wx-img-bubble"><img class="wx-img" src="' + m.src + '" alt=""></div>';
+      break;
+    case 'emoji':
+      html += '<div class="wx-bubble wx-emoji-bubble"><div class="wx-emoji">' + m.emoji + '</div></div>';
+      break;
+    case 'voice':
+      var dur = m.duration || 5;
+      var w = Math.min(200, 60 + dur * 8);
+      var icon = side === 'left' ? '🔊' : '🔊';
+      html += '<div class="wx-voice" style="min-width:' + w + 'px;">' +
+        '<span class="wx-voice-icon">' + icon + '</span>' +
+        '<span class="wx-voice-dur">' + dur + '"</span></div>';
+      break;
+    case 'redpacket':
+      html += '<div class="wx-redpacket">' +
+        '<div class="wx-redpacket-top">' +
+          '<span class="wx-redpacket-label"><span class="wx-redpacket-icon">🧧</span>微信红包</span>' +
+          '<span class="wx-redpacket-open">開</span>' +
+        '</div>' +
+        '<div class="wx-redpacket-greeting">' + escapeHtml(m.greeting || '恭喜发财，大吉大利') + '</div>' +
+        '<div class="wx-redpacket-bottom">微信红包</div>' +
+      '</div>';
+      break;
+    case 'transfer':
+      var trStatus = m.status || '待收款';
+      var showCheck = trStatus !== '待收款';
+      html += '<div class="wx-transfer">' +
+        '<div class="wx-transfer-top">' +
+          (showCheck ? '<span class="wx-transfer-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>' : '<span class="wx-transfer-check" style="background:rgba(255,255,255,0.3);"></span>') +
+          '<span class="wx-transfer-amount">¥' + escapeHtml(m.amount || '0.00') + '</span>' +
+          '<span class="wx-transfer-status">' + escapeHtml(trStatus) + '</span>' +
+        '</div>' +
+        '<div class="wx-transfer-bottom">微信转账</div>' +
+      '</div>';
+      break;
+    case 'location':
+      html += '<div class="wx-location">' +
+        '<div class="wx-location-map"></div>' +
+        '<div class="wx-location-info">' +
+          '<div class="wx-location-title">' + escapeHtml(m.title || '位置') + '</div>' +
+          '<div class="wx-location-addr">' + escapeHtml(m.address || '') + '</div>' +
+        '</div>' +
+      '</div>';
+      break;
+    case 'file':
+      html += '<div class="wx-file">' +
+        '<div class="wx-file-icon">📄</div>' +
+        '<div class="wx-file-info">' +
+          '<div class="wx-file-name">' + escapeHtml(m.name || '文件') + '</div>' +
+          '<div class="wx-file-size">' + escapeHtml(m.size || '') + '</div>' +
+        '</div>' +
+      '</div>';
+      break;
+  }
+  html += '</div></div>';
+  return html;
+}
+
+/* ==================== 消息列表 ==================== */
+function renderMsgList() {
+  var el = $('msg-list');
+  if (state.messages.length === 0) {
+    el.innerHTML = '<div class="ch-msg-empty">暂无消息</div>';
+    return;
+  }
+  var html = '';
+  state.messages.forEach(function(m) {
+    var side = m.type === 'time' || m.type === 'system' || m.type === 'withdraw' ? 'system' : m.side;
+    var text = '';
+    var tag = m.type;
+    if (m.type === 'text') text = m.content;
+    else if (m.type === 'image') text = '[图片]';
+    else if (m.type === 'emoji') text = m.emoji;
+    else if (m.type === 'voice') text = '[语音 ' + m.duration + '″]';
+    else if (m.type === 'redpacket') text = '[红包] ' + m.greeting;
+    else if (m.type === 'transfer') text = '[转账] ¥' + m.amount + ' ' + (m.status || '待收款');
+    else if (m.type === 'location') text = '[位置] ' + m.title;
+    else if (m.type === 'file') text = '[文件] ' + m.name;
+    else if (m.type === 'time') text = m.content;
+    else if (m.type === 'system') text = m.content;
+    else if (m.type === 'withdraw') text = (m.side === 'right' ? '你' : state.leftName) + '撤回了一条消息';
+    html += '<div class="ch-msg-item">' +
+      '<span class="side-dot ' + side + '"></span>' +
+      '<span class="text">' + escapeHtml(text) + '</span>' +
+      '<span class="type-tag">' + tag + '</span>' +
+      '<button class="del" onclick="delMsg(' + m.id + ')">×</button>' +
+    '</div>';
+  });
+  el.innerHTML = html;
+}
+
+/* ==================== 消息操作 ==================== */
+function addMessage(msg) {
+  msg.id = msgIdSeq++;
+  state.messages.push(msg);
+  renderChat();
+}
+function delMsg(id) {
+  state.messages = state.messages.filter(function(m) { return m.id !== id; });
+  renderChat();
+}
+
+/* 从表单收集消息 */
+function collectMsg(side) {
+  var type = $(side + '-type').value;
+  var msg = { type: type, side: side };
+  switch (type) {
+    case 'text':
+      msg.content = $(side + '-text').value.trim();
+      if (!msg.content) { showToast('请输入消息内容'); return null; }
+      break;
+    case 'image':
+      msg.src = $(side + '-img-preview').src;
+      if (!msg.src || msg.src === window.location.href) { showToast('请先上传图片'); return null; }
+      break;
+    case 'emoji':
+      msg.emoji = $(side + '-selected-emoji')?.textContent || '';
+      if (!msg.emoji) { showToast('请选择表情'); return null; }
+      break;
+    case 'voice':
+      msg.duration = parseInt($(side + '-voice').value) || 5;
+      break;
+    case 'redpacket':
+      msg.amount = $(side + '-rp-amount').value.trim() || '0.01';
+      msg.greeting = $(side + '-rp-greeting').value.trim() || '恭喜发财，大吉大利';
+      break;
+    case 'transfer':
+      msg.amount = $(side + '-tr-amount').value.trim() || '0.01';
+      msg.status = $(side + '-tr-status').value || '待收款';
+      break;
+    case 'location':
+      msg.title = $(side + '-loc-title').value.trim() || '位置';
+      msg.address = $(side + '-loc-addr').value.trim();
+      break;
+    case 'file':
+      msg.name = $(side + '-file-name').value.trim() || '文件';
+      msg.size = $(side + '-file-size').value.trim();
+      break;
+    case 'withdraw':
+      // 不需要额外字段
+      break;
+  }
+  return msg;
+}
+
+function sendMsg(side) {
+  var msg = collectMsg(side);
+  if (!msg) return;
+  addMessage(msg);
+  showToast((side === 'left' ? '对方' : '我方') + '消息已添加');
+  // 清空文字输入
+  if (msg.type === 'text') $(side + '-text').value = '';
+  if (msg.type === 'image') {
+    $(side + '-img-preview').classList.remove('show');
+    $(side + '-img-preview').src = '';
+  }
+  if (msg.type === 'emoji') {
+    var sel = $(side + '-selected-emoji');
+    if (sel) { sel.style.background = ''; }
+  }
+}
+
+/* ==================== 表单类型切换 ==================== */
+function setupTypeSwitch(side) {
+  var sel = $(side + '-type');
+  sel.addEventListener('change', function() {
+    var type = this.value;
+    var fields = document.querySelectorAll('[data-for]');
+    fields.forEach(function(f) {
+      if (f.closest('.ch-panel').contains(sel)) {
+        f.classList.toggle('show', f.dataset.for === type);
+      }
+    });
+  });
+}
+
+/* ==================== 表情选择器 ==================== */
+function renderEmojiPicker(side) {
+  var el = $(side + '-emoji-picker');
+  el.innerHTML = EMOJIS.map(function(e) {
+    return '<button data-emoji="' + e + '">' + e + '</button>';
+  }).join('');
+  el.addEventListener('click', function(e) {
+    var btn = e.target.closest('button[data-emoji]');
+    if (!btn) return;
+    // 高亮选中
+    el.querySelectorAll('button').forEach(function(b) { b.style.background = ''; });
+    btn.style.background = 'var(--accent)';
+    var old = $(side + '-selected-emoji');
+    if (old) old.removeAttribute('id');
+    btn.id = side + '-selected-emoji';
+  });
+}
+
+/* ==================== 头像上传 ==================== */
+function setupAvatarUpload(side) {
+  var input = $(side + '-avatar');
+  input.addEventListener('change', function() {
+    if (this.files && this.files[0]) {
+      readFileAsDataURL(this.files[0], function(data) {
+        if (side === 'left') state.leftAvatar = data;
+        else state.rightAvatar = data;
+        updateAvatarPreview(side);
+        renderChat();
+      });
+    }
+  });
+  $(side + '-name').addEventListener('input', function() {
+    if (side === 'left') state.leftName = this.value || '对方';
+    else state.rightName = this.value || '我';
+    updateAvatarPreview(side);
+    updateChatTitle();
+    renderChat();
+  });
+}
+function updateAvatarPreview(side) {
+  var el = $(side + '-avatar-preview');
+  var avatar = side === 'left' ? state.leftAvatar : state.rightAvatar;
+  if (avatar) {
+    el.innerHTML = '<img src="' + avatar + '" alt="">';
+  } else {
+    var name = side === 'left' ? state.leftName : state.rightName;
+    el.innerHTML = '';
+    el.textContent = name.charAt(0) || '?';
+  }
+}
+function updateChatTitle() {
+  $('chat-title').textContent = state.leftName;
+}
+
+/* ==================== 图片消息上传 ==================== */
+function setupImageUpload(side) {
+  var input = $(side + '-image');
+  var preview = $(side + '-img-preview');
+  input.addEventListener('change', function() {
+    if (this.files && this.files[0]) {
+      readFileAsDataURL(this.files[0], function(data) {
+        preview.src = data;
+        preview.classList.add('show');
+      });
+    }
+  });
+}
+
+/* ==================== 时间 ==================== */
+function addTimeSeparator() {
+  var now = new Date();
+  var hh = String(now.getHours()).padStart(2, '0');
+  var mm = String(now.getMinutes()).padStart(2, '0');
+  addMessage({ type: 'time', content: '今天 ' + hh + ':' + mm });
+}
+
+/* ==================== 截图 ==================== */
+function generateScreenshot() {
+  var screen = $('wechat-screen');
+  var chat = $('wx-chat');
+  var inputbar = $('wx-inputbar');
+
+  // 临时展开聊天区为完整高度
+  var origMaxH = chat.style.maxHeight;
+  var origOverflow = chat.style.overflow;
+  chat.style.maxHeight = 'none';
+  chat.style.overflow = 'visible';
+
+  // 隐藏删除按钮
+  var dels = screen.querySelectorAll('.wx-msg-del');
+  dels.forEach(function(d) { d.style.display = 'none'; });
+
+  if (!state.showInputBar) inputbar.style.display = 'none';
+
+  showToast('正在生成长截图…');
+
+  html2canvas(screen, {
+    backgroundColor: null,
+    scale: 2,
+    useCORS: true,
+    logging: false
+  }).then(function(canvas) {
+    // 恢复
+    chat.style.maxHeight = origMaxH;
+    chat.style.overflow = origOverflow;
+    dels.forEach(function(d) { d.style.display = ''; });
+    if (!state.showInputBar) inputbar.style.display = '';
+
+    // 下载
+    canvas.toBlob(function(blob) {
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = '微信聊天记录_' + Date.now() + '.png';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('截图已保存！');
+    }, 'image/png');
+  }).catch(function(err) {
+    console.error(err);
+    chat.style.maxHeight = origMaxH;
+    chat.style.overflow = origOverflow;
+    dels.forEach(function(d) { d.style.display = ''; });
+    showToast('截图生成失败，请重试');
+  });
+}
+
+/* ==================== 示例消息 ==================== */
+function loadSample() {
+  state.messages = [];
+  msgIdSeq = 1;
+  addMessage({ type: 'time', content: '8月12日 15:44' });
+  addMessage({ type: 'text', side: 'left', content: '你好' });
+  addMessage({ type: 'text', side: 'right', content: '你也好！' });
+  addMessage({ type: 'time', content: '昨天 18:16' });
+  addMessage({ type: 'text', side: 'left', content: '在吗' });
+  addMessage({ type: 'time', content: '昨天 18:24' });
+  addMessage({ type: 'transfer', side: 'left', amount: '800.00', status: '已被接收' });
+  addMessage({ type: 'transfer', side: 'right', amount: '800.00', status: '已收款' });
+  renderChat();
+  showToast('已填充示例消息');
+}
+
+/* ==================== 状态栏时钟与电量 ==================== */
+function updateStatusBar() {
+  var now = new Date();
+  var hh = String(now.getHours()).padStart(2, '0');
+  var mm = String(now.getMinutes()).padStart(2, '0');
+  $('sb-time').textContent = hh + ':' + mm;
+}
+function randomBattery() {
+  var pct = Math.floor(Math.random() * 61) + 30; // 30~90
+  $('sb-battery-num').textContent = pct;
+  $('sb-battery-icon').style.background = 'linear-gradient(90deg, #181818 ' + pct + '%, transparent ' + pct + '%)';
+}
+
+/* ==================== 初始化 ==================== */
+function init() {
+  // 表情选择器
+  renderEmojiPicker('left');
+  renderEmojiPicker('right');
+  // 类型切换
+  setupTypeSwitch('left');
+  setupTypeSwitch('right');
+  // 头像
+  setupAvatarUpload('left');
+  setupAvatarUpload('right');
+  updateAvatarPreview('left');
+  updateAvatarPreview('right');
+  updateChatTitle();
+  // 图片上传
+  setupImageUpload('left');
+  setupImageUpload('right');
+  // 发送
+  $('left-send').addEventListener('click', function() { sendMsg('left'); });
+  $('right-send').addEventListener('click', function() { sendMsg('right'); });
+  // 顶栏按钮
+  $('btn-add-time').addEventListener('click', addTimeSeparator);
+  $('btn-clear').addEventListener('click', function() {
+    if (state.messages.length === 0) return;
+    if (confirm('确定清空所有消息？')) {
+      state.messages = [];
+      renderChat();
+      showToast('已清空');
+    }
+  });
+  $('btn-screenshot').addEventListener('click', generateScreenshot);
+  $('btn-sample').addEventListener('click', loadSample);
+  $('btn-hide-input').addEventListener('click', function() {
+    state.showInputBar = !state.showInputBar;
+    $('wx-inputbar').style.display = state.showInputBar ? '' : 'none';
+    showToast(state.showInputBar ? '已显示输入栏' : '已隐藏输入栏');
+  });
+
+  // 初始示例
+  loadSample();
+
+  // 状态栏：系统时间 + 随机电量
+  updateStatusBar();
+  randomBattery();
+  setInterval(updateStatusBar, 30000); // 每30秒更新时间
+}
+
+init();
+</script>
+</body>
+</html>

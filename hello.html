@@ -278,6 +278,28 @@
 
         #escHint.show { opacity: 1; }
 
+        /* 蓄力条 */
+        #chargeWrap {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 220px;
+            height: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 0.15s;
+        }
+        #chargeBar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #66dd66, #ffcc33, #ff4444);
+            transition: width 0.05s linear;
+        }
+
         /* 加载提示 */
         #loading {
             position: fixed;
@@ -308,6 +330,9 @@
 
     <canvas id="gameCanvas"></canvas>
 
+    <!-- 图片上传 -->
+    <input type="file" id="photoUpload" accept="image/*" style="display:none">
+
     <!-- 加载 -->
     <div id="loading">
         <div class="spinner"></div>
@@ -322,7 +347,9 @@
             <div class="controls-row"><span>移动</span><span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span></div>
             <div class="controls-row"><span>跳跃</span><span><kbd>Space</kbd></span></div>
             <div class="controls-row"><span>视角</span><span>鼠标</span></div>
-            <div class="controls-row"><span>交互菜单</span><span><kbd>左键</kbd></span></div>
+            <div class="controls-row"><span>蓄力射箭</span><span>按住<kbd>左键</kbd>松开发射</span></div>
+            <div class="controls-row"><span>交互菜单</span><span><kbd>E</kbd></span></div>
+            <div class="controls-row"><span>上传照片墙</span><span><kbd>P</kbd></span></div>
             <div class="controls-row"><span>隐藏/显示准星</span><span><kbd>右键</kbd></span></div>
             <div class="controls-row"><span>解锁鼠标</span><span><kbd>Esc</kbd></span></div>
         </div>
@@ -336,6 +363,9 @@
         </div>
         <div id="interactHint"></div>
         <div id="escHint">按 Esc 解锁鼠标</div>
+        <div id="chargeWrap">
+            <div id="chargeBar"></div>
+        </div>
     </div>
 
     <!-- 交互菜单 -->
@@ -381,6 +411,20 @@
         var highlightMesh = null;
         var interactTarget = null;
 
+        // 弓箭系统
+        var bow = null;              // 第一人称弓模型
+        var bowString = null;        // 弓弦（可拉伸）
+        var nockedArrow = null;      // 搭在弦上的箭（视觉）
+        var arrows = [];             // 飞行中/已插入的箭
+        var isCharging = false;
+        var chargeStart = 0;
+        var maxChargeTime = 1.2;     // 蓄力到最大值的时间（秒）
+        var minArrowSpeed = 12;
+        var maxArrowSpeed = 55;
+        var arrowGravity = 14;
+        var arrowRaycaster = new THREE.Raycaster();
+        var photoWall = null;        // 照片墙网格
+
         // 自由模式视角更新（Q/E 转向，上下方向键俯仰）
         function updateFreeLook() {
             if (!gameStarted || isPointerLocked) return;
@@ -423,6 +467,9 @@
                 }
             });
 
+            // 创建第一人称弓
+            createBow();
+
             // 6. 绑定事件
             bindEvents();
 
@@ -451,21 +498,19 @@
                     camera.position.copy(player.position);
                 }
 
-                // 雾
-                if (data.world) {
-                    scene.fog = new THREE.Fog(data.world.fogColor || '#1a1a2e', data.world.fogNear || 25, data.world.fogFar || 100);
-                }
+                // 雾（蓝天白云的白天色调）
+                scene.fog = new THREE.Fog(0xcfe6f5, 30, 140);
 
                 // 光照
                 setupLighting(data.lighting);
 
-                // 天空渐变背景（用一个大的球体背面渲染）
+                // 天空渐变背景（蓝天）
                 var skyGeo = new THREE.SphereGeometry(300, 32, 32);
                 var skyMat = new THREE.ShaderMaterial({
                     side: THREE.BackSide,
                     uniforms: {
-                        topColor: { value: new THREE.Color(data.world ? data.world.skyTop || '#0a0a1a' : '#0a0a1a') },
-                        bottomColor: { value: new THREE.Color(data.world ? data.world.skyBottom || '#1a1a3e' : '#1a1a3e') },
+                        topColor: { value: new THREE.Color('#2a7dd1') },
+                        bottomColor: { value: new THREE.Color('#bfe3ff') },
                     },
                     vertexShader: `
                         varying vec3 vWorldPos;
@@ -496,8 +541,8 @@
                     });
                 }
 
-                // 星星粒子（远处点缀）
-                addStars();
+                // 白云粒子
+                addClouds();
 
                 // 构建缓存碰撞盒（整个游戏过程不变）
                 rebuildCollidableBoxes();
@@ -609,22 +654,257 @@
             return mesh;
         }
 
-        function addStars() {
-            var count = 1000;
-            var positions = new Float32Array(count * 3);
+        function addClouds() {
+            // 生成一张柔和的云纹理
+            var c = document.createElement('canvas');
+            c.width = 128; c.height = 128;
+            var ctx = c.getContext('2d');
+            var grd = ctx.createRadialGradient(64, 64, 2, 64, 64, 64);
+            grd.addColorStop(0, 'rgba(255,255,255,1)');
+            grd.addColorStop(0.4, 'rgba(255,255,255,0.75)');
+            grd.addColorStop(1, 'rgba(255,255,255,0)');
+            ctx.fillStyle = grd;
+            ctx.fillRect(0, 0, 128, 128);
+            var cloudTex = new THREE.CanvasTexture(c);
+            cloudTex.colorSpace = THREE.SRGBColorSpace;
+
+            var cloudMat = new THREE.SpriteMaterial({
+                map: cloudTex,
+                transparent: true,
+                opacity: 0.9,
+                depthWrite: false,
+                color: 0xffffff,
+            });
+
+            var count = 60;
             for (var i = 0; i < count; i++) {
-                var r = 280 + Math.random() * 20;
-                var theta = Math.random() * Math.PI * 2;
-                var phi = Math.acos(2 * Math.random() - 1);
-                positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
-                positions[i * 3 + 1] = Math.abs(r * Math.cos(phi)) * 0.5;
-                positions[i * 3 + 2] = r * Math.sin(phi) * Math.sin(theta);
+                var sprite = new THREE.Sprite(cloudMat.clone());
+                var angle = Math.random() * Math.PI * 2;
+                var dist = 60 + Math.random() * 180;
+                sprite.position.set(
+                    Math.cos(angle) * dist,
+                    25 + Math.random() * 60,
+                    Math.sin(angle) * dist
+                );
+                var scale = 18 + Math.random() * 30;
+                sprite.scale.set(scale * (0.8 + Math.random() * 0.6), scale * (0.5 + Math.random() * 0.4), 1);
+                sprite.userData.drift = 0.2 + Math.random() * 0.6;
+                sprite.userData.baseAngle = angle;
+                sprite.userData.dist = dist;
+                scene.add(sprite);
             }
-            var geo = new THREE.BufferGeometry();
-            geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-            var mat = new THREE.PointsMaterial({ color: 0xffffff, size: 0.8, sizeAttenuation: false, transparent: true, opacity: 0.7 });
-            var stars = new THREE.Points(geo, mat);
-            scene.add(stars);
+        }
+
+        function updateClouds(dt) {
+            scene.children.forEach(function(obj) {
+                if (obj.isSprite && obj.userData.drift) {
+                    obj.userData.baseAngle += obj.userData.drift * dt * 0.02;
+                    var a = obj.userData.baseAngle;
+                    var d = obj.userData.dist;
+                    obj.position.x = Math.cos(a) * d;
+                    obj.position.z = Math.sin(a) * d;
+                }
+            });
+        }
+
+        /* ============================================================
+         * 弓（第一人称视角模型）
+         * ============================================================ */
+        function createBow() {
+            var group = new THREE.Group();
+
+            // 弓身：半圆环
+            var bowRadius = 0.32;
+            var bowGeo = new THREE.TorusGeometry(bowRadius, 0.018, 8, 24, Math.PI);
+            // 默认端点在 ±X、弧凸向 +Y。旋转几何：端点 → ±Y，凸向 → -Z（前方）
+            bowGeo.rotateZ(Math.PI / 2);
+            bowGeo.rotateY(-Math.PI / 2);
+            var bowMat = new THREE.MeshStandardMaterial({ color: 0x6b3a1a, roughness: 0.7, metalness: 0.1 });
+            var bowBody = new THREE.Mesh(bowGeo, bowMat);
+            group.add(bowBody);
+
+            // 弓弦：细圆柱沿 Y 轴连接两端点 (0, ±bowRadius, 0)
+            var stringMat = new THREE.MeshBasicMaterial({ color: 0xeeeeee });
+            var stringGeo = new THREE.CylinderGeometry(0.004, 0.004, bowRadius * 2, 6);
+            bowString = new THREE.Mesh(stringGeo, stringMat);
+            bowString.position.set(0, 0, 0);
+            // 默认弓弦在 z=0，蓄力时向 +Z（后方/射手方向）拉
+            group.add(bowString);
+
+            // 搭箭（视觉）：箭头尖端朝相机前方（-Z），故绕 Y 旋转 180°
+            nockedArrow = createArrowMesh();
+            nockedArrow.visible = true;
+            nockedArrow.position.set(0, 0, 0);
+            nockedArrow.rotation.y = Math.PI;
+            group.add(nockedArrow);
+
+            // 整体放到相机右下角
+            group.position.set(0.3, -0.28, -0.55);
+            group.rotation.y = -0.1;
+            camera.add(group);
+            scene.add(camera); // 确保相机在场景图中
+            bow = group;
+        }
+
+        /* ============================================================
+         * 箭矢
+         * ============================================================ */
+        // 箭的"前方"统一为局部 +Z（箭头尖端）
+        var ARROW_FORWARD = new THREE.Vector3(0, 0, 1);
+
+        function createArrowMesh() {
+            var g = new THREE.Group();
+
+            // 箭杆（沿 Z 轴）
+            var shaft = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.012, 0.012, 0.7, 8),
+                new THREE.MeshStandardMaterial({ color: 0xc9a35a, roughness: 0.8 })
+            );
+            shaft.rotation.x = Math.PI / 2; // Y 轴圆柱转成沿 Z
+            g.add(shaft);
+
+            // 箭头（尖端朝 +Z）
+            var tip = new THREE.Mesh(
+                new THREE.ConeGeometry(0.03, 0.12, 10),
+                new THREE.MeshStandardMaterial({ color: 0x999999, metalness: 0.8, roughness: 0.3 })
+            );
+            tip.rotation.x = Math.PI / 2; // 尖端朝 +Z
+            tip.position.z = 0.41;
+            g.add(tip);
+
+            // 箭羽（两片交叉，在尾部 -Z）
+            var fletchMat = new THREE.MeshStandardMaterial({ color: 0xcc3333, side: THREE.DoubleSide, roughness: 0.7 });
+            var f1 = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.13, 0.07), fletchMat);
+            f1.position.z = -0.3;
+            g.add(f1);
+            var f2 = new THREE.Mesh(new THREE.BoxGeometry(0.13, 0.02, 0.07), fletchMat);
+            f2.position.z = -0.3;
+            g.add(f2);
+
+            return g;
+        }
+
+        function shootArrow(charge) {
+            var arrow = createArrowMesh();
+            arrow.userData = { velocity: new THREE.Vector3(), stuck: false, life: 0 };
+
+            // 从相机位置沿视角方向发射
+            var dir = new THREE.Vector3();
+            camera.getWorldDirection(dir);
+
+            // 起始位置：相机前方一点，避免卡在身上
+            var start = camera.position.clone().add(dir.clone().multiplyScalar(0.6));
+            arrow.position.copy(start);
+            // 让箭的局部 +Z（箭头）对齐飞行方向
+            arrow.quaternion.setFromUnitVectors(ARROW_FORWARD, dir);
+
+            var speed = minArrowSpeed + (maxArrowSpeed - minArrowSpeed) * charge;
+            arrow.userData.velocity.copy(dir).multiplyScalar(speed);
+
+            scene.add(arrow);
+            arrows.push(arrow);
+        }
+
+        function updateArrows(dt) {
+            for (var i = arrows.length - 1; i >= 0; i--) {
+                var a = arrows[i];
+                if (a.userData.stuck) continue;
+
+                a.userData.life += dt;
+                var vel = a.userData.velocity;
+                // 重力
+                vel.y -= arrowGravity * dt;
+
+                var moveLen = vel.length() * dt;
+                if (moveLen < 1e-6) continue;
+                var dir = vel.clone().normalize();
+
+                // 扫掠碰撞：从当前位置向 dir 发射 moveLen 距离
+                arrowRaycaster.set(a.position, dir);
+                arrowRaycaster.far = moveLen;
+                var hits = arrowRaycaster.intersectObjects(COLLIDABLE_MESHES, false);
+
+                if (hits.length > 0) {
+                    var hit = hits[0];
+                    // 插入：让箭尖（局部 +Z 约 0.47）嵌入命中点
+                    a.position.copy(hit.point).add(dir.clone().multiplyScalar(-0.4));
+                    a.quaternion.setFromUnitVectors(ARROW_FORWARD, dir);
+                    a.userData.stuck = true;
+                    a.userData.velocity.set(0, 0, 0);
+                } else {
+                    a.position.add(dir.clone().multiplyScalar(moveLen));
+                    a.quaternion.setFromUnitVectors(ARROW_FORWARD, dir);
+                }
+
+                // 超时移除（飞出世界）
+                if (a.userData.life > 8 || a.position.y < -40) {
+                    scene.remove(a);
+                    arrows.splice(i, 1);
+                }
+            }
+        }
+
+        /* ============================================================
+         * 蓄力 & 弓弦动画
+         * ============================================================ */
+        function getCharge() {
+            if (!isCharging) return 0;
+            var t = (performance.now() - chargeStart) / 1000;
+            return Math.min(t / maxChargeTime, 1);
+        }
+
+        function updateBow(now) {
+            if (!bow) return;
+            var c = getCharge();
+            // 弓弦向后拉（+Z 方向，相对弓的局部）
+            if (bowString) {
+                bowString.position.z = c * 0.12;
+            }
+            // 搭箭随之后移
+            if (nockedArrow) {
+                nockedArrow.position.z = c * 0.12;
+            }
+            // 蓄力时弓略微变色提示
+            bow.children[0].material.emissive = new THREE.Color(0x442200).multiplyScalar(c);
+
+            // 蓄力进度条
+            var bar = document.getElementById('chargeBar');
+            if (bar) {
+                bar.style.width = (c * 100) + '%';
+                bar.parentElement.style.opacity = isCharging ? '1' : '0';
+            }
+        }
+
+        /* ============================================================
+         * 照片墙（上传图片）
+         * ============================================================ */
+        function createPhotoWall(texture) {
+            if (photoWall) {
+                // 替换已有照片墙的纹理
+                photoWall.material[4].map = texture;
+                photoWall.material[4].needsUpdate = true;
+                return;
+            }
+            var w = 5, h = 3.2, d = 0.15;
+            var geo = new THREE.BoxGeometry(w, h, d);
+            // 6 个面：[右,左,上,下,前,后]
+            var wood = new THREE.MeshStandardMaterial({ color: 0x6b4423, roughness: 0.85 });
+            var front = new THREE.MeshStandardMaterial({ map: texture, roughness: 0.7 });
+            var materials = [wood, wood, wood, wood, front, wood];
+            photoWall = new THREE.Mesh(geo, materials);
+            // 放在玩家前方（-Z 方向），面朝玩家（+Z 面为前）
+            photoWall.position.set(0, h / 2 + 0.1, -12);
+            photoWall.userData = {
+                id: 'photoWall',
+                name: '照片墙',
+                collidable: true,
+                interactive: true,
+                actions: ['查看', '更换照片', '破坏'],
+            };
+            scene.add(photoWall);
+            COLLIDABLE_MESHES.push(photoWall);
+            INTERACTIVE_MESHES.push(photoWall);
+            rebuildCollidableBoxes();
         }
 
         /* ============================================================
@@ -655,6 +935,19 @@
                         gameStarted = true;
                     }
                 }
+                // E 键：交互（打开交互菜单）
+                if (e.code === 'KeyE' && gameStarted && isPointerLocked) {
+                    var menu = document.getElementById('contextMenu');
+                    if (menu.classList.contains('show')) {
+                        closeContextMenu();
+                    } else {
+                        handleLeftClick();
+                    }
+                }
+                // P 键：上传图片作为照片墙
+                if (e.code === 'KeyP') {
+                    document.getElementById('photoUpload').click();
+                }
             });
             document.addEventListener('keyup', function(e) { keys[e.code] = false; });
 
@@ -671,13 +964,31 @@
             // 鼠标按钮
             canvas.addEventListener('contextmenu', function(e) { e.preventDefault(); });
             canvas.addEventListener('mousedown', function(e) {
-                if (!isPointerLocked) return;
+                // 右键始终切换准星（即使未锁定也允许）
                 if (e.button === 2) {
                     crosshairVisible = !crosshairVisible;
                     document.getElementById('crosshair').classList.toggle('hidden', !crosshairVisible);
-                } else if (e.button === 0) {
-                    handleLeftClick();
+                    return;
                 }
+                if (!isPointerLocked) return;
+                if (e.button === 0) {
+                    // 左键：蓄力射箭（若菜单打开则关闭菜单）
+                    var menu = document.getElementById('contextMenu');
+                    if (menu.classList.contains('show')) {
+                        closeContextMenu();
+                        return;
+                    }
+                    isCharging = true;
+                    chargeStart = performance.now();
+                }
+            });
+            canvas.addEventListener('mouseup', function(e) {
+                if (e.button !== 0) return;
+                if (!isCharging) return;
+                var c = getCharge();
+                isCharging = false;
+                // 极短按也射出最低速箭
+                shootArrow(Math.max(c, 0.05));
             });
 
             // 窗口缩放
@@ -730,6 +1041,12 @@
                             if (ci >= 0) COLLIDABLE_MESHES.splice(ci, 1);
                             var ii = INTERACTIVE_MESHES.indexOf(mesh);
                             if (ii >= 0) INTERACTIVE_MESHES.splice(ii, 1);
+                            if (mesh === photoWall) photoWall = null;
+                            rebuildCollidableBoxes();
+                        } else if (action === '更换照片') {
+                            closeContextMenu();
+                            document.getElementById('photoUpload').click();
+                            return;
                         }
                         closeContextMenu();
                     });
@@ -965,7 +1282,7 @@
             // 交互提示
             var hint = document.getElementById('interactHint');
             if (target) {
-                hint.innerHTML = '<kbd>左键</kbd> ' + target.userData.name;
+                hint.innerHTML = '<kbd>E</kbd> ' + target.userData.name;
                 hint.classList.add('show');
             } else {
                 hint.classList.remove('show');
@@ -981,10 +1298,33 @@
             lastTime = now;
 
             update(dt);
+            updateArrows(dt);
+            updateBow(now);
+            updateClouds(dt);
             renderer.render(scene, camera);
 
             requestAnimationFrame(loop);
         }
+
+        // 照片墙：上传图片
+        document.getElementById('photoUpload').addEventListener('change', function(e) {
+            var file = e.target.files && e.target.files[0];
+            if (!file) return;
+            var reader = new FileReader();
+            reader.onload = function(ev) {
+                var img = new Image();
+                img.onload = function() {
+                    var tex = new THREE.Texture(img);
+                    tex.colorSpace = THREE.SRGBColorSpace;
+                    tex.needsUpdate = true;
+                    createPhotoWall(tex);
+                };
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+            // 允许重复选择同一文件
+            e.target.value = '';
+        });
 
         // 启动
         try {
