@@ -1,0 +1,63 @@
+{
+  "npcs": {
+    "trader_jake": {
+      "id": "trader_jake", "name": "商人杰克", "icon": "🧔",
+      "type": "trader",
+      "greeting": "嘿，朋友！别开枪，我是做生意的。看看有什么你需要的？",
+      "description": "一个满脸胡茬的中年男人，背着一个装满货物的大背包。他看起来精明但不敌对。",
+      "dialog": [
+        "这世道，子弹比人命值钱。",
+        "我从北区搞到了些好货，不过不便宜。",
+        "你看起来不太好，要不要来瓶水？",
+        "小心南边，那帮劫匪可不是好惹的。"
+      ],
+      "trades": [
+        { "give": "metal_scrap", "giveQty": 3, "get": "bullet_9mm", "getQty": 5 },
+        { "give": "metal_scrap", "giveQty": 5, "get": "bandage", "getQty": 3 },
+        { "give": "metal_scrap", "giveQty": 8, "get": "canned_food", "getQty": 3 },
+        { "give": "metal_scrap", "giveQty": 10, "get": "med_kit", "getQty": 1 },
+        { "give": "metal_scrap", "giveQty": 6, "get": "bottle_water", "getQty": 3 },
+        { "give": "cloth", "giveQty": 5, "get": "leather_jacket", "getQty": 1 },
+        { "give": "metal_scrap", "giveQty": 15, "get": "pistol", "getQty": 1 },
+        { "give": "metal_scrap", "giveQty": 20, "get": "shotgun", "getQty": 1 }
+      ]
+    },
+    "survivor_mike": {
+      "id": "survivor_mike", "name": "幸存者迈克", "icon": "👨",
+      "type": "friendly",
+      "greeting": "谢天谢地，又一个活人！我以为这附近只剩我了。",
+      "description": "一个年轻人，左臂缠着绷带，眼神警惕但并不敌对。",
+      "dialog": [
+        "我在这待了三天了，水快喝完了。",
+        "医院那边很危险，有一只大块头丧尸在游荡。",
+        "听说军事基地南端有辆卡车，如果能找到钥匙就能逃出去。",
+        "如果你有食物和水，能不能分我一点？我可以用弹药和你交换。",
+        "弹药库在地下，里面还有不少存货，但到处都是丧尸。"
+      ],
+      "trades": [
+        { "give": "canned_food", "giveQty": 1, "get": "bullet_9mm", "getQty": 5 },
+        { "give": "bottle_water", "giveQty": 1, "get": "bandage", "getQty": 2 },
+        { "give": "bread", "qty": 2, "get": "shell_12g", "getQty": 2 },
+        { "give": "cooked_meat", "giveQty": 1, "get": "rifle_round", "getQty": 5 }
+      ]
+    },
+    "doctor_anna": {
+      "id": "doctor_anna", "name": "安娜医生", "icon": "👩‍⚕️",
+      "type": "trader",
+      "greeting": "你是伤员吗？我这里有些医疗用品，不过物资有限，需要用材料交换。",
+      "description": "一位穿着白大褂的女性，虽然衣服已经脏了，但依然保持着医生的严谨。",
+      "dialog": [
+        "我曾经是这家医院的外科医生……那是很久以前的事了。",
+        "草药可以用来制作止痛药，如果你找到的话，别忘了留着。",
+        "绷带和急救包我都有，但需要布料和金属材料来交换。",
+        "那只巨型丧尸……它曾经是我的病人。"
+      ],
+      "trades": [
+        { "give": "cloth", "giveQty": 3, "get": "bandage", "getQty": 3 },
+        { "give": "metal_scrap", "giveQty": 5, "get": "med_kit", "getQty": 1 },
+        { "give": "medicine_herb", "giveQty": 3, "get": "painkiller", "getQty": 2 },
+        { "give": "cloth", "giveQty": 8, "get": "leather_jacket", "getQty": 1 }
+      ]
+    }
+  }
+}

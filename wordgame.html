@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>梦幻国度</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg: #faf9f4;
+    --bg-panel: #ffffff;
+    --bg-hover: #fff3d6;
+    --border: rgba(22,23,28,0.1);
+    --text: rgba(22,23,28,0.88);
+    --text-dim: rgba(22,23,28,0.55);
+    --accent: #ffd83d;
+    --accent-hover: #ffe066;
+    --accent-dim: #f2b90f;
+    --title: #b37800;
+    --green: #4a9b3a;
+    --red: #d9534f;
+    --yellow: #d4a020;
+    --blue: #5b9bd5;
+    --cardBg: #ffffff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Microsoft YaHei', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow: hidden;
+    height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+#game-container {
+    display: grid;
+    grid-template-columns: 280px 1fr 280px;
+    grid-template-rows: 1fr auto;
+    gap: 8px;
+    padding: 8px;
+    height: 100vh;
+}
+.panel {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 10px;
+    overflow-y: auto;
+}
+.panel-title {
+    font-size: 12px;
+    color: var(--title);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+/* 左侧面板 */
+#left-panel { display: flex; flex-direction: column; gap: 8px; }
+#status-panel { flex-shrink: 0; }
+.stat-row {
+    display: flex; align-items: center; justify-content: space-between;
+    margin: 4px 0; font-size: 13px;
+}
+.stat-bar {
+    width: 100%; height: 12px; background: var(--bg);
+    border-radius: 2px; overflow: hidden; border: 1px solid var(--border);
+}
+.stat-fill { height: 100%; transition: width 0.3s; }
+.stat-fill.hp { background: var(--red); }
+.stat-fill.hunger { background: var(--yellow); }
+.stat-fill.thirst { background: var(--blue); }
+.stat-fill.energy { background: var(--green); }
+.stat-fill.exp { background: var(--accent-dim); }
+.stat-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-dim); margin-bottom: 2px; }
+
+#map-panel { flex-grow: 1; }
+#ascii-map {
+    font-family: 'Courier New', monospace;
+    font-size: 11px; line-height: 1.3;
+    white-space: pre; color: var(--text-dim);
+}
+#ascii-map .current { color: var(--accent-dim); font-weight: bold; }
+#ascii-map .explored { color: var(--green); }
+#ascii-map .unexplored { color: var(--text-dim); }
+
+/* 中央面板 */
+#center-panel { display: flex; flex-direction: column; }
+#map-header {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 8px; margin-bottom: 8px; flex-shrink: 0;
+}
+#scene-name {
+    font-size: 18px; font-weight: 700; color: var(--title);
+    letter-spacing: -0.01em;
+}
+#scene-coord { font-size: 12px; color: var(--text-dim); }
+
+/* 主地图区域 */
+#map-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 4px;
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+    aspect-ratio: 1;
+    flex-shrink: 0;
+}
+.map-tile {
+    position: relative;
+    background: var(--cardBg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-dim);
+    cursor: default;
+    overflow: hidden;
+    transition: transform 0.1s, box-shadow 0.1s;
+    font-size: 11px; text-align: center; line-height: 1.2;
+}
+.map-tile .tile-name { padding: 4px; overflow: hidden; }
+.map-tile .tile-icon { font-size: 20px; position: absolute; top: 2px; left: 2px; }
+.map-tile .tile-unknown { font-size: 16px; font-weight: 700; }
+.map-tile.void { background: transparent; border-color: transparent; }
+.map-tile.reachable { cursor: pointer; }
+.map-tile.reachable:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(242,185,15,0.35);
+    border-color: var(--accent-dim);
+}
+.map-tile.current {
+    border: 2px solid var(--accent-dim);
+    box-shadow: 0 0 0 3px rgba(242,185,15,0.25);
+    cursor: default;
+}
+.tile-forest   { background: #ddedc2; color: #4c5a34; }
+.tile-ruins    { background: #e6d6ba; color: #5c4f3a; }
+.tile-residential { background: #f4e2bd; color: #5c5036; }
+.tile-farmland { background: #f7eba8; color: #5f5626; }
+.tile-military { background: #ddd2c4; color: #57493a; }
+.tile-waters   { background: #cfe3ea; color: #3a5560; }
+.tile-bridge   { background: #e2d9cd; color: #5a5144; }
+.tile-shelter  { background: #ffe9a8; color: #6b5310; }
+
+#scene-text {
+    flex-shrink: 0;
+    font-size: 13px;
+    line-height: 1.7;
+    max-height: 110px;
+    overflow-y: auto;
+    margin: 10px 0 8px;
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+#scene-text .scene-hint { display:block; color: var(--text-dim); font-size: 12px; margin-top:6px; }
+#event-log {
+    flex-shrink: 0;
+    max-height: 140px;
+    overflow-y: auto;
+    border-top: 1px solid var(--border);
+    padding-top: 8px;
+    font-size: 12px;
+    color: var(--text-dim);
+}
+.log-entry { margin: 2px 0; padding-left: 8px; border-left: 2px solid var(--border); }
+.log-entry.combat { border-color: var(--red); }
+.log-entry.loot { border-color: var(--yellow); }
+.log-entry.system { border-color: var(--accent-dim); }
+
+/* 右侧面板 */
+#right-panel { display: flex; flex-direction: column; gap: 8px; }
+#equip-panel { flex-shrink: 0; }
+.equip-slot {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 4px 6px; margin: 2px 0; background: var(--bg);
+    border-radius: 2px; font-size: 12px;
+}
+.equip-slot .slot-name { color: var(--text-dim); }
+.equip-slot .slot-item { color: var(--text); }
+
+#inventory-panel { flex-grow: 1; }
+.inv-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4px;
+}
+.inv-item {
+    display: flex; flex-direction: column;
+    padding: 4px 6px; background: var(--bg);
+    border: 1px solid var(--border); border-radius: 2px;
+    cursor: pointer; font-size: 11px; transition: background 0.15s;
+}
+.inv-item:hover { background: var(--bg-hover); border-color: var(--accent); }
+.inv-item .item-icon { font-size: 16px; }
+.inv-item .item-name { color: var(--text); }
+.inv-item .item-qty { color: var(--yellow); }
+.inv-item .item-type { color: var(--text-dim); font-size: 10px; }
+
+/* 底部操作栏 */
+#action-bar {
+    grid-column: 1 / -1;
+    display: flex; gap: 6px; flex-wrap: wrap;
+    padding: 8px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+.action-btn {
+    padding: 6px 14px; background: var(--bg);
+    border: 1px solid var(--border); color: var(--text);
+    cursor: pointer; border-radius: 3px;
+    font-family: 'Courier New', monospace; font-size: 12px;
+    transition: all 0.15s;
+}
+.action-btn:hover { background: var(--accent-dim); border-color: var(--accent); }
+.action-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.action-btn.danger { border-color: var(--red-dim); }
+.action-btn.danger:hover { background: var(--red); }
+
+/* 战斗UI */
+#combat-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(250,249,244,0.96); z-index: 100;
+    display: none; flex-direction: column;
+    align-items: center; justify-content: center; gap: 16px;
+}
+#combat-overlay.active { display: flex; }
+#combat-enemy-info { text-align: center; margin-bottom: 10px; }
+#combat-enemy-icon { font-size: 48px; }
+#combat-enemy-name { font-size: 20px; color: var(--red); font-weight: bold; }
+#combat-enemy-hp { width: 300px; height: 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+#combat-enemy-hp-fill { height: 100%; background: var(--red); transition: width 0.3s; }
+#combat-actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+#combat-log { width: 80%; max-width: 500px; max-height: 200px; overflow-y: auto; }
+#combat-player-hp { width: 300px; height: 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+#combat-player-hp-fill { height: 100%; background: var(--green); transition: width 0.3s; }
+
+/* 交易UI */
+#trade-overlay {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background: var(--bg-panel); border: 1px solid var(--accent);
+    border-radius: 6px; padding: 20px; z-index: 100;
+    display: none; min-width: 400px; max-width: 90vw;
+}
+#trade-overlay.active { display: block; }
+.trade-list { margin: 10px 0; }
+.trade-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 6px 8px; margin: 2px 0; background: var(--bg);
+    border-radius: 2px; font-size: 12px; cursor: pointer;
+}
+.trade-item:hover { background: var(--bg-hover); }
+
+/* 开始/结束界面 */
+#start-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, #faf5e6, #fdeed6); z-index: 200;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 20px;
+}
+#start-overlay h1 { font-size: 32px; color: var(--title); letter-spacing: 4px; }
+#start-overlay p { color: var(--text-secondary, var(--text-dim)); max-width: 500px; text-align: center; }
+
+/* 滚动条 */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-dim); }
+
+/* 物品tooltip */
+.item-tooltip {
+    position: fixed; z-index: 300;
+    background: var(--bg-panel); border: 1px solid var(--accent);
+    border-radius: 4px; padding: 8px 12px;
+    font-size: 12px; max-width: 250px;
+    pointer-events: none; display: none;
+}
+.item-tooltip .tt-name { color: var(--title); font-weight: bold; margin-bottom: 4px; }
+.item-tooltip .tt-desc { color: var(--text-dim); margin-bottom: 4px; }
+.item-tooltip .tt-stats { color: var(--green); }
+
+@media (max-width: 900px) {
+    #game-container { grid-template-columns: 1fr; grid-template-rows: auto auto 1fr auto auto; }
+    #left-panel, #right-panel { max-height: 200px; }
+}
+</style>
+</head>
+<body>
+
+<div id="start-overlay">
+    <h1>梦幻国度</h1>
+    <p>你是一个梦幻国度的人，你需要在梦幻国度中生存，你需要在梦幻国度中交易，你需要在梦幻国度中战斗。</p>
+    <button class="action-btn" onclick="startGame()" style="font-size:16px;padding:10px 30px;">开始游戏</button>
+</div>
+
+<div id="game-container" style="display:none;">
+    <!-- 左侧：状态 + 地图 -->
+    <div id="left-panel">
+        <div id="status-panel" class="panel">
+            <div class="panel-title">角色状态</div>
+            <div class="stat-row">
+                <span style="color:var(--text-dim);">姓名</span>
+                <span id="stat-name">幸存者</span>
+            </div>
+            <div class="stat-row">
+                <span style="color:var(--text-dim);">等级</span>
+                <span id="stat-level">Lv.1</span>
+            </div>
+            <div style="margin:6px 0;">
+                <div class="stat-label"><span>生命</span><span id="stat-hp-text">100/100</span></div>
+                <div class="stat-bar"><div class="stat-fill hp" id="stat-hp-bar" style="width:100%"></div></div>
+            </div>
+            <div style="margin:6px 0;">
+                <div class="stat-label"><span>饥饿</span><span id="stat-hunger-text">100/100</span></div>
+                <div class="stat-bar"><div class="stat-fill hunger" id="stat-hunger-bar" style="width:100%"></div></div>
+            </div>
+            <div style="margin:6px 0;">
+                <div class="stat-label"><span>口渴</span><span id="stat-thirst-text">100/100</span></div>
+                <div class="stat-bar"><div class="stat-fill thirst" id="stat-thirst-bar" style="width:100%"></div></div>
+            </div>
+            <div style="margin:6px 0;">
+                <div class="stat-label"><span>体力</span><span id="stat-energy-text">100/100</span></div>
+                <div class="stat-bar"><div class="stat-fill energy" id="stat-energy-bar" style="width:100%"></div></div>
+            </div>
+            <div style="margin:6px 0;">
+                <div class="stat-label"><span>经验</span><span id="stat-exp-text">0/100</span></div>
+                <div class="stat-bar"><div class="stat-fill exp" id="stat-exp-bar" style="width:0%"></div></div>
+            </div>
+            <div class="stat-row">
+                <span style="color:var(--text-dim);">攻击</span>
+                <span id="stat-attack" style="color:var(--red);">5</span>
+            </div>
+            <div class="stat-row">
+                <span style="color:var(--text-dim);">防御</span>
+                <span id="stat-defense" style="color:var(--blue);">0</span>
+            </div>
+        </div>
+        <div id="map-panel" class="panel">
+            <div class="panel-title">区域地图</div>
+            <div id="ascii-map"></div>
+        </div>
+    </div>
+
+    <!-- 中央：主地图 + 描述 + 日志 -->
+    <div id="center-panel" class="panel">
+        <div id="map-header">
+            <div id="scene-name"></div>
+            <div id="scene-coord"></div>
+        </div>
+        <div id="map-grid"></div>
+        <div id="scene-text"></div>
+        <div id="event-log"></div>
+    </div>
+
+    <!-- 右侧：装备 + 背包 -->
+    <div id="right-panel">
+        <div id="equip-panel" class="panel">
+            <div class="panel-title">装备栏</div>
+            <div class="equip-slot"><span class="slot-name">武器</span><span class="slot-item" id="equip-weapon">空手</span></div>
+            <div class="equip-slot"><span class="slot-name">头部</span><span class="slot-item" id="equip-head">无</span></div>
+            <div class="equip-slot"><span class="slot-name">身体</span><span class="slot-item" id="equip-body">无</span></div>
+            <div class="equip-slot"><span class="slot-name">足部</span><span class="slot-item" id="equip-feet">无</span></div>
+            <div class="stat-row">
+                <span style="color:var(--text-dim);">负重</span>
+                <span id="stat-weight">0/20</span>
+            </div>
+        </div>
+        <div id="inventory-panel" class="panel">
+            <div class="panel-title">背包</div>
+            <div class="inv-grid" id="inv-grid"></div>
+        </div>
+    </div>
+
+    <!-- 底部操作栏 -->
+    <div id="action-bar"></div>
+</div>
+
+<!-- 战斗覆盖层 -->
+<div id="combat-overlay">
+    <div id="combat-enemy-info">
+        <div id="combat-enemy-icon">🧟</div>
+        <div id="combat-enemy-name">丧尸</div>
+        <div style="margin:6px 0;">
+            <div style="font-size:11px;color:var(--text-dim);text-align:center;margin-bottom:2px;">敌方生命</div>
+            <div id="combat-enemy-hp"><div id="combat-enemy-hp-fill" style="width:100%"></div></div>
+        </div>
+        <div style="margin:6px 0;">
+            <div style="font-size:11px;color:var(--text-dim);text-align:center;margin-bottom:2px;">你的生命</div>
+            <div id="combat-player-hp"><div id="combat-player-hp-fill" style="width:100%"></div></div>
+        </div>
+    </div>
+    <div id="combat-log" class="panel"></div>
+    <div id="combat-actions"></div>
+</div>
+
+<!-- 交易覆盖层 -->
+<div id="trade-overlay">
+    <div class="panel-title" id="trade-title">交易</div>
+    <div id="trade-greeting" style="color:var(--text-dim);margin-bottom:8px;"></div>
+    <div class="trade-list" id="trade-list"></div>
+    <div style="display:flex;gap:6px;margin-top:10px;">
+        <button class="action-btn" onclick="closeTrade()">关闭</button>
+    </div>
+</div>
+
+<!-- 物品tooltip -->
+<div class="item-tooltip" id="item-tooltip"></div>
+
+<script>
+/* ============================================================
+ * 全局状态
+ * ============================================================ */
+var G = {
+    player: null,
+    map: null,
+    items: null,
+    enemies: null,
+    npcs: null,
+    recipes: null,
+    currentScene: null,
+    inventory: [],
+    equipment: { weapon: null, head: null, body: null, feet: null },
+    exploredScenes: new Set(),
+    inCombat: false,
+    combatEnemy: null,
+    currentNPC: null,
+    gameOver: false,
+};
+
+/* ============================================================
+ * 数据加载
+ * ============================================================ */
+async function loadData() {
+    var baseURL = './assets/data/';
+    var files = {
+        player: 'wg_player.json',
+        items: 'wg_items.json',
+        enemies: 'wg_enemies.json',
+        map: 'wg_map.json',
+        npcs: 'wg_npc.json',
+    };
+    var results = {};
+    for (var key in files) {
+        var resp = await fetch(baseURL + files[key]);
+        results[key] = await resp.json();
+    }
+    G.player = JSON.parse(JSON.stringify(results.player));
+    G.items = results.items.items;
+    G.recipes = results.items.recipes;
+    G.enemies = results.enemies.enemies;
+    G.map = results.map;
+    G.npcs = results.npcs.npcs;
+    return results;
+}
+
+/* ============================================================
+ * 游戏初始化
+ * ============================================================ */
+async function startGame() {
+    document.getElementById('start-overlay').style.display = 'none';
+    document.getElementById('game-container').style.display = 'grid';
+
+    await loadData();
+
+    // 初始物品
+    G.player.startItems.forEach(function(s) {
+        addItem(s.id, s.qty);
+    });
+
+    G.currentScene = G.player.startLocation || 'shelter_ruins';
+    G.exploredScenes.add(G.currentScene);
+
+    log('你在避难所废墟中醒来，开始了你的生存之旅。', 'system');
+    renderAll();
+    describeScene();
+}
+
+/* ============================================================
+ * 渲染函数
+ * ============================================================ */
+function renderAll() {
+    renderStatus();
+    renderMap();
+    renderMainMap();
+    renderInventory();
+    renderEquipment();
+    renderActions();
+}
+
+function renderStatus() {
+    var p = G.player;
+    document.getElementById('stat-name').textContent = p.name;
+    document.getElementById('stat-level').textContent = 'Lv.' + p.level;
+    setBar('hp', p.hp, p.maxHp);
+    setBar('hunger', p.hunger, p.maxHunger);
+    setBar('thirst', p.thirst, p.maxThirst);
+    setBar('energy', p.energy, p.maxEnergy);
+    setBar('exp', p.exp, p.expToNext, true);
+    document.getElementById('stat-attack').textContent = getTotalAttack();
+    document.getElementById('stat-defense').textContent = getTotalDefense();
+    document.getElementById('stat-weight').textContent = getTotalWeight().toFixed(1) + '/' + p.maxCarryWeight;
+}
+
+function setBar(name, cur, max, isExp) {
+    var pct = Math.max(0, Math.min(100, (cur / max) * 100));
+    document.getElementById('stat-' + name + '-bar').style.width = pct + '%';
+    document.getElementById('stat-' + name + '-text').textContent = Math.floor(cur) + '/' + max;
+}
+
+function renderMap() {
+    var gridSize = G.map.gridSize;
+    var html = '';
+    // 从北到南 (y=0 在顶部)
+    for (var y = 0; y < gridSize.h; y++) {
+        for (var x = 0; x < gridSize.w; x++) {
+            var sceneId = getSceneIdByPos(x, y);
+            if (!sceneId) {
+                html += '  ';
+            } else if (sceneId === G.currentScene) {
+                html += '<span class="current">[@]</span>';
+            } else if (G.exploredScenes.has(sceneId)) {
+                html += '<span class="explored"> . </span>';
+            } else {
+                html += '<span class="unexplored"> ? </span>';
+            }
+        }
+        html += '\n';
+    }
+    // 图例
+    html += '\n<span class="current">@</span>=你 <span class="explored">.</span>=已探索 <span class="unexplored">?</span>=未知';
+    document.getElementById('ascii-map').innerHTML = html;
+}
+
+function getSceneIdByPos(x, y) {
+    for (var id in G.map.scenes) {
+        var s = G.map.scenes[id];
+        if (s.pos.x === x && s.pos.y === y) return id;
+    }
+    return null;
+}
+
+/* 计算某个位置能否从当前场景通过一条连接到达 */
+function getReachableNeighbors() {
+    var scene = G.map.scenes[G.currentScene];
+    var set = {};
+    var dirs = { N: [0, -1], S: [0, 1], E: [1, 0], W: [-1, 0] };
+    for (var dir in dirs) {
+        if (!scene.connections[dir]) continue;
+        var tid = scene.connections[dir];
+        var t = G.map.scenes[tid];
+        if (t) set[t.pos.x + ',' + t.pos.y] = { dir: dir, id: tid };
+    }
+    return set;
+}
+
+/* 渲染中央主地图网格 */
+function renderMainMap() {
+    var gridW = G.map.gridSize.w;
+    var gridH = G.map.gridSize.h;
+    var reachable = getReachableNeighbors();
+    var grid = document.getElementById('map-grid');
+    grid.style.gridTemplateColumns = 'repeat(' + gridW + ', 1fr)';
+    grid.innerHTML = '';
+    for (var y = 0; y < gridH; y++) {
+        for (var x = 0; x < gridW; x++) {
+            var sceneId = getSceneIdByPos(x, y);
+            var tile = document.createElement('div');
+            tile.className = 'map-tile';
+            if (!sceneId) {
+                tile.classList.add('void');
+                grid.appendChild(tile);
+                continue;
+            }
+            var scene = G.map.scenes[sceneId];
+            tile.classList.add('tile-' + (scene.type || 'residential'));
+            if (sceneId === G.currentScene) {
+                tile.classList.add('current');
+                tile.innerHTML = '<span class="tile-icon">🧭</span><span class="tile-name">' + scene.name + '</span>';
+            } else if (G.exploredScenes.has(sceneId)) {
+                tile.innerHTML = '<span class="tile-name">' + scene.name + '</span>';
+            } else {
+                tile.innerHTML = '<span class="tile-unknown">?</span>';
+            }
+            // 可移动的相邻格子
+            var key = x + ',' + y;
+            if (reachable[key]) {
+                tile.classList.add('reachable');
+                tile.title = '前往：' + (scene.name || '未知区域');
+                (function(tx, ty, tid) {
+                    tile.addEventListener('click', function() { tryMoveByClick(tx, ty, tid); });
+                })(x, y, sceneId);
+            }
+            grid.appendChild(tile);
+        }
+    }
+}
+
+/* 点击地图格子进行移动 */
+function tryMoveByClick(tx, ty, targetId) {
+    if (G.inCombat || G.gameOver) return;
+    var reachable = getReachableNeighbors();
+    var hit = reachable[tx + ',' + ty];
+    if (!hit || hit.id !== targetId) return;
+    move(hit.dir, targetId);
+}
+
+function renderInventory() {
+    var grid = document.getElementById('inv-grid');
+    if (G.inventory.length === 0) {
+        grid.innerHTML = '<div style="color:var(--text-dim);grid-column:1/-1;text-align:center;">背包空空如也</div>';
+        return;
+    }
+    grid.innerHTML = '';
+    G.inventory.forEach(function(inv, idx) {
+        var item = G.items[inv.id];
+        if (!item) return;
+        var div = document.createElement('div');
+        div.className = 'inv-item';
+        var typeText = { weapon: '武器', armor: '防具', consumable: '消耗品', ammo: '弹药', material: '材料' }[item.type] || item.type;
+        var stats = '';
+        if (item.attack) stats = '攻击+' + item.attack;
+        if (item.defense) stats = '防御+' + item.defense;
+        if (item.heal) stats = '生命+' + item.heal;
+        if (item.restoreHunger) stats = '饥饿+' + item.restoreHunger;
+        if (item.restoreThirst) stats = '口渴+' + item.restoreThirst;
+        if (item.restoreEnergy) stats = '体力+' + item.restoreEnergy;
+        div.innerHTML = '<div class="item-icon">' + (item.icon || '?') + '</div>' +
+            '<div class="item-name">' + item.name + '</div>' +
+            '<div class="item-qty">x' + inv.qty + '</div>' +
+            '<div class="item-type">' + typeText + (stats ? ' ' + stats : '') + '</div>';
+        div.onclick = function() { useItem(idx); };
+        div.onmouseenter = function(e) { showTooltip(e, item); };
+        div.onmouseleave = hideTooltip;
+        grid.appendChild(div);
+    });
+}
+
+function renderEquipment() {
+    var w = G.equipment.weapon ? G.items[G.equipment.weapon] : null;
+    var h = G.equipment.head ? G.items[G.equipment.head] : null;
+    var b = G.equipment.body ? G.items[G.equipment.body] : null;
+    var f = G.equipment.feet ? G.items[G.equipment.feet] : null;
+    document.getElementById('equip-weapon').textContent = w ? w.icon + ' ' + w.name : '空手';
+    document.getElementById('equip-head').textContent = h ? h.icon + ' ' + h.name : '无';
+    document.getElementById('equip-body').textContent = b ? b.icon + ' ' + b.name : '无';
+    document.getElementById('equip-feet').textContent = f ? f.icon + ' ' + f.name : '无';
+}
+
+function renderActions() {
+    var bar = document.getElementById('action-bar');
+    bar.innerHTML = '';
+    var scene = G.map.scenes[G.currentScene];
+    if (!scene) return;
+
+    // 移动在主地图上通过点击相邻格子完成
+
+    // 搜刮
+    if (scene.loot && scene.loot.length > 0) {
+        var hasLoot = scene.loot.some(function(l) { return !l._taken; });
+        if (hasLoot) {
+            var searchBtn = document.createElement('button');
+            searchBtn.className = 'action-btn';
+            searchBtn.textContent = '🔍 搜刮';
+            searchBtn.onclick = searchScene;
+            bar.appendChild(searchBtn);
+        }
+    }
+
+    // NPC
+    if (scene.npc && scene.npc.length > 0) {
+        scene.npc.forEach(function(npcId) {
+            var npc = G.npcs[npcId];
+            if (npc) {
+                var btn = document.createElement('button');
+                btn.className = 'action-btn';
+                btn.textContent = npc.icon + ' 对话:' + npc.name;
+                btn.onclick = function() { talkToNPC(npcId); };
+                bar.appendChild(btn);
+            }
+        });
+    }
+
+    // 休息
+    var restBtn = document.createElement('button');
+    restBtn.className = 'action-btn';
+    restBtn.textContent = '💤 休息';
+    restBtn.onclick = rest;
+    bar.appendChild(restBtn);
+
+    // 制作
+    var craftBtn = document.createElement('button');
+    craftBtn.className = 'action-btn';
+    craftBtn.textContent = '🔨 制作';
+    craftBtn.onclick = showCraftMenu;
+    bar.appendChild(craftBtn);
+}
+
+/* ============================================================
+ * 场景描述
+ * ============================================================ */
+function describeScene() {
+    var scene = G.map.scenes[G.currentScene];
+    if (!scene) return;
+    document.getElementById('scene-name').textContent = scene.name;
+    document.getElementById('scene-coord').textContent = '坐标 (' + scene.pos.x + ',' + scene.pos.y + ')';
+    var text = scene.description;
+    if (scene.loot && scene.loot.length > 0 && !scene.loot.every(function(l) { return l._taken; })) {
+        text += '\n这里似乎可以搜刮一番。';
+    }
+    if (scene.isExit) {
+        text += '\n\n★ 这里就是逃生点！如果你有军用卡车钥匙，就可以逃离了。';
+    }
+    text += '<span class="scene-hint">点击地图上相邻的格子可移动到此区域。</span>';
+    document.getElementById('scene-text').innerHTML = text;
+
+    // 随机遇敌
+    if (scene.enemyChance > 0 && scene.enemies && scene.enemies.length > 0) {
+        if (Math.random() < scene.enemyChance) {
+            var enemyId = scene.enemies[Math.floor(Math.random() * scene.enemies.length)];
+            startCombat(enemyId);
+        }
+    }
+}
+
+/* ============================================================
+ * 移动
+ * ============================================================ */
+function move(dir, targetId) {
+    if (G.inCombat || G.gameOver) return;
+    G.currentScene = targetId;
+    G.exploredScenes.add(targetId);
+    // 生存消耗
+    consumeSurvival(3, 4, 5);
+    log('你向' + ({ N: '北', S: '南', E: '东', W: '西' }[dir]) + '方移动。');
+    renderAll();
+    describeScene();
+    checkSurvival();
+}
+
+/* ============================================================
+ * 搜刮
+ * ============================================================ */
+function searchScene() {
+    if (G.inCombat || G.gameOver) return;
+    var scene = G.map.scenes[G.currentScene];
+    if (!scene.loot) return;
+
+    var foundItems = [];
+    scene.loot.forEach(function(loot) {
+        if (loot._taken) return;
+        if (Math.random() < loot.chance) {
+            addItem(loot.id, loot.qty);
+            var item = G.items[loot.id];
+            foundItems.push(item.name + ' x' + loot.qty);
+            log('搜刮获得：' + item.icon + ' ' + item.name + ' x' + loot.qty, 'loot');
+        }
+        loot._taken = true;
+    });
+
+    if (foundItems.length === 0) {
+        log('你仔细搜查了这里，但一无所获。', 'loot');
+    } else {
+        log('搜刮完毕，收获：' + foundItems.join('、'), 'loot');
+    }
+    consumeSurvival(2, 2, 3);
+    renderAll();
+    checkSurvival();
+}
+
+/* ============================================================
+ * 物品系统
+ * ============================================================ */
+function addItem(id, qty) {
+    var item = G.items[id];
+    if (!item) return;
+    if (item.stackable) {
+        var existing = G.inventory.find(function(i) { return i.id === id; });
+        if (existing) {
+            existing.qty += qty;
+            return;
+        }
+    }
+    G.inventory.push({ id: id, qty: qty });
+}
+
+function removeItem(id, qty) {
+    qty = qty || 1;
+    for (var i = 0; i < G.inventory.length; i++) {
+        if (G.inventory[i].id === id) {
+            G.inventory[i].qty -= qty;
+            if (G.inventory[i].qty <= 0) {
+                G.inventory.splice(i, 1);
+            }
+            return true;
+        }
+    }
+    return false;
+}
+
+function getItemQty(id) {
+    var inv = G.inventory.find(function(i) { return i.id === id; });
+    return inv ? inv.qty : 0;
+}
+
+function useItem(idx) {
+    if (G.gameOver) return;
+    var inv = G.inventory[idx];
+    if (!inv) return;
+    var item = G.items[inv.id];
+    if (!item) return;
+
+    // 武器/防具 → 装备
+    if (item.type === 'weapon') {
+        G.equipment.weapon = inv.id;
+        log('装备了武器：' + item.name);
+        removeItem(inv.id, 1);
+        renderAll();
+        return;
+    }
+    if (item.type === 'armor') {
+        G.equipment[item.slot] = inv.id;
+        log('装备了防具：' + item.name);
+        removeItem(inv.id, 1);
+        renderAll();
+        return;
+    }
+
+    // 消耗品 → 使用
+    if (item.type === 'consumable') {
+        if (item.heal) {
+            G.player.hp = Math.min(G.player.maxHp, G.player.hp + item.heal);
+        }
+        if (item.restoreHunger) {
+            G.player.hunger = Math.min(G.player.maxHunger, G.player.hunger + item.restoreHunger);
+        }
+        if (item.restoreThirst) {
+            G.player.thirst = Math.min(G.player.maxThirst, G.player.thirst + item.restoreThirst);
+        }
+        if (item.restoreEnergy) {
+            G.player.energy = Math.min(G.player.maxEnergy, G.player.energy + item.restoreEnergy);
+        }
+        log('使用了 ' + item.icon + ' ' + item.name + '。');
+        removeItem(inv.id, 1);
+        renderAll();
+        return;
+    }
+
+    // 弹药/材料 → 提示
+    log(item.name + ' 是材料/弹药，无法直接使用。', 'system');
+}
+
+/* ============================================================
+ * 制作系统
+ * ============================================================ */
+function showCraftMenu() {
+    if (G.gameOver) return;
+    var bar = document.getElementById('action-bar');
+    bar.innerHTML = '';
+    G.recipes.forEach(function(recipe) {
+        var canCraft = recipe.ingredients.every(function(ing) {
+            return getItemQty(ing.id) >= ing.qty;
+        });
+        var btn = document.createElement('button');
+        btn.className = 'action-btn';
+        btn.textContent = '🔨 ' + recipe.name + (canCraft ? '' : ' (材料不足)');
+        btn.disabled = !canCraft;
+        btn.onclick = function() { craft(recipe); };
+        bar.appendChild(btn);
+    });
+    var backBtn = document.createElement('button');
+    backBtn.className = 'action-btn';
+    backBtn.textContent = '返回';
+    backBtn.onclick = renderActions;
+    bar.appendChild(backBtn);
+}
+
+function craft(recipe) {
+    recipe.ingredients.forEach(function(ing) {
+        removeItem(ing.id, ing.qty);
+    });
+    addItem(recipe.result.id, recipe.result.qty);
+    var item = G.items[recipe.result.id];
+    log('制作完成：' + item.icon + ' ' + item.name + ' x' + recipe.result.qty, 'loot');
+    showCraftMenu();
+    renderAll();
+}
+
+/* ============================================================
+ * 战斗系统
+ * ============================================================ */
+function startCombat(enemyId) {
+    var enemyData = G.enemies[enemyId];
+    if (!enemyData) return;
+    G.inCombat = true;
+    G.combatEnemy = JSON.parse(JSON.stringify(enemyData));
+    log('遭遇 ' + G.combatEnemy.icon + ' ' + G.combatEnemy.name + '！', 'combat');
+    document.getElementById('combat-overlay').classList.add('active');
+    renderCombat();
+}
+
+function renderCombat() {
+    var e = G.combatEnemy;
+    document.getElementById('combat-enemy-icon').textContent = e.icon;
+    document.getElementById('combat-enemy-name').textContent = e.name;
+    var ePct = Math.max(0, (e.hp / e.maxHp) * 100);
+    document.getElementById('combat-enemy-hp-fill').style.width = ePct + '%';
+    var pPct = Math.max(0, (G.player.hp / G.player.maxHp) * 100);
+    document.getElementById('combat-player-hp-fill').style.width = pPct + '%';
+
+    var actions = document.getElementById('combat-actions');
+    actions.innerHTML = '';
+    var atkBtn = document.createElement('button');
+    atkBtn.className = 'action-btn';
+    atkBtn.textContent = '⚔ 攻击';
+    atkBtn.onclick = combatAttack;
+    actions.appendChild(atkBtn);
+
+    var defBtn = document.createElement('button');
+    defBtn.className = 'action-btn';
+    defBtn.textContent = '🛡 防御';
+    defBtn.onclick = combatDefend;
+    actions.appendChild(defBtn);
+
+    var itemBtn = document.createElement('button');
+    itemBtn.className = 'action-btn';
+    itemBtn.textContent = '📦 使用物品';
+    itemBtn.onclick = combatUseItem;
+    actions.appendChild(itemBtn);
+
+    var fleeBtn = document.createElement('button');
+    fleeBtn.className = 'action-btn';
+    fleeBtn.textContent = '🏃 逃跑';
+    fleeBtn.onclick = combatFlee;
+    actions.appendChild(fleeBtn);
+
+    document.getElementById('combat-log').innerHTML = '<div class="log-entry combat">战斗开始！' + e.name + ' (HP:' + e.hp + '/' + e.maxHp + ' 攻:' + e.attack + ' 防:' + e.defense + ')</div>';
+}
+
+function combatAttack() {
+    var e = G.combatEnemy;
+    var dmg = Math.max(1, getTotalAttack() - e.defense + Math.floor(Math.random() * 5) - 2);
+    e.hp -= dmg;
+    combatLog('你攻击了 ' + e.name + '，造成 ' + dmg + ' 点伤害。');
+    if (e.hp <= 0) {
+        combatWin();
+        return;
+    }
+    // 敌人反击
+    enemyAttack();
+}
+
+function combatDefend() {
+    G.player.energy = Math.max(0, G.player.energy - 5);
+    combatLog('你举起双手防御，减轻了伤害。');
+    var e = G.combatEnemy;
+    var dmg = Math.max(0, Math.floor((e.attack - getTotalDefense()) * 0.4));
+    G.player.hp -= dmg;
+    combatLog(e.name + ' 攻击了你，造成 ' + dmg + ' 点伤害（防御减伤）。');
+    if (G.player.hp <= 0) {
+        combatLose();
+        return;
+    }
+    renderStatus();
+    renderCombatHP();
+}
+
+function enemyAttack() {
+    var e = G.combatEnemy;
+    var dmg = Math.max(1, e.attack - getTotalDefense() + Math.floor(Math.random() * 4) - 2);
+    G.player.hp -= dmg;
+    combatLog(e.name + ' 攻击了你，造成 ' + dmg + ' 点伤害。');
+    if (G.player.hp <= 0) {
+        combatLose();
+        return;
+    }
+    renderStatus();
+    renderCombatHP();
+}
+
+function combatUseItem() {
+    // 列出消耗品
+    var consumables = G.inventory.filter(function(inv) {
+        return G.items[inv.id] && G.items[inv.id].type === 'consumable';
+    });
+    if (consumables.length === 0) {
+        combatLog('没有可使用的物品。');
+        return;
+    }
+    var actions = document.getElementById('combat-actions');
+    actions.innerHTML = '';
+    consumables.forEach(function(inv) {
+        var item = G.items[inv.id];
+        var btn = document.createElement('button');
+        btn.className = 'action-btn';
+        btn.textContent = item.icon + ' ' + item.name + ' x' + inv.qty;
+        btn.onclick = function() {
+            if (item.heal) G.player.hp = Math.min(G.player.maxHp, G.player.hp + item.heal);
+            if (item.restoreEnergy) G.player.energy = Math.min(G.player.maxEnergy, G.player.energy + item.restoreEnergy);
+            removeItem(inv.id, 1);
+            combatLog('使用了 ' + item.name + '，恢复了生命/体力。');
+            renderAll();
+            renderCombatHP();
+            enemyAttack();
+        };
+        actions.appendChild(btn);
+    });
+    var backBtn = document.createElement('button');
+    backBtn.className = 'action-btn';
+    backBtn.textContent = '返回';
+    backBtn.onclick = renderCombat;
+    actions.appendChild(backBtn);
+}
+
+function combatFlee() {
+    if (Math.random() < 0.5) {
+        combatLog('你成功逃跑了！');
+        endCombat();
+    } else {
+        combatLog('逃跑失败！');
+        enemyAttack();
+    }
+}
+
+function combatWin() {
+    var e = G.combatEnemy;
+    combatLog('你击败了 ' + e.name + '！');
+    // 经验
+    G.player.exp += e.exp;
+    combatLog('获得 ' + e.exp + ' 点经验。');
+    // 升级
+    if (G.player.exp >= G.player.expToNext) {
+        G.player.exp -= G.player.expToNext;
+        G.player.level++;
+        G.player.expToNext = Math.floor(G.player.expToNext * 1.5);
+        G.player.maxHp += 10;
+        G.player.hp = G.player.maxHp;
+        G.player.baseAttack += 2;
+        combatLog('★ 升级！现在等级 ' + G.player.level + '，生命和攻击力提升！', 'system');
+    }
+    // 掉落
+    if (e.loot) {
+        e.loot.forEach(function(loot) {
+            if (Math.random() < loot.chance) {
+                addItem(loot.id, loot.qty || 1);
+                var item = G.items[loot.id];
+                combatLog('掉落获得：' + item.icon + ' ' + item.name + '。', 'loot');
+            }
+        });
+    }
+    endCombat();
+}
+
+function combatLose() {
+    combatLog('你倒下了……游戏结束。', 'system');
+    G.gameOver = true;
+    endCombat();
+    setTimeout(function() {
+        if (confirm('你死了。重新开始吗？')) location.reload();
+    }, 1000);
+}
+
+function endCombat() {
+    G.inCombat = false;
+    G.combatEnemy = null;
+    document.getElementById('combat-overlay').classList.remove('active');
+    renderAll();
+}
+
+function combatLog(msg) {
+    var logDiv = document.getElementById('combat-log');
+    var entry = document.createElement('div');
+    entry.className = 'log-entry combat';
+    entry.textContent = msg;
+    logDiv.appendChild(entry);
+    logDiv.scrollTop = logDiv.scrollHeight;
+}
+
+function renderCombatHP() {
+    var e = G.combatEnemy;
+    if (!e) return;
+    var ePct = Math.max(0, (e.hp / e.maxHp) * 100);
+    document.getElementById('combat-enemy-hp-fill').style.width = ePct + '%';
+    var pPct = Math.max(0, (G.player.hp / G.player.maxHp) * 100);
+    document.getElementById('combat-player-hp-fill').style.width = pPct + '%';
+}
+
+/* ============================================================
+ * NPC/交易
+ * ============================================================ */
+function talkToNPC(npcId) {
+    var npc = G.npcs[npcId];
+    if (!npc) return;
+    G.currentNPC = npcId;
+    document.getElementById('trade-title').textContent = npc.icon + ' ' + npc.name;
+    document.getElementById('trade-greeting').textContent = '"' + npc.greeting + '"';
+    var listDiv = document.getElementById('trade-list');
+    listDiv.innerHTML = '';
+    // 对话
+    var dialog = npc.dialog[Math.floor(Math.random() * npc.dialog.length)];
+    var dialogDiv = document.createElement('div');
+    dialogDiv.style.cssText = 'color:var(--text);font-style:italic;margin-bottom:8px;';
+    dialogDiv.textContent = '"' + dialog + '"';
+    listDiv.appendChild(dialogDiv);
+    // 交易列表
+    if (npc.trades && npc.trades.length > 0) {
+        var titleDiv = document.createElement('div');
+        titleDiv.style.cssText = 'color:var(--title);font-size:12px;margin:8px 0 4px;';
+        titleDiv.textContent = '交易选项：';
+        listDiv.appendChild(titleDiv);
+        npc.trades.forEach(function(trade) {
+            var giveItem = G.items[trade.give];
+            var getItem = G.items[trade.get];
+            var canTrade = getItemQty(trade.give) >= trade.giveQty;
+            var div = document.createElement('div');
+            div.className = 'trade-item';
+            div.style.opacity = canTrade ? '1' : '0.4';
+            div.style.cursor = canTrade ? 'pointer' : 'not-allowed';
+            div.innerHTML = '<span>给 ' + giveItem.icon + ' ' + giveItem.name + ' x' + trade.giveQty + '</span>' +
+                '<span style="color:var(--green);">→ ' + getItem.icon + ' ' + getItem.name + ' x' + trade.getQty + '</span>';
+            if (canTrade) {
+                div.onclick = function() { doTrade(trade); };
+            }
+            listDiv.appendChild(div);
+        });
+    }
+    document.getElementById('trade-overlay').classList.add('active');
+}
+
+function doTrade(trade) {
+    if (getItemQty(trade.give) < trade.giveQty) return;
+    removeItem(trade.give, trade.giveQty);
+    addItem(trade.get, trade.getQty);
+    var giveItem = G.items[trade.give];
+    var getItem = G.items[trade.get];
+    log('交易：用 ' + giveItem.name + ' x' + trade.giveQty + ' 换取 ' + getItem.name + ' x' + trade.getQty + '。', 'loot');
+    renderAll();
+    talkToNPC(G.currentNPC); // 刷新交易界面
+}
+
+function closeTrade() {
+    document.getElementById('trade-overlay').classList.remove('active');
+    G.currentNPC = null;
+}
+
+/* ============================================================
+ * 生存系统
+ * ============================================================ */
+function consumeSurvival(hunger, thirst, energy) {
+    G.player.hunger = Math.max(0, G.player.hunger - hunger);
+    G.player.thirst = Math.max(0, G.player.thirst - thirst);
+    G.player.energy = Math.max(0, G.player.energy - energy);
+}
+
+function checkSurvival() {
+    if (G.player.hunger <= 0) {
+        G.player.hp -= 2;
+        log('饥饿让你的生命持续流失！', 'system');
+    }
+    if (G.player.thirst <= 0) {
+        G.player.hp -= 3;
+        log('严重脱水！生命快速流失！', 'system');
+    }
+    if (G.player.energy <= 0) {
+        G.player.hp -= 1;
+        log('精疲力竭，你快要倒下了。', 'system');
+    }
+    if (G.player.hp <= 0 && !G.gameOver) {
+        G.gameOver = true;
+        log('你倒下了……游戏结束。', 'system');
+        setTimeout(function() {
+            if (confirm('你死了。重新开始吗？')) location.reload();
+        }, 500);
+    }
+    renderStatus();
+}
+
+function rest() {
+    if (G.inCombat || G.gameOver) return;
+    if (G.player.energy >= G.player.maxEnergy) {
+        log('你精力充沛，不需要休息。');
+        return;
+    }
+    G.player.energy = Math.min(G.player.maxEnergy, G.player.energy + 30);
+    G.player.hp = Math.min(G.player.maxHp, G.player.hp + 10);
+    consumeSurvival(5, 6, 0);
+    log('你休息了一会儿，恢复了10点生命和30点体力。');
+    renderAll();
+    checkSurvival();
+    // 休息时也可能遇敌
+    var scene = G.map.scenes[G.currentScene];
+    if (scene && scene.enemyChance > 0 && Math.random() < scene.enemyChance * 0.5) {
+        var enemyId = scene.enemies[Math.floor(Math.random() * scene.enemies.length)];
+        startCombat(enemyId);
+    }
+}
+
+/* ============================================================
+ * 属性计算
+ * ============================================================ */
+function getTotalAttack() {
+    var atk = G.player.baseAttack;
+    if (G.equipment.weapon) {
+        var w = G.items[G.equipment.weapon];
+        if (w && w.attack) atk += w.attack;
+    }
+    return atk;
+}
+
+function getTotalDefense() {
+    var def = 0;
+    ['head', 'body', 'feet'].forEach(function(slot) {
+        if (G.equipment[slot]) {
+            var a = G.items[G.equipment[slot]];
+            if (a && a.defense) def += a.defense;
+        }
+    });
+    return def;
+}
+
+function getTotalWeight() {
+    var w = 0;
+    G.inventory.forEach(function(inv) {
+        var item = G.items[inv.id];
+        if (item && item.weight) w += item.weight * inv.qty;
+    });
+    return w;
+}
+
+/* ============================================================
+ * 日志
+ * ============================================================ */
+function log(msg, type) {
+    type = type || '';
+    var logDiv = document.getElementById('event-log');
+    var entry = document.createElement('div');
+    entry.className = 'log-entry ' + type;
+    entry.textContent = msg;
+    logDiv.appendChild(entry);
+    logDiv.scrollTop = logDiv.scrollHeight;
+    // 限制日志条数
+    while (logDiv.children.length > 50) {
+        logDiv.removeChild(logDiv.firstChild);
+    }
+}
+
+/* ============================================================
+ * 物品tooltip
+ * ============================================================ */
+function showTooltip(e, item) {
+    var tip = document.getElementById('item-tooltip');
+    var stats = [];
+    if (item.attack) stats.push('攻击 +' + item.attack);
+    if (item.defense) stats.push('防御 +' + item.defense);
+    if (item.heal) stats.push('生命恢复 +' + item.heal);
+    if (item.restoreHunger) stats.push('饥饿恢复 +' + item.restoreHunger);
+    if (item.restoreThirst) stats.push('口渴恢复 +' + item.restoreThirst);
+    if (item.restoreEnergy) stats.push('体力恢复 +' + item.restoreEnergy);
+    tip.innerHTML = '<div class="tt-name">' + (item.icon || '') + ' ' + item.name + '</div>' +
+        '<div class="tt-desc">' + (item.description || '') + '</div>' +
+        (stats.length ? '<div class="tt-stats">' + stats.join(' | ') + '</div>' : '') +
+        '<div style="color:var(--text-dim);font-size:11px;">重量: ' + (item.weight || 0) + 'kg  价值: ' + (item.value || 0) + '</div>';
+    tip.style.display = 'block';
+    tip.style.left = (e.clientX + 10) + 'px';
+    tip.style.top = (e.clientY + 10) + 'px';
+}
+
+function hideTooltip() {
+    document.getElementById('item-tooltip').style.display = 'none';
+}
+</script>
+</body>
+</html>

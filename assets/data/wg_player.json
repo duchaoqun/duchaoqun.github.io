@@ -1,0 +1,24 @@
+{
+  "name": "幸存者",
+  "hp": 100,
+  "maxHp": 100,
+  "hunger": 100,
+  "maxHunger": 100,
+  "thirst": 100,
+  "maxThirst": 100,
+  "energy": 100,
+  "maxEnergy": 100,
+  "level": 1,
+  "exp": 0,
+  "expToNext": 100,
+  "baseAttack": 5,
+  "baseDefense": 0,
+  "maxCarryWeight": 20,
+  "startLocation": "shelter_ruins",
+  "startItems": [
+    { "id": "bandage", "qty": 2 },
+    { "id": "bottle_water", "qty": 1 },
+    { "id": "bread", "qty": 1 },
+    { "id": "pipe_wrench", "qty": 1 }
+  ]
+}

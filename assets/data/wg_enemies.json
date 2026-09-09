@@ -1,0 +1,74 @@
+{
+  "enemies": {
+    "zombie_weak": {
+      "id": "zombie_weak", "name": "游荡丧尸", "icon": "🧟",
+      "hp": 30, "maxHp": 30, "attack": 6, "defense": 0,
+      "exp": 15, "difficulty": 1,
+      "description": "一个步履蹒跚的丧尸，衣服已经破烂不堪，散发着腐臭。",
+      "loot": [ { "id": "cloth", "chance": 0.3 }, { "id": "bandage", "chance": 0.1 } ]
+    },
+    "zombie_runner": {
+      "id": "zombie_runner", "name": "狂奔丧尸", "icon": "🏃",
+      "hp": 45, "maxHp": 45, "attack": 12, "defense": 1,
+      "exp": 25, "difficulty": 2,
+      "description": "一只快速移动的丧尸，眼珠泛白，指甲尖锐。",
+      "loot": [ { "id": "cloth", "chance": 0.4 }, { "id": "bandage", "chance": 0.15 }, { "id": "metal_scrap", "chance": 0.1 } ]
+    },
+    "zombie_brute": {
+      "id": "zombie_brute", "name": "巨型丧尸", "icon": "👹",
+      "hp": 80, "maxHp": 80, "attack": 20, "defense": 3,
+      "exp": 50, "difficulty": 3,
+      "description": "体型巨大的变异丧尸，肌肉肿胀，皮肤呈暗紫色。",
+      "loot": [ { "id": "med_kit", "chance": 0.2 }, { "id": "metal_scrap", "chance": 0.3 }, { "id": "gunpowder", "chance": 0.1 } ]
+    },
+    "zombie_crawler": {
+      "id": "zombie_crawler", "name": "爬行丧尸", "icon": "🦎",
+      "hp": 20, "maxHp": 20, "attack": 4, "defense": 0,
+      "exp": 8, "difficulty": 1,
+      "description": "双腿断裂的丧尸，在地上匍匐前进，容易被忽视。",
+      "loot": [ { "id": "cloth", "chance": 0.2 } ]
+    },
+    "looter_thug": {
+      "id": "looter_thug", "name": "劫匪暴徒", "icon": "🦹",
+      "hp": 60, "maxHp": 60, "attack": 14, "defense": 2,
+      "exp": 35, "difficulty": 2,
+      "description": "一个手持铁棍的暴徒，眼神凶狠，不打算和你讲道理。",
+      "loot": [ { "id": "bat_nail", "chance": 0.1 }, { "id": "bottle_water", "chance": 0.3 }, { "id": "canned_food", "chance": 0.25 } ]
+    },
+    "looter_gunman": {
+      "id": "looter_gunman", "name": "持枪劫匪", "icon": "🔫",
+      "hp": 70, "maxHp": 70, "attack": 25, "defense": 3,
+      "exp": 50, "difficulty": 3,
+      "description": "手持手枪的劫匪，训练有素，威胁极大。",
+      "loot": [ { "id": "pistol", "chance": 0.05 }, { "id": "bullet_9mm", "chance": 0.4 }, { "id": "bandage", "chance": 0.3 } ]
+    },
+    "wild_dog": {
+      "id": "wild_dog", "name": "野狗群", "icon": "🐺",
+      "hp": 35, "maxHp": 35, "attack": 10, "defense": 1,
+      "exp": 20, "difficulty": 2,
+      "description": "一群饥饿的野狗，毛发杂乱，露出尖牙。",
+      "loot": [ { "id": "cooked_meat", "chance": 0.2, "name": "生肉→烤肉" } ]
+    },
+    "mutant_rat": {
+      "id": "mutant_rat", "name": "变异鼠", "icon": "🐀",
+      "hp": 15, "maxHp": 15, "attack": 5, "defense": 0,
+      "exp": 5, "difficulty": 1,
+      "description": "一只体型如猫的变异老鼠，红色眼睛闪着凶光。",
+      "loot": [ { "id": "medicine_herb", "chance": 0.15 } ]
+    },
+    "military_zombie": {
+      "id": "military_zombie", "name": "军装丧尸", "icon": "🧟‍♂️",
+      "hp": 100, "maxHp": 100, "attack": 18, "defense": 5,
+      "exp": 60, "difficulty": 4,
+      "description": "穿着防弹背心的军装丧尸，比普通丧尸强壮得多。",
+      "loot": [ { "id": "police_vest", "chance": 0.15 }, { "id": "bullet_9mm", "chance": 0.3 }, { "id": "helmet_military", "chance": 0.1 } ]
+    },
+    "bandit_leader": {
+      "id": "bandit_leader", "name": "匪首", "icon": "💀",
+      "hp": 150, "maxHp": 150, "attack": 30, "defense": 5,
+      "exp": 120, "difficulty": 5,
+      "description": "劫匪团伙的首领，身穿防弹衣，手持霰弹枪，眼神冰冷。",
+      "loot": [ { "id": "shotgun", "chance": 0.3 }, { "id": "police_vest", "chance": 0.5 }, { "id": "shell_12g", "chance": 0.5 }, { "id": "med_kit", "chance": 0.4 } ]
+    }
+  }
+}

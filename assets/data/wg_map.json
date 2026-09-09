@@ -1,0 +1,335 @@
+{
+  "gridSize": { "w": 6, "h": 6 },
+  "scenes": {
+    "nw_forest_00": {
+      "id": "nw_forest_00", "name": "北部密林",
+      "description": "茂密的树林遮天蔽日，到处是腐朽的树干和藤蔓。远处传来奇怪的声响。空气中弥漫着潮湿的泥土气息。",
+      "pos": { "x": 0, "y": 0 }, "type": "forest",
+      "connections": { "E": "nw_forest_01", "S": "nw_forest_10" },
+      "loot": [ { "id": "wood", "qty": 2, "chance": 0.8 }, { "id": "medicine_herb", "qty": 1, "chance": 0.5 } ],
+      "enemies": [ "wild_dog", "mutant_rat" ], "enemyChance": 0.3,
+      "explored": false
+    },
+    "nw_forest_01": {
+      "id": "nw_forest_01", "name": "林间小溪",
+      "description": "一条浑浊的小溪在林间蜿蜒。溪边有动物的脚印，水中漂浮着不明碎片。",
+      "pos": { "x": 1, "y": 0 }, "type": "forest",
+      "connections": { "W": "nw_forest_00", "E": "nw_forest_02", "S": "nw_town_11" },
+      "loot": [ { "id": "bottle_water", "qty": 1, "chance": 0.6 }, { "id": "cloth", "qty": 1, "chance": 0.4 } ],
+      "enemies": [ "mutant_rat" ], "enemyChance": 0.2,
+      "explored": false
+    },
+    "nw_forest_02": {
+      "id": "nw_forest_02", "name": "猎人生还地",
+      "description": "一顶破烂的帐篷倒在树旁，地上散落着弹壳和干粮包装。似乎曾有幸存者在此驻扎。",
+      "pos": { "x": 2, "y": 0 }, "type": "forest",
+      "connections": { "W": "nw_forest_01", "E": "nw_forest_03", "S": "nw_town_12" },
+      "loot": [ { "id": "rifle_round", "qty": 3, "chance": 0.5 }, { "id": "canned_food", "qty": 1, "chance": 0.7 }, { "id": "bandage", "qty": 2, "chance": 0.4 } ],
+      "enemies": [ "wild_dog" ], "enemyChance": 0.25,
+      "explored": false
+    },
+    "nw_forest_03": {
+      "id": "nw_forest_03", "name": "林中墓地",
+      "description": "一片被遗忘的林中墓地，墓碑东倒西歪。几只丧尸在墓碑间游荡。",
+      "pos": { "x": 3, "y": 0 }, "type": "forest",
+      "connections": { "W": "nw_forest_02", "E": "nw_forest_04", "S": "nw_town_13" },
+      "loot": [ { "id": "cloth", "qty": 2, "chance": 0.5 }, { "id": "metal_scrap", "qty": 1, "chance": 0.3 } ],
+      "enemies": [ "zombie_weak", "zombie_crawler" ], "enemyChance": 0.4,
+      "explored": false
+    },
+    "nw_forest_04": {
+      "id": "nw_forest_04", "name": "伐木场",
+      "description": "一座废弃的伐木场。电锯和拖拉机锈迹斑斑，木材堆积如山。",
+      "pos": { "x": 4, "y": 0 }, "type": "forest",
+      "connections": { "W": "nw_forest_03", "E": "nw_forest_05", "S": "nw_town_14" },
+      "loot": [ { "id": "wood", "qty": 5, "chance": 0.9 }, { "id": "metal_scrap", "qty": 2, "chance": 0.6 }, { "id": "fire_axe", "qty": 1, "chance": 0.15 } ],
+      "enemies": [ "zombie_weak" ], "enemyChance": 0.2,
+      "explored": false
+    },
+    "nw_forest_05": {
+      "id": "nw_forest_05", "name": "森林尽头",
+      "description": "森林在这里逐渐稀疏，远处可以看到河流的反光。",
+      "pos": { "x": 5, "y": 0 }, "type": "forest",
+      "connections": { "W": "nw_forest_04", "S": "nw_town_15" },
+      "loot": [ { "id": "wood", "qty": 2, "chance": 0.5 }, { "id": "medicine_herb", "qty": 1, "chance": 0.4 } ],
+      "enemies": [ "wild_dog" ], "enemyChance": 0.2,
+      "explored": false
+    },
+    "nw_town_10": {
+      "id": "nw_town_10", "name": "城北废墟",
+      "description": "倒塌的楼房挡住了去路，瓦砾遍地。墙上有干涸的血迹和抓痕。",
+      "pos": { "x": 0, "y": 1 }, "type": "ruins",
+      "connections": { "N": "nw_forest_00", "E": "nw_town_11", "S": "mid_town_20" },
+      "loot": [ { "id": "metal_scrap", "qty": 2, "chance": 0.6 }, { "id": "pipe_wrench", "qty": 1, "chance": 0.2 } ],
+      "enemies": [ "zombie_weak", "zombie_crawler" ], "enemyChance": 0.35,
+      "explored": false
+    },
+    "nw_town_11": {
+      "id": "nw_town_11", "name": "便利店废墟",
+      "description": "货架东倒西歪，地上散落着被洗劫一空的商品包装。收银台后传来窸窣声。",
+      "pos": { "x": 1, "y": 1 }, "type": "ruins",
+      "connections": { "N": "nw_forest_01", "W": "nw_town_10", "E": "nw_town_12", "S": "mid_town_21" },
+      "loot": [ { "id": "bottle_water", "qty": 2, "chance": 0.6 }, { "id": "canned_food", "qty": 1, "chance": 0.5 }, { "id": "bread", "qty": 2, "chance": 0.4 }, { "id": "energy_drink", "qty": 1, "chance": 0.3 } ],
+      "enemies": [ "zombie_weak" ], "enemyChance": 0.25,
+      "explored": false
+    },
+    "nw_town_12": {
+      "id": "nw_town_12", "name": "警察局",
+      "description": "一座半塌的警察局，前台的防弹玻璃满是弹孔。武器库的门似乎被撬开过。",
+      "pos": { "x": 2, "y": 1 }, "type": "ruins",
+      "connections": { "N": "nw_forest_02", "W": "nw_town_11", "E": "nw_town_13", "S": "mid_town_22" },
+      "loot": [ { "id": "bullet_9mm", "qty": 5, "chance": 0.5 }, { "id": "police_vest", "qty": 1, "chance": 0.15 }, { "id": "bandage", "qty": 2, "chance": 0.6 }, { "id": "pistol", "qty": 1, "chance": 0.1 } ],
+      "enemies": [ "zombie_runner", "military_zombie" ], "enemyChance": 0.3,
+      "explored": false
+    },
+    "nw_town_13": {
+      "id": "nw_town_13", "name": "医院废墟",
+      "description": "医院大厅一片狼藉，担架和输液架横七竖八。药房铁门半开，黑暗中似乎有什么在动。",
+      "pos": { "x": 3, "y": 1 }, "type": "ruins",
+      "connections": { "N": "nw_forest_03", "W": "nw_town_12", "E": "nw_town_14", "S": "mid_town_23" },
+      "loot": [ { "id": "med_kit", "qty": 1, "chance": 0.4 }, { "id": "bandage", "qty": 3, "chance": 0.7 }, { "id": "painkiller", "qty": 2, "chance": 0.5 } ],
+      "enemies": [ "zombie_runner", "zombie_brute" ], "enemyChance": 0.35,
+      "explored": false
+    },
+    "nw_town_14": {
+      "id": "nw_town_14", "name": "消防站",
+      "description": "消防站里停着一辆侧翻的消防车，装备架上还挂着几件消防装备。",
+      "pos": { "x": 4, "y": 1 }, "type": "ruins",
+      "connections": { "N": "nw_forest_04", "W": "nw_town_13", "E": "nw_town_15", "S": "mid_town_24" },
+      "loot": [ { "id": "fire_axe", "qty": 1, "chance": 0.3 }, { "id": "helmet_military", "qty": 1, "chance": 0.1 }, { "id": "metal_scrap", "qty": 3, "chance": 0.7 } ],
+      "enemies": [ "zombie_runner" ], "enemyChance": 0.25,
+      "explored": false
+    },
+    "nw_town_15": {
+      "id": "nw_town_15", "name": "河岸公路",
+      "description": "沿河的公路被废弃车辆堵塞。远处河水在阳光下闪烁，桥上似乎有人影。",
+      "pos": { "x": 5, "y": 1 }, "type": "ruins",
+      "connections": { "N": "nw_forest_05", "W": "nw_town_14", "S": "mid_town_25" },
+      "loot": [ { "id": "metal_scrap", "qty": 1, "chance": 0.4 }, { "id": "bottle_water", "qty": 1, "chance": 0.3 } ],
+      "enemies": [ "looter_thug" ], "enemyChance": 0.2,
+      "explored": false
+    },
+    "mid_town_20": {
+      "id": "mid_town_20", "name": "居民区",
+      "description": "一排排联排别墅，门窗大多被木板封住。有些房子里还亮着微弱的烛光。",
+      "pos": { "x": 0, "y": 2 }, "type": "residential",
+      "connections": { "N": "nw_town_10", "E": "mid_town_21", "S": "south_30" },
+      "loot": [ { "id": "canned_food", "qty": 2, "chance": 0.5 }, { "id": "cloth", "qty": 2, "chance": 0.6 }, { "id": "kitchen_knife", "qty": 1, "chance": 0.2 } ],
+      "enemies": [ "zombie_weak", "zombie_crawler" ], "enemyChance": 0.25,
+      "npc": ["survivor_mike"],
+      "explored": false
+    },
+    "mid_town_21": {
+      "id": "mid_town_21", "name": "超市残骸",
+      "description": "大型超市被烧毁后只剩框架，空气中飘着焦糊味。购物车散落一地。",
+      "pos": { "x": 1, "y": 2 }, "type": "residential",
+      "connections": { "N": "nw_town_11", "W": "mid_town_20", "E": "mid_town_22", "S": "south_31" },
+      "loot": [ { "id": "canned_food", "qty": 3, "chance": 0.6 }, { "id": "bottle_water", "qty": 2, "chance": 0.5 }, { "id": "energy_drink", "qty": 1, "chance": 0.3 }, { "id": "bread", "qty": 2, "chance": 0.4 } ],
+      "enemies": [ "zombie_runner", "looter_thug" ], "enemyChance": 0.35,
+      "explored": false
+    },
+    "shelter_ruins": {
+      "id": "shelter_ruins", "name": "避难所废墟",
+      "description": "你苏醒的地方。一个地下室避难所，铁门半开，墙上贴着褪色的安全须知。角落有一张行军床和几只空罐头盒。这里曾是一群幸存者的据点，但如今只剩你一个人。",
+      "pos": { "x": 2, "y": 2 }, "type": "shelter",
+      "connections": { "N": "nw_town_12", "W": "mid_town_21", "E": "mid_town_23", "S": "south_32" },
+      "loot": [ { "id": "bandage", "qty": 2, "chance": 0.8 }, { "id": "bottle_water", "qty": 1, "chance": 0.6 }, { "id": "metal_scrap", "qty": 1, "chance": 0.5 } ],
+      "enemies": [], "enemyChance": 0,
+      "explored": true,
+      "isStart": true
+    },
+    "mid_town_23": {
+      "id": "mid_town_23", "name": "加油站",
+      "description": "加油站的顶棚塌了一半，油罐还散发着汽油味。便利店里似乎还有些存货。",
+      "pos": { "x": 3, "y": 2 }, "type": "residential",
+      "connections": { "N": "nw_town_13", "W": "shelter_ruins", "E": "mid_town_24", "S": "south_33" },
+      "loot": [ { "id": "gunpowder", "qty": 2, "chance": 0.4 }, { "id": "bottle_water", "qty": 1, "chance": 0.5 }, { "id": "canned_food", "qty": 1, "chance": 0.4 }, { "id": "energy_drink", "qty": 1, "chance": 0.3 } ],
+      "enemies": [ "looter_thug", "zombie_runner" ], "enemyChance": 0.3,
+      "explored": false
+    },
+    "mid_town_24": {
+      "id": "mid_town_24", "name": "五金商店",
+      "description": "一家被搬空大半的五金店。工具架上还残留着锤子、扳手等工具。",
+      "pos": { "x": 4, "y": 2 }, "type": "residential",
+      "connections": { "N": "nw_town_14", "W": "mid_town_23", "E": "mid_town_25", "S": "south_34" },
+      "loot": [ { "id": "pipe_wrench", "qty": 1, "chance": 0.3 }, { "id": "metal_scrap", "qty": 3, "chance": 0.7 }, { "id": "wood", "qty": 2, "chance": 0.5 }, { "id": "fire_axe", "qty": 1, "chance": 0.1 } ],
+      "enemies": [ "looter_thug" ], "enemyChance": 0.2,
+      "explored": false
+    },
+    "mid_town_25": {
+      "id": "mid_town_25", "name": "过河大桥",
+      "description": "一座横跨河流的公路桥，桥上满是废弃车辆。桥对面隐约可见一座军事设施。",
+      "pos": { "x": 5, "y": 2 }, "type": "bridge",
+      "connections": { "N": "nw_town_15", "W": "mid_town_24", "S": "south_35" },
+      "loot": [ { "id": "metal_scrap", "qty": 2, "chance": 0.4 }, { "id": "bullet_9mm", "qty": 3, "chance": 0.3 } ],
+      "enemies": [ "looter_gunman" ], "enemyChance": 0.25,
+      "npc": ["trader_jake"],
+      "explored": false
+    },
+    "south_30": {
+      "id": "south_30", "name": "南郊农场",
+      "description": "一片荒废的农田，干枯的玉米秆在风中摇晃。谷仓里传来低沉的嘶吼。",
+      "pos": { "x": 0, "y": 3 }, "type": "farmland",
+      "connections": { "N": "mid_town_20", "E": "south_31", "S": "south_40" },
+      "loot": [ { "id": "bread", "qty": 3, "chance": 0.6 }, { "id": "cooked_meat", "qty": 1, "chance": 0.3 }, { "id": "cloth", "qty": 2, "chance": 0.5 }, { "id": "wood", "qty": 3, "chance": 0.7 } ],
+      "enemies": [ "wild_dog", "zombie_weak" ], "enemyChance": 0.3,
+      "explored": false
+    },
+    "south_31": {
+      "id": "south_31", "name": "谷仓",
+      "description": "一个大型木制谷仓，里面堆满了干草和农具。角落里似乎有什么东西在动。",
+      "pos": { "x": 1, "y": 3 }, "type": "farmland",
+      "connections": { "N": "mid_town_21", "W": "south_30", "E": "south_32", "S": "south_41" },
+      "loot": [ { "id": "wood", "qty": 4, "chance": 0.8 }, { "id": "cloth", "qty": 3, "chance": 0.6 }, { "id": "kitchen_knife", "qty": 1, "chance": 0.2 }, { "id": "medicine_herb", "qty": 2, "chance": 0.4 } ],
+      "enemies": [ "zombie_brute", "zombie_weak" ], "enemyChance": 0.35,
+      "explored": false
+    },
+    "south_32": {
+      "id": "south_32", "name": "废弃学校",
+      "description": "一所小学，操场上长满了杂草。教室里的桌椅整齐排列，黑板上还留着最后的板书。",
+      "pos": { "x": 2, "y": 3 }, "type": "residential",
+      "connections": { "N": "shelter_ruins", "W": "south_31", "E": "south_33", "S": "south_42" },
+      "loot": [ { "id": "cloth", "qty": 2, "chance": 0.5 }, { "id": "canned_food", "qty": 1, "chance": 0.3 }, { "id": "metal_scrap", "qty": 2, "chance": 0.4 } ],
+      "enemies": [ "zombie_runner", "zombie_crawler" ], "enemyChance": 0.3,
+      "explored": false
+    },
+    "south_33": {
+      "id": "south_33", "name": "教堂",
+      "description": "一座石砌教堂，彩色玻璃窗碎了大半。圣水池干涸，长椅上沾着血迹。",
+      "pos": { "x": 3, "y": 3 }, "type": "residential",
+      "connections": { "N": "mid_town_23", "W": "south_32", "E": "south_34", "S": "south_43" },
+      "loot": [ { "id": "bandage", "qty": 3, "chance": 0.5 }, { "id": "medicine_herb", "qty": 2, "chance": 0.4 }, { "id": "leather_jacket", "qty": 1, "chance": 0.15 } ],
+      "enemies": [ "zombie_weak" ], "enemyChance": 0.2,
+      "explored": false
+    },
+    "south_34": {
+      "id": "south_34", "name": "无线电塔",
+      "description": "一座高耸的无线电发射塔，基站的门被撬开了。设备还在嗡嗡作响。",
+      "pos": { "x": 4, "y": 3 }, "type": "residential",
+      "connections": { "N": "mid_town_24", "W": "south_33", "E": "south_35", "S": "south_44" },
+      "loot": [ { "id": "metal_scrap", "qty": 3, "chance": 0.6 }, { "id": "gunpowder", "qty": 1, "chance": 0.3 }, { "id": "energy_drink", "qty": 1, "chance": 0.4 } ],
+      "enemies": [ "looter_gunman" ], "enemyChance": 0.25,
+      "explored": false
+    },
+    "south_35": {
+      "id": "south_35", "name": "河滩",
+      "description": "河流在这里形成一片浅滩，可以涉水而过。对岸隐约可见一座军事基地的围墙。",
+      "pos": { "x": 5, "y": 3 }, "type": "waters",
+      "connections": { "N": "mid_town_25", "W": "south_34", "S": "south_45" },
+      "loot": [ { "id": "bottle_water", "qty": 2, "chance": 0.5 }, { "id": "medicine_herb", "qty": 1, "chance": 0.3 } ],
+      "enemies": [ "mutant_rat" ], "enemyChance": 0.15,
+      "explored": false
+    },
+    "south_40": {
+      "id": "south_40", "name": "废弃营地",
+      "description": "一个幸存者营地，帐篷倒塌，篝火早已熄灭。地上散落着被翻乱的物资箱。",
+      "pos": { "x": 0, "y": 4 }, "type": "farmland",
+      "connections": { "N": "south_30", "E": "south_41", "S": "south_50" },
+      "loot": [ { "id": "canned_food", "qty": 2, "chance": 0.5 }, { "id": "bandage", "qty": 2, "chance": 0.6 }, { "id": "bottle_water", "qty": 2, "chance": 0.5 }, { "id": "boots_tactical", "qty": 1, "chance": 0.15 } ],
+      "enemies": [ "zombie_weak", "zombie_crawler" ], "enemyChance": 0.25,
+      "explored": false
+    },
+    "south_41": {
+      "id": "south_41", "name": "地下停车场",
+      "description": "商场地下的停车场，漆黑一片。远处有几双发光的眼睛在盯着你。",
+      "pos": { "x": 1, "y": 4 }, "type": "ruins",
+      "connections": { "N": "south_31", "W": "south_40", "E": "south_42", "S": "south_51" },
+      "loot": [ { "id": "metal_scrap", "qty": 2, "chance": 0.4 }, { "id": "car_keys", "qty": 1, "chance": 0.01 }, { "id": "pipe_wrench", "qty": 1, "chance": 0.2 } ],
+      "enemies": [ "zombie_runner", "zombie_crawler", "zombie_brute" ], "enemyChance": 0.45,
+      "explored": false
+    },
+    "south_42": {
+      "id": "south_42", "name": "下水道入口",
+      "description": "一个巨大的下水道入口，铁栅栏被掰弯。黑暗中传来流水声和低沉的嘶吼。",
+      "pos": { "x": 2, "y": 4 }, "type": "ruins",
+      "connections": { "N": "south_32", "W": "south_41", "E": "south_43", "S": "south_52" },
+      "loot": [ { "id": "metal_scrap", "qty": 1, "chance": 0.3 }, { "id": "cloth", "qty": 1, "chance": 0.3 } ],
+      "enemies": [ "mutant_rat", "zombie_crawler" ], "enemyChance": 0.4,
+      "explored": false
+    },
+    "south_43": {
+      "id": "south_43", "name": "弹药库",
+      "description": "一个被炸开的地下弹药库。弹药箱散落一地，大部分已空，但角落里还有些存货。",
+      "pos": { "x": 3, "y": 4 }, "type": "military",
+      "connections": { "N": "south_33", "W": "south_42", "E": "south_44", "S": "south_53" },
+      "loot": [ { "id": "bullet_9mm", "qty": 5, "chance": 0.6 }, { "id": "shell_12g", "qty": 3, "chance": 0.4 }, { "id": "rifle_round", "qty": 3, "chance": 0.4 }, { "id": "gunpowder", "qty": 3, "chance": 0.5 }, { "id": "shotgun", "qty": 1, "chance": 0.1 } ],
+      "enemies": [ "military_zombie" ], "enemyChance": 0.3,
+      "explored": false
+    },
+    "south_44": {
+      "id": "south_44", "name": "军事检查站",
+      "description": "一个军事检查站，沙袋和铁丝网构成防线。几具穿军装的丧尸在游荡。",
+      "pos": { "x": 4, "y": 4 }, "type": "military",
+      "connections": { "N": "south_34", "W": "south_43", "E": "south_45", "S": "south_54" },
+      "loot": [ { "id": "helmet_military", "qty": 1, "chance": 0.2 }, { "id": "police_vest", "qty": 1, "chance": 0.15 }, { "id": "rifle_round", "qty": 5, "chance": 0.5 }, { "id": "med_kit", "qty": 1, "chance": 0.3 } ],
+      "enemies": [ "military_zombie", "zombie_runner" ], "enemyChance": 0.35,
+      "explored": false
+    },
+    "south_45": {
+      "id": "south_45", "name": "军营大门",
+      "description": "军事基地的正门，大门紧闭。围墙上有铁丝网，岗楼里似乎有人影。",
+      "pos": { "x": 5, "y": 4 }, "type": "military",
+      "connections": { "N": "south_35", "W": "south_44", "S": "south_55" },
+      "loot": [],
+      "enemies": [ "bandit_leader" ], "enemyChance": 0.5,
+      "npc": ["trader_jake"],
+      "explored": false
+    },
+    "south_50": {
+      "id": "south_50", "name": "南部森林",
+      "description": "南部的树林比北部更茂密，空气中弥漫着腐殖质的气味。到处是变异的植物。",
+      "pos": { "x": 0, "y": 5 }, "type": "forest",
+      "connections": { "N": "south_40", "E": "south_51" },
+      "loot": [ { "id": "wood", "qty": 3, "chance": 0.7 }, { "id": "medicine_herb", "qty": 2, "chance": 0.5 } ],
+      "enemies": [ "wild_dog" ], "enemyChance": 0.25,
+      "explored": false
+    },
+    "south_51": {
+      "id": "south_51", "name": "采石场",
+      "description": "一个露天采石场，岩壁陡峭。重型机械锈蚀在原地，碎石堆形成天然掩体。",
+      "pos": { "x": 1, "y": 5 }, "type": "ruins",
+      "connections": { "N": "south_41", "W": "south_50", "E": "south_52" },
+      "loot": [ { "id": "metal_scrap", "qty": 4, "chance": 0.7 }, { "id": "gunpowder", "qty": 1, "chance": 0.3 } ],
+      "enemies": [ "zombie_brute" ], "enemyChance": 0.3,
+      "explored": false
+    },
+    "south_52": {
+      "id": "south_52", "name": "地下避难所",
+      "description": "一个隐秘的地下防空洞，厚重的铁门半开。里面空间很大，有简易的床铺和生活设施。",
+      "pos": { "x": 2, "y": 5 }, "type": "shelter",
+      "connections": { "N": "south_42", "W": "south_51", "E": "south_53" },
+      "loot": [ { "id": "med_kit", "qty": 2, "chance": 0.5 }, { "id": "canned_food", "qty": 3, "chance": 0.6 }, { "id": "bottle_water", "qty": 3, "chance": 0.6 }, { "id": "painkiller", "qty": 2, "chance": 0.5 } ],
+      "enemies": [], "enemyChance": 0,
+      "npc": ["survivor_mike"],
+      "explored": false
+    },
+    "south_53": {
+      "id": "south_53", "name": "指挥中心",
+      "description": "军事基地的指挥中心，巨大的战术地图还挂在墙上。屏幕上闪烁着红光，似乎还有电力。",
+      "pos": { "x": 3, "y": 5 }, "type": "military",
+      "connections": { "N": "south_43", "W": "south_52", "E": "south_54" },
+      "loot": [ { "id": "hunting_rifle", "qty": 1, "chance": 0.2 }, { "id": "rifle_round", "qty": 5, "chance": 0.5 }, { "id": "med_kit", "qty": 1, "chance": 0.3 } ],
+      "enemies": [ "military_zombie" ], "enemyChance": 0.3,
+      "explored": false
+    },
+    "south_54": {
+      "id": "south_54", "name": "直升机坪",
+      "description": "基地的直升机停机坪，一架直升机侧翻在跑道边。油箱还残存着燃料。",
+      "pos": { "x": 4, "y": 5 }, "type": "military",
+      "connections": { "N": "south_44", "W": "south_53", "E": "south_55" },
+      "loot": [ { "id": "gunpowder", "qty": 2, "chance": 0.4 }, { "id": "metal_scrap", "qty": 3, "chance": 0.5 }, { "id": "med_kit", "qty": 1, "chance": 0.2 } ],
+      "enemies": [ "military_zombie" ], "enemyChance": 0.3,
+      "explored": false
+    },
+    "south_55": {
+      "id": "south_55", "name": "逃生点",
+      "description": "军事基地最南端，一辆完好的军用卡车停在仓库里。油箱是满的。如果你有钥匙……",
+      "pos": { "x": 5, "y": 5 }, "type": "military",
+      "connections": { "N": "south_45", "W": "south_54" },
+      "loot": [],
+      "enemies": [ "bandit_leader" ], "enemyChance": 0.6,
+      "isExit": true,
+      "explored": false
+    }
+  }
+}

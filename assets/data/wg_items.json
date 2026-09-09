@@ -1,0 +1,164 @@
+{
+  "items": {
+    "pipe_wrench": {
+      "id": "pipe_wrench", "name": "管钳", "type": "weapon",
+      "icon": "🔧", "description": "一根生锈的管钳，比赤手空拳强些。",
+      "attack": 8, "weight": 2.5, "stackable": false, "value": 5
+    },
+    "bat_nail": {
+      "id": "bat_nail", "name": "钉子棒球棒", "type": "weapon",
+      "icon": "🏏", "description": "钉满铁钉的棒球棒，丧尸克星。",
+      "attack": 15, "weight": 3, "stackable": false, "value": 15
+    },
+    "kitchen_knife": {
+      "id": "kitchen_knife", "name": "菜刀", "type": "weapon",
+      "icon": "🔪", "description": "锋利的厨房菜刀，轻便但攻击范围短。",
+      "attack": 12, "weight": 0.8, "stackable": false, "value": 10
+    },
+    "fire_axe": {
+      "id": "fire_axe", "name": "消防斧", "type": "weapon",
+      "icon": "🪓", "description": "红色消防斧，威力巨大但沉重。",
+      "attack": 22, "weight": 5, "stackable": false, "value": 25
+    },
+    "pistol": {
+      "id": "pistol", "name": "手枪", "type": "weapon",
+      "icon": "🔫", "description": "一把9mm手枪，需要子弹。",
+      "attack": 30, "weight": 1.5, "stackable": false, "value": 50,
+      "needsAmmo": true, "ammoType": "bullet_9mm"
+    },
+    "shotgun": {
+      "id": "shotgun", "name": "霰弹枪", "type": "weapon",
+      "icon": "💥", "description": "近距离毁灭性武器，弹药稀缺。",
+      "attack": 45, "weight": 4, "stackable": false, "value": 80,
+      "needsAmmo": true, "ammoType": "shell_12g"
+    },
+    "hunting_rifle": {
+      "id": "hunting_rifle", "name": "猎枪", "type": "weapon",
+      "icon": "🎯", "description": "远程精准射击，适合狙击。",
+      "attack": 55, "weight": 5, "stackable": false, "value": 100,
+      "needsAmmo": true, "ammoType": "rifle_round"
+    },
+    "bullet_9mm": {
+      "id": "bullet_9mm", "name": "9mm子弹", "type": "ammo",
+      "icon": "🔸", "description": "手枪子弹，一盒10发。",
+      "weight": 0.1, "stackable": true, "maxStack": 50, "value": 2
+    },
+    "shell_12g": {
+      "id": "shell_12g", "name": "12号霰弹", "type": "ammo",
+      "icon": "🔹", "description": "霰弹枪弹药，一盒5发。",
+      "weight": 0.15, "stackable": true, "maxStack": 30, "value": 4
+    },
+    "rifle_round": {
+      "id": "rifle_round", "name": "步枪弹", "type": "ammo",
+      "icon": "▪", "description": "猎枪步枪弹，一盒5发。",
+      "weight": 0.12, "stackable": true, "maxStack": 30, "value": 5
+    },
+    "leather_jacket": {
+      "id": "leather_jacket", "name": "皮夹克", "type": "armor",
+      "icon": "🧥", "description": "厚实的皮夹克，能挡几下抓挠。",
+      "defense": 3, "slot": "body", "weight": 2, "stackable": false, "value": 10
+    },
+    "police_vest": {
+      "id": "police_vest", "name": "防弹背心", "type": "armor",
+      "icon": "🦺", "description": "警方制式防弹背心，防护力优秀。",
+      "defense": 8, "slot": "body", "weight": 4, "stackable": false, "value": 40
+    },
+    "helmet_military": {
+      "id": "helmet_military", "name": "军用头盔", "type": "armor",
+      "icon": "⛑", "description": "凯夫拉军用头盔，防护头部。",
+      "defense": 5, "slot": "head", "weight": 2, "stackable": false, "value": 35
+    },
+    "boots_tactical": {
+      "id": "boots_tactical", "name": "战术靴", "type": "armor",
+      "icon": "🥾", "description": "防滑耐磨的战术靴，跑得更快。",
+      "defense": 2, "slot": "feet", "weight": 1.5, "stackable": false, "value": 15
+    },
+    "bandage": {
+      "id": "bandage", "name": "绷带", "type": "consumable",
+      "icon": "🩹", "description": "简易绷带，恢复20点生命值。",
+      "heal": 20, "weight": 0.2, "stackable": true, "maxStack": 20, "value": 3
+    },
+    "med_kit": {
+      "id": "med_kit", "name": "急救包", "type": "consumable",
+      "icon": "📦", "description": "专业医疗包，恢复50点生命值。",
+      "heal": 50, "weight": 1, "stackable": true, "maxStack": 5, "value": 15
+    },
+    "painkiller": {
+      "id": "painkiller", "name": "止痛药", "type": "consumable",
+      "icon": "💊", "description": "止痛片，恢复10点生命和20点体力。",
+      "heal": 10, "restoreEnergy": 20, "weight": 0.1, "stackable": true, "maxStack": 10, "value": 5
+    },
+    "bottle_water": {
+      "id": "bottle_water", "name": "瓶装水", "type": "consumable",
+      "icon": "💧", "description": "一瓶矿泉水，恢复30点口渴。",
+      "restoreThirst": 30, "weight": 0.5, "stackable": true, "maxStack": 10, "value": 2
+    },
+    "canned_food": {
+      "id": "canned_food", "name": "罐头食品", "type": "consumable",
+      "icon": "🥫", "description": "午餐肉罐头，恢复25点饥饿。",
+      "restoreHunger": 25, "weight": 0.5, "stackable": true, "maxStack": 10, "value": 3
+    },
+    "bread": {
+      "id": "bread", "name": "面包", "type": "consumable",
+      "icon": "🍞", "description": "半块面包，恢复15点饥饿。",
+      "restoreHunger": 15, "weight": 0.3, "stackable": true, "maxStack": 10, "value": 1
+    },
+    "energy_drink": {
+      "id": "energy_drink", "name": "能量饮料", "type": "consumable",
+      "icon": "🥤", "description": "含咖啡因的能量饮料，恢复30体力和10口渴。",
+      "restoreEnergy": 30, "restoreThirst": 10, "weight": 0.3, "stackable": true, "maxStack": 10, "value": 4
+    },
+    "cooked_meat": {
+      "id": "cooked_meat", "name": "烤肉", "type": "consumable",
+      "icon": "🍖", "description": "烤熟的野味，恢复40点饥饿。",
+      "restoreHunger": 40, "weight": 0.4, "stackable": true, "maxStack": 5, "value": 5
+    },
+    "wood": {
+      "id": "wood", "name": "木材", "type": "material",
+      "icon": "🪵", "description": "木材，可用于建造和制作。",
+      "weight": 1, "stackable": true, "maxStack": 50, "value": 1
+    },
+    "metal_scrap": {
+      "id": "metal_scrap", "name": "废金属", "type": "material",
+      "icon": "⚙", "description": "生锈的金属碎片，用于制作武器。",
+      "weight": 0.5, "stackable": true, "maxStack": 50, "value": 1
+    },
+    "cloth": {
+      "id": "cloth", "name": "布料", "type": "material",
+      "icon": "🧵", "description": "破旧布料，可用于制作绷带和衣物。",
+      "weight": 0.2, "stackable": true, "maxStack": 50, "value": 1
+    },
+    "gunpowder": {
+      "id": "gunpowder", "name": "火药", "type": "material",
+      "icon": "💨", "description": "散装火药，可用于制作弹药。",
+      "weight": 0.1, "stackable": true, "maxStack": 30, "value": 3
+    },
+    "medicine_herb": {
+      "id": "medicine_herb", "name": "草药", "type": "material",
+      "icon": "🌿", "description": "野生药草，可制作简易药品。",
+      "weight": 0.1, "stackable": true, "maxStack": 30, "value": 2
+    }
+  },
+  "recipes": [
+    {
+      "id": "craft_bandage", "name": "制作绷带",
+      "ingredients": [ { "id": "cloth", "qty": 2 } ],
+      "result": { "id": "bandage", "qty": 1 }
+    },
+    {
+      "id": "craft_nail_bat", "name": "制作钉子球棒",
+      "ingredients": [ { "id": "metal_scrap", "qty": 3 }, { "id": "wood", "qty": 1 } ],
+      "result": { "id": "bat_nail", "qty": 1 }
+    },
+    {
+      "id": "craft_painkiller", "name": "制作止痛药",
+      "ingredients": [ { "id": "medicine_herb", "qty": 3 } ],
+      "result": { "id": "painkiller", "qty": 1 }
+    },
+    {
+      "id": "craft_bullet_9mm", "name": "制作9mm子弹",
+      "ingredients": [ { "id": "gunpowder", "qty": 1 }, { "id": "metal_scrap", "qty": 1 } ],
+      "result": { "id": "bullet_9mm", "qty": 5 }
+    }
+  ]
+}
