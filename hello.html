@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>开放世界 - Hello</title>
+    <title>梦幻国度</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -278,6 +278,27 @@
 
         #escHint.show { opacity: 1; }
 
+        /* 昼夜切换按钮 */
+        #daynightBtn {
+            position: fixed;
+            top: 14px; right: 14px;
+            background: rgba(8, 14, 28, 0.72);
+            border: 1px solid rgba(120, 160, 255, 0.35);
+            border-radius: 8px;
+            color: #cfe6ff;
+            font-family: 'Consolas', 'Microsoft YaHei', monospace;
+            font-size: 13px;
+            padding: 6px 14px;
+            cursor: pointer;
+            pointer-events: auto;
+            z-index: 11;
+            transition: background 0.15s, border-color 0.15s;
+        }
+        #daynightBtn:hover {
+            background: rgba(30, 50, 90, 0.85);
+            border-color: rgba(140, 190, 255, 0.6);
+        }
+
         /* 蓄力条 */
         #chargeWrap {
             position: absolute;
@@ -361,6 +382,7 @@
         <div id="crosshair">
             <div class="center-dot"></div>
         </div>
+        <button id="daynightBtn">白天</button>
         <div id="interactHint"></div>
         <div id="escHint">按 Esc 解锁鼠标</div>
         <div id="chargeWrap">
@@ -444,7 +466,13 @@
             renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, powerPreference: 'high-performance' });
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setClearColor(0x88c4ff, 1);
+            renderer.setClearColor(0x87b8e8, 1);
+            // 阴影 + ACES 色调映射（接近 Slow Roads 的真实颜色）
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.0;
+            renderer.outputColorSpace = THREE.SRGBColorSpace;
 
             // 2. 场景
             scene = new THREE.Scene();
@@ -502,56 +530,50 @@
                     camera.position.copy(player.position);
                 }
 
-                // 雾（热带远雾）
-                scene.fog = new THREE.Fog(0xb8d8e8, 50, 200);
-
-                // 光照（热带日光）
-                scene.add(new THREE.AmbientLight(0xb0c8e0, 0.5));
-                var hemi = new THREE.HemisphereLight(0x88bbff, 0x446633, 0.6);
-                scene.add(hemi);
-                setupLighting(data.lighting);
+                // 雾（白天的淡蓝色远雾，具体数值由昼夜预设控制）
+                scene.fog = new THREE.Fog(0xcfe6f5, 250, 900);
 
                 // 真实大气散射天空（Preetham 模型）
                 skyObj = new Sky();
                 skyObj.scale.setScalar(10000);
                 scene.add(skyObj);
-                // 天空参数
+                // 初始太阳方向（随后被 applyDayNightPreset 覆盖）
+                currentSunDir = DAYNIGHT_PRESETS[0].sunDir.clone();
                 var skyUniforms = skyObj.material.uniforms;
-                skyUniforms['turbidity'].value = 8;       // 浑浊度（雾气感）
-                skyUniforms['rayleigh'].value = 2;        // 瑞利散射（蓝天饱和度）
-                skyUniforms['mieCoefficient'].value = 0.005;
+                skyUniforms['turbidity'].value = 4;
+                skyUniforms['rayleigh'].value = 1.8;
+                skyUniforms['mieCoefficient'].value = 0.004;
                 skyUniforms['mieDirectionalG'].value = 0.8;
-                skyUniforms['cloudCoverage'].value = 0.35;  // 云量
+                skyUniforms['cloudCoverage'].value = 0.35;
                 skyUniforms['cloudDensity'].value = 0.5;
                 skyUniforms['cloudElevation'].value = 0.6;
-                // 太阳方向
-                var sunDir = new THREE.Vector3(0.5, 0.6, 0.4).normalize();
-                skyUniforms['sunPosition'].value.copy(sunDir);
-                // 环境光贴图（PMREM 让水面/物体反射真实天空）
+                skyUniforms['sunPosition'].value.copy(currentSunDir);
+
+                // 环境光贴图（PMREM 让水面/物体反射真实天空，保持白天基调）
                 var pmrem = new THREE.PMREMGenerator(renderer);
                 var skyScene = new THREE.Scene();
                 var skyForEnv = new Sky();
                 skyForEnv.scale.setScalar(10000);
                 var envUniforms = skyForEnv.material.uniforms;
-                envUniforms['turbidity'].value = 8;
+                envUniforms['turbidity'].value = 5;
                 envUniforms['rayleigh'].value = 2;
                 envUniforms['mieCoefficient'].value = 0.005;
                 envUniforms['mieDirectionalG'].value = 0.8;
-                envUniforms['cloudCoverage'].value = 0.35;
-                envUniforms['cloudDensity'].value = 0.5;
-                envUniforms['cloudElevation'].value = 0.6;
-                envUniforms['sunPosition'].value.copy(sunDir);
+                envUniforms['cloudCoverage'].value = 0.4;
+                envUniforms['cloudDensity'].value = 0.4;
+                envUniforms['cloudElevation'].value = 0.5;
+                envUniforms['sunPosition'].value.copy(DAYNIGHT_PRESETS[0].sunDir);
                 skyScene.add(skyForEnv);
                 scene.environment = pmrem.fromScene(skyScene, 0.04).texture;
+                pmrem.dispose();
 
-                // 物体（过滤掉旧地面/墙/山丘，由海岛地形替代）
-                var skipIds = ['ground', 'hill_1', 'hill_2', 'wall_s', 'wall_n', 'wall_e', 'wall_w'];
+                // 物体（按丘陵地表放置）
+                var skipIds = ['ground', 'hill_1', 'hill_2', 'wall_s', 'wall_n', 'wall_e', 'wall_w', 'ocean', 'sea'];
                 if (data.objects) {
                     data.objects.forEach(function(obj) {
                         if (skipIds.indexOf(obj.id) >= 0) return; // 跳过旧地形
                         var mesh = createMesh(obj);
                         if (mesh) {
-                            // 把物体放到海岛地表上
                             var ox = mesh.position.x;
                             var oz = mesh.position.z;
                             var oh = getIslandHeight(ox, oz);
@@ -563,14 +585,16 @@
                     });
                 }
 
-                // 构建海岛世界
+                // 构建草原丘陵世界
                 buildIsland();
-                buildOcean();
+                buildLakes();
                 buildSun();
-                addPalmTrees();
-
-                // 白云粒子
+                buildMoon();
+                addGrassTrees();
                 addClouds();
+
+                // 应用初始"白天"预设（光照/雾/曝光/天空）
+                applyDayNightPreset(0);
 
                 // 构建缓存碰撞盒（整个游戏过程不变）
                 rebuildCollidableBoxes();
@@ -578,12 +602,19 @@
                 return true;
             } catch (err) {
                 console.error('加载场景失败:', err);
-                // 失败时构建基本海岛
-                scene.fog = new THREE.Fog(0xb8d8e8, 50, 200);
+                // 失败时构建基本草原
+                scene.fog = new THREE.Fog(0xcfe6f5, 250, 900);
+                skyObj = new Sky();
+                skyObj.scale.setScalar(10000);
+                scene.add(skyObj);
+                currentSunDir = DAYNIGHT_PRESETS[0].sunDir.clone();
                 buildIsland();
-                buildOcean();
+                buildLakes();
                 buildSun();
-                addPalmTrees();
+                buildMoon();
+                addGrassTrees();
+                addClouds();
+                applyDayNightPreset(0);
                 rebuildCollidableBoxes();
                 return false;
             }
@@ -653,28 +684,180 @@
         };
 
         /* ============================================================
-         * 海岛地形系统（参考 webgl_geometry_terrain_raycast）
+         * 草原丘陵地形系统（Slow Roads 风格）
          * ============================================================ */
-        var ISLAND_RADIUS = 38;
-        var SEA_LEVEL = 0;
-        var oceanMesh = null;
+        var LAKE_WATER_LEVEL = 0.4;   // 湖水面世界高度（与生成高度图时一致）
+        var SEA_LEVEL = LAKE_WATER_LEVEL;
+        var ISLAND_RADIUS = TERRAIN_HALF;   // 兼容旧边界逻辑
+        var lakes = [
+            { x: -20, z: -25, r: 9 },
+            { x: 26, z: 20, r: 7 },
+            { x: 2, z: -55, r: 6 },
+        ];
+        var lakeMeshes = [];
+        var waterMesh = null;          // 湖面（Water）
         var sunLight = null;
         var sunSphere = null;
-        var palmTrees = [];
+        var moonSprite = null;
+        var palmTrees = [];           // 保留（灾情兼容）
+        var treeCollideBoxes = [];    // 树木+棕榈的透明碰撞盒
         var terrainMesh = null;
         var terrainHelper = null;  // 射线标记
         var terrainRaycaster = new THREE.Raycaster();
         var skyObj = null;
+        var ambientLight = null;
+        var hemiLight = null;
+        var cloudSprites = [];
+        var pmrem = null;
+        var skyEnvScene = null;
+        var skyEnvObj = null;
+        var envTex = null;
+        var daynightIndex = 0;
+        var currentSunDir = null;
 
         // 地形网格分辨率
-        var TERRAIN_SIZE = 160;
+        var TERRAIN_SIZE = 220;
         var TERRAIN_SEG = 255;     // 255×255 顶点
         var TERRAIN_HALF = TERRAIN_SIZE / 2;
         var heightData = null;     // Uint8Array 高度图
         var perlin = null;
-        var TERRAIN_HEIGHT_SCALE = 0.16; // heightData 值(0-255) → 世界高度的缩放
+        var TERRAIN_HEIGHT_SCALE = 0.045; // heightData 值(0-255) → 世界高度的缩放
 
-        /* 生成高度图（Perlin 噪声 + 岛屿衰减） */
+        /* 昼夜预设 */
+        var DAYNIGHT_PRESETS = [
+            {
+                name: '白天',
+                sunDir: new THREE.Vector3(0.45, 0.55, 0.4).normalize(),
+                sun: { c: 0xfff4e0, i: 1.6 },
+                hemi: { sky: 0xbfd8ff, ground: 0x557a3a, i: 0.75 },
+                amb: { c: 0xffffff, i: 0.25 },
+                fog: { c: 0xcfe6f5, n: 250, f: 900 },
+                exp: 1.0, sunV: true, moonV: false, cloudC: 0xffffff, clearC: 0x87b8e8,
+                sky: { turb: 4, ray: 1.8, mie: 0.004, mieG: 0.8, cloud: 0.35, cD: 0.5, cE: 0.6 },
+            },
+            {
+                name: '黄昏',
+                sunDir: new THREE.Vector3(-0.35, 0.09, -0.45).normalize(),
+                sun: { c: 0xff9a3c, i: 1.5 },
+                hemi: { sky: 0xffc8a0, ground: 0x6b4a2a, i: 0.5 },
+                amb: { c: 0xffccaa, i: 0.2 },
+                fog: { c: 0xf2c79b, n: 120, f: 700 },
+                exp: 1.05, sunV: true, moonV: false, cloudC: 0xffd9b0, clearC: 0xf0a870,
+                sky: { turb: 8, ray: 3.5, mie: 0.01, mieG: 0.85, cloud: 0.3, cD: 0.6, cE: 0.6 },
+            },
+            {
+                name: '夜晚',
+                sunDir: new THREE.Vector3(0.5, -0.35, 0.6).normalize(),
+                sun: { c: 0x88aaff, i: 0.35 },
+                hemi: { sky: 0x2a3a66, ground: 0x1a2a1a, i: 0.35 },
+                amb: { c: 0x334466, i: 0.18 },
+                fog: { c: 0x1a2438, n: 60, f: 500 },
+                exp: 0.85, sunV: false, moonV: true, cloudC: 0x8899bb, clearC: 0x0a1226,
+                sky: { turb: 10, ray: 1.2, mie: 0.002, mieG: 0.6, cloud: 0.25, cD: 0.4, cE: 0.5 },
+            }
+        ];
+
+        /* 应用昼夜预设：更新天空、光照、雾、曝光、太阳/月亮、湖面 */
+        function applyDayNightPreset(idx) {
+            var P = DAYNIGHT_PRESETS[idx];
+            daynightIndex = idx;
+            currentSunDir = P.sunDir;
+
+            // 天空（Preetham）
+            if (skyObj && skyObj.material && skyObj.material.uniforms) {
+                var u = skyObj.material.uniforms;
+                u['turbidity'].value = P.sky.turb;
+                u['rayleigh'].value = P.sky.ray;
+                u['mieCoefficient'].value = P.sky.mie;
+                u['mieDirectionalG'].value = P.sky.mieG;
+                u['cloudCoverage'].value = P.sky.cloud;
+                u['cloudDensity'].value = P.sky.cD;
+                u['cloudElevation'].value = P.sky.cE;
+                u['sunPosition'].value.copy(currentSunDir);
+            }
+
+            // 雾
+            if (scene.fog) {
+                scene.fog.color.setHex(P.fog.c);
+                scene.fog.near = P.fog.n;
+                scene.fog.far = P.fog.f;
+            }
+
+            // 光照
+            if (sunLight) {
+                sunLight.color.setHex(P.sun.c);
+                sunLight.intensity = P.sun.i;
+            }
+            if (!ambientLight) {
+                ambientLight = new THREE.AmbientLight(0xffffff, 1);
+                scene.add(ambientLight);
+            }
+            ambientLight.color.setHex(P.amb.c);
+            ambientLight.intensity = P.amb.i;
+            if (!hemiLight) {
+                hemiLight = new THREE.HemisphereLight(0xbfd8ff, 0x557a3a, 1);
+                scene.add(hemiLight);
+            }
+            hemiLight.color.setHex(P.hemi.sky);
+            hemiLight.groundColor.setHex(P.hemi.ground);
+            hemiLight.intensity = P.hemi.i;
+
+            // 太阳 / 月亮亮片
+            if (sunSphere) {
+                sunSphere.visible = P.sunV;
+                sunSphere.position.copy(currentSunDir.clone().multiplyScalar(400));
+            }
+            if (moonSprite) {
+                moonSprite.visible = P.moonV;
+                moonSprite.position.copy(currentSunDir.clone().multiplyScalar(-400));
+            }
+
+            // 曝光 + 背景
+            renderer.toneMappingExposure = P.exp;
+            renderer.setClearColor(P.clearC, 1);
+
+            // 云朵颜色
+            for (var ci = 0; ci < cloudSprites.length; ci++) {
+                cloudSprites[ci].material.color.setHex(P.cloudC);
+                cloudSprites[ci].material.opacity = daynightIndex === 2 ? 0.5 : 0.9;
+            }
+
+            // 湖面阳光方向
+            for (var li = 0; li < lakeMeshes.length; li++) {
+                if (lakeMeshes[li].material.uniforms) {
+                    lakeMeshes[li].material.uniforms['sunDirection'].value.copy(currentSunDir);
+                    lakeMeshes[li].material.uniforms['sunColor'].value.setHex(P.exp < 1 ? 0x88aaff : 0xffffff);
+                }
+            }
+
+            // 阴影相机跟随
+            updateShadowCamera();
+
+            // 按钮文案
+            var btn = document.getElementById('daynightBtn');
+            if (btn) btn.textContent = P.name;
+        }
+
+        function cycleDayNight() {
+            applyDayNightPreset((daynightIndex + 1) % DAYNIGHT_PRESETS.length);
+        }
+
+        /* 高度图 → 世界高度（线性，无岛屿衰减） */
+        function heightToWorld(h) {
+            return h * TERRAIN_HEIGHT_SCALE - 0.5;
+        }
+
+        /* 判断世界坐标是否在任一个湖内（含鼓出 1.5m） */
+        function inLake(x, z, pad) {
+            pad = pad || 0;
+            for (var i = 0; i < lakes.length; i++) {
+                var dx = x - lakes[i].x, dz = z - lakes[i].z;
+                if (dx * dx + dz * dz < (lakes[i].r + pad) * (lakes[i].r + pad)) return true;
+            }
+            return false;
+        }
+
+        /* 生成高度图：柔和丘陵 + 湖泊雕刻 + 边缘淡出 */
         function generateHeightMap() {
             perlin = new ImprovedNoise();
             var w = TERRAIN_SEG + 1;
@@ -682,50 +865,67 @@
             var data = new Uint8Array(w * d);
             var zSeed = Math.random() * 100;
             var quality = 2;
-            // 4 层 Perlin 噪声叠加（从低频到高频）
+            var smoothstep = function(t) { return t * t * (3 - 2 * t); };
+            // 4 层 Perlin 噪声叠加（从低频到高频）——丘陵感
             for (var j = 0; j < 4; j++) {
+                var jScale = (j === 0) ? 2.2 : (j === 1 ? 1.0 : 0.5);   // 低频主导，控制起伏
                 for (var i = 0; i < w * d; i++) {
                     var px = i % w;
                     var py = Math.floor(i / w);
-                    // 归一化到 [-1,1] 范围采样
-                    var nx = (px / w - 0.5) * 2;
-                    var ny = (py / d - 0.5) * 2;
-                    // 岛屿衰减（径向）
-                    var dist = Math.sqrt(nx * nx + ny * ny);
-                    var falloff = Math.max(0, 1 - dist / 0.95);
-                    falloff = falloff * falloff * (3 - 2 * falloff);
-
-                    var n = Math.abs(perlin.noise(px / quality, py / quality, zSeed) * quality * 1.75);
-                    if (j === 0) {
-                        data[i] = n * falloff;
-                    } else {
-                        data[i] += n * falloff * 0.5;
-                    }
+                    var n = Math.abs(perlin.noise(px / quality, py / quality, zSeed) * quality * jScale);
+                    // 轻微挤压：让谷地更平、丘脊更圆（乘 0.8 + 0.4*n）
+                    n = n * (0.8 + 0.4 * n);
+                    data[i] += n;
                 }
-                quality *= 4;
+                quality *= 3;
             }
-            // 归一化到 0-255 并应用岛屿衰减
+            // 归一化到 0-255
             var max = 0;
             for (var i = 0; i < data.length; i++) if (data[i] > max) max = data[i];
             if (max > 0) {
-                for (var i = 0; i < data.length; i++) {
-                    var px = i % w;
-                    var py = Math.floor(i / w);
-                    var nx = (px / w - 0.5) * 2;
-                    var ny = (py / d - 0.5) * 2;
-                    var dist = Math.sqrt(nx * nx + ny * ny);
-                    var falloff = Math.max(0, 1 - dist / 0.95);
-                    falloff = falloff * falloff * (3 - 2 * falloff);
-                    data[i] = (data[i] / max * 255) * falloff;
+                for (var i = 0; i < data.length; i++) data[i] = data[i] / max * 255;
+            }
+            // 挖湖：把湖所在区域的每个像素压到接近湖水位
+            for (var li = 0; li < lakes.length; li++) {
+                var L = lakes[li];
+                for (var y = 0; y < d; y++) {
+                    for (var x = 0; x < w; x++) {
+                        var wx = (x / w - 0.5) * TERRAIN_SIZE;
+                        var wz = (y / d - 0.5) * TERRAIN_SIZE;
+                        var ddx = wx - L.x, ddz = wz - L.z;
+                        var dist = Math.sqrt(ddx * ddx + ddz * ddz) / L.r;
+                        if (dist >= 1.0) continue;
+                        // 目标海域高度像素值（湖水位下方一点，露出水面）
+                        var target = (LAKE_WATER_LEVEL - 0.35 + 0.5) / TERRAIN_HEIGHT_SCALE;
+                        var tt = smoothstep(Math.max(0, 1 - dist));  // 中心 tt=1，边缘 tt=0
+                        data[y * w + x] = Math.min(data[y * w + x], target + (1 - tt) * 50);
+                    }
+                }
+            }
+            // 边缘最外 6% 向基线平滑过渡，防越界坠入空洞
+            var edgePix = Math.max(4, Math.floor(w * 0.06));
+            var baseH = (0.25 + 0.5) / TERRAIN_HEIGHT_SCALE;
+            for (var e = 1; e <= edgePix; e++) {
+                var bw = smoothstep(e / edgePix);   // 越靠内(大e)越接近原值，靠边→接近 baseH
+                var alpha = 1 - smoothstep((edgePix - e) / edgePix);
+                for (var yy = 0; yy < d; yy++) {
+                    var iL = yy * w + e;
+                    var iR = yy * w + (w - 1 - e);
+                    data[iL] = data[iL] + (baseH - data[iL]) * alpha;
+                    data[iR] = data[iR] + (baseH - data[iR]) * alpha;
+                }
+                for (var xx = 0; xx < w; xx++) {
+                    var iiT = e * w + xx;
+                    var iiB = (d - 1 - e) * w + xx;
+                    data[iiT] = data[iiT] + (baseH - data[iiT]) * alpha;
+                    data[iiB] = data[iiB] + (baseH - data[iiB]) * alpha;
                 }
             }
             return data;
         }
 
-        /* 生成带光照烘焙的地形纹理（参考 terrain_raycast 的 generateTexture） */
+        /* 生成草地色带地形纹理（不再烘焙阳光，光影交给实时光照 + 阴影） */
         function generateTerrainTexture(data, w, d) {
-            var sun = new THREE.Vector3(1, 1, 1);
-            sun.normalize();
             var canvas = document.createElement('canvas');
             canvas.width = w; canvas.height = d;
             var ctx = canvas.getContext('2d');
@@ -733,63 +933,55 @@
             ctx.fillRect(0, 0, w, d);
             var image = ctx.getImageData(0, 0, w, d);
             var imageData = image.data;
-            var v3 = new THREE.Vector3(0, 0, 0);
+
+            // 湖水面在高度图 0-255 中的像素值
+            var waterH = (LAKE_WATER_LEVEL + 0.5) / TERRAIN_HEIGHT_SCALE;
+
+            // 草地色带（暖绿丘陵风格，参照 Slow Roads）
+            var bands = [
+                { h: 0.16, c: [122, 168, 99]  },  // 湖岸/浅滩湿草
+                { h: 0.34, c: [96, 148, 78]   },  // 低洼草地
+                { h: 0.55, c: [112, 155, 84]  },  // 主要草地
+                { h: 0.74, c: [132, 158, 92]  },  // 高处干草
+                { h: 1.01, c: [150, 144, 108] },  // 岩土
+            ];
+            function colorAt(h) {
+                if (h <= bands[0].h) return bands[0].c;
+                for (var b = 1; b < bands.length; b++) {
+                    if (h <= bands[b].h) {
+                        var a = bands[b - 1], n = bands[b];
+                        var t = (h - a.h) / Math.max(1e-6, (n.h - a.h));
+                        return [
+                            a.c[0] + (n.c[0] - a.c[0]) * t,
+                            a.c[1] + (n.c[1] - a.c[1]) * t,
+                            a.c[2] + (n.c[2] - a.c[2]) * t,
+                        ];
+                    }
+                }
+                return bands[bands.length - 1].c;
+            }
 
             for (var i = 0, j = 0; i < imageData.length; i += 4, j++) {
-                // 从高度差估算法线
-                v3.x = (data[j - 2] || data[j]) - (data[j + 2] || data[j]);
-                v3.y = 2;
-                v3.z = (data[j - w * 2] || data[j]) - (data[j + w * 2] || data[j]);
-                v3.normalize();
-                var shade = v3.dot(sun);  // [-1,1]
-
-                // 归一化高度 0-1
                 var h = data[j] / 255;
-                var factor = 0.5 + h * 0.5;
-
-                // 根据高度选择基色
                 var r, g, b;
-                if (h < 0.08) {
-                    // 水下沙
-                    r = 60; g = 90; b = 80;
-                } else if (h < 0.15) {
-                    // 湿沙
-                    r = 180; g = 160; b = 100;
-                } else if (h < 0.25) {
-                    // 干沙 → 草地过渡
-                    var t = (h - 0.15) / 0.1;
-                    r = 200 + (74 - 200) * t;
-                    g = 180 + (140 - 180) * t;
-                    b = 120 + (58 - 120) * t;
-                } else if (h < 0.45) {
-                    // 草地
-                    r = 74; g = 140; b = 58;
-                } else if (h < 0.6) {
-                    // 深草 → 岩石
-                    var t = (h - 0.45) / 0.15;
-                    r = 74 + (107 - 74) * t;
-                    g = 140 + (93 - 140) * t;
-                    b = 58 + (79 - 58) * t;
-                } else if (h < 0.8) {
-                    // 岩石
-                    r = 107; g = 93; b = 79;
+                if (data[j] <= waterH) {
+                    // 湖床：浅沙 + 蓝绿水草
+                    var depth = 1 - Math.max(0, (waterH - data[j]) / waterH);
+                    r = 70 + 30 * depth; g = 108 + 24 * depth; b = 90 + 30 * depth;
                 } else {
-                    // 山顶浅岩
-                    var t = (h - 0.8) / 0.2;
-                    r = 107 + (138 - 107) * t;
-                    g = 93 + (125 - 93) * t;
-                    b = 79 + (110 - 79) * t;
+                    var cb = colorAt(h);
+                    r = cb[0]; g = cb[1]; b = cb[2];
                 }
-
-                // 应用光照烘焙
-                imageData[i]     = (r * 0.5 + shade * 128 * 0.5) * factor;
-                imageData[i + 1] = (g * 0.5 + shade * 128 * 0.5) * factor;
-                imageData[i + 2] = (b * 0.5 + shade * 128 * 0.5) * factor;
+                // 细微随机噪声，打破色带硬边
+                var nz = (Math.random() * 16 - 8);
+                imageData[i]     = Math.max(0, Math.min(255, r + nz));
+                imageData[i + 1] = Math.max(0, Math.min(255, g + nz));
+                imageData[i + 2] = Math.max(0, Math.min(255, b + nz));
                 imageData[i + 3] = 255;
             }
             ctx.putImageData(image, 0, 0);
 
-            // 放大 4x 并加噪声细节
+            // 放大 4x 并加细节噪声
             var canvasScaled = document.createElement('canvas');
             canvasScaled.width = w * 4; canvasScaled.height = d * 4;
             var ctx2 = canvasScaled.getContext('2d');
@@ -818,11 +1010,11 @@
             // 双线性插值采样
             var ix = Math.floor(fx), iz = Math.floor(fz);
             if (ix < 0 || ix >= w - 1 || iz < 0 || iz >= d - 1) {
-                // 岛外海底
-                var distOut = Math.sqrt(x * x + z * z);
-                return -3 - (distOut - ISLAND_RADIUS) * 0.1;
+                // 越界钳制到湖水位基线（地形边缘已向该值平滑过渡），防止坠入空洞
+                return 0;
             }
-            var tx = fx - ix, tz = fz - iz;
+            var tx = Math.min(Math.max(fx - ix, 0), 1);
+            var tz = Math.min(Math.max(fz - iz, 0), 1);
             var h00 = heightData[iz * w + ix];
             var h10 = heightData[iz * w + (ix + 1)];
             var h01 = heightData[(iz + 1) * w + ix];
@@ -831,9 +1023,9 @@
             var h1 = h01 + (h11 - h01) * tx;
             var h = h0 + (h1 - h0) * tz;
             // 高度图值(0-255) → 世界高度
-            // 中心约 255*0.16 ≈ 40m，边缘 0 → 海平面
             var worldH = h * TERRAIN_HEIGHT_SCALE - 0.5;
-            return worldH;
+            // 整体钳制：最低不过湖水位基线上方一点，最高不超过地形上限
+            return Math.max(0, Math.min(worldH, TERRAIN_HEIGHT_SCALE * 255 - 0.5));
         }
 
         /* 构建海岛地形 */
@@ -865,9 +1057,11 @@
             // 5. 创建网格
             var mat = new THREE.MeshStandardMaterial({
                 map: tex,
-                roughness: 0.92,
+                roughness: 0.95,
                 metalness: 0.0,
             });
+            mat.receiveShadow = true;
+            mat.castShadow = true;
             var mesh = new THREE.Mesh(geo, mat);
             scene.add(mesh);
             terrainMesh = mesh;
@@ -876,145 +1070,230 @@
         }
 
         /* ============================================================
-         * 海洋（three.js Water — 真实反射水面）
+         * 湖泊（three.js Water — 每个湖一个圆形水面，真实反射天空）
          * ============================================================ */
-        function buildOcean() {
-            var waterGeo = new THREE.PlaneGeometry(10000, 10000);
-            var sunDir = new THREE.Vector3(0.5, 0.6, 0.4).normalize();
+        function buildLakes() {
             var waterNormalsTex = new THREE.TextureLoader().load('./assets/textures/waternormals.jpg');
             waterNormalsTex.wrapS = waterNormalsTex.wrapT = THREE.RepeatWrapping;
+            var sunDir = currentSunDir || new THREE.Vector3(0.5, 0.6, 0.4).normalize();
 
-            oceanMesh = new Water(waterGeo, {
-                textureWidth: 512,
-                textureHeight: 512,
-                waterNormals: waterNormalsTex,
-                sunDirection: sunDir,
-                sunColor: 0xffffff,
-                waterColor: 0x1a6da0,
-                distortionScale: 3.7,
-                fog: scene.fog !== undefined,
+            lakeMeshes.forEach(function(m) { if (m) { m.geometry.dispose(); scene.remove(m); } });
+            lakeMeshes = [];
+
+            lakes.forEach(function(L) {
+                var geo = new THREE.CircleGeometry(L.r * 1.05, 48);
+                geo.rotateX(-Math.PI / 2);
+                var water = new Water(geo, {
+                    textureWidth: 256,
+                    textureHeight: 256,
+                    waterNormals: waterNormalsTex,
+                    sunDirection: sunDir,
+                    sunColor: 0xffffff,
+                    waterColor: 0x2d6b8a,
+                    distortionScale: 3.2,
+                    fog: scene.fog !== undefined,
+                });
+                water.rotation.z = 0;
+                water.position.set(L.x, LAKE_WATER_LEVEL, L.z);
+                water.userData.lake = L;
+                scene.add(water);
+                lakeMeshes.push(water);
             });
-            oceanMesh.rotation.x = -Math.PI / 2;
-            oceanMesh.position.y = SEA_LEVEL;
-            scene.add(oceanMesh);
         }
 
         /* ============================================================
-         * 太阳
+         * 太阳（亮片 + 定向光投影）
          * ============================================================ */
         function buildSun() {
-            var sunDir = new THREE.Vector3(0.5, 0.6, 0.4).normalize();
+            var sunDir = currentSunDir || new THREE.Vector3(0.5, 0.6, 0.4).normalize();
             // 太阳：用 Canvas 生成带核心+光晕的纹理，做成 Sprite（加法混合，无深度问题）
             var c = document.createElement('canvas');
-            c.width = 512; c.height = 512;
+            c.width = 256; c.height = 256;
             var ctx = c.getContext('2d');
-            // 外层大光晕
-            var g1 = ctx.createRadialGradient(256, 256, 0, 256, 256, 256);
-            g1.addColorStop(0, 'rgba(255,250,230,0.9)');
-            g1.addColorStop(0.08, 'rgba(255,245,200,0.7)');
-            g1.addColorStop(0.2, 'rgba(255,235,170,0.35)');
-            g1.addColorStop(0.45, 'rgba(255,220,140,0.12)');
-            g1.addColorStop(1, 'rgba(255,200,100,0)');
+            var g1 = ctx.createRadialGradient(128, 128, 0, 128, 128, 128);
+            g1.addColorStop(0, 'rgba(255,250,230,0.95)');
+            g1.addColorStop(0.1, 'rgba(255,245,200,0.6)');
+            g1.addColorStop(0.3, 'rgba(255,235,170,0.25)');
+            g1.addColorStop(1, 'rgba(255,220,140,0)');
             ctx.fillStyle = g1;
-            ctx.fillRect(0, 0, 512, 512);
-            // 核心实心圆
-            var g2 = ctx.createRadialGradient(256, 256, 0, 256, 256, 40);
+            ctx.fillRect(0, 0, 256, 256);
+            var g2 = ctx.createRadialGradient(128, 128, 0, 128, 128, 30);
             g2.addColorStop(0, 'rgba(255,255,255,1)');
-            g2.addColorStop(0.5, 'rgba(255,250,230,0.9)');
+            g2.addColorStop(0.6, 'rgba(255,250,230,0.9)');
             g2.addColorStop(1, 'rgba(255,240,200,0)');
             ctx.fillStyle = g2;
-            ctx.fillRect(0, 0, 512, 512);
+            ctx.fillRect(0, 0, 256, 256);
 
             var sunTex = new THREE.CanvasTexture(c);
             var sunMat = new THREE.SpriteMaterial({
                 map: sunTex,
                 transparent: true,
                 depthWrite: false,
-                depthTest: false,
                 fog: false,
                 blending: THREE.AdditiveBlending,
             });
             sunSphere = new THREE.Sprite(sunMat);
-            sunSphere.scale.set(80, 80, 1);
+            sunSphere.scale.set(60, 60, 1);
             sunSphere.position.copy(sunDir.clone().multiplyScalar(400));
             scene.add(sunSphere);
-            // 定向光
+
+            // 定向光 + 阴影
             if (!sunLight) {
                 sunLight = new THREE.DirectionalLight(0xfff4e0, 1.5);
+                sunLight.castShadow = true;
+                sunLight.shadow.mapSize.set(2048, 2048);
+                sunLight.shadow.bias = -0.0005;
+                var cam = sunLight.shadow.camera;
+                cam.near = 1; cam.far = 220;
+                cam.left = -80; cam.right = 80; cam.top = 80; cam.bottom = -80;
                 scene.add(sunLight);
             }
-            sunLight.position.copy(sunDir.clone().multiplyScalar(50));
-            sunLight.intensity = 1.5;
+            sunLight.position.copy(sunDir.clone().multiplyScalar(120));
+            sunLight.target.position.set(0, 0, 0);
+            updateShadowCamera();
         }
 
         /* ============================================================
-         * 棕榈树
+         * 月亮（夜晚亮片）
          * ============================================================ */
-        function addPalmTrees() {
-            var positions = [
-                { x: 20, z: 12 }, { x: -18, z: 15 }, { x: 14, z: -18 },
-                { x: -22, z: -10 }, { x: 25, z: 5 }, { x: -12, z: 22 },
-                { x: 8, z: 25 }, { x: -28, z: 3 },
-            ];
-            positions.forEach(function(p) {
-                var h = getIslandHeight(p.x, p.z);
-                if (h < 0.1) return; // 只在沙滩上种
-                createPalmTree(p.x, h, p.z);
+        function buildMoon() {
+            var dir = (-currentSunDir || new THREE.Vector3(-0.4, 0.6, -0.3)).clone().normalize();
+            var c = document.createElement('canvas');
+            c.width = 192; c.height = 192;
+            var ctx = c.getContext('2d');
+            var g = ctx.createRadialGradient(96, 96, 0, 96, 96, 96);
+            g.addColorStop(0, 'rgba(235,240,255,1)');
+            g.addColorStop(0.25, 'rgba(220,228,252,0.55)');
+            g.addColorStop(0.7, 'rgba(200,215,245,0.12)');
+            g.addColorStop(1, 'rgba(190,210,240,0)');
+            ctx.fillStyle = g;
+            ctx.fillRect(0, 0, 192, 192);
+            // 简单月面暗斑
+            ctx.beginPath(); ctx.arc(88, 92, 22, 0, 7); ctx.fillStyle = 'rgba(170,180,200,0.5)'; ctx.fill();
+            ctx.beginPath(); ctx.arc(114, 116, 14, 0, 7); ctx.fillStyle = 'rgba(170,180,200,0.4)'; ctx.fill();
+
+            var moonMat = new THREE.SpriteMaterial({
+                map: new THREE.CanvasTexture(c),
+                transparent: true,
+                depthWrite: false,
+                fog: false,
+                blending: THREE.AdditiveBlending,
             });
+            moonSprite = new THREE.Sprite(moonMat);
+            moonSprite.scale.set(42, 42, 1);
+            moonSprite.position.copy(dir.multiplyScalar(400));
+            moonSprite.visible = false;
+            scene.add(moonSprite);
         }
-        function createPalmTree(x, y, z) {
+
+        // 让阴影相机跟随玩家，保证角色/树影清晰
+        function updateShadowCamera() {
+            if (!sunLight) return;
+            var p = player ? player.position : new THREE.Vector3(0, 0, 0);
+            var target = p.clone();
+            var lightPos = target.clone().add(currentSunDir.clone().multiplyScalar(120));
+            sunLight.position.copy(lightPos);
+            sunLight.target.position.copy(target);
+            sunLight.target.updateMatrixWorld();
+        }
+
+        /* ============================================================
+         * 草原树木 + 灌木（Slow Roads 风格低多边形植被）
+         * ============================================================ */
+        function addGrassTrees() {
+            // 树木（避开湖中央，且不种在湖水里）
+            for (var i = 0; i < 40; i++) {
+                var x = (Math.random() - 0.5) * (TERRAIN_SIZE - 24);
+                var z = (Math.random() - 0.5) * (TERRAIN_SIZE - 24);
+                var h = getIslandHeight(x, z);
+                if (h <= 0.6) continue;            // 太低（湖/岸）不种
+                if (inLake(x, z)) continue;        // 湖内不种
+                createGrassTree(x, h, z);
+            }
+            // 灌木（数量更多、更低矮）
+            for (var i = 0; i < 90; i++) {
+                var x = (Math.random() - 0.5) * TERRAIN_SIZE;
+                var z = (Math.random() - 0.5) * TERRAIN_SIZE;
+                var h = getIslandHeight(x, z);
+                if (h <= 0.3) continue;
+                if (inLake(x, z)) continue;
+                createBush(x, h, z);
+            }
+        }
+
+        function createGrassTree(x, y, z) {
             var group = new THREE.Group();
-            var trunkMat = new THREE.MeshStandardMaterial({ color: 0x8a6b3f, roughness: 0.9 });
-            // 弯曲树干（3段圆柱）
-            var trunkH = 4.5 + Math.random() * 1.5;
-            var segs = 4;
-            var lean = 0.15 + Math.random() * 0.15;
-            var prevY = 0;
-            var prevX = 0;
-            for (var s = 0; s < segs; s++) {
-                var segH = trunkH / segs;
-                var cyl = new THREE.Mesh(
-                    new THREE.CylinderGeometry(0.18 - s * 0.02, 0.22 - s * 0.02, segH, 8),
-                    trunkMat
-                );
-                cyl.position.set(prevX, prevY + segH / 2, 0);
-                cyl.rotation.z = lean;
-                group.add(cyl);
-                prevY += segH * Math.cos(lean);
-                prevX += segH * Math.sin(lean);
-            }
-            // 树叶（掌状叶）
-            var leafMat = new THREE.MeshStandardMaterial({ color: 0x2d8a3a, roughness: 0.8, side: THREE.DoubleSide });
-            var numLeaves = 7;
-            for (var l = 0; l < numLeaves; l++) {
-                var angle = (l / numLeaves) * Math.PI * 2;
-                var leafGeo = new THREE.ConeGeometry(0.15, 3.5, 4);
-                var leaf = new THREE.Mesh(leafGeo, leafMat);
-                leaf.position.set(prevX + Math.cos(angle) * 1.0, prevY + 0.3, Math.sin(angle) * 1.0);
-                leaf.rotation.z = Math.PI / 2 + 0.3;
-                leaf.rotation.y = angle;
-                leaf.scale.set(1, 1.4, 0.3);
-                group.add(leaf);
-            }
-            // 椰子
-            var coconutMat = new THREE.MeshStandardMaterial({ color: 0x5a3a1a, roughness: 0.8 });
-            for (var c = 0; c < 3; c++) {
-                var coconut = new THREE.Mesh(new THREE.SphereGeometry(0.18, 8, 6), coconutMat);
-                var ca = (c / 3) * Math.PI * 2;
-                coconut.position.set(prevX + Math.cos(ca) * 0.4, prevY, Math.sin(ca) * 0.4);
-                group.add(coconut);
+            var s = 0.8 + Math.random() * 0.5;
+            var trunkMat = new THREE.MeshStandardMaterial({ color: 0x6f5234, roughness: 0.95 });
+            var trunkH = (2.2 + Math.random() * 1.4) * s;
+            var trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.14 * s, 0.2 * s, trunkH, 7), trunkMat);
+            trunk.position.y = trunkH / 2;
+            trunk.castShadow = true;
+            group.add(trunk);
+
+            // 树冠：2-3 层球形/锥体，触手可及的低多边形
+            var leafColors = [0x3f8f3f, 0x4f9f4f, 0x37913b, 0x55a050];
+            var leafMat = new THREE.MeshStandardMaterial({
+                color: leafColors[Math.floor(Math.random() * leafColors.length)],
+                roughness: 0.85,
+            });
+            var topY = trunkH;
+            var curR = (1.05 + Math.random() * 0.3) * s;
+            var layers = 2 + Math.floor(Math.random() * 2);
+            for (var l = 0; l < layers; l++) {
+                var sphere = new THREE.Mesh(new THREE.SphereGeometry(curR, 8, 6), leafMat);
+                sphere.position.y = topY + curR * 0.5;
+                sphere.castShadow = true;
+                group.add(sphere);
+                topY = sphere.position.y;
+                curR *= 0.75;
             }
             group.position.set(x, y, z);
             group.rotation.y = Math.random() * Math.PI * 2;
             scene.add(group);
-            // 树干碰撞（用粗略 AABB，不可见但可射线命中）
-            var trunkBox = new THREE.Mesh(new THREE.BoxGeometry(0.5, trunkH, 0.5), new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false }));
-            trunkBox.position.set(x + prevX / 2, y + trunkH / 2, z);
-            trunkBox.userData = { id: 'palm_' + palmTrees.length, name: '棕榈树', collidable: true, interactive: true, actions: ['查看', '砍伐'] };
+
+            // 树干碰撞盒（可射线命中 + 阻挡）
+            var collideH = trunkH + 0.6;
+            var trunkBox = new THREE.Mesh(
+                new THREE.BoxGeometry(0.6, collideH, 0.6),
+                new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false })
+            );
+            trunkBox.position.set(x, y + collideH / 2, z);
+            trunkBox.userData = { id: 'tree_' + palmTrees.length, name: '大树', collidable: true, interactive: true, actions: ['查看', '砍伐'] };
             scene.add(trunkBox);
             COLLIDABLE_MESHES.push(trunkBox);
             INTERACTIVE_MESHES.push(trunkBox);
             palmTrees.push(group);
+        }
+
+        function createBush(x, y, z) {
+            var group = new THREE.Group();
+            var s = 0.6 + Math.random() * 0.5;
+            var bushMat = new THREE.MeshStandardMaterial({ color: 0x3f8f3f, roughness: 0.9 });
+            var n = 3 + Math.floor(Math.random() * 3);
+            for (var i = 0; i < n; i++) {
+                var sph = new THREE.Mesh(new THREE.SphereGeometry(s * (0.5 + Math.random() * 0.4), 6, 4), bushMat);
+                sph.position.set(
+                    (Math.random() - 0.5) * s * 1.2,
+                    s * 0.3,
+                    (Math.random() - 0.5) * s * 1.2
+                );
+                sph.castShadow = true;
+                group.add(sph);
+            }
+            group.position.set(x, y, z);
+            group.rotation.y = Math.random() * Math.PI * 2;
+            scene.add(group);
+
+            var box = new THREE.Mesh(
+                new THREE.BoxGeometry(s * 1.4, s * 0.7, s * 1.4),
+                new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false })
+            );
+            box.position.set(x, y + s * 0.35, z);
+            box.userData = { id: 'bush_' + palmTrees.length, name: '灌木', collidable: true, interactive: true, actions: ['查看', '砍伐'] };
+            scene.add(box);
+            COLLIDABLE_MESHES.push(box);
+            INTERACTIVE_MESHES.push(box);
         }
 
         function createMesh(obj) {
@@ -1090,16 +1369,21 @@
         }
 
         function addClouds() {
-            // 生成一张柔和的云纹理
+            // 生成柔和的云纹理（多层叠加，更有体积感）
             var c = document.createElement('canvas');
             c.width = 128; c.height = 128;
             var ctx = c.getContext('2d');
-            var grd = ctx.createRadialGradient(64, 64, 2, 64, 64, 64);
-            grd.addColorStop(0, 'rgba(255,255,255,1)');
-            grd.addColorStop(0.4, 'rgba(255,255,255,0.75)');
-            grd.addColorStop(1, 'rgba(255,255,255,0)');
-            ctx.fillStyle = grd;
-            ctx.fillRect(0, 0, 128, 128);
+            for (var blob = 0; blob < 5; blob++) {
+                var bx = 40 + Math.random() * 48;
+                var by = 40 + Math.random() * 48;
+                var br = 14 + Math.random() * 12;
+                var g = ctx.createRadialGradient(bx, by, 0, bx, by, br);
+                g.addColorStop(0, 'rgba(255,255,255,0.9)');
+                g.addColorStop(0.5, 'rgba(255,255,255,0.45)');
+                g.addColorStop(1, 'rgba(255,255,255,0)');
+                ctx.fillStyle = g;
+                ctx.fillRect(0, 0, 128, 128);
+            }
             var cloudTex = new THREE.CanvasTexture(c);
             cloudTex.colorSpace = THREE.SRGBColorSpace;
 
@@ -1111,6 +1395,7 @@
                 color: 0xffffff,
             });
 
+            cloudSprites = [];
             var count = 60;
             for (var i = 0; i < count; i++) {
                 var sprite = new THREE.Sprite(cloudMat.clone());
@@ -1127,6 +1412,7 @@
                 sprite.userData.baseAngle = angle;
                 sprite.userData.dist = dist;
                 scene.add(sprite);
+                cloudSprites.push(sprite);
             }
         }
 
@@ -1354,6 +1640,9 @@
             document.getElementById('startBtn').addEventListener('click', function() {
                 canvas.requestPointerLock();
             });
+
+            // 昼夜切换按钮
+            document.getElementById('daynightBtn').addEventListener('click', cycleDayNight);
 
             document.addEventListener('pointerlockchange', function() {
                 isPointerLocked = document.pointerLockElement === canvas;
@@ -1757,10 +2046,13 @@
             if (skyObj) {
                 skyObj.material.uniforms['time'].value = now * 0.001;
             }
-            // 海洋动画（Water 内部自动反射场景）
-            if (oceanMesh) {
-                oceanMesh.material.uniforms['time'].value += dt;
+            // 湖面动画（Water 波动）+ 阴影相机跟随
+            for (var wi = 0; wi < lakeMeshes.length; wi++) {
+                if (lakeMeshes[wi].material.uniforms) {
+                    lakeMeshes[wi].material.uniforms['time'].value += dt;
+                }
             }
+            updateShadowCamera();
             renderer.render(scene, camera);
 
             requestAnimationFrame(loop);
