@@ -178,7 +178,7 @@
 
         #contextMenu .close-menu:hover { color: #ccc; }
 
-        /* 开始覆盖层 */
+        /* 开始覆盖层（暖色调，参考 prompt.html：米色底 + 白卡片 + 黄色强调） */
         #startOverlay {
             position: fixed;
             inset: 0;
@@ -187,8 +187,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #0a0a1a 0%, #050510 100%);
-            color: #fff;
+            background: linear-gradient(135deg, #fff3dc 0%, #fbe3c0 45%, #faf9f4 100%);
+            color: rgba(22, 23, 28, 0.88);
         }
 
         #startOverlay.hidden {
@@ -201,25 +201,27 @@
         #startOverlay h1 {
             font-size: 42px;
             margin-bottom: 12px;
-            background: linear-gradient(135deg, #88ccff, #cc88ff);
+            background: linear-gradient(135deg, #f0a030, #e07b26);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            letter-spacing: 2px;
         }
 
         #startOverlay .desc {
             font-size: 14px;
-            color: #8888aa;
+            color: rgba(22, 23, 28, 0.55);
             margin-bottom: 32px;
             text-align: center;
         }
 
         #startOverlay .controls {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
+            background: #ffffff;
+            border: 1px solid rgba(22, 23, 28, 0.08);
+            border-radius: 16px;
             padding: 24px 32px;
             margin-bottom: 32px;
+            box-shadow: 0 8px 30px rgba(180, 130, 60, 0.12);
         }
 
         #startOverlay .controls-row {
@@ -228,38 +230,40 @@
             gap: 40px;
             margin: 8px 0;
             font-size: 13px;
-            color: #aaaacc;
+            color: rgba(22, 23, 28, 0.65);
         }
 
         #startOverlay .controls-row kbd {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(22, 23, 28, 0.05);
+            border: 1px solid rgba(22, 23, 28, 0.12);
             border-radius: 5px;
             padding: 2px 8px;
             font-family: inherit;
             font-size: 12px;
-            color: #fff;
+            color: rgba(22, 23, 28, 0.88);
             min-width: 28px;
             display: inline-block;
             text-align: center;
         }
 
         #startBtn {
-            background: linear-gradient(135deg, #4466aa, #6644aa);
-            color: white;
+            background: #ffd83d;
+            color: #3a2c10;
             border: none;
             border-radius: 12px;
             padding: 14px 48px;
             font-size: 16px;
+            font-weight: 700;
             font-family: inherit;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 20px rgba(80, 100, 200, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+            box-shadow: 0 4px 20px rgba(240, 180, 60, 0.4);
         }
 
         #startBtn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 28px rgba(80, 100, 200, 0.55);
+            background: #ffe066;
+            box-shadow: 0 8px 28px rgba(240, 180, 60, 0.55);
         }
 
         #startBtn:active { transform: translateY(0); }
@@ -299,6 +303,27 @@
             border-color: rgba(140, 190, 255, 0.6);
         }
 
+        /* 音乐开关按钮 */
+        #musicBtn {
+            position: fixed;
+            top: 14px; left: 14px;
+            background: rgba(8, 14, 28, 0.72);
+            border: 1px solid rgba(255, 200, 120, 0.35);
+            border-radius: 8px;
+            color: #ffd9a0;
+            font-family: 'Consolas', 'Microsoft YaHei', monospace;
+            font-size: 13px;
+            padding: 6px 14px;
+            cursor: pointer;
+            pointer-events: auto;
+            z-index: 11;
+            transition: background 0.15s, border-color 0.15s;
+        }
+        #musicBtn:hover {
+            background: rgba(90, 60, 20, 0.85);
+            border-color: rgba(255, 210, 140, 0.6);
+        }
+
         /* 蓄力条 */
         #chargeWrap {
             position: absolute;
@@ -321,7 +346,7 @@
             transition: width 0.05s linear;
         }
 
-        /* 加载提示 */
+        /* 加载提示（暖色调） */
         #loading {
             position: fixed;
             inset: 0;
@@ -329,8 +354,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #000;
-            color: #666;
+            background: linear-gradient(135deg, #fff3dc 0%, #fbe3c0 45%, #faf9f4 100%);
+            color: rgba(22, 23, 28, 0.55);
             font-size: 14px;
             flex-direction: column;
             gap: 16px;
@@ -338,8 +363,8 @@
 
         #loading .spinner {
             width: 40px; height: 40px;
-            border: 3px solid #222;
-            border-top-color: #4466aa;
+            border: 3px solid rgba(22, 23, 28, 0.1);
+            border-top-color: #f0a030;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
@@ -350,6 +375,9 @@
 <body>
 
     <canvas id="gameCanvas"></canvas>
+
+    <!-- 背景音乐：梦幻国度 - 太极平原 -->
+    <audio id="bgm" src="./assets/music/梦幻国度-太极平原.mp3" loop preload="auto"></audio>
 
     <!-- 图片上传 -->
     <input type="file" id="photoUpload" accept="image/*" style="display:none">
@@ -382,6 +410,7 @@
         <div id="crosshair">
             <div class="center-dot"></div>
         </div>
+        <button id="musicBtn">🎵 音乐</button>
         <button id="daynightBtn">白天</button>
         <div id="interactHint"></div>
         <div id="escHint">按 Esc 解锁鼠标</div>
@@ -1636,9 +1665,29 @@
          * 事件绑定
          * ============================================================ */
         function bindEvents() {
+            // ===== 背景音乐（梦幻国度 - 太极平原，循环播放）=====
+            var bgm = document.getElementById('bgm');
+            var musicBtn = document.getElementById('musicBtn');
+            bgm.volume = 0.5;
+            function playBgm() {
+                var p = bgm.play();
+                if (p && p.catch) p.catch(function(err) { console.log('背景音乐播放失败:', err); });
+                musicBtn.textContent = '🎵 音乐';
+            }
+            function toggleBgm() {
+                if (bgm.paused) {
+                    playBgm();
+                } else {
+                    bgm.pause();
+                    musicBtn.textContent = '🔇 静音';
+                }
+            }
+            musicBtn.addEventListener('click', toggleBgm);
+
             // 开始按钮 → Pointer Lock
             document.getElementById('startBtn').addEventListener('click', function() {
                 canvas.requestPointerLock();
+                playBgm();
             });
 
             // 昼夜切换按钮
@@ -1661,6 +1710,7 @@
                     if (e.code === 'KeyV') {
                         document.getElementById('startOverlay').classList.add('hidden');
                         gameStarted = true;
+                        playBgm();
                     }
                 }
                 // E 键：交互（打开交互菜单）

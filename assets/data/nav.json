@@ -157,7 +157,7 @@
       "items": [
         { "title": "2048", "desc": "经典数字合成益智游戏", "url": "pages/2048.html", "icon": "🔢" },
         { "title": "俄罗斯方块", "desc": "小霸王风格复古方块消除", "url": "pages/Tetris.html", "icon": "🟰" },
-        { "title": "开放世界", "desc": "Hello 开放世界探索页", "url": "hello.html", "icon": "🌍" }
+        { "title": "梦幻国度", "desc": "梦幻国度开放世界探索页", "url": "dreamland.html", "icon": "🌍" }
       ]
     },
     {
