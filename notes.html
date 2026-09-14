@@ -254,18 +254,65 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .ww-placeholder { text-align: center; padding: 80px 20px; color: var(--textSecondary); }
 .ww-placeholder h3 { font-size: 18px; margin-bottom: 8px; }
 
-/* 底部 */
-.pp-footer {
-  border-top: 1px solid var(--border);
-  padding: 24px; text-align: center;
+/* 文档选择器 */
+.ww-crumbs {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: 2px 4px; margin-bottom: 20px;
+  font-size: 13px; color: var(--textSecondary);
 }
-.pp-footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 12px; }
-.pp-footer-links a {
-  padding: 6px 12px; border-radius: 8px;
-  font-size: 13px; color: var(--textSecondary); transition: all 0.15s;
+.ww-crumb {
+  padding: 4px 10px; border-radius: 8px;
+  cursor: pointer; transition: all 0.12s;
 }
-.pp-footer-links a:hover { color: var(--textPrimary); background: rgba(22,23,28,0.04); }
-.pp-footer-copy { font-size: 12px; color: var(--textSecondary); }
+.ww-crumb:hover { background: rgba(22,23,28,0.05); color: var(--textPrimary); }
+.ww-crumb.current { color: var(--textPrimary); font-weight: 600; cursor: default; }
+.ww-crumb.current:hover { background: none; }
+.ww-crumb-sep { opacity: 0.4; }
+.ww-picker-title { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 4px; }
+.ww-picker-desc { font-size: 13px; color: var(--textSecondary); margin-bottom: 20px; }
+.ww-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+.ww-pick-card {
+  background: var(--cardBg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  cursor: pointer; text-align: left;
+  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+.ww-pick-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+.ww-pick-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: rgba(255,216,61,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; margin-bottom: 10px;
+}
+.ww-pick-name { font-size: 15px; font-weight: 600; color: var(--textPrimary); }
+.ww-pick-desc {
+  font-size: 12px; color: var(--textSecondary);
+  margin-top: 4px; line-height: 1.6;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.ww-pick-count { margin-top: 10px; font-size: 12px; color: #c89500; font-weight: 600; }
+.ww-pick-empty { grid-column: 1 / -1; text-align: center; padding: 40px 20px; color: var(--textSecondary); font-size: 14px; }
+
+/* 返回选择按钮 */
+.ww-back-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 14px; margin-bottom: 18px;
+  border-radius: 10px; border: 1px solid var(--border);
+  background: var(--cardBg);
+  font-family: inherit; font-size: 13px; font-weight: 500;
+  color: var(--textSecondary); transition: all 0.15s;
+}
+.ww-back-btn:hover { background: var(--accent); border-color: var(--accent); color: #333; }
 
 /* Toast */
 .pp-toast {
@@ -311,29 +358,24 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     <!-- 左侧目录 -->
     <aside class="ww-toc" id="toc">
       <div class="ww-toc-title">目录</div>
-      <div class="ww-toc-empty">请从顶部搜索选择文档</div>
+      <div class="ww-toc-empty">请先选择要阅读的笔记</div>
     </aside>
     <!-- 右侧正文 -->
     <main class="ww-content" id="content">
       <div class="ww-placeholder">
-        <h3>在搜索框输入关键词</h3>
-        <p>搜索并选择文档即可查看完整内容</p>
+        <h3>正在加载文档列表…</h3>
+        <p>加载完成后即可按分类选择笔记</p>
       </div>
     </main>
   </div>
 </div>
 
-<div class="pp-footer">
-  <div class="pp-footer-links">
-    <a href="index.html">主页</a>
-    <a href="nav.html">导航</a>
-    <a href="prompt.html">提示词混合器</a>
-    <a href="words.html">学单词</a>
-  </div>
-</div>
+<!-- 全站通用页脚（与首页一致，复用组件） -->
+<div data-site-footer></div>
 
 <div class="pp-toast" id="toast"></div>
 
+<script src="assets/js/site-footer.js"></script>
 <script>
 var INDEX = null;
 var CURRENT_DOC = null;
@@ -424,6 +466,8 @@ function renderTOC(doc) {
 function renderContent(doc) {
   var c = document.getElementById('content');
   var html = '';
+  // 返回选择按钮
+  html += '<button class="ww-back-btn" id="back-btn">← 返回选择</button>';
   // 文档头
   html += '<div class="ww-doc-header">';
   html += '<div class="ww-doc-title">' + escapeHtml(doc.title || '') + '</div>';
@@ -447,6 +491,8 @@ function renderContent(doc) {
     });
   });
   c.innerHTML = html;
+  // 返回选择
+  document.getElementById('back-btn').addEventListener('click', renderPicker);
 }
 
 /* 加载文档 */
@@ -457,6 +503,7 @@ function loadDoc(file, name) {
       CURRENT_DOC = doc;
       renderTOC(doc);
       renderContent(doc);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       showToast('已加载：' + (name || doc.title));
     })
     .catch(function(err) {
@@ -466,12 +513,110 @@ function loadDoc(file, name) {
     });
 }
 
+/* ========== 文档选择器（默认展示，不自动加载文章） ========== */
+var PICK_PATH = [];  // 当前所在分类路径
+
+/* 统计某分类下（含子分类）的文档总数 */
+function countDocs(node) {
+  var n = (node.documents || []).length;
+  (node.children || []).forEach(function(c) { n += countDocs(c); });
+  return n;
+}
+
+/* 递归拍平所有文档（搜索用） */
+function flattenIndexDocs() {
+  var out = [];
+  (INDEX.documents || []).forEach(function(d) { out.push(d); });
+  (function walk(cats) {
+    (cats || []).forEach(function(cat) {
+      (cat.documents || []).forEach(function(d) { out.push(d); });
+      walk(cat.children);
+    });
+  })(INDEX.categories);
+  return out;
+}
+
+/* 渲染分类选择视图：面包屑 + 分类/文档卡片，支持一~三级分类 */
+function renderPicker() {
+  var toc = document.getElementById('toc');
+  toc.innerHTML = '<div class="ww-toc-title">目录</div><div class="ww-toc-empty">请先在右侧选择要阅读的笔记</div>';
+
+  var c = document.getElementById('content');
+  var node = PICK_PATH.length ? PICK_PATH[PICK_PATH.length - 1] : null;
+  var cats = node ? (node.children || []) : (INDEX.categories || []);
+  var docs = node ? (node.documents || []) : (INDEX.documents || []);
+
+  var html = '<button class="ww-back-btn" id="back-btn">← 返回选择</button>';
+  html += '<div class="ww-crumbs">';
+  html += '<span class="ww-crumb' + (PICK_PATH.length ? '' : ' current') + '" data-depth="-1">全部分类</span>';
+  PICK_PATH.forEach(function(p, i) {
+    html += '<span class="ww-crumb-sep">/</span>';
+    html += '<span class="ww-crumb' + (i === PICK_PATH.length - 1 ? ' current' : '') + '" data-depth="' + i + '">' + escapeHtml(p.name) + '</span>';
+  });
+  html += '</div>';
+
+  html += '<div class="ww-picker-title">' + escapeHtml(node ? node.name : '选择要阅读的笔记') + '</div>';
+  html += '<div class="ww-picker-desc">' + escapeHtml(node ? (node.summary || '选择分类或笔记继续浏览') : '按分类逐级浏览，点击笔记即可阅读') + '</div>';
+
+  html += '<div class="ww-picker-grid">';
+  cats.forEach(function(cat, i) {
+    var icon = cat.icon || '📁';
+    var count = countDocs(cat);
+    html += '<button class="ww-pick-card" data-cat="' + i + '">' +
+            '<div class="ww-pick-icon">' + icon + '</div>' +
+            '<div class="ww-pick-name">' + escapeHtml(cat.name) + '</div>' +
+            (cat.summary ? '<div class="ww-pick-desc">' + escapeHtml(cat.summary) + '</div>' : '') +
+            '<div class="ww-pick-count">' + count + ' 篇笔记 →</div>' +
+            '</button>';
+  });
+  docs.forEach(function(d, i) {
+    html += '<button class="ww-pick-card" data-doc="' + i + '">' +
+            '<div class="ww-pick-icon">📄</div>' +
+            '<div class="ww-pick-name">' + escapeHtml(d.name) + '</div>' +
+            (d.summary ? '<div class="ww-pick-desc">' + escapeHtml(d.summary) + '</div>' : '') +
+            '<div class="ww-pick-count">阅读 →</div>' +
+            '</button>';
+  });
+  if (!cats.length && !docs.length) {
+    html += '<div class="ww-pick-empty">该分类下暂无笔记</div>';
+  }
+  html += '</div>';
+
+  c.innerHTML = html;
+
+  // 返回选择按钮：回到上一层或退出文档
+  document.getElementById('back-btn').addEventListener('click', renderPicker);
+  // 面包屑导航
+  c.querySelectorAll('.ww-crumb[data-depth]').forEach(function(el) {
+    el.addEventListener('click', function() {
+      var depth = parseInt(this.dataset.depth, 10);
+      if (depth < 0) PICK_PATH = [];
+      else PICK_PATH = PICK_PATH.slice(0, depth + 1);
+      renderPicker();
+    });
+  });
+  // 进入下一级分类
+  c.querySelectorAll('.ww-pick-card[data-cat]').forEach(function(el) {
+    el.addEventListener('click', function() {
+      PICK_PATH.push(cats[parseInt(this.dataset.cat, 10)]);
+      renderPicker();
+    });
+  });
+  // 选中文档 → 加载
+  c.querySelectorAll('.ww-pick-card[data-doc]').forEach(function(el) {
+    el.addEventListener('click', function() {
+      var d = docs[parseInt(this.dataset.doc, 10)];
+      loadDoc(d.file, d.name);
+    });
+  });
+}
+
 /* 搜索索引 */
 function renderSearch(query) {
   var el = document.getElementById('search-results');
   query = query.trim().toLowerCase();
   if (!query) { el.classList.remove('show'); el.innerHTML = ''; return; }
-  var docs = (INDEX.documents || []).filter(function(d) {
+  var docs = flattenIndexDocs().filter(function(d) {
     return (d.name || '').toLowerCase().indexOf(query) >= 0 ||
            (d.summary || '').toLowerCase().indexOf(query) >= 0;
   });
@@ -527,11 +672,8 @@ function init() {
     }
   });
 
-  // 自动加载第一个文档
-  if (INDEX.documents && INDEX.documents.length) {
-    var first = INDEX.documents[0];
-    loadDoc(first.file, first.name);
-  }
+  // 默认不加载文章，先展示分类选择
+  renderPicker();
 }
 
 // 加载索引
