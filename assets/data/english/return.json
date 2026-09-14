@@ -1,0 +1,5 @@
+{
+  "word": "return",
+  "phonetic": "/ɹɪˈtɜːn/",
+  "notes": "return is unnecessary as the last statement in a method with no return value."
+}

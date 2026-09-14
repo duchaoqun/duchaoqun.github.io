@@ -1,0 +1,5 @@
+{
+  "word": "occur",
+  "phonetic": "/əˈkɜːr/",
+  "notes": "ERROR org.grails.web.errors.GrailsExceptionResolver - JRFontNotFoundException occurred when processing request: [GET] /report/getPdf"
+}

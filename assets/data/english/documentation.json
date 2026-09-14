@@ -1,0 +1,5 @@
+{
+  "word": "documentation",
+  "phonetic": "/ˌdɒkjumen'teɪʃn/",
+  "notes": "- The easiest way to use pip is by letting it find and download packages it installs from the [Python Package Index](https://pypi.org/project/robotframework), but it can also install packages downloaded from the PyPI separately. The most common usages are shown below and [pip](https://pip.pypa.io/) "
+}

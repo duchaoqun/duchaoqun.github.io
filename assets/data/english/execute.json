@@ -1,0 +1,5 @@
+{
+  "word": "execute",
+  "phonetic": "/ˈɛksɪˌkjuːt/",
+  "notes": "- If you install multiple Python versions on Windows, the version that is used when you execute python is the one first in PATH. If you need to use others, the easiest way is using the [py launcher](https://docs.python.org/3/using/windows.html#launcher):"
+}

@@ -1,0 +1,5 @@
+{
+  "word": "POJO",
+  "phonetic": "",
+  "notes": "Plain Ordinary Java Object：普通的Java对象，其实就是简单的JavaBean实体类。对应数据库里的某一张表，pojo里的每一个属性都和该表中的字段一一对应。"
+}

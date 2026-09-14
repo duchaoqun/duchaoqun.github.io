@@ -1,0 +1,5 @@
+{
+  "word": "cache",
+  "phonetic": "/kæɪʃ/",
+  "notes": "When data requested in RAM is already stored in the cache like this it's  called a cache hit, and if the data requested isn't in the cache, so you have to go to RAM, it's called cache miss."
+}

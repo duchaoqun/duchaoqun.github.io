@@ -1,0 +1,5 @@
+{
+  "word": "installation",
+  "phonetic": "",
+  "notes": "- These instructions cover installing [Robot Framework](https://robotframework.org/) and its preconditions on different operating systems. If you already have [Python](http://python.org/) installed, you can install Robot Framework using the standard package manager [pip](https://pip.pypa.io/):"
+}

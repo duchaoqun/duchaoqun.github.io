@@ -1,0 +1,5 @@
+{
+  "word": "either",
+  "phonetic": "/ˈiːðər/",
+  "notes": "The code that calls this code will then handle getting either an Ok value that contains a username or an Err value that contains an io::Error.  要么 要么"
+}
