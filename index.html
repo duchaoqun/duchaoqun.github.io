@@ -17,26 +17,26 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
     }
 
-    /* ========== 深海背景 ========== */
+    /* ========== 暖色背景 ========== */
     body {
       background: linear-gradient(180deg,
-        #021b2e 0%,
-        #032a4a 20%,
-        #04365e 40%,
-        #054372 60%,
-        #065088 80%,
-        #075d9a 100%);
+        #faf9f4 0%,
+        #f9f6ea 20%,
+        #f8f2de 40%,
+        #f7efd4 60%,
+        #f6ecd0 80%,
+        #f4e9c8 100%);
       position: relative;
     }
 
-    /* 深海微光 */
+    /* 暖色微光 */
     .caustic-light {
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse at 20% 30%, rgba(64, 180, 255, 0.08) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 60%, rgba(32, 145, 220, 0.08) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 80%, rgba(100, 200, 255, 0.06) 0%, transparent 40%);
+        radial-gradient(ellipse at 20% 30%, rgba(255, 216, 61, 0.10) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 60%, rgba(255, 224, 102, 0.10) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 80%, rgba(255, 240, 180, 0.08) 0%, transparent 40%);
       pointer-events: none;
       z-index: 1;
       animation: caustic-shift 12s ease-in-out infinite alternate;
@@ -52,14 +52,14 @@
       position: absolute;
       bottom: -40px;
       background: radial-gradient(circle at 30% 30%,
-        rgba(255, 255, 255, 0.6) 0%,
-        rgba(180, 230, 255, 0.3) 40%,
-        rgba(100, 200, 255, 0.1) 100%);
+        rgba(255, 255, 255, 0.7) 0%,
+        rgba(255, 236, 170, 0.35) 40%,
+        rgba(255, 216, 61, 0.12) 100%);
       border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      border: 1px solid rgba(255, 216, 61, 0.35);
       box-shadow:
-        inset 0 0 8px rgba(255, 255, 255, 0.4),
-        0 0 12px rgba(120, 220, 255, 0.3);
+        inset 0 0 8px rgba(255, 255, 255, 0.5),
+        0 0 12px rgba(255, 216, 61, 0.25);
       animation: bubble-rise linear infinite;
       pointer-events: none;
       z-index: 2;
@@ -111,14 +111,14 @@
       border-radius: 20px;
       overflow: hidden;
       box-shadow:
-        0 0 60px rgba(64, 180, 255, 0.15),
-        0 25px 60px rgba(0, 0, 0, 0.5),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        0 0 60px rgba(255, 216, 61, 0.18),
+        0 25px 60px rgba(120, 90, 20, 0.18),
+        inset 0 0 0 1px rgba(22, 23, 28, 0.06);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       display: flex;
       z-index: 5;
-      background: rgba(10, 30, 55, 0.6);
+      background: rgba(255, 255, 255, 0.55);
     }
 
     /* 卡片背景层 - 图片 */
@@ -142,9 +142,9 @@
       position: absolute;
       inset: 0;
       background: linear-gradient(135deg,
-        rgba(5, 20, 40, 0.55) 0%,
-        rgba(10, 30, 55, 0.35) 50%,
-        rgba(5, 20, 40, 0.45) 100%);
+        rgba(70, 52, 12, 0.55) 0%,
+        rgba(96, 74, 24, 0.35) 50%,
+        rgba(70, 52, 12, 0.45) 100%);
       z-index: 1;
     }
 
@@ -167,9 +167,9 @@
       align-items: center;
       color: #fff;
       background: linear-gradient(180deg,
-        rgba(5, 25, 50, 0.55) 0%,
-        rgba(5, 20, 45, 0.35) 100%);
-      border-right: 1px solid rgba(255, 255, 255, 0.08);
+        rgba(78, 58, 14, 0.50) 0%,
+        rgba(62, 46, 14, 0.32) 100%);
+      border-right: 1px solid rgba(255, 255, 255, 0.14);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     }
@@ -180,11 +180,11 @@
       height: 130px;
       border-radius: 50%;
       overflow: hidden;
-      border: 3px solid rgba(120, 220, 255, 0.5);
+      border: 3px solid rgba(255, 216, 61, 0.6);
       box-shadow:
-        0 0 20px rgba(100, 200, 255, 0.3),
+        0 0 20px rgba(255, 216, 61, 0.35),
         0 8px 30px rgba(0, 0, 0, 0.4);
-      background: linear-gradient(135deg, #1a3a5c, #0d2240);
+      background: linear-gradient(135deg, #8a6d1f, #5c470f);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -214,8 +214,8 @@
       align-items: center;
       justify-content: center;
       font-size: 48px;
-      color: rgba(180, 230, 255, 0.8);
-      background: linear-gradient(135deg, #1a3a5c, #0d2240);
+      color: rgba(255, 230, 150, 0.8);
+      background: linear-gradient(135deg, #8a6d1f, #5c470f);
     }
 
     .avatar img.loaded + .avatar-fallback,
@@ -231,7 +231,7 @@
       margin-bottom: 6px;
       letter-spacing: 2px;
       text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-      background: linear-gradient(90deg, #7fdfff, #b3e5ff);
+      background: linear-gradient(90deg, #ffffff, #ffe9a8, #ffd83d);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -239,7 +239,7 @@
 
     .profile-title {
       font-size: 13px;
-      color: rgba(180, 220, 255, 0.7);
+      color: rgba(255, 240, 200, 0.75);
       margin-bottom: 20px;
       letter-spacing: 1px;
     }
@@ -248,8 +248,8 @@
     .motto {
       width: 100%;
       padding: 16px 18px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(120, 200, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 216, 61, 0.3);
       border-radius: 12px;
       margin-bottom: 28px;
       text-align: center;
@@ -261,7 +261,7 @@
       content: '"';
       position: absolute;
       font-size: 32px;
-      color: rgba(120, 220, 255, 0.4);
+      color: rgba(255, 216, 61, 0.55);
       font-family: Georgia, serif;
       line-height: 1;
     }
@@ -279,14 +279,14 @@
     .motto-text {
       font-size: 14px;
       line-height: 1.7;
-      color: rgba(220, 240, 255, 0.9);
+      color: rgba(255, 248, 230, 0.92);
       font-style: italic;
     }
 
     /* 联系方式 */
     .contact-label {
       font-size: 12px;
-      color: rgba(180, 220, 255, 0.6);
+      color: rgba(255, 240, 200, 0.65);
       letter-spacing: 2px;
       margin-bottom: 12px;
       text-transform: uppercase;
@@ -307,8 +307,8 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(120, 200, 255, 0.25);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 216, 61, 0.35);
       transition: all 0.3s ease;
       color: #fff;
       font-size: 18px;
@@ -316,9 +316,9 @@
 
     .contact-item:hover {
       transform: translateY(-4px);
-      background: rgba(120, 220, 255, 0.2);
-      border-color: rgba(120, 220, 255, 0.6);
-      box-shadow: 0 8px 20px rgba(100, 200, 255, 0.3);
+      background: rgba(255, 216, 61, 0.28);
+      border-color: rgba(255, 216, 61, 0.7);
+      box-shadow: 0 8px 20px rgba(255, 200, 50, 0.3);
     }
 
     .contact-item .contact-name {
@@ -327,7 +327,7 @@
       left: 50%;
       transform: translateX(-50%);
       font-size: 10px;
-      color: rgba(180, 220, 255, 0.7);
+      color: rgba(255, 240, 200, 0.75);
       white-space: nowrap;
     }
 
@@ -339,10 +339,10 @@
       transform: translateX(-50%) translateY(10px);
       width: 150px;
       padding: 12px;
-      background: rgba(10, 25, 45, 0.95);
-      border: 1px solid rgba(120, 220, 255, 0.3);
+      background: rgba(58, 44, 12, 0.92);
+      border: 1px solid rgba(255, 216, 61, 0.4);
       border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(100, 200, 255, 0.15);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 216, 61, 0.18);
       opacity: 0;
       visibility: hidden;
       transition: all 0.3s ease;
@@ -357,7 +357,7 @@
       left: 50%;
       transform: translateX(-50%);
       border: 7px solid transparent;
-      border-top-color: rgba(120, 220, 255, 0.3);
+      border-top-color: rgba(255, 216, 61, 0.4);
     }
 
     .contact-item:hover .qr-popup {
@@ -378,7 +378,7 @@
     .qr-popup .qr-label {
       text-align: center;
       font-size: 12px;
-      color: rgba(180, 220, 255, 0.9);
+      color: rgba(255, 240, 200, 0.9);
       margin-top: 8px;
     }
 
@@ -402,7 +402,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.1);
       border-radius: 8px;
       padding: 12px;
       text-align: center;
@@ -411,7 +411,7 @@
 
     .qr-popup .qr-text p {
       font-size: 13px;
-      color: rgba(220, 240, 255, 0.95);
+      color: rgba(255, 248, 230, 0.95);
       line-height: 1.5;
     }
 
@@ -433,7 +433,7 @@
       font-weight: 700;
       margin-bottom: 16px;
       text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-      background: linear-gradient(90deg, #fff, #b3e5ff, #7fdfff);
+      background: linear-gradient(90deg, #fff, #ffe9a8, #ffd83d);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -441,7 +441,7 @@
 
     .sub-greeting {
       font-size: 16px;
-      color: rgba(220, 240, 255, 0.85);
+      color: rgba(255, 246, 224, 0.9);
       line-height: 1.8;
       margin-bottom: 24px;
       max-width: 380px;
@@ -451,13 +451,13 @@
     .deco-line {
       width: 60px;
       height: 3px;
-      background: linear-gradient(90deg, transparent, rgba(120, 220, 255, 0.8), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 216, 61, 0.85), transparent);
       margin-bottom: 24px;
     }
 
     .quote {
       font-size: 15px;
-      color: rgba(200, 230, 255, 0.8);
+      color: rgba(255, 240, 210, 0.85);
       line-height: 1.9;
       max-width: 360px;
       font-style: italic;
@@ -466,7 +466,7 @@
 
     .quote-mark {
       font-size: 40px;
-      color: rgba(120, 220, 255, 0.5);
+      color: rgba(255, 216, 61, 0.65);
       line-height: 0;
       vertical-align: -10px;
       margin: 0 4px;
@@ -478,10 +478,11 @@
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
-      color: rgba(180, 220, 255, 0.5);
+      color: rgba(22, 23, 28, 0.55);
       font-size: 12px;
       z-index: 10;
       letter-spacing: 1px;
+      text-shadow: 0 1px 4px rgba(255, 255, 255, 0.65);
     }
 
     /* 底部链接（小字，居中，在版权上方） */
@@ -696,7 +697,7 @@
 </head>
 <body>
 
-  <!-- 深海背景光效 -->
+  <!-- 暖色背景光效 -->
   <div class="caustic-light"></div>
 
   <!-- 气泡容器 -->
@@ -772,7 +773,7 @@
             <span class="contact-name">邮件</span>
             <div class="qr-popup">
               <div class="qr-text">
-                <i class="fa fa-envelope" style="font-size:24px;color:#7fdfff;margin-bottom:8px;"></i>
+                <i class="fa fa-envelope" style="font-size:24px;color:#ffd83d;margin-bottom:8px;"></i>
                 <p>du.chao.qun@163.com</p>
                 <p class="qr-label">邮箱：网易邮箱</p>
               </div>
@@ -865,16 +866,9 @@
       { name: '我的导航', url: 'nav.html' },
       { name: '我的笔记', url: 'notes.html' },
       { name: '提示词器', url: 'prompt.html' },
-      { name: '英语词图', url: 'english.html' },
       { name: '学习单词', url: 'words.html' },
-      { name: 'Obsidian 词云', url: 'obsidian.html' },
       { name: '梦幻国度', url: 'dreamland.html' },
-      { name: '2048', url: 'pages/2048.html' },
-      { name: '俄罗斯方块', url: 'pages/Tetris.html' },
-      { name: 'RGB 颜色', url: 'tools/color.html' },
-      { name: '条形码', url: 'tools/barcode.html' },
-      { name: '关系图谱', url: 'tools/cytoscape.html' },
-      { name: '手写签名',     url: 'tools/signature-generator.html' }
+      { name: '颜色代码', url: 'tools/color.html' }
     ];
     const footerLinks = document.getElementById('footer-links');
     footerLinks.innerHTML = FOOTER_LINKS.map(item =>
