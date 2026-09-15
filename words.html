@@ -275,6 +275,18 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-size: 15px; line-height: 1.8;
   color: var(--textPrimary);
 }
+/* notes 多行格式：每行一段 */
+.ww-modal-notes p { margin: 0 0 6px; }
+.ww-modal-notes p:last-child { margin-bottom: 0; }
+/* 示例句（例如：/e.g. 开头的行）高亮格式 */
+.ww-modal-notes p.note-example {
+  margin-top: 8px;
+  padding: 8px 12px;
+  border-left: 3px solid var(--accent);
+  background: rgba(255,216,61,0.12);
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+}
 
 /* 底部 */
 .pp-footer {
@@ -562,6 +574,24 @@ function togglePlay() {
   }
 }
 
+/* notes 换行解析：真实换行符与字面量 \n 均拆分为独立段落；
+   「例如：/例：/e.g.」开头的行渲染为示例句高亮格式 */
+function renderNotes(el, text) {
+  var raw = String(text || '');
+  var lines = raw
+    .replace(/\r\n?/g, '\n')       // 真实 CRLF / CR
+    .replace(/\\r\\n|\\n/g, '\n')  // 字面量 \n、\r\n（双重转义的 JSON）
+    .split('\n');
+  var html = '';
+  lines.forEach(function(line) {
+    var t = line.trim();
+    if (!t) return;
+    var isExample = /^(例如|例|e\.?g\.?|i\.?e\.?)(：|:|\s)/i.test(t) || /^[-—•]\s*(例如|例)(：|:)/.test(t);
+    html += '<p' + (isExample ? ' class="note-example"' : '') + '>' + escapeHtml(t) + '</p>';
+  });
+  el.innerHTML = html || escapeHtml(raw);
+}
+
 /* 查看详情：加载 assets/data/english/{word}.json */
 function showDetail() {
   var modal = document.getElementById('modal');
@@ -577,7 +607,7 @@ function showDetail() {
     .then(function(d) {
       mw.textContent = d.word || currentWord;
       mp.textContent = d.phonetic || '';
-      mn.textContent = d.notes || '暂无注释';
+      renderNotes(mn, d.notes || '暂无注释');
     })
     .catch(function() {
       mp.textContent = '';
