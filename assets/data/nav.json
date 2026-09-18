@@ -12,10 +12,14 @@
   },
   "categories": [
     {
-      "name": "主页",
+      "name": "搜索引擎",
       "items": [
-        { "title": "个人主页", "desc": "深海气泡卡片，个人信息与联系方式", "url": "index.html", "icon": "🏠" },
-        { "title": "站点导航", "desc": "本页，收录全部页面入口", "url": "nav.html", "icon": "🧭" }
+        { "title": "百度一下", "desc": "国内主流搜索引擎", "url": "https://www.baidu.com", "icon": "🔍", "external": true },
+        { "title": "谷歌一下", "desc": "Google 全球搜索", "url": "https://www.google.com", "icon": "🔎", "external": true },
+        { "title": "必应一下", "desc": "微软 Bing 搜索", "url": "https://www.bing.com", "icon": "🅱️", "external": true },
+        { "title": "Yandex", "desc": "俄罗斯主流搜索引擎", "url": "https://www.yandex.com", "icon": "🇷🇺", "external": true },
+        { "title": "360 搜索", "desc": "360 综合搜索", "url": "https://www.so.com", "icon": "③", "external": true },
+        { "title": "搜狗搜索", "desc": "搜狐旗下搜索引擎", "url": "https://www.sogou.com", "icon": "🐶", "external": true }
       ]
     },
     {
@@ -46,24 +50,15 @@
         { "title": "Woy.ai", "desc": "AI 图像生成与创作平台", "url": "https://woy.ai", "icon": "🪄", "external": true }
       ]
     },
-    {
-      "name": "搜索引擎",
-      "items": [
-        { "title": "百度一下", "desc": "国内主流搜索引擎", "url": "https://www.baidu.com", "icon": "🔍", "external": true },
-        { "title": "谷歌一下", "desc": "Google 全球搜索", "url": "https://www.google.com", "icon": "🔎", "external": true },
-        { "title": "必应一下", "desc": "微软 Bing 搜索", "url": "https://www.bing.com", "icon": "🅱️", "external": true },
-        { "title": "Yandex", "desc": "俄罗斯主流搜索引擎", "url": "https://www.yandex.com", "icon": "🇷🇺", "external": true },
-        { "title": "360 搜索", "desc": "360 综合搜索", "url": "https://www.so.com", "icon": "③", "external": true },
-        { "title": "搜狗搜索", "desc": "搜狐旗下搜索引擎", "url": "https://www.sogou.com", "icon": "🐶", "external": true }
-      ]
-    },
+
     {
       "name": "创作者平台",
       "items": [
         { "title": "抖音创作者", "desc": "抖音创作者服务中心", "url": "https://creator.douyin.com", "icon": "🎵", "external": true },
         { "title": "汽水音乐", "desc": "抖音旗下音乐平台", "url": "https://music.douyin.com", "icon": "🥤", "external": true },
         { "title": "快手创作者", "desc": "快手创作者个人主页", "url": "https://cp.kuaishou.com/profile", "icon": "⚡", "external": true },
-        { "title": "微信视频号", "desc": "微信视频号官方平台", "url": "https://channels.weixin.qq.com/platform", "icon": "📹", "external": true }
+        { "title": "微信视频号", "desc": "微信视频号官方平台", "url": "https://channels.weixin.qq.com/platform", "icon": "📹", "external": true },
+        { "title": "Bilibili 创作者中心", "desc": "Bilibili 创作者中心平台", "url": "https://www.bilibili.com/creator", "icon": "📹", "external": true }
       ]
     },
     {
