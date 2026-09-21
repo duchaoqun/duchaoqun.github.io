@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WordsGame - 词语世界</title>
+  <link rel="icon" href="../assets/images/title.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============ 全局背景 ============ -->
+  <div class="caustic-light"></div>
+  <div id="bubble-container"></div>
+
+  <!-- ============ 登录/注册页 ============ -->
+  <section id="auth-view" class="view active">
+    <div class="auth-card">
+      <div class="auth-card-bg"></div>
+      <div class="auth-card-overlay"></div>
+
+      <div class="auth-card-content">
+        <div class="auth-brand">
+          <h1 class="auth-title">WordsGame</h1>
+          <p class="auth-subtitle">词语世界 · 探索之旅</p>
+        </div>
+
+        <!-- 登录表单 -->
+        <form id="login-form" class="auth-form active" autocomplete="off">
+          <h2 class="form-title">登录</h2>
+          <div class="form-group">
+            <label>用户名 / 邮箱</label>
+            <input type="text" name="account" placeholder="请输入用户名或邮箱" required>
+          </div>
+          <div class="form-group">
+            <label>密码</label>
+            <input type="password" name="password" placeholder="请输入密码" required>
+          </div>
+          <button type="submit" class="btn btn-primary">登录</button>
+          <p class="form-switch">
+            还没有账号？<a href="#" data-switch="register">立即注册</a>
+          </p>
+          <p class="form-msg" id="login-msg"></p>
+        </form>
+
+        <!-- 注册表单 -->
+        <form id="register-form" class="auth-form" autocomplete="off">
+          <h2 class="form-title">注册</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label>用户名</label>
+              <input type="text" name="username" placeholder="3-32 位字母/数字/下划线" required>
+            </div>
+            <div class="form-group">
+              <label>邮箱</label>
+              <input type="email" name="email" placeholder="your@email.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>密码</label>
+              <input type="password" name="password" placeholder="至少 8 位" required>
+            </div>
+            <div class="form-group">
+              <label>确认密码</label>
+              <input type="password" name="password2" placeholder="再输一次" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>昵称</label>
+              <input type="text" name="nickname" placeholder="显示给别人的名字（可选）">
+            </div>
+            <div class="form-group">
+              <label>性别</label>
+              <select name="gender">
+                <option value="other">保密</option>
+                <option value="male">男</option>
+                <option value="female">女</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>头像</label>
+            <div class="avatar-picker" id="avatar-picker"></div>
+          </div>
+          <button type="submit" class="btn btn-primary">创建账号</button>
+          <p class="form-switch">
+            已有账号？<a href="#" data-switch="login">去登录</a>
+          </p>
+          <p class="form-msg" id="register-msg"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 游戏主界面 ============ -->
+  <section id="game-view" class="view">
+    <canvas id="game-canvas"></canvas>
+
+    <!-- 顶部玩家信息条 -->
+    <header class="top-bar">
+      <div class="top-left">
+        <div class="mini-avatar" id="mini-avatar"></div>
+        <div class="mini-info">
+          <span class="mini-nick" id="mini-nick">冒险者</span>
+          <span class="mini-map" id="mini-map">新手村庄</span>
+          <span class="mini-pos" id="mini-pos">坐标 (0, 0)</span>
+        </div>
+      </div>
+      <div class="top-right">
+        <button class="top-btn" id="btn-logout" title="退出登录">退出</button>
+      </div>
+    </header>
+
+    <!-- 底部状态栏 -->
+    <footer class="status-bar">
+      <div class="stat-item">
+        <span class="stat-label">地图</span>
+        <span class="stat-value" id="stat-map">新手村庄</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">坐标</span>
+        <span class="stat-value" id="stat-pos">0, 0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">背包</span>
+        <span class="stat-value" id="stat-inv-count">0 件</span>
+      </div>
+      <div class="stat-spacer"></div>
+      <button class="btn-inventory" id="btn-inventory">
+        <span class="btn-inv-icon">🎒</span>
+        <span class="btn-inv-label">背包</span>
+      </button>
+    </footer>
+
+    <!-- 背包弹出层 -->
+    <div class="modal-overlay" id="inventory-modal">
+      <div class="modal-box inventory-box">
+        <div class="modal-header">
+          <h3>🎒 我的背包</h3>
+          <button class="modal-close" data-close="inventory-modal">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="inventory-grid" id="inventory-grid">
+            <!-- 物品格子由 JS 填充 -->
+          </div>
+          <p class="inventory-empty" id="inventory-empty" style="display:none;">
+            背包空空如也，去探索世界收集物品吧！
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- NPC 对话弹窗 -->
+    <div class="modal-overlay" id="npc-modal">
+      <div class="modal-box npc-box">
+        <div class="modal-header">
+          <h3 id="npc-title">NPC</h3>
+          <button class="modal-close" data-close="npc-modal">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="npc-avatar" id="npc-avatar"></div>
+          <p class="npc-dialog" id="npc-dialog">—</p>
+          <div class="npc-menu" id="npc-menu"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 互动物品弹窗 -->
+    <div class="modal-overlay" id="world-item-modal">
+      <div class="modal-box item-box">
+        <div class="modal-header">
+          <h3 id="wi-title">物品</h3>
+          <button class="modal-close" data-close="world-item-modal">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="item-detail">
+            <div class="item-icon-big" id="wi-icon">📦</div>
+            <div class="item-meta">
+              <p><span class="meta-label">种类</span><span class="meta-value" id="wi-kind">-</span></p>
+              <p><span class="meta-label">稀有度</span><span class="meta-value rarity" id="wi-rarity">-</span></p>
+              <p><span class="meta-label">数量</span><span class="meta-value" id="wi-qty">-</span></p>
+              <p class="item-desc" id="wi-desc">—</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" id="btn-pickup">拾取进背包</button>
+          <button class="btn btn-secondary" data-close="world-item-modal">关闭</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 传送门（下一关）提示条 -->
+    <div id="portal-banner" class="portal-banner" style="display:none;">
+      <span id="portal-text">前往小树林 →</span>
+      <button class="btn btn-primary" id="btn-warp">前往</button>
+    </div>
+
+<!-- 物品详情面板 -->
+    <div class="modal-overlay" id="item-modal">
+      <div class="modal-box item-box">
+        <div class="modal-header">
+          <h3 id="item-name">物品</h3>
+          <button class="modal-close" data-close="item-modal">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="item-detail">
+            <div class="item-icon-big" id="item-icon-big">📦</div>
+            <div class="item-meta">
+              <p><span class="meta-label">种类</span><span class="meta-value" id="item-kind">-</span></p>
+              <p><span class="meta-label">稀有度</span><span class="meta-value rarity" id="item-rarity">-</span></p>
+              <p><span class="meta-label">数量</span><span class="meta-value" id="item-qty">-</span></p>
+              <p><span class="meta-label">描述</span></p>
+              <p class="item-desc" id="item-desc">—</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" id="btn-destroy">销毁</button>
+          <button class="btn btn-secondary" id="btn-close-item">关闭</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 全局 Toast -->
+    <div id="toast" class="toast"></div>
+  </section>
+
+  <!-- ============ 脚本 ============ -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./js/three-bundle.js?v=23"
+    }
+  }
+  </script>
+  <script type="module" src="js/api.js?v=23"></script>
+  <script type="module" src="js/auth.js?v=23"></script>
+  <script type="module" src="js/world.js?v=23"></script>
+  <script type="module" src="js/inventory.js?v=23"></script>
+  <script type="module" src="js/main.js?v=23"></script>
+</body>
+</html>

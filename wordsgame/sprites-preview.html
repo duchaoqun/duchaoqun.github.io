@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Sprites Preview 512x512</title>
+<style>
+  body { font-family: -apple-system, sans-serif; background: #1a1a2e; color: #eee; padding: 30px; }
+  h1 { margin-bottom: 5px; }
+  .sub { color: #888; margin-bottom: 30px; }
+  .row { display: flex; gap: 30px; flex-wrap: wrap; }
+  .card { text-align: center; }
+  .card h3 { margin: 10px 0 5px; color: #f4c26b; }
+  .card code { color: #7ec8a2; font-size: 12px; }
+  .stage {
+    width: 256px; height: 256px;
+    background: #4a7c4a;  /* 草地绿 */
+    position: relative;
+    border-radius: 6px; border: 2px solid #444;
+    margin: 0 auto;
+    box-shadow: 0 4px 20px rgba(0,0,0,.4);
+    background-image:
+      linear-gradient(45deg, #3a5a3a 25%, transparent 25%),
+      linear-gradient(-45deg, #3a5a3a 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #3a5a3a 75%),
+      linear-gradient(-45deg, transparent 75%, #3a5a3a 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  }
+  .stage img {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%; height: 70%;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,.5));
+  }
+  .tree-bg {
+    background: #3a5a3a;
+    background-image: url('assets/tiles/tree.png');
+    background-size: 80px 80px;
+  }
+  .portal { width: 40px; height: 40px; border-radius: 50%; background: radial-gradient(circle, #0f0 0%, transparent 70%); position: absolute; top:20px; right:20px; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:.5;transform:scale(1)} 50%{opacity:1;transform:scale(1.2)} }
+</style></head>
+<body>
+<h1>🎭 角色 Sprite 素材预览</h1>
+<p class="sub">512×512 · 透明背景 · 放在 256×256 草地上模拟游戏视角</p>
+
+<div class="row">
+  <div class="card">
+    <h3>⚔️ 玩家</h3>
+    <code>player.png · 86KB</code>
+    <div class="stage"><img src="assets/sprites/player.png" alt="player"></div>
+  </div>
+
+  <div class="card">
+    <h3>👴 老王 · 村长</h3>
+    <code>npc_chief.png · 137KB</code>
+    <div class="stage"><img src="assets/sprites/npc_chief.png" alt="chief"></div>
+  </div>
+
+  <div class="card">
+    <h3>🧙 森林老者</h3>
+    <code>npc_sage.png · 122KB</code>
+    <div class="stage tree-bg"><img src="assets/sprites/npc_sage.png" alt="sage"></div>
+  </div>
+</div>
+
+<h2 style="margin-top:40px">🔮 额外可扩展：传送门 / 宝箱 / 物品 icon</h2>
+<p class="sub">（目前 world.js 里这些是 Canvas 画的彩色精灵，可以后续 AI 生成替换）</p>
+
+<div class="row">
+  <div class="card">
+    <h3>🌀 传送门</h3>
+    <div class="stage"><div class="portal"></div></div>
+    <code>待生成</code>
+  </div>
+  <div class="card">
+    <h3>📦 宝箱</h3>
+    <div class="stage"><div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:80px">📦</div></div>
+    <code>待生成</code>
+  </div>
+</div>
+
+</body></html>
