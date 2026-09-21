@@ -260,6 +260,29 @@ export class TileWorld {
     console.log('[TileWorld] WebGLRenderer ✅');
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.setSize(this.width, this.height, false);
+    console.log('[TileWorld] renderer size:', this.width, '×', this.height);
+
+    // ⚠️ 如果尺寸为 0（父容器刚从 display:none 变 visible，浏览器还没 layout），
+    // 等两帧让浏览器完成 layout，再修正
+    if (this.width === 0 || this.height === 0) {
+      console.warn('[TileWorld] canvas 尺寸为 0，等待 layout...');
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        this.width  = this.canvas.clientWidth;
+        this.height = this.canvas.clientHeight;
+        console.log('[TileWorld] 修正后尺寸:', this.width, '×', this.height);
+        if (this.width > 0 && this.height > 0) {
+          this.renderer.setSize(this.width, this.height, false);
+          // 还要更新相机宽高比
+          const aspect = this.width / this.height;
+          const fs = this.tileSize * 16;
+          this.camera.left   = (-fs * aspect) / 2;
+          this.camera.right  = ( fs * aspect) / 2;
+          this.camera.top    =  fs / 2;
+          this.camera.bottom = -fs / 2;
+          this.camera.updateProjectionMatrix();
+        }
+      }));
+    }
     this.renderer.setClearColor(0xf4e9c8, 1);
 
     this.scene = new THREE.Scene();

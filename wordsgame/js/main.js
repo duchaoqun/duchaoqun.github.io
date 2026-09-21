@@ -116,24 +116,7 @@ async function loadMap(mapId, playerPos = null) {
     if (playerPos) data.player = playerPos;
 
     if (!window.__world) {
-      // ⚠️ 创建 TileWorld 前，先检查 canvas 是否被占了 context（browser agent 会偷拿 2d）
-      let canvas = document.getElementById('game-canvas');
-      try {
-        // 如果能拿到 2d context，说明被锁死了，必须重建！
-        const ctx2d = canvas.getContext('2d');
-        if (ctx2d) {
-          console.warn('[main] canvas has 2d context locked — rebuilding fresh canvas');
-          const rect = canvas.getBoundingClientRect();
-          const newC = document.createElement('canvas');
-          newC.id = 'game-canvas';
-          newC.style.cssText = canvas.style.cssText;
-          newC.className = canvas.className;
-          // 替换 DOM
-          canvas.parentNode?.replaceChild(newC, canvas);
-          canvas = newC;
-        }
-      } catch(e) {}
-
+      const canvas = document.getElementById('game-canvas');
       window.__world = new TileWorld(canvas, {
         onPlayerMoved: handlePlayerMoved,
         onInteract: handleInteract,
@@ -143,6 +126,9 @@ async function loadMap(mapId, playerPos = null) {
       });
     }
     window.__world.loadMap(data);
+
+    // 主动触发一次 resize（确保 canvas 拿到正确尺寸）
+    requestAnimationFrame(() => window.__world._onResize?.());
 
     // 刷新背包
     if (window.__invApi) await window.__invApi.load();
@@ -158,7 +144,7 @@ function handleMapLoaded({ mapId, name, width, height }) {
 }
 
 function handlePlayerMoved({ mapId, x, y }) {
-  document.getElementById('mini-pos').textContent = `格子 (${x}, ${y})`;
+  document.getElementById('mini-pos')?.setAttribute?.('data-pos', `${x},${y}`);  // mini-pos 已整合到底部栏，这里只保留 stat-pos
   document.getElementById('stat-pos').textContent  = `${x}, ${y}`;
 
   // 节流 1.2s 上报后端
@@ -282,6 +268,7 @@ document.getElementById('btn-logout').addEventListener('click', () => {
 });
 
 // ============ 启动 ============
+initInventory();
 initAuthForm({ onLoginSuccess: enterGame });
 
 if (checkAuth()) {

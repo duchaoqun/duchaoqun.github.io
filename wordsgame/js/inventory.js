@@ -44,9 +44,6 @@ export function initInventory() {
     } catch (err) { showToast(err.message || '销毁失败', 'error'); }
   });
 
-  const api = { load, getCount };
-  return api;
-
   async function load() {
     let rows = [];
     try { rows = await invApi.list(); } catch { rows = []; }
@@ -76,6 +73,10 @@ export function initInventory() {
   }
 
   function getCount() { return grid.querySelectorAll('.inv-slot:not(.empty)').length; }
+
+  const api = { load, getCount };
+  // 暴露到 window 供 main.js 调用
+  window.__invApi = api;
 
   function showDetail(item) {
     const icon = KIND_ICON[item.kind] || '📦';
