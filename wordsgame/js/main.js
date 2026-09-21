@@ -79,6 +79,9 @@ function showGame() {
 function renderUser(user) {
   const nick = user && (user.nickname || user.username);
   document.getElementById('mini-nick').textContent = nick || '冒险者';
+
+  // 刷新金币
+  refreshMoney();
   const avatar = user && user.avatar;
   const ma = document.getElementById('mini-avatar');
   ma.innerHTML = '';
@@ -129,6 +132,9 @@ async function loadMap(mapId, playerPos = null) {
 
     // 主动触发一次 resize（确保 canvas 拿到正确尺寸）
     requestAnimationFrame(() => window.__world._onResize?.());
+
+    // 刷新金币显示
+    refreshMoney();
 
     // 刷新背包
     if (window.__invApi) await window.__invApi.load();
@@ -282,3 +288,17 @@ if (checkAuth()) {
 } else {
   showAuth();
 }
+
+
+// ============ 金币刷新 ============
+async function refreshMoney() {
+  try {
+    const r = await moneyApi.get();
+    const el = document.getElementById('stat-money');
+    if (el) el.textContent = formatMoney(r.money);
+    // 同时更新 localStorage 里的 user.money
+    const cur = getUser();
+    if (cur) { cur.money = r.money; setUser(cur); }
+  } catch {}
+}
+

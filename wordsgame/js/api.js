@@ -86,6 +86,27 @@ export const itemApi = {
 };
 
 // ============ 地图上互动物品（拾取）============
+// ============ 金钱系统 ============
+export const moneyApi = {
+  get:    () => request('/money'),
+  add:    (amount) => request('/money/add', { method: 'POST', body: { amount } }),
+  spend:  (amount) => request('/money/spend', { method: 'POST', body: { amount } }),
+};
+
+// 格式化金钱显示：元 / 万 / 亿
+export function formatMoney(n) {
+  n = Math.floor(Number(n) || 0);
+  if (n >= 100000000) {
+    const v = (n / 100000000).toFixed(2).replace(/\.?0+$/, '');
+    return v + '亿';
+  }
+  if (n >= 10000) {
+    const v = (n / 10000).toFixed(2).replace(/\.?0+$/, '');
+    return v + '万';
+  }
+  return n + '元';
+}
+
 export const worldItemApi = {
   pickup: (wiId) => request('/world-items/' + wiId + '/pickup', { method: 'POST' }),
 };
