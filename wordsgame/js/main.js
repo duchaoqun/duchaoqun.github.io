@@ -236,6 +236,13 @@ async function openShop(npc, defaultTab) {
     if (!el) { showToast('shop-modal DOM 没找到', 'error'); return; }
     document.getElementById('shop-title').textContent = (npc.title ? npc.title + ' · ' : '') + npc.name;
     el.classList.add('open');
+    initShopTabsAndPager();
+    // 每次打开商店重置到购买 Tab + 第 1 页
+    document.querySelectorAll('.shop-tab').forEach(b => b.classList.toggle('active', b.dataset.tab === 'buy'));
+    document.getElementById('shop-panel-buy').classList.remove('hidden');
+    document.getElementById('shop-panel-sell').classList.add('hidden');
+    shopState.mode = 'buy';
+    shopState.page = 1;
     await refreshShop();
   } catch(e) {
     console.error('[openShop]', e);
@@ -247,49 +254,85 @@ function closeModal(id) {
   document.getElementById(id)?.classList.remove('open');
 }
 
+// 商店分页状态
+const SHOP_PAGE_SIZE = 6;
+const shopState = {
+  mode: 'buy',          // 'buy' | 'sell'
+  buyData: [],          // [{def, price}]
+  sellData: [],         // [item]
+  page: 1,
+};
+
+function initShopTabsAndPager() {
+  document.querySelectorAll('.shop-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.shop-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      shopState.mode = btn.dataset.tab;
+      shopState.page = 1;
+      document.getElementById('shop-panel-buy').classList.toggle('hidden', shopState.mode !== 'buy');
+      document.getElementById('shop-panel-sell').classList.toggle('hidden', shopState.mode !== 'sell');
+      renderShopPage();
+    });
+  });
+  document.getElementById('shop-prev').addEventListener('click', () => {
+    if (shopState.page > 1) { shopState.page--; renderShopPage(); }
+  });
+  document.getElementById('shop-next').addEventListener('click', () => {
+    const total = shopState.mode === 'buy' ? shopState.buyData.length : shopState.sellData.length;
+    const maxPage = Math.max(1, Math.ceil(total / SHOP_PAGE_SIZE));
+    if (shopState.page < maxPage) { shopState.page++; renderShopPage(); }
+  });
+}
+
+function renderShopPage() {
+  const list = shopState.mode === 'buy' ? document.getElementById('shop-buy-list') : document.getElementById('shop-sell-list');
+  const data = shopState.mode === 'buy' ? shopState.buyData : shopState.sellData;
+  list.innerHTML = '';
+  if (!data.length) {
+    list.innerHTML = '<div class="shop-list-empty">' + (shopState.mode === 'buy' ? '商人今天没货 🛒' : '背包空空如也') + '</div>';
+  } else {
+    const maxPage = Math.max(1, Math.ceil(data.length / SHOP_PAGE_SIZE));
+    if (shopState.page > maxPage) shopState.page = maxPage;
+    const start = (shopState.page - 1) * SHOP_PAGE_SIZE;
+    const slice = data.slice(start, start + SHOP_PAGE_SIZE);
+    for (const row of slice) {
+      if (shopState.mode === 'buy') list.appendChild(buildShopBuyRow(row.def, row.price));
+      else list.appendChild(buildShopSellRow(row));
+    }
+  }
+  // 分页控件
+  const total = data.length;
+  const maxPage = Math.max(1, Math.ceil(total / SHOP_PAGE_SIZE));
+  document.getElementById('shop-page-info').textContent = `${shopState.page} / ${maxPage}（共 ${total}）`;
+  document.getElementById('shop-prev').disabled = shopState.page <= 1;
+  document.getElementById('shop-next').disabled = shopState.page >= maxPage;
+}
+
 async function refreshShop() {
-  console.log('[refreshShop] called, currentShopNpc=', currentShopNpc?.name, 'shop_items=', currentShopNpc?.shop_items?.length);
   if (!currentShopNpc) return;
   document.getElementById('shop-money').textContent = formatMoney(await getMoney());
 
-  // 购买列表
-  const buyList = document.getElementById('shop-buy-list');
-  buyList.innerHTML = '';
-  const shopItems = currentShopNpc.shop_items || [];
-  console.log('[refreshShop] shopItems.length=', shopItems.length);
-  if (shopItems.length === 0) {
-    buyList.innerHTML = '<div style="color:#888;padding:20px;text-align:center;">这个商人今天没货 🛒</div>';
-  } else {
-    try {
-      const r = await itemApi.list();
-      const itemList = Array.isArray(r) ? r : (r.data || []);
-      console.log('[refreshShop] itemApi.list() returned, len=', itemList.length);
-      for (const si of shopItems) {
-        const def = itemList.find(d => d.code === si.code);
-        if (!def) { console.warn('[refreshShop] item not found:', si.code); continue; }
-        buyList.appendChild(buildShopBuyRow(def, si.price));
-      }
-    } catch(e) {
-      console.error('[refreshShop] buyList error:', e);
-      buyList.innerHTML = '<div style="color:#c00;padding:10px;">加载商品失败</div>';
+  // 购买数据（缓存）
+  try {
+    const r = await itemApi.list();
+    const itemList = Array.isArray(r) ? r : (r.data || []);
+    const shopItems = currentShopNpc.shop_items || [];
+    shopState.buyData = [];
+    for (const si of shopItems) {
+      const def = itemList.find(d => d.code === si.code);
+      if (def) shopState.buyData.push({ def, price: si.price });
     }
-  }
+  } catch(e) { console.error('[refreshShop] buyData error:', e); shopState.buyData = []; }
 
-  // 出售列表
-  const sellList = document.getElementById('shop-sell-list');
-  sellList.innerHTML = '';
+  // 出售数据（缓存）
   try {
     const inv = await invApi.list();
-    const items = Array.isArray(inv) ? inv : (inv.data || []);
-    console.log('[refreshShop] invApi.list() returned, len=', items.length);
-    if (!items.length) {
-      sellList.innerHTML = '<div style="color:#888;padding:20px;text-align:center;">背包空空如也</div>';
-    } else {
-      for (const it of items) {
-        sellList.appendChild(buildShopSellRow(it));
-      }
-    }
-  } catch(e) { console.error('[refreshShop] sellList error:', e, e?.stack?.slice(0,150)); sellList.innerHTML = '<div style="color:#c00;padding:10px;">加载背包失败</div>'; }
+    shopState.sellData = Array.isArray(inv) ? inv : (inv.data || []);
+  } catch(e) { console.error('[refreshShop] sellData error:', e); shopState.sellData = []; }
+
+  shopState.page = 1;
+  renderShopPage();
 }
 
 function buildShopBuyRow(def, price) {
@@ -299,11 +342,11 @@ function buildShopBuyRow(def, price) {
     <div class="si-icon">📦</div>
     <div class="si-info">
       <div class="si-name">${def.name}</div>
-      <div class="si-meta">${def.description || ''} · ${def.kind}</div>
+      <div class="si-meta">${def.description || ''}</div>
     </div>
-    <div class="si-price">💰${price}/个</div>
+    <div class="si-price">💰${price}</div>
     <div class="si-qty"><input type="number" min="1" max="99" value="1"></div>
-    <button class="si-btn">购买</button>
+    <button class="si-btn">买</button>
   `;
   const input = row.querySelector('input');
   const btn = row.querySelector('.si-btn');
@@ -330,9 +373,9 @@ function buildShopSellRow(it) {
       <div class="si-name">${it.name} ×${it.quantity}</div>
       <div class="si-meta">${it.description || ''}</div>
     </div>
-    <div class="si-price">💰${sellPrice}/个</div>
+    <div class="si-price">💰${sellPrice}</div>
     <div class="si-qty"><input type="number" min="1" max="${it.quantity}" value="1"></div>
-    <button class="si-btn">出售</button>
+    <button class="si-btn">卖</button>
   `;
   const input = row.querySelector('input');
   const btn = row.querySelector('.si-btn');
@@ -340,7 +383,7 @@ function buildShopSellRow(it) {
     const qty = Math.min(parseInt(input.value) || 1, it.quantity);
     try {
       const r = await shopApi.sell(it.code, qty);
-      showToast(`卖了 ${it.name} ×${qty}，得 ${r.data.item.unit_price * qty} 💰`, 'success');
+      showToast(`卖了 ${it.name} ×${qty}，得 ${r.item.unit_price * qty} 💰`, 'success');
       document.getElementById('stat-money').textContent = formatMoney(r.money);
       if (window.__invApi) await window.__invApi.load();
       await refreshShop();

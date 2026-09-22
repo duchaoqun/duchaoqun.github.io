@@ -184,17 +184,24 @@
           <div class="shop-money">💰 <span id="shop-money">0</span></div>
           <button class="modal-close" data-close="shop-modal">×</button>
         </div>
+        <!-- Tab 切换 -->
+        <div class="shop-tabs">
+          <button class="shop-tab active" data-tab="buy">🛒 购买</button>
+          <button class="shop-tab" data-tab="sell">💰 出售（60%）</button>
+        </div>
         <div class="modal-body shop-body">
-          <!-- 左：商人出售 -->
-          <div class="shop-col shop-buy">
-            <h4>🛒 购买</h4>
+          <div class="shop-panel" id="shop-panel-buy">
             <div class="shop-list" id="shop-buy-list"></div>
           </div>
-          <!-- 右：玩家背包（卖） -->
-          <div class="shop-col shop-sell">
-            <h4>💰 出售给商人（60%）</h4>
+          <div class="shop-panel hidden" id="shop-panel-sell">
             <div class="shop-list" id="shop-sell-list"></div>
           </div>
+        </div>
+        <!-- 分页控件 -->
+        <div class="shop-pager">
+          <button class="pager-btn" id="shop-prev">‹ 上一页</button>
+          <span class="pager-info"><span id="shop-page-info">1 / 1</span></span>
+          <button class="pager-btn" id="shop-next">下一页 ›</button>
         </div>
       </div>
     </div>
@@ -264,14 +271,14 @@
   <script type="importmap">
   {
     "imports": {
-      "three": "./js/three-bundle.js?v=41"
+      "three": "./js/three-bundle.js?v=42"
     }
   }
   </script>
-  <script type="module" src="js/api.js?v=41"></script>
-  <script type="module" src="js/auth.js?v=41"></script>
-  <script type="module" src="js/world.js?v=41"></script>
-  <script type="module" src="js/inventory.js?v=41"></script>
-  <script type="module" src="js/main.js?v=41"></script>
+  <script type="module" src="js/api.js?v=42"></script>
+  <script type="module" src="js/auth.js?v=42"></script>
+  <script type="module" src="js/world.js?v=42"></script>
+  <script type="module" src="js/inventory.js?v=42"></script>
+  <script type="module" src="js/main.js?v=42"></script>
 </body>
 </html>
