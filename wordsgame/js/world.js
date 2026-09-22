@@ -207,6 +207,7 @@ export class TileWorld {
 
     this.portalSprites = [];
     this.npcSprites = [];
+    this.npcBubbles = [];   // NPC 头顶 💬 气泡
     this.itemSprites = [];
 
     this._buildRenderer();
@@ -370,6 +371,7 @@ export class TileWorld {
     // 先把数组重置（防止 render 循环访问 undefined）
     this.portalSprites = [];
     this.npcSprites = [];
+    this.npcBubbles = [];   // NPC 头顶 💬 气泡
     this.itemSprites = [];
 
     // 清场景
@@ -381,6 +383,10 @@ export class TileWorld {
         else c.material.dispose();
       }
       if (c.texture) c.texture.dispose();
+    }
+    for (const b of this.npcBubbles) {
+      if (b.material?.map) b.material.map.dispose();
+      if (b.material) b.material.dispose();
     }
     // 重建灯光
     const amb = new THREE.AmbientLight(0xffffff, 1.0);
@@ -479,7 +485,7 @@ export class TileWorld {
       } else if (name.includes('老者') || name.includes('魔法') || name.includes('sage') || name.includes('wizard')) {
         spriteName = 'npc_sage';
       } else {
-        spriteName = 'npc_chief';  // 默认
+        spriteName = 'npc_chief';
       }
 
       let spriteTex;
@@ -497,7 +503,57 @@ export class TileWorld {
       sp.userData = { kind: 'npc', npc: n };
       this.scene.add(sp);
       this.npcSprites.push(sp);
+
+      // NPC 头顶 💬 气泡（走近时显示）
+      const bubbleTex = this._makeBubbleTexture();
+      const bubbleMat = new THREE.SpriteMaterial({ map: bubbleTex, transparent: true, depthTest: false });
+      const bubble = new THREE.Sprite(bubbleMat);
+      bubble.position.set(x, 1.2, z);   // 头顶上方
+      bubble.scale.set(this.tileSize * 0.55, this.tileSize * 0.4, 1);
+      bubble.renderOrder = 15;
+      bubble.visible = false;
+      this.scene.add(bubble);
+      this.npcBubbles.push(bubble);
     }
+  }
+
+  // 生成 💬 气泡的 Canvas 纹理
+  _makeBubbleTexture() {
+    const c = document.createElement('canvas');
+    c.width = 128; c.height = 96;
+    const g = c.getContext('2d');
+    g.clearRect(0, 0, 128, 96);
+    // 圆角白框
+    const r = 16, w = 120, h = 70, x = 4, y = 4;
+    g.fillStyle = 'rgba(255, 251, 240, 0.95)';
+    g.strokeStyle = '#ffd83d';
+    g.lineWidth = 3;
+    g.beginPath();
+    g.moveTo(x + r, y);
+    g.lineTo(x + w - r, y);
+    g.quadraticCurveTo(x + w, y, x + w, y + r);
+    g.lineTo(x + w, y + h - r);
+    g.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    g.lineTo(x + r, y + h);
+    g.quadraticCurveTo(x, y + h, x, y + h - r);
+    g.lineTo(x, y + r);
+    g.quadraticCurveTo(x, y, x + r, y);
+    g.closePath();
+    g.fill();
+    g.stroke();
+    // 三角尾巴（指向下）
+    g.beginPath();
+    g.moveTo(56, 74); g.lineTo(64, 88); g.lineTo(72, 74); g.closePath();
+    g.fill(); g.stroke();
+    // 💬 emoji
+    g.font = 'bold 36px sans-serif';
+    g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.fillStyle = '#5d4020';
+    g.fillText('💬', 64, 38);
+
+    const tex = new THREE.CanvasTexture(c);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    return tex;
   }
 
   _buildWorldItems(items) {
@@ -750,23 +806,37 @@ export class TileWorld {
     return null;
   }
 
+  // 切比雪夫距离（允许斜方向 1 格的"面前"也算）
+  _distChebyshev(ax, ay, bx, by) { return Math.max(Math.abs(ax - bx), Math.abs(ay - by)); }
+
   _tryInteractAt(tx, ty) {
-    // NPC
+    // NPC —— 必须走到 2 格以内才能交互
     const hitNpc = this.npcSprites.find(s => s.userData.kind === 'npc' && s.userData.npc.tx === tx && s.userData.npc.ty === ty);
     if (hitNpc) {
-      this.onInteract({ type: 'npc', data: hitNpc.userData.npc });
+      const n = hitNpc.userData.npc;
+      const d = this._distChebyshev(this.tx, this.ty, n.tx, n.ty);
+      if (d <= 2) {
+        this.onInteract({ type: 'npc', data: n });
+      } else {
+        this.onToast('走近点再和 ' + n.name + ' 说话');
+      }
       return true;
     }
-    // 互动物品
+    // 互动物品 —— 也得走到附近
     const hitItem = this.itemSprites.find(s => s.userData.kind === 'item' && s.userData.item.tx === tx && s.userData.item.ty === ty);
     if (hitItem) {
-      this.onInteract({ type: 'item', data: hitItem.userData.item });
+      const it = hitItem.userData.item;
+      const d = this._distChebyshev(this.tx, this.ty, it.tx, it.ty);
+      if (d <= 2) {
+        this.onInteract({ type: 'item', data: it });
+      } else {
+        this.onToast('走近点才能拾取');
+      }
       return true;
     }
-    // 传送门 —— 点击即可触发（或者让玩家走到格子上自动触发）
+    // 传送门
     const hitPortal = this.portalSprites.find(s => s.userData.kind === 'portal' && s.userData.portal.from_tx === tx && s.userData.portal.from_ty === ty);
     if (hitPortal) {
-      // 点击传送门 → 直接跳转（通常我们是玩家走上去自动触发，这里兜底）
       this.onWarp(hitPortal.userData.portal);
       return true;
     }
@@ -872,6 +942,22 @@ export class TileWorld {
         s.position.y = 0.15 + Math.sin(t * 1.2 + s.position.x) * 0.05;
         s.material.opacity = 0.7 + Math.abs(Math.sin(t * 1.2)) * 0.3;
         s.material.transparent = true;
+      }
+      // NPC 头顶气泡 proximity 更新
+      for (let i = 0; i < this.npcSprites.length; i++) {
+        const sp = this.npcSprites[i];
+        const b = this.npcBubbles[i];
+        if (!b) continue;
+        const n = sp.userData.npc;
+        const d = this._distChebyshev(this.tx, this.ty, n.tx, n.ty);
+        const shouldShow = d <= 2;
+        if (b.visible !== shouldShow) b.visible = shouldShow;
+        // 气泡呼吸动画
+        if (shouldShow) {
+          b.position.y = 1.35 + Math.sin(t * 2.2 + i) * 0.08;
+          b.material.opacity = 0.85 + Math.abs(Math.sin(t * 2.2)) * 0.15;
+          b.material.transparent = true;
+        }
       }
       for (const s of this.itemSprites) {
         s.position.y = 0.2 + Math.sin(t * 1.6 + s.position.x) * 0.06;
