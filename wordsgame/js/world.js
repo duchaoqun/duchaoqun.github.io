@@ -480,7 +480,9 @@ export class TileWorld {
       // 根据 NPC name 匹配 sprite
       let spriteName;
       const name = (n.name || '').toString();
-      if (name.includes('老王') || name.includes('村长') || name.includes('chief')) {
+      if (name.includes('小贩') || name.includes('商人') || name.includes('merchant') || name.includes('shop')) {
+        spriteName = 'npc_merchant';
+      } else if (name.includes('老王') || name.includes('村长') || name.includes('chief')) {
         spriteName = 'npc_chief';
       } else if (name.includes('老者') || name.includes('魔法') || name.includes('sage') || name.includes('wizard')) {
         spriteName = 'npc_sage';

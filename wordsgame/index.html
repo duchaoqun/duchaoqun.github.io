@@ -175,6 +175,30 @@
       </div>
     </div>
 
+
+    <!-- 商店弹窗 -->
+    <div class="modal-overlay" id="shop-modal">
+      <div class="modal-box shop-box">
+        <div class="modal-header">
+          <h3 id="shop-title">商店</h3>
+          <div class="shop-money">💰 <span id="shop-money">0</span></div>
+          <button class="modal-close" data-close="shop-modal">×</button>
+        </div>
+        <div class="modal-body shop-body">
+          <!-- 左：商人出售 -->
+          <div class="shop-col shop-buy">
+            <h4>🛒 购买</h4>
+            <div class="shop-list" id="shop-buy-list"></div>
+          </div>
+          <!-- 右：玩家背包（卖） -->
+          <div class="shop-col shop-sell">
+            <h4>💰 出售给商人（60%）</h4>
+            <div class="shop-list" id="shop-sell-list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- 互动物品弹窗 -->
     <div class="modal-overlay" id="world-item-modal">
       <div class="modal-box item-box">
@@ -240,14 +264,14 @@
   <script type="importmap">
   {
     "imports": {
-      "three": "./js/three-bundle.js?v=31"
+      "three": "./js/three-bundle.js?v=41"
     }
   }
   </script>
-  <script type="module" src="js/api.js?v=31"></script>
-  <script type="module" src="js/auth.js?v=31"></script>
-  <script type="module" src="js/world.js?v=31"></script>
-  <script type="module" src="js/inventory.js?v=31"></script>
-  <script type="module" src="js/main.js?v=31"></script>
+  <script type="module" src="js/api.js?v=41"></script>
+  <script type="module" src="js/auth.js?v=41"></script>
+  <script type="module" src="js/world.js?v=41"></script>
+  <script type="module" src="js/inventory.js?v=41"></script>
+  <script type="module" src="js/main.js?v=41"></script>
 </body>
 </html>

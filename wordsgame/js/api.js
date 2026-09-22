@@ -86,6 +86,12 @@ export const itemApi = {
 };
 
 // ============ 地图上互动物品（拾取）============
+// ============ 商店系统 ============
+export const shopApi = {
+  buy:  (code, qty=1) => request('/shop/buy',  { method: 'POST', body: { code, quantity: qty } }),
+  sell: (code, qty=1) => request('/shop/sell', { method: 'POST', body: { code, quantity: qty } }),
+};
+
 // ============ 金钱系统 ============
 export const moneyApi = {
   get:    () => request('/money'),

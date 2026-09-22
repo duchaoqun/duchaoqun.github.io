@@ -5,7 +5,8 @@
  */
 
 import { initAuthForm, checkAuth, logout } from './auth.js';
-import { authApi, mapApi, posApi, setToken, setUser, clearAuth, getToken } from './api.js';
+import { authApi, mapApi, posApi, moneyApi, shopApi, itemApi, invApi,
+         formatMoney, setToken, setUser, clearAuth, getToken } from './api.js';
 import { TileWorld, preloadTileTextures } from './world.js';
 import { initInventory, openWorldItem, showToast } from './inventory.js';
 
@@ -61,6 +62,7 @@ import { initInventory, openWorldItem, showToast } from './inventory.js';
 // ============ 视图切换 ============
 const authView = document.getElementById('auth-view');
 const gameView = document.getElementById('game-view');
+let currentShopNpc = null;
 
 function showAuth() {
   authView.classList.add('active');
@@ -202,6 +204,14 @@ async function handleNpcAction(npc, action) {
       } catch (err) { showToast('失败：' + err.message, 'error'); }
       return;
     }
+    case 'open_shop':
+    case 'open_sell': {
+      try {
+        document.getElementById('npc-modal')?.classList.remove('open');
+      } catch {}
+      await openShop(npc, action === 'open_shop' ? 'buy' : 'sell');
+      return;
+    }
     case 'hint_secret':
       document.getElementById('npc-dialog').textContent =
         '据说水潭的中心藏着一颗红宝石，可惜被一棵树挡住了去路...';
@@ -210,6 +220,142 @@ async function handleNpcAction(npc, action) {
       showToast('动作 ' + action + ' 暂未实现', '');
   }
 }
+
+
+
+// ============ 商店系统 ============
+async function openShop(npc, defaultTab) {
+  try {
+    currentShopNpc = npc;
+    // 先关所有 modal-overlay（防止 NPC modal 挡在上面）
+    document.querySelectorAll('.modal-overlay.open').forEach(m => m.classList.remove('open'));
+    // 强制 reflow，避免浏览器同时 add/remove 冲突
+    document.body.offsetHeight;
+
+    const el = document.getElementById('shop-modal');
+    if (!el) { showToast('shop-modal DOM 没找到', 'error'); return; }
+    document.getElementById('shop-title').textContent = (npc.title ? npc.title + ' · ' : '') + npc.name;
+    el.classList.add('open');
+    await refreshShop();
+  } catch(e) {
+    console.error('[openShop]', e);
+    showToast('打开商店失败: ' + e.message, 'error');
+  }
+}
+
+function closeModal(id) {
+  document.getElementById(id)?.classList.remove('open');
+}
+
+async function refreshShop() {
+  console.log('[refreshShop] called, currentShopNpc=', currentShopNpc?.name, 'shop_items=', currentShopNpc?.shop_items?.length);
+  if (!currentShopNpc) return;
+  document.getElementById('shop-money').textContent = formatMoney(await getMoney());
+
+  // 购买列表
+  const buyList = document.getElementById('shop-buy-list');
+  buyList.innerHTML = '';
+  const shopItems = currentShopNpc.shop_items || [];
+  console.log('[refreshShop] shopItems.length=', shopItems.length);
+  if (shopItems.length === 0) {
+    buyList.innerHTML = '<div style="color:#888;padding:20px;text-align:center;">这个商人今天没货 🛒</div>';
+  } else {
+    try {
+      const r = await itemApi.list();
+      const itemList = Array.isArray(r) ? r : (r.data || []);
+      console.log('[refreshShop] itemApi.list() returned, len=', itemList.length);
+      for (const si of shopItems) {
+        const def = itemList.find(d => d.code === si.code);
+        if (!def) { console.warn('[refreshShop] item not found:', si.code); continue; }
+        buyList.appendChild(buildShopBuyRow(def, si.price));
+      }
+    } catch(e) {
+      console.error('[refreshShop] buyList error:', e);
+      buyList.innerHTML = '<div style="color:#c00;padding:10px;">加载商品失败</div>';
+    }
+  }
+
+  // 出售列表
+  const sellList = document.getElementById('shop-sell-list');
+  sellList.innerHTML = '';
+  try {
+    const inv = await invApi.list();
+    const items = Array.isArray(inv) ? inv : (inv.data || []);
+    console.log('[refreshShop] invApi.list() returned, len=', items.length);
+    if (!items.length) {
+      sellList.innerHTML = '<div style="color:#888;padding:20px;text-align:center;">背包空空如也</div>';
+    } else {
+      for (const it of items) {
+        sellList.appendChild(buildShopSellRow(it));
+      }
+    }
+  } catch(e) { console.error('[refreshShop] sellList error:', e, e?.stack?.slice(0,150)); sellList.innerHTML = '<div style="color:#c00;padding:10px;">加载背包失败</div>'; }
+}
+
+function buildShopBuyRow(def, price) {
+  const row = document.createElement('div');
+  row.className = 'shop-item buy-row';
+  row.innerHTML = `
+    <div class="si-icon">📦</div>
+    <div class="si-info">
+      <div class="si-name">${def.name}</div>
+      <div class="si-meta">${def.description || ''} · ${def.kind}</div>
+    </div>
+    <div class="si-price">💰${price}/个</div>
+    <div class="si-qty"><input type="number" min="1" max="99" value="1"></div>
+    <button class="si-btn">购买</button>
+  `;
+  const input = row.querySelector('input');
+  const btn = row.querySelector('.si-btn');
+  btn.onclick = async () => {
+    const qty = parseInt(input.value) || 1;
+    try {
+      const r = await shopApi.buy(def.code, qty);
+      showToast(`买了 ${def.name} ×${qty}`, 'success');
+      document.getElementById('stat-money').textContent = formatMoney(r.money);
+      if (window.__invApi) await window.__invApi.load();
+      await refreshShop();
+    } catch (e) { showToast(e.message || '购买失败', 'error'); }
+  };
+  return row;
+}
+
+function buildShopSellRow(it) {
+  const sellPrice = Math.max(1, Math.floor((it.price || 0) * 0.6));
+  const row = document.createElement('div');
+  row.className = 'shop-item sell-row';
+  row.innerHTML = `
+    <div class="si-icon">📦</div>
+    <div class="si-info">
+      <div class="si-name">${it.name} ×${it.quantity}</div>
+      <div class="si-meta">${it.description || ''}</div>
+    </div>
+    <div class="si-price">💰${sellPrice}/个</div>
+    <div class="si-qty"><input type="number" min="1" max="${it.quantity}" value="1"></div>
+    <button class="si-btn">出售</button>
+  `;
+  const input = row.querySelector('input');
+  const btn = row.querySelector('.si-btn');
+  btn.onclick = async () => {
+    const qty = Math.min(parseInt(input.value) || 1, it.quantity);
+    try {
+      const r = await shopApi.sell(it.code, qty);
+      showToast(`卖了 ${it.name} ×${qty}，得 ${r.data.item.unit_price * qty} 💰`, 'success');
+      document.getElementById('stat-money').textContent = formatMoney(r.money);
+      if (window.__invApi) await window.__invApi.load();
+      await refreshShop();
+    } catch (e) { showToast(e.message || '出售失败', 'error'); }
+  };
+  return row;
+}
+
+async function getMoney() {
+  try {
+    const r = await moneyApi.get();
+    return r.money;
+  } catch(e) { console.warn('[getMoney]', e); return 0; }
+}
+
 
 // 拾取完成：让 world 把这个 item 从场景里移除
 window.addEventListener('worlditem:pickup', () => {
