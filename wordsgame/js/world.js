@@ -320,10 +320,11 @@ export class TileWorld {
     this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 2000);
     // tilt=0 正俯视 → (0, d, 0) 正上方
     // tilt>0 斜视 → y = d*sin(tilt), xz = d*cos(tilt)/√2 各偏一点
-    // 正俯视
-    // OrthographicCamera 不受 Gimbal Lock 影响（投影矩阵直接用 frustum 值）
-    // 不需要任何 lookAt 偏移
-    this.camera.position.set(0, d, 0);
+    // 45° 等距视角（经典 isometric）
+    // camera 在 Z 方向上方 45° 处 lookAt 原点
+    // forward = (0, -d*cos45, -d*sin45) 与 up=(0,1,0) dot=-0.707 → 无 Gimbal Lock ✅
+    this.cameraTilt = THREE.MathUtils.degToRad(45);  // 45° 俯角
+    this.camera.position.set(0, d * Math.cos(this.cameraTilt), d * Math.sin(this.cameraTilt));
     this.camera.lookAt(0, 0, 0);
     this.camera.up.set(0, 1, 0);
     this._updateCameraFrustum();
