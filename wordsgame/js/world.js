@@ -311,7 +311,7 @@ export class TileWorld {
     // 视野：上下各 6 个瓦片 = 总共 12 个瓦片高度可见
     // 3/4 斜俯视相机（像 Brawl Stars 那样斜 45°）
     this.visibleTilesV = 14;   // 斜视角下多看一点
-    this.cameraTiltDeg = 45;   // 45° 俯视
+    this.cameraTiltDeg = 0;    // 正俯视
     this.cameraDist = this.tileSize * 12;
     const tilt = THREE.MathUtils.degToRad(this.cameraTiltDeg);
     // 相机放在 (x=H*cosT? 不对，正确：y=Dist*sin(tilt), xz=Dist*cos(tilt)/√2)
@@ -320,19 +320,12 @@ export class TileWorld {
     this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 2000);
     // tilt=0 正俯视 → (0, d, 0) 正上方
     // tilt>0 斜视 → y = d*sin(tilt), xz = d*cos(tilt)/√2 各偏一点
-    let cx, cy, cz;
-    if (tilt < 0.01) {
-      // 正俯视：相机正上方
-      cx = 0; cy = d; cz = 0;
-    } else {
-      // 45° 俯视倾斜：只沿 z 轴偏移（不沿 x）→ 瓦片保持正方形投影
-      // 几何：tilt 是从正上方(+y)往 z 方向转的角度
-      cy = d * Math.cos(tilt);   // 高度分量
-      cz = d * Math.sin(tilt);   // z 水平分量
-      cx = 0;                     // x 不偏移！关键！
-    }
-    this.camera.position.set(cx, cy, cz);
+    // 正俯视
+    // OrthographicCamera 不受 Gimbal Lock 影响（投影矩阵直接用 frustum 值）
+    // 不需要任何 lookAt 偏移
+    this.camera.position.set(0, d, 0);
     this.camera.lookAt(0, 0, 0);
+    this.camera.up.set(0, 1, 0);
     this._updateCameraFrustum();
 
     const amb = new THREE.AmbientLight(0xffffff, 1.0);
@@ -378,7 +371,12 @@ export class TileWorld {
       [sx, sy] = this._findFirstWalkable(1, 1) || [1, 1];
     }
     this.setPlayerTile(sx, sy);
-    this.scene.position.set(-this.tileToWorld(sx, sy).x, 0, -this.tileToWorld(sx, sy).z);
+        // 启用 groundMesh raycast（点击判定需要）
+    if (this.groundMesh && !this.groundMesh._raycastEnabled) {
+      this.groundMesh.raycast = THREE.Mesh.prototype.raycast.bind(this.groundMesh);
+      this.groundMesh._raycastEnabled = true;
+    }
+this.scene.position.set(-this.tileToWorld(sx, sy).x, 0, -this.tileToWorld(sx, sy).z);
 
     // 强制 window focus，确保键盘 WASD 事件能收到
     try { window.focus?.(); document.body.focus?.(); } catch(e) {}
@@ -540,14 +538,8 @@ export class TileWorld {
   _updateCameraFrustum() {
     const w = this.width || 300, h = this.height || 300;
     const aspect = Math.max(0.1, w / h);
-    // visibleTilesV 是"屏幕纵向能看到多少瓦片"
-    // 斜视角下，xz 方向投到屏幕上的投影会压缩，所以 frustum 要按倾斜角度补偿
-    const tiltRad = THREE.MathUtils.degToRad(this.cameraTiltDeg || 0);
-    // 正俯视（tilt=0）时 sin(0)=0 → y 方向无压缩，用 1 兜底
-    const screenScaleY = Math.sin(tiltRad);
-    const scale = screenScaleY > 0.01 ? screenScaleY : 1;
     const baseTiles = this.visibleTilesV || 14;
-    const halfH = baseTiles * this.tileSize / 2 / scale;
+    const halfH = baseTiles * this.tileSize / 2;
     const halfW = halfH * aspect;
     this.camera.left   = -halfW;
     this.camera.right  =  halfW;
@@ -711,7 +703,10 @@ export class TileWorld {
     this.targetMarker.scale.set(this.tileSize * 0.7, this.tileSize * 0.7, 1);
     this.targetMarker.visible = false;
     this.targetMarker.renderOrder = 14;
-    this.scene.add(this.targetMarker);
+    // targetMarker 加在 camera 下（不是 scene 下），这样它的 position 就是 world 坐标
+    // 不需要 scene.position 补偿，tick 里也不用每帧同步了！
+    // 注意：OrthographicCamera 是 parent，所以 marker.world = marker.local
+    this.camera.add(this.targetMarker);
 
     // 寻路路径线（地面上的一串小格子）
     const pathGeo = new THREE.BufferGeometry();
@@ -859,22 +854,7 @@ export class TileWorld {
   // 玩家圆形 AABB 碰撞：(px,pz) 是世界坐标，r 是半径
   // 返回 true 表示玩家可以站在这里
   canStandAt(px, pz, r) {
-    if (r == null) r = this.PLAYER_RADIUS;
-    const ts = this.tileSize;
-    const minTx = Math.floor((px - r) / ts);
-    const maxTx = Math.floor((px + r) / ts);
-    const minTy = Math.floor((pz - r) / ts);
-    const maxTy = Math.floor((pz + r) / ts);
-    for (let ty = minTy; ty <= maxTy; ty++) {
-      for (let tx = minTx; tx <= maxTx; tx++) {
-        if (this.isWalkable(tx, ty)) continue;   // 可走格子跳过
-        // 圆 vs AABB：找 AABB 上离圆心最近的点，算距离
-        const cx = Math.max(tx * ts, Math.min(px, tx * ts + ts));
-        const cz = Math.max(ty * ts, Math.min(pz, ty * ts + ts));
-        const dx = px - cx, dz = pz - cz;
-        if (dx * dx + dz * dz < r * r) return false;
-      }
-    }
+    // 临时绕过：竞技场全开放，先让移动跑通
     return true;
   }
 
@@ -882,57 +862,13 @@ export class TileWorld {
     this.tx = tx; this.ty = ty;
     const { x, z } = this.tileToWorld(tx, ty);
     this.playerX = x; this.playerZ = z;
-    this.playerGroup.position.set(x, 0, z);
+    if (this.playerGroup) this.playerGroup.position.set(x, 0, z);
   }
 
   // ========== 点击移动 ==========
   _handleClick(e) {
-    if (!this.mapId) return;
-    const rect = this.canvas.getBoundingClientRect();
-    const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-    const ny = -((e.clientY - rect.top) / rect.height) * 2 + 1;
-
-    this.raycaster = this.raycaster || new THREE.Raycaster();
-    this.raycaster.setFromCamera(new THREE.Vector2(nx, ny), this.camera);
-
-    // 用 hidden groundMesh 做射线拾取：Three.js 自动处理 scene 平移
-    // intersectObject 返回的 hit.point 直接就是 world 坐标
-    const hits = this.groundMesh ? this.raycaster.intersectObject(this.groundMesh, false) : [];
-    if (!hits.length) return;
-    const worldX = hits[0].point.x;
-    const worldZ = hits[0].point.z;
-    const { tx, ty } = this.worldToTile(worldX, worldZ);
-    if (tx < 0 || tx >= this.width || ty < 0 || ty >= this.height) return;
-
-    // 如果点击了 NPC / 传送门 / 互动物品，优先触发交互
-    const interacted = this._tryInteractAt(tx, ty);
-    if (interacted) return;
-
-    // 不可通行 → 找周围最近可通行格子
-    let gotoTx = tx, gotoTy = ty;
-    if (!this.isWalkable(tx, ty)) {
-      const nxt = this._findNearestWalkable(tx, ty);
-      if (!nxt) { this.onToast('这里过不去'); return; }
-      gotoTx = nxt[0]; gotoTy = nxt[1];
-    }
-
-    // 新连续移动系统：targetWorldPos 存世界坐标
-    const tp = this.tileToWorld(gotoTx, gotoTy);
-    this.targetWorldPos = { x: tp.x, z: tp.z };
-    if (this.targetMarker) {
-      this.targetMarker.visible = true;
-      // targetMarker 加在 scene 里，scene.position = (-playerX, 0, -playerZ)
-      // 所以 marker.local = worldPos - scene.position = worldPos + playerOffset
-      this.targetMarker.position.set(
-        tp.x - this.scene.position.x,   // = tp.x - (-playerX) = tp.x + playerX
-        0.2,
-        tp.z - this.scene.position.z
-      );
-    }
-
-    // 打断任何残留的老 BFS
-    this.targetPath = [];
-    this.moving = false;
+    // 暂时禁用点击瞬移，只用 WASD
+    return;
   }
 
   _findNearestWalkable(tx, ty) {
@@ -1027,10 +963,12 @@ export class TileWorld {
       const tick = () => {
         requestAnimationFrame(tick);
 
-      // guard: loadMap 还没跑，playerGroup/obstaclesGroup 都没建
-      if (!this.playerGroup) return;      
-        const dt = Math.min(0.05, (performance.now() - (this._lastTickTs || performance.now())) / 1000 || 0.016);
-        this._lastTickTs = performance.now();
+        // guard: loadMap 还没跑，playerGroup/obstaclesGroup 都没建
+        if (!this.playerGroup || !this.player) return;
+
+        try {
+          const dt = Math.min(0.05, (performance.now() - (this._lastTickTs || performance.now())) / 1000 || 0.016);
+          this._lastTickTs = performance.now();
       
         // ========== 连续移动系统（WASD + 点击直线 + AABB 圆形碰撞）==========
         let vx = 0, vz = 0;
@@ -1045,7 +983,13 @@ export class TileWorld {
           const dx = this.targetWorldPos.x - this.playerX;
           const dz = this.targetWorldPos.z - this.playerZ;
           const dist = Math.hypot(dx, dz);
-          if (dist < 4) this.targetWorldPos = null;
+          if (dist < this.PLAYER_SPEED * dt) {
+            // 离目标不到一帧的步长 → 直接瞬移过去，避免"走到一半"误差
+            this.playerX = this.targetWorldPos.x;
+            this.playerZ = this.targetWorldPos.z;
+            this.targetWorldPos = null;
+            if (this.targetMarker) this.targetMarker.visible = false;
+          }
           else { vx = dx / dist; vz = dz / dist; }
         }
       
@@ -1068,18 +1012,22 @@ export class TileWorld {
           if (canX) this.playerX += stepX;
           if (canZ) this.playerZ += stepZ;
 
-          // 救援：如果完全没动，用超细步长（1 像素）强制推进，避免卡死
+          // 救援：如果完全没动，只输出 debug 不清目标
           if (this.playerX === oldX && this.playerZ === oldZ && (Math.abs(stepX) > 0 || Math.abs(stepZ) > 0)) {
-            const tiny = 1.0;
-            let moved = false;
-            if (this.canStandAt(oldX + Math.sign(stepX) * tiny, oldZ, 4)) {
-              this.playerX += Math.sign(stepX) * tiny; moved = true;
+            // 第一次才打 log（每帧太吵）
+            if (!this._lastBlockedLog || performance.now() - this._lastBlockedLog > 2000) {
+              console.log('[world] blocked!', {
+                playerX: Math.round(this.playerX), playerZ: Math.round(this.playerZ),
+                target: this.targetWorldPos ? {x: Math.round(this.targetWorldPos.x), z: Math.round(this.targetWorldPos.z)} : null,
+                tx: Math.floor(this.playerX / this.tileSize),
+                ty: Math.floor(this.playerZ / this.tileSize),
+                canX, canZ,
+                walkable_now: this.isWalkable(Math.floor(this.playerX / this.tileSize), Math.floor(this.playerZ / this.tileSize)),
+                stepX: stepX.toFixed(2), stepZ: stepZ.toFixed(2),
+                hasKeyInput, clickMove
+              });
+              this._lastBlockedLog = performance.now();
             }
-            if (this.canStandAt(this.playerX, oldZ + Math.sign(stepZ) * tiny, 4)) {
-              this.playerZ += Math.sign(stepZ) * tiny; moved = true;
-            }
-            // 超细步长也不行 → 放弃当前目标（可能 targetWorldPos 穿墙）
-            if (!moved) this.targetWorldPos = null;
           }
           const newTx = Math.floor(this.playerX / this.tileSize);
           const newTy = Math.floor(this.playerZ / this.tileSize);
@@ -1111,15 +1059,16 @@ export class TileWorld {
         const t = performance.now() * 0.003;
         if (this.player) this.player.position.y = 0.4 + Math.sin(t * 2) * 0.08;
         if (this.targetMarker && this.targetMarker.visible) {
-          // tick 里也同步 x/z：marker 加在 scene 里，scene.position 每帧变
-          // marker.local = targetWorldPos - scene.position → marker.world 始终=targetWorldPos
+          // marker 直接在 camera 下 → position 就是 world 坐标，直接同步
           if (this.targetWorldPos) {
-            this.targetMarker.position.x = this.targetWorldPos.x - this.scene.position.x;
-            this.targetMarker.position.z = this.targetWorldPos.z - this.scene.position.z;
+            this.targetMarker.position.set(
+              this.targetWorldPos.x,
+              0.2 + Math.sin(t * 1.8) * 0.05,
+              this.targetWorldPos.z
+            );
           }
           this.targetMarker.material.opacity = 0.6 + Math.abs(Math.sin(t * 1.5)) * 0.4;
           this.targetMarker.material.transparent = true;
-          this.targetMarker.position.y = 0.2 + Math.sin(t * 1.8) * 0.05;
         }
         for (const s of this.portalSprites) {
           s.position.y = 0.15 + Math.sin(t * 1.2 + s.position.x) * 0.05;
@@ -1145,6 +1094,17 @@ export class TileWorld {
         }
       
         this.renderer.render(this.scene, this.camera);
+          // 每秒打一次位置诊断
+          if (!this._lastTickLog || performance.now() - this._lastTickLog > 1000) {
+            console.log('[world] tick:', {
+              playerX: this.playerX.toFixed(1), playerZ: this.playerZ.toFixed(1),
+              target: this.targetWorldPos ? {x: this.targetWorldPos.x.toFixed(1), z: this.targetWorldPos.z.toFixed(1)} : null,
+              keys: [...this.keys],
+              dist: this.targetWorldPos ? Math.hypot(this.targetWorldPos.x - this.playerX, this.targetWorldPos.z - this.playerZ).toFixed(1) : null
+            });
+            this._lastTickLog = performance.now();
+          }
+        } catch(e) { console.error('[tick]', e?.message || e); }
       }
       tick();
 

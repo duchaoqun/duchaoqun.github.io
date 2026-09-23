@@ -7,7 +7,10 @@
 import { initAuthForm, checkAuth, logout } from './auth.js';
 import { authApi, mapApi, posApi, moneyApi, shopApi, itemApi, invApi,
          formatMoney, setToken, setUser, clearAuth, getToken } from './api.js';
-import { TileWorld, preloadTileTextures } from './world.js';
+// world.js 延迟加载——只有进入游戏时才加载，不阻塞登录页
+// import { TileWorld, preloadTileTextures } from './world.js';
+let _TileWorld = null;  // 动态 import 后赋值
+let _preloadTileTextures = null;
 import { initInventory, openWorldItem, showToast } from './inventory.js';
 
 // ============ 气泡背景 ============
@@ -96,14 +99,31 @@ function renderUser(user) {
 }
 
 // ============ 加载地图 ============
+let _worldModule = null;  // 缓存动态 import 的 world 模块
+
 async function enterGame() {
   showGame();
 
   // 等 CSS transition 完成再读 canvas 尺寸
   await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
 
+  // 动态 import world.js（避免模块加载时的错误阻塞登录页）
+  if (!_worldModule) {
+    try {
+      _worldModule = await import('./world.js');
+    } catch(err) {
+      console.error('❌ world.js 加载失败:', err);
+      alert('3D 引擎加载失败：' + (err.message || err) + '\n\n请打开浏览器控制台(F12)查看详情');
+      showAuth();
+      return;
+    }
+  }
+  const { TileWorld: TW, preloadTileTextures: PT } = _worldModule;
+  _TileWorld = TW;
+  _preloadTileTextures = PT;
+
   // 预加载真实 512×512 瓦片贴图（如果网络慢或文件不存在，会 fallback 到 Canvas 手绘）
-  await preloadTileTextures();
+  try { await _preloadTileTextures(); } catch(e) { console.warn('preloadTileTextures 失败:', e.message); }
 
   // 先查后端玩家位置
   let playerPos = null;
@@ -122,7 +142,8 @@ async function loadMap(mapId, playerPos = null) {
 
     if (!window.__world) {
       const canvas = document.getElementById('game-canvas');
-      window.__world = new TileWorld(canvas, {
+      if (!_TileWorld) { await import('./world.js').then(m => { _TileWorld = m.TileWorld; }); }
+      window.__world = new _TileWorld(canvas, {
         onPlayerMoved: handlePlayerMoved,
         onInteract: handleInteract,
         onWarp: handleWarp,
