@@ -10,14 +10,15 @@ import * as THREE from 'three';
 
 // ========== 瓦片类型默认颜色 & 是否可通行 ==========
 const TILE_STYLE = {
-  grass:   { color: 0x86b453, walkable: true,  label: '草地' },
-  path:    { color: 0xc9a96e, walkable: true,  label: '土路' },
+  grass:   { color: 0x6ea63f, walkable: true,  label: '草地' },
+  path:    { color: 0xb89560, walkable: true,  label: '土路' },
   sand:    { color: 0xe6d298, walkable: true,  label: '沙地' },
   water:   { color: 0x4a7ab5, walkable: false, label: '水潭' },
-  tree:    { color: 0x3f7a2a, walkable: false, label: '树木' },
-  rock:    { color: 0x8a8a8a, walkable: false, label: '岩石' },
+  tree:    { color: 0x3f7a2a, walkable: false, label: '树木',  block: true, blockH: 0.85, blockTop: 0x4a9e2a, blockSide: 0x2f5e1f },
+  rock:    { color: 0x8a8a8a, walkable: false, label: '岩石',  block: true, blockH: 0.55, blockTop: 0xa8a8a8, blockSide: 0x6b6b6b },
   floor:   { color: 0xdccfae, walkable: true,  label: '地砖' },
-  wall:    { color: 0x6b5a3a, walkable: false, label: '墙' },
+  wall:    { color: 0x6b5a3a, walkable: false, label: '墙',    block: true, blockH: 1.0,  blockTop: 0x8a7855, blockSide: 0x52442a },
+  bush:    { color: 0x5a8f3a, walkable: false, label: '灌木',  block: true, blockH: 0.4,  blockTop: 0x6ea63f, blockSide: 0x466f2c },
 };
 
 // ========= 瓦片贴图缓存 =========
@@ -146,6 +147,15 @@ function makeTileTexture(ttype, tileSize = 64) {
 }
 
 
+// 辅助：颜色变亮/变暗（percent 正数亮负数暗）
+function shade(hex, percent) {
+  const n = parseInt(hex.replace('#', ''), 16);
+  let r = (n >> 16) & 0xff, g = (n >> 8) & 0xff, b = n & 0xff;
+  const f = (c, p) => Math.max(0, Math.min(255, Math.round(c + (percent / 100) * 255)));
+  r = f(r, percent); g = f(g, percent); b = f(b, percent);
+  return '#' + ((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1);
+}
+
 /** BFS —— 在 walkable 网格上寻路，返回从 (fx,fy) 到 (tx,ty) 的路径（不含起点） */
 function bfs(walkable, fx, fy, tx, ty) {
   const h = walkable.length, w = walkable[0].length;
@@ -205,6 +215,10 @@ export class TileWorld {
     this.onWarp        = opts.onWarp        || (() => {});
     this.onToast       = opts.onToast       || (() => {});
 
+    // 世界状态（必须在 _buildRenderer 之前初始化！）
+    this.mapId = null;
+    this.tileSize = 64;  // ← _buildRenderer 里会用到它设置相机高度/视野
+
     this.portalSprites = [];
     this.npcSprites = [];
     this.npcBubbles = [];   // NPC 头顶 💬 气泡
@@ -213,17 +227,17 @@ export class TileWorld {
     this._buildRenderer();
     this._bindEvents();
 
-    // 世界状态
-    this.mapId = null;
-    this.tileSize = 64;
-
-    // 玩家（瓦片中心）
+    // 玩家坐标（同时保留瓦片索引用于交互 + 连续世界坐标用于移动）
     this.tx = 0; this.ty = 0;
-    this.targetPath = [];      // BFS 路径队列
-    this.moving = false;
-    this.moveProgress = 0;
-    this.moveFrom = null;      // {x, y} 世界坐标
-    this.moveTo   = null;
+    this.playerX = 0;  // 世界坐标 float（连续移动用）
+    this.playerZ = 0;
+    this.keys = new Set();      // 当前按下的键（WASD / 方向键）
+    this.targetWorldPos = null; // 点击移动的目标 {x, z}（连续世界坐标）
+    this.PLAYER_SPEED = 240;    // world units / sec（瓦片 size=64 → 约 3.75 格/秒）
+    this.PLAYER_RADIUS = 12;    // 玩家碰撞半径（world units，tileSize=64 的 18.75%）
+    // 兼容旧 BFS 字段（setPlayerTile / loadMap 初始化时用）
+    this.targetPath = []; this.moving = false;
+    this.moveProgress = 0; this.moveFrom = null; this.moveTo = null;
 
     this._animate();
   }
@@ -273,31 +287,53 @@ export class TileWorld {
         console.log('[TileWorld] 修正后尺寸:', this.width, '×', this.height);
         if (this.width > 0 && this.height > 0) {
           this.renderer.setSize(this.width, this.height, false);
-          // 还要更新相机宽高比
-          const aspect = this.width / this.height;
-          const fs = this.tileSize * 16;
-          this.camera.left   = (-fs * aspect) / 2;
-          this.camera.right  = ( fs * aspect) / 2;
-          this.camera.top    =  fs / 2;
-          this.camera.bottom = -fs / 2;
-          this.camera.updateProjectionMatrix();
+          this._updateCameraFrustum();  // ← 用统一方法，别硬编码
         }
       }));
     }
     this.renderer.setClearColor(0xf4e9c8, 1);
 
     this.scene = new THREE.Scene();
+    // 隐藏的地面平面（raycaster 点击判定用）
+    {
+      const g = new THREE.Mesh(
+        new THREE.PlaneGeometry(20000, 20000),
+        new THREE.MeshBasicMaterial({ visible: false })
+      );
+      g.rotation.x = -Math.PI / 2;  // 平铺 xy → xz
+      g.raycast = () => {};  // 先禁用，loadMap 时重启用
+      this.groundMesh = g;
+      this.scene.add(g);
+    }
     this.scene.background = new THREE.Color(0xf4e9c8);
 
-    // 正交相机：俯视
-    const aspect = this.width / this.height;
-    this.camera = new THREE.OrthographicCamera(
-      (-40 * aspect) / 2, (40 * aspect) / 2,
-      40 / 2, -40 / 2,
-      0.1, 1000
-    );
-    this.camera.position.set(0, 60, 0);
+    // 正交相机：正俯视（玩家居中，地图向四周滚动）
+    // 视野：上下各 6 个瓦片 = 总共 12 个瓦片高度可见
+    // 3/4 斜俯视相机（像 Brawl Stars 那样斜 45°）
+    this.visibleTilesV = 14;   // 斜视角下多看一点
+    this.cameraTiltDeg = 45;   // 45° 俯视
+    this.cameraDist = this.tileSize * 12;
+    const tilt = THREE.MathUtils.degToRad(this.cameraTiltDeg);
+    // 相机放在 (x=H*cosT? 不对，正确：y=Dist*sin(tilt), xz=Dist*cos(tilt)/√2)
+    // 斜向放：x 和 z 各偏移一些，让世界看起来有深度
+    const d = this.cameraDist;
+    this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 2000);
+    // tilt=0 正俯视 → (0, d, 0) 正上方
+    // tilt>0 斜视 → y = d*sin(tilt), xz = d*cos(tilt)/√2 各偏一点
+    let cx, cy, cz;
+    if (tilt < 0.01) {
+      // 正俯视：相机正上方
+      cx = 0; cy = d; cz = 0;
+    } else {
+      // 45° 俯视倾斜：只沿 z 轴偏移（不沿 x）→ 瓦片保持正方形投影
+      // 几何：tilt 是从正上方(+y)往 z 方向转的角度
+      cy = d * Math.cos(tilt);   // 高度分量
+      cz = d * Math.sin(tilt);   // z 水平分量
+      cx = 0;                     // x 不偏移！关键！
+    }
+    this.camera.position.set(cx, cy, cz);
     this.camera.lookAt(0, 0, 0);
+    this._updateCameraFrustum();
 
     const amb = new THREE.AmbientLight(0xffffff, 1.0);
     this.scene.add(amb);
@@ -321,15 +357,8 @@ export class TileWorld {
     this.walkable = mapData.walkable;
     this.textures = mapData.textures;
 
-    // 渲染范围：地图铺满时 frustum 大小 = max(w, h) * ts
-    const ww = m.width * ts, wh = m.height * ts;
-    const aspect = this.width / this.height;
-    const fs = this.tileSize * 16;   // 视野：玩家周围 10 个瓦片
-    this.camera.left   = (-40 * aspect) / 2;
-    this.camera.right  = ( 40 * aspect) / 2;
-    this.camera.top    =  40 / 2;
-    this.camera.bottom = -40 / 2;
-    this.camera.updateProjectionMatrix();
+    // 相机 frustum（玩家周围 12 个瓦片可见）
+    this._updateCameraFrustum();
 
     this._buildTiles();
     this._buildPortals(mapData.portals || []);
@@ -350,6 +379,9 @@ export class TileWorld {
     }
     this.setPlayerTile(sx, sy);
     this.scene.position.set(-this.tileToWorld(sx, sy).x, 0, -this.tileToWorld(sx, sy).z);
+
+    // 强制 window focus，确保键盘 WASD 事件能收到
+    try { window.focus?.(); document.body.focus?.(); } catch(e) {}
 
     this.onMapLoaded({ mapId: this.mapId, name: m.name, width: m.width, height: m.height });
     this.onPlayerMoved({ mapId: this.mapId, x: this.tx, y: this.ty });
@@ -399,44 +431,41 @@ export class TileWorld {
     this.pathLine = null;
   }
 
-  // ========== 瓦片渲染：用 InstancedMesh（每种 ttype 一张纹理，高效） ==========
+  // ========== 瓦片渲染：地面平面 + 障碍物 3D 方块 ==========
   _buildTiles() {
-    const tileCache = new Map();   // ttype → THREE.MeshStandardMaterial
-    const meshesPerType = {};      // ttype → { mesh, index }
-
     const halfW = this.width  * this.tileSize / 2;
     const halfH = this.height * this.tileSize / 2;
+    this.tilesGridCenter = { x: -halfW + this.width * this.tileSize / 2, z: -halfH + this.height * this.tileSize / 2 };
 
     // 先给每种 ttype 收集所有格子
-    const groups = {};   // ttype → [[tx,ty], ...]
+    const groups = {};
     for (let ty = 0; ty < this.height; ty++) {
       for (let tx = 0; tx < this.width; tx++) {
         const ttype = this.grid[ty][tx] || 'grass';
-        // 如果有 url 就跳过（后面支持 512x512 贴图时单独处理）
         groups[ttype] = groups[ttype] || [];
         groups[ttype].push([tx, ty]);
       }
     }
 
+    // 地面瓦片（全部作为底层，即使该格有障碍物也要覆盖在下面）
+    // 简化：每种类型各自渲染（tree 下面先有 grass，再放方块在上面）
+    // 但为了简单和性能，我们用一个 InstancedMesh 做地面，一个单独 group 做障碍物
+    const groundGeo = new THREE.PlaneGeometry(1, 1);
+    groundGeo.rotateX(-Math.PI / 2);
+    const dummy = new THREE.Object3D();
+
+    // --- 地面层：每种 ttype 一张纹理，InstancedMesh ---
     for (const [ttype, cells] of Object.entries(groups)) {
       const tex = makeTileTexture(ttype, this.tileSize);
-      tileCache.set(ttype, tex);
       const mat = new THREE.MeshBasicMaterial({ map: tex });
-      const geo = new THREE.PlaneGeometry(1, 1);   // 单位正方形
-      geo.rotateX(-Math.PI / 2);
-
       const count = cells.length;
-      const mesh = new THREE.InstancedMesh(geo, mat, count);
-
-      const dummy = new THREE.Object3D();
+      const mesh = new THREE.InstancedMesh(groundGeo, mat, count);
       for (let i = 0; i < count; i++) {
         const [tx, ty] = cells[i];
-        // 位置：瓦片左下角在格子中心 —— 我们让瓦片左下角对齐 (tx, ty)，
-        // 但 Three 平面是中心对齐。所以偏移 -tileSize/2 让左下角落在 (tx*ts, ty*ts)
         dummy.position.set(
-          tx * this.tileSize + this.tileSize / 2,  // 中心 x
+          tx * this.tileSize + this.tileSize / 2,
           0,
-          ty * this.tileSize + this.tileSize / 2   // 中心 z
+          ty * this.tileSize + this.tileSize / 2
         );
         dummy.scale.set(this.tileSize, 1, this.tileSize);
         dummy.updateMatrix();
@@ -446,17 +475,85 @@ export class TileWorld {
       this.scene.add(mesh);
     }
 
-    // 加一层细网格线（让格子更明显）
-    const grid = new THREE.GridHelper(
-      Math.max(this.width, this.height) * this.tileSize + 4,
-      Math.max(this.width, this.height),
-      0xd4b870, 0xe0ca94
-    );
-    grid.position.y = 0.01;
-    // 把网格中心对齐到地图中心
-    grid.position.x = -halfW + Math.max(this.width, this.height) * this.tileSize / 2;
-    grid.position.z = -halfH + Math.max(this.width, this.height) * this.tileSize / 2;
-    this.scene.add(grid);
+    // --- 障碍物层：tree/rock/wall/bush 改为 3D 方块（顶亮侧暗） ---
+    this.obstaclesGroup = new THREE.Group();
+    for (const ttype of Object.keys(groups)) {
+      const style = TILE_STYLE[ttype];
+      if (!style || !style.block) continue;
+      const cells = groups[ttype];
+      const blockHeight = (style.blockH || 0.6) * this.tileSize;
+
+      // 一个 BoxGeometry，三种材质（顶亮、侧暗，加侧面高光更有立体感）
+      const blockGeo = new THREE.BoxGeometry(this.tileSize, blockHeight, this.tileSize);
+      const topMat  = new THREE.MeshStandardMaterial({
+        color: style.blockTop || style.color, roughness: 0.55, metalness: 0.05,
+        emissive: style.blockTop || style.color, emissiveIntensity: 0.05,
+      });
+      const sideMat = new THREE.MeshStandardMaterial({
+        color: style.blockSide || style.color, roughness: 0.85, metalness: 0,
+      });
+      // BoxGeometry material 顺序: +x, -x, +y(top), -y(bottom), +z, -z
+      const mats = [sideMat, sideMat, topMat, sideMat, sideMat, sideMat];
+
+      for (const [tx, ty] of cells) {
+        const block = new THREE.Mesh(blockGeo, mats);
+        block.position.set(
+          tx * this.tileSize + this.tileSize / 2,
+          blockHeight / 2,
+          ty * this.tileSize + this.tileSize / 2
+        );
+        block.castShadow = true;
+        block.receiveShadow = true;
+        this.obstaclesGroup.add(block);
+      }
+    }
+    if (this.obstaclesGroup.children.length) this.scene.add(this.obstaclesGroup);
+
+    // --- 额外点缀：tree 加绿色球体当树冠（比单纯方块好看） ---
+    const treeCells = groups['tree'] || [];
+    if (treeCells.length) {
+      const leavesGeo = new THREE.SphereGeometry(this.tileSize * 0.55, 10, 8);
+      const leavesMat = new THREE.MeshStandardMaterial({ color: 0x2f6e1f, roughness: 0.9 });
+      for (const [tx, ty] of treeCells) {
+        const leaves = new THREE.Mesh(leavesGeo, leavesMat);
+        const baseH = (TILE_STYLE.tree.blockH || 0.85) * this.tileSize;
+        leaves.position.set(
+          tx * this.tileSize + this.tileSize / 2,
+          baseH + this.tileSize * 0.3,
+          ty * this.tileSize + this.tileSize / 2
+        );
+        leaves.scale.y = 0.85;
+        this.obstaclesGroup && this.obstaclesGroup.add(leaves) || this.scene.add(leaves);
+      }
+    }
+
+    // 柔和的方向性光（让 3D 方块有立体感）
+    if (!this._hasDirLight) {
+      const dir = new THREE.DirectionalLight(0xfff5dd, 0.7);
+      dir.position.set(this.tileSize * 4, this.tileSize * 10, this.tileSize * 3);
+      this.scene.add(dir);
+      this._hasDirLight = true;
+    }
+  }
+
+  // ========== 更新正交相机 frustum ==========
+  _updateCameraFrustum() {
+    const w = this.width || 300, h = this.height || 300;
+    const aspect = Math.max(0.1, w / h);
+    // visibleTilesV 是"屏幕纵向能看到多少瓦片"
+    // 斜视角下，xz 方向投到屏幕上的投影会压缩，所以 frustum 要按倾斜角度补偿
+    const tiltRad = THREE.MathUtils.degToRad(this.cameraTiltDeg || 0);
+    // 正俯视（tilt=0）时 sin(0)=0 → y 方向无压缩，用 1 兜底
+    const screenScaleY = Math.sin(tiltRad);
+    const scale = screenScaleY > 0.01 ? screenScaleY : 1;
+    const baseTiles = this.visibleTilesV || 14;
+    const halfH = baseTiles * this.tileSize / 2 / scale;
+    const halfW = halfH * aspect;
+    this.camera.left   = -halfW;
+    this.camera.right  =  halfW;
+    this.camera.top    =  halfH;
+    this.camera.bottom = -halfH;
+    this.camera.updateProjectionMatrix();
   }
 
   // ========== 传送门 ==========
@@ -751,13 +848,40 @@ export class TileWorld {
     return { tx: Math.floor(wx / this.tileSize), ty: Math.floor(wz / this.tileSize) };
   }
   isWalkable(tx, ty) {
+    // walkable 还没初始化（loadMap 还没跑）→ 放行
+    if (!this.walkable || !this.walkable.length) return true;
     if (tx < 0 || tx >= this.width || ty < 0 || ty >= this.height) return false;
-    return !!this.walkable[ty][tx];
+    const row = this.walkable[ty];
+    if (!row) return true;
+    return row[tx] !== false;
+  }
+
+  // 玩家圆形 AABB 碰撞：(px,pz) 是世界坐标，r 是半径
+  // 返回 true 表示玩家可以站在这里
+  canStandAt(px, pz, r) {
+    if (r == null) r = this.PLAYER_RADIUS;
+    const ts = this.tileSize;
+    const minTx = Math.floor((px - r) / ts);
+    const maxTx = Math.floor((px + r) / ts);
+    const minTy = Math.floor((pz - r) / ts);
+    const maxTy = Math.floor((pz + r) / ts);
+    for (let ty = minTy; ty <= maxTy; ty++) {
+      for (let tx = minTx; tx <= maxTx; tx++) {
+        if (this.isWalkable(tx, ty)) continue;   // 可走格子跳过
+        // 圆 vs AABB：找 AABB 上离圆心最近的点，算距离
+        const cx = Math.max(tx * ts, Math.min(px, tx * ts + ts));
+        const cz = Math.max(ty * ts, Math.min(pz, ty * ts + ts));
+        const dx = px - cx, dz = pz - cz;
+        if (dx * dx + dz * dz < r * r) return false;
+      }
+    }
+    return true;
   }
 
   setPlayerTile(tx, ty) {
     this.tx = tx; this.ty = ty;
     const { x, z } = this.tileToWorld(tx, ty);
+    this.playerX = x; this.playerZ = z;
     this.playerGroup.position.set(x, 0, z);
   }
 
@@ -770,14 +894,13 @@ export class TileWorld {
 
     this.raycaster = this.raycaster || new THREE.Raycaster();
     this.raycaster.setFromCamera(new THREE.Vector2(nx, ny), this.camera);
-    const hit = new THREE.Vector3();
-    this.groundPlane = this.groundPlane || new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
-    this.raycaster.ray.intersectPlane(this.groundPlane, hit);
-    if (!hit) return;
 
-    // worldToTile：scene 平移了 -player 所以 hit.x - scene.position.x = 实际世界
-    const worldX = hit.x - this.scene.position.x;
-    const worldZ = hit.z - this.scene.position.z;
+    // 用 hidden groundMesh 做射线拾取：Three.js 自动处理 scene 平移
+    // intersectObject 返回的 hit.point 直接就是 world 坐标
+    const hits = this.groundMesh ? this.raycaster.intersectObject(this.groundMesh, false) : [];
+    if (!hits.length) return;
+    const worldX = hits[0].point.x;
+    const worldZ = hits[0].point.z;
     const { tx, ty } = this.worldToTile(worldX, worldZ);
     if (tx < 0 || tx >= this.width || ty < 0 || ty >= this.height) return;
 
@@ -793,7 +916,23 @@ export class TileWorld {
       gotoTx = nxt[0]; gotoTy = nxt[1];
     }
 
-    this._startMove(gotoTx, gotoTy);
+    // 新连续移动系统：targetWorldPos 存世界坐标
+    const tp = this.tileToWorld(gotoTx, gotoTy);
+    this.targetWorldPos = { x: tp.x, z: tp.z };
+    if (this.targetMarker) {
+      this.targetMarker.visible = true;
+      // targetMarker 加在 scene 里，scene.position = (-playerX, 0, -playerZ)
+      // 所以 marker.local = worldPos - scene.position = worldPos + playerOffset
+      this.targetMarker.position.set(
+        tp.x - this.scene.position.x,   // = tp.x - (-playerX) = tp.x + playerX
+        0.2,
+        tp.z - this.scene.position.z
+      );
+    }
+
+    // 打断任何残留的老 BFS
+    this.targetPath = [];
+    this.moving = false;
   }
 
   _findNearestWalkable(tx, ty) {
@@ -885,107 +1024,163 @@ export class TileWorld {
 
   // ========== 动画循环 ==========
   _animate() {
-    const tick = () => {
-      requestAnimationFrame(tick);
+      const tick = () => {
+        requestAnimationFrame(tick);
 
-      const dt = 0.016;
-      if (this.moving) {
-        // 插值 每步 0.18 秒
-        const stepDuration = 0.18;
-        this.moveProgress = Math.min(1, this.moveProgress + dt / stepDuration);
-        const t = this.moveProgress;
-        // 用 easeInOutQuad
-        const ease = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-        const x = this.moveFrom.x + (this.moveTo.x - this.moveFrom.x) * ease;
-        const z = this.moveFrom.z + (this.moveTo.z - this.moveFrom.z) * ease;
-        this.playerGroup.position.set(x, 0, z);
-        this.scene.position.set(-x, 0, -z);
+      // guard: loadMap 还没跑，playerGroup/obstaclesGroup 都没建
+      if (!this.playerGroup) return;      
+        const dt = Math.min(0.05, (performance.now() - (this._lastTickTs || performance.now())) / 1000 || 0.016);
+        this._lastTickTs = performance.now();
+      
+        // ========== 连续移动系统（WASD + 点击直线 + AABB 圆形碰撞）==========
+        let vx = 0, vz = 0;
+        if (this.keys.has('w') || this.keys.has('arrowup'))    vz -= 1;
+        if (this.keys.has('s') || this.keys.has('arrowdown'))  vz += 1;
+        if (this.keys.has('a') || this.keys.has('arrowleft'))  vx -= 1;
+        if (this.keys.has('d') || this.keys.has('arrowright')) vx += 1;
+      
+        const hasKeyInput = !!(vx || vz);
+        const clickMove = this.targetWorldPos && !hasKeyInput;
+        if (clickMove) {
+          const dx = this.targetWorldPos.x - this.playerX;
+          const dz = this.targetWorldPos.z - this.playerZ;
+          const dist = Math.hypot(dx, dz);
+          if (dist < 4) this.targetWorldPos = null;
+          else { vx = dx / dist; vz = dz / dist; }
+        }
+      
+        if (vx || vz) {
+          const len = Math.hypot(vx, vz);
+          if (len > 1) { vx /= len; vz /= len; }
+          const stepX = vx * this.PLAYER_SPEED * dt;
+          const stepZ = vz * this.PLAYER_SPEED * dt;
+          const oldX = this.playerX, oldZ = this.playerZ;
 
-        if (this.moveProgress >= 1) {
-          this.playerGroup.position.set(this.moveTo.x, 0, this.moveTo.z);
-          this.scene.position.set(-this.moveTo.x, 0, -this.moveTo.z);
-          this.onPlayerMoved({ mapId: this.mapId, x: this.tx, y: this.ty });
-
-          // 检查传送门：到达传送门格自动跳转
-          const portal = this.portalSprites.find(s =>
-            s.userData.kind === 'portal' &&
-            s.userData.portal.from_tx === this.tx &&
-            s.userData.portal.from_ty === this.ty
-          );
-          if (portal) {
-            this.moving = false;
-            this.targetPath = [];
-            this.targetMarker.visible = false;
-            this.pathLine.visible = false;
-            this.onWarp(portal.userData.portal);
-            return;
+          // 分轴解算（X 优先 → Z 其次，贴墙滑行）
+          let canX = this.canStandAt(this.playerX + stepX, this.playerZ);
+          let canZ = this.canStandAt(this.playerX, this.playerZ + stepZ);
+          // 如果全被挡，用缩小半径再试（让玩家能从窄缝挤过去）
+          if (!canX && !canZ && this.PLAYER_RADIUS > 4) {
+            const r2 = Math.max(4, this.PLAYER_RADIUS * 0.5);
+            canX = this.canStandAt(this.playerX + stepX, this.playerZ, r2);
+            canZ = this.canStandAt(this.playerX, this.playerZ + stepZ, r2);
           }
-          // 检查 NPC / 物品：走到格上触发交互提示（不打断自动寻路）
-          // 这里不自动触发，让用户自己点
+          if (canX) this.playerX += stepX;
+          if (canZ) this.playerZ += stepZ;
 
-          // 继续下一段
-          this._stepAlongPath();
-          if (!this.moving) {
-            this.targetMarker.visible = false;
-            this.pathLine.visible = false;
+          // 救援：如果完全没动，用超细步长（1 像素）强制推进，避免卡死
+          if (this.playerX === oldX && this.playerZ === oldZ && (Math.abs(stepX) > 0 || Math.abs(stepZ) > 0)) {
+            const tiny = 1.0;
+            let moved = false;
+            if (this.canStandAt(oldX + Math.sign(stepX) * tiny, oldZ, 4)) {
+              this.playerX += Math.sign(stepX) * tiny; moved = true;
+            }
+            if (this.canStandAt(this.playerX, oldZ + Math.sign(stepZ) * tiny, 4)) {
+              this.playerZ += Math.sign(stepZ) * tiny; moved = true;
+            }
+            // 超细步长也不行 → 放弃当前目标（可能 targetWorldPos 穿墙）
+            if (!moved) this.targetWorldPos = null;
+          }
+          const newTx = Math.floor(this.playerX / this.tileSize);
+          const newTy = Math.floor(this.playerZ / this.tileSize);
+          if (newTx !== this.tx || newTy !== this.ty) {
+            this.tx = newTx; this.ty = newTy;
+            this.onPlayerMoved?.({ mapId: this.mapId, x: newTx, y: newTy });
+            const portal = this.portalSprites.find(s =>
+              s.userData.kind === 'portal' &&
+              s.userData.portal.from_tx === newTx &&
+              s.userData.portal.from_ty === newTy
+            );
+            if (portal) {
+              this.targetWorldPos = null;
+              this.targetMarker.visible = false;
+              this.onWarp(portal.userData.portal);
+            }
           }
         }
-      }
-
-      // NPC / 物品轻微悬浮 & 玩家本体上下浮动
-      const t = performance.now() * 0.003;
-      if (this.player) this.player.position.y = 0.4 + Math.sin(t * 2) * 0.08;
-      if (this.targetMarker && this.targetMarker.visible) {
-        this.targetMarker.material.opacity = 0.6 + Math.abs(Math.sin(t * 1.5)) * 0.4;
-        this.targetMarker.material.transparent = true;
-        this.targetMarker.position.y = 0.2 + Math.sin(t * 1.8) * 0.05;
-      }
-      for (const s of this.portalSprites) {
-        s.position.y = 0.15 + Math.sin(t * 1.2 + s.position.x) * 0.05;
-        s.material.opacity = 0.7 + Math.abs(Math.sin(t * 1.2)) * 0.3;
-        s.material.transparent = true;
-      }
-      // NPC 头顶气泡 proximity 更新
-      for (let i = 0; i < this.npcSprites.length; i++) {
-        const sp = this.npcSprites[i];
-        const b = this.npcBubbles[i];
-        if (!b) continue;
-        const n = sp.userData.npc;
-        const d = this._distChebyshev(this.tx, this.ty, n.tx, n.ty);
-        const shouldShow = d <= 2;
-        if (b.visible !== shouldShow) b.visible = shouldShow;
-        // 气泡呼吸动画
-        if (shouldShow) {
-          b.position.y = 1.35 + Math.sin(t * 2.2 + i) * 0.08;
-          b.material.opacity = 0.85 + Math.abs(Math.sin(t * 2.2)) * 0.15;
-          b.material.transparent = true;
+      
+        // 每帧同步玩家位置 + 相机跟随
+        this.playerGroup.position.set(this.playerX, 0, this.playerZ);
+        this.scene.position.set(-this.playerX, 0, -this.playerZ);
+        if (Math.abs(vx) > 0.1 && this.playerGroup) {
+          this.playerGroup.scale.x = vx < 0 ? -Math.abs(this.playerGroup.scale.x || 1)
+                                            :  Math.abs(this.playerGroup.scale.x || 1);
         }
+      
+        // NPC / 物品轻微悬浮 & 玩家本体上下浮动
+        const t = performance.now() * 0.003;
+        if (this.player) this.player.position.y = 0.4 + Math.sin(t * 2) * 0.08;
+        if (this.targetMarker && this.targetMarker.visible) {
+          // tick 里也同步 x/z：marker 加在 scene 里，scene.position 每帧变
+          // marker.local = targetWorldPos - scene.position → marker.world 始终=targetWorldPos
+          if (this.targetWorldPos) {
+            this.targetMarker.position.x = this.targetWorldPos.x - this.scene.position.x;
+            this.targetMarker.position.z = this.targetWorldPos.z - this.scene.position.z;
+          }
+          this.targetMarker.material.opacity = 0.6 + Math.abs(Math.sin(t * 1.5)) * 0.4;
+          this.targetMarker.material.transparent = true;
+          this.targetMarker.position.y = 0.2 + Math.sin(t * 1.8) * 0.05;
+        }
+        for (const s of this.portalSprites) {
+          s.position.y = 0.15 + Math.sin(t * 1.2 + s.position.x) * 0.05;
+          s.material.opacity = 0.7 + Math.abs(Math.sin(t * 1.2)) * 0.3;
+          s.material.transparent = true;
+        }
+        for (let i = 0; i < this.npcSprites.length; i++) {
+          const sp = this.npcSprites[i];
+          const b = this.npcBubbles[i];
+          if (!b) continue;
+          const n = sp.userData.npc;
+          const d = this._distChebyshev(this.tx, this.ty, n.tx, n.ty);
+          const shouldShow = d <= 2;
+          if (b.visible !== shouldShow) b.visible = shouldShow;
+          if (shouldShow) {
+            b.position.y = 1.35 + Math.sin(t * 2.2 + i) * 0.08;
+            b.material.opacity = 0.85 + Math.abs(Math.sin(t * 2.2)) * 0.15;
+            b.material.transparent = true;
+          }
+        }
+        for (const s of this.itemSprites) {
+          s.position.y = 0.2 + Math.sin(t * 1.6 + s.position.x) * 0.06;
+        }
+      
+        this.renderer.render(this.scene, this.camera);
       }
-      for (const s of this.itemSprites) {
-        s.position.y = 0.2 + Math.sin(t * 1.6 + s.position.x) * 0.06;
-      }
+      tick();
 
-      this.renderer.render(this.scene, this.camera);
-    };
-    tick();
   }
 
   _bindEvents() {
     this._onResize = () => {
       this.width  = this.canvas.clientWidth;
       this.height = this.canvas.clientHeight;
-      const aspect = this.width / this.height;
-      const fs = this.tileSize * 16;
-      this.camera.left   = (-fs * aspect) / 2;
-      this.camera.right  = ( fs * aspect) / 2;
-      this.camera.top    =  fs / 2;
-      this.camera.bottom = -fs / 2;
-      this.camera.updateProjectionMatrix();
+      this._updateCameraFrustum();
       this.renderer.setSize(this.width, this.height, false);
     };
     this._onClick = (e) => this._handleClick(e);
+    this._onKeyDown = (e) => {
+      const k = e.key.toLowerCase();
+      if (['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright'].includes(k)) {
+        this.keys.add(k);
+        // 开始按键时取消点击移动目标
+        this.targetWorldPos = null;
+        e.preventDefault();
+      }
+    };
+    this._onKeyUp = (e) => {
+      this.keys.delete(e.key.toLowerCase());
+    };
+    this._onBlur = () => { this.keys.clear(); };
+
     window.addEventListener('resize', this._onResize);
     this.canvas.addEventListener('click', this._onClick);
+    window.addEventListener('keydown', this._onKeyDown);
+    window.addEventListener('keyup', this._onKeyUp);
+    window.addEventListener('blur', this._onBlur);
+    // 点击 canvas 时自动聚焦，让 WASD 立刻生效
+    this.canvas.addEventListener('click', () => {
+        window.focus?.(); document.body.focus?.(); this.canvas.focus?.();
+      });
   }
 
   destroy() {
