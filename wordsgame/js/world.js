@@ -195,6 +195,7 @@ function bfs(walkable, fx, fy, tx, ty) {
 }
 
 
+console.log('🟡 world.js v94 loaded — canStandAt with walkable grid collision');
 export class TileWorld {
   constructor(canvas, opts = {}) {
     this.canvas = canvas;
@@ -852,10 +853,29 @@ this.scene.position.set(-this.tileToWorld(sx, sy).x, 0, -this.tileToWorld(sx, sy
     return row[tx] !== false;
   }
 
-  // 玩家圆形 AABB 碰撞：(px,pz) 是世界坐标，r 是半径
-  // 返回 true 表示玩家可以站在这里
+  // 玩家圆形-瓦片网格碰撞：(px,pz) 是 world 坐标，r 是半径（world units）
+  // 返回 true = 玩家可以站立（覆盖的所有瓦片都可通行）
+  // 圆-瓦片网格精确碰撞：玩家圆心(px,pz)半径r，circle-rect 检测
   canStandAt(px, pz, r) {
-    // 临时绕过：竞技场全开放，先让移动跑通
+    if (r == null) r = this.PLAYER_RADIUS;
+    if (!this.walkable || !this.walkable.length) return true;
+    const ts = this.tileSize;
+    // 玩家圆覆盖的瓦片范围（考虑圆边缘）
+    const minTx = Math.floor((px - r) / ts);
+    const maxTx = Math.floor((px + r) / ts);
+    const minTy = Math.floor((pz - r) / ts);
+    const maxTy = Math.floor((pz + r) / ts);
+    for (let ty = minTy; ty <= maxTy; ty++) {
+      for (let tx = minTx; tx <= maxTx; tx++) {
+        if (this.isWalkable(tx, ty)) continue;  // 可走跳过
+        // 不可走：circle-rect 精确检测
+        const rectX = tx * ts, rectZ = ty * ts;
+        const closestX = Math.max(rectX, Math.min(px, rectX + ts));
+        const closestZ = Math.max(rectZ, Math.min(pz, rectZ + ts));
+        const dx = px - closestX, dz = pz - closestZ;
+        if (dx * dx + dz * dz < r * r) return false;  // 碰撞！
+      }
+    }
     return true;
   }
 
@@ -966,6 +986,17 @@ this.scene.position.set(-this.tileToWorld(sx, sy).x, 0, -this.tileToWorld(sx, sy
 
         // guard: loadMap 还没跑，playerGroup/obstaclesGroup 都没建
         if (!this.playerGroup || !this.player) return;
+        
+        // tick 诊断（每秒一次）
+        if (!this._tickDiag || performance.now() - this._tickDiag > 1000) {
+          console.log('[tick]', {
+            keys: [...this.keys],
+            vx_vz: (function(){ let vx=0,vz=0; if(this.keys.has('d'))vx=1; if(this.keys.has('a'))vx=-1; if(this.keys.has('s'))vz=1; if(this.keys.has('w'))vz=-1; return [vx,vz]; }.call(this)),
+            speed: this.PLAYER_SPEED,
+            walkable_exists: !!this.walkable,
+          });
+          this._tickDiag = performance.now();
+        }
 
         try {
           const dt = Math.min(0.05, (performance.now() - (this._lastTickTs || performance.now())) / 1000 || 0.016);
@@ -1004,6 +1035,7 @@ this.scene.position.set(-this.tileToWorld(sx, sy).x, 0, -this.tileToWorld(sx, sy
           // 分轴解算（X 优先 → Z 其次，贴墙滑行）
           let canX = this.canStandAt(this.playerX + stepX, this.playerZ);
           let canZ = this.canStandAt(this.playerX, this.playerZ + stepZ);
+
           // 如果全被挡，用缩小半径再试（让玩家能从窄缝挤过去）
           if (!canX && !canZ && this.PLAYER_RADIUS > 4) {
             const r2 = Math.max(4, this.PLAYER_RADIUS * 0.5);
@@ -1013,19 +1045,30 @@ this.scene.position.set(-this.tileToWorld(sx, sy).x, 0, -this.tileToWorld(sx, sy
           if (canX) this.playerX += stepX;
           if (canZ) this.playerZ += stepZ;
 
-          // 救援：如果完全没动，只输出 debug 不清目标
-          if (this.playerX === oldX && this.playerZ === oldZ && (Math.abs(stepX) > 0 || Math.abs(stepZ) > 0)) {
-            // 第一次才打 log（每帧太吵）
-            if (!this._lastBlockedLog || performance.now() - this._lastBlockedLog > 2000) {
-              console.log('[world] blocked!', {
-                playerX: Math.round(this.playerX), playerZ: Math.round(this.playerZ),
-                target: this.targetWorldPos ? {x: Math.round(this.targetWorldPos.x), z: Math.round(this.targetWorldPos.z)} : null,
+          // canX/canZ 诊断 log（每秒一次）
+          if (!this._lastCollisionLog || performance.now() - this._lastCollisionLog > 1000) {
+            if (!canX || !canZ) {
+              console.log('[world] collision', {
+                px: Math.round(this.playerX), pz: Math.round(this.playerZ),
                 tx: Math.floor(this.playerX / this.tileSize),
                 ty: Math.floor(this.playerZ / this.tileSize),
                 canX, canZ,
-                walkable_now: this.isWalkable(Math.floor(this.playerX / this.tileSize), Math.floor(this.playerZ / this.tileSize)),
-                stepX: stepX.toFixed(2), stepZ: stepZ.toFixed(2),
-                hasKeyInput, clickMove
+                nextTileX: Math.floor((this.playerX + stepX) / this.tileSize),
+                nextTileY: Math.floor((this.playerZ + stepZ) / this.tileSize),
+                nextWalkable_X: this.isWalkable(Math.floor((this.playerX + stepX) / this.tileSize), Math.floor(this.playerZ / this.tileSize)),
+                nextWalkable_Z: this.isWalkable(Math.floor(this.playerX / this.tileSize), Math.floor((this.playerZ + stepZ) / this.tileSize)),
+              });
+            }
+            this._lastCollisionLog = performance.now();
+          }
+          // 救援：如果完全没动，只输出 debug 不清目标
+          if (this.playerX === oldX && this.playerZ === oldZ && (Math.abs(stepX) > 0 || Math.abs(stepZ) > 0)) {
+            if (!this._lastBlockedLog || performance.now() - this._lastBlockedLog > 2000) {
+              console.log('[world] FULL_BLOCK', {
+                px: Math.round(this.playerX), pz: Math.round(this.playerZ),
+                tx: Math.floor(this.playerX / this.tileSize),
+                ty: Math.floor(this.playerZ / this.tileSize),
+                canX, canZ,
               });
               this._lastBlockedLog = performance.now();
             }
