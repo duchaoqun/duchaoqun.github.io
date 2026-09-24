@@ -888,7 +888,30 @@ this.scene.position.set(-this.tileToWorld(sx, sy).x, 0, -this.tileToWorld(sx, sy
 
   // ========== 点击移动 ==========
   _handleClick(e) {
-    // 暂时禁用点击瞬移，只用 WASD
+    const rect = this.canvas.getBoundingClientRect();
+    const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    const ny = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+    this.raycaster.setFromCamera(new THREE.Vector2(nx, ny), this.camera);
+
+    // 1) 先查 NPC / 物品 / 传送门（raycast sprite 做圆形命中）
+    const allSprites = [
+      ...this.npcSprites.map(s => ({ s, r: 24 })),
+      ...this.itemSprites.map(s => ({ s, r: 22 })),
+      ...this.portalSprites.map(s => ({ s, r: 32 })),
+    ];
+    for (const { s, r } of allSprites) {
+      const hit = this.raycaster.ray.intersectSphere(
+        new THREE.Sphere(s.position.clone(), r)
+      );
+      if (hit) {
+        const ts = this.tileSize;
+        const tx = Math.floor(hit.point.x / ts);
+        const ty = Math.floor(hit.point.z / ts);
+        if (this._tryInteractAt(tx, ty)) return;
+      }
+    }
+
+    // 2) 点击空地 —— 暂时禁用点击移动（只用 WASD）
     return;
   }
 
@@ -1044,6 +1067,32 @@ this.scene.position.set(-this.tileToWorld(sx, sy).x, 0, -this.tileToWorld(sx, sy
           }
           if (canX) this.playerX += stepX;
           if (canZ) this.playerZ += stepZ;
+
+          // NPC 边缘触发：只在"从范围外进入范围内"那一瞬间触发一次
+          // 上一帧在范围内=false，这一帧=true → 触发；持续 true 不重复触发
+          const _isModalOpen = !!document.querySelector('.modal-overlay.open');
+          if (!_isModalOpen) {
+            for (const _ns of this.npcSprites) {
+              if (!_ns.userData?.kind || _ns.userData.kind !== 'npc') continue;
+              const _npc = _ns.userData.npc;
+              const _nx = (_npc.tx + 0.5) * this.tileSize;
+              const _nz = (_npc.ty + 0.5) * this.tileSize;
+              const _dx = this.playerX - _nx, _dz = this.playerZ - _nz;
+              const _dist2 = _dx * _dx + _dz * _dz;
+              const _T2 = (this.tileSize * 0.7) * (this.tileSize * 0.7);
+              const _nowNear = _dist2 < _T2;
+              const _wasNear = !!this._npcNearPrev?.get(_npc.id);
+              if (_nowNear && !_wasNear) {
+                if (!this._npcNearPrev) this._npcNearPrev = new Map();
+                this._npcNearPrev.set(_npc.id, true);
+                this.onInteract({ type: 'npc', data: _npc });
+              } else if (!_nowNear && _wasNear) {
+                // 离开范围 → 重置状态
+                if (!this._npcNearPrev) this._npcNearPrev = new Map();
+                this._npcNearPrev.set(_npc.id, false);
+              }
+            }
+          }
 
           // canX/canZ 诊断 log（每秒一次）
           if (!this._lastCollisionLog || performance.now() - this._lastCollisionLog > 1000) {

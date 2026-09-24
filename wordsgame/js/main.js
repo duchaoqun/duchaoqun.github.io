@@ -110,7 +110,7 @@ async function enterGame() {
   // 动态 import world.js（避免模块加载时的错误阻塞登录页）
   if (!_worldModule) {
     try {
-      _worldModule = await import('./world.js?v=102');
+      _worldModule = await import('./world.js?v=105');
     } catch(err) {
       console.error('❌ world.js 加载失败:', err);
       alert('3D 引擎加载失败：' + (err.message || err) + '\n\n请打开浏览器控制台(F12)查看详情');
@@ -142,7 +142,7 @@ async function loadMap(mapId, playerPos = null) {
 
     if (!window.__world) {
       const canvas = document.getElementById('game-canvas');
-      if (!_TileWorld) { await import('./world.js?v=102').then(m => { _TileWorld = m.TileWorld; }); }
+      if (!_TileWorld) { await import('./world.js?v=105').then(m => { _TileWorld = m.TileWorld; }); }
       window.__world = new _TileWorld(canvas, {
         onPlayerMoved: handlePlayerMoved,
         onInteract: handleInteract,
