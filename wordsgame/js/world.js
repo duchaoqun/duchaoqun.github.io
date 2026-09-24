@@ -1142,7 +1142,26 @@ this.scene.position.set(-this.tileToWorld(sx, sy).x, 0, -this.tileToWorld(sx, sy
       
         // 每帧同步玩家位置 + 相机跟随
         this.playerGroup.position.set(this.playerX, 0, this.playerZ);
-        this.scene.position.set(-this.playerX, 0, -this.playerZ);
+        // 地图边界 clamp —— camera 不露出地图外的空白
+        // 注意：45° isometric 下 frustum 的 top/bottom 不是 world Z 的可视范围！
+        // camera.up 在世界里有 Z 分量，必须用 matrixWorld 反投影
+        this.camera.updateMatrixWorld(true);
+        const _m = this.camera.matrixWorld.elements;
+        const _rightX = Math.abs(_m[0]), _rightZ = Math.abs(_m[2]);  // camera.right 的 world 分量
+        const _upX   = Math.abs(_m[4]), _upZ   = Math.abs(_m[6]);  // camera.up 的 world 分量
+        const _fHalfW = (this.camera.right - this.camera.left) / 2;  // frustum 半宽（像素）
+        const _fHalfH = (this.camera.top - this.camera.bottom) / 2;  // frustum 半高（像素）
+        // 投影到 world X / Z
+        const _worldHalfX = _rightX * _fHalfW + _upX * _fHalfH;
+        const _worldHalfZ = _rightZ * _fHalfW + _upZ * _fHalfH;
+        const _mapW = this.width * this.tileSize;
+        const _mapH = this.height * this.tileSize;
+        let _cx = this.playerX, _cz = this.playerZ;
+        if (_mapW > _worldHalfX * 2) _cx = Math.max(_worldHalfX, Math.min(_mapW - _worldHalfX, this.playerX));
+        else _cx = _mapW / 2;
+        if (_mapH > _worldHalfZ * 2) _cz = Math.max(_worldHalfZ, Math.min(_mapH - _worldHalfZ, this.playerZ));
+        else _cz = _mapH / 2;
+        this.scene.position.set(-_cx, 0, -_cz);
         if (Math.abs(vx) > 0.1 && this.playerGroup) {
           this.playerGroup.scale.x = vx < 0 ? -Math.abs(this.playerGroup.scale.x || 1)
                                             :  Math.abs(this.playerGroup.scale.x || 1);

@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🗺️ 游戏管理后台</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif; 
+         background: #0f172a; color: #e2e8f0; height: 100vh; overflow: hidden; display: flex; }
+  /* ===== 左侧菜单 ===== */
+  .sidebar { width: 220px; background: #1e293b; border-right: 1px solid #334155; 
+             display: flex; flex-direction: column; flex-shrink: 0; }
+  .sidebar-header { padding: 18px 20px; border-bottom: 1px solid #334155; 
+                    font-size: 16px; font-weight: 600; color: #94a3b8; }
+  .sidebar-header .logo { font-size: 20px; margin-right: 8px; }
+  .menu { flex: 1; padding: 12px 0; overflow-y: auto; }
+  .menu-item { padding: 10px 20px; cursor: pointer; display: flex; align-items: center; gap: 10px;
+               color: #94a3b8; font-size: 14px; transition: all .15s; border-left: 3px solid transparent; }
+  .menu-item:hover { background: #334155; color: #f1f5f9; }
+  .menu-item.active { background: #0f172a; color: #38bdf8; border-left-color: #38bdf8; }
+  .menu-item .icon { width: 20px; text-align: center; font-size: 16px; }
+  .sidebar-footer { padding: 12px 20px; border-top: 1px solid #334155; font-size: 11px; color: #64748b; }
+  .admin-login { padding: 14px 20px; border-top: 1px solid #334155; }
+  .admin-login input { width: 100%; padding: 6px 10px; background: #0f172a; border: 1px solid #334155;
+                       border-radius: 6px; color: #e2e8f0; font-size: 12px; outline: none; }
+  .admin-login .status { font-size: 11px; margin-top: 4px; text-align: center; }
+  .admin-login .status.ok { color: #22c55e; }
+  .admin-login .status.err { color: #ef4444; }
+
+  /* ===== 主内容区 ===== */
+  .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+  .topbar { height: 48px; background: #1e293b; border-bottom: 1px solid #334155;
+            display: flex; align-items: center; padding: 0 20px; gap: 14px; flex-shrink: 0; }
+  .topbar h2 { font-size: 15px; color: #e2e8f0; font-weight: 500; }
+  .topbar .spacer { flex: 1; }
+  .topbar .api-url { font-size: 11px; color: #64748b; background: #0f172a; padding: 4px 10px; border-radius: 4px; }
+  .content { flex: 1; overflow-y: auto; padding: 20px; background: #0f172a; }
+
+  /* ===== 按钮 ===== */
+  .btn { padding: 6px 14px; border-radius: 6px; border: none; cursor: pointer; font-size: 13px;
+         font-weight: 500; transition: all .15s; }
+  .btn-primary { background: #0284c7; color: #fff; }
+  .btn-primary:hover { background: #0369a1; }
+  .btn-success { background: #059669; color: #fff; }
+  .btn-success:hover { background: #047857; }
+  .btn-danger { background: #dc2626; color: #fff; }
+  .btn-danger:hover { background: #b91c1c; }
+  .btn-secondary { background: #475569; color: #fff; }
+  .btn-secondary:hover { background: #334155; }
+  .btn-sm { padding: 4px 10px; font-size: 12px; }
+
+  /* ===== 地图编辑器 ===== */
+  .editor-layout { display: flex; gap: 16px; height: calc(100vh - 128px); }
+  .editor-left { width: 200px; background: #1e293b; border-radius: 8px; padding: 14px; overflow-y: auto; flex-shrink: 0; }
+  .editor-center { flex: 1; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .editor-right { width: 260px; background: #1e293b; border-radius: 8px; padding: 14px; overflow-y: auto; flex-shrink: 0; }
+
+  .map-selector { margin-bottom: 14px; }
+  .map-selector label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+  .map-selector select { width: 100%; padding: 8px 10px; background: #0f172a; border: 1px solid #334155;
+                         border-radius: 6px; color: #e2e8f0; font-size: 13px; margin-top: 6px; cursor: pointer; }
+
+  .tile-palette h4 { font-size: 11px; color: #64748b; text-transform: uppercase; margin: 12px 0 8px; letter-spacing: 0.5px; }
+  .tile-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .tile-option { height: 38px; border-radius: 6px; cursor: pointer; display: flex; align-items: center;
+                 justify-content: center; font-size: 10px; color: #fff; border: 2px solid transparent;
+                 transition: transform .1s; text-shadow: 0 1px 2px rgba(0,0,0,.5); }
+  .tile-option:hover { transform: scale(1.05); }
+  .tile-option.active { border-color: #fbbf24; }
+  .tile-option.walkable { border-left: 3px solid #22c55e; }
+  .tile-option.blocked { border-left: 3px solid #ef4444; }
+
+  /* 瓦片颜色映射 */
+  .tile-grass   { background: #2d5016; }
+  .tile-path    { background: #8b7355; }
+  .tile-sand    { background: #d4b896; }
+  .tile-floor   { background: #4a5568; }
+  .tile-tree    { background: #1a3a0a; }
+  .tile-rock    { background: #6b7280; }
+  .tile-wall    { background: #374151; }
+  .tile-bush    { background: #22543d; }
+  .tile-water   { background: #1e40af; }
+
+  .tools h4 { font-size: 11px; color: #64748b; text-transform: uppercase; margin: 12px 0 8px; }
+  .tool-row { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tool-btn { padding: 6px 10px; background: #0f172a; border: 1px solid #334155; border-radius: 6px;
+              cursor: pointer; color: #94a3b8; font-size: 12px; }
+  .tool-btn.active { background: #0284c7; color: #fff; border-color: #0284c7; }
+  .brush-size { display: flex; gap: 4px; align-items: center; margin-top: 6px; font-size: 11px; color: #64748b; }
+  .brush-size input[type=range] { flex: 1; }
+
+  .canvas-container { flex: 1; background: #020617; border-radius: 8px; overflow: auto; 
+                      display: flex; align-items: center; justify-content: center; padding: 20px; }
+  #mapCanvas { cursor: crosshair; image-rendering: pixelated; border: 1px solid #334155; }
+
+  .canvas-toolbar { background: #1e293b; border-radius: 8px; padding: 10px 14px; 
+                    display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .canvas-toolbar .info { font-size: 12px; color: #64748b; }
+  .canvas-toolbar .info b { color: #38bdf8; }
+
+  .right-panel h3 { font-size: 13px; color: #e2e8f0; margin-bottom: 12px; }
+  .right-panel .form-row { margin-bottom: 10px; }
+  .right-panel label { display: block; font-size: 11px; color: #64748b; margin-bottom: 4px; }
+  .right-panel input, .right-panel select { width: 100%; padding: 6px 10px; background: #0f172a; 
+    border: 1px solid #334155; border-radius: 6px; color: #e2e8f0; font-size: 12px; }
+  .right-panel .section { margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #334155; }
+
+  /* ===== 通用管理表格 ===== */
+  .panel-actions { display: flex; gap: 8px; margin-bottom: 16px; align-items: center; flex-wrap: wrap; }
+  .panel-actions .spacer { flex: 1; }
+  .panel-form { background: #1e293b; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+  .panel-form h3 { font-size: 14px; margin-bottom: 14px; color: #38bdf8; }
+  .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+  .form-field label { display: block; font-size: 11px; color: #64748b; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .form-field input, .form-field select, .form-field textarea { width: 100%; padding: 8px 10px; 
+    background: #0f172a; border: 1px solid #334155; border-radius: 6px; color: #e2e8f0; font-size: 13px; font-family: inherit; }
+  .form-field textarea { min-height: 60px; resize: vertical; }
+  .form-actions { margin-top: 14px; display: flex; gap: 8px; }
+
+  table { width: 100%; border-collapse: collapse; background: #1e293b; border-radius: 8px; overflow: hidden; }
+  th { background: #0f172a; color: #94a3b8; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;
+       padding: 10px 14px; text-align: left; font-weight: 500; }
+  td { padding: 10px 14px; font-size: 13px; border-top: 1px solid #334155; }
+  tr:hover td { background: #334155; }
+  tr.selected td { background: #1e3a5f; }
+
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; }
+  .badge-green { background: rgba(34,197,94,0.15); color: #22c55e; }
+  .badge-red { background: rgba(239,68,68,0.15); color: #ef4444; }
+  .badge-blue { background: rgba(59,130,246,0.15); color: #3b82f6; }
+  .badge-yellow { background: rgba(251,191,36,0.15); color: #fbbf24; }
+
+  .toast { position: fixed; top: 20px; right: 20px; padding: 10px 18px; border-radius: 8px;
+           color: #fff; font-size: 13px; z-index: 9999; animation: slideIn .2s ease; box-shadow: 0 4px 12px rgba(0,0,0,.3); }
+  .toast.success { background: #059669; }
+  .toast.error { background: #dc2626; }
+  .toast.info { background: #0284c7; }
+  @keyframes slideIn { from { transform: translateX(120%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.6); display: flex; 
+                   align-items: center; justify-content: center; z-index: 100; }
+  .modal { background: #1e293b; border-radius: 12px; padding: 24px; width: 90%; max-width: 500px; max-height: 85vh; overflow-y: auto; }
+  .modal h3 { color: #38bdf8; margin-bottom: 16px; font-size: 16px; }
+  .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 16px; }
+
+  /* 隐藏的视图 */
+  .view { display: none; }
+  .view.active { display: block; }
+  .editor-layout.active { display: flex; }
+
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: #1e293b; }
+  ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+</style>
+</head>
+<body>
+
+<!-- ===== 左侧菜单 ===== -->
+<aside class="sidebar">
+  <div class="sidebar-header"><span class="logo">🗺️</span>游戏管理后台</div>
+  <nav class="menu">
+    <div class="menu-item active" data-view="map-editor"><span class="icon">🎨</span>地图编辑器</div>
+    <div class="menu-item" data-view="npcs"><span class="icon">👤</span>NPC 管理</div>
+    <div class="menu-item" data-view="items"><span class="icon">💎</span>物品管理</div>
+    <div class="menu-item" data-view="portals"><span class="icon">🚪</span>传送门管理</div>
+    <div class="menu-item" data-view="users"><span class="icon">👥</span>用户管理</div>
+  </nav>
+  <div class="admin-login">
+    <input type="password" id="adminKey" placeholder="Admin Key">
+    <div class="status" id="adminStatus">未登录</div>
+  </div>
+  <div class="sidebar-footer">v1.0 · admin.html</div>
+</aside>
+
+<!-- ===== 主内容 ===== -->
+<main class="main">
+  <div class="topbar">
+    <h2 id="viewTitle">🎨 地图编辑器</h2>
+    <div class="spacer"></div>
+    <span class="api-url" id="apiUrl">http://127.0.0.1:5050</span>
+  </div>
+  <div class="content" id="contentArea">
+
+    <!-- ===== 地图编辑器 ===== -->
+    <div class="editor-layout active" id="view-map-editor">
+      <!-- 左侧：瓦片选择 -->
+      <div class="editor-left">
+        <div class="map-selector">
+          <label>选择地图</label>
+          <select id="mapSelect"></select>
+        </div>
+        
+        <div class="tile-palette">
+          <h4>可通行 ✅</h4>
+          <div class="tile-grid" id="walkableTiles">
+            <div class="tile-option tile-grass walkable" data-tile="grass">草地</div>
+            <div class="tile-option tile-path walkable" data-tile="path">小路</div>
+            <div class="tile-option tile-sand walkable" data-tile="sand">沙地</div>
+            <div class="tile-option tile-floor walkable" data-tile="floor">地板</div>
+          </div>
+          <h4>阻挡 ❌</h4>
+          <div class="tile-grid" id="blockedTiles">
+            <div class="tile-option tile-tree blocked" data-tile="tree">树木</div>
+            <div class="tile-option tile-rock blocked" data-tile="rock">岩石</div>
+            <div class="tile-option tile-wall blocked" data-tile="wall">墙体</div>
+            <div class="tile-option tile-bush blocked" data-tile="bush">灌木</div>
+            <div class="tile-option tile-water blocked" data-tile="water">水面</div>
+          </div>
+        </div>
+
+        <div class="tools">
+          <h4>工具</h4>
+          <div class="tool-row">
+            <div class="tool-btn active" data-tool="brush">✏️ 画笔</div>
+            <div class="tool-btn" data-tool="eraser">🩹 擦除</div>
+            <div class="tool-btn" data-tool="fill">🪣 填充</div>
+            <div class="tool-btn" data-tool="marker">📍 出生点</div>
+          </div>
+          <div class="brush-size">
+            笔刷 <input type="range" id="brushSize" min="1" max="5" value="1"> <span id="brushSizeVal">1</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 中间：画布 -->
+      <div class="editor-center">
+        <div class="canvas-toolbar">
+          <button class="btn btn-primary btn-sm" id="saveMapBtn">💾 保存地图</button>
+          <button class="btn btn-secondary btn-sm" id="newMapBtn">➕ 新建地图</button>
+          <button class="btn btn-danger btn-sm" id="deleteMapBtn">🗑️ 删除地图</button>
+          <div class="spacer"></div>
+          <div class="info">地图: <b id="mapInfo">-</b></div>
+          <div class="info">坐标: <b id="coordInfo">-</b></div>
+          <div class="info">悬停瓦片: <b id="hoverTile">-</b></div>
+        </div>
+        <div class="canvas-container">
+          <canvas id="mapCanvas"></canvas>
+        </div>
+      </div>
+
+      <!-- 右侧：地图属性 + 统计 -->
+      <div class="editor-right right-panel">
+        <div class="section">
+          <h3>📐 地图信息</h3>
+          <div class="form-row"><label>Map ID</label><input id="propMapId" readonly></div>
+          <div class="form-row"><label>名称</label><input id="propName"></div>
+          <div class="form-row"><label>宽度</label><input id="propWidth" type="number" readonly></div>
+          <div class="form-row"><label>高度</label><input id="propHeight" type="number" readonly></div>
+          <div class="form-row"><label>Tile Size</label><input id="propTileSize" type="number" readonly></div>
+        </div>
+        
+        <div class="section">
+          <h3>🏁 出生点</h3>
+          <div class="form-row"><label>Spawn X (tx)</label><input id="propSpawnX" type="number"></div>
+          <div class="form-row"><label>Spawn Y (ty)</label><input id="propSpawnY" type="number"></div>
+          <button class="btn btn-secondary btn-sm" id="setSpawnHere">📍 设为当前位置</button>
+        </div>
+
+        <div class="section">
+          <h3>📊 瓦片统计</h3>
+          <div id="tileStats" style="font-size:12px; color:#94a3b8;"></div>
+        </div>
+
+        <div class="section">
+          <h3>📤 快捷操作</h3>
+          <button class="btn btn-secondary btn-sm" id="genWallsBtn" style="width:100%;margin-bottom:6px;">🧱 自动生成边界墙</button>
+          <button class="btn btn-secondary btn-sm" id="clearBtn" style="width:100%;">🗑️ 清空为草地</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NPC 管理 ===== -->
+    <div class="view" id="view-npcs">
+      <div class="panel-actions">
+        <button class="btn btn-primary" onclick="AdminNpcs.openForm()">➕ 新建 NPC</button>
+        <div class="spacer"></div>
+        <select id="npcMapFilter" onchange="AdminNpcs.load()"><option value="">全部地图</option></select>
+      </div>
+      <table>
+        <thead><tr>
+          <th>ID</th><th>名称</th><th>类型</th><th>地图</th><th>位置</th><th>对话</th><th>操作</th>
+        </tr></thead>
+        <tbody id="npcTable"></tbody>
+      </table>
+    </div>
+
+    <!-- ===== 物品管理 ===== -->
+    <div class="view" id="view-items">
+      <div class="panel-actions">
+        <button class="btn btn-primary" onclick="AdminItems.openForm()">➕ 新建物品</button>
+      </div>
+      <table>
+        <thead><tr>
+          <th>ID</th><th>编码</th><th>名称</th><th>类型</th><th>稀有度</th><th>价格</th><th>可堆叠</th><th>操作</th>
+        </tr></thead>
+        <tbody id="itemTable"></tbody>
+      </table>
+    </div>
+
+    <!-- ===== 传送门管理 ===== -->
+    <div class="view" id="view-portals">
+      <div class="panel-actions">
+        <button class="btn btn-primary" onclick="AdminPortals.openForm()">➕ 新建传送门</button>
+      </div>
+      <table>
+        <thead><tr>
+          <th>ID</th><th>源地图</th><th>源坐标</th><th>目标地图</th><th>目标坐标</th><th>标签</th><th>操作</th>
+        </tr></thead>
+        <tbody id="portalTable"></tbody>
+      </table>
+    </div>
+
+    <!-- ===== 用户管理 ===== -->
+    <div class="view" id="view-users">
+      <div class="panel-actions">
+        <button class="btn btn-secondary" onclick="AdminUsers.load()">🔄 刷新</button>
+      </div>
+      <table>
+        <thead><tr>
+          <th>ID</th><th>用户名</th><th>昵称</th><th>邮箱</th><th>金币</th><th>注册时间</th><th>操作</th>
+        </tr></thead>
+        <tbody id="userTable"></tbody>
+      </table>
+    </div>
+
+  </div>
+</main>
+
+<script>
+// ==================== 配置 ====================
+const API_BASE = 'http://127.0.0.1:5050';
+const TILE_COLORS = { grass:'#2d5016', path:'#8b7355', sand:'#d4b896', floor:'#4a5568',
+                     tree:'#1a3a0a', rock:'#6b7280', wall:'#374151', bush:'#22543d', water:'#1e40af' };
+const WALKABLE = { grass:true, path:true, sand:true, floor:true, tree:false, rock:false, wall:false, bush:false, water:false };
+
+const $ = (id) => document.getElementById(id);
+const api = {
+  get: (path) => fetch(API_BASE + path, { headers: { 'Content-Type': 'application/json' } }).then(r => r.json()),
+  post: (path, data) => fetch(API_BASE + path, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) }).then(r => r.json()),
+  put: (path, data) => fetch(API_BASE + path, { method:'PUT', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) }).then(r => r.json()),
+  del: (path) => fetch(API_BASE + path, { method:'DELETE', headers:{'Content-Type':'application/json'} }).then(r => r.json()),
+};
+const ak = () => localStorage.getItem('admin_key') || '';
+const t = (m, type='info') => { const el=document.createElement('div'); el.className='toast '+type; el.textContent=m; document.body.appendChild(el); setTimeout(()=>el.remove(),2500); };
+
+// ==================== 侧边菜单切换 ====================
+const viewTitles = { 'map-editor':'🎨 地图编辑器', 'npcs':'👤 NPC 管理', 'items':'💎 物品管理', 'portals':'🚪 传送门管理', 'users':'👥 用户管理' };
+document.querySelectorAll('.menu-item').forEach(item => {
+  item.onclick = () => {
+    document.querySelectorAll('.menu-item').forEach(i => i.classList.remove('active'));
+    document.querySelectorAll('.view, .editor-layout').forEach(v => v.classList.remove('active'));
+    item.classList.add('active');
+    const v = item.dataset.view;
+    $('viewTitle').textContent = viewTitles[v];
+    if (v === 'map-editor') $('view-map-editor').classList.add('active');
+    else $(`view-${v}`).classList.add('active');
+    // 懒加载
+    if (v === 'npcs') AdminNpcs.load();
+    if (v === 'items') AdminItems.load();
+    if (v === 'portals') AdminPortals.load();
+    if (v === 'users') AdminUsers.load();
+  };
+});
+
+// ==================== Admin Key ====================
+$('adminKey').addEventListener('input', (e) => {
+  localStorage.setItem('admin_key', e.target.value);
+  if (e.target.value === 'admin123') {
+    $('adminStatus').textContent = '✅ 已登录';
+    $('adminStatus').className = 'status ok';
+  } else {
+    $('adminStatus').textContent = '❌ Key 不正确';
+    $('adminStatus').className = 'status err';
+  }
+});
+$('adminKey').value = ak();
+if (ak() === 'admin123') { $('adminStatus').textContent='✅ 已登录'; $('adminStatus').className='status ok'; }
+
+// ==================== 地图编辑器 ====================
+window.MapEditor = {
+  maps: [], currentMap: null, tiles: [], tileSize: 64, // tiles: 2D array [{ttype, walkable, texture}]
+  selectedTile: 'grass', tool: 'brush', brushSize: 1, spawnTile: null,
+  canvas: null, ctx: null, isDrawing: false, hasUnsaved: false,
+
+  async init() {
+    this.canvas = $('mapCanvas');
+    this.ctx = this.canvas.getContext('2d');
+    this.canvas.addEventListener('mousedown', (e) => { this.isDrawing = true; this.handleClick(e); });
+    this.canvas.addEventListener('mousemove', (e) => { this.handleMove(e); });
+    this.canvas.addEventListener('mouseup', () => { this.isDrawing = false; });
+    this.canvas.addEventListener('mouseleave', () => { this.isDrawing = false; });
+    
+    // 瓦片选择
+    document.querySelectorAll('.tile-option').forEach(opt => {
+      opt.onclick = () => {
+        document.querySelectorAll('.tile-option').forEach(o => o.classList.remove('active'));
+        opt.classList.add('active');
+        this.selectedTile = opt.dataset.tile;
+      };
+    });
+    document.querySelector('.tile-option[data-tile="grass"]').classList.add('active');
+    
+    // 工具
+    document.querySelectorAll('.tool-btn').forEach(btn => {
+      btn.onclick = () => {
+        document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        this.tool = btn.dataset.tool;
+      };
+    });
+    
+    $('brushSize').oninput = (e) => { this.brushSize = parseInt(e.target.value); $('brushSizeVal').textContent = this.brushSize; };
+    $('saveMapBtn').onclick = () => this.saveMap();
+    $('newMapBtn').onclick = () => this.newMap();
+    $('deleteMapBtn').onclick = () => this.deleteMap();
+    $('genWallsBtn').onclick = () => this.genWalls();
+    $('clearBtn').onclick = () => this.clearMap();
+    $('setSpawnHere').onclick = () => { if (this.spawnTile) { this.currentMap.spawn_x = this.spawnTile.tx; this.currentMap.spawn_y = this.spawnTile.ty; this.updateStats(); t('出生点已设为 tx='+this.spawnTile.tx+', ty='+this.spawnTile.ty, 'success'); } };
+    
+    await this.loadMaps();
+  },
+
+  async loadMaps() {
+    const r = await api.get('/api/maps');
+    this.maps = r.data;
+    const sel = $('mapSelect');
+    sel.innerHTML = '';
+    this.maps.forEach(m => {
+      const opt = document.createElement('option');
+      opt.value = m.map_id; opt.textContent = `${m.name} (${m.width}×${m.height})`;
+      sel.appendChild(opt);
+    });
+    sel.onchange = () => this.loadMap(sel.value);
+    if (this.maps.length > 0) await this.loadMap(this.maps[0].map_id);
+  },
+
+  async loadMap(mapId) {
+    const r = await api.get(`/api/maps/${mapId}`);
+    const data = r.data;
+    this.currentMap = data.map;
+    this.tileSize = data.map.tile_size || 64;
+    this.width = data.map.width;
+    this.height = data.map.height;
+    
+    // 加载 tiles 和 walkable 网格
+    this.tiles = [];
+    for (let y = 0; y < this.height; y++) {
+      this.tiles[y] = [];
+      for (let x = 0; x < this.width; x++) {
+        this.tiles[y][x] = { ttype: 'grass', walkable: true, texture: '' };
+      }
+    }
+    // 从 grid + walkable 构建 tiles
+    if (data.grid && data.walkable) {
+      for (let y = 0; y < this.height; y++) {
+        for (let x = 0; x < this.width; x++) {
+          const ttype = data.grid[y]?.[x] || 'grass';
+          const walkable = data.walkable[y]?.[x] !== false;
+          this.tiles[y][x] = { ttype, walkable, texture: '' };
+        }
+      }
+    }
+    
+    // 更新 UI
+    $('propMapId').value = this.currentMap.map_id;
+    $('propName').value = this.currentMap.name;
+    $('propWidth').value = this.width;
+    $('propHeight').value = this.height;
+    $('propTileSize').value = this.tileSize;
+    $('propSpawnX').value = this.currentMap.spawn_x;
+    $('propSpawnY').value = this.currentMap.spawn_y;
+    $('mapInfo').textContent = `${this.currentMap.name} · ${this.width}×${this.height} · tile=${this.tileSize}`;
+    
+    this.render();
+    this.updateStats();
+    // 同步 NPC 过滤
+    const npcSel = $('npcMapFilter');
+    if (npcSel) {
+      [...document.querySelectorAll('#npcMapFilter option:not([value=""])')].forEach(o => o.remove());
+      this.maps.forEach(m => {
+        const o = document.createElement('option'); o.value = m.map_id; o.textContent = m.name; npcSel.appendChild(o);
+      });
+    }
+  },
+
+  render() {
+    const ts = this.tileSize;
+    this.canvas.width = this.width * ts;
+    this.canvas.height = this.height * ts;
+    const ctx = this.ctx;
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    for (let y = 0; y < this.height; y++) {
+      for (let x = 0; x < this.width; x++) {
+        const t = this.tiles[y][x];
+        ctx.fillStyle = TILE_COLORS[t.ttype] || '#333';
+        ctx.fillRect(x * ts, y * ts, ts, ts);
+        // 网格线
+        ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+        ctx.strokeRect(x * ts, y * ts, ts, ts);
+        // 不可通行标记
+        if (!t.walkable) {
+          ctx.fillStyle = 'rgba(239,68,68,0.3)';
+          ctx.fillRect(x * ts, y * ts, ts, ts);
+          ctx.fillStyle = 'rgba(255,255,255,0.4)';
+          ctx.font = `${ts*0.4}px sans-serif`;
+          ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+          ctx.fillText('✕', x*ts + ts/2, y*ts + ts/2);
+        }
+      }
+    }
+    // 出生点
+    const sx = (this.currentMap.spawn_x || 0) * ts + ts/2;
+    const sy = (this.currentMap.spawn_y || 0) * ts + ts/2;
+    ctx.fillStyle = 'rgba(34,197,94,0.5)';
+    ctx.beginPath(); ctx.arc(sx, sy, ts*0.4, 0, Math.PI*2); ctx.fill();
+    ctx.strokeStyle = '#22c55e'; ctx.lineWidth = 3; ctx.stroke();
+    ctx.fillStyle = '#fff'; ctx.font = `bold ${ts*0.3}px sans-serif`; ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText('S', sx, sy);
+    
+    // 悬停位置
+    if (this.spawnTile && this.tool === 'marker') {
+      ctx.strokeStyle = '#fbbf24'; ctx.lineWidth = 2;
+      ctx.strokeRect(this.spawnTile.tx*ts, this.spawnTile.ty*ts, ts, ts);
+    }
+  },
+
+  getTileFromEvent(e) {
+    const rect = this.canvas.getBoundingClientRect();
+    const x = Math.floor((e.clientX - rect.left) * (this.canvas.width / rect.width) / this.tileSize);
+    const y = Math.floor((e.clientY - rect.top) * (this.canvas.height / rect.height) / this.tileSize);
+    return { x, y };
+  },
+
+  handleClick(e) {
+    const { x, y } = this.getTileFromEvent(e);
+    if (x < 0 || y < 0 || x >= this.width || y >= this.height) return;
+    if (this.tool === 'marker') {
+      this.spawnTile = { tx: x, ty: y };
+      $('hoverTile').textContent = `marker@(${x},${y})`;
+      this.render();
+      return;
+    }
+    this.paint(x, y);
+  },
+
+  handleMove(e) {
+    const { x, y } = this.getTileFromEvent(e);
+    if (x < 0 || y < 0 || x >= this.width || y >= this.height) return;
+    $('coordInfo').textContent = `(${x}, ${y})`;
+    $('hoverTile').textContent = `${this.tiles[y][x].ttype} (${this.tiles[y][x].walkable?'✅':'❌'})`;
+    if (this.isDrawing && this.tool !== 'marker') this.paint(x, y);
+  },
+
+  paint(cx, cy) {
+    const r = this.brushSize - 1;
+    for (let dy = -r; dy <= r; dy++) {
+      for (let dx = -r; dx <= r; dx++) {
+        const x = cx + dx, y = cy + dy;
+        if (x < 0 || y < 0 || x >= this.width || y >= this.height) continue;
+        if (this.tool === 'eraser') {
+          this.tiles[y][x] = { ttype: 'grass', walkable: true, texture: '' };
+        } else if (this.tool === 'fill') {
+          const target = this.tiles[y][x].ttype;
+          this.floodFill(x, y, target, this.selectedTile);
+        } else {
+          this.tiles[y][x] = { ttype: this.selectedTile, walkable: WALKABLE[this.selectedTile] ?? true, texture: '' };
+        }
+      }
+    }
+    this.render();
+    this.updateStats();
+    this.hasUnsaved = true;
+  },
+
+  floodFill(sx, sy, target, replacement) {
+    if (target === replacement) return;
+    const stack = [[sx, sy]];
+    while (stack.length) {
+      const [x, y] = stack.pop();
+      if (x<0||y<0||x>=this.width||y>=this.height) continue;
+      if (this.tiles[y][x].ttype !== target) continue;
+      this.tiles[y][x] = { ttype: replacement, walkable: WALKABLE[replacement] ?? true, texture: '' };
+      stack.push([x+1,y],[x-1,y],[x,y+1],[x,y-1]);
+    }
+  },
+
+  genWalls() {
+    for (let y = 0; y < this.height; y++) {
+      for (let x = 0; x < this.width; x++) {
+        if (x === 0 || y === 0 || x === this.width-1 || y === this.height-1) {
+          this.tiles[y][x] = { ttype: 'wall', walkable: false, texture: '' };
+        }
+      }
+    }
+    this.render(); this.updateStats(); this.hasUnsaved = true;
+    t('边界墙已生成', 'success');
+  },
+
+  clearMap() {
+    for (let y = 0; y < this.height; y++) {
+      for (let x = 0; x < this.width; x++) {
+        this.tiles[y][x] = { ttype: 'grass', walkable: true, texture: '' };
+      }
+    }
+    this.render(); this.updateStats(); this.hasUnsaved = true;
+    t('地图已清空为草地', 'info');
+  },
+
+  updateStats() {
+    const counts = {};
+    for (let y = 0; y < this.height; y++) {
+      for (let x = 0; x < this.width; x++) {
+        const t = this.tiles[y][x].ttype;
+        counts[t] = (counts[t] || 0) + 1;
+      }
+    }
+    const total = this.width * this.height;
+    $('tileStats').innerHTML = Object.entries(counts).sort((a,b)=>b[1]-a[1])
+      .map(([k,v]) => `<div style="display:flex;justify-content:space-between;margin:2px 0;"><span style="color:${TILE_COLORS[k]}">■</span> ${k}: ${v} (${(v/total*100).toFixed(1)}%)</div>`).join('');
+  },
+
+  async saveMap() {
+    if (!this.currentMap) return;
+    const tiles = [];
+    for (let y = 0; y < this.height; y++) {
+      for (let x = 0; x < this.width; x++) {
+        const t = this.tiles[y][x];
+        tiles.push({ tx: x, ty: y, ttype: t.ttype, walkable: t.walkable, texture: t.texture });
+      }
+    }
+    // 先更新地图元数据（名称、出生点）
+    await api.put(`/api/admin/maps/${this.currentMap.map_id}`, {
+      name: $('propName').value,
+      spawn_x: parseInt($('propSpawnX').value),
+      spawn_y: parseInt($('propSpawnY').value),
+      admin_key: ak()
+    });
+    // 再批量更新瓦片
+    const r = await api.post(`/api/admin/maps/${this.currentMap.map_id}/tiles`, { tiles, admin_key: ak() });
+    if (r.code === 0) {
+      this.hasUnsaved = false;
+      t('✅ 保存成功！更新了 ' + r.data.updated + ' 个瓦片', 'success');
+    } else {
+      t('❌ 保存失败: ' + r.message, 'error');
+    }
+  },
+
+  async newMap() {
+    const name = prompt('地图名称？', '新地图');
+    if (!name) return;
+    const mapId = name.toLowerCase().replace(/\s+/g, '_');
+    const w = parseInt(prompt('宽度？', '16'));
+    const h = parseInt(prompt('高度？', '16'));
+    const r = await api.post('/api/admin/maps', { map_id: mapId, name, width: w, height: h, spawn_x: 2, spawn_y: 2, admin_key: ak() });
+    if (r.code === 0) {
+      await this.loadMaps();
+      await this.loadMap(mapId);
+      t('✅ 新建地图成功', 'success');
+    } else {
+      t('❌ ' + r.message, 'error');
+    }
+  },
+
+  async deleteMap() {
+    if (!this.currentMap) return;
+    if (!confirm(`确定删除地图 "${this.currentMap.name}"？所有 NPC、传送门、物品也会一起删除！`)) return;
+    const r = await api.del(`/api/admin/maps/${this.currentMap.map_id}`);
+    if (r.code === 0) {
+      await this.loadMaps();
+      t('✅ 已删除', 'success');
+    } else {
+      t('❌ ' + r.message, 'error');
+    }
+  },
+};
+
+// ==================== NPC 管理 ====================
+window.AdminNpcs = {
+  data: [], maps: [],
+  async load() {
+    const r = await api.get('/api/admin/npcs?admin_key=' + ak());
+    this.data = r.data || [];
+    const rm = await api.get('/api/maps');
+    this.maps = rm.data;
+    // 填 filter
+    const sel = $('npcMapFilter');
+    const curVal = sel.value;
+    [...sel.querySelectorAll('option:not([value=""])')].forEach(o => o.remove());
+    this.maps.forEach(m => { const o = document.createElement('option'); o.value = m.map_id; o.textContent = m.name; sel.appendChild(o); });
+    sel.value = curVal;
+    
+    const filter = sel.value;
+    const list = filter ? this.data.filter(n => n.map_id === filter) : this.data;
+    const tbody = $('npcTable'); tbody.innerHTML = '';
+    list.forEach(n => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${n.id}</td><td>${n.name}</td><td><span class="badge badge-blue">${n.npc_type || 'talker'}</span></td>
+        <td>${n.map_id}</td><td>(${n.tx}, ${n.ty})</td><td>${(n.dialog||'').slice(0,30)}</td>
+        <td><button class="btn btn-sm btn-secondary" onclick="AdminNpcs.openForm(${n.id})">编辑</button>
+            <button class="btn btn-sm btn-danger" onclick="AdminNpcs.del(${n.id})">删除</button></td>`;
+      tbody.appendChild(tr);
+    });
+  },
+  openForm(id) {
+    const existing = id ? this.data.find(n => n.id === id) : null;
+    const m = existing || { map_id: this.maps[0]?.map_id || 'main', name: '', title: '', tx: 2, ty: 2, dialog: '', color: '#ff8800', npc_type: 'talker', shop_items: [] };
+    const modal = document.createElement('div');
+    modal.className = 'modal-overlay';
+    modal.innerHTML = `<div class="modal">
+      <h3>${existing ? '编辑' : '新建'} NPC</h3>
+      <div class="form-grid">
+        <div class="form-field"><label>地图</label><select id="nf_mapId">${this.maps.map(m=>`<option value="${m.map_id}" ${m.map_id===m.map_id?'selected':''}>${m.name}</option>`).join('')}</select></div>
+        <div class="form-field"><label>名称</label><input id="nf_name" value="${m.name}"></div>
+        <div class="form-field"><label>类型</label><select id="nf_type"><option value="talker" ${m.npc_type==='talker'?'selected':''}>对话</option><option value="merchant" ${m.npc_type==='merchant'?'selected':''}>商人</option></select></div>
+        <div class="form-field"><label>TX</label><input id="nf_tx" type="number" value="${m.tx}"></div>
+        <div class="form-field"><label>TY</label><input id="nf_ty" type="number" value="${m.ty}"></div>
+        <div class="form-field"><label>颜色</label><input id="nf_color" value="${m.color || '#ff8800'}"></div>
+      </div>
+      <div class="form-field" style="margin-top:12px"><label>对话</label><textarea id="nf_dialog">${m.dialog||''}</textarea></div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="this.closest('.modal-overlay').remove()">取消</button>
+        <button class="btn btn-primary" onclick="AdminNpcs.save(${id||0}, this.closest('.modal-overlay'))">保存</button>
+      </div>
+    </div>`;
+    document.body.appendChild(modal);
+  },
+  async save(id, modalEl) {
+    const payload = {
+      map_id: $('nf_mapId').value, name: $('nf_name').value, npc_type: $('nf_type').value,
+      tx: parseInt($('nf_tx').value), ty: parseInt($('nf_ty').value), color: $('nf_color').value,
+      dialog: $('nf_dialog').value, admin_key: ak()
+    };
+    const r = id ? await api.put(`/api/admin/npcs/${id}`, payload) : await api.post('/api/admin/npcs', payload);
+    if (r.code === 0) { modalEl.remove(); this.load(); t('✅ 保存成功', 'success'); }
+    else t('❌ ' + r.message, 'error');
+  },
+  async del(id) {
+    if (!confirm('确定删除？')) return;
+    const r = await api.del(`/api/admin/npcs/${id}`);
+    if (r.code === 0) { this.load(); t('✅ 已删除', 'success'); }
+  },
+};
+
+// ==================== 物品管理 ====================
+window.AdminItems = {
+  data: [],
+  async load() {
+    const r = await api.get('/api/items');
+    this.data = r.data || [];
+    const tbody = $('itemTable'); tbody.innerHTML = '';
+    this.data.forEach(it => {
+      const rarityClass = { common:'', rare:'badge-blue', epic:'badge-purple', legendary:'badge-yellow' }[it.rarity] || '';
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${it.id}</td><td><code>${it.code}</code></td><td>${it.name}</td>
+        <td><span class="badge">${it.kind}</span></td>
+        <td><span class="badge ${rarityClass}">${it.rarity}</span></td>
+        <td>${it.price || 0}</td><td>${it.stackable?'✅':'❌'}</td>
+        <td><button class="btn btn-sm btn-secondary" onclick="AdminItems.openForm(${it.id})">编辑</button>
+            <button class="btn btn-sm btn-danger" onclick="AdminItems.del(${it.id})">删除</button></td>`;
+      tbody.appendChild(tr);
+    });
+  },
+  openForm(id) {
+    const existing = id ? this.data.find(i => i.id === id) : null;
+    const m = existing || { code: '', name: '', description: '', icon: '', kind: 'material', rarity: 'common', stackable: true, weight: 1, price: 10 };
+    const modal = document.createElement('div');
+    modal.className = 'modal-overlay';
+    modal.innerHTML = `<div class="modal">
+      <h3>${existing ? '编辑' : '新建'}物品</h3>
+      <div class="form-grid">
+        <div class="form-field"><label>编码</label><input id="if_code" value="${m.code}"></div>
+        <div class="form-field"><label>名称</label><input id="if_name" value="${m.name}"></div>
+        <div class="form-field"><label>类型</label><select id="if_kind">${['material','weapon','armor','consumable','quest'].map(k=>`<option value="${k}" ${m.kind===k?'selected':''}>${k}</option>`).join('')}</select></div>
+        <div class="form-field"><label>稀有度</label><select id="if_rarity">${['common','rare','epic','legendary'].map(k=>`<option value="${k}" ${m.rarity===k?'selected':''}>${k}</option>`).join('')}</select></div>
+        <div class="form-field"><label>价格</label><input id="if_price" type="number" value="${m.price||0}"></div>
+        <div class="form-field"><label>可堆叠</label><select id="if_stackable"><option value="true" ${m.stackable?'selected':''}>是</option><option value="false" ${!m.stackable?'selected':''}>否</option></select></div>
+      </div>
+      <div class="form-field" style="margin-top:12px"><label>描述</label><textarea id="if_desc">${m.description||''}</textarea></div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="this.closest('.modal-overlay').remove()">取消</button>
+        <button class="btn btn-primary" onclick="AdminItems.save(${id||0}, this.closest('.modal-overlay'))">保存</button>
+      </div>
+    </div>`;
+    document.body.appendChild(modal);
+  },
+  async save(id, modalEl) {
+    const payload = { code: $('if_code').value, name: $('if_name').value, kind: $('if_kind').value,
+      rarity: $('if_rarity').value, price: parseInt($('if_price').value), stackable: $('if_stackable').value==='true',
+      description: $('if_desc').value, admin_key: ak() };
+    const r = id ? await api.put(`/api/admin/items/${id}`, payload) : await api.post('/api/admin/items', payload);
+    if (r.code === 0) { modalEl.remove(); this.load(); t('✅ 保存成功', 'success'); }
+    else t('❌ ' + r.message, 'error');
+  },
+  async del(id) {
+    if (!confirm('确定删除？')) return;
+    const r = await api.del(`/api/admin/items/${id}`);
+    if (r.code === 0) { this.load(); t('✅ 已删除', 'success'); }
+  },
+};
+
+// ==================== 传送门管理 ====================
+window.AdminPortals = {
+  data: [], maps: [],
+  async load() {
+    const r = await api.get('/api/admin/portals?admin_key=' + ak());
+    this.data = r.data || [];
+    const rm = await api.get('/api/maps');
+    this.maps = rm.data;
+    const tbody = $('portalTable'); tbody.innerHTML = '';
+    this.data.forEach(p => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${p.id}</td><td>${p.map_id}</td><td>(${p.from_tx}, ${p.from_ty})</td>
+        <td>${p.to_map_id}</td><td>(${p.to_tx}, ${p.to_ty})</td><td>${p.label||'🚪'}</td>
+        <td><button class="btn btn-sm btn-secondary" onclick="AdminPortals.openForm(${p.id})">编辑</button>
+            <button class="btn btn-sm btn-danger" onclick="AdminPortals.del(${p.id})">删除</button></td>`;
+      tbody.appendChild(tr);
+    });
+  },
+  openForm(id) {
+    const existing = id ? this.data.find(p => p.id === id) : null;
+    const m = existing || { map_id: this.maps[0]?.map_id || 'main', from_tx: 2, from_ty: 2, to_map_id: '', to_tx: 2, to_ty: 2, label: '传送' };
+    const optList = this.maps.map(x => `<option value="${x.map_id}">${x.name}</option>`).join('');
+    const modal = document.createElement('div');
+    modal.className = 'modal-overlay';
+    modal.innerHTML = `<div class="modal">
+      <h3>${existing ? '编辑' : '新建'}传送门</h3>
+      <div class="form-grid">
+        <div class="form-field"><label>源地图</label><select id="pf_mapId">${this.maps.map(x=>`<option value="${x.map_id}" ${x.map_id===m.map_id?'selected':''}>${x.name}</option>`).join('')}</select></div>
+        <div class="form-field"><label>目标地图</label><select id="pf_toMapId">${this.maps.map(x=>`<option value="${x.map_id}" ${x.map_id===m.to_map_id?'selected':''}>${x.name}</option>`).join('')}</select></div>
+        <div class="form-field"><label>源 TX</label><input id="pf_fx" type="number" value="${m.from_tx}"></div>
+        <div class="form-field"><label>源 TY</label><input id="pf_fy" type="number" value="${m.from_ty}"></div>
+        <div class="form-field"><label>目标 TX</label><input id="pf_tx" type="number" value="${m.to_tx}"></div>
+        <div class="form-field"><label>目标 TY</label><input id="pf_ty" type="number" value="${m.to_ty}"></div>
+        <div class="form-field"><label>标签</label><input id="pf_label" value="${m.label||'传送'}"></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="this.closest('.modal-overlay').remove()">取消</button>
+        <button class="btn btn-primary" onclick="AdminPortals.save(${id||0}, this.closest('.modal-overlay'))">保存</button>
+      </div>
+    </div>`;
+    document.body.appendChild(modal);
+  },
+  async save(id, modalEl) {
+    const payload = { map_id: $('pf_mapId').value, to_map_id: $('pf_toMapId').value,
+      from_tx: parseInt($('pf_fx').value), from_ty: parseInt($('pf_fy').value),
+      to_tx: parseInt($('pf_tx').value), to_ty: parseInt($('pf_ty').value),
+      label: $('pf_label').value, admin_key: ak() };
+    const r = id ? await api.put(`/api/admin/portals/${id}`, payload) : await api.post('/api/admin/portals', payload);
+    if (r.code === 0) { modalEl.remove(); this.load(); t('✅ 保存成功', 'success'); }
+    else t('❌ ' + r.message, 'error');
+  },
+  async del(id) {
+    if (!confirm('确定删除？')) return;
+    const r = await api.del(`/api/admin/portals/${id}`);
+    if (r.code === 0) { this.load(); t('✅ 已删除', 'success'); }
+  },
+};
+
+// ==================== 用户管理 ====================
+window.AdminUsers = {
+  data: [],
+  async load() {
+    const r = await api.get('/api/admin/users?admin_key=' + ak());
+    this.data = r.data || [];
+    const tbody = $('userTable'); tbody.innerHTML = '';
+    this.data.forEach(u => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${u.id}</td><td>${u.username}</td><td>${u.nickname||'-'}</td><td>${u.email||'-'}</td>
+        <td><input type="number" style="width:80px;padding:2px 6px;background:#0f172a;border:1px solid #334155;border-radius:4px;color:#e2e8f0" value="${u.money}" onchange="AdminUsers.setMoney(${u.id}, this.value)"></td>
+        <td>${new Date(u.created_at).toLocaleString('zh-CN')}</td>
+        <td><button class="btn btn-sm btn-secondary" onclick="AdminUsers.warp(${u.id})">传送</button></td>`;
+      tbody.appendChild(tr);
+    });
+  },
+  async setMoney(uid, amount) {
+    const r = await api.post(`/api/admin/users/${uid}/money`, { amount: parseInt(amount), admin_key: ak() });
+    if (r.code === 0) t('✅ 金币已更新', 'success');
+    else t('❌ ' + r.message, 'error');
+  },
+  async warp(uid) {
+    const mapId = prompt('目标地图 ID？', 'arena');
+    if (!mapId) return;
+    const tx = parseInt(prompt('TX？', '2')), ty = parseInt(prompt('TY？', '2'));
+    const r = await api.post(`/api/admin/users/${uid}/warp`, { map_id: mapId, tile_x: tx, tile_y: ty, admin_key: ak() });
+    if (r.code === 0) t('✅ 已传送', 'success');
+    else t('❌ ' + r.message, 'error');
+  },
+};
+
+// ==================== 启动 ====================
+window.MapEditor.init();
+// 自动设 admin key（开发用）
+if (!localStorage.getItem('admin_key')) {
+  localStorage.setItem('admin_key', 'admin123');
+}
+const _ak_input = document.getElementById('adminKey');
+_ak_input.value = localStorage.getItem('admin_key');
+if (localStorage.getItem('admin_key') === 'admin123') {
+  document.getElementById('adminStatus').textContent = '✅ 已登录';
+  document.getElementById('adminStatus').className = 'status ok';
+}
+
+</script>
+
+</body>
+</html>
