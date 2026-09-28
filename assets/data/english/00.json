@@ -870,6 +870,7 @@
   { "word": "dove", "cover": "assets/photo/dove.webp", "relate_words": ["bird"] },
   { "word": "down", "cover": "assets/photo/down.webp", "relate_words": ["feeling","up"] },
   { "word": "download", "cover": "assets/photo/download.webp", "relate_words": [] },
+  { "word": "dozen", "cover": "assets/photo/dozen.webp", "relate_words": ["twelve","number"] },
   { "word": "draft", "cover": "assets/photo/draft.webp", "relate_words": [] },
   { "word": "dragon", "cover": "assets/photo/dragon.webp", "relate_words": ["animal"] },
   { "word": "drain", "cover": "assets/photo/drain.webp", "relate_words": ["street"] },
