@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PixelTool — 在线图片转像素画</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ Header ============ -->
+<header class="header">
+  <div class="container header-inner">
+    <div class="logo">
+      <div class="logo-icon"><span></span><span></span><span></span><span></span></div>
+      PixelTool
+    </div>
+    <nav class="nav">
+      <a href="#editor">开始创作</a>
+      <a href="#features">功能特色</a>
+      <a href="#faq">常见问题</a>
+      <a href="#footer">关于</a>
+    </nav>
+    <div class="header-actions">
+      <button class="btn-lang" title="语言切换">🌐 中文</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 编辑器 ============ -->
+<section class="editor-section" id="editor">
+  <div class="container">
+    <div class="editor-wrap">
+
+      <!-- 左侧控制面板 -->
+      <aside class="panel">
+        <h3>📤 上传图片</h3>
+
+        <!-- 初始上传区 -->
+        <div class="upload-area" id="uploadArea">
+          <div class="upload-icon">📤</div>
+          <p>点击选择图片，或<strong>拖拽图片到此处</strong></p>
+          <p class="hint">支持 JPG · PNG · GIF · WebP · BMP · 最大 30MB</p>
+        </div>
+        <input type="file" id="fileInput" accept="image/*" style="display:none">
+
+        <!-- 文件信息条（上传后显示） -->
+        <div class="file-info" id="fileInfo" style="display:none">
+          <div class="file-meta">
+            <div class="file-name" id="fileName">—</div>
+            <div class="file-size" id="fileSize">—</div>
+          </div>
+          <button class="btn-replace" id="btnReplace">更换</button>
+        </div>
+
+        <!-- 像素块大小 -->
+        <div class="slider-group" id="sizeGroup" style="display:none">
+          <div class="slider-label">
+            <span>像素块大小</span>
+            <span class="slider-value" id="valueSize">9</span>
+          </div>
+          <input type="range" id="sliderSize" min="1" max="100" value="9">
+        </div>
+
+        <!-- 调色板预设 -->
+        <div class="palette-section" id="paletteSection" style="display:none">
+          <div class="panel-subtitle">调色板</div>
+          <div class="palette-grid">
+            <button class="palette-card active" data-palette="auto">
+              <div class="palette-bar palette-auto" title="自然色彩"></div>
+              <div class="palette-label">自然色彩</div>
+            </button>
+            <button class="palette-card" data-palette="warm">
+              <div class="palette-bar palette-warm" title="暖阳怀旧"></div>
+              <div class="palette-label">暖阳怀旧</div>
+            </button>
+            <button class="palette-card" data-palette="cool">
+              <div class="palette-bar palette-cool" title="清凉蓝调"></div>
+              <div class="palette-label">清凉蓝调</div>
+            </button>
+            <button class="palette-card" data-palette="retrogreen">
+              <div class="palette-bar palette-retrogreen" title="复古绿屏"></div>
+              <div class="palette-label">复古绿屏</div>
+            </button>
+            <button class="palette-card" data-palette="game">
+              <div class="palette-bar palette-game" title="鲜艳游戏色"></div>
+              <div class="palette-label">鲜艳游戏色</div>
+            </button>
+            <button class="palette-card" data-palette="mono">
+              <div class="palette-bar palette-mono" title="经典黑白"></div>
+              <div class="palette-label">经典黑白</div>
+            </button>
+            <button class="palette-card" data-palette="fromimage">
+              <div class="palette-bar palette-fromimage" title="从图片自动取色"></div>
+              <div class="palette-label">从图片自动取色</div>
+              <div class="palette-sub">自动分析当前图片</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- 取色数量（数字按钮组） -->
+        <div class="numgroup" id="numgroup" style="display:none">
+          <div class="panel-subtitle">取色数量</div>
+          <div class="num-btns">
+            <button class="num-btn" data-count="4">4</button>
+            <button class="num-btn active" data-count="8">8</button>
+            <button class="num-btn" data-count="12">12</button>
+            <button class="num-btn" data-count="16">16</button>
+          </div>
+        </div>
+
+        <!-- 最大颜色数 -->
+        <div class="slider-group" id="maxcolorsGroup" style="display:none">
+          <div class="slider-label">
+            <span>最大颜色数</span>
+            <span class="slider-value" id="valueMaxColors">原色</span>
+          </div>
+          <input type="range" id="sliderMaxColors" min="2" max="256" value="256">
+        </div>
+
+        <!-- 输出尺寸上限 -->
+        <div class="select-group" id="sizeLimitGroup" style="display:none">
+          <div class="panel-subtitle">输出尺寸上限</div>
+          <select id="outputSize" class="select-box">
+            <option value="0">原始尺寸</option>
+            <option value="256">256 px</option>
+            <option value="512">512 px</option>
+            <option value="1024">1024 px</option>
+            <option value="2048">2048 px</option>
+          </select>
+        </div>
+
+      </aside>
+
+      <!-- 右侧预览 -->
+      <main class="preview-area">
+        <div class="preview-inner" id="previewInner">
+          <div class="empty-state">
+            <div class="big-emoji">🎨</div>
+            <p>上传图片后，这里将显示像素化实时预览</p>
+          </div>
+        </div>
+
+        <!-- 底部下载 + 信息 -->
+        <div class="preview-footer" id="previewFooter" style="display:none">
+          <button class="btn-download-primary" id="btnPNG">⬇ 下载 PNG</button>
+          <button class="btn-download-secondary" id="btnSVG">⬇ 下载 SVG</button>
+          <div class="image-info" id="imageInfo">0 × 0 · 0 px · 原色</div>
+        </div>
+      </main>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ Footer（通用 site-footer 组件） ============ -->
+<div data-site-footer data-mode="flow"></div>
+
+<!-- 提示条 -->
+<div id="toast" class="toast"></div>
+
+<!-- 脚本 -->
+<script src="palettes.js"></script>
+<script src="pixelator.js"></script>
+<script src="app.js"></script>
+<script src="../assets/js/site-footer.js"></script>
+
+</body>
+</html>
