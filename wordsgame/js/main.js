@@ -110,7 +110,7 @@ async function enterGame() {
   // 动态 import world.js（避免模块加载时的错误阻塞登录页）
   if (!_worldModule) {
     try {
-      _worldModule = await import('./world.js?v=107');
+      _worldModule = await import('./world.js?v=112');
     } catch(err) {
       console.error('❌ world.js 加载失败:', err);
       alert('3D 引擎加载失败：' + (err.message || err) + '\n\n请打开浏览器控制台(F12)查看详情');
@@ -129,7 +129,7 @@ async function enterGame() {
   let playerPos = null;
   try { playerPos = await posApi.get(); } catch {}
 
-  const startMapId = (playerPos && playerPos.map_id) || 'main';
+  const startMapId = (playerPos && playerPos.map_id) || 'dragon_village';
   await loadMap(startMapId, playerPos);
 }
 
@@ -141,8 +141,26 @@ async function loadMap(mapId, playerPos = null) {
     if (playerPos) data.player = playerPos;
 
     if (!window.__world) {
-      const canvas = document.getElementById('game-canvas');
-      if (!_TileWorld) { await import('./world.js?v=107').then(m => { _TileWorld = m.TileWorld; }); }
+      // 确保 game-view 已显示
+      const gameView = document.getElementById('game-view');
+      if (gameView && !gameView.classList.contains('active')) gameView.classList.add('active');
+      void gameView?.offsetHeight;  // 强制 reflow
+
+      // 找 canvas（最多等 1 秒，rAF 轮询）
+      let canvas = null;
+      for (let i = 0; i < 60; i++) {
+        canvas = document.getElementById('game-canvas');
+        if (canvas) break;
+        await new Promise(r => requestAnimationFrame(r));
+      }
+      // 终极兜底：找不到就动态创建
+      if (!canvas) {
+        console.warn('[loadMap] canvas 找不到，动态创建一个');
+        canvas = document.createElement('canvas');
+        canvas.id = 'game-canvas';
+        (gameView || document.body).appendChild(canvas);
+      }
+      if (!_TileWorld) { await import('./world.js?v=112').then(m => { _TileWorld = m.TileWorld; }); }
       window.__world = new _TileWorld(canvas, {
         onPlayerMoved: handlePlayerMoved,
         onInteract: handleInteract,
@@ -151,7 +169,7 @@ async function loadMap(mapId, playerPos = null) {
         onMapLoaded: handleMapLoaded,
       });
     }
-    window.__world.loadMap(data);
+    await window.__world.loadMap(data);
 
     // 主动触发一次 resize（确保 canvas 拿到正确尺寸）
     requestAnimationFrame(() => window.__world._onResize?.());

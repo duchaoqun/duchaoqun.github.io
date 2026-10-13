@@ -267,17 +267,13 @@
   </section>
 
   <!-- ============ 脚本 ============ -->
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "./js/three-bundle.js?v=107"
-    }
-  }
-  </script>
-  <script type="module" src="js/api.js?v=107"></script>
-  <script type="module" src="js/auth.js?v=107"></script>
-  <script type="module" src="js/inventory.js?v=107"></script>
-  <script type="module" src="js/main.js?v=107"></script>
+  <!-- PixiJS 必须在所有 module 之前加载（world.js 用全局 PIXI） -->
+  <script src="assets/pixi/pixi.min.js"></script>
+
+  <script type="module" src="js/api.js?v=112"></script>
+  <script type="module" src="js/auth.js?v=112"></script>
+  <script type="module" src="js/inventory.js?v=112"></script>
+  <script type="module" src="js/main.js?v=112"></script>
 
 
 </body></html>
