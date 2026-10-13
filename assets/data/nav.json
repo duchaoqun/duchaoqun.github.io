@@ -33,7 +33,8 @@
         { "title": "Kimi", "desc": "月之暗面 Moonshot 长文本对话", "url": "https://kimi.moonshot.cn", "icon": "🌙", "external": true },
         { "title": "灵犀", "desc": "WPS Copilot 办公助手", "url": "https://copilot.wps.cn", "icon": "🦌", "external": true },
         { "title": "Copilot", "desc": "微软 Microsoft Copilot", "url": "https://copilot.microsoft.com", "icon": "🤖", "external": true },
-        { "title": "Gemini", "desc": "谷歌 AI 对话与编程助手", "url": "https://gemini.google.com", "icon": "✨", "external": true }
+        { "title": "Gemini", "desc": "谷歌 AI 对话与编程助手", "url": "https://gemini.google.com", "icon": "✨", "external": true },
+        { "title": "Claude", "desc": "Claude AI 对话助手", "url": "https://claude.ai/new", "icon": "🤖", "external": true }
       ]
     },
     {
@@ -123,7 +124,8 @@
         { "title": "歌曲宝", "desc": "在线听歌与下载站", "url": "https://www.gequbao.com", "icon": "🎸", "external": true },
         { "title": "999TTT", "desc": "在线音乐资源站", "url": "http://www.999ttt.com", "icon": "🎹", "external": true },
         { "title": "歌曲海", "desc": "在线听歌与下载站", "url": "https://www.gequhai.com", "icon": "🌊", "external": true },
-        { "title": "悦听", "desc": "在线音乐播放站", "url": "https://www.yueting.net", "icon": "👂", "external": true }
+        { "title": "悦听", "desc": "在线音乐播放站", "url": "https://www.yueting.net", "icon": "👂", "external": true },
+        { "title": "InMP3", "desc": "音乐流媒体平台", "url": "https://inmp3.com/", "icon": "🎵", "external": true }
       ]
     },
     {
